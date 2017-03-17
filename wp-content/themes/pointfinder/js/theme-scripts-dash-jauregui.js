@@ -879,10 +879,7 @@ jQuery.validator.addMethod("pattern", function(value, element, param) {
 				  rules:{
 				  	pet_name:{
 				  	  required: true,
-				  	  //rangelength: [4, 15],
-				  	  maxlength: 25,
-				  	 // pattern: /^[a-zA-ZáéíïóúüÁÉÍÏÓÚÜñÑ\'\"\s]+$/
-				  	  pattern:"[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{1,25}",
+				  	  pattern:"[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]",
 
 				  	},
 				  	pet_type:{
@@ -892,9 +889,7 @@ jQuery.validator.addMethod("pattern", function(value, element, param) {
 				  	  required: true,
 				  	},
 				  	pet_colors:{
-				  	  required: true,
-				  	  rangelength: [3, 25],
-				  	 //pattern:"[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,15}"
+				  	  required: true
 				  	},
 				  	pet_gender:{
 				  	  required: true,
@@ -927,8 +922,6 @@ jQuery.validator.addMethod("pattern", function(value, element, param) {
 				  },
 				  messages:{
 				  	pet_name:{
-				  		maxlength:"El Nombre debe tener máximo 25 caracteres",
-						// digits:"El Nombre no debe tener numeros",
 						required:"Debe colocar al menos un Nombre",
 						pattern:"Por favor ingrese un  Nombre Válido"
 				  	},
@@ -942,9 +935,7 @@ jQuery.validator.addMethod("pattern", function(value, element, param) {
 				  		required:"Debe seleccionar al menos una Raza"
 				  	},
 				  	pet_colors:{
-				  		required:"Debe seleccionar al menos un Color",
-				  		rangelength:"El Nombre debe ser entre {0} y {1} caracteres"
-				  		//pattern:"Por favor ingrese un  Color Válido"
+				  		required:"Debe seleccionar al menos un Color"
 				  	},
 				  	pet_gender:{
 				  		required:"Debe seleccionar al menos un Genero"

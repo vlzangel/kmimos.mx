@@ -98,6 +98,8 @@
 	$id_cuidador = ($cuidador->id)-5000;
 //	$id_cuidador = ($cuidador->id);
 	$path_galeria = "wp-content/uploads/cuidadores/galerias/".$id_cuidador."/";
+
+	echo "<div class='hola_xxx' style='display: none;'>".$path_galeria."</div>";
 	if( is_dir($path_galeria) ){
 
 		if ($dh = opendir($path_galeria)) { 

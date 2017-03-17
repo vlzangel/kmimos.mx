@@ -3935,7 +3935,6 @@ private  $razas = array(
 		                                    <label for="pet_breed" class="lbl-text">'.esc_html__('Raza de la Mascota','pointfindert2d').':</label>
 		                                    <label class="lbl-ui">
 		                                    	<select id="pet_breed" name="pet_breed" class="input" value="'.$current_pet['breed'].'" />
-		                                    		<option value="">Favor Seleccione</option>
 		                                    		'.$razas_str.'
 		                                    	</select>
 		                                    </label>

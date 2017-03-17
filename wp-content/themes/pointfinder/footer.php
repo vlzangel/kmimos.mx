@@ -378,6 +378,73 @@
                     </style>
                 ";
             }
+            if( $post->post_name == "conocer-al-cuidador" ){
+
+                echo "
+                    <script>
+                        var es_firefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;  
+                        var mdate = '0d';
+                        if(es_firefox){
+                            if (jQuery(window).width() > 550) {
+
+                                jQuery('input[name=meeting_when],input[name=service_start],input[name=service_end]').datepicker('destroy');
+                                jQuery('input[name=meeting_when]').removeAttr('min');
+                                jQuery('#service_start').prop('disabled', true);
+                                jQuery('#service_end').prop('disabled', true);
+
+                                 jQuery( function() {
+                                    var dateFormat = 'mm/dd/yy',
+                                      from = jQuery( '#meeting_when' )
+                                        .datepicker({
+                                            option: 'dd/mm/yy',
+                                            changeMonth: true,
+                                            changeYear: true,
+                                            minDate: '0d',
+                                            maxDate: '1y',
+                                            dataFormat: 'dd/mm/yy',
+                                        })
+                                        .on( 'change', function() {
+                                          to.datepicker( 'option', 'minDate', getDate( this ) );
+                                          jQuery('#service_start').prop('disabled', false);
+
+                                        }),
+                                      to = jQuery( '#service_start' ).datepicker({
+                                        option: 'dd/mm/yy',
+                                        changeMonth: true,
+                                        changeYear: true,
+                                        maxDate: '1y',
+                                        dataFormat: 'dd/mm/yy',
+                                      })
+                                      .on( 'change', function() {
+                                        toto.datepicker( 'option', 'minDate', getDate( this ) );
+                                        jQuery('#service_end').prop('disabled', false);
+                                      }),
+                                      toto = jQuery( '#service_end' ).datepicker({
+                                        option: 'dd/mm/yy',
+                                        changeMonth: true,
+                                        changeYear: true,
+                                        maxDate: '1y',
+                                        dataFormat: 'dd/mm/yy',
+                                      });
+                                 
+                                    function getDate( element ) {
+                                      var date;
+                                      try {
+                                        date = jQuery.datepicker.parseDate( dateFormat, element.value );
+                                      } catch( error ) {
+                                        date = null;
+                                      }
+                                 
+                                      return date;
+                                    }
+                                } );
+                                jQuery('input[name=meeting_when],input[name=service_start],input[name=service_end]').prop('readonly', true);
+                            }
+                        }
+                    </script>
+                ";
+            }
+
             if( $post->post_name == "finalizar-comprar" && $_GET['key'] == "" ){
 
             echo "

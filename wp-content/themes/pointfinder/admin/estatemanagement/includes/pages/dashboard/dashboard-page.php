@@ -1322,11 +1322,7 @@ if(isset($ua_action)){
                                             else $photo_name.= str_pad(count($gallery)+1,3,"0", STR_PAD_LEFT);
                                         }
                                         else $photo_name .= str_pad($picture_id,3,"0", STR_PAD_LEFT);
-/*
-print_r($gallery);
-print_r($_FILES);
-die("<br>Foto:".$photo_name.", Cuidador:".$petsitter_code.'('.$petsitter_id.')'.', Usuario:'.$user_id);
-*/
+
                                         if ( isset($_FILES['petsitter_photo'])) {   
                                             if ( $_FILES['petsitter_photo']['size'] >0) { 
                                                 $file = array(
