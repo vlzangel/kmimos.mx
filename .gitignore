@@ -12,6 +12,8 @@
 /wp-content/upgrade/
 /wp-content/uploads/
 
+Respaldos*
+
 # Archivos
 
 .htaccess
