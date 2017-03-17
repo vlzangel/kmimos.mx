@@ -3,10 +3,6 @@
 	$name_photo = get_user_meta($cuidador->user_id, "name_photo", true);
 	$cuidador_id = $cuidador->id;
 
-// echo '<pre>';
-// echo $name_photo . ' /'.$cuidador->user_id;
-// echo '</pre>';
-
 	if( empty($name_photo)  ){ $name_photo = "0"; }
 	if( file_exists("wp-content/uploads/cuidadores/avatares/".$cuidador_id."/{$name_photo}") ){
 		$img = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/{$name_photo}";
@@ -38,6 +34,7 @@
 
 	$coordenadas_all_2[] = array(
 		"ID" 		=> $cuidador->id,
+		"USER" 		=> $cuidador->user_id,
 		"lat" 		=> $cuidador->latitud,
 		"lng" 		=> $cuidador->longitud,
 		"nombre" 	=> $cuidador->nombre,

@@ -79,46 +79,36 @@
 
 		$c = 0;
 		foreach ($coordenadas_all_2 as $value) {
-			//if( geo("C", $value) ){
+			
+			$name_photo = get_user_meta($value['USER'], "name_photo", true);
+			$cuidador_id = $value['ID'];
 
+			if( empty($name_photo)  ){ $name_photo = "0"; }
+			if( file_exists("wp-content/uploads/cuidadores/avatares/".$cuidador_id."/{$name_photo}") ){
+				$img = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/{$name_photo}";
+			}elseif( file_exists("wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg") ){
+				$img = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg";
+			}else{
+				$img = get_template_directory_uri().'/images/noimg.png';
+			}
 
-				$name_photo = get_user_meta($value['ID'], "name_photo", true);
-				if( empty($name_photo)  ){ $name_photo = "0"; }
-				if( file_exists("wp-content/uploads/cuidadores/avatares/".$value['ID']."/{$name_photo}") ){
-					$img = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$value['ID']."/{$name_photo}";
-				}elseif( file_exists(get_home_url()."/wp-content/uploads/cuidadores/avatares/{$value['ID']}/0.jpg") ){
-					$img = get_home_url()."/wp-content/uploads/cuidadores/avatares/{$value['ID']}/0.jpg";
-				}else{
-					$img = get_home_url().'/wp-content/themes/pointfinder/images/default.jpg';;
-				}
+			$url = $value['url'];
+			$nombre = $value['nombre'];
+			$c = $value['ID'];
 
-				// if( $value->portada != '0' ){
-				// 	$img = get_home_url()."/wp-content/uploads/cuidadores/avatares/{$value['ID']}/0.jpg";
-				// }else{
-				// 	$img = get_home_url().'/wp-content/themes/pointfinder/images/default.jpg';
-				// }
+			echo "
+				marker_{$c} = new google.maps.Marker({
+					map: map,
+					draggable: false,
+					animation: google.maps.Animation.DROP,
+					position: new google.maps.LatLng('{$value['lat']}', '{$value['lng']}'),
+					icon: '".get_template_directory_uri()."/vlz/img/pin.png'
+				});
 
-				$url = $value['url'];
+				infowindow_{$c} = new google.maps.InfoWindow({ content: '<a class=\"mini_map\" href=\"{$url}\" target=\"_blank\"> <img src=\"{$img}\" style=\"max-width: 200px; max-height: 230px;\"> <div>{$nombre}</div> </a>' });
 
-				$nombre = $value['nombre'];
-
-				$c = $value['ID'];
-
-				echo "
-					marker_{$c} = new google.maps.Marker({
-						map: map,
-						draggable: false,
-						animation: google.maps.Animation.DROP,
-						position: new google.maps.LatLng('{$value['lat']}', '{$value['lng']}'),
-						icon: '".get_template_directory_uri()."/vlz/img/pin.png'
-					});
-
-					infowindow_{$c} = new google.maps.InfoWindow({ content: '<a class=\"mini_map\" href=\"{$url}\" target=\"_blank\"> <img src=\"{$img}\" style=\"max-width: 200px; max-height: 230px;\"> <div>{$nombre}</div> </a>' });
-
-					marker_{$c}.addListener('click', function() { infowindow_{$c}.open(map, marker_{$c}); });
-				";
-
-			//}
+				marker_{$c}.addListener('click', function() { infowindow_{$c}.open(map, marker_{$c}); });
+			";
 					
 		}
 
