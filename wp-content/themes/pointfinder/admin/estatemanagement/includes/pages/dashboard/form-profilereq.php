@@ -94,47 +94,10 @@ if(isset($ua_action)){
 								mkdir('wp-content/uploads/cuidadores/avatares/'.$id_cuidador.'/', 0777);
 								chown ('wp-content/uploads/cuidadores/avatares/'.$id_cuidador.'/', 'www-data www-data' );
 							}
-		//						}catch(Exception $e){}
 							$result = kmimos_upload_photo($name_photo, 'wp-content/uploads/cuidadores/avatares/'.$id_cuidador.'/', "portada", $_FILES );
 							if($result['sts']==true){
 								update_user_meta($user_id, 'name_photo', $result['name']);
 							}
-							// if( !file_exists('wp-content/uploads/cuidadores/avatares/'.$id_cuidador.'/')){
-							// 	mkdir('wp-content/uploads/cuidadores/avatares/'.$id_cuidador.'/');
-							// }
-							// if (@move_uploaded_file($_FILES['portada']['tmp_name'], $fichero_subido)) { 
-
-							// 	update_user_meta($user_id, 'name_photo', $name_photo);
-
-							// 	$new_fichero_subido = 'wp-content/uploads/cuidadores/avatares/'.$id_cuidador."/{$name_photo}.jpg";
-
-			    //                 $aImage = @imageCreateFromJpeg( $fichero_subido );
-
-			    //                 $nWidth  = 800;
-			    //                 $nHeight = 600;
-
-			    //                 $aSize = getImageSize( $fichero_subido );
-
-			    //                 if( $aSize[0] > $aSize[1] ){
-			    //                     $nHeight = round( ( $aSize[1] * $nWidth ) / $aSize[0] );
-			    //                 }else{
-			    //                     $nWidth = round( ( $aSize[0] * $nHeight ) / $aSize[1] );
-			    //                 }
-
-			    //                 $aThumb = imageCreateTrueColor( $nWidth, $nHeight );
-
-			    //                 imageCopyResampled( $aThumb, $aImage, 0, 0, 0, 0, $nWidth, $nHeight, $aSize[0], $aSize[1] );
-
-			    //                 imagejpeg( $aThumb, $new_fichero_subido );
-
-			    //                 imageDestroy( $aImage );
-			    //                 imageDestroy( $aThumb );
-
-			    //                 unlink($fichero_subido);
-
-							// }else{
-							// 	// echo "Fallido";
-							// }
 						}else{
 							$fichero_subido = 'wp-content/uploads/avatares_clientes/'.$user_id."/{$name_photo}";
 							if( !file_exists('wp-content/uploads/avatares_clientes/'.$user_id.'/')){
@@ -148,7 +111,6 @@ if(isset($ua_action)){
 						update_user_meta($user_id, 'user_photo', "1");
 					}
 					
-					//header('location: '.get_home_url().'/perfil-usuario/?ua=profile');
 				}else{
 				    $errorval .= esc_html__('Please login again to update profile (Invalid UserID).','pointfindert2d');
 			  	}

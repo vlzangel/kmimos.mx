@@ -1202,48 +1202,26 @@ if(!function_exists('kmimos_get_over_price')){
  * */
 
 if(!function_exists('get_referred_list_options')){
-
     function get_referred_list_options(){
-
         $opciones = array(
-            
-            'Volaris'=>'Volaris',
-
-            'Facebook'=>'Facebook',
-
-            'Adwords'=>'Buscador de Google',
-
-            'Instagram'=>'Instagram',
-
-            'Twitter'=>'Twitter',
-
-            'Booking.com'=>'Booking.com',
-
-            'Cabify'=>'Cabify',
-
-            'Bancomer'=>'Bancomer',
-
-            'Mexcovery'=>'Mexcovery',
-
-            'Totems'=>'Totems',
-
-            'Groupon'=>'Groupon',
-
-            'Agencia IQPR'=>'Agencia IQPR',
-
-            'Revistas o periodicos'=>'Revistas o periodicos',
-
-            'Vintermex' => 'Vintermex',
-
-            'Otros'=>'Otros',
-
-
+            'Volaris'       =>  'Volaris',
+            'Facebook'      =>  'Facebook',
+            'Adwords'       =>  'Buscador de Google',
+            'Instagram'     =>  'Instagram',
+            'Twitter'       =>  'Twitter',
+            'Booking.com'   =>  'Booking.com',
+            'Cabify'        =>  'Cabify',
+            'Bancomer'      =>  'Bancomer',
+            'Mexcovery'     =>  'Mexcovery',
+            'Totems'        =>  'Totems',
+            'Groupon'       =>  'Groupon',
+            'Agencia IQPR'  =>  'Agencia IQPR',
+            'Revistas o periodicos' =>  'Revistas o periodicos',
+            'Vintermex'             =>  'Vintermex',
+            'Otros'                 =>  'Otros',
         );
-
         return $opciones;
-
     }
-
 }
 
 /**
@@ -2528,7 +2506,7 @@ if(!function_exists('kmimos_upload_photo')){
             if (imagecopyresampled($im, $imorig, 0, 0, 0, 0, $aw, $ah, $x, $y)){
                 imagejpeg($im, $fullpath);
             }
-//            chmod($fullpath, 0777);
+
             return [
                 'path'=>$fullpath, 
                 'name'=>"{$name}.{$ext}", 

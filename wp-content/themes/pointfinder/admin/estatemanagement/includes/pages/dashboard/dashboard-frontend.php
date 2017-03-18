@@ -483,7 +483,6 @@ if ( ! class_exists( 'PF_Frontend_Fields' ) ){
                             $pics_count = ($params['count']!='')? $params['count']: 0;
 
                             global $wpdb;
-
                             $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE user_id = {$user_id}");
 
 							$this->FieldOutput .= '<ul class="pfitemlists-content-elements pf3col" data-layout-mode="fitRows" style="position: relative; margin: 20px -15px 20px 0px;">';
