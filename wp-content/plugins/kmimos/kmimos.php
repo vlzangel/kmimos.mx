@@ -2709,77 +2709,27 @@ if(!function_exists('kmimos_get_next_petsitter_code')){
 if(!function_exists('kmimos_get_my_pending_issues')){
 
     function kmimos_get_my_pending_issues($user_id){
-
         global $wpdb;
-
-        
-
         $sql  = "SELECT COUNT(*) AS count, GROUP_CONCAT(p.ID SEPARATOR ',') AS list ";
-
         $sql .= "FROM $wpdb->posts AS p  ";
-
         $sql .= "LEFT JOIN $wpdb->postmeta AS pm ON (p.ID=pm.post_id AND pm.meta_key='requested_petsitter') ";
-
         $sql .= "LEFT JOIN $wpdb->postmeta AS rs ON (p.ID=rs.post_id AND rs.meta_key='request_status') ";
-
         $sql .= "LEFT JOIN $wpdb->postmeta AS pn ON (pm.meta_value=pn.meta_value AND pn.meta_key='user_petsitter') ";
-
         $sql .= "WHERE p.post_type = 'request' AND p.post_status = 'publish' ";
-
         $sql .= "AND rs.meta_value = '1' AND pn.meta_value = ".$user_id;
-
-//return $sql;
-
         return $wpdb->get_row($sql, ARRAY_A);
-
-        
-
-        return array('count'=>0,'list'=>'');
-
-/*        $sql = "SELECT ps.ID AS petsitter_id ";
-
-        $sql .= "FROM $wpdb->posts AS ps ";
-
-        $sql .= "LEFT JOIN $wpdb->postmeta AS us ON (ps.ID =us.post_id AND us.meta_key='user_petsitter') ";
-
-        $sql .= "WHERE us.meta_value = ".$user_id;
-
-
-
-        return $wpdb->get_row($sql, ARRAY_A);*/
-
     }
-
 }
 
 /**
-
  *  Devuelve la dirección georeferenciada del usuario.
-
  * */
 
 if(!function_exists('kmimos_get_geo_address')){
 
     function kmimos_get_geo_address($user_id, $map_widht, $map_heigth){
-
         global $wpdb;
-
-        
-
         return array('count'=>0,'list'=>'');
-
-/*        $sql = "SELECT ps.ID AS petsitter_id ";
-
-        $sql .= "FROM $wpdb->posts AS ps ";
-
-        $sql .= "LEFT JOIN $wpdb->postmeta AS us ON (ps.ID =us.post_id AND us.meta_key='user_petsitter') ";
-
-        $sql .= "WHERE us.meta_value = ".$user_id;
-
-
-
-        return $wpdb->get_row($sql, ARRAY_A);*/
-
     }
 
 }

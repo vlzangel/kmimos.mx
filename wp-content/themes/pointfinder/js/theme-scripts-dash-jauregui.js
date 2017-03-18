@@ -878,9 +878,7 @@ jQuery.validator.addMethod("pattern", function(value, element, param) {
 				  onkeyup: false,
 				  rules:{
 				  	pet_name:{
-				  	  required: true,
-				  	  pattern:"[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]",
-
+				  	  required: true
 				  	},
 				  	pet_type:{
 				  	  required: true,
@@ -922,8 +920,7 @@ jQuery.validator.addMethod("pattern", function(value, element, param) {
 				  },
 				  messages:{
 				  	pet_name:{
-						required:"Debe colocar al menos un Nombre",
-						pattern:"Por favor ingrese un  Nombre Válido"
+						required:"Debe colocar al menos un Nombre"
 				  	},
 				  	pet_type:{
 				  		required:"Debe seleccionar al menos un tipo de Mascota"
