@@ -15,10 +15,6 @@
 	$latitud 	= $cuidador->latitud;
 	$longitud 	= $cuidador->longitud;
 
-/*	echo "<pre>";
-		print_r($cuidador);
-	echo "</pre>";*/
-	
 	$name_photo = get_user_meta($cuidador->user_id, "name_photo", true);
 	$cuidador_id = $cuidador->id;
 
@@ -30,26 +26,6 @@
 	}else{
 		$foto = get_template_directory_uri().'/images/noimg.png';
 	}
-
-	// $foto_perfil = get_user_meta($cuidador->user_id, 'name_photo', true);
-	// if( file_exists("/wp-content/uploads/cuidadores/avatares/".$cuidador->user_id."/{$name_photo}") ){
-	// 	$foto_perfil = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador->user_id."/{$name_photo}";
-	// }elseif( file_exists("/wp-content/uploads/cuidadores/avatares/".$cuidador->user_id."/{$name_photo}.jpg") ){
-	// 	$foto_perfil = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador->user_id."/{$name_photo}.jpg";
-	// }else{
-	// 	$foto_perfil = get_template_directory_uri().'/images/noimg.png';
-	// }
-
-
-	// if( $cuidador->portada != '0' ){
-	// 	$foto_perfil = get_user_meta($cuidador->user_id, 'name_photo', true);
-	// 	if( $foto_perfil == "" ){
-	// 		$foto_perfil = "0";
-	// 	}
-	// 	$foto = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador->id."/".$foto_perfil.".jpg";
-	// }else{
-	// 	$foto = get_template_directory_uri().'/images/noimg.png';
-	// }
 
 	$tama_aceptados = unserialize( $cuidador->tamanos_aceptados );
 	$tamanos = array(
@@ -96,7 +72,6 @@
 	/* Galeria */
 
 	$id_cuidador = ($cuidador->id)-5000;
-//	$id_cuidador = ($cuidador->id);
 	$path_galeria = "wp-content/uploads/cuidadores/galerias/".$id_cuidador."/";
 
 	echo "<div class='hola_xxx' style='display: none;'>".$path_galeria."</div>";

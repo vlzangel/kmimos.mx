@@ -482,9 +482,13 @@ if ( ! class_exists( 'PF_Frontend_Fields' ) ){
 							$user_id = $current_user->ID;
                             $pics_count = ($params['count']!='')? $params['count']: 0;
 
+                            global $wpdb;
+
+                            $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE user_id = {$user_id}");
+
 							$this->FieldOutput .= '<ul class="pfitemlists-content-elements pf3col" data-layout-mode="fitRows" style="position: relative; margin: 20px -15px 20px 0px;">';
                             $exist_file = false;
-                            $tmp_user_id = ($user_id) - 5000;
+                            $tmp_user_id = ($cuidador->id) - 5000;
 							$path_galeria = "wp-content/uploads/cuidadores/galerias/".$tmp_user_id."/";
 							$count_picture =0;
 							if( is_dir($path_galeria) ){
@@ -506,7 +510,7 @@ if ( ! class_exists( 'PF_Frontend_Fields' ) ){
 													">
 														<div class="vlz_postada_cuidador" style="height:160px;width:100%;background-color:transparent;"></div>
 													</div>
-													<a href="/perfil-usuario/?ua=mypicturesdel&p='.$file.'" style="color:red;">Eliminar</a>
+													<a href="'.get_option('siteurl').'/perfil-usuario/?ua=mypicturesdel&p='.$file.'" style="color:red;">Eliminar</a>
 												</div>
 											</div>
 										</li>';
@@ -876,27 +880,6 @@ if ( ! class_exists( 'PF_Frontend_Fields' ) ){
 						      	document.getElementById("portada").addEventListener("change", vista_previa, false);
 					      	</script> 
 			            ';
-
-			            if ($setup4_membersettings_paymentsystem == 2) {
-							/*Get user meta*/
-							$membership_user_activeorder = get_user_meta( $user_id, 'membership_user_activeorder', true );
-							$membership_user_recurring = get_user_meta( $user_id, 'membership_user_recurring', true );
-							$recurring_status = esc_attr(get_post_meta( $membership_user_activeorder, 'pointfinder_order_recurring',true));
-							if($recurring_status == 1 && $membership_user_recurring == 1){
-								$this->FieldOutput .= '
-									<div class="row"><div class="col12">
-									<hr/>
-									<div class="col8 first">
-									<section>
-	                                    <label for="recurring" class="lbl-text" style="margin-top:12px"><strong>'.esc_html__('Perfil Recurrente','pointfindert2d').'</strong>:</label>
-	                                    <label class="lbl-ui">
-									<p>'.__("Está utilizando PayPal pagos periódicos. Si desea actualizar su plan de membresía por favor cancele esta opción. Tenga cuidado de que esta acción no se puede deshacer.",'pointfindert2d').'</p></label></section></div>
-									<div class="col4 last"><section style="text-align:right;margin-top: 35px;">
-	                                    	<a class="pf-dash-cancelrecurring" title="'.esc_html__('Esta opción para cancelar perfil de pagos recurrentes.','pointfindert2d').'">'.esc_html__('Cancelar Perfil Recurrente','pointfindert2d').'</a></section></div>
-	                                    
-	                            	</div></div>';
-	                        }
-						}
 
 					break;
 
