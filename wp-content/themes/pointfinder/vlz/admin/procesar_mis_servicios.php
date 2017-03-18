@@ -1,6 +1,6 @@
 <?php
     
-    date_default_timezone_set('America/Bogota');
+    date_default_timezone_set('America/Mexico_City');
 
 	$tams = array(
 		"pequenos",
