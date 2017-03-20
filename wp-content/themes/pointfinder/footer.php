@@ -1,6 +1,6 @@
         <?php if (!is_page_template('pf-empty-page.php' ) && !is_page_template('terms-conditions.php' )) {?>
             </div>
-            </div>
+            </div> 
 
             <div id="pf-membersystem-dialog"></div>
             <a title="<?php esc_html__('Back to Top','pointfindert2d'); ?>" class="pf-up-but"><i class="pfadmicon-glyph-859"></i></a>
@@ -370,6 +370,7 @@
             if( $post->post_name == "perfil-usuario" ){
 
                 echo "
+                
                     <style>
                         @media (max-width: 568px){ 
                             .cell50{width:100%!important;}
