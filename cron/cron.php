@@ -68,7 +68,6 @@
                 $cliente = get_user_meta( $request->post_author );
                 $cliente = $cliente['first_name'][0]." ".$cliente['last_name'][0];
             }else{
-
                 $id_orden = $request->ID;
                 $id_reserva = $id_orden-1;
                 $cliente_id = $wpdb->get_var( "SELECT post_author FROM wp_posts WHERE ID = '".($id_reserva)."'" );
@@ -79,7 +78,6 @@
                 $metadata = get_post_meta( $id_orden-1 );
                 $user_id_cuidador = $wpdb->get_var( "SELECT post_author FROM wp_posts WHERE ID = '".($metadata['_booking_product_id'][0])."'" );
                 $id_cuidador_post = $wpdb->get_var( "SELECT id_post FROM cuidadores WHERE user_id = '".($user_id_cuidador)."'" );
-
             }
 
             $cuidador = $wpdb->get_row( "SELECT * FROM cuidadores WHERE id_post = '".$id_cuidador_post."'" );
