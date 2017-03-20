@@ -202,15 +202,21 @@
 	    ';
 	    
    		echo $msg_cuidador = kmimos_get_email_html("Solicitud Cancelada Exitosamente!", $msg, "", true, true);
-   		wp_mail( $email_cuidador, "Solicitud Cancelada", $msg_cuidador, kmimos_mails_administradores());
+   		wp_mail( $email_cuidador, "Solicitud Cancelada", $msg_cuidador);
 
 		$msg = $styles.'
 	    	<p><strong>Solicitud para conocer cuidador Num. ('.$id.')</strong></p>
 			<p>Hola <strong>Administrador</strong>,</p>
-			<p align="justify">Te notificamos que el cuidador <strong>'.$cuidador_post->post_title.'</strong> ha cancelado la solicitud para conocerlo N° <strong>'.$id.'</strong>.</p>';
+			<p align="justify">Te notificamos que el cuidador <strong>'.$cuidador_post->post_title.'</strong> ha cancelado la solicitud para conocerlo N° <strong>'.$id.'</strong>.</p>'
+			.'
+				<p align="justify">
+					Esta son las sugerencias que se le enviaron al cliente:
+				</p>
+			'
+			.$lista_cercanos;
 	    
    		$msg_admin = kmimos_get_email_html("Solicitud Cancelada por Cuidador - ".$cuidador_post->post_title, $msg, "", true, true);
-   		wp_mail( $mail_admin, "Cancelación de Solicitud", $msg_admin);
+   		wp_mail( $mail_admin, "Cancelación de Solicitud", $msg_admin, kmimos_mails_administradores());
 
    		$msg = $styles.'
    			<div style="padding-right: 10px;">
@@ -227,7 +233,7 @@
 	    ';
 	    
    		$msg_cliente = kmimos_get_email_html("Solicitud Cancelada", $msg, "", true, true);
-   		wp_mail( $user->data->user_email, "Solicitud Cancelada", $msg_cliente, kmimos_mails_administradores());
+   		wp_mail( $user->data->user_email, "Solicitud Cancelada", $msg_cliente);
 
     } else {
 		$wpdb->query("UPDATE wp_postmeta SET meta_value = '2' WHERE post_id = $id AND meta_key = 'request_status';");
