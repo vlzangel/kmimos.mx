@@ -13,7 +13,6 @@
  * Text Domain: kmimos  
  * Version:     1.0.0
  * License:     GPL2
- * Jauregui
  */
 
 if(!function_exists('kmimos_mails_administradores')){

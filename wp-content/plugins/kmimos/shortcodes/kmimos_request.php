@@ -510,13 +510,7 @@ if($_POST['funcion'] == 'request'){
 
         wp_mail( $email_cuidador, $asunto, $mensaje_cuidador);
         wp_mail( $email_cliente,  $asunto, $mensaje_cliente);
-        wp_mail( $email_admin,    $asunto, $mensaje_admin);
-
-        $administradores = "e.celli@kmimos.la, e.celli@desdigitec.com, r.cuevas@kmimos.la, r.cuevas@desdigitec.com, r.gonzalez@kmimos.la, r.gonzalez@desdigitec.com";
-
-        wp_mail( $administradores, "Copia Administradores: ".$asunto, $mensaje_cuidador);
-        // wp_mail( $administradores, "Copia Administradores: ".$asunto, $mensaje_cliente);
-        // wp_mail( $administradores, "Copia Administradores: ".$asunto, $mensaje_admin);
+        wp_mail( $email_admin,    $asunto, $mensaje_admin, kmimos_mails_administradores());
     
         echo "<div style='display: block; margin: 0px auto; width: 600px;'>".$xmensaje_cliente."</div>";
 
