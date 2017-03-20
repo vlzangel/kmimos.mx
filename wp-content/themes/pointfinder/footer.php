@@ -370,7 +370,26 @@
             if( $post->post_name == "perfil-usuario" ){
 
                 echo "
-                
+                    <script>
+                        var es_firefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;  
+                         jQuery('input[name=meeting_when],input[name=service_start],input[name=service_end]').datepicker('destroy');
+                        jQuery('input[name=pet_birthdate]').removeAttr('min');  
+                        jQuery('input[name=pet_birthdate]').removeAttr('max');
+                        jQuery('input[name=pet_birthdate]').prop('readonly', true); 
+
+                        if(es_firefox){
+                            if (jQuery(window).width() > 550) {
+                                jQuery( 'input[name=pet_birthdate]' ).datepicker({ 
+                                    option: 'dd/mm/yy',
+                                    changeMonth: true,
+                                    changeYear: true,
+                                    minDate: '-30y',
+                                    maxDate: '-1d',
+                                    dataFormat: 'dd/mm/yy',
+                                });
+                            }
+                        }
+                    </script>
                     <style>
                         @media (max-width: 568px){ 
                             .cell50{width:100%!important;}
