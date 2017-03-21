@@ -7,10 +7,10 @@
     extract($_GET);
 
     add_filter( 'wp_mail_from_name', function( $name ) {
-		return 'Kmimos México';
+		return 'Kmimos Colombia';
 	});
 	add_filter( 'wp_mail_from', function( $email ) {
-		return 'contactomx@kmimos.la';
+		return 'contactoco@kmimos.la';
 	});
 
     global $wpdb;
@@ -19,7 +19,9 @@
  
     $metas_solicitud = get_post_meta($id);
 
-    $mail_admin 	= "contactomx@kmimos.la";
+    $mail_admin 	= "contactoco@kmimos.la";
+
+	// $administradores = "e.celli@kmimos.la, e.celli@desdigitec.com, r.cuevas@kmimos.la, r.cuevas@desdigitec.com, r.gonzalez@kmimos.la, r.gonzalez@desdigitec.com";
 
     /*	Datos del cuidador 	*/
 	    $cuidador_post 	= $wpdb->get_row("SELECT * FROM $wpdb->posts WHERE ID = '".$metas_solicitud['requested_petsitter'][0]."'");
@@ -149,8 +151,8 @@
                     Revisa estas recomendaciones y pícale a cualquiera de ellas para ver más detalles sobre su perfil.
                     <div style="overflow: hidden; text-align: center; margin: 0px auto; max-width: 600px;">'.$str_sugeridos_img.'</div>
                 </li>
-                <li align="justify" style="padding-bottom: 10px; font-size: 12px;">En caso de que alguna de estas opciones no se adecúe a tus necesidades, por favor ingresa a <strong><a style="text-decoration: none; color: #3d68b9;" href="'.get_home_url().'/busqueda">Kmimos México</a></strong> en donde podrás encontrar cientos de cuidadores que seguro te encantarán.</li>
-                <li align="justify" style="font-size: 12px;">Para asistencia personalizada por favor márcanos a nuestros números. +52 (55) 1791.4931.</li>
+                <li align="justify" style="padding-bottom: 10px; font-size: 12px;">En caso de que alguna de estas opciones no se adecúe a tus necesidades, por favor ingresa a <strong><a style="text-decoration: none; color: #3d68b9;" href="'.get_home_url().'/busqueda">Kmimos Colombia</a></strong> en donde podrás encontrar cientos de cuidadores que seguro te encantarán.</li>
+                <li align="justify" style="font-size: 12px;">Para asistencia personalizada por favor márcanos a nuestros números. +52 (55) 1791.493.</li>
             </ol>
         ';
 
@@ -202,7 +204,7 @@
 	    ';
 	    
    		echo $msg_cuidador = kmimos_get_email_html("Solicitud Cancelada Exitosamente!", $msg, "", true, true);
-   		wp_mail( $email_cuidador, "Solicitud Cancelada", $msg_cuidador);
+   		wp_mail( $email_cuidador, "Solicitud Cancelada", $msg_cuidador, kmimos_mails_administradores());
 
    		// wp_mail( $administradores, "Copia Administradores: Solicitud Rechazada", $msg_cuidador);
 
@@ -212,7 +214,7 @@
 			<p align="justify">Te notificamos que el cuidador <strong>'.$cuidador_post->post_title.'</strong> ha cancelado la solicitud para conocerlo N° <strong>'.$id.'</strong>.</p>';
 	    
    		$msg_admin = kmimos_get_email_html("Solicitud Cancelada por Cuidador - ".$cuidador_post->post_title, $msg, "", true, true);
-   		wp_mail( $mail_admin, "Cancelación de Solicitud", $msg_admin, kmimos_mails_administradores());
+   		wp_mail( $mail_admin, "Cancelación de Solicitud", $msg_admin);
 
    		// wp_mail( $administradores, "Copia Administradores: Cancelación de Reserva", $msg_admin);
 
@@ -232,7 +234,7 @@
 	    ';
 	    
    		$msg_cliente = kmimos_get_email_html("Solicitud Cancelada", $msg, "", true, true);
-   		wp_mail( $user->data->user_email, "Solicitud Cancelada", $msg_cliente);
+   		wp_mail( $user->data->user_email, "Solicitud Cancelada", $msg_cliente, kmimos_mails_administradores());
 
    		// wp_mail( $administradores, "Copia Administradores: Solicitud Rechazada", $msg_cliente);
 
