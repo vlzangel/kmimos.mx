@@ -27,7 +27,7 @@
 			    margin: 1em 0px;
 			}
 		</style>
-	";
+	"; 
 
 	$status = $booking->get_status();
 

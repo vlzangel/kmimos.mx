@@ -518,7 +518,7 @@ if($_POST['funcion'] == 'request'){
             return 'Kmimos México';
         });
         add_filter( 'wp_mail_from', function( $email ) {
-            return 'kmimos@kmimos.la';
+            return 'kmimos@kmimos.la'; 
         });
 
 
