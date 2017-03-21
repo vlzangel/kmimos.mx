@@ -170,6 +170,23 @@
 		</style>
 	";
 
+	$status = $wpdb->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = $id AND meta_key = 'request_status';");
+	if( $status != 1 ){
+		$estado = array(
+			2 => "Confirmada",
+			3 => "Cancelada",
+			4 => "Cancelada"
+		);
+		$msg = $styles.'
+				<p>Hola <strong>'.$cuidador_post->post_title.'</strong></p>
+				<p align="justify">Te notificamos que la solicitud N° <strong>'.$id.'</strong> ya ha sido '.$estado[$status].' anteriormente.</p>
+				<p align="justify">Por tal motivo ya no es posible realizar cambios en el estatus de la misma.</p>
+		';
+   		echo kmimos_get_email_html("La solicitud ya fue ".$estado[$status]." anteriormente.", $msg, "", false, true);
+
+   		exit;
+	}
+	
 	if($s == "0"){
 		$wpdb->query("UPDATE wp_postmeta SET meta_value = '3' WHERE post_id = $id AND meta_key = 'request_status';");
 		$wpdb->query("UPDATE wp_posts SET post_status = 'draft' WHERE ID = '{$id}';");
@@ -236,7 +253,7 @@
 	    ';
 	    
    		$msg_cliente = kmimos_get_email_html("Solicitud Cancelada", $msg, "", true, true);
-   		wp_mail( $user->data->user_email, "Solicitud Cancelada", $msg_cliente);
+   		wp_mail( $user->data->user_email, "Solicitud Cancelada", $msg_cliente, kmimos_mails_administradores());
 
    		// wp_mail( $administradores, "Copia Administradores: Solicitud Rechazada", $msg_cliente);
 
@@ -271,7 +288,7 @@
 	    ';
 
    		echo $msg_cuidador = kmimos_get_email_html("Confirmación de Solicitud para Conocerte", $msg, "", true, true);
-   		wp_mail( $email_cuidador, "Confirmación de Solicitud para Conocerte", $msg_cuidador, kmimos_mails_administradores());
+   		wp_mail( $email_cuidador, "Confirmación de Solicitud para Conocerte", $msg_cuidador);
 
    		// wp_mail( $administradores, "Copia Administradores: Confirmación de Solicitud para Conocerte", $msg_cuidador);
 
@@ -281,7 +298,7 @@
 			<p align="justify">Te notificamos que el cuidador <strong>'.$cuidador_post->post_title.'</strong> ha <strong>Confirmado</strong> la solicitud para conocerle N° <strong>'.$id.'</strong>.</p>';
 
    		$msg_admin = kmimos_get_email_html("Confirmación de Solicitud para Conocer Cuidador", $msg_admin, "", true, true);
-   		wp_mail( $mail_admin, "Confirmación de Solicitud para Conocer Cuidador", $msg_admin);
+   		wp_mail( $mail_admin, "Confirmación de Solicitud para Conocer Cuidador", $msg_admin, kmimos_mails_administradores());
 
    		// wp_mail( $administradores, "Copia Administradores: Confirmación de Solicitud para Conocer Cuidador", $msg_admin);
 
@@ -290,7 +307,7 @@
 			<p align="justify">Tu solicitud para conocer al cuidador <strong>'.$cuidador_post->post_title.'</strong> ha sido confirmada por &eacute;l.</p>';
 
 		$msg_cliente = kmimos_get_email_html("Confirmación de Solicitud para Conocer Cuidador", $msg_cliente, "", true, true);
-   		wp_mail( $user->data->user_email, "Confirmación de Solicitud para Conocer Cuidador", $msg_cliente, kmimos_mails_administradores());
+   		wp_mail( $user->data->user_email, "Confirmación de Solicitud para Conocer Cuidador", $msg_cliente);
 
    		// wp_mail( $administradores, "Copia Administradores: Confirmación de Solicitud para Conocer Cuidador", $msg_cliente);
 
