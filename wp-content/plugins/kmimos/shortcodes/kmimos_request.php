@@ -526,7 +526,7 @@ if($_POST['funcion'] == 'request'){
         wp_mail( $email_cliente,  $asunto, $mensaje_cliente);
         wp_mail( $email_admin,    $asunto, $mensaje_admin, kmimos_mails_administradores());
     
-        echo "<div style='display: block; margin: 0px auto; max-width: 100%;'>".$xmensaje_cliente."</div>";
+        echo "<div style='display: block; margin: 0px auto; max-width: 600px;'>".$xmensaje_cliente."</div>";
 
 }else{
 
