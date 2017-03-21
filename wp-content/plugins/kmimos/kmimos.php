@@ -238,17 +238,17 @@ if(!function_exists('kmimos_include_admin_scripts')){
                     }
                 </style>
             ';
-        }
 
-        $types = array(
-            'petsitters',
-            'pets',
-            'request'
-        );
-        global $post;
+            $types = array(
+                'petsitters',
+                'pets',
+                'request'
+            );
+            global $post;
 
-        if( count($_GET) == 0 || (!in_array($post->post_type, $types) && $_GET['page'] != 'kmimos') ){
-            header("location: edit.php?post_type=petsitters");
+            if( count($_GET) == 0 || (!in_array($post->post_type, $types) && $_GET['page'] != 'kmimos') ){
+                header("location: edit.php?post_type=petsitters");
+            }
         }
     }
 
