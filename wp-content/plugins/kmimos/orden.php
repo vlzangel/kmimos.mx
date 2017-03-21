@@ -21,8 +21,6 @@
     	</style>
 	";
 
-	$administradores = "e.celli@kmimos.la, r.cuevas@kmimos.la, r.gonzalez@kmimos.la";
-
 	if($booking->get_status() == "cancelled" ){
 
 		$msg_a_mostrar = $styles.'
