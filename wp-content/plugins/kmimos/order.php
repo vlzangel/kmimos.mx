@@ -88,10 +88,16 @@
 				.$detalles_cliente
 				.$detalles_cuidador
 				.$detalles_mascotas
-				.$detalles_servicio;
+				.$detalles_servicio
+				.'
+					<p align="justify">
+						Esta son las sugerencias que se le enviaron al cliente:
+					</p>
+				'
+				.$lista_cercanos;
 		    
 	   		$msg_admin = kmimos_get_email_html("Reserva Cancelada por Cuidador - ".$cuidador_post->post_title, $msg, "", true, true);
-	   		wp_mail( $email_admin, "Cancelación de Reserva", $msg_admin);
+	   		wp_mail( $email_admin, "Cancelación de Reserva", $msg_admin, kmimos_mails_administradores());
 
 	   		$msg = $styles.'
 	   			<div style="padding-right: 10px;">
@@ -108,7 +114,7 @@
 		    ';
 		    
 	   		$msg_cliente = kmimos_get_email_html("Cancelación de Reserva", $msg, "", true, true);
-	   		wp_mail( $user->data->user_email, "Cancelación de Reserva", $msg_cliente, kmimos_mails_administradores());
+	   		wp_mail( $user->data->user_email, "Cancelación de Reserva", $msg_cliente);
 
 	    } else {
 			$order->update_status('wc-on-hold');
@@ -156,7 +162,7 @@
 				.$detalles_servicio;
 
 	   		$msg_admin = kmimos_get_email_html("Confirmación de Reserva", $msg_admin, "", true, true);
-	   		wp_mail( $email_admin, "Confirmación de Reserva", $msg_admin);
+	   		wp_mail( $email_admin, "Confirmación de Reserva", $msg_admin, kmimos_mails_administradores());
 
 	   		$nota_importante = $styles.'
 	   			<p align="justify"><strong>Importante:</strong></p>
@@ -174,7 +180,7 @@
 				.$nota_importante;
 
 			$msg_cliente = kmimos_get_email_html("Confirmación de Reserva", $msg_cliente, "", true, true);
-	   		wp_mail( $email_cliente, "Confirmación de Reserva", $msg_cliente, kmimos_mails_administradores());
+	   		wp_mail( $email_cliente, "Confirmación de Reserva", $msg_cliente);
 
 	    }
 

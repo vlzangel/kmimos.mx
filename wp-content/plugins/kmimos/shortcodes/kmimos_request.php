@@ -461,6 +461,20 @@ if($_POST['funcion'] == 'request'){
                 </tr>
             </table>
 
+            <center>
+                <p><strong>¿ACEPTAS ESTA SOLICITUD?</strong></p>
+                <table>
+                    <tr>
+                        <td>
+                            <a href="'.get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$request_id.'&s=1" style="text-decoration: none; padding: 7px 0px; background: #00d2b7; color: #FFF; font-size: 16px; font-weight: 500; border-radius: 5px; width: 100px; display: inline-block; text-align: center;">Aceptar</a>
+                        </td>
+                        <td>
+                            <a href="'.get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$request_id.'&s=0" style="text-decoration: none; padding: 7px 0px; background: #dc2222; color: #FFF; font-size: 16px; font-weight: 500; border-radius: 5px; width: 100px; display: inline-block; text-align: center;">Rechazar</a>
+                        </td>
+                    </tr>
+                </table>
+            </center>
+
             <h2 style="color: #557da1; font-size: 16px;">Datos de la Reunión</h2>
             <table cellspacing=0 cellpadding=0>
                 <tr>   
@@ -510,13 +524,7 @@ if($_POST['funcion'] == 'request'){
 
         wp_mail( $email_cuidador, $asunto, $mensaje_cuidador);
         wp_mail( $email_cliente,  $asunto, $mensaje_cliente);
-        wp_mail( $email_admin,    $asunto, $mensaje_admin);
-
-        $administradores = "e.celli@kmimos.la, e.celli@desdigitec.com, r.cuevas@kmimos.la, r.cuevas@desdigitec.com, r.gonzalez@kmimos.la, r.gonzalez@desdigitec.com";
-
-        wp_mail( $administradores, "Copia Administradores: ".$asunto, $mensaje_cuidador);
-        // wp_mail( $administradores, "Copia Administradores: ".$asunto, $mensaje_cliente);
-        // wp_mail( $administradores, "Copia Administradores: ".$asunto, $mensaje_admin);
+        wp_mail( $email_admin,    $asunto, $mensaje_admin, kmimos_mails_administradores());
     
         echo "<div style='display: block; margin: 0px auto; width: 600px;'>".$xmensaje_cliente."</div>";
 

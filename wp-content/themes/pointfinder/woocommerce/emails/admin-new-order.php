@@ -19,11 +19,7 @@
 
 	include("vlz_data_orden.php");
 
-	//$administradores = "r.cuevas@kmimos.la, r.cuevas@desdigitec.com, e.celli@kmimos.la, e.celli@desdigitec.com, r.gonzalez@kmimos.la, r.gonzalez@desdigitec.com";
-
 	$dudas = '<p align="justify">Para cualquier duda y/o comentario puedes contactar al Staff Kmimos a los teléfonos +52 (55) 1791.4931, o al correo atencion@kmimos.com.mx</p>';
-
-	$headers[] = 'From: Kmimos México <kmimos@kmimos.la>';
 
 	if( $metas_orden["_payment_method"][0] == "openpay_cards" ){
 
@@ -44,11 +40,8 @@
 
 			$mensaje_admin = kmimos_get_email_html('Nueva Reserva - '.$producto->post_title, $mensaje_admin, 'Nueva Reserva - '.$producto->post_title, true, true);
 
-			wp_mail( "contactomex@kmimos.la", "Solicitud de reserva #".$reserva->ID, $mensaje_admin);
+			wp_mail( "contactomex@kmimos.la", "Solicitud de reserva #".$reserva->ID, $mensaje_admin, kmimos_mails_administradores());
 
-			// wp_mail( $administradores, "Copia Administradores: Solicitud de reserva #".$reserva->ID, $mensaje_admin);
-
-		// include("../wp-content/themes/pointfinder/vlz/mails/nuevo_pedido/cliente.php");
 		/*
 			Correo Cliente
 		*/
@@ -90,9 +83,6 @@
 
 			wp_mail( $user->data->user_email, "Solicitud de reserva", $mensaje_cliente);
 
-			// wp_mail( $administradores, "Copia Administradores: Solicitud de reserva", $mensaje_cliente);
-
-		//include("../wp-content/themes/pointfinder/vlz/mails/nuevo_pedido/cuidador.php");
 		/*
 			Correo Cuidador
 		*/
@@ -117,11 +107,8 @@
 
 			$saludo = '
 				<p>Hola <strong>'.$cuidador_post->post_title.'</strong>,</p>
-
 				<p>El cliente <strong>'.$nombre.' '.$apellido.'</strong> te ha enviado una solicitud de Reserva.</p>
-
 				'.$aceptar_rechazar.'
-
 				<h2>Detalles de la solicitud:</h2>
 			';
 
@@ -177,7 +164,7 @@
 				</ul>
 			';
 
-			$mensaje_cliente  	= 	$saludo.
+			$mensaje_cuidador  	= 	$saludo.
 									$msg_id_reserva.
 							  		$detalles_cuidador.
 							  		$detalles_cliente.
@@ -188,41 +175,17 @@
 							  		$dudas
 			;
 
-			$mensaje_cliente = kmimos_get_email_html('Nueva Reserva - '.$tipo_servicio.' por: '.$nombre.' '.$apellido, $mensaje_cliente, 'Nueva Reserva - '.$tipo_servicio.' por: '.$nombre.' '.$apellido, true, true);
+			$mensaje_cuidador = kmimos_get_email_html('Nueva Reserva - '.$tipo_servicio.' por: '.$nombre.' '.$apellido, $mensaje_cuidador, 'Nueva Reserva - '.$tipo_servicio.' por: '.$nombre.' '.$apellido, true, true);
 
-			wp_mail( $cuidador->email, 'Nueva Reserva - '.$tipo_servicio.' por: '.$nombre.' '.$apellido, $mensaje_cliente);
-
-			wp_mail( $administradores, "Copia Administradores: Nueva Reserva - ".$tipo_servicio.' por: '.$nombre.' '.$apellido, $mensaje_cliente);
+			wp_mail( $cuidador->email, 'Nueva Reserva - '.$tipo_servicio.' por: '.$nombre.' '.$apellido, $mensaje_cuidador);
 
 	}else{
 
 			if( $metas_orden["_payment_method"][0] == "openpay_stores" ){
 
-			/*
-				Administrador
-			*/
-
-				$saludo = "<p>Hola <strong>Administrador</strong>,</p>";
-				$msg_id_reserva ='
-					<p>Se ha realizado una solicitud de reserva con el ID: <strong># '.$reserva->ID.'</strong>. </p>
-				';
-				
-				$mensaje_admin 	= $saludo.
-								  $msg_id_reserva.
-								  $detalles_cliente.
-								  $detalles_cuidador.
-								  $detalles_mascotas.
-								  $detalles_servicio
-				;
-
-				$mensaje_admin = kmimos_get_email_html('Nueva Reserva - '.$producto->post_title, $mensaje_admin, 'Nueva Reserva - '.$producto->post_title, true, true);
-
-				wp_mail( "contactomex@kmimos.la", "Solicitud de reserva #".$reserva->ID, $mensaje_admin);
-
-				// wp_mail( $administradores, "Copia Administradores: Solicitud de reserva #".$reserva->ID, $mensaje_cliente);
-			/*
-				Cliente
-			*/
+				/*
+					Cliente
+				*/
 
 				$msg_id_reserva ='<p>Solicitud de reserva de servicio <strong>(N° '.$reserva->ID.')</strong> </p>';
 
@@ -243,11 +206,7 @@
 						</p>
 
 						<p align="justify">
-							En caso de que el cuidador no esté disponible, recibirás un correo de notificación con instrucciones para que puedas:
-							<ol>
-								<li>Reservar con otro cuidador a través de un cupón.</li>
-								<li>Solicitar el reembolso del importe realizado.</li>
-							</ol>
+							En caso de que el cuidador no esté disponible, recibirás un correo de notificación con instrucciones para que puedas solicitar el reembolso del importe realizado.
 						</p>
 
 						<h2>Detalles de tu reservación pendiente a confirmar:</h2>
@@ -301,7 +260,46 @@
 
 				wp_mail( $cliente_email, "Solicitud de Reserva Recibida Exitosamente!", $mensaje_cliente);
 
-				//wp_mail( $administradores, "Copia Administradores: Solicitud de Reserva Recibida Exitosamente!", $mensaje_cliente);
+				/*
+					Administrador
+				*/
+
+				$saludo = "<p>Hola <strong>Administrador</strong>,</p>";
+				$msg_id_reserva ='
+					<p>Se ha realizado una solicitud de reserva con el ID: <strong># '.$reserva->ID.'</strong>. </p>
+				';
+				
+				$mensaje_admin 	= $saludo.
+								  $msg_id_reserva.
+								  '
+								  	<p align="justify">
+										<a href="'.$pdf.'" style="
+											padding: 10px;
+										    background: #59c9a8;
+										    color: #fff;
+										    font-weight: 400;
+										    font-size: 17px;
+										    font-family: Roboto;
+										    border-radius: 3px;
+										    border: solid 1px #1f906e;
+										    display: block;
+										    width: 250px;
+										    margin: 0px auto;
+										    text-align: center;
+										    text-decoration: none;
+										">
+											Ver Instrucciones para Pago en<br>
+											Tiendas por Conveniencia</a>
+									</p>'.
+								  $detalles_cliente.
+								  $detalles_cuidador.
+								  $detalles_mascotas.
+								  $detalles_servicio
+				;
+
+				$mensaje_admin = kmimos_get_email_html('Nueva Reserva - '.$producto->post_title, $mensaje_admin, 'Nueva Reserva - '.$producto->post_title, true, true);
+
+				wp_mail( "contactomex@kmimos.la", "Solicitud de reserva #".$reserva->ID, $mensaje_admin, kmimos_mails_administradores());
 
 		}else{
 
@@ -322,7 +320,7 @@
 
 				$mensaje_admin = kmimos_get_email_html('Nueva Reserva - '.$producto->post_title, $mensaje_admin, 'Nueva Reserva - '.$producto->post_title, true, true);
 
-				wp_mail( "contactomex@kmimos.la", "Solicitud de reserva #".$reserva->ID, $mensaje_admin);
+				wp_mail( "contactomex@kmimos.la", "Solicitud de reserva #".$reserva->ID, $mensaje_admin, kmimos_mails_administradores());
 
 			/*
 				Correo Cliente
@@ -365,9 +363,6 @@
 
 				wp_mail( $user->data->user_email, "Solicitud de reserva", $mensaje_cliente);
 
-				// wp_mail( $administradores, "Copia Administradores: Solicitud de reserva", $mensaje_cliente);
-
-			//include("../wp-content/themes/pointfinder/vlz/mails/nuevo_pedido/cuidador.php");
 			/*
 				Correo Cuidador
 			*/
@@ -466,8 +461,6 @@
 				$mensaje_cliente = kmimos_get_email_html('Nueva Reserva - '.$tipo_servicio.' por: '.$nombre.' '.$apellido, $mensaje_cliente, 'Nueva Reserva - '.$tipo_servicio.' por: '.$nombre.' '.$apellido, true, true);
 
 				wp_mail( $cuidador->email, 'Nueva Reserva - '.$tipo_servicio.' por: '.$nombre.' '.$apellido, $mensaje_cliente);
-
-				wp_mail( $administradores, "Copia Administradores: Nueva Reserva - ".$tipo_servicio.' por: '.$nombre.' '.$apellido, $mensaje_cliente);
 				
 		}
 
