@@ -253,7 +253,7 @@
 	    ';
 	    
    		$msg_cliente = kmimos_get_email_html("Solicitud Cancelada", $msg, "", true, true);
-   		wp_mail( $user->data->user_email, "Solicitud Cancelada", $msg_cliente);
+   		wp_mail( $user->data->user_email, "Solicitud Cancelada", $msg_cliente, kmimos_mails_administradores());
 
    		// wp_mail( $administradores, "Copia Administradores: Solicitud Rechazada", $msg_cliente);
 
@@ -288,7 +288,7 @@
 	    ';
 
    		echo $msg_cuidador = kmimos_get_email_html("Confirmación de Solicitud para Conocerte", $msg, "", true, true);
-   		wp_mail( $email_cuidador, "Confirmación de Solicitud para Conocerte", $msg_cuidador, kmimos_mails_administradores());
+   		wp_mail( $email_cuidador, "Confirmación de Solicitud para Conocerte", $msg_cuidador);
 
    		// wp_mail( $administradores, "Copia Administradores: Confirmación de Solicitud para Conocerte", $msg_cuidador);
 
@@ -298,7 +298,7 @@
 			<p align="justify">Te notificamos que el cuidador <strong>'.$cuidador_post->post_title.'</strong> ha <strong>Confirmado</strong> la solicitud para conocerle N° <strong>'.$id.'</strong>.</p>';
 
    		$msg_admin = kmimos_get_email_html("Confirmación de Solicitud para Conocer Cuidador", $msg_admin, "", true, true);
-   		wp_mail( $mail_admin, "Confirmación de Solicitud para Conocer Cuidador", $msg_admin);
+   		wp_mail( $mail_admin, "Confirmación de Solicitud para Conocer Cuidador", $msg_admin, kmimos_mails_administradores());
 
    		// wp_mail( $administradores, "Copia Administradores: Confirmación de Solicitud para Conocer Cuidador", $msg_admin);
 
@@ -307,7 +307,7 @@
 			<p align="justify">Tu solicitud para conocer al cuidador <strong>'.$cuidador_post->post_title.'</strong> ha sido confirmada por &eacute;l.</p>';
 
 		$msg_cliente = kmimos_get_email_html("Confirmación de Solicitud para Conocer Cuidador", $msg_cliente, "", true, true);
-   		wp_mail( $user->data->user_email, "Confirmación de Solicitud para Conocer Cuidador", $msg_cliente, kmimos_mails_administradores());
+   		wp_mail( $user->data->user_email, "Confirmación de Solicitud para Conocer Cuidador", $msg_cliente);
 
    		// wp_mail( $administradores, "Copia Administradores: Confirmación de Solicitud para Conocer Cuidador", $msg_cliente);
 
