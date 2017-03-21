@@ -461,6 +461,20 @@ if($_POST['funcion'] == 'request'){
                 </tr>
             </table>
 
+            <center>
+                <p><strong>¿ACEPTAS ESTA SOLICITUD?</strong></p>
+                <table>
+                    <tr>
+                        <td>
+                            <a href="'.get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$request_id.'&s=1" style="text-decoration: none; padding: 7px 0px; background: #00d2b7; color: #FFF; font-size: 16px; font-weight: 500; border-radius: 5px; width: 100px; display: inline-block; text-align: center;">Aceptar</a>
+                        </td>
+                        <td>
+                            <a href="'.get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$request_id.'&s=0" style="text-decoration: none; padding: 7px 0px; background: #dc2222; color: #FFF; font-size: 16px; font-weight: 500; border-radius: 5px; width: 100px; display: inline-block; text-align: center;">Rechazar</a>
+                        </td>
+                    </tr>
+                </table>
+            </center>
+
             <h2 style="color: #557da1; font-size: 16px;">Datos de la Reunión</h2>
             <table cellspacing=0 cellpadding=0>
                 <tr>   
@@ -504,7 +518,7 @@ if($_POST['funcion'] == 'request'){
             return 'Kmimos México';
         });
         add_filter( 'wp_mail_from', function( $email ) {
-            return 'kmimos@kmimos.la';
+            return 'kmimos@kmimos.la'; 
         });
 
 

@@ -27,7 +27,7 @@
 			    margin: 1em 0px;
 			}
 		</style>
-	";
+	"; 
 
 	$status = $booking->get_status();
 
@@ -97,7 +97,7 @@
 				.$lista_cercanos;
 		    
 	   		$msg_admin = kmimos_get_email_html("Reserva Cancelada por Cuidador - ".$cuidador_post->post_title, $msg, "", true, true);
-	   		wp_mail( $email_admin, "Cancelación de Reserva", $msg_admin);
+	   		wp_mail( $email_admin, "Cancelación de Reserva", $msg_admin, kmimos_mails_administradores());
 
 	   		$msg = $styles.'
 	   			<div style="padding-right: 10px;">
@@ -114,7 +114,7 @@
 		    ';
 		    
 	   		$msg_cliente = kmimos_get_email_html("Cancelación de Reserva", $msg, "", true, true);
-	   		wp_mail( $user->data->user_email, "Cancelación de Reserva", $msg_cliente, kmimos_mails_administradores());
+	   		wp_mail( $user->data->user_email, "Cancelación de Reserva", $msg_cliente);
 
 	    } else {
 			$order->update_status('wc-on-hold');

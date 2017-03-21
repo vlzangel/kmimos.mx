@@ -188,7 +188,7 @@
             ';
 
             require('./cron_plantilla.php'); 
-            echo $message = kmimos_get_email_html($title, $message, '', true, true);
+            $msg_cliente = kmimos_get_email_html($title, $message, '', true, true);
 
             add_filter( 'wp_mail_from_name', function( $name ) {
                 return 'Kmimos México';
@@ -201,9 +201,7 @@
 
             if( $request->post_type == "request" ){
                 
-                echo $email_cliente;
-
-                wp_mail($email_cliente, $title, $message);
+                wp_mail($email_cliente, $title, $msg_cliente);
 
                 $sql = "UPDATE wp_postmeta SET meta_value='4' WHERE post_id='".$request->ID."' AND meta_key = 'request_status';";
                 $wpdb->query( $sql );
@@ -213,10 +211,16 @@
                 $msg = $styles.'
                     <p><strong>Cancelación de Solicitud para Conocer Cuidador (N°. '.$request->ID.')</strong></p>
                     <p>Hola <strong>Administrador</strong>,</p>
-                    <p align="justify">Te notificamos que el sistema ha cancelado la Solicitud para Conocer Cuidador N° <strong>'.$request->ID.'</strong> por inactividad.</p>';
+                    <p align="justify">Te notificamos que el sistema ha cancelado la Solicitud para Conocer Cuidador N° <strong>'.$request->ID.'</strong> por inactividad.</p>'
+                    .'
+                        <p align="justify">
+                            Esta son las sugerencias que se le enviaron al cliente:
+                        </p>
+                    '
+                    .$str_sugeridos;
                 
                 $msg_admin = kmimos_get_email_html("Solicitud para Conocer Cuidador Cancelada por el Sistema", $msg, "", true, true);
-                wp_mail( $email_admin, "Solicitud para Conocer Cuidador Cancelada por el Sistema", $msg_admin);
+                wp_mail( $email_admin, "Solicitud para Conocer Cuidador Cancelada por el Sistema", $msg_admin, kmimos_mails_administradores());
 
                 $msg_cuidador = $styles.'
                     <p><strong>Cancelación de Reserva (N°. '.$request->ID.')</strong></p>
@@ -228,7 +232,7 @@
 
             }else{
 
-                wp_mail($email_cliente, $title, $message);
+                wp_mail($email_cliente, $title, $msg_cliente);
 
                 $order = new WC_Order($id_orden);
                 $booking = new WC_Booking($id_reserva);
@@ -239,10 +243,16 @@
                 $msg = $styles.'
                     <p><strong>Cancelación de Reserva (N°. '.$id_reserva.')</strong></p>
                     <p>Hola <strong>Administrador</strong>,</p>
-                    <p align="justify">Te notificamos que el sistema ha cancelado la reserva N° <strong>'.$id_reserva.'</strong> por inactividad.</p>';
+                    <p align="justify">Te notificamos que el sistema ha cancelado la reserva N° <strong>'.$id_reserva.'</strong> por inactividad.</p>'
+                    .'
+                        <p align="justify">
+                            Esta son las sugerencias que se le enviaron al cliente:
+                        </p>
+                    '
+                    .$str_sugeridos;
                 
                 $msg_admin = kmimos_get_email_html("Reserva Cancelada por el Sistema", $msg, "", true, true);
-                wp_mail( $email_admin, "Reserva Cancelada por el Sistema", $msg_admin);
+                wp_mail( $email_admin, "Reserva Cancelada por el Sistema", $msg_admin, kmimos_mails_administradores());
 
                 $msg_cuidador = $styles.'
                     <p><strong>Cancelación de Reserva (N°. '.$id_reserva.')</strong></p>

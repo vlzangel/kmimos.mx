@@ -32,6 +32,7 @@ wp-settings.php
 wp-signup.php
 wp-trackback.php
 xmlrpc.php
+vlz_config.php
 
 # Plugins
 
