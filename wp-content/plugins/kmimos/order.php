@@ -38,7 +38,7 @@
 		);
 		$msg = $styles.'
 				<p>Hola <strong>'.$cuidador_post->post_title.'</strong></p>
-				<p align="justify">Te notificamos que la reserva N° <strong>'.$reserva_id.'</strong> se ya ha sido '.$estado[$status].' anteriormente.</p>
+				<p align="justify">Te notificamos que la reserva N° <strong>'.$reserva_id.'</strong> ya ha sido '.$estado[$status].' anteriormente.</p>
 				<p align="justify">Por tal motivo ya no es posible realizar cambios en el estatus de la misma.</p>
 		';
    		echo kmimos_get_email_html("La reserva ya fue ".$estado[$status]." anteriormente.", $msg, "", false, true);
@@ -114,7 +114,7 @@
 		    ';
 		    
 	   		$msg_cliente = kmimos_get_email_html("Cancelación de Reserva", $msg, "", true, true);
-	   		wp_mail( $user->data->user_email, "Cancelación de Reserva", $msg_cliente);
+	   		wp_mail( $user->data->user_email, "Cancelación de Reserva", $msg_cliente, kmimos_mails_administradores());
 
 	    } else {
 			$order->update_status('wc-on-hold');

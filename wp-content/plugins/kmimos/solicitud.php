@@ -170,6 +170,23 @@
 		</style>
 	";
 
+	$status = $wpdb->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = $id AND meta_key = 'request_status';");
+	if( $status != 1 ){
+		$estado = array(
+			2 => "Confirmada",
+			3 => "Cancelada",
+			4 => "Cancelada"
+		);
+		$msg = $styles.'
+				<p>Hola <strong>'.$cuidador_post->post_title.'</strong></p>
+				<p align="justify">Te notificamos que la solicitud N° <strong>'.$id.'</strong> ya ha sido '.$estado[$status].' anteriormente.</p>
+				<p align="justify">Por tal motivo ya no es posible realizar cambios en el estatus de la misma.</p>
+		';
+   		echo kmimos_get_email_html("La solicitud ya fue ".$estado[$status]." anteriormente.", $msg, "", false, true);
+
+   		exit;
+	}
+	
 	if($s == "0"){
 		$wpdb->query("UPDATE wp_postmeta SET meta_value = '3' WHERE post_id = $id AND meta_key = 'request_status';");
 		$wpdb->query("UPDATE wp_posts SET post_status = 'draft' WHERE ID = '{$id}';");
