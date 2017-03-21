@@ -80,7 +80,21 @@ if ( ! $checkout->enable_signup && ! $checkout->enable_guest_checkout && ! is_us
 			do_action( 'woocommerce_checkout_order_review' );
 		?>
 	</div>
+	<style type="text/css">
+		#add_payment_method #payment ul.payment_methods, .woocommerce-checkout #payment ul.payment_methods>li>label {
+			    color: #54c8a7;
+			    font-size: large;
+			    font-weight: bold;
+			    text-shadow: 3px 2px 12px rgba(255, 255, 255, 0.57);
+			}
 
+			@media (max-width: 592px){
+				#add_payment_method #payment ul.payment_methods, .woocommerce-checkout #payment ul.payment_methods>li>label {
+					font-size: x-small;
+				}
+
+			}
+	</style>
 	<?php do_action( 'woocommerce_checkout_after_order_review' ); ?>
 
 
@@ -92,5 +106,6 @@ if ( ! $checkout->enable_signup && ! $checkout->enable_guest_checkout && ! is_us
 jQuery( document ).ready(function() {
     jQuery('dt.variation-Duracin').css('display', 'none');
     jQuery('dd.variation-Duracin').css('display', 'none');
+    // jQuery('label[for=payment_method_openpay_cards]').css('display', 'none');
 });
 </script>
