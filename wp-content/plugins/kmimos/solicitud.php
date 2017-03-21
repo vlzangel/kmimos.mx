@@ -204,12 +204,16 @@
    		echo $msg_cuidador = kmimos_get_email_html("Solicitud Cancelada Exitosamente!", $msg, "", true, true);
    		wp_mail( $email_cuidador, "Solicitud Cancelada", $msg_cuidador);
 
-   		// wp_mail( $administradores, "Copia Administradores: Solicitud Rechazada", $msg_cuidador);
-
 		$msg = $styles.'
 	    	<p><strong>Solicitud para conocer cuidador Num. ('.$id.')</strong></p>
 			<p>Hola <strong>Administrador</strong>,</p>
-			<p align="justify">Te notificamos que el cuidador <strong>'.$cuidador_post->post_title.'</strong> ha cancelado la solicitud para conocerlo N° <strong>'.$id.'</strong>.</p>';
+			<p align="justify">Te notificamos que el cuidador <strong>'.$cuidador_post->post_title.'</strong> ha cancelado la solicitud para conocerlo N° <strong>'.$id.'</strong>.</p>'
+			.'
+				<p align="justify">
+					Esta son las sugerencias que se le enviaron al cliente:
+				</p>
+			'
+			.$lista_cercanos;
 	    
    		$msg_admin = kmimos_get_email_html("Solicitud Cancelada por Cuidador - ".$cuidador_post->post_title, $msg, "", true, true);
    		wp_mail( $mail_admin, "Cancelación de Solicitud", $msg_admin, kmimos_mails_administradores());
