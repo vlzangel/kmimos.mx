@@ -89,7 +89,7 @@
             LIMIT 0, 4
 	    ";
 
-	    $sugeridos = $wpdb->get_results($sql);
+	    $sugeridos = $wpdb->get_results($sql); 
 
 	    $str_sugeridos = "";
 
