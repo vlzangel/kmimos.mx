@@ -10,7 +10,7 @@
 		return 'Kmimos México';
 	});
 	add_filter( 'wp_mail_from', function( $email ) {
-		return 'contactomx@kmimos.la';
+		return 'contactomex@kmimos.la';
 	});
 
     global $wpdb;
@@ -19,7 +19,7 @@
 
     $metas_solicitud = get_post_meta($id); 
 
-    $mail_admin 	= "contactomx@kmimos.la";
+    $mail_admin 	= "contactomex@kmimos.la";
 
     /*	Datos del cuidador 	*/
 	    $cuidador_post 	= $wpdb->get_row("SELECT * FROM $wpdb->posts WHERE ID = '".$metas_solicitud['requested_petsitter'][0]."'");
