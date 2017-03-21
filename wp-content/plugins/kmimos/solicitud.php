@@ -228,7 +228,7 @@
 				<p align="justify">Te notificamos que el cuidador <strong>'.$cuidador_post->post_title.'</strong> ha cancelado la solicitud para conocerle N° <strong>'.$id.'</strong>.</p>
 				<p align="justify">
 					Sabemos lo importante que es para ti encontrar el lugar adecuado para que cuiden a tu peludo, 
-					por lo que te compartimos 3 opciones con características similares a tu búsqueda original. Solo debes seguir los siguientes pasos:
+					por lo que te compartimos estas opciones con características similares a tu búsqueda original. Solo debes seguir los siguientes pasos:
 				</p>
 				'.$lista_cercanos.'
 				<p align="justify">Si tienes alguna duda o comentario de la cancelación con todo gusto puedes contactarnos.</p>
