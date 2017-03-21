@@ -16,7 +16,7 @@
     global $wpdb;
 
     $id = $o;
-
+ 
     $metas_solicitud = get_post_meta($id);
 
     $mail_admin 	= "contactomx@kmimos.la";
