@@ -2104,14 +2104,14 @@ jQuery.validator.addMethod("pattern", function(value, element, param) {
 			$('tr.order-remaining>th').attr('data-title', 'Monto a pagar al cuidador');
 			$('div.vlz_bloquear_map>p').text('Toca la pantalla para ver en el mapa');
 
-		}else{
-			$('tr.order-remaining>td').attr('data-title', 'Monto a pagar al cuidador en efectivo al entregar el perrito');
-			$('tr.order-remaining>th').attr('data-title', 'Monto a pagar al cuidador en efectivo al entregar el perrito');
+		// }else{
+		// 	$('tr.order-remaining>td').attr('data-title', 'Monto a pagar al cuidador en efectivo al entregar el perrito');
+		// 	$('tr.order-remaining>th').attr('data-title', 'Monto a pagar al cuidador en efectivo al entregar el perrito');
 
 		}
-		if ($(window).width() > 769) {
-			$('tr.order-remaining>th').text('Monto a pagar al cuidador en efectivo al entregar el perrito');
-		}
+		// if ($(window).width() > 769) {
+		// 	$('tr.order-remaining>th').text('Monto a pagar al cuidador en efectivo al entregar el perrito');
+		// }
 
 
 	});
@@ -2125,32 +2125,32 @@ jQuery.validator.addMethod("pattern", function(value, element, param) {
 		$('a.checkout-button.button.alt.wc-forward').css({'color': '#fff', 'background-color': '#5ec9aa'});
 		$('p.return-to-shop>a.button.alt.wc-backward').hide();
 		$('p.return-to-shop>a.button.wc-backward').hide();
-		$('tr.order-remaining').css('color', '#FF0000');
-		$('tr.order-remaining>td').attr('data-title', 'Monto a pagar al cuidador en efectivo al entregar el perrito');
-		$('tr.order-paid').css('color', '#60cbac');
+		// $('tr.order-remaining').css('color', '#FF0000');
+		// $('tr.order-remaining>td').attr('data-title', 'Monto a pagar al cuidador en efectivo al entregar el perrito');
+		// $('tr.order-paid').css('color', '#60cbac');
 		//$('#payment').append('echo "<pre>"; print_r($post); echo "</pre>";');
-		setTimeout(function(){
-			$('input[name="woocommerce_checkout_place_order"]').addClass('btn_reserva');
-			$('input[name="woocommerce_checkout_place_order"]').attr('style', '"color= #fff!important; background-color= #5ec9aa!important;"');
+		// setTimeout(function(){
+			// $('input[name="woocommerce_checkout_place_order"]').addClass('btn_reserva');
+			// $('input[name="woocommerce_checkout_place_order"]').attr('style', '"color= #fff!important; background-color= #5ec9aa!important;"');
 			// $('input[name="woocommerce_checkout_place_order"]').css({'color': '#fff!important', 'background-color': '#5ec9aa'});
-		}, 1000);
+		// }, 1000);
 		$('button.wc-bookings-booking-form-button.single_add_to_cart_button.button.alt').css('text-transform', 'uppercase');
 		$('[data-toggle="tooltip"]').tooltip();
 		modalPrecios();	
 
 		if ($(window).width() < 550) {
 			console.log('pantalla a 550');
-			$('tr.order-remaining>td').attr('data-title', 'Monto a pagar al cuidador');
-			$('tr.order-remaining>th').attr('data-title', 'Monto a pagar al cuidador');
+			// $('tr.order-remaining>td').attr('data-title', 'Monto a pagar al cuidador');
+			// $('tr.order-remaining>th').attr('data-title', 'Monto a pagar al cuidador');
 			$('div.vlz_bloquear_map>p').text('Toca la pantalla para ver en el mapa');
-		}else{
-			$('tr.order-remaining>td').attr('data-title', 'Monto a pagar al cuidador en efectivo al entregar el perrito');
-			$('tr.order-remaining>th').attr('data-title', 'Monto a pagar al cuidador en efectivo al entregar el perrito');
+		// }else{
+		// 	$('tr.order-remaining>td').attr('data-title', 'Monto a pagar al cuidador en efectivo al entregar el perrito');
+		// 	$('tr.order-remaining>th').attr('data-title', 'Monto a pagar al cuidador en efectivo al entregar el perrito');
 
 		}
-		if ($(window).width() > 769) {
-			$('tr.order-remaining>th').text('Monto a pagar al cuidador en efectivo al entregar el perrito');
-		}
+		// if ($(window).width() > 769) {
+		// 	$('tr.order-remaining>th').text('Monto a pagar al cuidador en efectivo al entregar el perrito');
+		// }
 	});
 
 })(jQuery);
