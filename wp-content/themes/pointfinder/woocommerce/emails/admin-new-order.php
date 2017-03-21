@@ -14,7 +14,7 @@
 		return 'Kmimos México';
 	});
 	add_filter( 'wp_mail_from', function( $email ) {
-		return 'kmimos@kmimos.la';
+		return 'kmimos@kmimos.la'; 
 	});
 
 	include("vlz_data_orden.php");
@@ -445,7 +445,7 @@
 							</ul>
 						</li>
 					</ul>
-				';
+				'; 
 
 				$mensaje_cliente  	= 	$saludo.
 										$msg_id_reserva.
