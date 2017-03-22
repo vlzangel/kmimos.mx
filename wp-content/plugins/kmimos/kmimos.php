@@ -17,13 +17,15 @@
 
 if(!function_exists('kmimos_mails_administradores')){
     function kmimos_mails_administradores(){
-        $headers   = array();
 
-        $headers[] = 'Cco: e.celli@kmimos.la';
-        $headers[] = 'Cco: r.cuevas@kmimos.la';
-        $headers[] = 'Cco: r.gonzalez@kmimos.la';
-        $headers[] = 'Cco: m.castellon@kmimos.la';
-        $headers[] = 'Cco: a.veloz@kmimos.la';
+        $headers[] = 'BCC: e.celli@kmimos.la';
+        $headers[] = 'BCC: r.cuevas@kmimos.la';
+        $headers[] = 'BCC: r.gonzalez@kmimos.la';
+        $headers[] = 'BCC: m.castellon@kmimos.la';
+        $headers[] = 'BCC: a.veloz@kmimos.la';
+
+/*        $headers[] = 'BCC: vlzangel91@gmail.com';
+        $headers[] = 'BCC: angelveloz91@gmail.com';*/
 
         return $headers;
     }
