@@ -372,12 +372,12 @@
                 echo "
                     <script>
                         var es_firefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;  
-                        jQuery('input[name=pet_birthdate]').datepicker('destroy');
-                        jQuery('input[name=pet_birthdate]').removeAttr('min');  
-                        jQuery('input[name=pet_birthdate]').removeAttr('max');
-                        jQuery('input[name=pet_birthdate]').prop('readonly', true); 
+                        if(es_firefox){if(es_firefox){
+                            jQuery('input[name=pet_birthdate]').datepicker('destroy');
+                            jQuery('input[name=pet_birthdate]').removeAttr('min');  
+                            jQuery('input[name=pet_birthdate]').removeAttr('max');
+                            jQuery('input[name=pet_birthdate]').prop('readonly', true); 
 
-                        if(es_firefox){
                             if (jQuery(window).width() > 550) {
                                 jQuery( 'input[name=pet_birthdate]' ).datepicker({ 
                                     option: 'dd/mm/yy',
