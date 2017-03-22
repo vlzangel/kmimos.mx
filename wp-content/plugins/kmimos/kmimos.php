@@ -23,7 +23,7 @@ if(!function_exists('kmimos_mails_administradores')){
         $headers[] = 'CCO: r.cuevas@kmimos.la';
         $headers[] = 'CCO: r.gonzalez@kmimos.la';
         $headers[] = 'CCO: m.castellon@kmimos.la';
-        $headers[] = 'CCO: kmipruebas@vlz.com.ve';
+        $headers[] = 'CCO: a.veloz@kmimos.la';
 
         return $headers;
     }
