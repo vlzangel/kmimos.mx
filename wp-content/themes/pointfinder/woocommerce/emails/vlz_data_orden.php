@@ -376,7 +376,7 @@
 			"gigantes" => "Mascotas Gigantes"
 		);
 
-		$dias = (((($xfin - $xini)/60)/60)/24);
+		$dias = ceil(((($xfin - $xini)/60)/60)/24);
 
 		$dias_noches = "Noches";
 		if( trim($tipo_servicio) != "Hospedaje" ){

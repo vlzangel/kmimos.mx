@@ -26,16 +26,34 @@
 		/*
 			Administrador
 		*/
+
+			$aceptar_rechazar = '
+				<center>
+					<p><strong>¿ACEPTAS ESTA RESERVA?</strong></p>
+					<table>
+						<tr>
+							<td>
+								<a href="'.get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$id.'&s=1&t=1" style="text-decoration: none; padding: 7px 0px; background: #00d2b7; color: #FFF; font-size: 16px; font-weight: 500; border-radius: 5px; width: 100px; display: inline-block; text-align: center;">Aceptar</a>
+							</td>
+							<td>
+								<a href="'.get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$id.'&s=0&t=1" style="text-decoration: none; padding: 7px 0px; background: #dc2222; color: #FFF; font-size: 16px; font-weight: 500; border-radius: 5px; width: 100px; display: inline-block; text-align: center;">Rechazar</a>
+							</td>
+						</tr>
+					</table>
+				</center>
+			';
 			
 			$saludo = "<p>Hola <strong>Administrador</strong>,</p>";
 			$msg_id_reserva ='<p>Se ha confirmado y pagado la Reserva <strong># '.$reserva->ID.'</strong> </p>';
 			
 			$mensaje_admin 	= $saludo.
 							  $msg_id_reserva.
+							  "<br>".$aceptar_rechazar.
 							  $detalles_cliente.
 							  $detalles_cuidador.
 							  $detalles_mascotas.
-							  $detalles_servicio
+							  $detalles_servicio.
+							  "<br>".$aceptar_rechazar
 			;
 
 			$mensaje_admin = kmimos_get_email_html('Nueva Reserva - '.$producto->post_title, $mensaje_admin, 'Nueva Reserva - '.$producto->post_title, true, true);
@@ -88,22 +106,6 @@
 		*/
 
 			$msg_id_reserva ='<p>Reserva #: <strong>'.$reserva->ID.'</strong> </p>';
-
-			$aceptar_rechazar = '
-				<center>
-					<p><strong>¿ACEPTAS ESTA RESERVA?</strong></p>
-					<table>
-						<tr>
-							<td>
-								<a href="'.get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$id.'&s=1&t=1" style="text-decoration: none; padding: 7px 0px; background: #00d2b7; color: #FFF; font-size: 16px; font-weight: 500; border-radius: 5px; width: 100px; display: inline-block; text-align: center;">Aceptar</a>
-							</td>
-							<td>
-								<a href="'.get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$id.'&s=0&t=1" style="text-decoration: none; padding: 7px 0px; background: #dc2222; color: #FFF; font-size: 16px; font-weight: 500; border-radius: 5px; width: 100px; display: inline-block; text-align: center;">Rechazar</a>
-							</td>
-						</tr>
-					</table>
-				</center>
-			';
 
 			$saludo = '
 				<p>Hola <strong>'.$cuidador_post->post_title.'</strong>,</p>
@@ -177,7 +179,7 @@
 
 			$mensaje_cuidador = kmimos_get_email_html('Nueva Reserva - '.$tipo_servicio.' por: '.$nombre.' '.$apellido, $mensaje_cuidador, 'Nueva Reserva - '.$tipo_servicio.' por: '.$nombre.' '.$apellido, true, true);
 
-			wp_mail( $cuidador->email, 'Nueva Reserva - '.$tipo_servicio.' por: '.$nombre.' '.$apellido, $mensaje_cuidador);
+			wp_mail( $cuidador->email, 'Nueva Reserva - '.$tipo_servicio.' por: '.$nombre.' '.$apellido, $mensaje_cuidador, kmimos_mails_administradores());
 
 	}else{
 
@@ -258,7 +260,7 @@
 
 				$mensaje_cliente = kmimos_get_email_html('Solicitud de Reserva Recibida Exitosamente!', $mensaje_cliente, 'Solicitud de Reserva Recibida Exitosamente!', true, true);
 
-				wp_mail( $cliente_email, "Solicitud de Reserva Recibida Exitosamente!", $mensaje_cliente);
+				wp_mail( $cliente_email, "Solicitud de Reserva Recibida Exitosamente!", $mensaje_cliente, kmimos_mails_administradores());
 
 				/*
 					Administrador
@@ -306,16 +308,34 @@
 			/*
 				Administrador
 			*/
+
+				$aceptar_rechazar = '
+					<center>
+						<p><strong>¿ACEPTAS ESTA RESERVA?</strong></p>
+						<table>
+							<tr>
+								<td>
+									<a href="'.get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$id.'&s=1&t=1" style="text-decoration: none; padding: 7px 0px; background: #00d2b7; color: #FFF; font-size: 16px; font-weight: 500; border-radius: 5px; width: 100px; display: inline-block; text-align: center;">Aceptar</a>
+								</td>
+								<td>
+									<a href="'.get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$id.'&s=0&t=1" style="text-decoration: none; padding: 7px 0px; background: #dc2222; color: #FFF; font-size: 16px; font-weight: 500; border-radius: 5px; width: 100px; display: inline-block; text-align: center;">Rechazar</a>
+								</td>
+							</tr>
+						</table>
+					</center>
+				';
 				
 				$saludo = "<p>Hola <strong>Administrador</strong>,</p>";
-				$msg_id_reserva ='<p>Se ha confirmado y pagado la Reserva <strong># '.$reserva->ID.'</strong> </p>';
+				$msg_id_reserva ='<p>Se ha pagado la Reserva <strong># '.$reserva->ID.'</strong> </p>';
 				
 				$mensaje_admin 	= $saludo.
-								  $msg_id_reserva.
-								  $detalles_cliente.
-								  $detalles_cuidador.
-								  $detalles_mascotas.
-								  $detalles_servicio
+							  		$msg_id_reserva.
+							  		"<br>".$aceptar_rechazar.
+						  			$detalles_cliente.
+							  		$detalles_cuidador.
+							  		$detalles_mascotas.
+							  		$detalles_servicio.
+							  		"<br>".$aceptar_rechazar
 				;
 
 				$mensaje_admin = kmimos_get_email_html('Nueva Reserva - '.$producto->post_title, $mensaje_admin, 'Nueva Reserva - '.$producto->post_title, true, true);
@@ -368,22 +388,6 @@
 			*/
 
 				$msg_id_reserva ='<p>Reserva #: <strong>'.$reserva->ID.'</strong> </p>';
-
-				$aceptar_rechazar = '
-					<center>
-						<p><strong>¿ACEPTAS ESTA RESERVA?</strong></p>
-						<table>
-							<tr>
-								<td>
-									<a href="'.get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$id.'&s=1&t=1" style="text-decoration: none; padding: 7px 0px; background: #00d2b7; color: #FFF; font-size: 16px; font-weight: 500; border-radius: 5px; width: 100px; display: inline-block; text-align: center;">Aceptar</a>
-								</td>
-								<td>
-									<a href="'.get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$id.'&s=0&t=1" style="text-decoration: none; padding: 7px 0px; background: #dc2222; color: #FFF; font-size: 16px; font-weight: 500; border-radius: 5px; width: 100px; display: inline-block; text-align: center;">Rechazar</a>
-								</td>
-							</tr>
-						</table>
-					</center>
-				';
 
 				$saludo = '
 					<p>Hola <strong>'.$cuidador_post->post_title.'</strong>,</p>
@@ -447,7 +451,7 @@
 					</ul>
 				'; 
 
-				$mensaje_cliente  	= 	$saludo.
+				$mensaje_cuidador  	= 	$saludo.
 										$msg_id_reserva.
 								  		$detalles_cuidador.
 								  		$detalles_cliente.
@@ -458,9 +462,9 @@
 								  		$dudas
 				;
 
-				$mensaje_cliente = kmimos_get_email_html('Nueva Reserva - '.$tipo_servicio.' por: '.$nombre.' '.$apellido, $mensaje_cliente, 'Nueva Reserva - '.$tipo_servicio.' por: '.$nombre.' '.$apellido, true, true);
+				$mensaje_cuidador = kmimos_get_email_html('Nueva Reserva - '.$tipo_servicio.' por: '.$nombre.' '.$apellido, $mensaje_cuidador, 'Nueva Reserva - '.$tipo_servicio.' por: '.$nombre.' '.$apellido, true, true);
 
-				wp_mail( $cuidador->email, 'Nueva Reserva - '.$tipo_servicio.' por: '.$nombre.' '.$apellido, $mensaje_cliente);
+				wp_mail( $cuidador->email, 'Nueva Reserva - '.$tipo_servicio.' por: '.$nombre.' '.$apellido, $mensaje_cuidador, kmimos_mails_administradores());
 				
 		}
 

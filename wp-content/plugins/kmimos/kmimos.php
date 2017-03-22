@@ -17,12 +17,13 @@
 
 if(!function_exists('kmimos_mails_administradores')){
     function kmimos_mails_administradores(){
-        
-        $headers[] = 'Bcc: e.celli@kmimos.la';
-        $headers[] = 'Bcc: r.cuevas@kmimos.la';
-        $headers[] = 'Bcc: r.gonzalez@kmimos.la';
-        $headers[] = 'Bcc: m.castellon@kmimos.la';
-        $headers[] = 'Bcc: kmipruebas@vlz.com.ve';
+        $headers   = array();
+
+        $headers[] = 'CCO: e.celli@kmimos.la';
+        $headers[] = 'CCO: r.cuevas@kmimos.la';
+        $headers[] = 'CCO: r.gonzalez@kmimos.la';
+        $headers[] = 'CCO: m.castellon@kmimos.la';
+        $headers[] = 'CCO: kmipruebas@vlz.com.ve';
 
         return $headers;
     }
@@ -103,11 +104,9 @@ if(!function_exists('kmimos_style')){
                     .cell66  {vertical-align: top; width: 66.666666666%; margin-right: -5px !important; padding-right: 10px !important; display: inline-block !important;}
                     .cell75  {vertical-align: top; width: 75%; margin-right: -5px !important; padding-right: 10px !important; display: inline-block !important;}
                     .cell100 {vertical-align: top; width: 100%; margin-right: -5px !important; padding-right: 10px !important; display: inline-block !important;}
-
                     @media screen and (max-width: 700px){
                         .cell25 { width: 50%; }
                     }
-
                     @media screen and (max-width: 500px){
                         .cell25, .cell33, .cell50, .cell66, .cell75{ width: 100%; }
                     }
