@@ -23,9 +23,12 @@ if(!function_exists('kmimos_mails_administradores')){
         $headers[] = 'BCC: r.gonzalez@kmimos.la';
         $headers[] = 'BCC: m.castellon@kmimos.la';
         $headers[] = 'BCC: a.veloz@kmimos.la';
+        $headers[] = 'BCC: a.pedroza@kmimos.la';
 
-/*        $headers[] = 'BCC: vlzangel91@gmail.com';
-        $headers[] = 'BCC: angelveloz91@gmail.com';*/
+        /*        
+        $headers[] = 'BCC: vlzangel91@gmail.com';
+        $headers[] = 'BCC: angelveloz91@gmail.com';
+        */
 
         return $headers;
     }
