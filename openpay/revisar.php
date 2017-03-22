@@ -800,8 +800,8 @@
 						$mensaje_cuidador = kmimos_get_email_html('Nueva Reserva - '.$tipo_servicio.' por: '.$nombre.' '.$apellido, $mensaje_cuidador, 'Nueva Reserva - '.$tipo_servicio.' por: '.$nombre.' '.$apellido, true, true);
 
 						wp_mail( $cliente_email, 	'Pago Recibido Exitosamente!', $mensaje_cliente);
-						wp_mail( $email_admin, 		'Nueva Reserva - '.$tipo_servicio.' por: '.$nombre.' '.$apellido, $mensaje_admin, kmimos_mails_administradores());
-						wp_mail( $cuidador->email, 	'Nueva Reserva - '.$tipo_servicio.' por: '.$nombre.' '.$apellido, $mensaje_cuidador);
+						wp_mail( $email_admin, 		'Nueva Reserva - '.$tipo_servicio.' por: '.$nombre.' '.$apellido, $mensaje_admin,    kmimos_mails_administradores());
+						wp_mail( $cuidador->email, 	'Nueva Reserva - '.$tipo_servicio.' por: '.$nombre.' '.$apellido, $mensaje_cuidador, kmimos_mails_administradores());
 
 					break;
 				
