@@ -11,6 +11,7 @@
 			$_POST['id'] 		   == $_SESSION['solicitud']['id']
 		) {
 
+			echo "<h1 onclick='history.back();'>Agregale un modal jauregui</h1>";
 			$_POST['funcion'] = "";
 
     		get_footer();
