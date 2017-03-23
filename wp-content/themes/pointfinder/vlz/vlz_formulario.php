@@ -148,8 +148,8 @@
 					    <option value='price_desc'>Precio del Servicio de mayor a menor</option>
 					    <option value='experience_asc'>Experiencia de menos a más años</option>
 					    <option value='experience_desc'>Experiencia de más a menos años</option>
-					    <option value='name_asc'>Nombre del Cuidador de la A a la Z</option>
-					    <option value='name_desc'>Nombre del Cuidador de la Z a la A</option>
+					    <!-- option value='name_asc'>Nombre del Cuidador de la A a la Z</option -->
+					    <!-- option value='name_desc'>Nombre del Cuidador de la Z a la A</option -->
 				    </select>
 				</div>
 

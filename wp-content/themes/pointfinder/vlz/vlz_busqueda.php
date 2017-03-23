@@ -277,7 +277,7 @@
 			<?php
 
 				foreach ($depuracion as $key => $value) {
-					echo "<pre style='display: block;'>";
+					echo "<pre style='display: none;'>";
 						print_r($value);
 					echo "</pre>";
 				}
