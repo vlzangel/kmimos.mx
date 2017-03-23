@@ -109,7 +109,7 @@
 
 		// Ordenamiento
 
-		$orderby = $param['orderby'];
+		$orderby = (isset($param['orderby']))? $param['orderby'] : "rating_desc" ;
 
 		if( $orderby == "rating_desc" ){
 			$orderby = "rating DESC, valoraciones DESC";
@@ -203,9 +203,9 @@
 						    ) <= 100
 						)
 					)";
-				if( $orderby == "" ){
-					$orderby = "DISTANCIA ASC";
-				}
+				// if( $orderby == "" ){
+				// 	$orderby = "DISTANCIA ASC";
+				// }
 
 			}else{
 				$ubicaciones_inner = "";
