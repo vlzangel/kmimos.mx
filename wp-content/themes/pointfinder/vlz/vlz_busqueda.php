@@ -9,7 +9,10 @@
 
 
 	if( count($_POST) > 0 ){
-		$_SESSION['busqueda'] = serialize($_POST);
+		$_SESSION['busqueda'] = serialize($_POST);		
+		$_SESSION['busqueda_token'] = 1;		
+		unset($_SESSION['busqueda_resultado']);
+
 		$home = get_home_url();
 		header("location: {$home}/busqueda/");
 	}
@@ -17,14 +20,14 @@
 	if( isset($_SESSION['busqueda'])){
 		$_POST = unserialize($_SESSION['busqueda']);
 	}
-
-	$pagina = $_GET['pagina']+0;
 	
-	if( $pagina < 0 ){
-		$pagina = 0;
-	}
+	$pagina = $page; // Pagina actual
+	$item_by_page = 15; // Numero de Items por pagina
+	// Items by page
+	$pagina_row_fin = ( $pagina>1 )? $pagina * $item_by_page : $item_by_page;
+	$pagina_row_ini = $pagina_row_fin - $item_by_page; 
 
-	$xpagina = $pagina*15;
+	$xpagina = $pagina_row_fin; // Old var - last items
 
 	include("vlz_style.php");
 	include("vlz_funciones.php");
@@ -105,14 +108,45 @@
 
 	$depuracion = array();
 
-	$sql = vlz_sql_busqueda($_POST, $xpagina);
+	// Cargar valores de session
+	$rows = [];
+	$r2 = 0;
+
+	// Cargar Datos en SESSION
+	if( isset($_SESSION['busqueda_resultado']) ){	
+		$rows = $_SESSION['busqueda_resultado']['ROWS'];
+		$r2   = $_SESSION['busqueda_resultado']['FOUND_ROWS'];
+	}
+	// Buscar valores en DB
+	if(empty($rows)){
+		$sql = vlz_sql_busqueda($_POST, $pagina_row_fin);
+		$rows = $wpdb->get_results($sql);
+		$r2 = $wpdb->get_results('SELECT FOUND_ROWS() AS cantidad');
+
+		// Guardar Session
+		$_SESSION['busqueda_resultado']['ROWS'] = $rows;
+		$_SESSION['busqueda_resultado']['FOUND_ROWS'] = $r2;
+	}
+
 	$depuracion[] = $sql;
 	$depuracion[] = $_POST;
 
-	$r = $wpdb->get_results($sql);
-	// $depuracion[] = $r;
+	$r = array_slice($rows, $pagina_row_ini, $item_by_page);
 
-	$r2 = $wpdb->get_results('SELECT FOUND_ROWS() AS cantidad');
+	//IC: Se guarda el historico de busqueda en session para la paginacion
+	$_SESSION['cuidadores_search'] = $r; 
+
+	// $depuracion[] = $rows;
+
+	$depuracion[] = [
+		"wp-page"=>$page,
+		"pag"=>$pagina,
+		"item"=>$item_by_page,
+		"ini"=>$pagina_row_ini,
+		"fin"=>$pagina_row_fin,
+		"post" => $_POST,
+	];
+
 
 	$total_registros = ($r2[0]->cantidad+0);
 	$depuracion[] = $total_registros;
@@ -127,6 +161,26 @@
 	}
 
 	$coordenadas_all_2 = array();
+	// Cargar todos los metas de la busqueda para Puntos en el MAPA
+	foreach ($rows as $key => $cuidador) {
+		$ID = $cuidador->id;
+
+		$data2 = get_post($cuidador->id_post);
+		$cuidador->nombre = explode(" ", $cuidador->nombre);
+		$cuidador->nombre = $cuidador->nombre[0];
+		$url = get_home_url() . "/petsitters/" . $data2->post_name;		
+		
+		$coordenadas_all_2[] = array(
+			"ID" 		=> $cuidador->id,
+			"USER" 		=> $cuidador->user_id,
+			"lat" 		=> $cuidador->latitud,
+			"lng" 		=> $cuidador->longitud,
+			"nombre" 	=> $cuidador->nombre,
+			"url" 		=> $url,
+			"portada" 	=> $cuidador->portada
+		);
+	}
+
 
 	// $depuracion[] = $favoritos;
 
@@ -197,17 +251,13 @@
 
 				<div class="vlz_nav_cont_interno">
 
-					<?php
+	 				<?php
 						$t = $total_registros+0;
-						$h = 15;
-						if($t > $h){
-							$ps = ceil($t/$h);
-							for( $i=0; $i<$ps; $i++){
-								if( $pagina == $i ){
-									echo "<a href='?pagina={$i}' class='vlz_activa'>".($i+1)."</a>";
-								}else{
-									echo "<a href='?pagina={$i}'>".($i+1)."</a>";
-								}
+						if($t > $item_by_page){
+							$ps = ceil($t/$item_by_page)+1;
+							for( $i=1; $i<$ps; $i++){
+								$active = ( $pagina == $i || ($pagina == 0 && $i == 1)  )? "class='vlz_activa'": "";
+								echo "<a href='/busqueda/{$i}' ".$active.">".$i."</a>";
 							}
 						}
 						$w = 40*$ps;
@@ -219,7 +269,7 @@
 							</style>
 						";
 					?>
-				
+ 		
 				</div>
 
 			</div>
