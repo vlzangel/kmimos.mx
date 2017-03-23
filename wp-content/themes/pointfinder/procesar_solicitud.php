@@ -4,9 +4,28 @@
 	*/
 	get_header();
 	
+	if( $_SESSION['solicitud'] != "" ){
+		if (
+			$_POST['meeting_when'] == $_SESSION['solicitud']['meeting_when'] &&
+			$_POST['meeting_time'] == $_SESSION['solicitud']['meeting_time'] &&
+			$_POST['id'] 		   == $_SESSION['solicitud']['id']
+		) {
 
+			echo "<h1 onclick='history.back();'>Agregale un modal jauregui</h1>";
+			$_POST['funcion'] = "";
+
+    		get_footer();
+
+		}
+	}
 
 	if($_POST['funcion'] == 'request'){
+
+		$_SESSION['solicitud'] = array(
+			"meeting_when" 	=> $_POST['meeting_when'],
+			"meeting_time" 	=> $_POST['meeting_time'],
+			"id" 			=> $_POST['id']
+		);
 
 	    /*
 	        Data General
@@ -114,6 +133,8 @@
 	        'service_start'         => $_POST['service_start'],
 	        'service_end'           => $_POST['service_end'],
 	    );
+
+
 
 	    foreach($new_postmeta as $key => $value){
 	        update_post_meta($request_id, $key, $value);
@@ -521,20 +542,16 @@
 	            return 'kmimos@kmimos.la'; 
 	        });
 
-	    	if(isset($_SESSION['token_mail'])) {
-			    unset($_SESSION['token_mail']);
-		        wp_mail( $email_cuidador, $asunto, $mensaje_cuidador);
-		        wp_mail( $email_cliente,  $asunto, $mensaje_cliente);
-		       	wp_mail( $email_admin,    $asunto, $mensaje_admin, kmimos_mails_administradores());
+	        /*wp_mail( $email_cuidador, $asunto, $mensaje_cuidador);
+	        wp_mail( $email_cliente,  $asunto, $mensaje_cliente);
+	       	wp_mail( $email_admin,    $asunto, $mensaje_admin, kmimos_mails_administradores());
 
-		        wp_mail( "e.celli@kmimos.la",       $asunto, $mensaje_admin);
-		        wp_mail( "m.castellon@kmimos.la",   $asunto, $mensaje_admin);
-		        wp_mail( "a.pedroza@kmimos.la",     $asunto, $mensaje_admin);
-        
-	        	echo "<div style='display: block; margin: 0px auto; max-width: 600px;'>".$xmensaje_cliente."</div>";
-			    exit;
-			}
+	        wp_mail( "e.celli@kmimos.la",       $asunto, $mensaje_admin);
+	        wp_mail( "m.castellon@kmimos.la",   $asunto, $mensaje_admin);
+	        wp_mail( "a.pedroza@kmimos.la",     $asunto, $mensaje_admin);*/
 
-	        get_footer(); 
+			$_SESSION['token_mail'] = $xmensaje_cliente;
+
+		header("location: ".get_home_url()."/conocer-al-cuidador/?id=".$post_id);
 	}
 ?>

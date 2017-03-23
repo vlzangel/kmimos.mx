@@ -149,8 +149,6 @@
 				<?php
 					if(is_user_logged_in()){
 						echo '<a class="button conocer-cuidador" href="'.get_home_url().'/conocer-al-cuidador/?id='.$post_id.'">Conocer al Cuidador</a>';
-
-						$_SESSION['token_mail']=true;
 						echo '<a class="button reservar" href="'.get_home_url().'/producto/hospedaje-'.$slug.'/'.'">Reservar</a>';
 					}else{
 						echo '<span class="button conocer-cuidador" onclick="jQuery(\'#pf-login-trigger-button\').click();">Conocer al Cuidador</span>';
