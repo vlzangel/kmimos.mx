@@ -126,12 +126,13 @@
 		$valoraciones_rangos_2 .= "<option value='$i' ".selected($i, $_POST['rangos'][5], false).">$i</option>";
 	}
 
+	$token = md5(rand());
 	echo "
 	<div id='filtros'></div>
 	<form action='".get_home_url()."/busqueda' method='POST' class='vlz_form' id='vlz_form_buscar' style='margin-top: 20px;'>
 
 		<input type='submit' value='Aplicar Filtros' class='vlz_boton'>
-		
+
 		<div class='vlz_sub_seccion'>
 			<div class='vlz_sub_seccion_titulo'>Ordenar por:</div>
 			<div class='vlz_sub_seccion_interno'>

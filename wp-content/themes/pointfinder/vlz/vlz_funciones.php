@@ -347,8 +347,8 @@
 				{$ubicaciones_filtro}
 			{$FILTRO_UBICACION}
 			ORDER BY {$orderby}
-			LIMIT {$pagina}, 15
 		";
+//			LIMIT {$pagina}, 15
 
 		return $sql;
 	}

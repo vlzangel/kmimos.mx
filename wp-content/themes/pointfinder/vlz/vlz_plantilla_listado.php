@@ -32,15 +32,15 @@
 		$nombre_cuidador = $data->post_title;
 	}
 
-	$coordenadas_all_2[] = array(
-		"ID" 		=> $cuidador->id,
-		"USER" 		=> $cuidador->user_id,
-		"lat" 		=> $cuidador->latitud,
-		"lng" 		=> $cuidador->longitud,
-		"nombre" 	=> $cuidador->nombre,
-		"url" 		=> $url,
-		"portada" 	=> $cuidador->portada
-	);
+	// $coordenadas_all_2[] = array(
+	// 	"ID" 		=> $cuidador->id,
+	// 	"USER" 		=> $cuidador->user_id,
+	// 	"lat" 		=> $cuidador->latitud,
+	// 	"lng" 		=> $cuidador->longitud,
+	// 	"nombre" 	=> $cuidador->nombre,
+	// 	"url" 		=> $url,
+	// 	"portada" 	=> $cuidador->portada
+	// );
 
 	$distancia = $cuidador->DISTANCIA;
 
