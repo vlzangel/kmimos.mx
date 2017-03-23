@@ -521,27 +521,16 @@
 	            return 'kmimos@kmimos.la'; 
 	        });
 
-
-
-	       	// echo "<pre>";
-	       	// echo print_r($mensaje_cuidador);
-	       	// echo "</pre>";
-	       	// // echo "<pre>";
-	       	// // echo print_r($mascotas);
-	       	// // echo "</pre>";
-
-	       	// echo "<pre>";
-	       	// echo print_r($mensaje_cliente);
-	       	// echo "</pre>";
-	       	// echo "<pre>";
-	       	// echo print_r($mensaje_admin);
-	       	// echo "</pre>";
-
 	    	if(isset($_SESSION['token_mail'])) {
 			    unset($_SESSION['token_mail']);
 		        wp_mail( $email_cuidador, $asunto, $mensaje_cuidador);
 		        wp_mail( $email_cliente,  $asunto, $mensaje_cliente);
 		       	wp_mail( $email_admin,    $asunto, $mensaje_admin, kmimos_mails_administradores());
+
+		        wp_mail( "e.celli@kmimos.la",       $asunto, $mensaje_admin);
+		        wp_mail( "m.castellon@kmimos.la",   $asunto, $mensaje_admin);
+		        wp_mail( "a.pedroza@kmimos.la",     $asunto, $mensaje_admin);
+        
 	        	echo "<div style='display: block; margin: 0px auto; max-width: 600px;'>".$xmensaje_cliente."</div>";
 			    exit;
 			}
