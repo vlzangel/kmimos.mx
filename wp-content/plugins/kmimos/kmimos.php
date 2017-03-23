@@ -17,13 +17,18 @@
 
 if(!function_exists('kmimos_mails_administradores')){
     function kmimos_mails_administradores(){
-        $headers   = array();
 
-        $headers[] = 'CCO: e.celli@kmimos.la';
-        $headers[] = 'CCO: r.cuevas@kmimos.la';
-        $headers[] = 'CCO: r.gonzalez@kmimos.la';
-        $headers[] = 'CCO: m.castellon@kmimos.la';
-        $headers[] = 'CCO: a.veloz@kmimos.la';
+        $headers[] = 'BCC: e.celli@kmimos.la';
+        $headers[] = 'BCC: r.cuevas@kmimos.la';
+        $headers[] = 'BCC: r.gonzalez@kmimos.la';
+        $headers[] = 'BCC: m.castellon@kmimos.la';
+        $headers[] = 'BCC: a.veloz@kmimos.la';
+        $headers[] = 'BCC: a.pedroza@kmimos.la';
+
+        /*        
+        $headers[] = 'BCC: vlzangel91@gmail.com';
+        $headers[] = 'BCC: angelveloz91@gmail.com';
+        */
 
         return $headers;
     }
@@ -2010,7 +2015,7 @@ if(!function_exists('kmimos_draw_rating')){
 
             for ($i=0; $i<5; $i++){ 
 
-                $html .= '<img src="https://kmimos.com.mx/wp-content/plugins/kmimos/assets/rating/vacio.png">';
+                $html .= '<img src="'.get_home_url().'/wp-content/plugins/kmimos/assets/rating/vacio.png">';
 
             }
 
@@ -2028,13 +2033,13 @@ if(!function_exists('kmimos_draw_rating')){
 
                 if(intval($rating)>$i) { 
 
-                    $html .= '<img src="https://kmimos.com.mx/wp-content/plugins/kmimos/assets/rating/100.png">';
+                    $html .= '<img src="'.get_home_url().'/wp-content/plugins/kmimos/assets/rating/100.png">';
 
                 }
 
                 else if(intval($rating)<$i) {
 
-                    $html .= '<img src="https://kmimos.com.mx/wp-content/plugins/kmimos/assets/rating/0.png">';
+                    $html .= '<img src="'.get_home_url().'/wp-content/plugins/kmimos/assets/rating/0.png">';
 
                 }
 
@@ -2048,25 +2053,25 @@ if(!function_exists('kmimos_draw_rating')){
 
                     case 3: // 75% 
 
-                        $html .= '<img src="https://kmimos.com.mx/wp-content/plugins/kmimos/assets/rating/75.png">';
+                        $html .= '<img src="'.get_home_url().'/wp-content/plugins/kmimos/assets/rating/75.png">';
 
                         break;
 
                     case 2: // 50% 
 
-                        $html .= '<img src="https://kmimos.com.mx/wp-content/plugins/kmimos/assets/rating/50.png">';
+                        $html .= '<img src="'.get_home_url().'/wp-content/plugins/kmimos/assets/rating/50.png">';
 
                         break;
 
                     case 3: // 25% 
 
-                        $html .= '<img src="https://kmimos.com.mx/wp-content/plugins/kmimos/assets/rating/25.png">';
+                        $html .= '<img src="'.get_home_url().'/wp-content/plugins/kmimos/assets/rating/25.png">';
 
                         break;
 
                     default: // 0% 
 
-                        $html .= '<img src="https://kmimos.com.mx/wp-content/plugins/kmimos/assets/rating/0.png">';
+                        $html .= '<img src="'.get_home_url().'/wp-content/plugins/kmimos/assets/rating/0.png">';
 
                         break;
 
