@@ -17,14 +17,34 @@ date_default_timezone_set('America/Mexico_City');
 
 $user_id = $current_user->ID;
 
+if($_SESSION['token_mail'] != "" ){
+
+    echo kmimos_style(array('formularios'));
+
     $post_id = $_GET['id'];
 
-    if($post_id==''){
+    echo "
+        <div style='display: block; margin: 0px auto; max-width: 600px;'>
+            ".$_SESSION['token_mail']."
+
+            <div style='text-align: center;'>
+                <a href='".get_home_url()."/conocer-al-cuidador/?id=".$post_id."' class='kmimos_boton'>
+                    Finalizar
+                </a>
+            </div>
+        </div>";
+
+    $_SESSION['token_mail'] = "";
+
+}else{
+
+    $post_id = $_GET['id'];
+
+    if($post_id == ''){
         echo "Selecciona el cuidador que deseas conocer";
         return false;
     }
 
-    
     $pasos = array(false, false, false);
 
     if($user_id != 0) {
@@ -207,5 +227,7 @@ $user_id = $current_user->ID;
             });
         });
     </script> <?php
+
+}
 
 ?>
