@@ -126,12 +126,13 @@
 		$valoraciones_rangos_2 .= "<option value='$i' ".selected($i, $_POST['rangos'][5], false).">$i</option>";
 	}
 
+	$token = md5(rand());
 	echo "
 	<div id='filtros'></div>
 	<form action='".get_home_url()."/busqueda' method='POST' class='vlz_form' id='vlz_form_buscar' style='margin-top: 20px;'>
 
 		<input type='submit' value='Aplicar Filtros' class='vlz_boton'>
-		
+
 		<div class='vlz_sub_seccion'>
 			<div class='vlz_sub_seccion_titulo'>Ordenar por:</div>
 			<div class='vlz_sub_seccion_interno'>
@@ -147,8 +148,8 @@
 					    <option value='price_desc'>Precio del Servicio de mayor a menor</option>
 					    <option value='experience_asc'>Experiencia de menos a más años</option>
 					    <option value='experience_desc'>Experiencia de más a menos años</option>
-					    <option value='name_asc'>Nombre del Cuidador de la A a la Z</option>
-					    <option value='name_desc'>Nombre del Cuidador de la Z a la A</option>
+					    <!-- option value='name_asc'>Nombre del Cuidador de la A a la Z</option -->
+					    <!-- option value='name_desc'>Nombre del Cuidador de la Z a la A</option -->
 				    </select>
 				</div>
 
