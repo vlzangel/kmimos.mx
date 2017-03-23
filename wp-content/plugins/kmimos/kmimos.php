@@ -117,6 +117,20 @@ if(!function_exists('kmimos_style')){
                     }
                 ";
             }
+
+            if( in_array("formularios", $styles)){
+                $salida .= "
+                    .kmimos_boton{
+                        border: solid 1px #59c9a8;
+                        background: #59c9a8;
+                        padding: 10px 20px;
+                        display: inline-block;
+                        margin: 20px 0px 0px;
+                        color: #FFF;
+                        font-weight: 600;
+                    }
+                ";
+            }
         
         $salida .= "</style>";
 
