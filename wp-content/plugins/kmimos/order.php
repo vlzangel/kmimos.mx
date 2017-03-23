@@ -27,7 +27,7 @@
 			    margin: 1em 0px;
 			}
 		</style>
-	";
+	"; 
 
 	$status = $booking->get_status();
 
@@ -38,7 +38,7 @@
 		);
 		$msg = $styles.'
 				<p>Hola <strong>'.$cuidador_post->post_title.'</strong></p>
-				<p align="justify">Te notificamos que la reserva N° <strong>'.$reserva_id.'</strong> se ya ha sido '.$estado[$status].' anteriormente.</p>
+				<p align="justify">Te notificamos que la reserva N° <strong>'.$reserva_id.'</strong> ya ha sido '.$estado[$status].' anteriormente.</p>
 				<p align="justify">Por tal motivo ya no es posible realizar cambios en el estatus de la misma.</p>
 		';
    		echo kmimos_get_email_html("La reserva ya fue ".$estado[$status]." anteriormente.", $msg, "", false, true);
@@ -88,10 +88,16 @@
 				.$detalles_cliente
 				.$detalles_cuidador
 				.$detalles_mascotas
-				.$detalles_servicio;
+				.$detalles_servicio
+				.'
+					<p align="justify">
+						Esta son las sugerencias que se le enviaron al cliente:
+					</p>
+				'
+				.$lista_cercanos;
 		    
 	   		$msg_admin = kmimos_get_email_html("Reserva Cancelada por Cuidador - ".$cuidador_post->post_title, $msg, "", true, true);
-	   		wp_mail( $email_admin, "Cancelación de Reserva", $msg_admin);
+	   		wp_mail( $email_admin, "Cancelación de Reserva", $msg_admin, kmimos_mails_administradores());
 
 	   		$msg = $styles.'
 	   			<div style="padding-right: 10px;">
@@ -100,7 +106,7 @@
 					<p align="justify">Te notificamos que el cuidador <strong>'.$cuidador_post->post_title.'</strong> ha cancelado la reserva N° <strong>'.$reserva_id.'</strong>.</p>
 					<p align="justify">
 						Sin embargo, sabemos lo importante que es para ti encontrar el lugar adecuado para que cuiden a tu peludo, 
-						por lo que te compartimos 3 opciones con características similares a tu búsqueda original. Solo debes seguir los siguientes pasos:
+						por lo que te compartimos estas opciones con características similares a tu búsqueda original. Solo debes seguir los siguientes pasos:
 					</p>
 					'.$lista_cercanos.'
 					<p align="justify">Si tienes alguna duda o comentario de la cancelación con todo gusto puedes contactarnos.</p>
@@ -156,7 +162,7 @@
 				.$detalles_servicio;
 
 	   		$msg_admin = kmimos_get_email_html("Confirmación de Reserva", $msg_admin, "", true, true);
-	   		wp_mail( $email_admin, "Confirmación de Reserva", $msg_admin);
+	   		wp_mail( $email_admin, "Confirmación de Reserva", $msg_admin, kmimos_mails_administradores());
 
 	   		$nota_importante = $styles.'
 	   			<p align="justify"><strong>Importante:</strong></p>
@@ -174,7 +180,7 @@
 				.$nota_importante;
 
 			$msg_cliente = kmimos_get_email_html("Confirmación de Reserva", $msg_cliente, "", true, true);
-	   		wp_mail( $email_cliente, "Confirmación de Reserva", $msg_cliente, kmimos_mails_administradores());
+	   		wp_mail( $email_cliente, "Confirmación de Reserva", $msg_cliente);
 
 	    }
 

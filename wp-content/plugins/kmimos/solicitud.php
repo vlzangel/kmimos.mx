@@ -7,21 +7,19 @@
     extract($_GET);
 
     add_filter( 'wp_mail_from_name', function( $name ) {
-		return 'Kmimos Colombia';
+		return 'Kmimos México';
 	});
 	add_filter( 'wp_mail_from', function( $email ) {
-		return 'contactoco@kmimos.la';
+		return 'contactomex@kmimos.la';
 	});
 
     global $wpdb;
 
     $id = $o;
 
-    $metas_solicitud = get_post_meta($id);
+    $metas_solicitud = get_post_meta($id); 
 
-    $mail_admin 	= "contactoco@kmimos.la";
-
-	// $administradores = "e.celli@kmimos.la, e.celli@desdigitec.com, r.cuevas@kmimos.la, r.cuevas@desdigitec.com, r.gonzalez@kmimos.la, r.gonzalez@desdigitec.com";
+    $mail_admin 	= "contactomex@kmimos.la";
 
     /*	Datos del cuidador 	*/
 	    $cuidador_post 	= $wpdb->get_row("SELECT * FROM $wpdb->posts WHERE ID = '".$metas_solicitud['requested_petsitter'][0]."'");
@@ -91,7 +89,7 @@
             LIMIT 0, 4
 	    ";
 
-	    $sugeridos = $wpdb->get_results($sql);
+	    $sugeridos = $wpdb->get_results($sql); 
 
 	    $str_sugeridos = "";
 
@@ -151,8 +149,8 @@
                     Revisa estas recomendaciones y pícale a cualquiera de ellas para ver más detalles sobre su perfil.
                     <div style="overflow: hidden; text-align: center; margin: 0px auto; max-width: 600px;">'.$str_sugeridos_img.'</div>
                 </li>
-                <li align="justify" style="padding-bottom: 10px; font-size: 12px;">En caso de que alguna de estas opciones no se adecúe a tus necesidades, por favor ingresa a <strong><a style="text-decoration: none; color: #3d68b9;" href="'.get_home_url().'/busqueda">Kmimos Colombia</a></strong> en donde podrás encontrar cientos de cuidadores que seguro te encantarán.</li>
-                <li align="justify" style="font-size: 12px;">Para asistencia personalizada por favor márcanos a nuestros números. +52 (55) 1791.493.</li>
+                <li align="justify" style="padding-bottom: 10px; font-size: 12px;">En caso de que alguna de estas opciones no se adecúe a tus necesidades, por favor ingresa a <strong><a style="text-decoration: none; color: #3d68b9;" href="'.get_home_url().'/busqueda">Kmimos México</a></strong> en donde podrás encontrar cientos de cuidadores que seguro te encantarán.</li>
+                <li align="justify" style="font-size: 12px;">Para asistencia personalizada por favor márcanos a nuestros números. +52 (55) 1791.4931.</li>
             </ol>
         ';
 
@@ -172,6 +170,23 @@
 		</style>
 	";
 
+	$status = $wpdb->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = $id AND meta_key = 'request_status';");
+	if( $status != 1 ){
+		$estado = array(
+			2 => "Confirmada",
+			3 => "Cancelada",
+			4 => "Cancelada"
+		);
+		$msg = $styles.'
+				<p>Hola <strong>'.$cuidador_post->post_title.'</strong></p>
+				<p align="justify">Te notificamos que la solicitud N° <strong>'.$id.'</strong> ya ha sido '.$estado[$status].' anteriormente.</p>
+				<p align="justify">Por tal motivo ya no es posible realizar cambios en el estatus de la misma.</p>
+		';
+   		echo kmimos_get_email_html("La solicitud ya fue ".$estado[$status]." anteriormente.", $msg, "", false, true);
+
+   		exit;
+	}
+	
 	if($s == "0"){
 		$wpdb->query("UPDATE wp_postmeta SET meta_value = '3' WHERE post_id = $id AND meta_key = 'request_status';");
 		$wpdb->query("UPDATE wp_posts SET post_status = 'draft' WHERE ID = '{$id}';");
@@ -204,17 +219,21 @@
 	    ';
 	    
    		echo $msg_cuidador = kmimos_get_email_html("Solicitud Cancelada Exitosamente!", $msg, "", true, true);
-   		wp_mail( $email_cuidador, "Solicitud Cancelada", $msg_cuidador, kmimos_mails_administradores());
-
-   		// wp_mail( $administradores, "Copia Administradores: Solicitud Rechazada", $msg_cuidador);
+   		wp_mail( $email_cuidador, "Solicitud Cancelada", $msg_cuidador);
 
 		$msg = $styles.'
 	    	<p><strong>Solicitud para conocer cuidador Num. ('.$id.')</strong></p>
 			<p>Hola <strong>Administrador</strong>,</p>
-			<p align="justify">Te notificamos que el cuidador <strong>'.$cuidador_post->post_title.'</strong> ha cancelado la solicitud para conocerlo N° <strong>'.$id.'</strong>.</p>';
+			<p align="justify">Te notificamos que el cuidador <strong>'.$cuidador_post->post_title.'</strong> ha cancelado la solicitud para conocerlo N° <strong>'.$id.'</strong>.</p>'
+			.'
+				<p align="justify">
+					Esta son las sugerencias que se le enviaron al cliente:
+				</p>
+			'
+			.$lista_cercanos;
 	    
    		$msg_admin = kmimos_get_email_html("Solicitud Cancelada por Cuidador - ".$cuidador_post->post_title, $msg, "", true, true);
-   		wp_mail( $mail_admin, "Cancelación de Solicitud", $msg_admin);
+   		wp_mail( $mail_admin, "Cancelación de Solicitud", $msg_admin, kmimos_mails_administradores());
 
    		// wp_mail( $administradores, "Copia Administradores: Cancelación de Reserva", $msg_admin);
 
@@ -226,7 +245,7 @@
 				<p align="justify">Te notificamos que el cuidador <strong>'.$cuidador_post->post_title.'</strong> ha cancelado la solicitud para conocerle N° <strong>'.$id.'</strong>.</p>
 				<p align="justify">
 					Sabemos lo importante que es para ti encontrar el lugar adecuado para que cuiden a tu peludo, 
-					por lo que te compartimos 3 opciones con características similares a tu búsqueda original. Solo debes seguir los siguientes pasos:
+					por lo que te compartimos estas opciones con características similares a tu búsqueda original. Solo debes seguir los siguientes pasos:
 				</p>
 				'.$lista_cercanos.'
 				<p align="justify">Si tienes alguna duda o comentario de la cancelación con todo gusto puedes contactarnos.</p>
@@ -269,7 +288,7 @@
 	    ';
 
    		echo $msg_cuidador = kmimos_get_email_html("Confirmación de Solicitud para Conocerte", $msg, "", true, true);
-   		wp_mail( $email_cuidador, "Confirmación de Solicitud para Conocerte", $msg_cuidador, kmimos_mails_administradores());
+   		wp_mail( $email_cuidador, "Confirmación de Solicitud para Conocerte", $msg_cuidador);
 
    		// wp_mail( $administradores, "Copia Administradores: Confirmación de Solicitud para Conocerte", $msg_cuidador);
 
@@ -279,7 +298,7 @@
 			<p align="justify">Te notificamos que el cuidador <strong>'.$cuidador_post->post_title.'</strong> ha <strong>Confirmado</strong> la solicitud para conocerle N° <strong>'.$id.'</strong>.</p>';
 
    		$msg_admin = kmimos_get_email_html("Confirmación de Solicitud para Conocer Cuidador", $msg_admin, "", true, true);
-   		wp_mail( $mail_admin, "Confirmación de Solicitud para Conocer Cuidador", $msg_admin);
+   		wp_mail( $mail_admin, "Confirmación de Solicitud para Conocer Cuidador", $msg_admin, kmimos_mails_administradores());
 
    		// wp_mail( $administradores, "Copia Administradores: Confirmación de Solicitud para Conocer Cuidador", $msg_admin);
 
@@ -288,7 +307,7 @@
 			<p align="justify">Tu solicitud para conocer al cuidador <strong>'.$cuidador_post->post_title.'</strong> ha sido confirmada por &eacute;l.</p>';
 
 		$msg_cliente = kmimos_get_email_html("Confirmación de Solicitud para Conocer Cuidador", $msg_cliente, "", true, true);
-   		wp_mail( $user->data->user_email, "Confirmación de Solicitud para Conocer Cuidador", $msg_cliente, kmimos_mails_administradores());
+   		wp_mail( $user->data->user_email, "Confirmación de Solicitud para Conocer Cuidador", $msg_cliente);
 
    		// wp_mail( $administradores, "Copia Administradores: Confirmación de Solicitud para Conocer Cuidador", $msg_cliente);
 

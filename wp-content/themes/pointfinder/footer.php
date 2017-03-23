@@ -1,6 +1,6 @@
         <?php if (!is_page_template('pf-empty-page.php' ) && !is_page_template('terms-conditions.php' )) {?>
             </div>
-            </div>
+            </div> 
 
             <div id="pf-membersystem-dialog"></div>
             <a title="<?php esc_html__('Back to Top','pointfindert2d'); ?>" class="pf-up-but"><i class="pfadmicon-glyph-859"></i></a>
@@ -370,6 +370,26 @@
             if( $post->post_name == "perfil-usuario" ){
 
                 echo "
+                    <script>
+                        var es_firefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;  
+                        if(es_firefox){if(es_firefox){
+                            jQuery('input[name=pet_birthdate]').datepicker('destroy');
+                            jQuery('input[name=pet_birthdate]').removeAttr('min');  
+                            jQuery('input[name=pet_birthdate]').removeAttr('max');
+                            jQuery('input[name=pet_birthdate]').prop('readonly', true); 
+
+                            if (jQuery(window).width() > 550) {
+                                jQuery( 'input[name=pet_birthdate]' ).datepicker({ 
+                                    option: 'dd/mm/yy',
+                                    changeMonth: true,
+                                    changeYear: true,
+                                    minDate: '-30y',
+                                    maxDate: '-1d',
+                                    dataFormat: 'dd/mm/yy',
+                                });
+                            }
+                        }
+                    </script>
                     <style>
                         @media (max-width: 568px){ 
                             .cell50{width:100%!important;}

@@ -32,6 +32,7 @@ wp-settings.php
 wp-signup.php
 wp-trackback.php
 xmlrpc.php
+vlz_config.php
 
 # Plugins
 
@@ -83,6 +84,8 @@ xmlrpc.php
 /wp-content/plugins/yith-woocommerce-dynamic-pricing-and-discounts-premium/
 /wp-content/plugins/yith-woocommerce-product-slider-carousel-premium/
 /wp-content/plugins/zopim-live-chat/
+
+/wp-content/plugins/wpmandrill/
 
 
 /wp-content/plugins/woocommerce-bookings/.tx/

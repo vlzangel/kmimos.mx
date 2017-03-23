@@ -302,7 +302,7 @@ if($_POST['funcion'] == 'request'){
                 <li style="text-align: justify;">Verifica que el perro del dueño tenga sus vacunas y te compartan su cartilla de vacunación.</li>
                 <li style="text-align: justify;"><strong>IMPORTANTE:</strong> Sin cartilla de vacunación, no estarán amparados ni tú ni el perro ante los beneficios veterinarios de Kmimos</li>
                 <li style="text-align: justify;">En caso de no conocerse personalmente, asegúrate de que te envíen fotos del perro que llegará a tu casa para confirmar que se observa un tamaño acorde a lo descrito por su dueño.</li>
-                <li style="text-align: justify;">Por favor revisa físicamente al perrito antes de recibirlo.  Apapáchalo y recorre su piel de ser posible, para detectar de ser posible cualquier rasguño, golpe, etc. que pueda traer antes de tu que lo hubieres recibido (si detectas algo por favor menciónaselo de manera muy educada y cordial al cliente, y posteriormente envíanos fotos vía whatsapp o correo al equipo de atención al cliente de Kmimos)  Whatsapp: +52 (55) 1791.4931, o al correo contactomex@kmimos.la/li>
+                <li style="text-align: justify;">Por favor revisa físicamente al perrito antes de recibirlo.  Apapáchalo y recorre su piel de ser posible, para detectar de ser posible cualquier rasguño, golpe, etc. que pueda traer antes de tu que lo hubieres recibido (si detectas algo por favor menciónaselo de manera muy educada y cordial al cliente, y posteriormente envíanos fotos vía whatsapp o correo al equipo de atención al cliente de Kmimos)  Whatsapp: +52 (55) 1791.4931, o al correo contactomex@kmimos.la</li>
             </ul>
             <p style="text-align: justify;">Recuerda que cada perro tiene un comportamiento diferente, por lo que deberás tener la mayor información posible sobre sus comportamientos:</p>
             <ul>
@@ -461,6 +461,20 @@ if($_POST['funcion'] == 'request'){
                 </tr>
             </table>
 
+            <center>
+                <p><strong>¿ACEPTAS ESTA SOLICITUD?</strong></p>
+                <table>
+                    <tr>
+                        <td>
+                            <a href="'.get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$request_id.'&s=1" style="text-decoration: none; padding: 7px 0px; background: #00d2b7; color: #FFF; font-size: 16px; font-weight: 500; border-radius: 5px; width: 100px; display: inline-block; text-align: center;">Aceptar</a>
+                        </td>
+                        <td>
+                            <a href="'.get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$request_id.'&s=0" style="text-decoration: none; padding: 7px 0px; background: #dc2222; color: #FFF; font-size: 16px; font-weight: 500; border-radius: 5px; width: 100px; display: inline-block; text-align: center;">Rechazar</a>
+                        </td>
+                    </tr>
+                </table>
+            </center>
+
             <h2 style="color: #557da1; font-size: 16px;">Datos de la Reunión</h2>
             <table cellspacing=0 cellpadding=0>
                 <tr>   
@@ -504,21 +518,15 @@ if($_POST['funcion'] == 'request'){
             return 'Kmimos México';
         });
         add_filter( 'wp_mail_from', function( $email ) {
-            return 'kmimos@kmimos.la';
+            return 'kmimos@kmimos.la'; 
         });
 
 
         wp_mail( $email_cuidador, $asunto, $mensaje_cuidador);
         wp_mail( $email_cliente,  $asunto, $mensaje_cliente);
-        wp_mail( $email_admin,    $asunto, $mensaje_admin);
-
-        $administradores = "e.celli@kmimos.la, e.celli@desdigitec.com, r.cuevas@kmimos.la, r.cuevas@desdigitec.com, r.gonzalez@kmimos.la, r.gonzalez@desdigitec.com";
-
-        wp_mail( $administradores, "Copia Administradores: ".$asunto, $mensaje_cuidador);
-        // wp_mail( $administradores, "Copia Administradores: ".$asunto, $mensaje_cliente);
-        // wp_mail( $administradores, "Copia Administradores: ".$asunto, $mensaje_admin);
+        wp_mail( $email_admin,    $asunto, $mensaje_admin, kmimos_mails_administradores());
     
-        echo "<div style='display: block; margin: 0px auto; width: 600px;'>".$xmensaje_cliente."</div>";
+        echo "<div style='display: block; margin: 0px auto; max-width: 600px;'>".$xmensaje_cliente."</div>";
 
 }else{
 
