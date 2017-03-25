@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
+
 <style type="text/css">
 	body{
 	    background: transparent;
@@ -45,6 +46,29 @@
 	.submit{
 		text-align: right !important;
 	}
+
+	.kmimos_modal_interno{
+		position: absolute;
+		display: none;
+		top: 0px;
+		left: 0px;
+		width: 100%;
+		height: 100%;
+		background: rgba(0,0,0,0.7);
+	}
+
+	.kmimos_modal_interno_celda{
+		display: table-cell;
+
+		text-align: center;
+		vertical-align: middle;
+	}
+
+	.kmimos_modal_interno_area{
+		display: inline-block;
+		padding: 20px;
+		background: #FFF;
+	}
 </style>
 
 <?php
@@ -55,9 +79,7 @@
 
 	<?php 
 		settings_fields('kmimos_group');
-		@do_settings_fields('kmimos_group'); 
-
-		global $wpdb;
+		@do_settings_fields('kmimos_group');
 	?>
 
 	<div>
@@ -72,52 +94,41 @@
 
 	        <div class="col-md-4">
 
-				<?php $sql = "
-					SELECT 
-						U.user_email AS email,
-						U.display_name AS nombre
-					FROM 
-						wp_users AS U 
-					INNER JOIN wp_usermeta AS UM_1 ON ( U.ID = UM_1.user_id ) 
-					WHERE 
-						1=1 AND 
-						( UM_1.meta_key = 'wp_capabilities' AND UM_1.meta_value = 'a:1:{s:13:\"administrator\";b:1;}' ) 
-					GROUP BY 
-						U.ID
-				";
-				$administradores = $wpdb->get_results($sql); 
+	        	<div style='position: relative; height: 220px;'>
 
-				$tipos = "
-					<select class='kmimos_select'>
-						<option>Administrador</option>
-						<option>Customer Service</option>
-					</select>
-				";
-				?>
+	        		<div class='kmimos_modal_interno'>
+		        		<div class='kmimos_modal_interno_celda'>
 
-				<table width="100%">
-					<thead>
-						<tr>
-							<th>
-								Usuario
-							</th>
-							<th style="width: 80px;">
-								Tipo
-							</th>
-						</tr>
-					</thead>
-					<tbody class="kmimos_panel_setup">
-						<?php
-							foreach ($administradores as $key => $value) {
-								echo "
-									<tr>
-										<td>{$value->nombre}</td>
-										<td style='width: 80px;'> {$tipos} {$value->tipo} </td>
-									</tr>";
-							}
-						?>
-					</tbody>
-				</table>
+		        			<div class='kmimos_modal_interno_area'>
+			        			
+			        			<select id='tipo_usuario' class='kmimos_select'>
+									<option>Administrador</option>
+									<option>Customer Service</option>
+								</select>
+
+								<input type='hidden' id='user_id'>
+
+								<input type="button" value="Guardar" onclick="update_tipo_usuario()" >
+
+			        		</div>
+
+		        		</div>
+	        		</div>
+
+					<table width="100%">
+						<thead>
+							<tr>
+								<th>
+									Usuario
+								</th>
+								<th style="width: 80px;">
+									Tipo
+								</th>
+							</tr>
+						</thead>
+						<tbody class="kmimos_panel_setup"></tbody>
+					</table>
+				</div>
 
 			</div>
 	        <div class="col-md-4">
@@ -136,3 +147,48 @@
 		</div>
 
 </div>
+
+<script type="text/javascript">
+
+	function refresh(){
+		jQuery.ajax({
+		    url: "<?php echo get_home_url()."/wp-content/plugins/kmimos/dashboard/ajaxs.php"; ?>",
+		    type: "post",
+		    data: {
+		    	action: "administradores"
+		    },
+		    success: function (data) {
+	      		jQuery(".kmimos_panel_setup").html(data);
+	      		jQuery(".editar_tipo_usuario").on("click", function(e){
+	      			var user_id = jQuery(this).attr( "data-id" );
+	      			var tipo = jQuery(this).attr( "data-tipo" );
+
+	      			jQuery("#tipo_usuario > option[value='"+tipo+"']").attr('selected', 'selected'); 
+	      			jQuery("#user_id").attr('value', user_id); 
+
+	      			jQuery(".kmimos_modal_interno").css("display", "table");
+	      		});
+		    }
+		});
+	}
+	refresh();
+
+	function update_tipo_usuario(){
+		var tipo 	 = jQuery("#tipo_usuario").attr('value');
+      	var user_id  = jQuery("#user_id").attr('value');
+		jQuery.ajax({
+		    url: "<?php echo get_home_url()."/wp-content/plugins/kmimos/dashboard/ajaxs.php"; ?>",
+		    type: "post",
+		    data: {
+		    	action: "update_tipo_usuario",
+		    	id: 	user_id,
+		    	tipo:   tipo
+		    },
+		    success: function (data) {
+      			jQuery(".kmimos_modal_interno").css("display", "none");
+      			refresh();
+		    }
+		});
+	}
+
+</script>
