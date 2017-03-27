@@ -11,7 +11,7 @@
 	$slug 		= $post->post_name;
 
 	$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id_post = ".$post->ID);
-	//$cuidador = $wpdb->get_var("SELECT ID FROM cuidadores WHERE id_post = ".$post->ID);
+	$descripcion = $wpdb->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$cuidador->user_id} AND meta_key = 'description'");
 
 	$latitud 	= $cuidador->latitud;
 	$longitud 	= $cuidador->longitud;
@@ -162,7 +162,7 @@
 		<h3 class="vlz_titulo">Descripción del Cuidador</h3>
 		<div class="vlz_seccion vlz_descripcion">
 			<p>
-				<?php echo $cuidador->descripcion; ?>
+				<?php echo $descripcion; ?>
 			</p>
 		</div>
 

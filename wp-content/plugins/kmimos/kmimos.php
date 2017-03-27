@@ -131,6 +131,114 @@ if(!function_exists('kmimos_style')){
                     }
                 ";
             }
+
+            if( in_array("quitar_edicion", $styles)){
+                $salida .= "
+                    .menu-top,
+                    .wp-menu-separator,
+                    #dashboard-widgets-wrap{
+                        display: none;
+                    }
+
+                    #wp-admin-bar-wp-logo,
+                    #wp-admin-bar-updates,
+                    #wp-admin-bar-comments,
+                    #wp-admin-bar-new-content,
+                    #wp-admin-bar-wpseo-menu,
+                    #wp-admin-bar-ngg-menu,
+                    .updated,
+                    #wpseo_meta,
+                    #mymetabox_revslider_0,
+                    .vlz_contenedor_botones,
+                    .wpseo-score,
+                    .wpseo-score-readability,
+                    .ratings,
+                    #wpseo-score,
+                    #wpseo-score-readability,
+                    #ratings,
+                    .column-wpseo-score,
+                    .column-wpseo-score-readability,
+                    .column-ratings,
+                    #toplevel_page_kmimos li:nth-child(6),
+                    #menu-posts-wc_booking li:nth-child(3),
+                    #menu-posts-wc_booking li:nth-child(6),
+                    #menu-posts-wc_booking li:nth-child(7),
+                    #screen-meta-links,
+                    #wp-admin-bar-site-name-default,
+                    #postcustom,
+                    #woocommerce-order-downloads,
+                    #wpfooter,
+                    #postbox-container-1,
+                    .page-title-action,
+                    .row-actions,
+                    .bulkactions,
+                    #commentstatusdiv,
+                    #edit-slug-box,
+                    #postdivrich,
+                    #authordiv,
+                    #wpseo-filter,
+                    .booking_actions button,
+
+                    #actions optgroup option,
+                    #actions option[value='regenerate_download_permissions']
+
+                    {
+                        display: none;
+                    }
+
+                    #poststuff #post-body.columns-2{
+                        margin-right: 0px !important;
+                    }
+
+                    #normal-sortables{
+                        min-height: 0px !important;
+                    }
+
+                    .booking_actions view,
+                    #actions optgroup > option[value='send_email_new_order']
+                    {
+                        display: block;
+                    }
+
+                    .wc-order-status a,
+                    .wc-customer-user a,
+                    .wc-order-bulk-actions,
+                    .wc-order-totals tr:nth-child(2),
+                    .wc-order-totals tr:nth-child(5)
+                    {
+                        display: none;
+                    }
+                ";
+            }
+
+            if( in_array("habilitar_edicion_reservas", $styles)){
+                $salida .= "
+
+                    #poststuff #post-body.columns-2{
+                        margin-right: 300px !important;
+                    }
+
+                    #postbox-container-1{
+                        display: block;
+                    }
+                ";
+            }
+
+            if( in_array("menu_kmimos", $styles)){
+                $salida .= "
+                    #toplevel_page_kmimos{
+                        display: block;
+                    }
+                ";
+            }
+
+            if( in_array("menu_reservas", $styles)){
+                $salida .= "
+                    #menu-posts-wc_booking{
+                        display: block;
+                    }
+                ";
+            }
         
         $salida .= "</style>";
 
@@ -154,7 +262,6 @@ add_action('widgets_init','kmimos_widget_featured');
 
 include_once('dashboard/petsitters.php');
 include_once('dashboard/pets.php');
-// include_once('dashboard/postulations.php');
 include_once('dashboard/requests.php');
 
 add_action('pre_get_posts', 'kmimos_filter_bookings_when_petsitters_login');
@@ -184,95 +291,59 @@ if(!function_exists('kmimos_include_scripts')){
 
 }
 
-/**
- *  Incluye las funciones de javascript en la página administrativa de Wordpress
- * */
-
-if(!function_exists('kmimos_new_role')){
-    function kmimos_new_role(){
-        $result = add_role( 
-            'customer_service', 
-            'Customer Service', 
-            array( 
-                'read' => true,
-                'edit_posts'   => true,
-                'delete_posts' => true,
-                'level_5' => true 
-            ) 
-        );
-        $role = get_role( 'customer_service' );
-        $role->add_cap( 'edit_others_posts' );
-        return ( null !== $result );
-    }
-}
-
 if(!function_exists('kmimos_include_admin_scripts')){
 
     function kmimos_include_admin_scripts(){
-        /*
-        $keyApi = 'AIzaSyBB_j_ufdmyvN2cqhvtl-6xY-xk-PWNHgg';
-        wp_enqueue_script( 'kmimos_gmap', 'https://maps.googleapis.com/maps/api/js?key='.$keyApi);
-        */
+
         wp_enqueue_script( 'kmimos_script', plugins_url('javascript/kmimos-admin.js', __FILE__), array(), '1.0.0', true );
         wp_enqueue_style( 'kmimos_style', plugins_url('css/kmimos-admin.css', __FILE__) );
 
-
         global $current_user;
 
-        $user = new WP_User( $current_user->ID );   
+        $tipo = get_usermeta( $current_user->ID, "tipo_usuario", true );   
 
-        $users = array(
-            9077
-        );
+        switch ($tipo) {
+            case 'Customer Service':
 
-        if( in_array($user->ID, $users) ){
-            echo '
-                <style>
-                    .menu-top,
-                    .wp-menu-separator,
-                    #dashboard-widgets-wrap{
-                        display: none;
-                    }
-                    #toplevel_page_kmimos{
-                        display: block;
-                    }
+                echo kmimos_style(array(
+                    "quitar_edicion",
+                    "menu_kmimos",
+                    "menu_reservas"
+                ));
+                $types = array(
+                    'petsitters',
+                    'pets',
+                    'request',
+                    'wc_booking',
+                    'shop_order'
+                );
+                $pages = array(
+                    'kmimos',
+                    'create_booking'
+                );
+                global $post;
 
-                    #wp-admin-bar-wp-logo,
-                    #wp-admin-bar-updates,
-                    #wp-admin-bar-comments,
-                    #wp-admin-bar-new-content,
-                    #wp-admin-bar-wpseo-menu,
-                    #wp-admin-bar-ngg-menu,
-                    .updated,
-                    #wpseo_meta,
-                    #mymetabox_revslider_0,
-                    .vlz_contenedor_botones
-                    {
-                        display: none;
-                    }
+                // echo "<script> alert('".$post->post_type."'); </script>";
 
-                    #poststuff #post-body.columns-2{
-                        margin-right: 0px !important;
-                    }
-                </style>
-            ';
+                // echo "<pre>";
+                //     print_r($_SERVER);
+                // echo "</pre>";
 
-            $types = array(
-                'petsitters',
-                'pets',
-                'request'
-            );
-            global $post;
+                if( count($_GET) == 0 || (!in_array($post->post_type, $types) && !in_array($_GET['page'], $pages)) ){
+                    header("location: edit.php?post_type=petsitters");
+                }
 
-            if( count($_GET) == 0 || (!in_array($post->post_type, $types) && $_GET['page'] != 'kmimos') ){
-                header("location: edit.php?post_type=petsitters");
-            }
+                if( $post->post_type == 'shop_order' || $post->post_type == 'wc_booking' ){
+                    echo kmimos_style(array(
+                        'habilitar_edicion_reservas'
+                    )); 
+                }
+
+            break;
         }
     }
 
 }
-
-
 
 /**
  *  Define la estructura de los menúes en el área administrativa
