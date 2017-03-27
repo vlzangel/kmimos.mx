@@ -90,7 +90,7 @@
 			</div>
 		</div>
 
-	    <div class="row">
+	    <div class="row" style="overflow: hidden;">
 
 	        <div class="col-md-4">
 
@@ -138,12 +138,6 @@
 				
 			</div>
 
-		</div>
-
-	    <div class="row">
-	        <div class="col-md-12">
-				<?php @submit_button(); ?>
-			</div>
 		</div>
 
 </div>
