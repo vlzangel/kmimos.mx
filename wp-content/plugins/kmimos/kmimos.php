@@ -330,7 +330,7 @@ if(!function_exists('kmimos_include_admin_scripts')){
                 // echo "</pre>";
 
                 if( count($_GET) == 0 || (!in_array($post->post_type, $types) && !in_array($_GET['page'], $pages)) ){
-                    //header("location: ".$_SERVER['HTTP_REFERER']);
+                    header("location: edit.php?post_type=petsitters");
                 }
 
                 if( $post->post_type == 'shop_order' || $post->post_type == 'wc_booking' ){
