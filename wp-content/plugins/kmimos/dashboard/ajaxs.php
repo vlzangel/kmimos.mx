@@ -51,18 +51,13 @@
 		break;
 
 		case "update_tipo_usuario":
-			echo "Hola ".$id.", tipo: ".$tipo;
 
 			$xtipo = $conn_my->query("SELECT meta_value AS tipo FROM wp_usermeta WHERE user_id = {$id} AND meta_key = 'tipo_usuario'");
 			if($xtipo->num_rows == 0 ){
-				echo "INSERT INTO wp_usermeta VALUES (NULL, {$id}, 'tipo_usuario', '{$tipo}')";
 				$conn_my->query("INSERT INTO wp_usermeta VALUES (NULL, {$id}, 'tipo_usuario', '{$tipo}')");
 			}else{
-				$conn_my->query("UPDATE wp_usermeta SET meta_value = '{$tipo}' WHERE user_id = '{$id}';");
-				echo "UPDATE wp_usermeta SET meta_value = '{$tipo}' WHERE user_id = '{$id}';";
+				$conn_my->query("UPDATE wp_usermeta SET meta_value = '{$tipo}' WHERE user_id = '{$id}' AND meta_key = 'tipo_usuario';");
 			}
-
-			// $result = $conn_my->query($sql);
 
 		break;
 		
