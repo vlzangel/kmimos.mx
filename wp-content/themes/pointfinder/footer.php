@@ -372,7 +372,7 @@
                 echo "
                     <script>
                         var es_firefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;  
-                        if(es_firefox){if(es_firefox){
+                        if(es_firefox){
                             jQuery('input[name=pet_birthdate]').datepicker('destroy');
                             jQuery('input[name=pet_birthdate]').removeAttr('min');  
                             jQuery('input[name=pet_birthdate]').removeAttr('max');
