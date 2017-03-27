@@ -131,6 +131,51 @@ if(!function_exists('kmimos_style')){
                     }
                 ";
             }
+
+            if( in_array("quitar_edicion", $styles)){
+                $salida .= "
+                    .menu-top,
+                    .wp-menu-separator,
+                    #dashboard-widgets-wrap{
+                        display: none;
+                    }
+
+                    #wp-admin-bar-wp-logo,
+                    #wp-admin-bar-updates,
+                    #wp-admin-bar-comments,
+                    #wp-admin-bar-new-content,
+                    #wp-admin-bar-wpseo-menu,
+                    #wp-admin-bar-ngg-menu,
+                    .updated,
+                    #wpseo_meta,
+                    #mymetabox_revslider_0,
+                    .vlz_contenedor_botones,
+                    .wpseo-score,
+                    .wpseo-score-readability,
+                    .ratings,
+                    #wpseo-score,
+                    #wpseo-score-readability,
+                    #ratings,
+                    .column-wpseo-score,
+                    .column-wpseo-score-readability,
+                    .column-ratings
+                    {
+                        display: none;
+                    }
+
+                    #poststuff #post-body.columns-2{
+                        margin-right: 0px !important;
+                    }
+                ";
+            }
+
+            if( in_array("menu_kmimos", $styles)){
+                $salida .= "
+                    #toplevel_page_kmimos{
+                        display: block;
+                    }
+                ";
+            }
         
         $salida .= "</style>";
 
@@ -184,28 +229,6 @@ if(!function_exists('kmimos_include_scripts')){
 
 }
 
-/**
- *  Incluye las funciones de javascript en la página administrativa de Wordpress
- * */
-
-if(!function_exists('kmimos_new_role')){
-    function kmimos_new_role(){
-        $result = add_role( 
-            'customer_service', 
-            'Customer Service', 
-            array( 
-                'read' => true,
-                'edit_posts'   => true,
-                'delete_posts' => true,
-                'level_5' => true 
-            ) 
-        );
-        $role = get_role( 'customer_service' );
-        $role->add_cap( 'edit_others_posts' );
-        return ( null !== $result );
-    }
-}
-
 if(!function_exists('kmimos_include_admin_scripts')){
 
     function kmimos_include_admin_scripts(){
@@ -219,54 +242,29 @@ if(!function_exists('kmimos_include_admin_scripts')){
 
         global $current_user;
 
-        $user = new WP_User( $current_user->ID );   
+        $tipo = get_usermeta( $current_user->ID, "tipo_usuario", true );   
 
-        $users = array(
-            9077
-        );
+        
 
-        if( in_array($user->ID, $users) ){
-            echo '
-                <style>
-                    .menu-top,
-                    .wp-menu-separator,
-                    #dashboard-widgets-wrap{
-                        display: none;
-                    }
-                    #toplevel_page_kmimos{
-                        display: block;
-                    }
+        switch ($tipo) {
+            case 'Customer Service':
 
-                    #wp-admin-bar-wp-logo,
-                    #wp-admin-bar-updates,
-                    #wp-admin-bar-comments,
-                    #wp-admin-bar-new-content,
-                    #wp-admin-bar-wpseo-menu,
-                    #wp-admin-bar-ngg-menu,
-                    .updated,
-                    #wpseo_meta,
-                    #mymetabox_revslider_0,
-                    .vlz_contenedor_botones
-                    {
-                        display: none;
-                    }
+                echo kmimos_style(array(
+                    "quitar_edicion",
+                    "menu_kmimos"
+                ));
+                $types = array(
+                    'petsitters',
+                    'pets',
+                    'request'
+                );
+                global $post;
 
-                    #poststuff #post-body.columns-2{
-                        margin-right: 0px !important;
-                    }
-                </style>
-            ';
+                if( count($_GET) == 0 || (!in_array($post->post_type, $types) && $_GET['page'] != 'kmimos') ){
+                    header("location: edit.php?post_type=petsitters");
+                }
 
-            $types = array(
-                'petsitters',
-                'pets',
-                'request'
-            );
-            global $post;
-
-            if( count($_GET) == 0 || (!in_array($post->post_type, $types) && $_GET['page'] != 'kmimos') ){
-                header("location: edit.php?post_type=petsitters");
-            }
+            break;
         }
     }
 
