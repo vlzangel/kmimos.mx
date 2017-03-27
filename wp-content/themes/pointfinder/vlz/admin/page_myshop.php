@@ -400,7 +400,9 @@
                             "sociables" => "Sociables",
                             "no_sociables" => "No Sociables",
                             "agresivos_personas" => "Agresivos con Humanos",
-                            "agresivos_perros" => "Agresivos con Mascotas"
+                            "agresivos_perros" => "Agresivos con Mascotas",
+                            "agresivos_humanos" => "Agresivos con Humanos",
+                            "agresivos_mascotas" => "Agresivos con Mascotas"
                         );
                         foreach ($comportamientos_aceptados as $key => $value) {
                             if($comportamientos_aceptados[$key] == 1){
@@ -414,6 +416,7 @@
                                 </span>
                             ';
                         }
+
                         $this->FieldOutput .= '
                     </section>    
                 </div>
@@ -429,7 +432,7 @@
                           $this->FieldOutput .= '
                             <span class="goption col12">
                                   <div class="vlz_input vlz_no_check vlz_pin_check '.$check.'" style="padding: 8px 39px 8px 8px;"><input type="hidden" id="acepta_'.$key.'" name="acepta_'.$key.'" value="'.$value.'">'.$tamano[$key].'</div>
-                </span>';
+                            </span>';
                         }
                         $this->FieldOutput .= '
                     </section>                          
