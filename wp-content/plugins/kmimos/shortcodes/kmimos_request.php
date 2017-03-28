@@ -157,11 +157,11 @@ if($_SESSION['token_mail'] != "" ){
             </tr>
             <tr>
                 <td>¿Desde cuando requieres el servicio?</td>
-                <td><input type="date" id="service_start" name="service_start" style="width: 100%; padding: 5px; line-height: 1;" required min="<?php echo date("Y-m-d", strtotime('Now +1 day')) ?>"></td>
+                <td><input type="date" id="service_start" name="service_start" style="width: 100%; padding: 5px; line-height: 1;" required min="<?php echo date("Y-m-d", strtotime('now +1 day')) ?>"></td>
             </tr>
             <tr>
                 <td>¿Hasta cuando requieres el servicio?</td>
-                <td><input type="date" id="service_end" name="service_end" style="width: 100%; padding: 5px; line-height: 1;" required min="<?php echo date("Y-m-d", strtotime('Now +1 day')) ?>"></td>
+                <td><input type="date" id="service_end" name="service_end" style="width: 100%; padding: 5px; line-height: 1;" required min="<?php echo date("Y-m-d", strtotime('now +1 day')) ?>"></td>
             </tr>
         </table>
         <input type="hidden" name="funcion" value="request">
@@ -173,7 +173,11 @@ if($_SESSION['token_mail'] != "" ){
         jQuery.noConflict();
         jQuery(document).ready(document).ready(function() {
             jQuery("#meeting_when").change(function(){
-                jQuery("#service_start").attr("min",jQuery(this).val());
+                var dt = new Date(jQuery(this).val());
+                dt.setDate( parseInt(dt.getDate()) + 1);
+                var r = dt.toISOString().split('T');
+                jQuery("#service_start").attr("min", r[0]);
+
             });
             jQuery("#service_start").change(function(){
                 jQuery("#service_end").attr("min",jQuery(this).val());
