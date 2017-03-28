@@ -4,6 +4,8 @@
 
     date_default_timezone_set('America/Mexico_City');
 
+	$conn = new mysqli($host, $user, $pass, $db);
+
 	$errores = array();
 
     extract($_POST);

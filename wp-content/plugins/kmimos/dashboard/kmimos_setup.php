@@ -92,7 +92,7 @@
 
 	    <div class="row" style="overflow: hidden;">
 
-	        <div class="col-md-4">
+	        <div class="col-md-6">
 
 	        	<div style='position: relative; height: 220px;'>
 
@@ -121,6 +121,9 @@
 								<th>
 									Usuario
 								</th>
+								<th>
+									Email
+								</th>
 								<th style="width: 80px;">
 									Tipo
 								</th>
@@ -131,10 +134,7 @@
 				</div>
 
 			</div>
-	        <div class="col-md-4">
-				
-			</div>
-	        <div class="col-md-4">
+	        <div class="col-md-6">
 				
 			</div>
 
