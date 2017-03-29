@@ -14,7 +14,7 @@
         return 'kmimos@kmimos.la';
     });
 
-    $clave = generarClave();  
+    $clave = generarClave();
     $pass  = md5($clave);
 
     $wpdb->query("UPDATE wp_users SET user_pass = '$pass' WHERE user_email = '".$value->user_email."'");
@@ -33,7 +33,7 @@
                 Hemos recibido tu solicitud para restablecer tu contraseña en Kmimos.
             </p>
             <p style="text-align: justify;">
-                Como parte del proceso de mejoras que tenemos en Kmimos, hemos hecho un cambio en la plataforma con una serie de beneficios que fueron compartidos en un email a parte. En este correo encontraras tus credenciales temporales para acceder a la nueva plataforma de Kmimos México.
+                Como parte del proceso de mejoras que tenemos en Kmimos, hemos hecho un cambio en la plataforma con una serie de beneficios que fueron compartidos en un email aparte. En este correo encontrarás tus credenciales temporales para acceder a la nueva plataforma de Kmimos México.
             </p>
             <p style="text-align: justify;">
                 Esta contraseña la puedes conservar si lo deseas o puedes cambiarla una vez que inicies sesión desde tu perfil en Kmimos.
