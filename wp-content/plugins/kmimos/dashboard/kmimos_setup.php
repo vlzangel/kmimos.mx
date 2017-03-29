@@ -48,13 +48,14 @@
 	}
 
 	.kmimos_modal_interno{
-		position: absolute;
-		display: none;
-		top: 0px;
-		left: 0px;
-		width: 100%;
-		height: 100%;
-		background: rgba(0,0,0,0.7);
+		position: fixed;
+	    display: none;
+	    top: 0px;
+	    left: 0px;
+	    width: 100%;
+	    height: 100%;
+	    background: rgba(0,0,0,0.7);
+	    z-index: 99999999999999999;
 	}
 
 	.kmimos_modal_interno_celda{
@@ -94,7 +95,7 @@
 
 	        <div class="col-md-6">
 
-	        	<div style='position: relative; height: 220px;'>
+	        	<div style='position: relative;'>
 
 	        		<div class='kmimos_modal_interno'>
 		        		<div class='kmimos_modal_interno_celda'>
@@ -135,7 +136,11 @@
 
 			</div>
 	        <div class="col-md-6">
-				
+				<!-- <pre>
+					<?php
+						print_r($_SERVER['REQUEST_SCHEME']."://".$_SERVER['HTTP_HOST']."/");
+					?>
+				</pre> -->
 			</div>
 
 		</div>

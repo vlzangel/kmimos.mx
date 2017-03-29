@@ -41,7 +41,7 @@
 
 				$resultados .= "
 				<tr>
-					<td>{$admin['nombre']}</td>
+					<td> <a href='".$_SERVER['REQUEST_SCHEME']."://".$_SERVER['HTTP_HOST']."/?i=".md5($id)."'> {$admin['nombre']} </a> </td>
 					<td>{$admin['email']}</td>
 					<td style='width: 150px;'> <span class='editar_tipo_usuario' data-id='{$admin['id']}' data-tipo='{$tipo}'>{$tipo}</span> </td>
 				</tr>";
