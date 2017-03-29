@@ -32,7 +32,7 @@
 		</center>
 	';
 
-	$dudas = '<p align="justify">Para cualquier duda y/o comentario puedes contactar al Staff Kmimos a los teléfonos +52 (55) 1791.4931, o al correo atencion@kmimos.com.mx</p>';
+	$dudas = '<p align="justify">Para cualquier duda y/o comentario puedes contactar al Staff Kmimos a los teléfonos +52 (55) 1791.4931, o al correo contactomex@kmimos.la</p>';
 
 	if( $metas_orden["_payment_method"][0] == "openpay_cards" ){
 		include("tarjeta.php");
