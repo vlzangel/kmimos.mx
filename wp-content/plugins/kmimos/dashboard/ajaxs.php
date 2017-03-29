@@ -1,6 +1,8 @@
 <?php
 	include("../../../../vlz_config.php");
 
+	$conn_my = new mysqli($host, $user, $pass, $db);
+
 	extract($_POST);
 
 	switch ($action) {
@@ -20,7 +22,6 @@
 					( UM_1.meta_key = 'wp_capabilities' AND UM_1.meta_value = 'a:1:{s:13:\"administrator\";b:1;}' ) 
 				GROUP BY 
 					U.ID
-				LIMIT 0, 10
 			";
 
 			$result = $conn_my->query($sql);
@@ -41,6 +42,7 @@
 				$resultados .= "
 				<tr>
 					<td>{$admin['nombre']}</td>
+					<td>{$admin['email']}</td>
 					<td style='width: 150px;'> <span class='editar_tipo_usuario' data-id='{$admin['id']}' data-tipo='{$tipo}'>{$tipo}</span> </td>
 				</tr>";
 
