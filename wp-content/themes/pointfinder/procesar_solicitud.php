@@ -664,7 +664,7 @@
 	        wp_mail( "m.castellon@kmimos.la",   $asunto, $mensaje_admin);
 	        wp_mail( "a.pedroza@kmimos.la",     $asunto, $mensaje_admin);
 
-			$_SESSION['token_mail'] = $xmensaje_cliente;
+			$_SESSION['token_mail'] = $xmensaje_cliente; 
 
 		header("location: ".get_home_url()."/conocer-al-cuidador/?id=".$post_id);
 	}
