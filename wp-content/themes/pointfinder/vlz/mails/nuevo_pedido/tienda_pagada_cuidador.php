@@ -80,7 +80,7 @@
 		</ul>
 	';
 
-	$dudas = '<br><p>Para cualquier duda y/o comentario puedes contactar al Staff Kmimos a los teléfonos +52 (55) 1791.4931/ +52 (55) 6631.9264, o al correo atencion@kmimos.com.mx</p>';
+	$dudas = '<br><p>Para cualquier duda y/o comentario puedes contactar al Staff Kmimos a los teléfonos +52 (55) 1791.4931/ +52 (55) 6631.9264, o al correo contactomex@kmimos.la</p>';
 
 	$mensaje_cliente  	= 	$saludo.
 							$msg_id_reserva.
