@@ -110,6 +110,12 @@ if(isset($ua_action)){
 						}
 						update_user_meta($user_id, 'user_photo', "1");
 					}
+
+					echo "
+						<script>
+							location.href = '".get_home_url()."/perfil-usuario/?ua=profile';
+						</script>
+					";
 					
 				}else{
 				    $errorval .= esc_html__('Please login again to update profile (Invalid UserID).','pointfindert2d');

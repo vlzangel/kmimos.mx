@@ -222,7 +222,7 @@
 
             @media (max-width: 520px){
                 .vlz_modal_contenido{
-                    height: 300px!important;
+                    height: 300px;
                 }
             }           
 
