@@ -17,12 +17,18 @@
 
 if(!function_exists('kmimos_mails_administradores')){
     function kmimos_mails_administradores(){
-        
-        $headers[] = 'Bcc: e.celli@kmimos.la';
-        $headers[] = 'Bcc: r.cuevas@kmimos.la';
-        $headers[] = 'Bcc: r.gonzalez@kmimos.la';
-        $headers[] = 'Bcc: m.castellon@kmimos.la';
-        $headers[] = 'Bcc: kmipruebas@vlz.com.ve';
+
+        $headers[] = 'BCC: e.celli@kmimos.la';
+        $headers[] = 'BCC: r.cuevas@kmimos.la';
+        $headers[] = 'BCC: r.gonzalez@kmimos.la';
+        $headers[] = 'BCC: m.castellon@kmimos.la';
+        $headers[] = 'BCC: a.veloz@kmimos.la';
+        $headers[] = 'BCC: a.pedroza@kmimos.la';
+
+        /*        
+        $headers[] = 'BCC: vlzangel91@gmail.com';
+        $headers[] = 'BCC: angelveloz91@gmail.com';
+        */
 
         return $headers;
     }
@@ -103,13 +109,133 @@ if(!function_exists('kmimos_style')){
                     .cell66  {vertical-align: top; width: 66.666666666%; margin-right: -5px !important; padding-right: 10px !important; display: inline-block !important;}
                     .cell75  {vertical-align: top; width: 75%; margin-right: -5px !important; padding-right: 10px !important; display: inline-block !important;}
                     .cell100 {vertical-align: top; width: 100%; margin-right: -5px !important; padding-right: 10px !important; display: inline-block !important;}
-
                     @media screen and (max-width: 700px){
                         .cell25 { width: 50%; }
                     }
-
                     @media screen and (max-width: 500px){
                         .cell25, .cell33, .cell50, .cell66, .cell75{ width: 100%; }
+                    }
+                ";
+            }
+
+            if( in_array("formularios", $styles)){
+                $salida .= "
+                    .kmimos_boton{
+                        border: solid 1px #59c9a8;
+                        background: #59c9a8;
+                        padding: 10px 20px;
+                        display: inline-block;
+                        margin: 20px 0px 0px;
+                        color: #FFF;
+                        font-weight: 600;
+                    }
+                ";
+            }
+
+            if( in_array("quitar_edicion", $styles)){
+                $salida .= "
+                    .menu-top,
+                    .wp-menu-separator,
+                    #dashboard-widgets-wrap{
+                        display: none;
+                    }
+
+                    #wp-admin-bar-wp-logo,
+                    #wp-admin-bar-updates,
+                    #wp-admin-bar-comments,
+                    #wp-admin-bar-new-content,
+                    #wp-admin-bar-wpseo-menu,
+                    #wp-admin-bar-ngg-menu,
+                    .updated,
+                    #wpseo_meta,
+                    #mymetabox_revslider_0,
+                    .vlz_contenedor_botones,
+                    .wpseo-score,
+                    .wpseo-score-readability,
+                    .ratings,
+                    #wpseo-score,
+                    #wpseo-score-readability,
+                    #ratings,
+                    .column-wpseo-score,
+                    .column-wpseo-score-readability,
+                    .column-ratings,
+                    #toplevel_page_kmimos li:nth-child(6),
+                    #menu-posts-wc_booking li:nth-child(3),
+                    #menu-posts-wc_booking li:nth-child(6),
+                    #menu-posts-wc_booking li:nth-child(7),
+                    #screen-meta-links,
+                    #wp-admin-bar-site-name-default,
+                    #postcustom,
+                    #woocommerce-order-downloads,
+                    #wpfooter,
+                    #postbox-container-1,
+                    .page-title-action,
+                    .row-actions,
+                    .bulkactions,
+                    #commentstatusdiv,
+                    #edit-slug-box,
+                    #postdivrich,
+                    #authordiv,
+                    #wpseo-filter,
+                    .booking_actions button,
+
+                    #actions optgroup option,
+                    #actions option[value='regenerate_download_permissions']
+
+                    {
+                        display: none;
+                    }
+
+                    #poststuff #post-body.columns-2{
+                        margin-right: 0px !important;
+                    }
+
+                    #normal-sortables{
+                        min-height: 0px !important;
+                    }
+
+                    .booking_actions view,
+                    #actions optgroup > option[value='send_email_new_order']
+                    {
+                        display: block;
+                    }
+
+                    .wc-order-status a,
+                    .wc-customer-user a,
+                    .wc-order-bulk-actions,
+                    .wc-order-totals tr:nth-child(2),
+                    .wc-order-totals tr:nth-child(5)
+                    {
+                        display: none;
+                    }
+                ";
+            }
+
+            if( in_array("habilitar_edicion_reservas", $styles)){
+                $salida .= "
+
+                    #poststuff #post-body.columns-2{
+                        margin-right: 300px !important;
+                    }
+
+                    #postbox-container-1{
+                        display: block;
+                    }
+                ";
+            }
+
+            if( in_array("menu_kmimos", $styles)){
+                $salida .= "
+                    #toplevel_page_kmimos{
+                        display: block;
+                    }
+                ";
+            }
+
+            if( in_array("menu_reservas", $styles)){
+                $salida .= "
+                    #menu-posts-wc_booking{
+                        display: block;
                     }
                 ";
             }
@@ -136,7 +262,6 @@ add_action('widgets_init','kmimos_widget_featured');
 
 include_once('dashboard/petsitters.php');
 include_once('dashboard/pets.php');
-// include_once('dashboard/postulations.php');
 include_once('dashboard/requests.php');
 
 add_action('pre_get_posts', 'kmimos_filter_bookings_when_petsitters_login');
@@ -166,18 +291,56 @@ if(!function_exists('kmimos_include_scripts')){
 
 }
 
-/**
- *  Incluye las funciones de javascript en la página administrativa de Wordpress
- * */
-
 if(!function_exists('kmimos_include_admin_scripts')){
+
     function kmimos_include_admin_scripts(){
-        /*
-        $keyApi = 'AIzaSyBB_j_ufdmyvN2cqhvtl-6xY-xk-PWNHgg';
-        wp_enqueue_script( 'kmimos_gmap', 'https://maps.googleapis.com/maps/api/js?key='.$keyApi);
-        */
+
         wp_enqueue_script( 'kmimos_script', plugins_url('javascript/kmimos-admin.js', __FILE__), array(), '1.0.0', true );
         wp_enqueue_style( 'kmimos_style', plugins_url('css/kmimos-admin.css', __FILE__) );
+
+        global $current_user;
+
+        $tipo = get_usermeta( $current_user->ID, "tipo_usuario", true );   
+
+        switch ($tipo) {
+            case 'Customer Service':
+
+                echo kmimos_style(array(
+                    "quitar_edicion",
+                    "menu_kmimos",
+                    "menu_reservas"
+                ));
+                $types = array(
+                    'petsitters',
+                    'pets',
+                    'request',
+                    'wc_booking',
+                    'shop_order'
+                );
+                $pages = array(
+                    'kmimos',
+                    'create_booking'
+                );
+                global $post;
+
+                // echo "<script> alert('".$post->post_type."'); </script>";
+
+                // echo "<pre>";
+                //     print_r($_SERVER);
+                // echo "</pre>";
+
+                if( count($_GET) == 0 || (!in_array($post->post_type, $types) && !in_array($_GET['page'], $pages)) ){
+                    header("location: edit.php?post_type=petsitters");
+                }
+
+                if( $post->post_type == 'shop_order' || $post->post_type == 'wc_booking' ){
+                    echo kmimos_style(array(
+                        'habilitar_edicion_reservas'
+                    )); 
+                }
+
+            break;
+        }
     }
 
 }
@@ -259,9 +422,9 @@ if(!function_exists('kmimos_admin_init')){
 if(!function_exists('kmimos_panel')){
 
     function kmimos_panel(){
-        if ( !current_user_can( 'manage_options' ) )  {
+        /*if ( !current_user_can( 'manage_options' ) )  {
             wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
-        }
+        }*/
         include_once('dashboard/kmimos_panel.php');
     }
 
@@ -274,9 +437,9 @@ if(!function_exists('kmimos_panel')){
 if(!function_exists('kmimos_setup')){
 
     function kmimos_setup(){
-        if ( !current_user_can( 'manage_options' ) )  {
+        /*if ( !current_user_can( 'manage_options' ) )  {
             wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
-        }
+        }*/
         include_once('dashboard/kmimos_setup.php');
     }
 
@@ -1937,7 +2100,7 @@ if(!function_exists('kmimos_draw_rating')){
 
             for ($i=0; $i<5; $i++){ 
 
-                $html .= '<img src="https://kmimos.com.mx/wp-content/plugins/kmimos/assets/rating/vacio.png">';
+                $html .= '<img src="'.get_home_url().'/wp-content/plugins/kmimos/assets/rating/vacio.png">';
 
             }
 
@@ -1955,13 +2118,13 @@ if(!function_exists('kmimos_draw_rating')){
 
                 if(intval($rating)>$i) { 
 
-                    $html .= '<img src="https://kmimos.com.mx/wp-content/plugins/kmimos/assets/rating/100.png">';
+                    $html .= '<img src="'.get_home_url().'/wp-content/plugins/kmimos/assets/rating/100.png">';
 
                 }
 
                 else if(intval($rating)<$i) {
 
-                    $html .= '<img src="https://kmimos.com.mx/wp-content/plugins/kmimos/assets/rating/0.png">';
+                    $html .= '<img src="'.get_home_url().'/wp-content/plugins/kmimos/assets/rating/0.png">';
 
                 }
 
@@ -1975,25 +2138,25 @@ if(!function_exists('kmimos_draw_rating')){
 
                     case 3: // 75% 
 
-                        $html .= '<img src="https://kmimos.com.mx/wp-content/plugins/kmimos/assets/rating/75.png">';
+                        $html .= '<img src="'.get_home_url().'/wp-content/plugins/kmimos/assets/rating/75.png">';
 
                         break;
 
                     case 2: // 50% 
 
-                        $html .= '<img src="https://kmimos.com.mx/wp-content/plugins/kmimos/assets/rating/50.png">';
+                        $html .= '<img src="'.get_home_url().'/wp-content/plugins/kmimos/assets/rating/50.png">';
 
                         break;
 
                     case 3: // 25% 
 
-                        $html .= '<img src="https://kmimos.com.mx/wp-content/plugins/kmimos/assets/rating/25.png">';
+                        $html .= '<img src="'.get_home_url().'/wp-content/plugins/kmimos/assets/rating/25.png">';
 
                         break;
 
                     default: // 0% 
 
-                        $html .= '<img src="https://kmimos.com.mx/wp-content/plugins/kmimos/assets/rating/0.png">';
+                        $html .= '<img src="'.get_home_url().'/wp-content/plugins/kmimos/assets/rating/0.png">';
 
                         break;
 
