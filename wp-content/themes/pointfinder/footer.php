@@ -243,27 +243,29 @@
 
                 $xuser = $wpdb->get_row("SELECT * FROM wp_users WHERE md5(ID) = '{$_GET['r']}'");
 
-                $sql = "SELECT meta_value FROM wp_usermeta WHERE meta_key = 'clave_temp' AND user_id = ".$xuser->ID;
-                $clave_temp = $wpdb->get_var($sql);
+                // $sql = "SELECT meta_value FROM wp_usermeta WHERE meta_key = 'clave_temp' AND user_id = ".$xuser->ID;
+                // $clave_temp = $wpdb->get_var($sql);
 
-                if( $clave_temp != "" ){
-                    $sql = "UPDATE wp_users SET user_pass = '".md5($clave_temp)."' WHERE ID = ".$xuser->ID;
-                    $wpdb->query($sql);
+                // if( $clave_temp != "" ){
+                //     $sql = "UPDATE wp_users SET user_pass = '".md5($clave_temp)."' WHERE ID = ".$xuser->ID;
+                //     $wpdb->query($sql);
 
-                    $sql = "UPDATE wp_usermeta SET meta_value = '' WHERE meta_key = 'clave_temp' AND user_id = ".$xuser->ID;
-                    $wpdb->query($sql);
-                }
+                //     $sql = "UPDATE wp_usermeta SET meta_value = '' WHERE meta_key = 'clave_temp' AND user_id = ".$xuser->ID;
+                //     $wpdb->query($sql);
+                // }
 
-                echo "
-                    <script>
-                        (function($) {
-                            'use strict';
-                            $(function(){
-                                $.pfOpenLogin('open','login');
-                            })
-                           })(jQuery);
-                    </script>
-                ";
+                // echo "
+                //     <script>
+                //         (function($) {
+                //             'use strict';
+                //             $(function(){
+                //                 $.pfOpenLogin('open','login');
+                //             })
+                //            })(jQuery);
+                //     </script>
+                // ";
+
+                
 
             }else{
             
