@@ -1,9 +1,6 @@
 <?php
-
-    define('WP_USE_THEMES', false);
-    require('../../../../../wp-blog-header.php');
-
-    include('generarCodigo.php');
+	define('WP_USE_THEMES', false);
+    require('../../../../wp-blog-header.php');
 
     extract($_POST);
 
@@ -11,19 +8,19 @@
         return 'Kmimos México';
     });
     add_filter( 'wp_mail_from', function( $email ) {
-        return 'kmimos@kmimos.la';
+        return 'contactomx@kmimos.la';
     });
-
-    $clave = generarClave();
-    $pass  = md5($clave);
-
-    $wpdb->query("UPDATE wp_users SET user_pass = '$pass' WHERE user_email = '".$value->user_email."'");
 
     global $wpdb;
 
     $user = $wpdb->get_row("SELECT * FROM wp_users WHERE user_email = '{$email}'");
 
-    if( $user->ID != "" ){
+    if( $user->ID == "" ){
+    	$respuesta = array(
+	    	"code" => 2,
+	    	"msg"  => "El email ingresado no se encuentra registrado."
+	    );
+    }else{
         update_user_meta( $user->ID, 'clave_temp', $clave );
 
         $mensaje = '
@@ -33,23 +30,14 @@
                 Hemos recibido tu solicitud para restablecer tu contraseña en Kmimos.
             </p>
             <p style="text-align: justify;">
-                Como parte del proceso de mejoras que tenemos en Kmimos, hemos hecho un cambio en la plataforma con una serie de beneficios que fueron compartidos en un email aparte. En este correo encontrarás tus credenciales temporales para acceder a la nueva plataforma de Kmimos México.
+                Como parte del proceso de mejoras que tenemos en Kmimos, hemos hecho un cambio en la plataforma con una serie de beneficios que fueron compartidos en un email aparte.
             </p>
             <p style="text-align: justify;">
-                Esta contraseña la puedes conservar si lo deseas o puedes cambiarla una vez que inicies sesión desde tu perfil en Kmimos.
-            </p>
-            <p style="text-align: justify;">
-                <table>
-                    <tr> <td> <strong>E-Mail:</strong> </td><td>'.$user->user_email.'</td> </tr>
-                    <tr> <td> <strong>Contraseña:</strong> </td><td>'.$clave.'</td> </tr>
-                </table>
-            </p>
-            <p style="text-align: justify;">
-                Para iniciar sesión, pícale al botón de abajo para acceder a nuestra nueva plataforma y cambiar la contraseña si así lo deseas.
+                Para restablecer tu contraseña por favor pícale al botón de abajo.
             </p>
             <p style="text-align: center;">
                 <a  target="_blank"
-                    href="'.get_home_url().'/?r='.md5($user->ID).'" 
+                    href="'.get_home_url().'/restablecer/?r='.md5($user->ID).'" 
                     style="
                         padding: 10px;
                         background: #59c9a8;
@@ -65,7 +53,7 @@
                         text-align: center;
                         text-decoration: none;
                     "
-                >Confirmar cambio de contraseña</a>
+                >Pícale para reestablecer la contraseña</a>
             </p>
             <p style="text-align: justify;">
                 <strong>Si no has solicitado cambiar tu contraseña, no te preocupes, solo ignora este correo y tu actual contraseña permanecerá activa.</strong>
@@ -76,5 +64,11 @@
 
         wp_mail( $user->user_email, "Kmimos México – Restablecimiento de Contraseña! Kmimos la NUEVA forma de cuidar a tu perro!", $send);
 
+        $respuesta = array(
+	    	"code" => 1,
+	    	"msg"  => "<div class='pfrevoverlaytext pfoverlayapprove'><i class='pfadmicon-glyph-62'></i><span>Hemos enviado los pasos para restablecer la contraseña a tu correo.</span></div>"
+	    );
     }
+
+    echo "(".json_encode( $respuesta ).")";
 ?>
