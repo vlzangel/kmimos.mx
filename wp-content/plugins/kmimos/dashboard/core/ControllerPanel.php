@@ -2,30 +2,131 @@
 // ***************************************
 // Cargar listados de Reservas
 // ***************************************
-function getReservas(){
+
+function photo_exists($path=""){
+	$photo = (file_exists('../'.$path) && !empty($path))? 
+		get_option('siteurl').'/'.$path : 
+		get_option('siteurl')."/wp-content/themes/pointfinder/images/noimg.png";
+	return $photo;
+}
+
+function getEdad($fecha){
+	$fecha = str_replace("/","-",$fecha);
+	$hoy = date('Y/m/d');
+
+
+	$diff = abs(strtotime($hoy) - strtotime($fecha) );
+	$years = floor($diff / (365*60*60*24)); 
+	$desc = " Años";
+	$edad = $years;
+	if($edad==0){
+		$months  = floor(($diff - $years * 365*60*60*24) / (30*60*60*24)); 
+		$edad = $months;
+		$desc = ($edad > 1) ? " Meses" : " Mes";
+	}
+	if($edad==0){
+		$days  = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+		$edad = $days;
+		$desc = " Días";
+	}
+
+	return $edad . $desc;
+}
+
+
+function getMascotas($user_id){
+	if(!$user_id>0){ return []; }
+	$result = [];
+	$list = kmimos_get_my_pets($user_id);
+	$pets = explode(",",$list['list']);
+
+	foreach ($pets as $row) {
+		$result[$row] = kmimos_get_pet_info($row);
+	}
+	return $result;
+}
+
+function getProduct( $num_reserva = 0 ){
+	$services = [];
+
+	global $wpdb;
+	$sql = "	
+		SELECT 
+			i.meta_key as 'servicio',
+			i.meta_value as 'descripcion'
+		FROM wp_woocommerce_order_itemmeta as i
+			-- Order_item_id
+			LEFT JOIN wp_woocommerce_order_itemmeta as o ON ( o.meta_key = 'Reserva ID' and o.meta_value = $num_reserva )
+			-- Reserva
+			LEFT JOIN wp_posts as re ON re.ID = i.meta_value -- No. Reserva
+		WHERE	
+			i.meta_key like 'Servicios Adicionales%'
+			and i.order_item_id = o.order_item_id
+	";
+	$services = $wpdb->get_results($sql);
+
+	return $services;	
+}
+
+function getServices( $num_reserva = 0 ){
+	$services = [];
+
+	global $wpdb;
+	$sql = "	
+		SELECT 
+			i.meta_key as 'servicio',
+			i.meta_value as 'descripcion'
+		FROM wp_woocommerce_order_itemmeta as i
+			-- Order_item_id
+			LEFT JOIN wp_woocommerce_order_itemmeta as o ON ( o.meta_key = 'Reserva ID' and o.meta_value = $num_reserva )
+			-- Reserva
+			LEFT JOIN wp_posts as re ON re.ID = i.meta_value -- No. Reserva
+		WHERE	
+			i.meta_key like 'Servicios Adicionales%'
+			and i.order_item_id = o.order_item_id
+	";
+	$services = $wpdb->get_results($sql);
+
+	return $services;
+}
+
+function getReservas($desde="", $hasta=""){
+
+	$filtro_adicional = "";
+
+	if( !empty($desde) && !empty($hasta) ){
+		$_desde = Date('YYYY/m/d',$desde);
+		$_hasta = Date('YYYY/m/d',$hasta);
+		$filtro_adicional = " 
+			AND DATE_FORMAT(re.post_date, '%m-%d-%Y') between DATE_FORMAT('{$_desde}','%m-%d-%Y') and DATE_FORMAT('{$_hasta}','%m-%d-%Y')
+		";
+	}else{
+		$filtro_adicional = " AND MONTH(re.post_date) = MONTH(NOW()) AND YEAR(re.post_date) = YEAR(NOW()) ";
+	}
+
 	global $wpdb;
 	$sql = "
 		SELECT
-			cl.ID as 'Cliente ID',
-			CONCAT(cln.meta_value,' ',cll.meta_value) as 'Cliente Nombre',
+			cl.ID as 'cliente_id',
+			CONCAT(cln.meta_value,' ',cll.meta_value) as 'cliente_nombre',
 			-- cli.meta_value as 'Cliente Photo',
-			cu.meta_value as 'Cuidador Nombre',
-			i.meta_value as 'Nro. Reserva',
-			re.post_parent as 'Nro. del Pedido',
-			-- es.meta_value as 'Estado',
-			-- es.meta_value as 'Municipio',
-			re.post_date as 'Fecha de la solicitud',
-			DATE_FORMAT(fd.meta_value,'%d-%m-%Y') as  'Estadía Desde',
-			DATE_FORMAT(fh.meta_value,'%d-%m-%Y') as 'Estadía Hasta',
-			(du.meta_value -1) as  'Nro. Noches',
-			(IFNULL(mpe.meta_value,0) + IFNULL(mme.meta_value,0) + IFNULL(mgr.meta_value,0) + IFNULL(mgi.meta_value,0)) as 'Numero de mascotas',
-			((du.meta_value -1) * ( IFNULL(mpe.meta_value,0) + IFNULL(mme.meta_value,0) + IFNULL(mgr.meta_value,0) + IFNULL(mgi.meta_value,0) )) as 'Nro de noches totales',
-			fp.meta_value as 'Forma de pago',
-			re.post_status as 'Estatus de la reserva',
-			re.ping_status as 'Estatus del pago',
-			IFNULL(bc.meta_value,0) as 'Total a Pagar',
-			IFNULL(ot.meta_value,0) as 'Monto pagado',
-			IFNULL(rm.meta_value,0) as 'Pago pendiente al cuidador'
+			cu.meta_value as 'cuidador_nombre',
+			i.meta_value as 'nro_reserva',
+			pe.ID as 'nro_pedido',
+			es.meta_value as 'estado',
+			-- cy.meta_value as 'Municipio',
+			re.post_date as 'fecha_solicitud',
+			DATE_FORMAT(fd.meta_value,'%d-%m-%Y') as  'desde',
+			DATE_FORMAT(fh.meta_value,'%d-%m-%Y') as 'hasta',
+			(du.meta_value -1) as  'nro_noches',
+			(IFNULL(mpe.meta_value,0) + IFNULL(mme.meta_value,0) + IFNULL(mgr.meta_value,0) + IFNULL(mgi.meta_value,0)) as 'nro_mascotas',
+			((du.meta_value -1) * ( IFNULL(mpe.meta_value,0) + IFNULL(mme.meta_value,0) + IFNULL(mgr.meta_value,0) + IFNULL(mgi.meta_value,0) )) as 'total_noches',
+			fp.meta_value as 'forma_pago',
+			re.post_status as 'estatus_reserva',
+			pe.post_status as 'estatus_pago',
+			IFNULL(bc.meta_value,0) as 'monto_total',
+			IFNULL(ot.meta_value,0) as 'monto_pagado',
+			IFNULL(rm.meta_value,0) as 'monto_remanente'
 		FROM wp_woocommerce_order_itemmeta as i
 			-- Reserva
 			LEFT JOIN wp_posts as re ON re.ID = i.meta_value -- No. Reserva
@@ -53,11 +154,14 @@ function getReservas(){
 			LEFT JOIN wp_usermeta as cln ON ( cln.user_id = cl.ID  and cln.meta_key = 'first_name' )
 			LEFT JOIN wp_usermeta as cll ON ( cll.user_id = cl.ID  and cll.meta_key = 'last_name' )
 			LEFT JOIN wp_usermeta as cli ON ( cli.user_id = cl.ID  and cli.meta_key = 'name_photo' )
-		WHERE i.meta_key = 'Reserva ID'
+		WHERE 
+			i.meta_key = 'Reserva ID'  {$filtro_adicional}
+			-- AND DATE_FORMAT(re.post_date, '%m-%d-%Y') between DATE_FORMAT($_desde,'%m-%d-%Y') and DATE_FORMAT($_hasta,'%m-%d-%Y')
 		ORDER BY i.meta_id DESC
+		limit 2
 	";
 
-	$reservas = $wpdb->get_results($sql, ARRAY_N);
+	$reservas = $wpdb->get_results($sql);
 	return $reservas;
 }
 
