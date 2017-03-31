@@ -112,21 +112,23 @@
 	$rows = [];
 	$r2 = 0;
 
-	// Cargar Datos en SESSION
-	if( isset($_SESSION['busqueda_resultado']) ){	
-		$rows = $_SESSION['busqueda_resultado']['ROWS'];
-		$r2   = $_SESSION['busqueda_resultado']['FOUND_ROWS'];
-	}
+	// // Cargar Datos en SESSION
+	// if( isset($_SESSION['busqueda_resultado']) ){
+	// 	if(!empty($_SESSION['busqueda_resultado'])){	
+	// 		$rows = $_SESSION['busqueda_resultado']['ROWS'];
+	// 		$r2   = $_SESSION['busqueda_resultado']['FOUND_ROWS'];
+	// 	}
+	// }
 	// Buscar valores en DB
-	if(empty($rows)){
-		$sql = vlz_sql_busqueda($_POST, $pagina_row_fin);
-		$rows = $wpdb->get_results($sql);
-		$r2 = $wpdb->get_results('SELECT FOUND_ROWS() AS cantidad');
+	// if(empty($rows)){
+	$sql = vlz_sql_busqueda($_POST, $pagina_row_fin);
+	$rows = $wpdb->get_results($sql);
+	$r2 = $wpdb->get_results('SELECT FOUND_ROWS() AS cantidad');
 
-		// Guardar Session
-		$_SESSION['busqueda_resultado']['ROWS'] = $rows;
-		$_SESSION['busqueda_resultado']['FOUND_ROWS'] = $r2;
-	}
+	// Guardar Session
+	// $_SESSION['busqueda_resultado']['ROWS'] = $rows;
+	// $_SESSION['busqueda_resultado']['FOUND_ROWS'] = $r2;
+	// }
 
 	$depuracion[] = $sql;
 	$depuracion[] = $_POST;
