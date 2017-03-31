@@ -6,31 +6,26 @@
     date_default_timezone_set('America/Mexico_City');
     global $wpdb;
 
-    $landing_url = "http://kmimosmx.sytes.net/landing/";     // URL Landing
+    $landing_url = "https://mx.kmimos/landing/";     // URL Landing
 	$landing_name = 'cinepolis'; 	// Name Landing Page
 
 	// Email List
 	$email_admin_list = [
 		"Adm1" => 'italococchini+admin1@gmail.com',
-		"Andres Pedroza" => "italococchini+admin2@kmimos.la",
-		"Call center" => 'italococchini+callcenter@kmimos.la',
+		"Adm2" => 'italococchini+admin2@gmail.com',
+		"Call center" => 'italococchini+callcenter@gmail.com',
 	];
 
 	// Redireccion si faltan datos
-	if( !isset($_POST['firstname']) || !isset($_POST['lastname']) || !isset($_POST['email']) || !isset($_POST['phone'])){ 
+	if( !isset($_POST['name']) || !isset($_POST['email']) || !isset($_POST['phone'])){ 
 		header('location:'.$landing_url);
 	}
 
 	// Parametros
-	$name  = $_POST['firstname'];
+	$name  = $_POST['name'];
 	$lastname  = $_POST['lastname'];
 	$email = $_POST['email'];
 	$phone = $_POST['phone'];
-
-	// $name  = 'italo';
-	// $lastname  = 'cocchini';
-	// $email = 'italococchini@gmail.com';
-	// $phone = '04142105555';
 
 	// Verificar si existe el email
 	$user = get_user_by( 'email', $email );	
@@ -57,26 +52,21 @@
 	    $sts_new_user = true;
 	    $notificaciones = "Nuevo Usuario Registrado.";
 
-echo 'Usuario registrado - ID: '.$user->ID.'<br>';
+echo "Usuario registrado - ID: {$user->ID} <br>";
 	}else{
 	    $sts_new_user = false;
 	    $notificaciones = "El usuario ya posee una cuenta.";
-		$user_id = $user->ID;
 		$username = $user->user_login;
 	    $password = "";
-echo 'Usuario ya existe - ID: '.$user->ID.'<br>';	    
+echo 'Usuario ya existe - ID: {$user->ID}<br>';	    
 	}
 
 
 	if(isset($user->ID))
 	{
 		if($user->ID > 0){
-			// ***************************************************
-			// Update User Meta - Landing
-			// ***************************************************
-			// Conversion por landing
-			update_user_meta( $user_id, "landing-".$landing_name,  date('Y-m-d H:i:s') ); 	
-			
+			update_user_meta( $user_id, "landing-{$landing_name}", date('Y-m-d H:i:s') ); 	// Conversion por landing
+
 			// ***************************************************
 			// Filtros Email
 			// ***************************************************
@@ -92,11 +82,8 @@ echo 'Usuario ya existe - ID: '.$user->ID.'<br>';
 			// ***************************************************
 			require_once('email_template/user-registro.php');
 		    $message = kmimos_get_email_html("Registro de Nuevo Usuario.", $mensaje_mail, '', true, true);
-		    if ( wp_mail( 
-		    	$email, 
-		    	"Kmimos Mexico – Gracias por registrarte! Kmimos la NUEVA forma de cuidar a tu perro!", 
-		    	$message
-		    )){
+		    if ( wp_mail( $email, "Kmimos Mexico – Gracias por registrarte! Kmimos la NUEVA forma de cuidar a tu perro!", $message) ) 
+		    {
 echo "Email usuario enviado: {$email}<br>";
 		    } else {
 echo "Email usuario no enviado: {$email}<br>";
@@ -115,19 +102,6 @@ echo "Email usuario no enviado: {$email}<br>";
 				);
 echo "Email usuario enviado: {$_email}<br>";
 			}
-
-			// ***************************************************
-			// Add Member MailChimp
-			// ***************************************************
-			// require_once("function/mailchimp.php");
-			// $result = mailchimp_add_member($email, $name, $lastname, '22f3658f33');
-
-			// printing the result obtained    
-			// $result_obj = json_decode($result);
-			// echo $result_obj->status;
-			// echo '<br>';
-			// echo '<pre>'; print_r($result_obj); echo '</pre>';
-
 		}
 	}
 echo "Finalizado<br>";
