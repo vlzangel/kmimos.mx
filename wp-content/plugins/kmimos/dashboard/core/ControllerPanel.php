@@ -2,6 +2,45 @@
 // ***************************************
 // Cargar listados de Reservas
 // ***************************************
+function get_status($sts_reserva, $sts_pedido){
+	
+	// Resultado
+	$sts_corto = "--";
+	$sts_largo = "";
+
+	// Pedidos
+	switch ($sts_reserva) {
+		case 'unpaid':
+			$sts_corto = "Pendiente";
+			if( $sts_pedido == 'wc-on-hold'){
+				$sts_largo = "Pendiente por confirmar el cuidador";
+			}
+			if( $sts_pedido == 'wc-pending'){
+				$sts_largo = 'Verificar LOG OpenPay';
+			}
+			break;
+		case 'confirmed':
+			$sts_corto = 'Confirmado';
+			$sts_largo = 'Confirmado';
+			break;
+		case 'paid':
+			$sts_corto = 'Pagado';
+			$sts_largo = 'Pagado';
+			break;
+		case 'cancelled':
+			$sts_corto = 'Cancelado';
+			$sts_largo = 'Cancelado';
+			break;
+	}
+
+	return 	$result = [ 
+		"reserva"=> $sts_reserva, 
+		"pedido" => $sts_pedido,
+		"sts_corto"=> $sts_corto,
+		"sts_largo"=> $sts_largo,
+	];
+
+}
 
 function photo_exists($path=""){
 	$photo = (file_exists('../'.$path) && !empty($path))? 
@@ -13,7 +52,6 @@ function photo_exists($path=""){
 function getEdad($fecha){
 	$fecha = str_replace("/","-",$fecha);
 	$hoy = date('Y/m/d');
-
 
 	$diff = abs(strtotime($hoy) - strtotime($fecha) );
 	$years = floor($diff / (365*60*60*24)); 
@@ -95,10 +133,8 @@ function getReservas($desde="", $hasta=""){
 	$filtro_adicional = "";
 
 	if( !empty($desde) && !empty($hasta) ){
-		$_desde = Date('YYYY/m/d',$desde);
-		$_hasta = Date('YYYY/m/d',$hasta);
 		$filtro_adicional = " 
-			AND DATE_FORMAT(re.post_date, '%m-%d-%Y') between DATE_FORMAT('{$_desde}','%m-%d-%Y') and DATE_FORMAT('{$_hasta}','%m-%d-%Y')
+			AND DATE_FORMAT(re.post_date, '%m-%d-%Y') between DATE_FORMAT('{$desde}','%m-%d-%Y') and DATE_FORMAT('{$hasta}','%m-%d-%Y')
 		";
 	}else{
 		$filtro_adicional = " AND MONTH(re.post_date) = MONTH(NOW()) AND YEAR(re.post_date) = YEAR(NOW()) ";
@@ -109,13 +145,13 @@ function getReservas($desde="", $hasta=""){
 		SELECT
 			cl.ID as 'cliente_id',
 			CONCAT(cln.meta_value,' ',cll.meta_value) as 'cliente_nombre',
-			-- cli.meta_value as 'Cliente Photo',
 			cu.meta_value as 'cuidador_nombre',
 			i.meta_value as 'nro_reserva',
 			pe.ID as 'nro_pedido',
-			es.meta_value as 'estado',
-			-- cy.meta_value as 'Municipio',
-			re.post_date as 'fecha_solicitud',
+			pr.post_title as 'producto_title',
+			est.name as 'estado',
+			mun.name as 'municipio',
+			DATE_FORMAT(re.post_date,'%d-%m-%Y') as 'fecha_solicitud',
 			DATE_FORMAT(fd.meta_value,'%d-%m-%Y') as  'desde',
 			DATE_FORMAT(fh.meta_value,'%d-%m-%Y') as 'hasta',
 			(du.meta_value -1) as  'nro_noches',
@@ -147,7 +183,15 @@ function getReservas($desde="", $hasta=""){
 			LEFT JOIN wp_woocommerce_order_itemmeta as mme ON (mme.order_item_id = i.order_item_id and mme.meta_key = 'Mascotas Medianos')
 			LEFT JOIN wp_woocommerce_order_itemmeta as mgr ON (mgr.order_item_id = i.order_item_id and mgr.meta_key = 'Mascotas Grandes')
 			LEFT JOIN wp_woocommerce_order_itemmeta as mgi ON (mgi.order_item_id = i.order_item_id and mgi.meta_key = 'Mascotas Gigantes')
+			LEFT JOIN wp_woocommerce_order_itemmeta as pr_id ON (pr_id.order_item_id = i.order_item_id and pr_id.meta_key = '_product_id') -- ID Producto
+			-- Productos
+			LEFT JOIN wp_posts as pr ON pr.ID = pr_id.meta_value -- Productos			
+			-- LEFT JOIN wp_postmeta as pr_m ON pr_m.post_id = pr.ID
 			-- Datos Cuidador
+			LEFT JOIN cuidadores as us ON us.user_id = pr.post_author -- Datos del Cuidador
+			LEFT JOIN ubicaciones as ub ON ub.cuidador = us.id -- Ubicacion del Cuidador
+ 			LEFT JOIN states as est ON est.id = REPLACE(ub.estado,'=','') -- Estado 
+ 			LEFT JOIN locations as mun ON mun.id = REPLACE(ub.municipios,'=','') -- Municipios 
 			LEFT JOIN wp_woocommerce_order_itemmeta as cu  ON (cu.order_item_id = i.order_item_id and cu.meta_key = 'Ofrecido por') -- Nombre del cuidador
 			-- Datos Cliente
 			LEFT JOIN wp_users as cl ON cl.ID = re.post_author 
@@ -156,9 +200,7 @@ function getReservas($desde="", $hasta=""){
 			LEFT JOIN wp_usermeta as cli ON ( cli.user_id = cl.ID  and cli.meta_key = 'name_photo' )
 		WHERE 
 			i.meta_key = 'Reserva ID'  {$filtro_adicional}
-			-- AND DATE_FORMAT(re.post_date, '%m-%d-%Y') between DATE_FORMAT($_desde,'%m-%d-%Y') and DATE_FORMAT($_hasta,'%m-%d-%Y')
 		ORDER BY i.meta_id DESC
-		limit 2
 	";
 
 	$reservas = $wpdb->get_results($sql);
