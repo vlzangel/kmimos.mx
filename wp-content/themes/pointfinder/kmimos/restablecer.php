@@ -53,7 +53,7 @@
                         text-align: center;
                         text-decoration: none;
                     "
-                >Pícale para reestablecer la contraseña</a>
+                >Pícale para restablecer la contraseña</a>
             </p>
             <p style="text-align: justify;">
                 <strong>Si no has solicitado cambiar tu contraseña, no te preocupes, solo ignora este correo y tu actual contraseña permanecerá activa.</strong>

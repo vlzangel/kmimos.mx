@@ -292,10 +292,10 @@
 	    ';
 
 	    $comportamientos_array = array(
-	        "pet_sociable"           => "Sociables",
-	        "pet_sociable2"          => "No sociables",
-	        "aggressive_with_pets"   => "Agresivos con perros",
-	        "aggressive_with_humans" => "Agresivos con humanos",
+	        "pet_sociable"           => "Sociables ",
+	        "pet_sociable2"          => "No sociables ",
+	        "aggressive_with_pets"   => "Agresivos con perros ",
+	        "aggressive_with_humans" => "Agresivos con humanos ",
 	    );
 	    $tamanos_array = array(
 	        "Pequeño",
@@ -313,19 +313,19 @@
 	                switch ($key) {
 	                    case 'pet_sociable':
 	                        if( $value[0] == 1 ){
-	                            $temp[] = "Sociable";
+	                            $temp[] = "Sociable ";
 	                        }else{
-	                            $temp[] = "No sociable";
+	                            $temp[] = "No sociable ";
 	                        }
 	                    break;
 	                    case 'aggressive_with_pets':
 	                        if( $value[0] == 1 ){
-	                            $temp[] = "Agresivo con perros";
+	                            $temp[] = "Agresivo con perros ";
 	                        }
 	                    break;
 	                    case 'aggressive_with_humans':
 	                        if( $value[0] == 1 ){
-	                            $temp[] = "Agresivo con humanos";
+	                            $temp[] = "Agresivo con humanos ";
 	                        }
 	                    break;
 	                }
@@ -336,7 +336,7 @@
 	            $diff = abs(strtotime(date('Y-m-d')) - $nacio);
 	            $years = floor($diff / (365*60*60*24));
 	            $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
-	            $edad.= $years.' año(s) '.$months.' mes(es)';
+	            $edad = $years.' año(s) '.$months.' mes(es)';
 
 	            $raza = $wpdb->get_var("SELECT nombre FROM razas WHERE id=".$data_mascota['breed_pet'][0]);
 
@@ -481,6 +481,7 @@
 	            <p style="text-align: justify;">Para cualquier apoyo que necesites, o si es la primera vez que atiendes a un Kmiamigo, por favor contacta a la brevedad al equipo de Kmimos vía telefónica al +52 (55) 1791.4931, o al correo contactomex@kmimos.la</p>
 	        ';
 
+	        //$xmensaje_cuidador = $mensaje_cuidador;
 	        $mensaje_cuidador  = kmimos_get_email_html($asunto, $mensaje_cuidador, '', true, true);
 
 	    /*
@@ -665,6 +666,7 @@
 	        wp_mail( "a.pedroza@kmimos.la",     $asunto, $mensaje_admin);
 
 			$_SESSION['token_mail'] = $xmensaje_cliente; 
+			//$_SESSION['token_mail'] = $xmensaje_cuidador; 
 
 		header("location: ".get_home_url()."/conocer-al-cuidador/?id=".$post_id);
 	}
