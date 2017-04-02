@@ -183,6 +183,34 @@
 		);
 	}
 
+	$top_destacados = "Esto es una prueba";
+
+	if( $_POST['estados'] != ''){
+		if( $_POST['municipios'] != ''){
+			$top_municipio = " AND municipio = '{$_POST['municipios']}'";
+		}
+		$sql_top = "SELECT * FROM destacados WHERE estado = '{$_POST['estados']}' {$top_municipio}";
+
+		$tops = $wpdb->get_results($sql_top);
+		$cuidadores_tops = "";
+		foreach ($tops as $value) {
+			$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id = {$value->cuidador}");
+			$nombre = $wpdb->get_row("SELECT post_title AS nom, post_name AS url FROM wp_posts WHERE ID = {$cuidador->id_post}");
+			$nombre = $nombre->nom;
+
+			$img_url = kmimos_get_foto_cuidador($value->cuidador);
+
+			$cuidadores_tops .= "
+				<div>
+					<div>{$img_url}</div>
+					<div>{$nombre}</div>
+				</div>
+			";
+		}
+
+	}
+
+	$top_destacados = $cuidadores_tops;
 
 	// $depuracion[] = $favoritos;
 
@@ -192,108 +220,114 @@
 	}
 
 	echo '<div id="lista" class="pf-blogpage-spacing pfb-top"></div>';
-	echo '<section role="main" class="blog-full-width"> <div class="pf-container"> <div class="pf-row"> <div class="col-lg-9">
+	echo '<section role="main" class="blog-full-width"> 
+			<div class="pf-container"> 
+				<div class="pf-row"> 
+					<div class="col-lg-9">
 
-			<div class="pfwidgettitle"><div class="widgetheader">Listado: '.$total_registros.' cuidador(es)</div></div>
+						'.$top_destacados.'
 
-			<ul class="pfitemlists-content-elements pf3col" data-layout-mode="fitRows" style="position: relative; margin: 20px -15px 20px 0px;">
-				<li class="col-lg-4 col-md-6 col-sm-6 col-xs-12 wpfitemlistdata isotope-item" style="position: absolute; left: 0px; top: 0px;">
-					<div class="pflist-item" style="background-color:#ffffff;"></div>
-				</li>';
+						<div class="pfwidgettitle"><div class="widgetheader">Listado: '.$total_registros.' cuidador(es)</div></div>
 
-					if( ($total_registros+0) > 0 ){
+							<ul class="pfitemlists-content-elements pf3col" data-layout-mode="fitRows" style="position: relative; margin: 20px -15px 20px 0px;">
+								<li class="col-lg-4 col-md-6 col-sm-6 col-xs-12 wpfitemlistdata isotope-item" style="position: absolute; left: 0px; top: 0px;">
+									<div class="pflist-item" style="background-color:#ffffff;"></div>
+								</li>';
 
-		        		foreach ($r as $key => $cuidador) {
-		        			$ID = $cuidador->id;
-		        			
-		        			include("vlz_plantilla_listado.php");
+									if( ($total_registros+0) > 0 ){
+
+						        		foreach ($r as $key => $cuidador) {
+						        			$ID = $cuidador->id;
+						        			
+						        			include("vlz_plantilla_listado.php");
+										}
+										echo "	<script>
+													jQuery(document).resize(function(){
+														if (jQuery(window).width() < 550) {
+															console.log('cambio de pantalla')
+															jQuery('.vlz_contenedor_mapa').removeClass('ocultarMapa');
+														}
+
+													});
+													jQuery(document).ready(function(){
+														if (jQuery(window).width() < 550) {
+															console.log('cambio de pantalla')
+															jQuery('.vlz_contenedor_mapa').removeClass('ocultarMapa');
+														}
+
+													});
+												</script>";
+
+									}else{
+										echo "<li align='justify'><h2 style='padding-right: 20px!important;'>No tenemos resultados para esta búsqueda, si quieres intentarlo de nuevo pícale <a  style='color: #00b69d; font-weight: 600;' href='".get_home_url()."/#jj-landing-page'>aquí,</a> o aplica otro filtro de búsqueda.</h2></li>";
+										echo "	<script>
+													jQuery(document).resize(function(){
+														if (jQuery(window).width() < 550) {
+															console.log('cambio de pantalla')
+															jQuery('.vlz_contenedor_mapa').addClass('ocultarMapa');
+														}
+
+													});
+													jQuery(document).ready(function(){
+														if (jQuery(window).width() < 550) {
+															console.log('cambio de pantalla')
+															jQuery('.vlz_contenedor_mapa').addClass('ocultarMapa');
+														}
+
+													});
+												</script>";
+									}
+							
+							echo '</ul>';
+
+							include("vlz_style.php"); ?>
+
+							<div class="vlz_nav_cont">
+
+								<div class="vlz_nav_cont_interno">
+
+					 				<?php
+										$t = $total_registros+0;
+										if($t > $item_by_page){
+											$ps = ceil($t/$item_by_page)+1;
+											for( $i=1; $i<$ps; $i++){
+												$active = ( $pagina == $i || ($pagina == 0 && $i == 1)  )? "class='vlz_activa'": "";
+												echo "<a href='/busqueda/{$i}' ".$active.">".$i."</a>";
+											}
+										}
+										$w = 40*$ps;
+										echo "
+											<style>
+												.vlz_nav_cont_interno{
+													width: {$w}px;
+												}
+											</style>
+										";
+									?>
+				 		
+								</div>
+
+							</div> <?php
+
+						foreach ($depuracion as $key => $value) {
+							echo "<pre style='display: block;'>";
+								print_r($value);
+							echo "</pre>";
 						}
-						echo "	<script>
-									jQuery(document).resize(function(){
-										if (jQuery(window).width() < 550) {
-											console.log('cambio de pantalla')
-											jQuery('.vlz_contenedor_mapa').removeClass('ocultarMapa');
-										}
-
-									});
-									jQuery(document).ready(function(){
-										if (jQuery(window).width() < 550) {
-											console.log('cambio de pantalla')
-											jQuery('.vlz_contenedor_mapa').removeClass('ocultarMapa');
-										}
-
-									});
-								</script>";
-
-					}else{
-						echo "<li align='justify'><h2 style='padding-right: 20px!important;'>No tenemos resultados para esta búsqueda, si quieres intentarlo de nuevo pícale <a  style='color: #00b69d; font-weight: 600;' href='".get_home_url()."/#jj-landing-page'>aquí,</a> o aplica otro filtro de búsqueda.</h2></li>";
-						echo "	<script>
-									jQuery(document).resize(function(){
-										if (jQuery(window).width() < 550) {
-											console.log('cambio de pantalla')
-											jQuery('.vlz_contenedor_mapa').addClass('ocultarMapa');
-										}
-
-									});
-									jQuery(document).ready(function(){
-										if (jQuery(window).width() < 550) {
-											console.log('cambio de pantalla')
-											jQuery('.vlz_contenedor_mapa').addClass('ocultarMapa');
-										}
-
-									});
-								</script>";
-					}
-			
-			echo '</ul>';
-
-			include("vlz_style.php"); ?>
-
-			<div class="vlz_nav_cont">
-
-				<div class="vlz_nav_cont_interno">
-
-	 				<?php
-						$t = $total_registros+0;
-						if($t > $item_by_page){
-							$ps = ceil($t/$item_by_page)+1;
-							for( $i=1; $i<$ps; $i++){
-								$active = ( $pagina == $i || ($pagina == 0 && $i == 1)  )? "class='vlz_activa'": "";
-								echo "<a href='/busqueda/{$i}' ".$active.">".$i."</a>";
-							}
-						}
-						$w = 40*$ps;
-						echo "
-							<style>
-								.vlz_nav_cont_interno{
-									width: {$w}px;
-								}
-							</style>
-						";
-					?>
- 		
-				</div>
-
-			</div>
-
-			<?php
-
-				foreach ($depuracion as $key => $value) {
-					echo "<pre style='display: none;'>";
-						print_r($value);
-					echo "</pre>";
-				}
 				
-	echo '</div>';
+					echo '</div>';
 
-	echo '<div class="col-lg-3" style="position: relative;"> <div class="pfwidgettitle"><div class="widgetheader">Filtrar Cuidadores</div></div>';
+					echo '<div class="col-lg-3" style="position: relative;"> <div class="pfwidgettitle"><div class="widgetheader">Filtrar Cuidadores</div></div>';
 
-		include("vlz_formulario.php");
-		include("vlz_sql_marcadores.php");
-		include("vlz_scripts.php");
+						include("vlz_formulario.php");
+						include("vlz_sql_marcadores.php");
+						include("vlz_scripts.php");
 
-	echo '</div> </div> </div> </section>';
-	echo '<div class="pf-blogpage-spacing pfb-bottom"></div>';
+					echo '</div> 
+				</div> 
+			</div> 
+		</section>';
+		echo '<div class="pf-blogpage-spacing pfb-bottom"></div>';
 
 	get_footer();
 ?>

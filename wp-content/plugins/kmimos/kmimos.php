@@ -34,6 +34,27 @@ if(!function_exists('kmimos_mails_administradores')){
     }
 }
 
+if(!function_exists('kmimos_get_foto_cuidador')){
+    function kmimos_get_foto_cuidador($id){
+
+        $name_photo = get_user_meta($id, "name_photo", true);
+        $cuidador_id = $cuidador->id;
+
+        if( empty($name_photo)  ){ $name_photo = "0"; }
+        if( file_exists("../../uploads/cuidadores/avatares/".$cuidador_id."/{$name_photo}") ){
+            $img = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/{$name_photo}";
+        }elseif( file_exists("../../uploads/cuidadores/avatares/".$cuidador_id."/0.jpg") ){
+            $img = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg";
+        }else{
+            $img = get_template_directory_uri().'/images/noimg.png';
+        }
+
+        
+
+        return $img;
+    }
+}
+
 if(!function_exists('kmimos_style')){
     function kmimos_style($styles = array()){
         
