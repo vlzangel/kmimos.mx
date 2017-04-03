@@ -1,12 +1,30 @@
 $(window).load(function() {
 	$('#section-1').height( $(window).height() - 1  );
 	$('#section-6').height( $(window).height() - 1  );	
+  video_iframe();
 });
 
 $(window).resize(function(){
-	$('iframe').width( ($(window).width() * 25) / 100 );
-	$('iframe').height( ($(window).height() * 25) / 100 );
+  video_iframe();
 });
+
+function video_iframe(){
+
+  if($(window).width()>800){  
+    $('iframe').width( ($(window).width() * 50) / 100 );
+    $('iframe').height( ($(window).height() * 55) / 100 );
+  }
+  if($(window).width()<799){  
+    $('iframe').width( ($(window).width() * 60) / 100 );
+    $('iframe').height( ($(window).height() * 55) / 100 );
+  }
+  if($(window).width()<500){  
+    $('iframe').width( ($(window).width() * 90) / 100 );
+    $('iframe').height( ($(window).height() * 55) / 100 );
+  }
+
+
+}
 
 var wow = new WOW(
   {
