@@ -190,9 +190,8 @@
 												type='password' 
 												id='clave' 
 												name='clave' 
-												data-title="<strong>Las contraseñas deben ser iguales</strong>" 
+												data-title="<strong>Las contraseñas son requeridas y deben ser iguales</strong>" 
 												class='vlz_input' 
-												 
 												placeholder='Contraseña' 
 												required 
 												autocomplete="off"
@@ -204,9 +203,8 @@
 												type='password' 
 												id='clave2' 
 												name='clave2' 
-												data-title="<strong>Las contraseñas deben ser iguales</strong>" 
+												data-title="<strong>Las contraseñas son requeridas y deben ser iguales</strong>" 
 												class='vlz_input' 
-												 
 												placeholder='Contraseña' 
 												required 
 												autocomplete="off"
@@ -947,8 +945,6 @@
 										case "clave":
 								      		var clv1 = jQuery("#clave").attr("value");
 								      		var clv2 = jQuery("#clave2").attr("value");
-
-								      		console.log(clv1+" : "+clv2);
 
 								      		return ( clv1 == clv2 );
 										break;
