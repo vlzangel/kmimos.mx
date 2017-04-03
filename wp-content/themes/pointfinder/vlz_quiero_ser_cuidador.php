@@ -189,23 +189,10 @@
 											<input 
 												type='password' 
 												id='clave' 
-												name='clave' 
-												data-title="
-												La contraseña debe contener al menos:<br>
-												<ul>
-
-													<li>Una letra mayúscula</li>
-											      	<li>Una letra minúscula</li>
-											      	<li>Un número</strong></li>
-											      	<li>Una longitud mínima de 6 caracteres</li>
-											      	<li>Y al final debe llevar  #</li>
-											      	<li><strong>Las contraseñas deben ser iguales</strong></li>
-												</ul>" 
+												name='clave'
 												class='vlz_input' 
-												 
 												placeholder='Contraseña' 
-												required 
-												pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-#\*]).{6,}$"
+												required
 												autocomplete="off"
 											>
 										</div>
@@ -215,22 +202,9 @@
 												type='password' 
 												id='clave2' 
 												name='clave2' 
-												data-title="
-												La contraseña debe contener al menos:<br>
-												<ul>
-
-													<li>Una letra mayúscula</li>
-											      	<li>Una letra minúscula</li>
-											      	<li>Un número</strong></li>
-											      	<li>Una longitud mínima de 6 caracteres</li>
-											      	<li>Y al final debe llevar  #</li>
-											      	<li><strong>Las contraseñas deben ser iguales</strong></li>
-												</ul>" 
 												class='vlz_input' 
-												 
 												placeholder='Contraseña' 
 												required 
-												pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-#\*]).{6,}$"
 												autocomplete="off"
 											>
 										</div>
