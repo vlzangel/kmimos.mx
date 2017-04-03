@@ -128,12 +128,12 @@
 
 													<div class="vlz_sub_seccion">
 														<div class="vlz_cell50">
-															<input data-title="Este campo es requerido." type='password' id='clave_1' name='clave_1' class='vlz_input' placeholder='Ingrese su nueva contraseña' required>
+															<input data-title="<strong>Las contraseñas son requeridas y deben ser iguales</strong>" type='password' id='clave_1' name='clave_1' class='vlz_input' placeholder='Ingrese su nueva contraseña' required>
 															<div class='no_error' id='error_clave_1'></div>
 														</div>
 														
 														<div class="vlz_cell50">
-															<input data-title="Este campo es requerido." type='password' id='clave_2' name='clave_2' class='vlz_input' placeholder='Reingrese su nueva contraseña' required>
+															<input data-title="<strong>Las contraseñas son requeridas y deben ser iguales</strong>" type='password' id='clave_2' name='clave_2' class='vlz_input' placeholder='Reingrese su nueva contraseña' required>
 															<div class='no_error' id='error_clave_2'></div>
 														</div>
 													</div>
@@ -179,7 +179,7 @@
 									      		if( clv2 == "" ){ mostrar_error("clave_2"); error++; }else{ quitar_error("clave_2"); }
 
 									      		if( clv1 != clv2 ){
-									      			jQuery("#error_clave_2").html("Las contraseñas deben ser iguales");
+									      			jQuery("#error_clave_2").html( jQuery("#clave_2").attr("data-title") );
 									      			jQuery("#error_clave_2").removeClass("no_error");
 										        	jQuery("#error_clave_2").addClass("error");
 										        	jQuery("#clave_2").addClass("vlz_input_error");
