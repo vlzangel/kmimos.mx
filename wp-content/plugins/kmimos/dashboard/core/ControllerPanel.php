@@ -34,8 +34,8 @@ function get_status($sts_reserva, $sts_pedido){
 	}
 
 	return 	$result = [ 
-		"reserva"=> $sts_reserva, 
-		"pedido" => $sts_pedido,
+		"reserva"  => $sts_reserva, 
+		"pedido"   => $sts_pedido,
 		"sts_corto"=> $sts_corto,
 		"sts_largo"=> $sts_largo,
 	];
