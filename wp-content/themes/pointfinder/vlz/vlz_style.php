@@ -327,6 +327,7 @@
 		    display: inline-block;
 		    float: left;
 		    position: relative;
+	        margin: 0px 0px 5px;
 		}
 
 		.vlz_destacados_contenedor_interno{
@@ -422,6 +423,14 @@
 		    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%,rgba(0,0,0,0.75) 100%);
 		    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#4d000000',GradientType=0 );
 		}
+	
+	@media (max-width: 650px){
+
+		.vlz_destacados_contenedor {
+		    width: 50%;
+		}
+
+	}
 
 	
 	@media (max-width: 500px){
@@ -435,5 +444,13 @@
 			width: 1000px;
 		}
 		.ocultarMapa{display: none;}
+	}
+	
+	@media (max-width: 400px){
+
+		.vlz_destacados_contenedor {
+		    width: 100%;
+		}
+
 	}
 </style>
