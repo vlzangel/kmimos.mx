@@ -97,7 +97,6 @@
 	    foreach($municipios_array as $municipio) { 
 	    	if( $_POST['municipios'] == $municipio->id ){
 				$sel = "selected"; 
-				echo "Concuerda";
 			}else{ $sel = ""; }
 	        $muni .= "<option value='".$municipio->id."' $sel>".$municipio->name."</option>";
 	    } 

@@ -237,7 +237,7 @@
                         "preferences"   => array(
                             0 => array(
                                 "type"  => 'kmimostoken',
-                                "value" => $temp
+                                "value" => $token
                             )
                         ),
                         "cohorts" => array(
@@ -258,7 +258,7 @@
                     "error" => "SI",
                     "msg" => "Se encontraron los siguientes errores:\n\n".$respuesta->message
                 );
-                // echo "(".json_encode( $error ).")";
+                //echo "(".json_encode( $error ).")";
             }
 
             $error = array(
@@ -560,7 +560,11 @@
                     }
 
             }else{
-                echo "false";
+                $error = array(
+                    "error" => "SI",
+                    "msg" => "No se ha podido completar el registro."
+                );
+                echo "(".json_encode( $error ).")";
             }
         }
         
