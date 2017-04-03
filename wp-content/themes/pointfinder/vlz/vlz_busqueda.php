@@ -112,23 +112,9 @@
 	$rows = [];
 	$r2 = 0;
 
-	// // Cargar Datos en SESSION
-	// if( isset($_SESSION['busqueda_resultado']) ){
-	// 	if(!empty($_SESSION['busqueda_resultado'])){	
-	// 		$rows = $_SESSION['busqueda_resultado']['ROWS'];
-	// 		$r2   = $_SESSION['busqueda_resultado']['FOUND_ROWS'];
-	// 	}
-	// }
-	// Buscar valores en DB
-	// if(empty($rows)){
 	$sql = vlz_sql_busqueda($_POST, $pagina_row_fin);
 	$rows = $wpdb->get_results($sql);
 	$r2 = $wpdb->get_results('SELECT FOUND_ROWS() AS cantidad');
-
-	// Guardar Session
-	// $_SESSION['busqueda_resultado']['ROWS'] = $rows;
-	// $_SESSION['busqueda_resultado']['FOUND_ROWS'] = $r2;
-	// }
 
 	$depuracion[] = $sql;
 	$depuracion[] = $_POST;
@@ -137,8 +123,6 @@
 
 	//IC: Se guarda el historico de busqueda en session para la paginacion
 	$_SESSION['cuidadores_search'] = $r; 
-
-	// $depuracion[] = $rows;
 
 	$depuracion[] = [
 		"wp-page"=>$page,
@@ -183,34 +167,52 @@
 		);
 	}
 
-	$top_destacados = "Esto es una prueba";
+	$top_destacados = "";
 
 	if( $_POST['estados'] != ''){
-		if( $_POST['municipios'] != ''){
+
+		$estado_des = $wpdb->get_var("SELECT name FROM states WHERE id = ".$_POST['estados']);
+
+		/*if( $_POST['municipios'] != ''){
 			$top_municipio = " AND municipio = '{$_POST['municipios']}'";
-		}
+			$municipio_des = " - ".$wpdb->get_var("SELECT name FROM locations WHERE id = ".$_POST['municipios']);
+		}*/
+
 		$sql_top = "SELECT * FROM destacados WHERE estado = '{$_POST['estados']}' {$top_municipio}";
 
 		$tops = $wpdb->get_results($sql_top);
-		$cuidadores_tops = "";
+		$top_destacados = ""; $cont = 0;
 		foreach ($tops as $value) {
 			$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id = {$value->cuidador}");
-			$nombre = $wpdb->get_row("SELECT post_title AS nom, post_name AS url FROM wp_posts WHERE ID = {$cuidador->id_post}");
-			$nombre = $nombre->nom;
-
+			$data = $wpdb->get_row("SELECT post_title AS nom, post_name AS url FROM wp_posts WHERE ID = {$cuidador->id_post}");
+			$nombre = $data->nom;
 			$img_url = kmimos_get_foto_cuidador($value->cuidador);
-
-			$cuidadores_tops .= "
-				<div>
-					<div>{$img_url}</div>
-					<div>{$nombre}</div>
-				</div>
+			$url = get_home_url() . "/petsitters/" . $data->url;
+			$top_destacados .= "
+				<a class='vlz_destacados_contenedor' href='{$url}'>
+					<div class='vlz_destacados_contenedor_interno'>
+						<div class='vlz_destacados_img'>
+							<div class='vlz_descado_img_fondo' style='background-image: url({$img_url});'></div>
+							<div class='vlz_descado_img_normal' style='background-image: url({$img_url});'></div>
+							<div class='vlz_destacados_precio'><sub style='bottom: 0px;'>Hospedaje desde</sub><br>MXN $".$cuidador->hospedaje_desde."</div>
+						</div>
+						<div class='vlz_destacados_data' >
+							<div class='vlz_destacados_nombre'>{$nombre}</div>
+							<div class='vlz_destacados_adicionales'>".vlz_servicios($cuidador->adicionales)."</div>
+						</div>
+					</div>
+				</a>
 			";
+			$cont++;
 		}
-
+		if( $cont > 0 ){
+			if( $top_destacados != '' ){
+				$top_destacados = $top_destacados."</div>";	
+			}
+			$top_destacados = utf8_decode( '<div class="pfwidgettitle"> <div class="widgetheader">Destacados Kmimos en: '.$estado_des.' '.$municipio_des.'</div> </div> <div class="row" style="margin: 10px auto 20px;">').$top_destacados;
+		}
+		
 	}
-
-	$top_destacados = $cuidadores_tops;
 
 	// $depuracion[] = $favoritos;
 
@@ -225,9 +227,11 @@
 				<div class="pf-row"> 
 					<div class="col-lg-9">
 
-						'.$top_destacados.'
+					'.$top_destacados.'
 
-						<div class="pfwidgettitle"><div class="widgetheader">Listado: '.$total_registros.' cuidador(es)</div></div>
+						<div class="pfwidgettitle">
+							<div class="widgetheader">Listado: '.$total_registros.' cuidador(es)</div>
+						</div>
 
 							<ul class="pfitemlists-content-elements pf3col" data-layout-mode="fitRows" style="position: relative; margin: 20px -15px 20px 0px;">
 								<li class="col-lg-4 col-md-6 col-sm-6 col-xs-12 wpfitemlistdata isotope-item" style="position: absolute; left: 0px; top: 0px;">
@@ -310,7 +314,7 @@
 							</div> <?php
 
 						foreach ($depuracion as $key => $value) {
-							echo "<pre style='display: block;'>";
+							echo "<pre style='display: none;'>";
 								print_r($value);
 							echo "</pre>";
 						}

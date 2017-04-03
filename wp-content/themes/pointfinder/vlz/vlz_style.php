@@ -320,6 +320,109 @@
 	    font-size: 20px;
 	}
 
+	/* Destacados */
+
+		.vlz_destacados_contenedor{
+		    width: 25%;
+		    display: inline-block;
+		    float: left;
+		    position: relative;
+		}
+
+		.vlz_destacados_contenedor_interno{
+		    border: solid 1px #CCC;
+		    border-radius: 3px;
+		    box-shadow: 1px 1px 1px #CCC;
+		    height: 180px;
+		    margin: 0px 5px 0px 0px;
+		}
+
+		.vlz_destacados_img{
+		    position: relative;
+		    width: calc( 100% - 10px );
+		    height: 125;
+		    margin: 5px 5px 0px;
+		    background-position: center;
+		    background-size: cover;
+		    background-repeat: no-repeat;
+		}
+
+		.vlz_descado_img_fondo{
+		    position: relative;
+		    width: calc( 100% - 10px );
+		    height: 125px;
+		    margin: 5px 5px 0px;
+		    background-position: center;
+		    background-size: cover;
+		    background-repeat: no-repeat;
+		    filter: blur(1px);
+		}
+
+		.vlz_descado_img_normal{
+			position: absolute;
+		    top: 0px;
+		    left: 0px;
+		    width: calc( 100% - 10px );
+		    height: 115px;
+		    margin: 5px 5px 0px;
+		    background-position: center;
+		    background-size: contain;
+		    background-repeat: no-repeat;
+		}
+
+		.vlz_destacados_data{
+			
+		}
+
+		.vlz_destacados_nombre{
+			font-size: 17px;
+			font-weight: 600;
+			color: #777777;
+			padding: 5px 5px 0px;
+			display: block;
+			text-align: left;
+		}
+
+		.vlz_destacados_adicionales{
+		    text-align: right;
+		    padding: 0px 5px;
+		}
+
+		.vlz_destacados_adicionales i{
+		    font-size: 19px;
+		    color: #797979;
+		}
+
+		.vlz_destacados_adicionales .icono-servicios {
+		    background-color: #FFF;
+		}
+
+		.vlz_destacados_adicionales .icono-servicios:after {
+		    margin-left: -7px;
+		    border-width: 4px 7px;
+		    border: transparent;
+		}
+
+		.vlz_destacados_precio{
+		    font-size: 14px;
+		    font-weight: 600;
+		    color: #fff;
+		    padding: 15px 10px 5px;
+		    display: block;
+		    position: absolute;
+		    bottom: 0px;
+		    right: 0px;
+		    width: 100%;
+		    background: rgba(0, 0, 0, 0.1);
+		    background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.75) 100%);
+		    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.75)));
+		    background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.75) 100%);
+		    background: -o-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.75) 100%);
+		    background: -ms-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.75) 100%);
+		    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%,rgba(0,0,0,0.75) 100%);
+		    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#4d000000',GradientType=0 );
+		}
+
 	
 	@media (max-width: 500px){
 
