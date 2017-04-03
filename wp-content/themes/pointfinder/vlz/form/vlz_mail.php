@@ -5,55 +5,6 @@
 
     extract($_POST);
 
-    /*$mensaje = '
-    	<style>
-    		p{
-    			text-align: justify;
-    		}
-    		a:hover{
-			    background: #038063;
-    		}
-    	</style>
-        <h1>¡Gracias por unirte a nuestra familia Kmimos!</h1>
-        <p>Hola <strong>'.$nombres.' '.$apellidos.'</strong>,</p>
-        <p>
-            Felicidades, has logrado crear tu perfil exitosamente en kmimos, por los momentos el mismo se encuentra inactivo, para activarlo deberás
-            aprobar satisfactoriamente el proceso de certificación.
-        </p>
-        <p>
-            Abajo encontrarás tus credenciales para que tengas acceso como cuidador a Kmimos, estos mismos los deberás usar en la plataforma de certificación.
-        </p>
-        <p>
-            <table>
-            	<tr> <td> <strong>Usuario:</strong> </td><td>'.$usuario.'</td> </tr>
-            	<tr> <td> <strong>Contraseña:</strong> </td><td>'.$clave.'</td> </tr>
-            </table>
-        </p>
-        <p>
-            Para iniciar el proceso de certificación, por favor has click en el siguiente botón:
-        </p>
-        <p style="text-align: center;">
-            <a 
-            	href="http://www.ilernus.com/kmimos/lms/login/index.php"
-            	style="
-            		padding: 10px;
-				    background: #59c9a8;
-				    color: #fff;
-				    font-weight: 400;
-				    font-size: 17px;
-				    font-family: Roboto;
-				    border-radius: 3px;
-				    border: solid 1px #1f906e;
-				    display: block;
-				    max-width: 300px;
-				    margin: 0px auto;
-				    text-align: center;
-				    text-decoration: none;
-            	"
-            >Iniciar Proceso de Certificación</a>
-        </p>
-    ';*/
-
     $mensaje_mail = '
         <style>
             p{
