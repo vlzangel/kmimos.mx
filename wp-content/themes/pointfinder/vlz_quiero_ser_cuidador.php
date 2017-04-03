@@ -189,10 +189,12 @@
 											<input 
 												type='password' 
 												id='clave' 
-												name='clave'
+												name='clave' 
+												data-title="<strong>Las contraseñas deben ser iguales</strong>" 
 												class='vlz_input' 
+												 
 												placeholder='Contraseña' 
-												required
+												required 
 												autocomplete="off"
 											>
 										</div>
@@ -202,7 +204,9 @@
 												type='password' 
 												id='clave2' 
 												name='clave2' 
+												data-title="<strong>Las contraseñas deben ser iguales</strong>" 
 												class='vlz_input' 
+												 
 												placeholder='Contraseña' 
 												required 
 												autocomplete="off"
