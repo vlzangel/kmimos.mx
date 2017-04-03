@@ -559,6 +559,13 @@
 
                     }
 
+                    $info = array();
+                    $info['user_login']     = sanitize_user($email, true);
+                    $info['user_password']  = sanitize_text_field($clave);
+
+                    $user_signon = wp_signon( $info, true );
+                    wp_set_auth_cookie($user_signon->ID);
+
             }else{
                 $error = array(
                     "error" => "SI",
