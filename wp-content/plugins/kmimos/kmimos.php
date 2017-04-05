@@ -320,40 +320,6 @@ if(!function_exists('kmimos_include_admin_scripts')){
         wp_enqueue_script( 'kmimos_script', plugins_url('javascript/kmimos-admin.js', __FILE__), array(), '1.0.0', true );
         wp_enqueue_style( 'kmimos_style', plugins_url('css/kmimos-admin.css', __FILE__) );
 
-        // ========================================
-        // Style Dashboard ( New backpanel )
-        // ========================================
-       /* wp_enqueue_style( 'backpanel1', plugins_url('dashboard/assets/vendor/bootstrap/dist/css/bootstrap.css', __FILE__) );
-        wp_enqueue_style( 'backpanel2', plugins_url('dashboard/assets/vendor/font-awesome/css/font-awesome.min.css', __FILE__) );
-        wp_enqueue_style( 'backpanel3', plugins_url('dashboard/assets/vendor/nprogress/nprogress.css', __FILE__) );
-        wp_enqueue_style( 'backpanel4', plugins_url('dashboard/assets/vendor/iCheck/skins/flat/green.css', __FILE__) );
-        wp_enqueue_style( 'backpanel5', plugins_url('dashboard/assets/vendor/datatables.net-bs/css/dataTables.bootstrap.min.css', __FILE__) );
-        wp_enqueue_style( 'backpanel6', plugins_url('dashboard/assets/vendor/datatables.net-buttons-bs/css/buttons.bootstrap.min.css', __FILE__) );
-        wp_enqueue_style( 'backpanel7', plugins_url('dashboard/assets/vendor/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css', __FILE__) );
-        wp_enqueue_style( 'backpanel8', plugins_url('dashboard/assets/vendor/datatables.net-responsive-bs/css/responsive.bootstrap.min.css', __FILE__) );
-        wp_enqueue_style( 'backpanel9', plugins_url('dashboard/assets/vendor/datatables.net-scroller-bs/css/scroller.bootstrap.min.css', __FILE__) );
-        wp_enqueue_style( 'backpanel10', plugins_url('dashboard/assets/css/backpanel.css', __FILE__) );*/
-        // ========================================
-        // Script Dashboard ( New backpanel )
-        // ========================================
-/*        wp_enqueue_script( 'kmimos_jqueryui_script1', plugins_url("dashboard/assets/vendor/jquery/dist/jquery.min.js", __FILE__), array(), '1.11.1', true  );
-        wp_enqueue_script( 'kmimos_jqueryui_script2', plugins_url("dashboard/assets/vendor/bootstrap/dist/js/bootstrap.min.js", __FILE__), array(), '1.11.1', true  );
-        //wp_enqueue_script( 'kmimos_jqueryui_script3', plugins_url("dashboard/assets/vendor/fastclick/lib/fastclick.js", __FILE__), array(), '1.11.1', true  );
-        //wp_enqueue_script( 'kmimos_jqueryui_script4', plugins_url("dashboard/assets/vendor/nprogress/nprogress.js", __FILE__), array(), '1.11.1', true  );
-        //wp_enqueue_script( 'kmimos_jqueryui_script5', plugins_url("dashboard/assets/vendor/iCheck/icheck.min.js", __FILE__), array(), '1.11.1', true  );
-        wp_enqueue_script( 'kmimos_jqueryui_script6', plugins_url("dashboard/assets/vendor/datatables.net/js/jquery.dataTables.min.js", __FILE__), array(), '1.11.1', true  );
-        wp_enqueue_script( 'kmimos_jqueryui_script7', plugins_url("dashboard/assets/vendor/datatables.net-bs/js/dataTables.bootstrap.min.js", __FILE__), array(), '1.11.1', true  );
-        wp_enqueue_script( 'kmimos_jqueryui_script8', plugins_url("dashboard/assets/vendor/datatables.net-buttons/js/dataTables.buttons.min.js", __FILE__), array(), '1.11.1', true  );
-        wp_enqueue_script( 'kmimos_jqueryui_script9', plugins_url("dashboard/assets/vendor/datatables.net-buttons-bs/js/buttons.bootstrap.min.js", __FILE__), array(), '1.11.1', true  );
-        wp_enqueue_script( 'kmimos_jqueryui_script10', plugins_url("dashboard/assets/vendor/datatables.net-buttons/js/buttons.flash.min.js", __FILE__), array(), '1.11.1', true  );
-        wp_enqueue_script( 'kmimos_jqueryui_script11', plugins_url("dashboard/assets/vendor/datatables.net-buttons/js/buttons.html5.min.js", __FILE__), array(), '1.11.1', true  );
-        wp_enqueue_script( 'kmimos_jqueryui_script12', plugins_url("dashboard/assets/vendor/datatables.net-buttons/js/buttons.print.min.js", __FILE__), array(), '1.11.1', true  );
-        wp_enqueue_script( 'kmimos_jqueryui_script13', plugins_url("dashboard/assets/vendor/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js", __FILE__), array(), '1.11.1', true  );
-        wp_enqueue_script( 'kmimos_jqueryui_script14', plugins_url("dashboard/assets/vendor/datatables.net-keytable/js/dataTables.keyTable.min.js", __FILE__), array(), '1.11.1', true  );
-        wp_enqueue_script( 'kmimos_jqueryui_script15', plugins_url("dashboard/assets/vendor/datatables.net-responsive/js/dataTables.responsive.min.js", __FILE__), array(), '1.11.1', true  );
-        wp_enqueue_script( 'kmimos_jqueryui_script16', plugins_url("dashboard/assets/vendor/datatables.net-responsive-bs/js/responsive.bootstrap.js", __FILE__), array(), '1.11.1', true  );
-        wp_enqueue_script( 'kmimos_jqueryui_script17', plugins_url("dashboard/assets/vendor/datatables.net-scroller/js/dataTables.scroller.min.js", __FILE__), array(), '1.11.1', true  );
-        wp_enqueue_script( 'kmimos_jqueryui_script18', plugins_url("dashboard/assets/js/custom.js", __FILE__), array(), '2.12.0', true  );*/
 
         global $current_user;
 
@@ -436,7 +402,7 @@ if(!function_exists('kmimos_admin_menu')){
                 'title'=>'Panel de Control',
                 'short-title'=>'Panel de Control',
                 'parent'=>'kmimos',
-                'slug'=>'backpanel',
+                'slug'=>'bp_Reservas',
                 'access'=>'manage_options',
                 'page'=>'kmimos_backpanel',
                 'icon'=>plugins_url('/assets/images/icon.png', __FILE__),
