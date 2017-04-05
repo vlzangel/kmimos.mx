@@ -149,12 +149,11 @@
 	}
 
 	.vlz_sub_seccion_interno{
-	    padding: 5px 5px 2px;
+		padding: 5px 5px 2px;
 	    background: #FFF;
-	    border: solid 1px #5cc9ac;
-	    border-radius: 0px 0px 4px 4px;
+	    border: solid 1px #cccccc;
+	    border-radius: 0px 0px 3px 3px;
 	    border-top: 0px;
-	    #display: none;
 	}
 
 	div#rating {
@@ -422,6 +421,17 @@
 		    background: -ms-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.75) 100%);
 		    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%,rgba(0,0,0,0.75) 100%);
 		    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#4d000000',GradientType=0 );
+		}
+
+		.pflist-item {
+		    overflow: visible;
+		}
+
+		.pflist-item-inner {
+		    padding-bottom: 0px;
+		    box-shadow: 1px 1px 1px #CCC;
+		    border: solid 1px #CCC !important;
+		    border-radius: 0px;
 		}
 	
 	@media (max-width: 650px){
