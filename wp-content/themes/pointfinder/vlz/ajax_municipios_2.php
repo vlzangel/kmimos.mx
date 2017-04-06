@@ -3,7 +3,7 @@
 
 	extract($_POST);
 	
-	$c = new mysqli('localhost', 'root', '', 'kmimos.mx');
+	$c = new mysqli($host, $user,  $pass, $db);
 
 	if( isset($_POST['estado']) ){
 
