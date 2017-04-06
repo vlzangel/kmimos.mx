@@ -10,32 +10,6 @@
     $parent = get_term_by('slug', $pais, $taxonomy);
     $distdef = 20;
 
-/*    global $wpdb;
-
-    $busqueda = unserialize($_SESSION['busqueda']);
-*/
-    // $re = [];
-    // $string = '';
-    // $estados = $wpdb->get_results("SELECT * FROM states WHERE country_id = 1 ORDER BY name ASC");
-    // foreach ($estados as $estado) {
-    //     $locations = $wpdb->get_results("SELECT id, name FROM locations WHERE state_id = ".$estado->id." ORDER BY name ASC");        
-    //     $re[$estado->id] = [];
-    //     foreach ($locations as $key => $value) {
-    //         $re[$estado->id][$value->id] = utf8_decode($value->name);
-    //         $string .= '
-    //         $municipio['.$estado->id.']['.$value->id.'] = "'.utf8_decode($value->name).'";';
-    //     }
-    // }
-
-    // echo '<pre id="italo">';
-    // echo $string;
-    // echo '</pre>';
-    // echo '<pre id="italo">';
-    // print_r($re);
-    // echo '</pre>';
-
-
-
     $str_estados = '';
     $str_estados = utf8_decode($str_estados);
     ?>
@@ -155,37 +129,7 @@
                 <div id="popup_mas_servicios" style="display:none; width: 300px; overflow: hidden;">
                     <div id="mas_servicios">
                         <?php
-                            $extras = array(
-                                'corte' => array( 
-                                    'label'=>'Corte de Pelo y Uñas',
-                                    'icon' => 'peluqueria'
-                                ),
-                                'bano' => array( 
-                                    'label'=>'Baño y Secado',
-                                    'icon' => 'bano'
-                                ),
-                                'transportacion_sencilla' => array( 
-                                    'label'=>'Transporte Sencillo',
-                                    'icon' => 'transporte'
-                                ),
-                                'transportacion_redonda' => array( 
-                                    'label'=>'Transporte Redondo',
-                                    'icon' => 'transporte2'
-                                ),
-                                'visita_al_veterinario' => array( 
-                                    'label'=>'Visita al Veterinario',
-                                    'icon' => 'veterinario'
-                                ),
-                                'limpieza_dental' => array( 
-                                    'label'=>'Limpieza Dental',
-                                    'icon' => 'limpieza'
-                                ),
-                                'acupuntura' => array( 
-                                    'label'=>'Acupuntura',
-                                    'icon' => 'acupuntura'
-                                )
-                            );
-
+                            $extras = servicios_adicionales();
                             foreach($extras as $key => $value){ ?>
                                 <div class="w96pc boton_extra text-center">
                                     <div class="boton_portada boton_servicio">
@@ -256,8 +200,7 @@
                                     <option value="31">Tlaxcala</option>
                                     <option value="32">Veracruz de Ignacio de la Llave</option>
                                     <option value="33">Yucatan</option>
-                                    <option value="34">Zacatecas</option>                                    
-                                    <?php #echo $str_estados; ?>
+                                    <option value="34">Zacatecas</option> 
                                 </select>
                             </div>
                         </div>
@@ -271,6 +214,7 @@
                                 <select id="municipio_cuidador" name="municipios">
                                     <option value="">Seleccione primero un estado</option>
                                 </select>
+                                <input type="hidden" id="municipio_cache" name="municipio_cache">
                             </div>
                         </div>
                     </div>
@@ -286,32 +230,6 @@
                         <input type="text" id="otra_distancia" name="otra_distancia">
 
                     </div>
-
-                <!--
-                    <div class="grupo_selector selector_fecha">
-                        <div class="marco">
-                            <div class="icono">
-                                <i class="icon-calendario"></i>
-                            </div>
-                            <div class="grupo_fecha fecha_desde">
-                                <sub>Desde:</sub><br>
-                                <input type="date" id="fecha_desde" name="fecha_desde">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="grupo_selector selector_fecha">
-                        <div class="marco">
-                            <div class="icono">
-                                <i class="icon-calendario"></i>
-                            </div>
-                            <div class="grupo_fecha fecha_hasta">
-                                <sub>Hasta:</sub><br>
-                                <input type="date" id="fecha_hasta" name="fecha_hasta">
-                            </div>
-                        </div>
-                    </div>
-                -->
 
                 </div>
 
@@ -350,11 +268,6 @@
                     </div>
                 </div>
                 
-                <!--
-                    <input type="hidden" name="s" value="">
-                    <input type="hidden" name="serialized" value="1">
-                    <input type="hidden" name="action" value="pfs">
-                -->
             </div>
 
             </center>
@@ -404,77 +317,93 @@
                 $("#selector_locacion").addClass("hide");
             });
 
-            // Busca los estados del país
-
-            // $.post(urlSever,{action: 'get-location', location: pais }, function(){
-            //     edos.prop('disabled', true);
-            // }, "json").success(function(data){
-            //     $.each(data, function(key,value){
-            //         edos.append('<option value="'+key+'">'+value+'</option>');
-            //     });
-            //     edos.prop('disabled', false);
-            // });
-
-            edos.change(function(){
-                vlz_ver_municipios();
-            });
-
-            mpos.change(function(){
-                vlz_coordenadas();
-            });
-
             var toRadian = function (deg) {
                 return deg * Math.PI / 180;
             };
 
-            vlz_ver_municipios();
-
-            function vlz_ver_municipios(){
-
-                var id =  jQuery("#estado_cuidador").val();
-                var txt = jQuery("#estado_cuidador option:selected").text();            
-
+            function cargar_municipios(CB){
                 jQuery.ajax( {
                     method: "POST",
-                        data: { estado: id },
-                    url: "<?php echo get_template_directory_uri(); ?>/vlz/vlz_estados_municipios.php",
-                    beforeSend: function( xhr ) {
-                        jQuery("#municipios_cuidador").html("<option value=''>Cargando Municipios</option>");
+                    data: { 
+                        estado:     jQuery("#estado_cuidador").val(),
+                        municipio:  ""
+                    },
+                    url: '<?php echo get_template_directory_uri().'/vlz/ajax_municipios_2.php'; ?>'
+                }).done(function(datos){
+
+                    if( datos != false ){
+                        datos = eval(datos);
+                    
+                        var locaciones = jQuery.makeArray( datos.mun );
+
+                        var html = "<option value=''>Seleccione un municipio</option>";
+                        jQuery.each(locaciones, function(i, val) {
+                            html += "<option value="+val.id+">"+val.name+"</option>";
+                        });
+
+                        jQuery("#municipio_cuidador").html(html);
+
+                        var location    = datos.geo.referencia;
+                        var norte       = datos.geo.norte;
+                        var sur         = datos.geo.sur;
+
+                        var distancia = calcular_rango_de_busqueda(norte, sur);
+
+                        jQuery("#otra_latitud").attr("value", location.lat);
+                        jQuery("#otra_longitud").attr("value", location.lng);
+                        jQuery("#otra_distancia").attr("value", distancia);
+
                     }
-                }).done(function(data){
-                    jQuery("#municipio_cuidador").html("<option value=''>Seleccione un Municipio</option>"+data);
-                    vlz_coordenadas();
-                });
 
+                    if( CB != undefined) {
+                        CB();
+                    }
+
+                });
             }
+            jQuery("#estado_cuidador").on("change", function(e){
+                cargar_municipios();
+            });
+            cargar_municipios(function(){
+                console.log('#municipio_cuidador > option[value="'+jQuery("#municipio_cache").val()+'"]');
+                jQuery('#municipio_cuidador > option[value="'+jQuery("#municipio_cache").val()+'"]').attr('selected', 'selected');
+            });
 
-            function vlz_coordenadas(){
-                var estado = jQuery("#estado_cuidador option:selected").text();
-                var municipio_val = jQuery("#municipio_cuidador option:selected").val();
-                var municipio = jQuery("#municipio_cuidador option:selected").text();
+            jQuery("#municipio_cuidador").on("change", function(e){
+                jQuery("#municipio_cache").attr("value", jQuery("#municipio_cuidador").val() );
+                vlz_coordenadas();
+            });
 
-                var adress = "mexico+"+estado;
-                if( municipio_val != "" ){ 
-                    adress+="+"+municipio; 
-                }
+            function vlz_coordenadas(CB){
+                jQuery.ajax( {
+                    method: "POST",
+                    data: { 
+                        municipio: jQuery("#municipio_cuidador").val() 
+                    },
+                    url: '<?php echo get_template_directory_uri().'/vlz/ajax_municipios_2.php'; ?>'
+                }).done(function(datos){
 
-                jQuery.ajax({ 
-                    url: 'https://maps.googleapis.com/maps/api/geocode/json?address='+adress+'&key=AIzaSyBIvM6BjG8mW7EuDpIjC_WX0XkQRZbfhNo'
-                }).done(function(data){
+                    if( datos != false ){
+                        datos = eval(datos);
+                    
+                        var location    = datos.geo.referencia;
+                        var norte       = datos.geo.norte;
+                        var sur         = datos.geo.sur;
 
-                    var location = data.results[0].geometry.location;
+                        var distancia = calcular_rango_de_busqueda(norte, sur);
 
-                    var norte = data.results[0].geometry.viewport.northeast;
-                    var sur   = data.results[0].geometry.viewport.southwest;
+                        jQuery("#otra_latitud").attr("value", location.lat);
+                        jQuery("#otra_longitud").attr("value", location.lng);
+                        jQuery("#otra_distancia").attr("value", distancia);
 
-                    var distancia = calcular_rango_de_busqueda(norte, sur);
+                    }
 
-                    jQuery("#otra_latitud").attr("value", location.lat);
-                    jQuery("#otra_longitud").attr("value", location.lng);
-                    jQuery("#otra_distancia").attr("value", distancia);
-
+                    if( CB != undefined) {
+                        CB();
+                    }
+                    
                 });
-            } 
+            }
 
             function calcular_rango_de_busqueda(norte, sur){
                 var d = ( 6371 * 
@@ -500,14 +429,6 @@
                 return d;
             }
 
-/*            $(".grupo_fecha input[type=date]").on("change", function(){
-                if($(this).val()!=''){
-                    $(this).addClass('activo');
-                } else {
-                    $(this).removeClass('activo');
-                }
-            });*/
-
             $(".boton_servicio > input:checkbox").each(function(index){
                 var servicio = $(this).attr('data-key');
                 var activo = $(this).prop('checked');
@@ -521,42 +442,6 @@
                 if(activo) $(".servicio_cuidador_"+servicio).parent().addClass('activo');
                 else $(".servicio_cuidador_"+servicio).parent().removeClass('activo');
             });
-
-/*            $("#selector_desde").datepicker({
-                changeMonth: true,
-                numberOfMonths: 1,
-                altField: "#fecha_desde",
-                altFormat: "yy-mm-dd",
-                onClose: function( selectedDate ) {
-                    $( "#selector_hasta" ).datepicker( "option", "minDate", selectedDate );
-                }
-            });*/
-
-            /*$("#selector_hasta").datepicker({
-                changeMonth: true,
-                numberOfMonths: 1,
-                altField: "#fecha_hasta",
-                altFormat: "yy-mm-dd",
-                onClose: function( selectedDate ) {
-                    $( "#selector_desde" ).datepicker( "option", "maxDate", selectedDate );
-                }
-            });
-
-            $(".campo_rango").change(function(){
-                var desde = $("#fecha_desde").val();
-                var hasta = $("#fecha_hasta").val();
-                if(desde!='' && hasta!='' && hasta>desde) $('#boton_fechas').addClass('activo');
-                else $('#boton_fechas').removeClass('activo');
-            });
-
-            $("#fecha_desde").on("change", function(){
-                var desde = $(this).val();
-                $("#fecha_hasta").attr({min: desde});
-                $("#fecha_hasta").focus();
-            });*/
-
-            // $("#servicio_cuidador_hospedaje").prop('checked',true);
-            // $("#servicio_cuidador_hospedaje").parent().addClass('activo');
 
             $(".modal").fancybox({
                 maxWidth: 340
