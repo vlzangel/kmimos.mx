@@ -412,7 +412,7 @@
 	                    <td>'.$_POST['meeting_time'].'</td>
 	                </tr>
 	                <tr>   
-	                    <td><strong>Fin: </strong></td>
+	                    <td><strong>Lugar: </strong></td>
 	                    <td>'.$_POST['meeting_where'].'</td>
 	                </tr>
 	            </table>

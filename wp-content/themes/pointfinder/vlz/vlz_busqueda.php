@@ -296,7 +296,7 @@
 											$ps = ceil($t/$item_by_page)+1;
 											for( $i=1; $i<$ps; $i++){
 												$active = ( $pagina == $i || ($pagina == 0 && $i == 1)  )? "class='vlz_activa'": "";
-												echo "<a href='/busqueda/{$i}' ".$active.">".$i."</a>";
+												echo "<a href='".get_home_url()."/busqueda/{$i}' ".$active.">".$i."</a>";
 											}
 										}
 										$w = 40*$ps;

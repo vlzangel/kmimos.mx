@@ -34,6 +34,46 @@ if(!function_exists('kmimos_mails_administradores')){
     }
 }
 
+if(!function_exists('servicios_adicionales')){
+    function servicios_adicionales(){
+
+        $extras = array(
+            'corte' => array( 
+                'label'=>'Corte de Pelo y Uñas',
+                'icon' => 'peluqueria'
+            ),
+            'bano' => array( 
+                'label'=>'Baño y Secado',
+                'icon' => 'bano'
+            ),
+            'transportacion_sencilla' => array( 
+                'label'=>'Transporte Sencillo',
+                'icon' => 'transporte'
+            ),
+            'transportacion_redonda' => array( 
+                'label'=>'Transporte Redondo',
+                'icon' => 'transporte2'
+            ),
+            'visita_al_veterinario' => array( 
+                'label'=>'Visita al Veterinario',
+                'icon' => 'veterinario'
+            ),
+            'limpieza_dental' => array( 
+                'label'=>'Limpieza Dental',
+                'icon' => 'limpieza'
+            ),
+            'acupuntura' => array( 
+                'label'=>'Acupuntura',
+                'icon' => 'acupuntura'
+            )
+        );
+
+        return $extras;
+    }
+}
+
+// 
+
 if(!function_exists('kmimos_get_foto_cuidador')){
     function kmimos_get_foto_cuidador($id){
         global $wpdb;
