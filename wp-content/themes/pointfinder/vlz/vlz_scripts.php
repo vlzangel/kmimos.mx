@@ -1,9 +1,3 @@
-<?php 
-	include_once("vlz_geo.php"); 
-	$L = geo("L");
-	$N = geo("N");
-	$S = geo("S");
-?>
 
 <script type="text/javascript">
 
