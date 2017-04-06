@@ -1,6 +1,6 @@
 <?php
 	
-	function geo($valor, $ref = null){
+	/*function geo($valor, $ref = null){
 
 		$vlz_geo = array(
 			'ref' => array(
@@ -60,5 +60,5 @@
 	$L = geo("L");
 	$N = geo("N");
 	$S = geo("S");
-
+*/
 ?>
