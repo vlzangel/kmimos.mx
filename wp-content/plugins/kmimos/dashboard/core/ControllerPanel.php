@@ -5,8 +5,8 @@
 function get_status($sts_reserva, $sts_pedido){
 	
 	// Resultado
-	$sts_corto = "--";
-	$sts_largo = "";
+	$sts_corto = "---";
+	$sts_largo = "Estatus Reserva: {$sts_reserva}  /  Estatus Pedido: {$sts_pedido}";
 
 	// Pedidos
 	switch ($sts_reserva) {
