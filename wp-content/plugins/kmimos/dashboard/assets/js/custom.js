@@ -32,7 +32,7 @@
     // smartresize 
     jQuery.fn[sr] = function(fn){  return fn ? this.bind('resize', debounce(fn)) : this.trigger(sr); };
 
-})(jQuery,'smartresize');
+
 /**
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -5064,4 +5064,4 @@ if (typeof NProgress != 'undefined') {
 				
 	});	
 	
-
+})(jQuery,'smartresize');
