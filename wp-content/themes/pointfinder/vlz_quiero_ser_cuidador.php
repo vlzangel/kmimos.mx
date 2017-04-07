@@ -4,9 +4,6 @@
 	*/
 
 	get_header();
- 
-		$keyApi = 'AIzaSyD-xrN3-wUMmJ6u2pY_QEQtpMYquGc70F8';
-        wp_enqueue_script( 'kmimos_gmap', 'https://maps.googleapis.com/maps/api/js?key='.$keyApi.'&callback=initMap');
 	
 		if(function_exists('PFGetHeaderBar')){PFGetHeaderBar();} ?>
 
@@ -100,7 +97,6 @@
 
 							<?php 
 								include("vlz/form/vlz_styles.php"); 
-								include("vlz/form/vlz_scripts.php"); 
 							?>
 
 							<h1 class="vlz_titulo jj_titulo">Sé parte de Kmimos</h1>
@@ -253,7 +249,59 @@
 										</div>
 
 										<script type="text/javascript">
-											var edos = jQuery("#estado");
+											jQuery("#estado").on("change", function(e){
+												jQuery.ajax( {
+													method: "POST",
+											 		data: { 
+											 			estado: 	jQuery("#estado").val(),
+											 			municipio: 	""
+											 		},
+													url: '<?php echo get_template_directory_uri().'/vlz/ajax_municipios_2.php'; ?>'
+												}).done(function(datos){
+
+													if( datos != false ){
+														datos = eval(datos);
+														var locaciones = jQuery.makeArray( datos.mun );
+														var html = "<option value=''>Seleccione un municipio</option>";
+											            jQuery.each(locaciones, function(i, val) {
+											                html += "<option value="+val.id+">"+val.name+"</option>";
+											            });
+											            jQuery("#municipio").html(html);
+											            var location 	= datos.geo.referencia;
+									                    jQuery("#latitud").attr("value", location.lat);
+									                    jQuery("#longitud").attr("value", location.lng);
+													}
+
+												});
+											});
+
+											jQuery("#municipio").on("change", function(e){
+												vlz_coordenadas();
+											});
+
+											function vlz_coordenadas(CB){
+												jQuery.ajax( {
+													method: "POST",
+											 		data: { 
+											 			municipio: jQuery("#municipio").val() 
+											 		},
+													url: '<?php echo get_template_directory_uri().'/vlz/ajax_municipios_2.php'; ?>'
+												}).done(function(datos){
+
+													if( datos != false ){
+														datos = eval(datos);
+											            var location 	= datos.geo.referencia;
+									                    jQuery("#latitud").attr("value", location.lat);
+									                    jQuery("#longitud").attr("value", location.lng);
+													}
+
+													if( CB != undefined) {
+														CB();
+													}
+													
+												});
+											}
+											/*var edos = jQuery("#estado");
             								var mpos = jQuery("#municipio");
 
 											edos.change(function(){
@@ -301,7 +349,7 @@
 								                    jQuery("#longitud").attr("value", location.lng);
 								                    jQuery("#direccion").attr("value", dir);
 								                });
-								            } 
+								            } */
 										</script>
 
 									</div>
