@@ -2,18 +2,37 @@
 // ***************************************
 // Cargar listados de Reservas
 // ***************************************
-function get_status($sts_reserva, $sts_pedido){
+function get_status($sts_reserva, $sts_pedido, $forma_pago=""){
 	
 	// Resultado
 	$sts_corto = "---";
 	$sts_largo = "Estatus Reserva: {$sts_reserva}  /  Estatus Pedido: {$sts_pedido}";
+	//===============================================================
+	// BEGIN PaymentMethod
+	// Nota: Agregar la equivalencia de estatus de las pasarelas de pago
+	//===============================================================
+	$payment_method_cards = [ // pagos por TDC / TDD
+		'openpay_cards'
+	]; 
+	$payment_method_store = [ // pagos por Tienda por conveniencia
+		'openpay_stores'
+	]; 
+	//===============================================================
+	// END PaymentMethod
+	//===============================================================
 
 	// Pedidos
 	switch ($sts_reserva) {
 		case 'unpaid':
 			$sts_corto = "Pendiente";
 			if( $sts_pedido == 'wc-on-hold'){
-				$sts_largo = "Pendiente por confirmar el cuidador";
+				if( in_array($forma_pago, $payment_method_cards) ){
+					$sts_largo = "Pendiente por confirmar el cuidador"; // metodo de pago es por TDC / TDD ( parcial )
+				}elseif( in_array($forma_pago, $payment_method_store) ){
+					$sts_largo = "Pendiente por pago"; // Tienda por conv
+				}else{
+					$sts_largo = "Estatus Pedido: {$sts_pedido}"; 
+				}
 			}
 			if( $sts_pedido == 'wc-pending'){
 				$sts_largo = 'Verificar LOG OpenPay';
@@ -158,6 +177,7 @@ function getReservas($desde="", $hasta=""){
 			(IFNULL(mpe.meta_value,0) + IFNULL(mme.meta_value,0) + IFNULL(mgr.meta_value,0) + IFNULL(mgi.meta_value,0)) as 'nro_mascotas',
 			((du.meta_value -1) * ( IFNULL(mpe.meta_value,0) + IFNULL(mme.meta_value,0) + IFNULL(mgr.meta_value,0) + IFNULL(mgi.meta_value,0) )) as 'total_noches',
 			fp.meta_value as 'forma_pago',
+			pm.meta_value as 'metodo_pago_pk',
 			re.post_status as 'estatus_reserva',
 			pe.post_status as 'estatus_pago',
 			IFNULL(bc.meta_value,0) as 'monto_total',
@@ -173,6 +193,7 @@ function getReservas($desde="", $hasta=""){
 			LEFT JOIN wp_posts as pe ON pe.ID = re.post_parent -- No. Pedido
 			LEFT JOIN wp_postmeta as es ON ( es.post_id = pe.ID and es.meta_key = '_shipping_state') -- Estado 
 			LEFT JOIN wp_postmeta as cy ON ( cy.post_id = pe.ID and cy.meta_key = '_shipping_city') -- Ciudad
+			LEFT JOIN wp_postmeta as pm ON ( pm.post_id = pe.ID and pm.meta_key = '_payment_method') 	-- Forma de Pago
 			LEFT JOIN wp_postmeta as fp ON ( fp.post_id = pe.ID and fp.meta_key = '_payment_method_title') -- Forma de Pago
 			LEFT JOIN wp_postmeta as ot ON ( ot.post_id = pe.ID and ot.meta_key = '_order_total') -- Total Orden
 			LEFT JOIN wp_postmeta as rm ON ( rm.post_id = pe.ID and rm.meta_key = '_wc_deposits_remaining') -- Remanente

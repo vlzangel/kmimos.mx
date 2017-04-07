@@ -1,5 +1,4 @@
 <?php global $wpdb;
-
 // Reservas 
 require_once('core/ControllerPanel.php');
 // Parametros: Filtro por fecha
@@ -95,7 +94,11 @@ $reservas = getReservas($desde, $hasta);
 				  		# Servicios de la Reserva
 				  		$services = getServices($reserva->nro_reserva);
 				  		# Status
-				  		$estatus = get_status($reserva->estatus_reserva, $reserva->estatus_pago);
+				  		$estatus = get_status(
+				  			$reserva->estatus_reserva, 
+				  			$reserva->estatus_pago, 
+				  			$reserva->metodo_pago_pk 
+				  		);
 				  	?>
  
 				    <tr>
