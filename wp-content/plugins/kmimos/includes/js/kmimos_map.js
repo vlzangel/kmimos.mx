@@ -27,4 +27,5 @@ var kmimos_save_map = function(IDmap){
 
 
 var kmimos_save_map_run = function(IDmap){
+    //kmimos_save_map(IDmap);
 };

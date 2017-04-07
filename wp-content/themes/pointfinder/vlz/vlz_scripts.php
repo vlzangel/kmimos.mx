@@ -305,6 +305,8 @@
 
 <script type="text/javascript">
 var KEYmap='AIzaSyD-xrN3-wUMmJ6u2pY_QEQtpMYquGc70F8';
+var URLmap='https://maps.googleapis.com/maps/api/js?v=3&key='+KEYmap+'&callback=initMap';
+//var URLmap='http://maps.google.com/maps/api/js?sensor=false&callback=initMap';
 //var URLmap='http://kmimos.dev.mx/wp-content/plugins/kmimos/includes/js/MAPgoogle.js?sensor=false&callback=initMap';
 
 
