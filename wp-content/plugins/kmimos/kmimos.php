@@ -14,6 +14,7 @@
  * Version:     1.0.0
  * License:     GPL2
  */
+include_once('includes/class/class_kmimos_map.php');
 
 if(!function_exists('kmimos_mails_administradores')){
     function kmimos_mails_administradores(){

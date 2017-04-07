@@ -8,6 +8,7 @@
 	session_start();
 
 
+
 	if( count($_POST) > 0 ){
 		$_SESSION['busqueda'] = serialize($_POST);		
 		$_SESSION['busqueda_token'] = 1;		
@@ -20,8 +21,13 @@
 	if( isset($_SESSION['busqueda'])){
 		$_POST = unserialize($_SESSION['busqueda']);
 	}
-	
-	$pagina = $page; // Pagina actual
+
+	//MAP
+ 	//echo $kmimos_map->Search_Map($_POST);
+	$Kmap=$kmimos_map->Search_Map($_POST);
+
+
+$pagina = $page; // Pagina actual
 	$item_by_page = 15; // Numero de Items por pagina
 	// Items by page
 	$pagina_row_fin = ( $pagina>1 )? $pagina * $item_by_page : $item_by_page;
