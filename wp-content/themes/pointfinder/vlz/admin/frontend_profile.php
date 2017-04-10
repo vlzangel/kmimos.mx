@@ -2,7 +2,7 @@
     $noncefield = wp_create_nonce('pfget_updateuserprofile');
     $formaction = 'pfget_updateuserprofile';
     $buttonid = 'pf-ajax-profileupdate-button';
-    $buttontext = esc_html__('ACTUALIZAR INFORMACIÓN','pointfindert2d');
+    $buttontext = esc_html__('ACTUALIZAR INFORMACIÃ“N','pointfindert2d');
     $current_user = get_user_by( 'id', $params['current_user'] );
     $user_id = $current_user->ID;
     $usermetaarr = get_user_meta($user_id);
@@ -33,12 +33,12 @@
 
     $this->ScriptOutput = "
                                 $.pfAjaxUserSystemVars4 = {};
-                                $.pfAjaxUserSystemVars4.email_err = '".esc_html__('Por favor, escriba un correo electrónico','pointfindert2d')."';
-                                $.pfAjaxUserSystemVars4.email_err2 = '".esc_html__('Su dirección de correo electrónico debe estar en el formato de nombre@dominio.com','pointfindert2d')."';
+                                $.pfAjaxUserSystemVars4.email_err = '".esc_html__('Por favor, escriba un correo electrÃ³nico','pointfindert2d')."';
+                                $.pfAjaxUserSystemVars4.email_err2 = '".esc_html__('Su direcciÃ³n de correo electrÃ³nico debe estar en el formato de nombre@dominio.com','pointfindert2d')."';
                                 $.pfAjaxUserSystemVars4.nickname_err = '".esc_html__('Por favor, escriba apodo','pointfindert2d')."';
                                 $.pfAjaxUserSystemVars4.nickname_err2 = '".esc_html__('Por favor, introduzca al menos 3 caracteres por el apodo.','pointfindert2d')."';
                                 $.pfAjaxUserSystemVars4.passwd_err = '".esc_html__('Introduzca al menos 7 caracteres','pointfindert2d')."';
-                                $.pfAjaxUserSystemVars4.passwd_err2 = '".esc_html__('Introduzca la misma contraseña que el anterior','pointfindert2d')."';
+                                $.pfAjaxUserSystemVars4.passwd_err2 = '".esc_html__('Introduzca la misma contraseÃ±a que el anterior','pointfindert2d')."';
                             ";
 
     $user = new WP_User( $user_id );
@@ -143,13 +143,13 @@
                                     </section>
 
                                     <section>
-                                        <label for="phone" class="lbl-text">'.esc_html__('Teléfono','pointfindert2d').':</label>
+                                        <label for="phone" class="lbl-text">'.esc_html__('TelÃ©fono','pointfindert2d').':</label>
                                         <label class="lbl-ui">
                                             <input type="tel" name="phone" maxlength="12" class="input" placeholder="" value="'.$usermetaarr['user_phone'][0].'" />
                                         </label>
                                     </section>
                                     <section>
-                                        <label for="mobile" class="lbl-text">'.esc_html__('Móvil','pointfindert2d').':</label>
+                                        <label for="mobile" class="lbl-text">'.esc_html__('MÃ³vil','pointfindert2d').':</label>
                                         <label class="lbl-ui">
                                             <input type="tel" name="mobile" maxlength="12" class="input" placeholder="" value="'.$usermetaarr['user_mobile'][0].'"/>
                                         </label>
@@ -160,7 +160,7 @@
                                <div class="jj_dash2_cel50">
                                <!--<div class="col6 last">-->
                                     <section>
-                                        <label for="referred" class="lbl-text">'.esc_html__('¿Como nos conoció?','pointfindert2d').':</label>
+                                        <label for="referred" class="lbl-text">'.esc_html__('Â¿Como nos conociÃ³?','pointfindert2d').':</label>
                                         <label class="lbl-ui">
                                             <select name="referred" class="input">
                                                 <option value="">Por favor seleccione</option>
@@ -170,7 +170,7 @@
                                     </section>
 
                                     <section>
-                                        <label for="descr" class="lbl-text">'.esc_html__('Información biográfica','pointfindert2d').':</label>
+                                        <label for="descr" class="lbl-text">'.esc_html__('InformaciÃ³n biogrÃ¡fica','pointfindert2d').':</label>
                                         <label class="lbl-ui">
                                             <textarea name="descr" class="textarea mini" style="border:1px solid #848484; height: 112px;">'.$usermetaarr['description'][0].'</textarea>
                                         </label>
@@ -196,10 +196,10 @@
                                 </div>
                                 <div class="jj_dash_cel50">
                                     <section>
-                                        <label for="password" class="lbl-text">'.esc_html__('Nueva contraseña','pointfindert2d').':</label>
+                                        <label for="password" class="lbl-text">'.esc_html__('Nueva contraseÃ±a','pointfindert2d').':</label>
                                         <label class="lbl-ui">
                                             <input type="password"
-                                            placeholder="Contraseña"
+                                            placeholder="ContraseÃ±a"
                                             autocomplete="off" name="password" id="password" class="input" />
                                         </label>
                                     </section>
@@ -207,9 +207,9 @@
                                 </div>
                                 <div class="jj_dash2_cel50">
                                     <section>
-                                        <label for="password2" class="lbl-text">'.esc_html__('Repita la nueva contraseña','pointfindert2d').':</label>
+                                        <label for="password2" class="lbl-text">'.esc_html__('Repita la nueva contraseÃ±a','pointfindert2d').':</label>
                                         <label class="lbl-ui">
-                                            <input type="password" placeholder="Repita la Contraseña" autocomplete="off" name="password2" class="input" />
+                                            <input type="password" placeholder="Repita la ContraseÃ±a" autocomplete="off" name="password2" class="input" />
                                         </label>
                                     </section>
 
