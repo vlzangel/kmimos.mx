@@ -45,6 +45,7 @@ if($_SESSION['token_mail'] != "" ){
         return false;
     }
 
+    $_SESSION['caregiver_request']=$post_id;
     $pasos = array(false, false, false);
 
     if($user_id != 0) {
