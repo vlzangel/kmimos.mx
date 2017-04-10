@@ -681,3 +681,4 @@
 		header("location: ".get_home_url()."/conocer-al-cuidador/?id=".$post_id);
 	}
 ?>
+

@@ -97,7 +97,6 @@
 	    foreach($municipios_array as $municipio) { 
 	    	if( $_POST['municipios'] == $municipio->id ){
 				$sel = "selected"; 
-				echo "Concuerda";
 			}else{ $sel = ""; }
 	        $muni .= "<option value='".$municipio->id."' $sel>".$municipio->name."</option>";
 	    } 
@@ -108,12 +107,12 @@
 
 	$selects_estados = "
 		<div class='vlz_sub_seccion'>
-			<SELECT class='vlz_input' id='estados' name='estados' onchange='vlz_ver_municipios()' style='border: solid 1px #CCC;'>
+			<SELECT class='vlz_input' id='estados' name='estados' style='border: solid 1px #CCC;'>
 				{$estados}
 			</SELECT>
 		</div>
 		<div class='vlz_sub_seccion'>
-			<SELECT class='vlz_input' id='municipios' name='municipios' onchange='vlz_coordenadas()' style='border: solid 1px #CCC;'>
+			<SELECT class='vlz_input' id='municipios' name='municipios' style='border: solid 1px #CCC;'>
 				{$muni}
 			</SELECT>
 		</div>

@@ -68,9 +68,13 @@
 			LEFT JOIN wp_posts AS orden ON ( orden.ID = posts.post_parent )
 			WHERE 
 				posts.post_type = 'wc_booking' AND
-				posts.post_status NOT LIKE '%cart%' AND
-				orden.post_status NOT LIKE '%pending%'  AND 
-				orden.post_status NOT LIKE '%failed%'  AND 
+				(
+					posts.post_status = 'cancelled' OR 
+					posts.post_status = 'paid' OR 
+					posts.post_status = 'confirmed' OR 
+					posts.post_status = 'complete' OR 
+					( posts.post_status = 'unpaid' AND orden.post_status = 'wc-partially-paid' )					
+				) AND
 				producto.post_author = '{$user_id}'
 		";
 
@@ -100,10 +104,6 @@
 				$metas_user = get_user_meta($metas['_booking_customer_id'][0]);
 
 				$nom = $metas_user['first_name'][0]." ".$metas_user['last_name'][0];
-
-				// echo "<pre>";
-				// 	print_r($user);
-				// echo "</pre>";
 
 				$no_tomada = true;
 
@@ -234,10 +234,6 @@
 				"Completadas" => $completadas,
 				"Canceladas"  => $canceladas
 			);
-
-			// echo "<pre>";
-			// 	print_r($txts);
-			// echo "</pre>";
 
 			foreach ($txts as $key => $valor) {
 				if( $valor != "" ){

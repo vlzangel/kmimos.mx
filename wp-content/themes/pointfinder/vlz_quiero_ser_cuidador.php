@@ -4,9 +4,6 @@
 	*/
 
 	get_header();
- 
-		$keyApi = 'AIzaSyD-xrN3-wUMmJ6u2pY_QEQtpMYquGc70F8';
-        wp_enqueue_script( 'kmimos_gmap', 'https://maps.googleapis.com/maps/api/js?key='.$keyApi.'&callback=initMap');
 	
 		if(function_exists('PFGetHeaderBar')){PFGetHeaderBar();} ?>
 
@@ -100,7 +97,6 @@
 
 							<?php 
 								include("vlz/form/vlz_styles.php"); 
-								include("vlz/form/vlz_scripts.php"); 
 							?>
 
 							<h1 class="vlz_titulo jj_titulo">Sé parte de Kmimos</h1>
@@ -190,22 +186,10 @@
 												type='password' 
 												id='clave' 
 												name='clave' 
-												data-title="
-												La contraseña debe contener al menos:<br>
-												<ul>
-
-													<li>Una letra mayúscula</li>
-											      	<li>Una letra minúscula</li>
-											      	<li>Un número</strong></li>
-											      	<li>Una longitud mínima de 6 caracteres</li>
-											      	<li>Y al final debe llevar  #</li>
-											      	<li><strong>Las contraseñas deben ser iguales</strong></li>
-												</ul>" 
+												data-title="<strong>Las contraseñas son requeridas y deben ser iguales</strong>" 
 												class='vlz_input' 
-												 
 												placeholder='Contraseña' 
 												required 
-												pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-#\*]).{6,}$"
 												autocomplete="off"
 											>
 										</div>
@@ -215,22 +199,10 @@
 												type='password' 
 												id='clave2' 
 												name='clave2' 
-												data-title="
-												La contraseña debe contener al menos:<br>
-												<ul>
-
-													<li>Una letra mayúscula</li>
-											      	<li>Una letra minúscula</li>
-											      	<li>Un número</strong></li>
-											      	<li>Una longitud mínima de 6 caracteres</li>
-											      	<li>Y al final debe llevar  #</li>
-											      	<li><strong>Las contraseñas deben ser iguales</strong></li>
-												</ul>" 
+												data-title="<strong>Las contraseñas son requeridas y deben ser iguales</strong>" 
 												class='vlz_input' 
-												 
 												placeholder='Contraseña' 
 												required 
-												pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-#\*]).{6,}$"
 												autocomplete="off"
 											>
 										</div>
@@ -277,7 +249,59 @@
 										</div>
 
 										<script type="text/javascript">
-											var edos = jQuery("#estado");
+											jQuery("#estado").on("change", function(e){
+												jQuery.ajax( {
+													method: "POST",
+											 		data: { 
+											 			estado: 	jQuery("#estado").val(),
+											 			municipio: 	""
+											 		},
+													url: '<?php echo get_template_directory_uri().'/vlz/ajax_municipios_2.php'; ?>'
+												}).done(function(datos){
+
+													if( datos != false ){
+														datos = eval(datos);
+														var locaciones = jQuery.makeArray( datos.mun );
+														var html = "<option value=''>Seleccione un municipio</option>";
+											            jQuery.each(locaciones, function(i, val) {
+											                html += "<option value="+val.id+">"+val.name+"</option>";
+											            });
+											            jQuery("#municipio").html(html);
+											            var location 	= datos.geo.referencia;
+									                    jQuery("#latitud").attr("value", location.lat);
+									                    jQuery("#longitud").attr("value", location.lng);
+													}
+
+												});
+											});
+
+											jQuery("#municipio").on("change", function(e){
+												vlz_coordenadas();
+											});
+
+											function vlz_coordenadas(CB){
+												jQuery.ajax( {
+													method: "POST",
+											 		data: { 
+											 			municipio: jQuery("#municipio").val() 
+											 		},
+													url: '<?php echo get_template_directory_uri().'/vlz/ajax_municipios_2.php'; ?>'
+												}).done(function(datos){
+
+													if( datos != false ){
+														datos = eval(datos);
+											            var location 	= datos.geo.referencia;
+									                    jQuery("#latitud").attr("value", location.lat);
+									                    jQuery("#longitud").attr("value", location.lng);
+													}
+
+													if( CB != undefined) {
+														CB();
+													}
+													
+												});
+											}
+											/*var edos = jQuery("#estado");
             								var mpos = jQuery("#municipio");
 
 											edos.change(function(){
@@ -325,7 +349,7 @@
 								                    jQuery("#longitud").attr("value", location.lng);
 								                    jQuery("#direccion").attr("value", dir);
 								                });
-								            } 
+								            } */
 										</script>
 
 									</div>
@@ -966,6 +990,18 @@
 								      			return false;
 								      		}
 										break;
+										case "clave":
+								      		var clv1 = jQuery("#clave").attr("value");
+								      		var clv2 = jQuery("#clave2").attr("value");
+
+								      		return ( clv1 == clv2 );
+										break;
+										case "clave2":
+								      		var clv1 = jQuery("#clave").attr("value");
+								      		var clv2 = jQuery("#clave2").attr("value");
+
+								      		return ( clv1 == clv2 );
+										break;
 										default:
 											return true;
 										break;
@@ -1002,7 +1038,6 @@
 								        	jQuery("#"+event.target.id).addClass("vlz_input_error");
 							        	} 
 								    }
-
 								}, true);
 
 								jQuery(".vlz_input").each(function( index ) {
@@ -1046,12 +1081,9 @@
 						      	});
 
 						      	jQuery(".vlz_boton_agregar").on("click", function(){
-
 						      		jQuery(".vlz_boton_quitar").off("click");
-
 						      		var servicios = jQuery('<select class="vlz_input" id="servicio[]" name="servicio[]"><option value="8">Guarder&iacute;a (Cuidado durante el d&iacute;a)</option><option value="9">Adiestramiento de obediencia b&aacute;sico</option><option value="10">Adiestramiento de obediencia intermedio</option><option value="11">Adiestramiento de obediencia avanzado</option><option value="12">Paseos</option></select>');
 						      		var contCampos = jQuery("<div>", {"class": "vlz_cell66 jj_input_cell00"});
-
 						      		<?php
 										$tam = array(
 											"pequenos" => "Peque&ntilde;os",
@@ -1112,7 +1144,6 @@
 									    success: function (r) {
 								      		jQuery("#vlz_titulo_registro").html("Registro Completado!");
 										  	jQuery("#vlz_cargando").html(r);
-
 								      		jQuery("#vlz_modal_cerrar_registrar").attr("onclick", "GoToHomePage()");
 								      		jQuery("#check_term").hide();
 								      		jQuery("#boton_registrar_modal").hide();
@@ -1122,7 +1153,7 @@
 									});
 						      	}
 						      	function GoToHomePage(){
-							    	window.location = '/';   
+							    	location = '<?php echo get_home_url()."/perfil-usuario/?ua=profile"; ?>';   
 							  	}
 
 						      	jQuery("#vlz_form_nuevo_cuidador").submit(function(e){
@@ -1135,9 +1166,7 @@
 
 							      			var portada = jQuery("#vlz_img_perfil").attr("value");
 							      			if( portada != "" ){
-
 								      			var a = "<?php echo get_template_directory_uri()."/vlz/form/vlz_procesar.php"; ?>";
-
 									      		jQuery("#vlz_contenedor_botones").css("display", "none");
 									      		jQuery(".vlz_modal_contenido").css("display", "none");
 									      		jQuery("#vlz_cargando").css("display", "block");
@@ -1147,32 +1176,20 @@
 									      		jQuery("#vlz_titulo_registro").html("Registrando, por favor espere...");
 								             	
 									      		jQuery.post( a, jQuery("#vlz_form_nuevo_cuidador").serialize(), function( data ) {
-
-									      			// console.log(data);
-
 										      		data = eval(data);
-
 										      		if( data.error == "SI" ){
-
 										      			jQuery('html, body').animate({ scrollTop: jQuery("#email").offset().top-75 }, 2000);
-
-										      			alert(data.msg);
-
 										      			jQuery("#terminos_y_condiciones").css("display", "none");
-
 										      			jQuery("#vlz_contenedor_botones").css("display", "block");
 											      		jQuery(".vlz_modal_contenido").css("display", "block");
 											      		jQuery("#terminos").css("display", "block");
 											      		jQuery("#vlz_cargando").css("height", "auto");
 											      		jQuery("#vlz_cargando").css("text-align", "justify");
-
 											      		jQuery("#vlz_titulo_registro").html('Términos y Condiciones');
 									      				jQuery("#boton_registrar_modal").css("display", "inline-block");
-
 										      		}else{
 										      			mail_ext_temp();
 										      		}
-
 												});
 									      	}else{
 									      		jQuery('.vlz_modal').css('display', 'none');
@@ -1236,21 +1253,42 @@
 						      		var clv1 = jQuery("#clave").attr("value");
 						      		var clv2 = jQuery("#clave2").attr("value");
 
-						      		if( clv1 != clv2 ){
-						      			jQuery("#vlz_val_clave_2").html("Las contraseñas deben ser iguales");
-						      			jQuery("#vlz_val_clave_2").css("display", "block");
+						      		if( clv1 == clv2 ){
+
+						      			jQuery("#error_clave").removeClass("error");
+							        	jQuery("#error_clave").addClass("no_error");
+							        	jQuery("#clave").removeClass("vlz_input_error");
+
+						      			jQuery("#error_clave2").removeClass("error");
+							        	jQuery("#error_clave2").addClass("no_error");
+							        	jQuery("#clave2").removeClass("vlz_input_error");
+
 						      		}else{
-						      			jQuery("#vlz_val_clave_2").css("display", "none");
+						        		jQuery("#error_clave").removeClass("no_error");
+							        	jQuery("#error_clave").addClass("error");
+							        	jQuery("#clave").addClass("vlz_input_error");
+
+						        		jQuery("#error_clave2").removeClass("no_error");
+							        	jQuery("#error_clave2").addClass("error");
+							        	jQuery("#clave2").addClass("vlz_input_error");
 						      		}
 						      	}
 
-						      	jQuery( "#clave1" ).keyup(clvs_iguales);
+						      	jQuery( "#clave" ).keyup(clvs_iguales);
 						      	jQuery( "#clave2" ).keyup(clvs_iguales);
 
 						      	function vlz_validar(){
+						      		var error = 0;
 
 						      		if( !form.checkValidity() ){
+						      			error++;						      			
+						      		}
 
+						      		if( !especiales("clave") ){
+						      			error++;						      			
+						      		}
+
+						      		if( error > 0 ){
 						      			var primer_error = ""; var z = true;
 						      			jQuery( ".error" ).each(function() {
 										  	if( jQuery( this ).css( "display" ) == "block" ){

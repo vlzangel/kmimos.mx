@@ -35,6 +35,68 @@ if(!function_exists('kmimos_mails_administradores')){
     }
 }
 
+if(!function_exists('servicios_adicionales')){
+    function servicios_adicionales(){
+
+        $extras = array(
+            'corte' => array( 
+                'label'=>'Corte de Pelo y Uñas',
+                'icon' => 'peluqueria'
+            ),
+            'bano' => array( 
+                'label'=>'Baño y Secado',
+                'icon' => 'bano'
+            ),
+            'transportacion_sencilla' => array( 
+                'label'=>'Transporte Sencillo',
+                'icon' => 'transporte'
+            ),
+            'transportacion_redonda' => array( 
+                'label'=>'Transporte Redondo',
+                'icon' => 'transporte2'
+            ),
+            'visita_al_veterinario' => array( 
+                'label'=>'Visita al Veterinario',
+                'icon' => 'veterinario'
+            ),
+            'limpieza_dental' => array( 
+                'label'=>'Limpieza Dental',
+                'icon' => 'limpieza'
+            ),
+            'acupuntura' => array( 
+                'label'=>'Acupuntura',
+                'icon' => 'acupuntura'
+            )
+        );
+
+        return $extras;
+    }
+}
+
+// 
+
+if(!function_exists('kmimos_get_foto_cuidador')){
+    function kmimos_get_foto_cuidador($id){
+        global $wpdb;
+        $name_photo = get_user_meta($id, "name_photo", true);
+        $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id = ".$id);
+        $cuidador_id = $cuidador->id;
+        $xx = $name_photo;
+        if( empty($name_photo)  ){ $name_photo = "0"; }
+        if( file_exists("wp-content/uploads/cuidadores/avatares/".$cuidador_id."/{$name_photo}") ){
+            $img = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/{$name_photo}";
+        }else{
+            if( file_exists("wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg") ){
+                $img = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg";
+            }else{
+                $img = get_template_directory_uri().'/images/noimg.png';
+            }
+        }
+        return $img;
+    }
+    
+}
+
 if(!function_exists('kmimos_style')){
     function kmimos_style($styles = array()){
         
@@ -299,6 +361,7 @@ if(!function_exists('kmimos_include_admin_scripts')){
         wp_enqueue_script( 'kmimos_script', plugins_url('javascript/kmimos-admin.js', __FILE__), array(), '1.0.0', true );
         wp_enqueue_style( 'kmimos_style', plugins_url('css/kmimos-admin.css', __FILE__) );
 
+
         global $current_user;
 
         $tipo = get_usermeta( $current_user->ID, "tipo_usuario", true );   
@@ -377,6 +440,16 @@ if(!function_exists('kmimos_admin_menu')){
             ),
 
             array(
+                'title'=>'Panel de Control',
+                'short-title'=>'Panel de Control',
+                'parent'=>'kmimos',
+                'slug'=>'bp_Reservas',
+                'access'=>'manage_options',
+                'page'=>'kmimos_backpanel',
+                'icon'=>plugins_url('/assets/images/icon.png', __FILE__),
+            ),
+
+            array(
                 'title'=> __('Settings'),
                 'short-title'=> __('Settings'),
                 'parent'=>'kmimos',
@@ -427,6 +500,17 @@ if(!function_exists('kmimos_panel')){
             wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
         }*/
         include_once('dashboard/kmimos_panel.php');
+    }
+
+}
+
+if(!function_exists('kmimos_backpanel')){
+
+    function kmimos_backpanel(){
+        /*if ( !current_user_can( 'manage_options' ) )  {
+            wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
+        }*/
+        include_once('dashboard/kmimos_backpanel.php');
     }
 
 }
@@ -1380,6 +1464,7 @@ if(!function_exists('get_referred_list_options')){
             'Agencia IQPR'  =>  'Agencia IQPR',
             'Revistas o periodicos' =>  'Revistas o periodicos',
             'Vintermex'             =>  'Vintermex',
+            'Amigo/Familiar'=>  'Amigo/Familiar',
             'Otros'                 =>  'Otros',
         );
         return $opciones;
@@ -2454,7 +2539,11 @@ if(!function_exists('kmimos_get_pet_info')){
 
         
 
-        $sql = "SELECT pt.ID AS pet_id, GROUP_CONCAT(ty.term_taxonomy_id SEPARATOR ',') AS type, br.meta_value AS breed, ";
+        $sql = "SELECT  
+        
+
+
+        pt.ID AS pet_id, GROUP_CONCAT(ty.term_taxonomy_id SEPARATOR ',') AS type, br.meta_value AS breed, ";
 
         $sql .= "ph.meta_value as photo, nm.meta_value AS name, gr.meta_value AS gender, co.meta_value AS colors, bd.meta_value AS birthdate, ";
 
@@ -2469,6 +2558,13 @@ if(!function_exists('kmimos_get_pet_info')){
         $sql .= "LEFT JOIN $wpdb->term_relationships AS ty ON pt.ID =ty.object_id ";
 
         $sql .= "LEFT JOIN $wpdb->postmeta AS br ON (pt.ID =br.post_id AND br.meta_key='breed_pet') ";
+
+
+
+        
+       // $sql .= "LEFT JOIN $wpdb->razas AS raza  ON raza.id = br.meta_value  ";
+
+
 
         $sql .= "LEFT JOIN $wpdb->postmeta AS ph ON (pt.ID =ph.post_id AND ph.meta_key='photo_pet') ";
 

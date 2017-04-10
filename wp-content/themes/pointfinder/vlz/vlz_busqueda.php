@@ -118,21 +118,9 @@ $pagina = $page; // Pagina actual
 	$rows = [];
 	$r2 = 0;
 
-	// Cargar Datos en SESSION
-	if( isset($_SESSION['busqueda_resultado']) ){	
-		$rows = $_SESSION['busqueda_resultado']['ROWS'];
-		$r2   = $_SESSION['busqueda_resultado']['FOUND_ROWS'];
-	}
-	// Buscar valores en DB
-	if(empty($rows)){
-		$sql = vlz_sql_busqueda($_POST, $pagina_row_fin);
-		$rows = $wpdb->get_results($sql);
-		$r2 = $wpdb->get_results('SELECT FOUND_ROWS() AS cantidad');
-
-		// Guardar Session
-		$_SESSION['busqueda_resultado']['ROWS'] = $rows;
-		$_SESSION['busqueda_resultado']['FOUND_ROWS'] = $r2;
-	}
+	$sql = vlz_sql_busqueda($_POST, $pagina_row_fin);
+	$rows = $wpdb->get_results($sql);
+	$r2 = $wpdb->get_results('SELECT FOUND_ROWS() AS cantidad');
 
 	$depuracion[] = $sql;
 	$depuracion[] = $_POST;
@@ -141,8 +129,6 @@ $pagina = $page; // Pagina actual
 
 	//IC: Se guarda el historico de busqueda en session para la paginacion
 	$_SESSION['cuidadores_search'] = $r; 
-
-	// $depuracion[] = $rows;
 
 	$depuracion[] = [
 		"wp-page"=>$page,
@@ -187,6 +173,52 @@ $pagina = $page; // Pagina actual
 		);
 	}
 
+	$top_destacados = "";
+
+	if( $_POST['estados'] != ''){
+
+		$estado_des = $wpdb->get_var("SELECT name FROM states WHERE id = ".$_POST['estados']);
+
+		/*if( $_POST['municipios'] != ''){
+			$top_municipio = " AND municipio = '{$_POST['municipios']}'";
+			$municipio_des = " - ".$wpdb->get_var("SELECT name FROM locations WHERE id = ".$_POST['municipios']);
+		}*/
+
+		$sql_top = "SELECT * FROM destacados WHERE estado = '{$_POST['estados']}' {$top_municipio}";
+
+		$tops = $wpdb->get_results($sql_top);
+		$top_destacados = ""; $cont = 0;
+		foreach ($tops as $value) {
+			$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id = {$value->cuidador}");
+			$data = $wpdb->get_row("SELECT post_title AS nom, post_name AS url FROM wp_posts WHERE ID = {$cuidador->id_post}");
+			$nombre = $data->nom;
+			$img_url = kmimos_get_foto_cuidador($value->cuidador);
+			$url = get_home_url() . "/petsitters/" . $data->url;
+			$top_destacados .= "
+				<a class='vlz_destacados_contenedor' href='{$url}'>
+					<div class='vlz_destacados_contenedor_interno'>
+						<div class='vlz_destacados_img'>
+							<div class='vlz_descado_img_fondo' style='background-image: url({$img_url});'></div>
+							<div class='vlz_descado_img_normal' style='background-image: url({$img_url});'></div>
+							<div class='vlz_destacados_precio'><sub style='bottom: 0px;'>Hospedaje desde</sub><br>MXN $".$cuidador->hospedaje_desde."</div>
+						</div>
+						<div class='vlz_destacados_data' >
+							<div class='vlz_destacados_nombre'>{$nombre}</div>
+							<div class='vlz_destacados_adicionales'>".vlz_servicios($cuidador->adicionales)."</div>
+						</div>
+					</div>
+				</a>
+			";
+			$cont++;
+		}
+		if( $cont > 0 ){
+			if( $top_destacados != '' ){
+				$top_destacados = $top_destacados."</div>";	
+			}
+			$top_destacados = utf8_decode( '<div class="pfwidgettitle"> <div class="widgetheader">Destacados Kmimos en: '.$estado_des.' '.$municipio_des.'</div> </div> <div class="row" style="margin: 10px auto 20px;">').$top_destacados;
+		}
+		
+	}
 
 	// $depuracion[] = $favoritos;
 
@@ -196,108 +228,116 @@ $pagina = $page; // Pagina actual
 	}
 
 	echo '<div id="lista" class="pf-blogpage-spacing pfb-top"></div>';
-	echo '<section role="main" class="blog-full-width"> <div class="pf-container"> <div class="pf-row"> <div class="col-lg-9">
+	echo '<section role="main" class="blog-full-width"> 
+			<div class="pf-container"> 
+				<div class="pf-row"> 
+					<div class="col-lg-9">
 
-			<div class="pfwidgettitle"><div class="widgetheader">Listado: '.$total_registros.' cuidador(es)</div></div>
+					'.$top_destacados.'
 
-			<ul class="pfitemlists-content-elements pf3col" data-layout-mode="fitRows" style="position: relative; margin: 20px -15px 20px 0px;">
-				<li class="col-lg-4 col-md-6 col-sm-6 col-xs-12 wpfitemlistdata isotope-item" style="position: absolute; left: 0px; top: 0px;">
-					<div class="pflist-item" style="background-color:#ffffff;"></div>
-				</li>';
+						<div class="pfwidgettitle">
+							<div class="widgetheader">Listado: '.$total_registros.' cuidador(es)</div>
+						</div>
 
-					if( ($total_registros+0) > 0 ){
+							<ul class="pfitemlists-content-elements pf3col" data-layout-mode="fitRows" style="position: relative; margin: 20px -15px 20px 0px;">
+								<li class="col-lg-4 col-md-6 col-sm-6 col-xs-12 wpfitemlistdata isotope-item" style="position: absolute; left: 0px; top: 0px;">
+									<div class="pflist-item" style="background-color:#ffffff;"></div>
+								</li>';
 
-		        		foreach ($r as $key => $cuidador) {
-		        			$ID = $cuidador->id;
-		        			
-		        			include("vlz_plantilla_listado.php");
+									if( ($total_registros+0) > 0 ){
+
+						        		foreach ($r as $key => $cuidador) {
+						        			$ID = $cuidador->id;
+						        			
+						        			include("vlz_plantilla_listado.php");
+										}
+										echo "	<script>
+													jQuery(document).resize(function(){
+														if (jQuery(window).width() < 550) {
+															console.log('cambio de pantalla')
+															jQuery('.vlz_contenedor_mapa').removeClass('ocultarMapa');
+														}
+
+													});
+													jQuery(document).ready(function(){
+														if (jQuery(window).width() < 550) {
+															console.log('cambio de pantalla')
+															jQuery('.vlz_contenedor_mapa').removeClass('ocultarMapa');
+														}
+
+													});
+												</script>";
+
+									}else{
+										echo "<li align='justify'><h2 style='padding-right: 20px!important;'>No tenemos resultados para esta búsqueda, si quieres intentarlo de nuevo pícale <a  style='color: #00b69d; font-weight: 600;' href='".get_home_url()."/#jj-landing-page'>aquí,</a> o aplica otro filtro de búsqueda.</h2></li>";
+										echo "	<script>
+													jQuery(document).resize(function(){
+														if (jQuery(window).width() < 550) {
+															console.log('cambio de pantalla')
+															jQuery('.vlz_contenedor_mapa').addClass('ocultarMapa');
+														}
+
+													});
+													jQuery(document).ready(function(){
+														if (jQuery(window).width() < 550) {
+															console.log('cambio de pantalla')
+															jQuery('.vlz_contenedor_mapa').addClass('ocultarMapa');
+														}
+
+													});
+												</script>";
+									}
+							
+							echo '</ul>';
+
+							include("vlz_style.php"); ?>
+
+							<div class="vlz_nav_cont">
+
+								<div class="vlz_nav_cont_interno">
+
+					 				<?php
+										$t = $total_registros+0;
+										if($t > $item_by_page){
+											$ps = ceil($t/$item_by_page)+1;
+											for( $i=1; $i<$ps; $i++){
+												$active = ( $pagina == $i || ($pagina == 0 && $i == 1)  )? "class='vlz_activa'": "";
+												echo "<a href='".get_home_url()."/busqueda/{$i}' ".$active.">".$i."</a>";
+											}
+										}
+										$w = 40*$ps;
+										echo "
+											<style>
+												.vlz_nav_cont_interno{
+													width: {$w}px;
+												}
+											</style>
+										";
+									?>
+				 		
+								</div>
+
+							</div> <?php
+
+						foreach ($depuracion as $key => $value) {
+							echo "<pre style='display: none;'>";
+								print_r($value);
+							echo "</pre>";
 						}
-						echo "	<script>
-									jQuery(document).resize(function(){
-										if (jQuery(window).width() < 550) {
-											console.log('cambio de pantalla')
-											jQuery('.vlz_contenedor_mapa').removeClass('ocultarMapa');
-										}
-
-									});
-									jQuery(document).ready(function(){
-										if (jQuery(window).width() < 550) {
-											console.log('cambio de pantalla')
-											jQuery('.vlz_contenedor_mapa').removeClass('ocultarMapa');
-										}
-
-									});
-								</script>";
-
-					}else{
-						echo "<li align='justify'><h2 style='padding-right: 20px!important;'>No tenemos resultados para esta búsqueda, si quieres intentarlo de nuevo pícale <a  style='color: #00b69d; font-weight: 600;' href='".get_home_url()."/#jj-landing-page'>aquí,</a> o aplica otro filtro de búsqueda.</h2></li>";
-						echo "	<script>
-									jQuery(document).resize(function(){
-										if (jQuery(window).width() < 550) {
-											console.log('cambio de pantalla')
-											jQuery('.vlz_contenedor_mapa').addClass('ocultarMapa');
-										}
-
-									});
-									jQuery(document).ready(function(){
-										if (jQuery(window).width() < 550) {
-											console.log('cambio de pantalla')
-											jQuery('.vlz_contenedor_mapa').addClass('ocultarMapa');
-										}
-
-									});
-								</script>";
-					}
-			
-			echo '</ul>';
-
-			include("vlz_style.php"); ?>
-
-			<div class="vlz_nav_cont">
-
-				<div class="vlz_nav_cont_interno">
-
-	 				<?php
-						$t = $total_registros+0;
-						if($t > $item_by_page){
-							$ps = ceil($t/$item_by_page)+1;
-							for( $i=1; $i<$ps; $i++){
-								$active = ( $pagina == $i || ($pagina == 0 && $i == 1)  )? "class='vlz_activa'": "";
-								echo "<a href='/busqueda/{$i}' ".$active.">".$i."</a>";
-							}
-						}
-						$w = 40*$ps;
-						echo "
-							<style>
-								.vlz_nav_cont_interno{
-									width: {$w}px;
-								}
-							</style>
-						";
-					?>
- 		
-				</div>
-
-			</div>
-
-			<?php
-
-				foreach ($depuracion as $key => $value) {
-					echo "<pre style='display: none;'>";
-						print_r($value);
-					echo "</pre>";
-				}
 				
-	echo '</div>';
+					echo '</div>';
 
-	echo '<div class="col-lg-3" style="position: relative;"> <div class="pfwidgettitle"><div class="widgetheader">Filtrar Cuidadores</div></div>';
+					echo '<div class="col-lg-3" style="position: relative;"> <div class="pfwidgettitle"><div class="widgetheader">Filtrar Cuidadores</div></div>';
 
-		include("vlz_formulario.php");
-		include("vlz_sql_marcadores.php");
-		include("vlz_scripts.php");
+						include("vlz_formulario.php");
+						include("vlz_sql_marcadores.php");
+						include("vlz_scripts.php");
 
-	echo '</div> </div> </div> </section>';
-	echo '<div class="pf-blogpage-spacing pfb-bottom"></div>';
+					echo '</div> 
+				</div> 
+			</div> 
+		</section>';
+		echo '<div class="pf-blogpage-spacing pfb-bottom"></div>';
 
 	get_footer();
 ?>

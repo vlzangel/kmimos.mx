@@ -80,20 +80,36 @@ if ( ! $checkout->enable_signup && ! $checkout->enable_guest_checkout && ! is_us
 			do_action( 'woocommerce_checkout_order_review' );
 		?>
 	</div>
+
 	<style type="text/css">
 		#add_payment_method #payment ul.payment_methods, .woocommerce-checkout #payment ul.payment_methods>li>label {
-			    color: #54c8a7;
-			    font-size: large;
-			    font-weight: bold;
-			    text-shadow: 3px 2px 12px rgba(255, 255, 255, 0.57);
+		    color: #54c8a7;
+		    font-size: large;
+		    font-weight: bold;
+		    text-shadow: 3px 2px 12px rgba(255, 255, 255, 0.57);
+		}
+		<?php
+
+			global $current_user;
+
+			$roles = wp_get_current_user()->roles;
+
+			if( $roles[0] != "administrator" ){
+
+				echo "
+					.payment_method_wcvendors_test_gateway{
+						display: none;
+					}
+				";
+			}
+		?>
+
+		@media (max-width: 592px){
+			#add_payment_method #payment ul.payment_methods, .woocommerce-checkout #payment ul.payment_methods>li>label {
+				font-size: x-small;
 			}
 
-			@media (max-width: 592px){
-				#add_payment_method #payment ul.payment_methods, .woocommerce-checkout #payment ul.payment_methods>li>label {
-					font-size: x-small;
-				}
-
-			}
+		}
 	</style>
 	<?php do_action( 'woocommerce_checkout_after_order_review' ); ?>
 

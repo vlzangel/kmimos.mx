@@ -1,3 +1,4 @@
+<?php $post_type = get_post_type(); ?>
         <?php if (!is_page_template('pf-empty-page.php' ) && !is_page_template('terms-conditions.php' )) {?>
             </div>
             </div> 
@@ -129,9 +130,23 @@
                     </div>
                  </div> 
               </div>
-              <div class="jj-xs-offiset-2 col-md-offset-1 col-md-offset-3 jj-offset-2">
-                <span id="siteseal"><script async type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=c5u9pjdoyKXQ6dRtmwnDmY0bV6KVBrdZGPEAnPkeSt7ZRCetPjIUzVK0bnHa"></script></span>   
-            </div>
+
+
+
+                <div class="jj-xs-offiset-2 col-md-offset-1 col-md-offset-3 jj-offset-2 inline" >
+                    <span id="siteseal"><script async type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=c5u9pjdoyKXQ6dRtmwnDmY0bV6KVBrdZGPEAnPkeSt7ZRCetPjIUzVK0bnHa"></script></span>   
+
+
+                <?php if($post_type=='post'){ ?>
+
+                        <a class="inline" href="http://es.paperblog.com/" rel="paperblog kmimos" title="Paperblog : Los mejores artículos de los blogs" ><img src="/wp-content/uploads/iconos/paperblog.gif" border="0" alt="Paperblog : Los mejores artículos de los blogs" width="131" height="32"/></a>
+
+                        <a class="inline" href="http://www.boosterblog.es" target="_blank"><img src="/wp-content/uploads/iconos/boosterblog-es-logo.png" width="131" height="32" alt="Publicidad por tu blog con Boosterblog" /></a>
+                <?php } ?>
+                </div>
+
+
+
             </footer>
             <?php
             }
@@ -199,6 +214,11 @@
                 .jj-patica-menu{
                     display: none;
                 }
+                .inline{
+                    display: inline;
+                    margin-bottom:3px;
+                }
+
             }
             @media (max-width: 120px) and (min-width: 962px){
                 .socialBtns{
@@ -218,11 +238,15 @@
                 .jj-xs-offiset-2{
                     margin-left: 20%;
                 }
+
+                .inline{
+                    display: block;
+                }
             }
 
             @media (max-width: 520px){
                 .vlz_modal_contenido{
-                    height: 300px!important;
+                    height: 300px;
                 }
             }           
 
