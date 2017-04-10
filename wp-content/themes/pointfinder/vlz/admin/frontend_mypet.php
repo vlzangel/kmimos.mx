@@ -153,7 +153,7 @@
                                    </div>
                                    <div class="cell25">
                                        <section>
-                                            <label for="pet_gender" class="lbl-text">'.esc_html__('Género de la mascota','pointfindert2d').':</label>
+                                            <label for="pet_gender" class="lbl-text">'.esc_html__('GÃ©nero de la mascota','pointfindert2d').':</label>
                                             <label class="lbl-ui">
                                                 <select name="pet_gender" class="input" />
                                                     <option value="">Favor Seleccione</option>
@@ -164,7 +164,7 @@
                                     </div>
                                     <div class="cell50">
                                         <section>
-                                            <label for="pet_size" class="lbl-text"><strong>'.esc_html__('Tamaño de la Mascota','pointfindert2d').'</strong>:</label>
+                                            <label for="pet_size" class="lbl-text"><strong>'.esc_html__('TamaÃ±o de la Mascota','pointfindert2d').'</strong>:</label>
                                             <label class="lbl-ui">
                                                 <select name="pet_size" class="input" />
                                                     <option value="">Favor Seleccione</option>
