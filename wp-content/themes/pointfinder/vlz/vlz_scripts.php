@@ -61,7 +61,7 @@
 		}
 	?>
 
-	function initMap() { <?php 
+	function  initMap() {<?php
 	
 		echo "
 			var lat = '".$L['lat']."';
@@ -96,6 +96,10 @@
 			$c = $value['ID'];
 
 			echo "
+
+				var point = new google.maps.LatLng('{$value['lat']}', '{$value['lng']}');
+				bounds.extend(point);
+
 				marker_{$c} = new google.maps.Marker({
 					map: map,
 					draggable: false,
@@ -111,6 +115,8 @@
 					
 		}
 
+		echo "map.fitBounds(bounds);";
+		/*
 		echo "
 			bounds.extend(
 				new google.maps.LatLng(
@@ -126,7 +132,9 @@
 		        )
 		    );
 
-			map.fitBounds(bounds);"; ?>
+			map.fitBounds(bounds);";
+		*/
+		?>
 	}
 
 	jQuery("#estados").on("change", function(e){
@@ -294,6 +302,9 @@
 	});
 </script>
 
-<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyD-xrN3-wUMmJ6u2pY_QEQtpMYquGc70F8&callback=initMap"> </script>  -->
+<script async defer src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyD-xrN3-wUMmJ6u2pY_QEQtpMYquGc70F8&callback=initMap">
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyBIvM6BjG8mW7EuDpIjC_WX0XkQRZbfhNo&callback=initMap"> </script> 
+jQuery.getScript(URLmap, function(data, textStatus, jqxhr){
+	kmimos_save_map_run('#mapa');
+}).done(function(){ }).fail(function(){ });
+</script>
