@@ -15,6 +15,11 @@
  * License:     GPL2
  */
 include_once('includes/class/class_kmimos_map.php');
+include_once('includes/functions/kmimos_functions.php');
+
+if(!function_exists('get_estados_municipios')){
+    return get_estados_municipios();
+}
 
 if(!function_exists('kmimos_mails_administradores')){
     function kmimos_mails_administradores(){
