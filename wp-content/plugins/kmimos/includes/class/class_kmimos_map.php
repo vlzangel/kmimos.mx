@@ -89,6 +89,9 @@ class Class_Kmimos_Map{
     }
 
     function Create_Filename($file='',$type='path'){
+        if($file==''){
+            $file='default';
+        }
         if($type=='url'){
             return $this->url_map.$file.'.txt';
 
@@ -101,11 +104,17 @@ class Class_Kmimos_Map{
         $filter_result=array();
         $filter_result[]=$filter['otra_latitud'];
         $filter_result[]=$filter['otra_longitud'];
-        foreach($filter['servicios'] as $service){
-            $filter_result[]=$service;
+        if(isset($filter['servicios'])){
+            foreach($filter['servicios'] as $service){
+                $filter_result[]=$service;
+            }
+
         }
-        foreach($filter['tamanos'] as $size){
-            $filter_result[]=$size;
+        if(isset($filter['tamanos'])){
+            foreach($filter['tamanos'] as $size){
+                $filter_result[]=$size;
+            }
+
         }
         return $filter_result;
     }
