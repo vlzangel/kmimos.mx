@@ -62,7 +62,7 @@
 		}
 	?>
 
-	function initMap() { <?php 
+	function  initMap() {<?php
 	
 		echo "
 			var lat = '".$L['lat']."';
@@ -97,6 +97,10 @@
 			$c = $value['ID'];
 
 			echo "
+
+				var point = new google.maps.LatLng('{$value['lat']}', '{$value['lng']}');
+				bounds.extend(point);
+
 				marker_{$c} = new google.maps.Marker({
 					map: map,
 					draggable: false,
@@ -112,6 +116,8 @@
 					
 		}
 
+		echo "map.fitBounds(bounds);";
+		/*
 		echo "
 			bounds.extend(
 				new google.maps.LatLng(
@@ -127,7 +133,9 @@
 		        )
 		    );
 
-			map.fitBounds(bounds);"; ?>
+			map.fitBounds(bounds);";
+		*/
+		?>
 	}
 
 	function cargar_municipio_reload(){
@@ -294,4 +302,18 @@
 	});
 </script>
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyD-xrN3-wUMmJ6u2pY_QEQtpMYquGc70F8&callback=initMap"> </script> 
+
+<script type="text/javascript">
+var KEYmap='AIzaSyD-xrN3-wUMmJ6u2pY_QEQtpMYquGc70F8';
+var URLmap='https://maps.googleapis.com/maps/api/js?v=3&key='+KEYmap+'&callback=initMap';
+//var URLmap='http://maps.google.com/maps/api/js?sensor=false&callback=initMap';
+//var URLmap='http://kmimos.dev.mx/wp-content/plugins/kmimos/includes/js/MAPgoogle.js?sensor=false&callback=initMap';
+
+
+jQuery.getScript(URLmap, function(data, textStatus, jqxhr){
+	kmimos_save_map_run('#mapa');
+	//initMap();
+}).done(function(){ }).fail(function(){ });
+
+
+</script>
