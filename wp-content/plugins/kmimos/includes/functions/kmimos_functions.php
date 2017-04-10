@@ -1,6 +1,9 @@
 <?php
+
+
 	function get_estados_municipios(){
-		$conn_my = new mysqli("localhost", "root", "", 'kmimos.mx');
+		require_once('./vlz_config.php');
+		$conn_my = new mysqli($host, $user, $pass, $db);
 		if (!$conn_my) {
 		  	echo "No conectado.\n";
 		  	exit;
