@@ -24,10 +24,9 @@
 
 	//MAP
  	//echo $kmimos_map->Search_Map($_POST);
-	$Kmap=$kmimos_map->Search_Map($_POST);
+	// $Kmap=$kmimos_map->Search_Map($_POST);
 
-
-$pagina = $page; // Pagina actual
+	$pagina = $page; // Pagina actual
 	$item_by_page = 15; // Numero de Items por pagina
 	// Items by page
 	$pagina_row_fin = ( $pagina>1 )? $pagina * $item_by_page : $item_by_page;
@@ -125,10 +124,11 @@ $pagina = $page; // Pagina actual
 	$depuracion[] = $sql;
 	$depuracion[] = $_POST;
 
-	$r = array_slice($rows, $pagina_row_ini, $item_by_page);
+	// $r = array_slice($rows, $pagina_row_ini, $item_by_page);
+	$r = $rows;
 
 	//IC: Se guarda el historico de busqueda en session para la paginacion
-	$_SESSION['cuidadores_search'] = $r; 
+	// $_SESSION['cuidadores_search'] = $r; 
 
 	$depuracion[] = [
 		"wp-page"=>$page,
@@ -299,7 +299,7 @@ $pagina = $page; // Pagina actual
 					 				<?php
 										$t = $total_registros+0;
 										if($t > $item_by_page){
-											$ps = ceil($t/$item_by_page)+1;
+											$ps = ceil($t/$item_by_page);
 											for( $i=1; $i<$ps; $i++){
 												$active = ( $pagina == $i || ($pagina == 0 && $i == 1)  )? "class='vlz_activa'": "";
 												echo "<a href='".get_home_url()."/busqueda/{$i}' ".$active.">".$i."</a>";
