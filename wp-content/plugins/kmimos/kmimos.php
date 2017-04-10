@@ -1464,7 +1464,8 @@ if(!function_exists('get_referred_list_options')){
             'Agencia IQPR'  =>  'Agencia IQPR',
             'Revistas o periodicos' =>  'Revistas o periodicos',
             'Vintermex'             =>  'Vintermex',
-            'Amigo/Familiar'=>  'Amigo/Familiar',
+            'Amigo/Familiar'        =>  'Recomendación de amigo o familiar',
+            'Youtube'               =>  'Youtube',
             'Otros'                 =>  'Otros',
         );
         return $opciones;
