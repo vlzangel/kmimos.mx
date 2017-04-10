@@ -20,22 +20,24 @@
 			order by estado_descripcion, municipio_descripcion ASC");
 		$datos = [];
 		while ($row = $result->fetch_assoc()){
-			$geo_municipio = unserialize($row['municipio_ubicacion']);
-			$geo_estado = unserialize($row['estado_ubicacion']);
-			if(array_key_exists($row['estado_id'], $datos)){
-				if(array_key_exists('municipios', $datos[$row['estado_id']])){
-						$estados = $datos[$row['estado_id']]['municipios'];
+			if(!empty($row)){
+				$geo_municipio = unserialize($row['municipio_ubicacion']);
+				$geo_estado = unserialize($row['estado_ubicacion']);
+				if(array_key_exists($row['estado_id'], $datos)){
+					if(array_key_exists('municipios', $datos[$row['estado_id']])){
+							$estados = $datos[$row['estado_id']]['municipios'];
+					}
 				}
-			}
-			$estados[$row['municipio_id']] = [
-					"descripcion" => $row['municipio_descripcion'],
-					"ubicacion" => $geo_municipio
+				$estados[$row['municipio_id']] = [
+						"descripcion" => $row['municipio_descripcion'],
+						"ubicacion" => $geo_municipio
+					];
+				$datos[$row['estado_id']] = [
+					"descripcion"=>$row['estado_descripcion'],
+					"ubicacion" => $geo_municipio,
+					"municipios" => $estados
 				];
-			$datos[$row['estado_id']] = [
-				"descripcion"=>$row['estado_descripcion'],
-				"ubicacion" => $geo_municipio,
-				"municipios" => $estados
-			];
+			}
 		}
 		$datos_json = json_encode($datos,JSON_UNESCAPED_UNICODE );
 		return "<script>
