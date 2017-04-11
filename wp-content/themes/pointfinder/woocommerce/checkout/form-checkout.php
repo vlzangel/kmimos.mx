@@ -96,11 +96,11 @@ if ( ! $checkout->enable_signup && ! $checkout->enable_guest_checkout && ! is_us
 
 			if( $roles[0] != "administrator" ){
 
-				echo "
+				/*echo "
 					.payment_method_wcvendors_test_gateway{
 						display: none;
 					}
-				";
+				";*/
 			}
 		?>
 
