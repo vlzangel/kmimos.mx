@@ -2,9 +2,9 @@
     $formaction = 'pfpet_delete_confirm';
     $noncefield = wp_create_nonce($formaction);
     $buttonid = 'pf-ajax-delete-confirm-button';
-    $buttontext = esc_html__('CONFIRMAR ELIMINACIÓN','pointfindert2d');
+    $buttontext = esc_html__('CONFIRMAR ELIMINACI?N','pointfindert2d');
     $this->FieldOutput .= '
-                                <h1>Eliminación de Mascota de lista del cuidador</h1><hr><br>
+                                <h1>EliminaciÃ³n de Mascota de lista del cuidador</h1><hr><br>
                                       <section>
                                         <label for="confirm_delete" class="lbl-text">
                                         <input type="hidden" name="pet_id" value="'.$_GET['id'].'">
