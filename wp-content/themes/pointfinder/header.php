@@ -465,6 +465,44 @@
 									.pfshrink .ser_cuidador span{
 										height: 38px;
 									}
+										
+									@media (max-width: 568px){
+										.wpf-header #pf-primary-nav .pfnavmenu .main-menu-item > a {
+										    height: auto;
+										    line-height: 18px;
+										}
+										.wpf-header #pf-primary-nav .pfnavmenu .pfnavsub-menu > li a.sub-menu-link, .anemptystylesheet {
+										    text-align: left !important;
+										}
+										.wpf-header #pf-primary-nav li a, .wpf-header #pf-primary-nav.pfmobileview .pfnavmenu .main-menu-item > a {
+										    text-align: left !important;
+										}
+										#pfmenucol1, .pfnavmenu li.pf-megamenu-main {
+										    margin-bottom: 3px;
+										}
+										.wpf-navwrapper .pf-menu-container.pfactive {
+										    margin-top: 10px;
+										    margin-bottom: 15px;
+										}
+										.ser_cuidador {
+										    padding: 0px 0px 13px !important;
+										}
+										.ser_cuidador span {
+										    height: auto;
+										    vertical-align: middle;
+										    display: inline-block;
+										}
+										.ser_cuidador div {
+										    display: block;
+										    text-align: center;
+										}
+
+										#pf-primary-nav-button,
+										#pf-topprimary-nav-button{
+											display: inline-block;
+											padding: 4px 0px;
+										}
+									}
 									</style>
 									<ul class="pf-nav-dropdown pfnavmenu pf-topnavmenu">
 										<?php 
@@ -492,9 +530,9 @@
 										<?php 
 										if ( !is_user_logged_in() ){
 										?>
-										<li class="pf-login-register<?php echo $pflogintext?>" id="pf-login-trigger-button-mobi"><a href="#"><i class="pfadmicon-glyph-584"></i> <?php  echo esc_html__('Login','pointfindert2d')?></a></li>
-										<li class="pf-login-register<?php echo $pflogintext?>"><a href="<?php echo get_home_url()."/registrar/"; ?>"><i class="pfadmicon-glyph-365"></i> <?php  echo esc_html__('Register','pointfindert2d')?></a></li>
-										<li class="pf-login-register<?php echo $pflogintext?>" id="pf-lp-trigger-button-mobi"><a href="#"><i class="pfadmicon-glyph-889"></i><?php  echo esc_html__('Forgot Password','pointfindert2d')?></a></li>
+											<li class="pf-login-register<?php echo $pflogintext?>" id="pf-login-trigger-button-mobi"><a href="#"><i class="pfadmicon-glyph-584"></i> <?php  echo esc_html__('Login','pointfindert2d')?></a></li>
+											<li class="pf-login-register<?php echo $pflogintext?>"><a href="<?php echo get_home_url()."/registrar/"; ?>"><i class="pfadmicon-glyph-365"></i> <?php  echo esc_html__('Register','pointfindert2d')?></a></li>
+											<li class="pf-login-register<?php echo $pflogintext?>" id="pf-lp-trigger-button-mobi"><a href="#"><i class="pfadmicon-glyph-889"></i><?php  echo esc_html__('Forgot Password','pointfindert2d')?></a></li>
 										<?php 
 										}else {
 										
