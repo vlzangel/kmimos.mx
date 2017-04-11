@@ -145,11 +145,6 @@
 	        jQuery("#otra_longitud").attr("value", location.lng);
 	        jQuery("#otra_distancia").attr("value", distancia);
 
-
-	        if( CB != undefined) {
-	            CB();
-	        }
-
 	    }
 
 	});
@@ -158,7 +153,7 @@
 		vlz_coordenadas();
 	});
 
-	function vlz_coordenadas(CB){
+	function vlz_coordenadas(){
 		
 		var estado_id = jQuery("#estados").val();            
         var municipio_id = jQuery('#municipios > option[value="'+jQuery("#municipios").val()+'"]').attr('data-id');   
@@ -217,7 +212,7 @@
 
 			?>  <?php
 		}
-		
+
 	?>
 
 	jQuery('#orderby > option[value="<?php echo $_POST['orderby']; ?>"]').attr('selected', 'selected'); 
