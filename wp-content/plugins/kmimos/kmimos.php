@@ -1472,7 +1472,7 @@ if(!function_exists('get_referred_list_options')){
             'Vintermex'             =>  'Vintermex',
             'Amigo/Familiar'        =>  'Recomendación de amigo o familiar',
             'Youtube'               =>  'Youtube',
-            'Otros'                 =>  'Otros',
+            'Otros'                 =>  'Otros'
         );
         return $opciones;
     }
