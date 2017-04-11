@@ -26,10 +26,10 @@
  	//echo $kmimos_map->Search_Map($_POST);
 	// $Kmap=$kmimos_map->Search_Map($_POST);
 
-	$pagina = $page; // Pagina actual
+	$pagina = $page+0; // Pagina actual
 	$item_by_page = 15; // Numero de Items por pagina
 	// Items by page
-	$pagina_row_fin = ( $pagina>1 )? $pagina * $item_by_page : $item_by_page;
+	$pagina_row_fin = ( $pagina > 1 ) ? $pagina * $item_by_page : 0;
 	$pagina_row_ini = $pagina_row_fin - $item_by_page; 
 
 	$xpagina = $pagina_row_fin; // Old var - last items
