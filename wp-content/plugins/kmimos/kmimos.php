@@ -16,6 +16,7 @@
  */
 include_once('includes/class/class_kmimos_map.php');
 include_once('includes/functions/kmimos_functions.php');
+include_once('plugins/woocommerce.php');
 
 if(!function_exists('get_estados_municipios')){
     return get_estados_municipios();
