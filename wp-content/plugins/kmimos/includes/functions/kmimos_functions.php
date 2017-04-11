@@ -5,16 +5,6 @@
 		require_once('vlz_config.php');
 		global $host, $user, $pass, $db;
 		$conn_my = new mysqli($host, $user, $pass, $db);
-		/*$result = $conn_my->query("
-			select s.id as estado_id, 
-				s.name as estado_descripcion, 
-				km.valor as estado_ubicacion, 
-				l.id as municipio_id, 
-				l.name as municipio_descripcion, 
-				ke.valor as municipio_ubicacion 
-			from states as s left join locations as l on s.id = l.state_id left join kmimos_opciones as km on km.clave = CONCAT('estado_',s.id) left join kmimos_opciones as ke on ke.clave = CONCAT('municipio_',l.id)
-				where s.country_id = 1
-			order by municipio_descripcion ASC");*/
 
 		$result = $conn_my->query("
 			SELECT 
@@ -65,23 +55,6 @@
 					"municipios" => $municipios
 				);
 
-				/*$geo_municipio = unserialize($row['municipio_ubicacion']);
-				$geo_estado = unserialize($row['estado_ubicacion']);
-
-				if(array_key_exists($row['estado_id'], $datos)){
-					if(array_key_exists('municipios', $datos[$row['estado_id']])){
-						$estados = $datos[$row['estado_id']]['municipios'];
-					}
-				}
-				$estados[$row['municipio_id']] = [
-						"descripcion" => $row['municipio_descripcion'],
-						"ubicacion" => $geo_municipio
-					];
-				$datos[$row['estado_id']] = [
-					"descripcion"=>$row['estado_descripcion'],
-					"ubicacion" => $geo_municipio,
-					"municipios" => $estados
-				];*/
 			}
 		}
 		$datos_json = json_encode($datos, JSON_UNESCAPED_UNICODE );
