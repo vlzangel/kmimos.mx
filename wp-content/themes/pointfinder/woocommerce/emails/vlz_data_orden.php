@@ -455,12 +455,10 @@
 					<tr>
 						<td></td>
 						<td></td>
-						<td></td>
-						<th style="padding: 3px; border-bottom: solid 1px #00d2b7; border-left: solid 1px #00d2b7;">Descuento</th>
+						<th colspan=2 style="padding: 3px; border-bottom: solid 1px #00d2b7; border-left: solid 1px #00d2b7;">Descuento</th>
 						<td style="padding: 3px; border-bottom: solid 1px #00d2b7; border-right: solid 1px #00d2b7;" align="right">'.number_format( $metas_orden["_cart_discount"][0], 2, ',', '.').'$</td>
 					</tr>
 				';
-
 				$remanente['deposit'] = $remanente['deposit']-$metas_orden["_cart_discount"][0];
 			}
 			
@@ -471,69 +469,57 @@
 					<tr>
 						<td></td>
 						<td></td>
-						<td></td>
-						<th style="padding: 3px; border-bottom: solid 1px #00d2b7; border-left: solid 1px #00d2b7;">Descuento</th>
+						<th colspan=2 style="padding: 3px; border-bottom: solid 1px #00d2b7; border-left: solid 1px #00d2b7;">Descuento</th>
 						<td style="padding: 3px; border-bottom: solid 1px #00d2b7; border-right: solid 1px #00d2b7;" align="right">'.number_format( $metas_orden["_cart_discount"][0], 2, ',', '.').'$</td>
 					</tr>
 				';
-
 				$remanente['remaining'] = $remanente['remaining']-$metas_orden["_cart_discount"][0];
 			}
-
 		}
-
-
 
 		if( $metas_orden["_payment_method"][0] == "openpay_stores" ){
 			$totales = '
 				<tr>
 					<td></td>
 					<td></td>
-					<td></td>
-					<th style="padding: 3px; border-bottom: solid 1px #00d2b7; border-left: solid 1px #00d2b7;">Total</th>
+					<th colspan=2 style="padding: 3px; border-bottom: solid 1px #00d2b7; border-left: solid 1px #00d2b7;">Total</th>
 					<td style="padding: 3px; border-bottom: solid 1px #00d2b7; border-right: solid 1px #00d2b7;" align="right">'.number_format( $pago, 2, ',', '.').'$</td>
 				</tr>
 				'.$descuento_total.'
 				<tr>
 					<td></td>
 					<td></td>
-					<td></td>
-					<th style="padding: 3px; border-bottom: solid 1px #00d2b7; border-left: solid 1px #00d2b7;">Pago en Tienda</th>
+					<th colspan=2 style="padding: 3px; border-bottom: solid 1px #00d2b7; border-left: solid 1px #00d2b7;">Pago en Tienda</th>
 					<td style="padding: 3px; border-bottom: solid 1px #00d2b7; border-right: solid 1px #00d2b7;" align="right">'.number_format( $remanente['deposit'], 2, ',', '.').'$</td>
 				</tr>
 				'.$descuento_parcial.'
 				<tr>
 					<td></td>
 					<td></td>
-					<td></td>
-					<th style="padding: 3px; border-bottom: solid 1px #00d2b7; border-left: solid 1px #00d2b7;">Pago al Cuidador</th>
+					<th colspan=2 style="padding: 3px; border-bottom: solid 1px #cccccc;  text-align: left;">Cliente debe pagar al Cuidador:<div style="color: red;">en efectivo, al llevar a la mascota</div></th>
 					<td style="padding: 3px; border-bottom: solid 1px #00d2b7; border-right: solid 1px #00d2b7;" align="right">'.number_format( $remanente['remaining'], 2, ',', '.').'$</td>
 				</tr>
 			';
 		}else{
-
 			$totales = '
 				<tr>
 					<td></td>
 					<td></td>
-					<td></td>
-					<th style="padding: 3px; border-bottom: solid 1px #00d2b7; border-left: solid 1px #00d2b7; text-align: left;">Total</th>
+					<th colspan=2 style="padding: 3px; border-bottom: solid 1px #00d2b7; border-left: solid 1px #00d2b7; text-align: left;">Total</th>
 					<td style="padding: 3px; border-bottom: solid 1px #00d2b7; border-right: solid 1px #00d2b7;" align="right">'.number_format( $pago, 2, ',', '.').'$</td>
 				</tr>
 				'.$descuento_total.'
 				<tr>
 					<td></td>
 					<td></td>
-					<td></td>
-					<th style="padding: 3px; border-bottom: solid 1px #00d2b7; border-left: solid 1px #00d2b7; text-align: left;">Pagado</th>
+					<th colspan=2 style="padding: 3px; border-bottom: solid 1px #00d2b7; border-left: solid 1px #00d2b7; text-align: left;">Pagado</th>
 					<td style="padding: 3px; border-bottom: solid 1px #00d2b7; border-right: solid 1px #00d2b7;" align="right">'.number_format( $remanente['deposit'], 2, ',', '.').'$</td>
 				</tr>
 				'.$descuento_parcial.'
 				<tr>
 					<td></td>
 					<td></td>
-					<td></td>
-					<th style="padding: 3px; border-bottom: solid 1px #00d2b7; border-left: solid 1px #00d2b7; text-align: left;">Pago al Cuidador</th>
+					<th colspan=2 style="padding: 3px; border-bottom: solid 1px #cccccc;  text-align: left;">Cliente debe pagar al Cuidador:<div style="color: red;">en efectivo, al llevar a la mascota</div></th>
 					<td style="padding: 3px; border-bottom: solid 1px #00d2b7; border-right: solid 1px #00d2b7;" align="right">'.number_format( $remanente['remaining'], 2, ',', '.').'$</td>
 				</tr>
 			';
@@ -544,21 +530,11 @@
 			<br>
 			<p><h2 style="color: #557da1;">Detalles del Servicio Reservado</h2></p>
 			<table>
-				<tr>
-					<td> <strong>Servicio:</strong> </td> <td> '.$tipo_servicio.' </td>
-				</tr>
-				<tr>
-					<td> <strong>Desde:</strong> </td> <td> '.$inicio.' </td>
-				</tr>
-				<tr>
-					<td> <strong>Hasta:</strong> </td> <td> '.$fin.' </td>
-				</tr>
-				<tr>
-					<td> <strong>Duración:</strong> </td> <td> '.$dias.' '.$dias_noches.' </td>
-				</tr>
-				<tr>
-					<td> <strong>Método de Pago:</strong> </td> <td> '.$metas_orden['_payment_method_title'][0].' </td>
-				</tr>
+				<tr> <td> <strong>Servicio:</strong> </td> <td> '.$tipo_servicio.' </td> </tr>
+				<tr> <td> <strong>Desde:</strong> </td> <td> '.$inicio.' </td> </tr>
+				<tr> <td> <strong>Hasta:</strong> </td> <td> '.$fin.' </td> </tr>
+				<tr> <td> <strong>Duración:</strong> </td> <td> '.$dias.' '.$dias_noches.' </td> </tr>
+				<tr> <td> <strong>Método de Pago:</strong> </td> <td> '.$metas_orden['_payment_method_title'][0].' </td> </tr>
 			</table>
 			<br>
 			<table style="width:100%" cellspacing=0 cellpadding=0>
@@ -566,7 +542,7 @@
 					<th style="padding: 3px; background: #00d2b7; border-left: solid 1px #00d2b7;"> Tamaño </th>
 					<th style="padding: 3px; background: #00d2b7;"> Num. Mascotas </th>
 					<th style="padding: 3px; background: #00d2b7;"> Tiempo </th>
-					<th style="padding: 3px; background: #00d2b7;"> Precio Unitario </th>
+					<th style="padding: 3px; background: #00d2b7; width: 150px;"> Precio Unitario </th>
 					<th style="padding: 3px; background: #00d2b7; border-right: solid 1px #00d2b7;"> Precio Total </th>
 				</tr>
 				'.$variaciones.'
