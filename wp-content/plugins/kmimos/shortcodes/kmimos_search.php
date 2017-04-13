@@ -324,34 +324,26 @@
 
             function cargar_municipios(CB){
 
-                var estado_id = jQuery("#estado_cuidador").val();            
+                var estado_id = jQuery("#estado_cuidador").val();
                 
                 console.log(jQuery("#estado_cuidador").val());
-
                 var locaciones = estados_municipios[estado_id]['descripcion'];
-
-
                 var html = "<option value=''>Seleccione un municipio</option>";
                 jQuery.each(estados_municipios[estado_id]['municipios'], function(i, val) {
                     html += "<option value="+i+">"+val.descripcion+"</option>";
                 });
-
                 jQuery("#municipio_cuidador").html(html);
-
                 var location    = estados_municipios[estado_id]['ubicacion']['referencia'];
                 var norte       = estados_municipios[estado_id]['ubicacion']['norte'];
                 var sur         = estados_municipios[estado_id]['ubicacion']['sur'];
-
                 var distancia = calcular_rango_de_busqueda(norte, sur);
-
                 jQuery("#otra_latitud").attr("value", location.lat);
                 jQuery("#otra_longitud").attr("value", location.lng);
                 jQuery("#otra_distancia").attr("value", distancia);
-
-
                 if( CB != undefined) {
                     CB();
                 }
+            }
 
                 // ************************************************************
                 // Function Anterior Cargar Estados y Municipios por Ajax

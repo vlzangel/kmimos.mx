@@ -1,7 +1,31 @@
 <?php
+
 // ***************************************
 // Cargar listados de Reservas
 // ***************************************
+function getRazaDescripcion($id, $razas){
+	$nombre = "[{$id}]";
+	if($id > 0){
+		if( !empty($razas) ){
+			if(array_key_exists($id, $razas)){
+				$nombre = $razas[$id];
+			}
+		}
+	}
+	return $nombre;
+}
+
+function get_razas(){
+	global $wpdb;
+	$sql = "SELECT * FROM razas ";
+	$result = $wpdb->get_results($sql);
+	$razas = [];
+	foreach ($result as $raza) {
+		$razas[$raza->id] = $raza->nombre;
+	}
+	return $razas;
+}
+
 function get_status($sts_reserva, $sts_pedido, $forma_pago=""){
 	
 	// Resultado

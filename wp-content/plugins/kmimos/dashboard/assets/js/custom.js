@@ -2515,10 +2515,10 @@ if (typeof NProgress != 'undefined') {
 					$("#datatable-buttons").DataTable({
 					  dom: "Bfrtip",
 					  buttons: [
-						{
-						  extend: "copy",
-						  className: "btn-sm"
-						},
+						// {
+						//   extend: "copy",
+						//   className: "btn-sm"
+						// },
 						{
 						  extend: "csv",
 						  className: "btn-sm"
@@ -2536,7 +2536,7 @@ if (typeof NProgress != 'undefined') {
 						  className: "btn-sm"
 						},
 					  ],
-					  responsive: true
+					  responsive: false
 					});
 				  }
 				};
@@ -5059,8 +5059,8 @@ if (typeof NProgress != 'undefined') {
 		// init_calendar();
 		// init_compose();
 		// init_CustomNotification();
-		// init_autosize();
-		// init_autocomplete();
+		init_autosize();
+		init_autocomplete();
 				
 	});	
 	

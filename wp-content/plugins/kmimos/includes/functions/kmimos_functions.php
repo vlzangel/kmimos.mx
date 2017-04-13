@@ -5,7 +5,6 @@
 		require_once('./vlz_config.php');
 		$conn_my = new mysqli($host, $user, $pass, $db);
 		if (!$conn_my) {
-		  	echo "No conectado.\n";
 		  	exit;
 		}
 		$result = $conn_my->query("
