@@ -3,6 +3,8 @@
 	$L = geo("L");
 	$N = geo("N");
 	$S = geo("S");
+
+	echo get_estados_municipios();
 ?>
 <script type="text/javascript">
 
@@ -116,97 +118,60 @@
 		}
 
 		echo "map.fitBounds(bounds);";
-		/*
-		echo "
-			bounds.extend(
-				new google.maps.LatLng(
-			        parseFloat( {$N['lat']} ),
-			        parseFloat( {$N['lng']} )
-		        )
-		    );
 
-			bounds.extend(
-				new google.maps.LatLng(
-			        parseFloat( {$S['lat']} ),
-			        parseFloat( {$S['lng']} )
-		        )
-		    );
-
-			map.fitBounds(bounds);";
-		*/
 		?>
 	}
 
 	jQuery("#estados").on("change", function(e){
-		jQuery.ajax( {
-			method: "POST",
-	 		data: { 
-	 			estado: 	jQuery("#estados").val(),
-	 			municipio: 	""
-	 		},
-			url: '<?php echo get_template_directory_uri().'/vlz/ajax_municipios_2.php'; ?>'
-		}).done(function(datos){
 
-			if( datos != false ){
-				datos = eval(datos);
-			
-				var locaciones = jQuery.makeArray( datos.mun );
+		var estado_id = jQuery("#estados").val();            
+	    
+	    if( estado_id != "" ){
 
-				var html = "<option value=''>Seleccione un municipio</option>";
-	            jQuery.each(locaciones, function(i, val) {
-	                html += "<option value="+val.id+">"+val.name+"</option>";
-	            });
+	        var html = "<option value=''>Seleccione un municipio</option>";
+	        jQuery.each(estados_municipios[estado_id]['municipios'], function(i, val) {
+	            html += "<option value="+val.id+" data-id='"+i+"'>"+val.nombre+"</option>";
+	        });
 
-	            jQuery("#municipios").html(html);
+	        jQuery("#municipios").html(html);
 
-	            var location 	= datos.geo.referencia;
-				var norte 		= datos.geo.norte;
-				var sur   		= datos.geo.sur;
+	        var location    = estados_municipios[estado_id]['coordenadas']['referencia'];
+	        var norte       = estados_municipios[estado_id]['coordenadas']['norte'];
+	        var sur         = estados_municipios[estado_id]['coordenadas']['sur'];
 
-				var distancia = calcular_rango_de_busqueda(norte, sur);
+	        var distancia = calcular_rango_de_busqueda(norte, sur);
 
-				jQuery("#otra_latitud").attr("value", location.lat);
-				jQuery("#otra_longitud").attr("value", location.lng);
-				jQuery("#otra_distancia").attr("value", distancia);
+	        jQuery("#otra_latitud").attr("value", location.lat);
+	        jQuery("#otra_longitud").attr("value", location.lng);
+	        jQuery("#otra_distancia").attr("value", distancia);
 
-			}
+	    }
 
-		});
 	});
 
 	jQuery("#municipios").on("change", function(e){
 		vlz_coordenadas();
 	});
 
-	function vlz_coordenadas(CB){
-		jQuery.ajax( {
-			method: "POST",
-	 		data: { 
-	 			municipio: jQuery("#municipios").val() 
-	 		},
-			url: '<?php echo get_template_directory_uri().'/vlz/ajax_municipios_2.php'; ?>'
-		}).done(function(datos){
+	function vlz_coordenadas(){
+		
+		var estado_id = jQuery("#estados").val();            
+        var municipio_id = jQuery('#municipios > option[value="'+jQuery("#municipios").val()+'"]').attr('data-id');   
 
-			if( datos != false ){
-				datos = eval(datos);
-			
-				var location 	= datos.geo.referencia;
-				var norte 		= datos.geo.norte;
-				var sur   		= datos.geo.sur;
+        if( estado_id != "" ){
 
-				var distancia = calcular_rango_de_busqueda(norte, sur);
+            var location    = estados_municipios[estado_id]['municipios'][municipio_id]['coordenadas']['referencia'];
+            var norte       = estados_municipios[estado_id]['municipios'][municipio_id]['coordenadas']['norte'];
+            var sur         = estados_municipios[estado_id]['municipios'][municipio_id]['coordenadas']['sur'];
 
-				jQuery("#otra_latitud").attr("value", location.lat);
-				jQuery("#otra_longitud").attr("value", location.lng);
-				jQuery("#otra_distancia").attr("value", distancia);
+            var distancia = calcular_rango_de_busqueda(norte, sur);
 
-			}
+            jQuery("#otra_latitud").attr("value", location.lat);
+            jQuery("#otra_longitud").attr("value", location.lng);
+            jQuery("#otra_distancia").attr("value", distancia);
 
-			if( CB != undefined) {
-				CB();
-			}
-			
-		});
+        }
+
 	}
 
 	function getLocation() {
@@ -246,9 +211,8 @@
 			}
 
 			?>  <?php
-		}else{ ?>
-			/*getLocation(); */ <?php
 		}
+
 	?>
 
 	jQuery('#orderby > option[value="<?php echo $_POST['orderby']; ?>"]').attr('selected', 'selected'); 

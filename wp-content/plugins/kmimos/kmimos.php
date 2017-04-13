@@ -16,6 +16,7 @@
  */
 include_once('includes/class/class_kmimos_map.php');
 include_once('includes/functions/kmimos_functions.php');
+include_once('plugins/woocommerce.php');
 
 if(!function_exists('get_estados_municipios')){
     return get_estados_municipios();
@@ -1469,8 +1470,9 @@ if(!function_exists('get_referred_list_options')){
             'Agencia IQPR'  =>  'Agencia IQPR',
             'Revistas o periodicos' =>  'Revistas o periodicos',
             'Vintermex'             =>  'Vintermex',
-            'Amigo/Familiar'=>  'Amigo/Familiar',
-            'Otros'                 =>  'Otros',
+            'Amigo/Familiar'        =>  'Recomendación de amigo o familiar',
+            'Youtube'               =>  'Youtube',
+            'Otros'                 =>  'Otros'
         );
         return $opciones;
     }
