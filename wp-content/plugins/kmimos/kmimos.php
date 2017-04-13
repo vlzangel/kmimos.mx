@@ -446,8 +446,8 @@ if(!function_exists('kmimos_admin_menu')){
             ),
 
             array(
-                'title'=>'Panel de Control',
-                'short-title'=>'Panel de Control',
+                'title'=>'Control de Reservas',
+                'short-title'=>'Control de Reservas',
                 'parent'=>'kmimos',
                 'slug'=>'bp_Reservas',
                 'access'=>'manage_options',

@@ -1,6 +1,6 @@
 <?php global $wpdb;
 // Reservas 
-require_once('core/ControllerPanel.php');
+require_once('core/ReservasController.php');
 // Parametros: Filtro por fecha
 $date = getdate();
 $desde = date("Y-m-01", $date[0] );
@@ -51,13 +51,10 @@ $reservas = getReservas($desde, $hasta);
   	<?php }else{ ?>  		
 	    <div class="row"> 
 	    	<div class="col-sm-12" id="table-container" 
-	    		style="font-size: 10px!important; height: 40%!important;">
+	    		style="font-size: 10px!important;">
 	  		<!-- Listado de Reservas -->
-			<table
-				id="datatable-buttons" 
-				class="table table-bordered" 
-				cellspacing="0" 
-				width="100%">
+			<table id="tblReservas" class="table table-striped table-bordered dt-responsive table-hover table-responsive nowrap datatable-buttons" 
+					cellspacing="0" width="100%">
 			  <thead>
 			    <tr>
 			      <th>#</th>
@@ -155,7 +152,7 @@ $reservas = getReservas($desde, $hasta);
 						<th><?php echo $reserva->monto_pagado; ?></th>
 						<th><?php echo $reserva->monto_remanente; ?></th>
 						<th><?php echo $reserva->nro_pedido; ?></th>
-						<th><span class="label label-primary"><?php echo $estatus['sts_largo']; ?></span></th>
+						<th><?php echo $estatus['sts_largo']; ?></th>
 
 				    </tr>
 			   	<?php } ?>

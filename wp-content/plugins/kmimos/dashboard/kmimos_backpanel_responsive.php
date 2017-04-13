@@ -1,6 +1,6 @@
 <?php global $wpdb;
 // Reservas 
-require_once('core/ControllerPanel.php');
+require_once('core/ReservasController.php');
 // Parametros: Filtro por fecha
 $date = getdate();
 $desde = date("Y-m-01", $date[0] );
@@ -52,7 +52,7 @@ $reservas = getReservas($desde, $hasta);
 	    <div class="row"> 
 	    	<div class="col-sm-12" style="">
 	  		<!-- Listado de Reservas -->
-			<table 	id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" 
+			<table 	id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" 
 					cellspacing="0" width="100%">
 			  <thead>
 			    <tr>
@@ -122,8 +122,8 @@ $reservas = getReservas($desde, $hasta);
 						<th><?php echo $reserva->monto_remanente; ?></th>
 						<th><?php echo $reserva->cuidador_nombre; ?></th>
 						<!-- Producto Titulo -->
-						<th><?php echo $reserva->producto_title; ?></th>
-						<th class="text-left hidden">
+						<!-- th class='hidden'><?php echo $reserva->producto_title; ?></th -->
+						<th class="text-left ">
 							<article class="col-sm-12">
 								<h4 class="alert alert-success">
 									<?php echo $reserva->producto_title; ?>
@@ -150,12 +150,12 @@ $reservas = getReservas($desde, $hasta);
 						</th>
 						<!-- Producto Titulo -->
 						<!-- Producto Adicionales -->
-						<th>
+						<!-- th class="hidden">
 							<?php foreach( $mypets as $pet_id => $pet){ ?>
 							[ <?php echo $pet['name']; ?> ] 
 							<?php } ?>
-						</th>
-						<th class="hidden"> 
+						</th -->
+						<th > 
 							<hr>
 							<section class="col-sm-12">
 								<div class="row">
