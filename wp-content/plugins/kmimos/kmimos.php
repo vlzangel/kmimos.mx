@@ -446,8 +446,8 @@ if(!function_exists('kmimos_admin_menu')){
             ),
 
             array(
-                'title'=>'Panel de Control',
-                'short-title'=>'Panel de Control',
+                'title'=>'Control de Reservas',
+                'short-title'=>'Control de Reservas',
                 'parent'=>'kmimos',
                 'slug'=>'bp_Reservas',
                 'access'=>'manage_options',
@@ -1964,7 +1964,9 @@ if(!function_exists('kmimos_get_my_pets')){
 
         $sql  = "SELECT COUNT(*) AS count, GROUP_CONCAT(p.ID SEPARATOR ',') AS list, ";
 
-        $sql .= "GROUP_CONCAT(pn.meta_value SEPARATOR ',') AS names ";
+        $sql .= "GROUP_CONCAT(pn.meta_value SEPARATOR ',') AS names, ";
+
+        $sql .= "pr.nombre AS breed_name ";
 
         $sql .= "FROM $wpdb->posts AS p  ";
 
@@ -1972,11 +1974,13 @@ if(!function_exists('kmimos_get_my_pets')){
 
         $sql .= "LEFT JOIN $wpdb->postmeta AS pn ON (p.ID=pn.post_id AND pn.meta_key='name_pet') ";
 
+        $sql .= "LEFT JOIN $wpdb->postmeta AS pb ON (p.ID=pb.post_id AND pb.meta_key='breed_pet') ";
+
+        $sql .= "LEFT JOIN razas AS pr ON pr.id=pb.meta_value ";
+
         $sql .= "WHERE p.post_type = 'pets' AND p.post_status = 'publish' ";
 
         $sql .= "AND pm.meta_value = ".$user_id;
-
-//return $sql;
 
         return $wpdb->get_row($sql, ARRAY_A);
 

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
     //[kmimos_search]
 
@@ -324,7 +324,7 @@
 
             function cargar_municipios(CB){
 
-                var estado_id = jQuery("#estado_cuidador").val();            
+                var estado_id = jQuery("#estado_cuidador").val();
                 
                 if( estado_id != "" ){
 
@@ -349,10 +349,10 @@
                     if( CB != undefined) {
                         CB();
                     }
-
-                }
-
+		}
             }
+
+            
 
             jQuery("#estado_cuidador").on("change", function(e){
                 cargar_municipios();
