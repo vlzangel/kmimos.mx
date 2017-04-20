@@ -1,4 +1,3 @@
-
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
@@ -69,6 +68,7 @@
 		        			<textarea id='descripcion' style='display: block; width: 500px; height: 200px;'></textarea>
 							<input type='hidden' id='page_id'>
 							<div class="kmimos_botonera">
+								<input type="button" value="Cerrar" onclick='jQuery("#editar_descripcion_modal").css("display", "NONE");' >
 								<input type="button" value="Guardar" onclick="update_descripcion()" >
 							</div>
 		        		</div>

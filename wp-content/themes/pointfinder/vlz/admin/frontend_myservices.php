@@ -12,7 +12,8 @@
     $this->ScriptOutput .= "
         jQuery('#pf-ajax-add-service-button').on('click',function(e){
             e.preventDefault();
-            jQuery('#pfuaprofileform').attr('action','?ua=updateservices');
+            // jQuery('#pfuaprofileform').attr('action','?ua=updateservices');
+            jQuery('#pfuaprofileform').attr('action','".get_home_url()."/wp-content/themes/pointfinder/vlz/admin/procesar_mis_servicios.php');
             jQuery('#pfuaprofileform').submit();
         });
     ";
@@ -32,6 +33,7 @@
 			    padding: 5px;
 			    border-radius: 0px 3px 3px 3px;
 				font-weight: 600;
+				background-color: rgb(249, 249, 249)
 			}
 			.vlz_seccion label{
 				display: block;
@@ -105,7 +107,11 @@
 			}
 			@media screen and (max-width: 480px) {
 				.vlz_celda_20,
-				.vlz_celda_25,
+				.vlz_celda_25{
+				    width: 50%;
+				    padding: 0px 2px 5px;
+				}
+				.vlz_celda_25_x,
 				.vlz_celda_33,
 				.vlz_celda_50{
 				    width: 100%;
@@ -138,10 +144,10 @@
     );
 
     $tam = array(
-		"pequenos" => "Peque&ntilde;os (0.0 - 25.0 cm)",
-		"medianos" => "Medianos (25.0 - 58.0 cm)",
-		"grandes"  => "Grandes (58.0 - 73.0 cm)",
-		"gigantes" => "Gigantes (73.0 - 200.0 cm)",
+		"pequenos" => "Peque&ntilde;os",
+		"medianos" => "Medianos",
+		"grandes"  => "Grandes",
+		"gigantes" => "Gigantes",
 	);
 
     global $wpdb;
@@ -177,6 +183,8 @@
     	foreach ($tam as $key2 => $value2) {
     		if( isset($precios_adicionales_cuidador[$key] ) ){
     			$precio = $precios_adicionales_cuidador[$key][$key2];
+    		}else{
+    			$precio = "";
     		}
 	    	$temp .= "
 	    		<div class='vlz_celda_25'>
@@ -187,11 +195,12 @@
     	}
 
     	$precios_adicionales .= "
-    		
+    		<div class='vlz_seccion'>
     			<div class='vlz_titulo_seccion'>".$value."</div>
     			<div class='vlz_seccion_interna'>
     				".$temp."
     			</div>
+			</div>
     	";
     }
 
@@ -288,13 +297,35 @@
 
 			}
     	</style>
+    	<input type='hidden' name='user_id' value='{$user_id}'>
     	<div>
+    		<div class='vlz_seccion'>
+    			<div class='vlz_titulo_seccion'>Tamaños de Mascotas</div>
+    			<div class='vlz_seccion_interna'>
+    				<div class='vlz_celda_25 vlz_celda_25_x'>
+	    				<strong>Pequeños</strong> (0.0 - 25.0 cm)
+	    			</div>
+    				<div class='vlz_celda_25 vlz_celda_25_x'>
+						<strong>Medianos</strong> (25.0 - 58.0 cm)
+	    			</div>
+    				<div class='vlz_celda_25 vlz_celda_25_x'>
+						<strong>Grandes</strong> (58.0 - 73.0 cm)
+	    			</div>
+    				<div class='vlz_celda_25 vlz_celda_25_x'>
+						<strong>Gigantes</strong> (73.0 - 200.0 cm)
+	    			</div>
+    			</div>
+    		</div>
     		<div class='vlz_seccion'>
     			<div class='vlz_titulo_seccion'>Precios de Hospedaje</div>
     			<div class='vlz_seccion_interna'>
     				".$hospedaje."
     			</div>
+    		</div>
+    		
+    		".$precios_adicionales."
 
+    		<div class='vlz_seccion'>
     			<div class='vlz_seccion_interna'>
         			".$transporte_sencillo_str."
         			".$transporte_redondo_str."
@@ -305,11 +336,7 @@
     				".$adicionales_extra_str."
     			</div>
     		</div>
-    		<!--
-    		<div class='vlz_seccion'>
-    			".$precios_adicionales."
-    		</div>
-    		-->
+    		
     	</div>
     ";
 

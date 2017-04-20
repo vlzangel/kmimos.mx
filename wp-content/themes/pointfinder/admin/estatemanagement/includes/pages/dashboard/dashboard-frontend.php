@@ -5,7 +5,7 @@
         jQuery.ajax( {
             method: "POST",
                 data: { estado: id },
-            url: "<?php echo get_template_directory_uri(); ?>/vlz/ajax_municipios.php",
+            url: "<?php echo get_home_url()."/wp-content/themes/pointfinder"; ?>/vlz/ajax_municipios.php",
             beforeSend: function( xhr ) {
 		    	jQuery("#municipios").html("<option value=''>Cargando Localidades</option>");
 		    	console.log(jQuery('#municipios'))

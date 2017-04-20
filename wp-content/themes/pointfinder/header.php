@@ -94,10 +94,23 @@
         		header('X-UA-Compatible: IE=edge,chrome=1');
         	}
 		?>
-		
-		<meta name="description" content="<?php esc_html(bloginfo('description')); ?>">
+				
+		<?php
+			if ( is_page() ){
+				global $post;
+				$descripcion = get_post_meta($post->ID, 'kmimos_descripcion', true);
+
+        		if( $descripcion != ""){
+        			echo "<meta name='description' content='{$descripcion}'>";
+        		}else{
+        			?> <meta name="description" content="<?php esc_html(bloginfo('description')); ?>"> <?php
+        		}
+        	}else{
+        		?> <meta name="description" content="<?php esc_html(bloginfo('description')); ?>"> <?php
+        	}
+		?>
 		<!--[if lt IE 9]>
-		<script src="<?php echo get_template_directory_uri(); ?>/js/html5shiv.js"></script>
+		<script src="<?php echo get_home_url()."/wp-content/themes/pointfinder"; ?>/js/html5shiv.js"></script>
 		<![endif]-->
 		<?php
 
@@ -214,8 +227,8 @@
 			}
 		/* End: Transparent Header Addon */
 
-		wp_enqueue_style( 'vlz', get_template_directory_uri()."/css/vlz.css" );
-		
+		wp_enqueue_style( 'vlz', get_home_url()."/wp-content/themes/pointfinder"."/css/vlz.css" );
+
 		wp_head(); 
 
 

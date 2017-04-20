@@ -95,7 +95,7 @@ if(!function_exists('kmimos_get_foto_cuidador')){
             if( file_exists("wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg") ){
                 $img = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg";
             }else{
-                $img = get_template_directory_uri().'/images/noimg.png';
+                $img = get_home_url()."/wp-content/themes/pointfinder".'/images/noimg.png';
             }
         }
         return $img;
@@ -350,12 +350,12 @@ if(!function_exists('kmimos_include_scripts')){
 
     function kmimos_include_scripts(){
         wp_enqueue_script( 'kmimos_jqueryui_script', '//code.jquery.com/ui/1.11.4/jquery-ui.js', array(), '1.11.1', true  );
-        wp_enqueue_script( 'kmimos_filters_script', plugins_url('javascript/kmimos-filters.js', __FILE__), array(), '1.0.0', true );
-        wp_enqueue_script( 'kmimos_script', plugins_url('javascript/kmimos.js', __FILE__), array(), '1.0.0', true );
-        wp_enqueue_script( 'kmimos_fancy', plugins_url('javascript/jquery.fancybox.pack.js', __FILE__), array(), '2.1.5', true );
-        wp_enqueue_style( 'kmimos_style', plugins_url('css/kmimos.css', __FILE__) );
-        wp_enqueue_style( 'kmimos_filters_style', plugins_url('css/kmimos-filters.css', __FILE__) );
-        wp_enqueue_style( 'kmimos_fancy_style', plugins_url('css/jquery.fancybox.css?v=2.1.5', __FILE__) );
+        wp_enqueue_script( 'kmimos_filters_script',     get_home_url()."/wp-content/plugins/kmimos/".'javascript/kmimos-filters.js', array(), '1.0.0', true );
+        wp_enqueue_script( 'kmimos_script',             get_home_url()."/wp-content/plugins/kmimos/".'javascript/kmimos.js', array(), '1.0.0', true );
+        wp_enqueue_script( 'kmimos_fancy',              get_home_url()."/wp-content/plugins/kmimos/".'javascript/jquery.fancybox.pack.js', array(), '2.1.5', true );
+        wp_enqueue_style( 'kmimos_style',               get_home_url()."/wp-content/plugins/kmimos/".'css/kmimos.css' );
+        wp_enqueue_style( 'kmimos_filters_style',       get_home_url()."/wp-content/plugins/kmimos/".'css/kmimos-filters.css' );
+        wp_enqueue_style( 'kmimos_fancy_style',         get_home_url()."/wp-content/plugins/kmimos/".'css/jquery.fancybox.css?v=2.1.5' );
     }
 
 }
@@ -364,8 +364,8 @@ if(!function_exists('kmimos_include_admin_scripts')){
 
     function kmimos_include_admin_scripts(){
 
-        wp_enqueue_script( 'kmimos_script', plugins_url('javascript/kmimos-admin.js', __FILE__), array(), '1.0.0', true );
-        wp_enqueue_style( 'kmimos_style', plugins_url('css/kmimos-admin.css', __FILE__) );
+        wp_enqueue_script( 'kmimos_script', get_home_url()."/wp-content/plugins/kmimos/".'javascript/kmimos-admin.js', array(), '1.0.0', true );
+        wp_enqueue_style( 'kmimos_style', get_home_url()."/wp-content/plugins/kmimos/".'css/kmimos-admin.css' );
 
 
         global $current_user;
@@ -431,7 +431,7 @@ if(!function_exists('kmimos_admin_menu')){
                 'slug'=>'kmimos',
                 'access'=>'manage_options',
                 'page'=>'kmimos_panel',
-                'icon'=>plugins_url('/assets/images/icon.png', __FILE__),
+                'icon'=>get_home_url()."/wp-content/plugins/kmimos/".'/assets/images/icon.png',
                 'position'=>4,
             ),
 
@@ -452,7 +452,7 @@ if(!function_exists('kmimos_admin_menu')){
                 'slug'=>'bp_Reservas',
                 'access'=>'manage_options',
                 'page'=>'kmimos_backpanel',
-                'icon'=>plugins_url('/assets/images/icon.png', __FILE__),
+                'icon'=>get_home_url()."/wp-content/plugins/kmimos/".'/assets/images/icon.png',
             ),
 
             array(

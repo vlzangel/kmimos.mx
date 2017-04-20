@@ -83,7 +83,7 @@
 			}elseif( file_exists("wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg") ){
 				$img = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg";
 			}else{
-				$img = get_template_directory_uri().'/images/noimg.png';
+				$img = get_home_url()."/wp-content/themes/pointfinder".'/images/noimg.png';
 			}
 
 			$url = $value['url'];
@@ -96,7 +96,7 @@
 					draggable: false,
 					animation: google.maps.Animation.DROP,
 					position: new google.maps.LatLng('{$value['lat']}', '{$value['lng']}'),
-					icon: '".get_template_directory_uri()."/vlz/img/pin.png'
+					icon: '".get_home_url()."/wp-content/themes/pointfinder"."/vlz/img/pin.png'
 				});
 
 				infowindow_{$c} = new google.maps.InfoWindow({ content: '<a class=\"mini_map\" href=\"{$url}\" target=\"_blank\"> <img src=\"{$img}\" style=\"max-width: 200px; max-height: 230px;\"> <div>{$nombre}</div> </a>' });
@@ -132,7 +132,7 @@
 			jQuery.ajax( {
 				method: "POST",
 		 			data: { estado: id },
-				url: "<?php echo get_template_directory_uri(); ?>/vlz/vlz_estados_municipios.php",
+				url: "<?php echo get_home_url()."/wp-content/themes/pointfinder"; ?>/vlz/vlz_estados_municipios.php",
 			  	beforeSend: function( xhr ) {
 			    	jQuery("#municipios").html("<option value=''>Cargando Municipios</option>");
 			  	}
@@ -148,11 +148,11 @@
 		var id =  jQuery("#estados").val();
 		var txt = jQuery("#estados option:selected").text();
 
-//		url: "<?php #echo get_template_directory_uri(); ?>/vlz/ajax_municipios_2.php",
+//		url: "<?php #echo get_home_url()."/wp-content/themes/pointfinder"; ?>/vlz/ajax_municipios_2.php",
 		jQuery.ajax( {
 			method: "POST",
 	 			data: { estado: id },
-			url: "<?php echo get_template_directory_uri(); ?>/vlz/vlz_estados_municipios.php",
+			url: "<?php echo get_home_url()."/wp-content/themes/pointfinder"; ?>/vlz/vlz_estados_municipios.php",
 		  	beforeSend: function( xhr ) {
 		    	jQuery("#municipios").html("<option value=''>Cargando Municipios</option>");
 		  	}

@@ -87,6 +87,7 @@
 		break;
 
 		case "paginas":
+			$pagina *= 10;
 
 			$sql = "SELECT SQL_CALC_FOUND_ROWS * FROM wp_posts WHERE post_type = 'page' AND post_status = 'publish' LIMIT $pagina, 10";
 			$paginas = $conn_my->query($sql);
@@ -109,7 +110,7 @@
 
 					$resultados .= "
 					<tr class='editar_descripcion_pagina' data-id='{$ID}' data-desc='{$descripcion}'>
-						<td> <a href='".$_SERVER['REQUEST_SCHEME']."://".$_sSERVER['HTTP_HOST']."/{$post_name}' target='_blank'> {$post_title} </a> </td>
+						<td> <a href='".$_SERVER['REQUEST_SCHEME']."://".$_SERVER['HTTP_HOST']."/{$post_name}' target='_blank'> {$post_title} </a> </td>
 						<td> {$descripcion} </td>
 					</tr>";
 				}
@@ -128,6 +129,18 @@
 			$resultados = $resultados."===="."<div class='kmimos_paginacion'>".$paginacion."</div>";
 
 			echo utf8_encode( $resultados );
+
+		break;
+
+		case "update_descripcion":
+
+			$xtipo = $conn_my->query("SELECT meta_value AS descripcion FROM wp_postmeta WHERE post_id = {$id} AND meta_key = 'kmimos_descripcion'");
+			echo "num_rows: ";$xtipo->num_rows;
+			if($xtipo->num_rows == 0 ){
+				$conn_my->query("INSERT INTO wp_postmeta VALUES (NULL, {$id}, 'kmimos_descripcion', '{$desc}')");
+			}else{
+				$conn_my->query("UPDATE wp_postmeta SET meta_value = '{$desc}' WHERE post_id = '{$id}' AND meta_key = 'kmimos_descripcion';");
+			}
 
 		break;
 		
