@@ -119,7 +119,7 @@
                 }elseif( file_exists("./wp-content/uploads/avatares/".$idUser."/{$name_photo}.jpg") ){
                     $user_photo_field_output = get_home_url()."/wp-content/uploads/avatares/".$idUser."/{$name_photo}.jpg";
                 }else{
-                    $user_photo_field_output = get_template_directory_uri().'/images/noimg.png';
+                    $user_photo_field_output = get_home_url()."/wp-content/themes/pointfinder".'/images/noimg.png';
                 }
 
 
@@ -138,7 +138,7 @@
                 }elseif( file_exists("wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg") ){
                     $foto = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg";
                 }else{
-                    $foto = get_template_directory_uri().'/images/noimg.png';
+                    $foto = get_home_url()."/wp-content/themes/pointfinder".'/images/noimg.png';
                 }
 
                 $this->FieldOutput .= '<a href="' . $foto . '" title="' . the_title_attribute('echo=0') . '" rel="prettyPhoto">';

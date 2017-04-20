@@ -56,8 +56,8 @@
         $imagen = '<img id="img_portada" src="'.get_home_url().'/wp-content/uploads/cuidadores/avatares/'.$petsitter_id.'/0.jpg">';
         $imagen = get_home_url().'/wp-content/uploads/cuidadores/avatares/'.$petsitter_id.'/0.jpg';
     }else{
-      $imagen = '<img id="img_portada" src="'.get_template_directory_uri().'/images/noimg.png">';
-        $imagen = get_template_directory_uri().'/images/noimg.png';
+      $imagen = '<img id="img_portada" src="'.get_home_url()."/wp-content/themes/pointfinder".'/images/noimg.png">';
+        $imagen = get_home_url()."/wp-content/themes/pointfinder".'/images/noimg.png';
     }
 
     if( $atributos['video_youtube'] != '' ){
@@ -196,7 +196,7 @@
             background-size: 11px;
             background-repeat: no-repeat;
             background-position: 1px 1px;
-            background-image: url('.get_template_directory_uri().'/vlz/img/iconos/new_check.png);
+            background-image: url('.get_home_url()."/wp-content/themes/pointfinder".'/vlz/img/iconos/new_check.png);
         }
         .golden-forms section {
             margin-bottom: 8px;
@@ -484,7 +484,7 @@
           jQuery.ajax( {
             method: "POST",
               data: { estado: id },
-            url: "'.get_template_directory_uri().'/vlz/ajax_municipios_2.php",
+            url: "'.get_home_url()."/wp-content/themes/pointfinder".'/vlz/ajax_municipios_2.php",
               beforeSend: function( xhr ) {
                 jQuery("#delegacion").html("<option value=\'\'>Cargando Localidades</option>");
               }

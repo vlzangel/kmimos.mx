@@ -204,7 +204,7 @@
 									      		e.preventDefault();
 							      				jQuery("#terminos_y_condiciones").css("display", "table");
 							      				jQuery("#boton_registrar_modal").css("display", "inline-block");
-								      			var a = "<?php echo get_template_directory_uri()."/kmimos/proceso_restablecer.php"; ?>";
+								      			var a = "<?php echo get_home_url()."/wp-content/themes/pointfinder"."/kmimos/proceso_restablecer.php"; ?>";
 								             	jQuery.post( a, jQuery("#vlz_form_recuperar").serialize(), function( data ) {
 										      		location.href = "<?php echo get_home_url()."/perfil-usuario/?ua=profile"; ?>";
 												});
@@ -382,7 +382,7 @@
 																}elseif( file_exists("/wp-content/uploads/cuidadores/avatares/".$cuidador->id."/0.jpg") ){
 																	$imagen = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador->id."/0.jpg";
 																}else{
-																	$imagen = get_template_directory_uri().'/images/noimg.png';
+																	$imagen = get_home_url()."/wp-content/themes/pointfinder".'/images/noimg.png';
 																}
 												            }else{
 																if( empty($name_photo)  ){ $name_photo = "0"; }
@@ -391,7 +391,7 @@
 																}elseif( file_exists("wp-content/uploads/avatares_clientes/".$user_id."/0.jpg") ){
 																	$imagen = get_home_url()."/wp-content/uploads/avatares_clientes/".$user_id."/0.jpg";
 																}else{
-																	$imagen = get_template_directory_uri().'/images/noimg.png';
+																	$imagen = get_home_url()."/wp-content/themes/pointfinder".'/images/noimg.png';
 																}
 												            }
 												        ?>
@@ -632,7 +632,7 @@
 											      		e.preventDefault();
 											      		jQuery("#vlz_modal_cerrar_registrar").attr("onclick", "");
 											      		if( form.checkValidity() ){
-											      			var a = "<?php echo get_template_directory_uri()."/kmimos/actualizar_perfil.php"; ?>";
+											      			var a = "<?php echo get_home_url()."/wp-content/themes/pointfinder"."/kmimos/actualizar_perfil.php"; ?>";
 												      		jQuery("#vlz_contenedor_botones").css("display", "none");
 												      		jQuery(".vlz_modal_contenido").css("display", "none");
 												      		jQuery("#vlz_cargando").css("display", "block");
@@ -644,9 +644,7 @@
 													      		// jQuery("#vlz_cargando").html("<h2>Completado</h2>");
 												      			// jQuery("#vlz_titulo_registro").html("Proceso Completado");
 												      			location.href = "<?php echo get_home_url()."/perfil-usuario/?ua=profile"; ?>";
-
 												      			//console.log(data);
-
 															});
 											      		}
 
@@ -672,6 +670,44 @@
 											      	jQuery( "#clave" ).keyup(clvs_iguales);
 											      	jQuery( "#clave2" ).keyup(clvs_iguales);
 
+											      	function mostrar_error(id){
+														jQuery("#error_"+id).html( jQuery("#"+id).attr("data-title") );
+
+												        jQuery("#error_"+id).removeClass("no_error");
+												        jQuery("#error_"+id).addClass("error");
+												        jQuery("#"+id).addClass("vlz_input_error");
+													}
+
+													function quitar_error(id){
+														jQuery("#error_"+id).html( "" );
+
+												        jQuery("#error_"+id).removeClass("error");
+												        jQuery("#error_"+id).addClass("no_error");
+												        jQuery("#"+id).removeClass("vlz_input_error");
+													}
+
+											      	function vlz_validar_claves(){
+											      		var error = 0;
+											      		var clv1 = jQuery("#clave").attr("value");
+											      		var clv2 = jQuery("#clave2").attr("value");
+
+											      		if( clv1 == "" ){ mostrar_error("clave"); error++; }else{ quitar_error("clave"); }
+											      		if( clv2 == "" ){ mostrar_error("clave2"); error++; }else{ quitar_error("clave2"); }
+
+											      		if( clv1 != clv2 ){
+											      			jQuery("#error_clave2").html( jQuery("#clave2").attr("data-title") );
+											      			jQuery("#error_clave2").removeClass("no_error");
+												        	jQuery("#error_clave2").addClass("error");
+												        	jQuery("#clave2").addClass("vlz_input_error");
+												        	error++;
+											      		}else{
+											      			if( clv1 != "" ){
+												      			quitar_error("clave2");
+												      		}
+											      		}
+											      		return ( error == 0);
+											      	}
+
 											      	function vlz_validar(){
 											      		var error = 0;
 											      		var campos = ["movil", "telefono"];
@@ -693,7 +729,9 @@
 															});
 											      			jQuery('html, body').animate({ scrollTop: jQuery(primer_error).offset().top-75 }, 2000);
 											      		}else{
-												      		vlz_modal('terminos', 'Términos y Condiciones');
+											      			if( vlz_validar_claves() ){
+												      			vlz_modal('terminos', 'Términos y Condiciones');
+											      			}
 											      		}
 											      	}
 

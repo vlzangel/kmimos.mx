@@ -177,7 +177,7 @@
 												</div>
 												
 												<div class="vlz_cell50">
-													<input data-title="Debes ingresar tu apellido<br>Este debe tener mínimo 3 caracteres." type='text' id='apellidos' name='apellidos' class='vlz_input' placeholder='Apellidos' required pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ]{2,25}" >
+													<input data-title="Debes ingresar tu apellido<br>Este debe tener mínimo 2 caracteres." type='text' id='apellidos' name='apellidos' class='vlz_input' placeholder='Apellidos' required pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ]{2,25}" >
 												</div>
 											</div>
 
@@ -223,10 +223,7 @@
 														type='password' 
 														id='clave' 
 														name='clave' 
-														data-title="
-															<strong>
-																Las contraseñas son requeridas
-															</strong>" 
+														data-title="<strong>Las contraseñas son requeridas y deben ser iguales</strong>" 
 														class='vlz_input'
 														placeholder='Contraseña' 
 														required 
@@ -239,10 +236,7 @@
 														type='password' 
 														id='clave2' 
 														name='clave2' 
-														data-title="
-															<strong>
-																Las contraseñas son requeridas
-															</strong>" 
+														data-title="<strong>Las contraseñas son requeridas y deben ser iguales</strong>" 
 														class='vlz_input'
 														placeholder='Contraseña' 
 														required 
@@ -256,8 +250,8 @@
 
 											<div class="vlz_seccion">
 												<div class="vlz_img_portada">
-					                                <div class="vlz_img_portada_fondo" style="background-image: url(<?php echo get_template_directory_uri()."/images/noimg.png"; ?>);"></div>
-					                                <div class="vlz_img_portada_normal" style="background-image: url(<?php echo get_template_directory_uri()."/images/noimg.png"; ?>);"></div>
+					                                <div class="vlz_img_portada_fondo" style="background-image: url(<?php echo get_home_url()."/wp-content/themes/pointfinder"."/images/noimg.png"; ?>);"></div>
+					                                <div class="vlz_img_portada_normal" style="background-image: url(<?php echo get_home_url()."/wp-content/themes/pointfinder"."/images/noimg.png"; ?>);"></div>
 					                                <div class="vlz_cambiar_portada">
 					                                	Subir Foto
 					                                	<input type="file" id="portada" name="portada" accept="image/*" />
@@ -324,6 +318,18 @@
 										case "email_2":
 								      		var clv1 = jQuery("#email_1").attr("value");
 								      		var clv2 = jQuery("#email_2").attr("value");
+								      		return ( clv1 == clv2 );
+										break;
+										case "clave":
+								      		var clv1 = jQuery("#clave").attr("value");
+								      		var clv2 = jQuery("#clave2").attr("value");
+
+								      		return ( clv1 == clv2 );
+										break;
+										case "clave2":
+								      		var clv1 = jQuery("#clave").attr("value");
+								      		var clv2 = jQuery("#clave2").attr("value");
+
 								      		return ( clv1 == clv2 );
 										break;
 										default:
@@ -415,7 +421,7 @@
 						      		// jQuery("#vlz_cargando").html("<h2>Enviando Informaci&oacute;n al correo...</h2>");
 
 						      		jQuery.ajax({
-									    url: '<?php echo get_template_directory_uri()."/vlz/form/vlz_mail_cliente.php"; ?>',
+									    url: '<?php echo get_home_url()."/wp-content/themes/pointfinder"."/vlz/form/vlz_mail_cliente.php"; ?>',
 									    type: "post",
 									    data: {
 											nombre: jQuery("#nombres").attr("value")+" "+jQuery("#apellidos").attr("value"),
@@ -444,7 +450,7 @@
 							            var terminos = jQuery("#terminos").attr("value");
 							      		if( terminos == 1){
 
-							      			var a = "<?php echo get_template_directory_uri()."/vlz/form/vlz_registrar.php"; ?>";
+							      			var a = "<?php echo get_home_url()."/wp-content/themes/pointfinder"."/vlz/form/vlz_registrar.php"; ?>";
 
 								      		jQuery("#vlz_contenedor_botones").css("display", "none");
 								      		jQuery(".vlz_modal_contenido").css("display", "none");
@@ -468,21 +474,9 @@
 
 						      	});
 
-						      	function clvs_iguales(e){
-						      		if( e.currentTarget.name == 'clave' || e.currentTarget.name == 'clave' ){
-							      		var clv1 = jQuery("#clave").attr("value");
-							      		var clv2 = jQuery("#clave2").attr("value");
-							      		if( clv1 != clv2 ){
-							      			jQuery("#error_clave2").html("Las contraseñas deben ser iguales");
-							      			jQuery("#error_clave2").removeClass("no_error");
-								        	jQuery("#error_clave2").addClass("error");
-								        	jQuery("#clave2").addClass("vlz_input_error");
-							      		}else{
-							      			jQuery("#error_clave2").removeClass("error");
-								        	jQuery("#error_clave2").addClass("no_error");
-								        	jQuery("#clave2").removeClass("vlz_input_error");
-							      		}
-						      		}
+						      	
+
+						      	function mails_iguales(e){
 						      		if( e.currentTarget.name == 'email_1' || e.currentTarget.name == 'email_2' ){
 							      		var clv1 = jQuery("#email_1").attr("value");
 							      		var clv2 = jQuery("#email_2").attr("value");
@@ -499,14 +493,41 @@
 						      		}
 						      	}
 
+						      	jQuery( "#email_1" ).keyup(mails_iguales);
+						      	jQuery( "#email_2" ).keyup(mails_iguales);
+
+
+
+						      	function clvs_iguales(e){
+						      		var clv1 = jQuery("#clave").attr("value");
+						      		var clv2 = jQuery("#clave2").attr("value");
+
+						      		if( clv1 == clv2 ){
+
+						      			jQuery("#error_clave").removeClass("error");
+							        	jQuery("#error_clave").addClass("no_error");
+							        	jQuery("#clave").removeClass("vlz_input_error");
+
+						      			jQuery("#error_clave2").removeClass("error");
+							        	jQuery("#error_clave2").addClass("no_error");
+							        	jQuery("#clave2").removeClass("vlz_input_error");
+
+						      		}else{
+						        		jQuery("#error_clave").removeClass("no_error");
+							        	jQuery("#error_clave").addClass("error");
+							        	jQuery("#clave").addClass("vlz_input_error");
+
+						        		jQuery("#error_clave2").removeClass("no_error");
+							        	jQuery("#error_clave2").addClass("error");
+							        	jQuery("#clave2").addClass("vlz_input_error");
+						      		}
+						      	}
+
 						      	jQuery( "#clave" ).keyup(clvs_iguales);
 						      	jQuery( "#clave2" ).keyup(clvs_iguales);
-						      	jQuery( "#email_1" ).keyup(clvs_iguales);
-						      	jQuery( "#email_2" ).keyup(clvs_iguales);
-
 
 						      	jQuery( "#email_1" ).blur(function(){
-						      		var a = "<?php echo get_template_directory_uri()."/vlz/form/vlz_verificar_email.php"; ?>";
+						      		var a = "<?php echo get_home_url()."/wp-content/themes/pointfinder"."/vlz/form/vlz_verificar_email.php"; ?>";
 					      			jQuery.post( a, {email: jQuery("#email_1").attr("value")}, function( data ) {
 							      		data = eval(data);
 							      		if( data.error == "SI" ){
@@ -523,14 +544,13 @@
 
 						      	function vlz_validar(){
 						      		var error = 0;
-						      		var campos = ["movil", "telefono", "email_1", "email_2"];
+						      		var campos = ["movil", "telefono", "email_1", "email_2", "clave", "clave2"];
 						      		campos.forEach(function(item, index){
 						      			if( !especiales(item) ){
 						      				console.log(item);
 						      				error++;
 						      			}
 						      		});
-				      				console.log(error);
 						      		if( !form.checkValidity() || error > 0 ){
 						      			var primer_error = ""; var z = true;
 						      			jQuery( ".error" ).each(function() {
@@ -543,8 +563,7 @@
 										});
 						      			jQuery('html, body').animate({ scrollTop: jQuery(primer_error).offset().top-75 }, 2000);
 						      		}else{
-						      			console.log("Hola 2");
-							      		var a = "<?php echo get_template_directory_uri()."/vlz/form/vlz_verificar_email.php"; ?>";
+							      		var a = "<?php echo get_home_url()."/wp-content/themes/pointfinder"."/vlz/form/vlz_verificar_email.php"; ?>";
 						      			jQuery.post( a, {email: jQuery("#email_1").attr("value")}, function( data ) {
 								      		data = eval(data);
 								      		if( data.error == "SI" ){
@@ -554,7 +573,6 @@
 									        	jQuery("#email_1").addClass("vlz_input_error");
 								      			jQuery('html, body').animate({ scrollTop: jQuery("#email_1").offset().top-75 }, 2000);
 								      		}else{
-						      					console.log("Hola 3");
 								      			vlz_modal('terminos', 'Términos y Condiciones');
 								      		}
 										});
