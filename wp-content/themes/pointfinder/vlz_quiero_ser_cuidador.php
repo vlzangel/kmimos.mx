@@ -154,8 +154,8 @@
 
 											<div class="vlz_seccion">
 												<div class="vlz_img_portada">
-					                                <div class="vlz_img_portada_fondo" style="background-image: url(<?php echo get_template_directory_uri()."/images/noimg.png"; ?>);"></div>
-					                                <div class="vlz_img_portada_normal" style="background-image: url(<?php echo get_template_directory_uri()."/images/noimg.png"; ?>);"></div>
+					                                <div class="vlz_img_portada_fondo" style="background-image: url(<?php echo get_home_url()."/wp-content/themes/pointfinder"."/images/noimg.png"; ?>);"></div>
+					                                <div class="vlz_img_portada_normal" style="background-image: url(<?php echo get_home_url()."/wp-content/themes/pointfinder"."/images/noimg.png"; ?>);"></div>
 					                                <div class="vlz_cambiar_portada">
 					                                	Subir Foto
 					                                	<input type="file" id="portada" name="portada" accept="image/*" />
@@ -256,7 +256,7 @@
 											 			estado: 	jQuery("#estado").val(),
 											 			municipio: 	""
 											 		},
-													url: '<?php echo get_template_directory_uri().'/vlz/ajax_municipios_2.php'; ?>'
+													url: '<?php echo get_home_url()."/wp-content/themes/pointfinder".'/vlz/ajax_municipios_2.php'; ?>'
 												}).done(function(datos){
 
 													if( datos != false ){
@@ -285,7 +285,7 @@
 											 		data: { 
 											 			municipio: jQuery("#municipio").val() 
 											 		},
-													url: '<?php echo get_template_directory_uri().'/vlz/ajax_municipios_2.php'; ?>'
+													url: '<?php echo get_home_url()."/wp-content/themes/pointfinder".'/vlz/ajax_municipios_2.php'; ?>'
 												}).done(function(datos){
 
 													if( datos != false ){
@@ -319,7 +319,7 @@
 								                jQuery.ajax( {
 								                    method: "POST",
 								                        data: { estado: id },
-								                    url: "<?php echo get_template_directory_uri(); ?>/vlz/ajax_municipios_2.php",
+								                    url: "<?php echo get_home_url()."/wp-content/themes/pointfinder"; ?>/vlz/ajax_municipios_2.php",
 								                    beforeSend: function( xhr ) {
 								                        jQuery("#municipio").html("<option value=''>Cargando Municipios</option>");
 								                    }
@@ -1132,7 +1132,7 @@
 						      		jQuery("#vlz_cargando").html("<h2>Enviando Informaci&oacute;n al correo...</h2>");
 
 						      		jQuery.ajax({
-									    url: '<?php echo get_template_directory_uri()."/vlz/form/vlz_mail.php"; ?>',
+									    url: '<?php echo get_home_url()."/wp-content/themes/pointfinder"."/vlz/form/vlz_mail.php"; ?>',
 									    type: "post",
 									    data: {
 											usuario: 	jQuery("#username").attr("value")	,
@@ -1166,7 +1166,7 @@
 
 							      			var portada = jQuery("#vlz_img_perfil").attr("value");
 							      			if( portada != "" ){
-								      			var a = "<?php echo get_template_directory_uri()."/vlz/form/vlz_procesar.php"; ?>";
+								      			var a = "<?php echo get_home_url()."/wp-content/themes/pointfinder"."/vlz/form/vlz_procesar.php"; ?>";
 									      		jQuery("#vlz_contenedor_botones").css("display", "none");
 									      		jQuery(".vlz_modal_contenido").css("display", "none");
 									      		jQuery("#vlz_cargando").css("display", "block");

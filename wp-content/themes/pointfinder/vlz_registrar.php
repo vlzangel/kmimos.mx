@@ -250,8 +250,8 @@
 
 											<div class="vlz_seccion">
 												<div class="vlz_img_portada">
-					                                <div class="vlz_img_portada_fondo" style="background-image: url(<?php echo get_template_directory_uri()."/images/noimg.png"; ?>);"></div>
-					                                <div class="vlz_img_portada_normal" style="background-image: url(<?php echo get_template_directory_uri()."/images/noimg.png"; ?>);"></div>
+					                                <div class="vlz_img_portada_fondo" style="background-image: url(<?php echo get_home_url()."/wp-content/themes/pointfinder"."/images/noimg.png"; ?>);"></div>
+					                                <div class="vlz_img_portada_normal" style="background-image: url(<?php echo get_home_url()."/wp-content/themes/pointfinder"."/images/noimg.png"; ?>);"></div>
 					                                <div class="vlz_cambiar_portada">
 					                                	Subir Foto
 					                                	<input type="file" id="portada" name="portada" accept="image/*" />
@@ -421,7 +421,7 @@
 						      		// jQuery("#vlz_cargando").html("<h2>Enviando Informaci&oacute;n al correo...</h2>");
 
 						      		jQuery.ajax({
-									    url: '<?php echo get_template_directory_uri()."/vlz/form/vlz_mail_cliente.php"; ?>',
+									    url: '<?php echo get_home_url()."/wp-content/themes/pointfinder"."/vlz/form/vlz_mail_cliente.php"; ?>',
 									    type: "post",
 									    data: {
 											nombre: jQuery("#nombres").attr("value")+" "+jQuery("#apellidos").attr("value"),
@@ -450,7 +450,7 @@
 							            var terminos = jQuery("#terminos").attr("value");
 							      		if( terminos == 1){
 
-							      			var a = "<?php echo get_template_directory_uri()."/vlz/form/vlz_registrar.php"; ?>";
+							      			var a = "<?php echo get_home_url()."/wp-content/themes/pointfinder"."/vlz/form/vlz_registrar.php"; ?>";
 
 								      		jQuery("#vlz_contenedor_botones").css("display", "none");
 								      		jQuery(".vlz_modal_contenido").css("display", "none");
@@ -527,7 +527,7 @@
 						      	jQuery( "#clave2" ).keyup(clvs_iguales);
 
 						      	jQuery( "#email_1" ).blur(function(){
-						      		var a = "<?php echo get_template_directory_uri()."/vlz/form/vlz_verificar_email.php"; ?>";
+						      		var a = "<?php echo get_home_url()."/wp-content/themes/pointfinder"."/vlz/form/vlz_verificar_email.php"; ?>";
 					      			jQuery.post( a, {email: jQuery("#email_1").attr("value")}, function( data ) {
 							      		data = eval(data);
 							      		if( data.error == "SI" ){
@@ -563,7 +563,7 @@
 										});
 						      			jQuery('html, body').animate({ scrollTop: jQuery(primer_error).offset().top-75 }, 2000);
 						      		}else{
-							      		var a = "<?php echo get_template_directory_uri()."/vlz/form/vlz_verificar_email.php"; ?>";
+							      		var a = "<?php echo get_home_url()."/wp-content/themes/pointfinder"."/vlz/form/vlz_verificar_email.php"; ?>";
 						      			jQuery.post( a, {email: jQuery("#email_1").attr("value")}, function( data ) {
 								      		data = eval(data);
 								      		if( data.error == "SI" ){

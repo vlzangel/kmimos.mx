@@ -60,7 +60,7 @@
         }elseif( file_exists("/wp-content/uploads/cuidadores/avatares/".$cuidador->id."/0.jpg") ){
             $imagen = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador->id."/0.jpg";
         }else{
-            $imagen = get_template_directory_uri().'/images/noimg.png';
+            $imagen = get_home_url()."/wp-content/themes/pointfinder".'/images/noimg.png';
         }
     }else{
         $user_id_tipo = $user_id;
@@ -71,7 +71,7 @@
         }elseif( file_exists("wp-content/uploads/avatares_clientes/".$user_id."/0.jpg") ){
             $imagen = get_home_url()."/wp-content/uploads/avatares_clientes/".$user_id."/0.jpg";
         }else{
-            $imagen = get_template_directory_uri().'/images/noimg.png';
+            $imagen = get_home_url()."/wp-content/themes/pointfinder".'/images/noimg.png';
         }
 
     }

@@ -64,23 +64,9 @@ if ( ! $checkout->enable_signup && ! $checkout->enable_guest_checkout && ! is_us
 
 	<div id="order_review" class="woocommerce-checkout-review-order">
 		<?php 
-
-			// global $wpdb;
-			// $D = $wpdb;
-
-			// $id_user = get_current_user_id();
-			// $session = $D->get_var("SELECT session_value FROM wp_woocommerce_sessions WHERE session_key = ".$id_user );
-
-			// $carrito = unserialize($session);
-
-			// echo "<pre>";
-			// 	print_r($carrito);
-			// echo "</pre>";
-			
 			do_action( 'woocommerce_checkout_order_review' );
 		?>
 	</div>
-
 	<style type="text/css">
 		#add_payment_method #payment ul.payment_methods, .woocommerce-checkout #payment ul.payment_methods>li>label {
 		    color: #54c8a7;
@@ -89,13 +75,9 @@ if ( ! $checkout->enable_signup && ! $checkout->enable_guest_checkout && ! is_us
 		    text-shadow: 3px 2px 12px rgba(255, 255, 255, 0.57);
 		}
 		<?php
-
 			global $current_user;
-
 			$roles = wp_get_current_user()->roles;
-
 			if( $roles[0] != "administrator" ){
-
 				echo "
 					.payment_method_wcvendors_test_gateway{
 						display: none;
@@ -103,7 +85,6 @@ if ( ! $checkout->enable_signup && ! $checkout->enable_guest_checkout && ! is_us
 				";
 			}
 		?>
-
 		@media (max-width: 592px){
 			#add_payment_method #payment ul.payment_methods, .woocommerce-checkout #payment ul.payment_methods>li>label {
 				font-size: x-small;

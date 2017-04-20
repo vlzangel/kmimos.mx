@@ -130,7 +130,7 @@
 	    height: 15px;
 	    border: 1px solid #87b8ab;
 	    border-radius: 2px;
-	    background-image: url(<?php echo get_template_directory_uri()."/vlz/img/iconos/new_check.png"; ?>);
+	    background-image: url(<?php echo get_home_url()."/wp-content/themes/pointfinder"."/vlz/img/iconos/new_check.png"; ?>);
 	    background-size: 11px;
 	    background-repeat: no-repeat;
 	    background-position: 1px 1px;
@@ -191,7 +191,7 @@
 	    width: 15px;
 	    height: 15px;
 	    border-radius: 2px;
-	    background-image: url(<?php echo get_template_directory_uri()."/vlz/img/iconos/quitar_5.png"; ?>);
+	    background-image: url(<?php echo get_home_url()."/wp-content/themes/pointfinder"."/vlz/img/iconos/quitar_5.png"; ?>);
 	    background-size: 11px;
 	    background-repeat: no-repeat;
 	    background-position: 1px 1px;

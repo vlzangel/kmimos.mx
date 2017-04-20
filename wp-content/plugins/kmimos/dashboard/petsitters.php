@@ -55,9 +55,9 @@
         function kmimos_active_petsitter($post, $params) {
             $values=$params['args'];
             if( $post->post_status == 'pending' ){
-                $link = "<a class='vlz_activar' href='".get_template_directory_uri()."/vlz/admin/activar_cuidadores.php?p=".$post->ID."&a=1&u=".$post->post_author."'>Activar Cuidador</a>";
+                $link = "<a class='vlz_activar' href='".get_home_url()."/wp-content/themes/pointfinder"."/vlz/admin/activar_cuidadores.php?p=".$post->ID."&a=1&u=".$post->post_author."'>Activar Cuidador</a>";
             }else{
-                $link = "<a class='vlz_desactivar' href='".get_template_directory_uri()."/vlz/admin/activar_cuidadores.php?p=".$post->ID."&a=0&u=".$post->post_author."'>Desactivar Cuidador</a>";
+                $link = "<a class='vlz_desactivar' href='".get_home_url()."/wp-content/themes/pointfinder"."/vlz/admin/activar_cuidadores.php?p=".$post->ID."&a=0&u=".$post->post_author."'>Desactivar Cuidador</a>";
             }
 
             global $wpdb;

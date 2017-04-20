@@ -28,6 +28,7 @@ function update_descripcion(){
 	    	desc:   descripcion
 	    },
 	    success: function (data) {
+	    	console.log(data);
   			jQuery(".kmimos_modal_interno").css("display", "none");
   			refresh();
 	    }
@@ -82,7 +83,8 @@ function listar_descripciones(page = 0){
       		jQuery(".editar_descripcion_pagina").on("click", function(e){
       			var page_id = jQuery(this).attr( "data-id" );
       			var desc = jQuery(this).attr( "data-desc" );
-
+	    		
+      			jQuery("#page_id").attr("value", page_id);
       			jQuery("#descripcion").val(desc);
 
       			jQuery("#editar_descripcion_modal").css("display", "table");
