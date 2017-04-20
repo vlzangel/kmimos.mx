@@ -149,6 +149,15 @@
   		$sql = "UPDATE wp_postmeta SET meta_value = '{$base_hospedaje}' WHERE post_id = '{$hospedaje}' AND (meta_key = '_price' OR meta_key = '_wc_booking_base_cost');";
   		$db->query($sql);
 
+        if( $base_hospedaje > 0 && $_POST['status_hospedaje'] == 1 ){
+            $status = $status_global;
+        }else{
+            $status = "unpublish";
+        }
+
+        $sql = "UPDATE wp_posts SET post_status = '{$status}' WHERE ID = '{$hospedaje}';";
+        $db->query($sql);
+
   		foreach ($tams as $tamano) {
   			$valor = ($_POST['hospedaje_'.$tamano]+0);
   			$valor *= 1.2;
@@ -216,7 +225,7 @@
 	  	if( $extra != false ){
 	  		$bases[$nombre] *= 1.2;
 
-            if( $bases[$nombre] > 0 ){
+            if( $bases[$nombre] > 0 && $_POST['status_'.$nombre] == 1 ){
                 $status = $status_global;
             }else{
                 $status = "unpublish";
@@ -270,7 +279,7 @@
                 "hoy"           => $hoy,
                 "titulo"        => $servicios_extras_titulos[$nombre]." - ".$nom,
                 "descripcion"   => descripciones($nombre),
-                "slug"          => $user_id."-".$nombre,
+                "slug"          => $nombre."-".$user_id,
                 "cuidador"      => $cuidador->id_post,
                 "status"        => $status
             ));
@@ -330,6 +339,8 @@
 	  	}
 
   	}
+
+    // k_log($_POST);
     
     header("location: ".$_SERVER["HTTP_REFERER"]);
 ?>

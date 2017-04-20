@@ -157,8 +157,8 @@ if ( ! class_exists( 'PF_Frontend_Fields' ) ){
 				$this->FieldOutput .= '</div>';/*form-enclose*/
 
 				if($params['formtype'] != 'myitems' && $params['formtype'] != 'myissues' && $params['formtype'] != 'mybookings' && $params['formtype'] != 'favorites' && $params['formtype'] != 'reviews'){$xtext = '';}else{$xtext = 'style="background:transparent;background-color:transparent;display:none!important"';}
-				
-				$this->FieldOutput .= '<div class="pfalign-right" '.$xtext.'>';
+				 
+				$this->FieldOutput .= '<div class="pfalign-right" '.$xtext.' style="text-align: right !important;">';
 				if($params['formtype'] != 'errorview' && $params['formtype'] != 'banktransfer'){
 					if($params['formtype'] != 'myitems' && $params['formtype'] != 'favorites' && $params['formtype'] != 'reviews' && $params['formtype'] != 'invoices' && $params['dontshowpage'] != 1 && $main_package_expire_problem != true){
 			            
