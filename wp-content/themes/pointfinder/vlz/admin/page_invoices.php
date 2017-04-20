@@ -44,6 +44,8 @@
 		</style>
 	";
 
+
+
 	global $wpdb;
 
 	$sql = "SELECT * FROM $wpdb->posts WHERE post_type = 'wc_booking' AND post_author = {$user_id} AND post_status NOT LIKE '%cart%'";
@@ -64,6 +66,7 @@
 			"cancelled" => "Cancelada",
 			"confirmed" => "Confirmada"
 		);
+
 
 		foreach ($reservas as $key => $reserva) {
 
@@ -143,8 +146,245 @@
 
 		}
 
-		if( count($pendientes) > 0 ){
 
+
+		//CART
+		$items = WC()->cart->get_cart();
+		if(count($items) > 0){
+			?>
+				<h1 class='vlz_h1 jj_h1'>Reservas Por Completar</h1>
+				<table class='vlz_tabla jj_tabla table table-striped table-responsive'>
+					<tr>
+						<th class="product-name"><?php _e( 'SERVICIO', 'woocommerce' ); ?></th>
+						<th class="product-service"><?php _e( 'DETALLE', 'woocommerce' ); ?></th>
+						<th class="product-subtotal"><?php _e( 'TOTAL', 'woocommerce' ); ?></th>
+						<th>ACCIONES</th>
+					</tr>
+
+					<?php
+					foreach($items as $cart_item_key => $cart_item){
+						$_product     = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+						$product_id   = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
+					?>
+						<tr>
+							<td class="product-name" data-title="<?php _e( 'Product', 'woocommerce' ); ?>">
+								<?php
+								if ( ! $_product->is_visible() ) {
+									echo apply_filters( 'woocommerce_cart_item_name', $_product->get_title(), $cart_item, $cart_item_key ) . '&nbsp;';
+								} else {
+									echo apply_filters( 'woocommerce_cart_item_name', sprintf( '<a href="%s">%s</a>', esc_url( $_product->get_permalink( $cart_item ) ), $_product->get_title() ), $cart_item, $cart_item_key );
+								}
+								?>
+							</td>
+							<td class="product-service" data-title="<?php _e( 'Service', 'woocommerce' ); ?>">
+
+								<?php
+								// Meta data
+								echo WC()->cart->get_item_data( $cart_item );
+
+								// Backorder notification
+								if ( $_product->backorders_require_notification() && $_product->is_on_backorder( $cart_item['quantity'] ) ) {
+									echo '<p class="backorder_notification">' . esc_html__( 'Available on backorder', 'woocommerce' ) . '</p>';
+								}
+								?>
+							</td>
+							<td class="product-subtotal" data-title="<?php _e( 'Total', 'woocommerce' ); ?>">
+								<?php
+								echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key );
+								?>
+							</td>
+							<td style='text-align: right; width: 166px;'>
+								<a href="<?php echo esc_url( WC()->cart->get_cart_url()); ?>" class="theme_btn">Ver</a>
+								<a href="<?php echo esc_url( WC()->cart->get_checkout_url()); ?>" class="theme_btn">Pagar</a>
+								<a href="<?php echo esc_url( $_product->get_permalink($cart_item)); ?>" class="theme_btn">Modificar</a>
+								<a href="<?php echo esc_url( WC()->cart->get_remove_url($cart_item_key)); ?>" class="theme_btn">Eliminar</a>
+							</td>
+						</tr>
+					<?php
+					}
+					?>
+				</table>
+			<?php
+		}
+
+
+
+
+		$booking_coming=array();
+		$booking_coming['openpay_unpaid']=array();
+		$booking_coming['openpay_unpaid']['title']='Reservas Por Completar en Tienda por Coveniencia';
+		$booking_coming['openpay_unpaid']['th']=array();
+		$booking_coming['openpay_unpaid']['tr']=array();
+
+		$booking_coming['pending']=array();
+		$booking_coming['pending']['title']='Reservas en error en tarjetas de credito';
+		$booking_coming['pending']['th']=array();
+		$booking_coming['pending']['tr']=array();
+
+		$booking_coming['no-confirmed']=array();
+		$booking_coming['no-confirmed']['title']='Reservas Pendientes por Confirmar';
+		$booking_coming['no-confirmed']['th']=array();
+		$booking_coming['no-confirmed']['tr']=array();
+
+		$booking_coming['confirmed']=array();
+		$booking_coming['confirmed']['title']='Reservas Confirmadas';
+		$booking_coming['confirmed']['th']=array();
+		$booking_coming['confirmed']['tr']=array();
+
+		$booking_coming['wc-completed']=array();
+		$booking_coming['wc-completed']['title']='Reservas Completadas';
+		$booking_coming['wc-completed']['th']=array();
+		$booking_coming['wc-completed']['tr']=array();
+
+		$booking_coming['cancelled']=array();
+		$booking_coming['cancelled']['title']='Reservas Canceladas';
+		$booking_coming['cancelled']['th']=array();
+		$booking_coming['cancelled']['tr']=array();
+
+
+
+		//PENDIENTE POR PAGO EN TIENDA DE CONVENINCIA
+		if($reservas > 0){
+			foreach($reservas as $key => $reserva){
+				//var_dump($reserva);
+
+				$_metas_reserva=get_post_meta($reserva->ID);
+				$_metas=get_post_meta($reserva->post_parent);
+				//var_dump($_metas);
+
+				$pedido = $wpdb->get_row("SELECT * FROM $wpdb->posts WHERE ID = ".$_metas_reserva['_booking_product_id'][0]);
+				//var_dump($pedido);
+
+				if($reserva->post_status=='unpaid' && $_metas['_payment_method'][0]=='openpay_stores'){
+
+					$options='<a class="theme_btn" href="'.$_metas['_openpay_pdf'][0].'">Ver PDF</a>';
+					$options.='<a class="theme_btn" href="'.get_home_url().'/ver/'.$reserva->post_parent.'">Ver</a>';
+					$options.='<a class="theme_btn cancelled" href="'.get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$reserva->post_parent.'&s=0">Cancelar</a>';
+
+					$booking_th=array();
+					$booking_th[]=array('class'=>'','data'=>'RESERVA');
+					$booking_th[]=array('class'=>'','data'=>'SERVICIO');
+					$booking_th[]=array('class'=>'td_responsive','data'=>'INICIO');
+					$booking_th[]=array('class'=>'td_responsive','data'=>'FIN');
+					$booking_th[]=array('class'=>'','data'=>'ACCIONES');
+					$booking_coming['openpay_unpaid']['th']=$booking_th;
+
+					$booking_td=array();
+					$booking_td[]=array('class'=>'','data'=>$reserva->ID);
+					$booking_td[]=array('class'=>'','data'=>'<a href="'.get_home_url().'/producto/'.$pedido->post_name.'" target="_blank" >'.$pedido->post_title.'</a>');
+					$booking_td[]=array('class'=>'td_responsive','data'=>date_boooking($_metas_reserva['_booking_start'][0]));
+					$booking_td[]=array('class'=>'td_responsive','data'=>date_boooking($_metas_reserva['_booking_end'][0]));
+					$booking_td[]=array('class'=>'','data'=>$options);
+					$booking_coming['openpay_unpaid']['tr'][]=$booking_td;
+
+
+				//RESERVAS PENDIENTES POR ERROR DE PAGOS DE TARJETAS
+				//$reserva->post_status=='pending'
+
+				//RESERVAS PNDIENTES POR CONFIRMAR
+				}else if($reserva->post_status!='confirmed'){
+
+					$options='<a class="theme_btn" href="'.get_home_url().'/ver/'.$reserva->post_parent.'">Ver</a>';
+					$options.='<a class="theme_btn cancelled" href="'.get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$reserva->post_parent.'&s=0">Cancelar</a>';
+
+					$booking_th=array();
+					$booking_th[]=array('class'=>'','data'=>'RESERVA');
+					$booking_th[]=array('class'=>'','data'=>'SERVICIO');
+					$booking_th[]=array('class'=>'td_responsive','data'=>'INICIO');
+					$booking_th[]=array('class'=>'td_responsive','data'=>'FIN');
+					$booking_th[]=array('class'=>'','data'=>'ACCIONES');
+					$booking_coming['no-confirmed']['th']=$booking_th;
+
+					$booking_td=array();
+					$booking_td[]=array('class'=>'','data'=>$reserva->ID);
+					$booking_td[]=array('class'=>'','data'=>'<a href="'.get_home_url().'/producto/'.$pedido->post_name.'" target="_blank" >'.$pedido->post_title.'</a>');
+					$booking_td[]=array('class'=>'td_responsive','data'=>date_boooking($_metas_reserva['_booking_start'][0]));
+					$booking_td[]=array('class'=>'td_responsive','data'=>date_boooking($_metas_reserva['_booking_end'][0]));
+					$booking_td[]=array('class'=>'','data'=>$options);
+					$booking_coming['no-confirmed']['tr'][]=$booking_td;
+
+
+				//RESERVAS CONFIRMADAS
+				}else if($reserva->post_status=='confirmed'){
+
+					$options='<a class="theme_btn" href="'.get_home_url().'/ver/'.$reserva->post_parent.'">Ver</a>';
+					$options.='<a class="theme_btn cancelled" href="'.get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$reserva->post_parent.'&s=0">Cancelar</a>';
+
+					$booking_th=array();
+					$booking_th[]=array('class'=>'','data'=>'RESERVA');
+					$booking_th[]=array('class'=>'','data'=>'SERVICIO');
+					$booking_th[]=array('class'=>'td_responsive','data'=>'INICIO');
+					$booking_th[]=array('class'=>'td_responsive','data'=>'FIN');
+					$booking_th[]=array('class'=>'','data'=>'ACCIONES');
+					$booking_coming['confirmed']['th']=$booking_th;
+
+					$booking_td=array();
+					$booking_td[]=array('class'=>'','data'=>$reserva->ID);
+					$booking_td[]=array('class'=>'','data'=>'<a href="'.get_home_url().'/producto/'.$pedido->post_name.'" target="_blank" >'.$pedido->post_title.'</a>');
+					$booking_td[]=array('class'=>'td_responsive','data'=>date_boooking($_metas_reserva['_booking_start'][0]));
+					$booking_td[]=array('class'=>'td_responsive','data'=>date_boooking($_metas_reserva['_booking_end'][0]));
+					$booking_td[]=array('class'=>'','data'=>$options);
+					$booking_coming['confirmed']['tr'][]=$booking_td;
+
+
+
+					//RESERVAS COMPLETADAS
+				}else if($reserva->post_status=='wc-completed'){
+
+					$options='<a class="theme_btn" href="'.get_home_url().'/ver/'.$reserva->post_parent.'">Ver</a>';
+					$options='<a class="theme_btn" href="'.get_home_url().'/valorar-cuidador/?id='.$reserva->ID.'">Valorar</a>';
+					$options.='<a class="theme_btn cancelled" href="'.get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$reserva->post_parent.'&s=0">Cancelar</a>';
+
+					$booking_th=array();
+					$booking_th[]=array('class'=>'','data'=>'RESERVA');
+					$booking_th[]=array('class'=>'','data'=>'SERVICIO');
+					$booking_th[]=array('class'=>'td_responsive','data'=>'INICIO');
+					$booking_th[]=array('class'=>'td_responsive','data'=>'FIN');
+					$booking_th[]=array('class'=>'','data'=>'ACCIONES');
+					$booking_coming['wc-completed']['th']=$booking_th;
+
+					$booking_td=array();
+					$booking_td[]=array('class'=>'','data'=>$reserva->ID);
+					$booking_td[]=array('class'=>'','data'=>'<a href="'.get_home_url().'/producto/'.$pedido->post_name.'" target="_blank" >'.$pedido->post_title.'</a>');
+					$booking_td[]=array('class'=>'td_responsive','data'=>date_boooking($_metas_reserva['_booking_start'][0]));
+					$booking_td[]=array('class'=>'td_responsive','data'=>date_boooking($_metas_reserva['_booking_end'][0]));
+					$booking_td[]=array('class'=>'','data'=>$options);
+					$booking_coming['wc-completed']['tr'][]=$booking_td;
+
+
+
+					//RESERVAS CANCELADAS
+				}else if($reserva->post_status=='cancelled'){
+
+					$options='<a class="theme_btn" href="'.get_home_url().'/ver/'.$reserva->post_parent.'">Ver</a>';
+
+					$booking_th=array();
+					$booking_th[]=array('class'=>'','data'=>'RESERVA');
+					$booking_th[]=array('class'=>'','data'=>'SERVICIO');
+					$booking_th[]=array('class'=>'td_responsive','data'=>'INICIO');
+					$booking_th[]=array('class'=>'td_responsive','data'=>'FIN');
+					$booking_th[]=array('class'=>'','data'=>'ACCIONES');
+					$booking_coming['cancelled']['th']=$booking_th;
+
+					$booking_td=array();
+					$booking_td[]=array('class'=>'','data'=>$reserva->ID);
+					$booking_td[]=array('class'=>'','data'=>'<a href="'.get_home_url().'/producto/'.$pedido->post_name.'" target="_blank" >'.$pedido->post_title.'</a>');
+					$booking_td[]=array('class'=>'td_responsive','data'=>date_boooking($_metas_reserva['_booking_start'][0]));
+					$booking_td[]=array('class'=>'td_responsive','data'=>date_boooking($_metas_reserva['_booking_end'][0]));
+					$booking_td[]=array('class'=>'','data'=>$options);
+					$booking_coming['cancelled']['tr'][]=$booking_td;
+
+				}
+			}
+		}
+
+
+		//BUILD TABLE
+		echo build_table($booking_coming);
+
+
+	/*
+		if( count($pendientes) > 0 ){
 			echo "<h1 class='vlz_h1 jj_h1'>Reservas Pendientes</h1>";
 
 			$resultados = "
@@ -205,7 +445,7 @@
 						<th style='text-align: left;'>SERVICIO</th>
 						<th class='td_responsive'>INICIO</th>
 						<th class='td_responsive'>FIN</th>
-						<th class='td_responsive'>ACCIONES</th>
+						<th>ACCIONES</th>
 					</tr>";
 
 				foreach ($completadas as $key => $value) {
@@ -215,7 +455,7 @@
 							<td><a href='".get_home_url()."/producto/{$value['URL']}' target='_blank' >{$value['SERVICIO']}</a></td>
 							<td class='td_responsive' style='text-align: center; width: 85px;'>{$value['INICIO']}</td>
 							<td class='td_responsive' style='text-align: center; width: 85px;'>{$value['FIN']}</td>
-							<td class='td_responsive' style='text-align: center; width: 85px;'>
+							<td style='text-align: center; width: 85px;'>
 								<a class='btn_ver'
 									href='".get_home_url()."/valorar-cuidador/?id={$value['ID']}'
 									style='   
@@ -263,7 +503,7 @@
 
 			echo $resultados;
 		}
-	
+	*/
 	}else{
 		echo "<h1 style='line-height: normal;'>Usted aún no tiene reservas.</h1><hr>";
 	}

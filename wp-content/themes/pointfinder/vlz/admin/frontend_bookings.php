@@ -53,6 +53,8 @@
 		</style>
 	";
 
+
+
     $this->FieldOutput .= '<div class="lista_reservas" data-user="'.$user_id.'">';
 
 		$sql = "
@@ -227,7 +229,7 @@
 
 				}
 			}
-
+		/*
 			$txts = array(
 				"Pendientes"  => $pendientes,
 				"Confirmadas"  => $confirmadas,
@@ -251,6 +253,152 @@
 						</table>";
 				}
 			}
+		*/
+
+
+
+
+			//NUEVO
+			$booking_coming=array();
+			$booking_coming['pending']=array();
+			$booking_coming['pending']['title']='Reservas Pendientes';
+			$booking_coming['pending']['th']=array();
+			$booking_coming['pending']['tr']=array();
+
+			$booking_coming['confirmed']=array();
+			$booking_coming['confirmed']['title']='Reservas Confirmadas';
+			$booking_coming['confirmed']['th']=array();
+			$booking_coming['confirmed']['tr']=array();
+
+			$booking_coming['complete']=array();
+			$booking_coming['complete']['title']='Reservas Completadas';
+			$booking_coming['complete']['th']=array();
+			$booking_coming['complete']['tr']=array();
+
+			$booking_coming['cancelled']=array();
+			$booking_coming['cancelled']['title']='Reservas Canceladas';
+			$booking_coming['cancelled']['th']=array();
+			$booking_coming['cancelled']['tr']=array();
+
+			foreach($reservas as $key => $reserva){
+				//var_dump($reserva);
+
+				$_metas_reserva=get_post_meta($reserva->ID);
+				$_metas=get_post_meta($reserva->post_parent);
+				//var_dump($_metas);
+
+				//CLIENTE
+				$_metas_user = get_user_meta($_metas_reserva['_booking_customer_id'][0]);
+				$_cliente = $_metas_user['first_name'][0]." ".$_metas_user['last_name'][0];
+
+				$pedido = $wpdb->get_row("SELECT * FROM $wpdb->posts WHERE ID = ".$_metas_reserva['_booking_product_id'][0]);
+				//var_dump($pedido);
+
+
+				//RESERVAS CONFIRMADAS
+				if($reserva->status=='confirmed'){
+
+					$options='<a class="theme_btn" href="'.get_home_url().'/detalle/'.$reserva->orden.'">Ver</a>';
+					$options.='<a class="theme_btn cancelled" href="'.get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$reserva->orden.'&s=0">Cancelar</a>';
+
+					$booking_th=array();
+					$booking_th[]=array('class'=>'','data'=>'RESERVA');
+					$booking_th[]=array('class'=>'','data'=>'CLIENTE');
+					$booking_th[]=array('class'=>'','data'=>'SERVICIO');
+					$booking_th[]=array('class'=>'td_responsive','data'=>'INICIO');
+					$booking_th[]=array('class'=>'td_responsive','data'=>'FIN');
+					$booking_th[]=array('class'=>'','data'=>'ACCIONES');
+					$booking_coming['confirmed']['th']=$booking_th;
+
+					$booking_td=array();
+					$booking_td[]=array('class'=>'','data'=>$reserva->ID);
+					$booking_td[]=array('class'=>'','data'=>$_cliente);
+					$booking_td[]=array('class'=>'','data'=>'<a href="'.get_home_url().'/producto/'.$pedido->post_name.'" target="_blank" >'.$pedido->post_title.'</a>');
+					$booking_td[]=array('class'=>'td_responsive','data'=>date_boooking($_metas_reserva['_booking_start'][0]));
+					$booking_td[]=array('class'=>'td_responsive','data'=>date_boooking($_metas_reserva['_booking_end'][0]));
+					$booking_td[]=array('class'=>'','data'=>$options);
+					$booking_coming['confirmed']['tr'][]=$booking_td;
+
+
+					//RESERVAS COMPLETADAS
+				}else if($reserva->status=='complete'){
+
+					$options='<a class="theme_btn" href="'.get_home_url().'/detalle/'.$reserva->orden.'">Ver</a>';
+
+					$booking_th=array();
+					$booking_th[]=array('class'=>'','data'=>'RESERVA');
+					$booking_th[]=array('class'=>'','data'=>'CLIENTE');
+					$booking_th[]=array('class'=>'','data'=>'SERVICIO');
+					$booking_th[]=array('class'=>'td_responsive','data'=>'INICIO');
+					$booking_th[]=array('class'=>'td_responsive','data'=>'FIN');
+					$booking_th[]=array('class'=>'','data'=>'ACCIONES');
+					$booking_coming['complete']['th']=$booking_th;
+
+					$booking_td=array();
+					$booking_td[]=array('class'=>'','data'=>$reserva->ID);
+					$booking_td[]=array('class'=>'','data'=>$_cliente);
+					$booking_td[]=array('class'=>'','data'=>'<a href="'.get_home_url().'/producto/'.$pedido->post_name.'" target="_blank" >'.$pedido->post_title.'</a>');
+					$booking_td[]=array('class'=>'td_responsive','data'=>date_boooking($_metas_reserva['_booking_start'][0]));
+					$booking_td[]=array('class'=>'td_responsive','data'=>date_boooking($_metas_reserva['_booking_end'][0]));
+					$booking_td[]=array('class'=>'','data'=>$options);
+					$booking_coming['complete']['tr'][]=$booking_td;
+
+
+
+					//RESERVAS COMPLETADAS
+				}else if($reserva->status=='cancelled'){
+
+					$options='<a class="theme_btn" href="'.get_home_url().'/detalle/'.$reserva->orden.'">Ver</a>';
+
+					$booking_th=array();
+					$booking_th[]=array('class'=>'','data'=>'RESERVA');
+					$booking_th[]=array('class'=>'','data'=>'CLIENTE');
+					$booking_th[]=array('class'=>'','data'=>'SERVICIO');
+					$booking_th[]=array('class'=>'td_responsive','data'=>'INICIO');
+					$booking_th[]=array('class'=>'td_responsive','data'=>'FIN');
+					$booking_th[]=array('class'=>'','data'=>'ACCIONES');
+					$booking_coming['cancelled']['th']=$booking_th;
+
+					$booking_td=array();
+					$booking_td[]=array('class'=>'','data'=>$reserva->ID);
+					$booking_td[]=array('class'=>'','data'=>$_cliente);
+					$booking_td[]=array('class'=>'','data'=>'<a href="'.get_home_url().'/producto/'.$pedido->post_name.'" target="_blank" >'.$pedido->post_title.'</a>');
+					$booking_td[]=array('class'=>'td_responsive','data'=>date_boooking($_metas_reserva['_booking_start'][0]));
+					$booking_td[]=array('class'=>'td_responsive','data'=>date_boooking($_metas_reserva['_booking_end'][0]));
+					$booking_td[]=array('class'=>'','data'=>$options);
+					$booking_coming['cancelled']['tr'][]=$booking_td;
+
+
+					//RESERVAS PENDIENTES
+				}else{
+
+					$options='<a class="theme_btn" href="'.get_home_url().'/detalle/'.$reserva->orden.'">Ver</a>';
+					$options.='<a class="theme_btn" href="'.get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$reserva->orden.'&s=1">Confirmar</a>';
+					$options.='<a class="theme_btn cancelled" href="'.get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$reserva->orden.'&s=0">Cancelar</a>';
+
+					$booking_th=array();
+					$booking_th[]=array('class'=>'','data'=>'RESERVA');
+					$booking_th[]=array('class'=>'','data'=>'CLIENTE');
+					$booking_th[]=array('class'=>'','data'=>'SERVICIO');
+					$booking_th[]=array('class'=>'td_responsive','data'=>'INICIO');
+					$booking_th[]=array('class'=>'td_responsive','data'=>'FIN');
+					$booking_th[]=array('class'=>'','data'=>'ACCIONES');
+					$booking_coming['pending']['th']=$booking_th;
+
+					$booking_td=array();
+					$booking_td[]=array('class'=>'','data'=>$reserva->ID);
+					$booking_td[]=array('class'=>'','data'=>$_cliente);
+					$booking_td[]=array('class'=>'','data'=>'<a href="'.get_home_url().'/producto/'.$pedido->post_name.'" target="_blank" >'.$pedido->post_title.'</a>');
+					$booking_td[]=array('class'=>'td_responsive','data'=>date_boooking($_metas_reserva['_booking_start'][0]));
+					$booking_td[]=array('class'=>'td_responsive','data'=>date_boooking($_metas_reserva['_booking_end'][0]));
+					$booking_td[]=array('class'=>'','data'=>$options);
+					$booking_coming['pending']['tr'][]=$booking_td;
+
+				}
+			}
+
+			//BUILD TABLE
+			echo build_table($booking_coming);
 			
 		}else{
 			$this->FieldOutput .= "<h2 style='line-height: normal;' class='vlz_no_aun'>Usted no tiene reservas pendientes</h2>";
