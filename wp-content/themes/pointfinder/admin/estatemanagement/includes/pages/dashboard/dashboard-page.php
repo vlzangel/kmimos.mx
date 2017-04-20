@@ -96,7 +96,7 @@ if(isset($ua_action)){
 						if ($user_name_field == ' ') {$user_name_field = $current_user->user_login;}
 
 						$user_photo_field = get_user_meta( $user_id, 'user_photo', true );
-						$user_photo_field_output = get_template_directory_uri().'/images/noimg.png';
+						$user_photo_field_output = get_home_url()."/wp-content/themes/pointfinder".'/images/noimg.png';
 						if(!empty($user_photo_field)){
 							if( $user_photo_field == 1){
 								$referred = get_user_meta($user_id, 'name_photo', true);
@@ -238,7 +238,7 @@ if(isset($ua_action)){
 								}elseif( file_exists("wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg") ){
 									$user_photo_field_output = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg";
 								}else{
-									$user_photo_field_output = get_template_directory_uri().'/images/noimg.png';
+									$user_photo_field_output = get_home_url()."/wp-content/themes/pointfinder".'/images/noimg.png';
 								}
 
 								// if( $cuidador->portada != '0' ){
@@ -248,7 +248,7 @@ if(isset($ua_action)){
 								// 	}
 								// 	$user_photo_field_output = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador->id."/".$referred;
 								// }else{
-								// 	$user_photo_field_output = get_template_directory_uri().'/images/noimg.png';
+								// 	$user_photo_field_output = get_home_url()."/wp-content/themes/pointfinder".'/images/noimg.png';
 								// }
 								
 								$pfmenu_output .= '<li class="pf-dash-userprof"><img src="'.$user_photo_field_output.'" class="pf-dash-userphoto" style="width: 70px; height: 70px;"/><span class="pf-dash-usernamef">'.$user_name_field.'</span></li>';
