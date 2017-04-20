@@ -31,7 +31,6 @@
 ***********************************************************************************************************************************/
 
 include_once("./wp-content/themes/pointfinder/vlz/admin/frontend/functions.php");
-///testing
 
 if ( ! class_exists( 'PF_Frontend_Fields' ) ){
 	class PF_Frontend_Fields{

@@ -297,7 +297,6 @@
 
 				//RESERVAS CONFIRMADAS
 				if($reserva->status=='confirmed'){
-					///testing
 
 					$options='<a class="theme_btn" href="'.get_home_url().'/detalle/'.$reserva->orden.'">Ver</a>';
 					$options.='<a class="theme_btn cancelled" href="'.get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$reserva->orden.'&s=0">Cancelar</a>';

@@ -330,7 +330,6 @@
 
 					//RESERVAS COMPLETADAS
 				}else if($reserva->post_status=='wc-completed'){
-					///testing
 
 					$options='<a class="theme_btn" href="'.get_home_url().'/ver/'.$reserva->post_parent.'">Ver</a>';
 					$options='<a class="theme_btn" href="'.get_home_url().'/valorar-cuidador/?id='.$reserva->ID.'">Valorar</a>';

@@ -23,7 +23,6 @@
 </script>
 
 <?php
-///testing
 
 function date_boooking($date=''){
     $date=strtotime($date);
