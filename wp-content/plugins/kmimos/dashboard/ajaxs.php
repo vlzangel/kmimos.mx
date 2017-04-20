@@ -87,9 +87,9 @@
 		break;
 
 		case "paginas":
-			$pagina *= 10;
+			$xpagina *= 10;
 
-			$sql = "SELECT SQL_CALC_FOUND_ROWS * FROM wp_posts WHERE post_type = 'page' AND post_status = 'publish' LIMIT $pagina, 10";
+			$sql = "SELECT SQL_CALC_FOUND_ROWS * FROM wp_posts WHERE post_type = 'page' AND post_status = 'publish' LIMIT $xpagina, 10";
 			$paginas = $conn_my->query($sql);
 
 			$num_rows = $conn_my->query('SELECT FOUND_ROWS() AS cantidad');
