@@ -3,8 +3,43 @@
 
 <?php echo kmimos_style( array("celdas") ); ?>
 
+<?php
+	global $wpdb;
+	$sql = "SELECT * FROM wp_posts WHERE post_type = 'page' AND post_status = 'publish'";
+	$paginas = $wpdb->get_results($sql);
+	$resultados = [];
+	if( count($paginas) > 0 ){
+		foreach ($paginas as $key => $value) {
+			
+			$descripcion = $wpdb->get_var("SELECT meta_value AS descripcion FROM wp_postmeta WHERE post_id = '{$value->ID}' AND meta_key = 'kmimos_descripcion'");
+
+			$resultados["registros"][] = [
+				$value->ID,
+				utf8_encode($descripcion),
+				utf8_encode($value->post_title),
+				$value->post_name
+			];
+		}
+	}
+	$item_by_page = 10;
+	$t = count($paginas);
+	if($t > $item_by_page){
+		$ps = ceil($t/$item_by_page)+1;
+		for( $i=1; $i<$ps; $i++){
+			$resultados["paginas"][] = [
+				$i
+			];
+		}
+	}
+	$resultados["total"] = $t;
+	$json = json_encode($resultados);
+	echo utf8_encode( "<script> var paginas = jQuery.parseJSON( '".$json."' ); </script>" );
+
+?>
+
 <link rel="stylesheet" href="<?php echo get_home_url()."/wp-content/plugins/kmimos/dashboard/setup/css/setup_css.css"; ?>">
 <script type="text/javascript"> var SETUP_URL_AJAX = "<?php echo get_home_url()."/wp-content/plugins/kmimos/dashboard/ajaxs.php"; ?>"; </script>
+<script type="text/javascript"> var URL_HOME = "<?php echo get_home_url()."/"; ?>"; </script>
 <script type="text/javascript" src="<?php echo get_home_url()."/wp-content/plugins/kmimos/dashboard/setup/js/setup_scripts.js"; ?>"></script>
 
 <div class="wrap">
@@ -34,6 +69,7 @@
 									<option>Customer Service</option>
 								</select>
 								<input type='hidden' id='user_id'>
+								<input type='hidden' id='index'>
 								<input type="button" value="Guardar" onclick="update_tipo_usuario()" >
 			        		</div>
 		        		</div>
