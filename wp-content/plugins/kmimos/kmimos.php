@@ -375,11 +375,7 @@ if(!function_exists('kmimos_include_admin_scripts')){
         switch ($tipo) {
             case 'Customer Service':
 
-                echo kmimos_style(array(
-                    "quitar_edicion",
-                    "menu_kmimos",
-                    "menu_reservas"
-                ));
+                global $post;
                 $types = array(
                     'petsitters',
                     'pets',
@@ -391,17 +387,16 @@ if(!function_exists('kmimos_include_admin_scripts')){
                     'kmimos',
                     'create_booking'
                 );
-                global $post;
-
-                // echo "<script> alert('".$post->post_type."'); </script>";
-
-                // echo "<pre>";
-                //     print_r($_SERVER);
-                // echo "</pre>";
 
                 if( count($_GET) == 0 || (!in_array($post->post_type, $types) && !in_array($_GET['page'], $pages)) ){
                     header("location: edit.php?post_type=petsitters");
                 }
+
+                echo kmimos_style(array(
+                    "quitar_edicion",
+                    "menu_kmimos",
+                    "menu_reservas"
+                ));
 
                 if( $post->post_type == 'shop_order' || $post->post_type == 'wc_booking' ){
                     echo kmimos_style(array(
