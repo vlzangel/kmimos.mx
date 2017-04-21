@@ -111,12 +111,12 @@
 
 					$resultados["registros"][] = [
 						$ID,
-						utf8_encode($descripcion),
-						utf8_encode($post_title),
+						($descripcion),
+						($post_title),
 						$post_name
 					];
 				}
-			}
+			} 
 
 			$t = $total_registros;
 			if($t > $item_by_page){
@@ -132,20 +132,18 @@
 
 			$resultados["total"] = $total_registros;
 
-			echo utf8_encode( json_encode($resultados) );
+			echo json_encode(utf8_encode($resultados));
 
 		break;
 
 		case "update_descripcion":
-
 			$xtipo = $conn_my->query("SELECT meta_value AS descripcion FROM wp_postmeta WHERE post_id = {$id} AND meta_key = 'kmimos_descripcion'");
-			echo "num_rows: ";$xtipo->num_rows;
+			$desc = utf8_decode($desc);
 			if($xtipo->num_rows == 0 ){
 				$conn_my->query("INSERT INTO wp_postmeta VALUES (NULL, {$id}, 'kmimos_descripcion', '{$desc}')");
 			}else{
 				$conn_my->query("UPDATE wp_postmeta SET meta_value = '{$desc}' WHERE post_id = '{$id}' AND meta_key = 'kmimos_descripcion';");
 			}
-
 		break;
 		
 	}
