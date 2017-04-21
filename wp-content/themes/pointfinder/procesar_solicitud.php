@@ -2,135 +2,6 @@
 	/*
 		Template Name: Procesar Solicitud
 	*/
-	get_header();
-	
-	if( $_SESSION['solicitud'] != "" ){
-		// if (
-		// 	$_POST['meeting_when'] == $_SESSION['solicitud']['meeting_when'] &&
-		// 	$_POST['meeting_time'] == $_SESSION['solicitud']['meeting_time'] &&
-		// 	$_POST['id'] 		   == $_SESSION['solicitud']['id']
-		// ) {
-
-		// 	echo "
-		// 			<style>
-		// 				.jj_modal_cc{
-		// 					position: fixed;
-		// 					top: 0px;
-		// 					left: 0px;
-		// 					width: 100%;
-		// 					height: 100%;
-		// 					display: table;
-		// 					z-index: 10000;
-		// 					background: rgba(0, 0, 0, 0.8);
-		// 					vertical-align: middle !important;
-		// 					display: none;
-		// 				}
-
-		// 				.jj_modal_cc_interno{
-		// 					display: table-cell;
-		// 					text-align: center;
-		// 					vertical-align: middle !important;
-		// 				}
-
-		// 				.jj_modal_cc_ventana{
-		// 				    position: relative;
-		// 				    display: inline-block;
-		// 				    width: 80%;
-		// 				    text-align: left;
-		// 				    box-shadow: 0px 0px 4px #FFF;
-		// 			        border-radius: 5px;
-		// 			        z-index: 1000;
-		// 				}
-
-		// 				.jj_modal_cc_titulo{
-		// 				    background: #FFF;
-		// 				    padding: 15px 10px;
-		// 				    font-size: 18px;
-		// 				    color: #52c8b6;
-		// 				    font-weight: 600;
-		// 				    border-radius: 5px 5px 0px 0px;
-		// 				}
-
-		// 				.jj_modal_cc_contenido{
-		// 				    background: #FFF;
-		// 				    height: 450px;
-		// 				    box-sizing: border-box;
-		// 				    padding: 5px 15px;
-		// 				    border-top: solid 1px #d6d6d6;
-		// 				    border-bottom: solid 1px #d6d6d6;
-		// 				    overflow: auto;
-		// 				    text-align: justify;
-		// 				}
-
-		// 				.jj_modal_cc_pie{
-		// 					background: #FFF;
-		// 				    padding: 15px 10px;
-		// 				    border-radius: 0px 0px 5px 5px;
-		// 				}
-
-		// 				.jj_modal_cc_fondo{
-		// 					position: fixed;
-		// 					top: 0px;
-		// 					left: 0px;
-		// 					width: 100%;
-		// 					height: 100%;
-		// 			        z-index: 500;
-		// 				}
-		// 				.jj_boton_siguiente{
-		// 				    padding: 10px 50px;
-		// 				    background-color: #a8d8c9;
-		// 				    display: inline-block;
-		// 				    font-size: 16px;
-		// 				    border: solid 1px #2ca683;
-		// 				    border-radius: 3px;
-		// 				    float: right;
-		// 				    cursor: pointer;
-		// 				} 
-		// 				@media screen and (max-width: 750px){
-		// 					.jj_modal_cc_ventana{
-		// 						width: 90% !important;
-		// 					}
-		// 				}
-		// 			</style>
-		// 					<!-- Modal 'Bienvenido'-->
-											 
-		// 			<div id='jj_modal_conocer_cuidador' class='jj_modal_cc'>
-
-		// 				<div class='jj_modal_cc_interno'>
-
-		// 					<div class='jj_modal_cc_fondo' onclick='jQuery('#jj_modal_conocer_cuidador').css('display', 'none');'></div>
-
-		// 					<div class='jj_modal_cc_ventana jj_modal_cc_ventana'S>
-
-		// 						<div class='jj_modal_cc_titulo'>¡Ups!</div>
-
-		// 						<div class='jj_modal_cc_contenido' style='height: auto;'>
-		// 								<p align='justify'>
-		// 									Lo siento Kmiamigo, ya realizaste una solicitud igual a esa. Pícale <a href='' onclick='history.back();' class='kmi_link'>Aquí</a> para realizar otra solicitud.
-		// 								</p>
-		// 						</div>
-		// 						<div class='jj_modal_cc_pie' style='border-radius: 0px 0px 5px 5px!important; height: 70px;'>
-
-		// 							<input type='button' style='text-align: center;' class='jj_boton_siguiente' value='Cerrar' onclick='history.back();' />
-
-		// 						</div>
-		// 					</div>
-		// 				</div>
-		// 			</div>
-		// 						<!-- /Modal '-->
-		// 			<script>
-		// 				setTimeout(function(){
-		// 					jQuery('#jj_modal_conocer_cuidador').css('display', 'table');
-
-		// 				}, 100);
-		// 			</script>
-		// 		";
-		// 	$_POST['funcion'] = "";
-
-  //   		get_footer();
-
-		// }
-	}
 
 	if($_POST['funcion'] == 'request'){
 
@@ -672,7 +543,6 @@
 			wp_mail( "a.pedroza@kmimos.la",     $asunto, $mensaje_admin);
 
 			$_SESSION['token_mail'] = $xmensaje_cliente;
-			//$_SESSION['token_mail'] = $xmensaje_cuidador;
 
 		}else{
 
@@ -681,3 +551,4 @@
 		header("location: ".get_home_url()."/conocer-al-cuidador/?id=".$post_id);
 	}
 ?>
+

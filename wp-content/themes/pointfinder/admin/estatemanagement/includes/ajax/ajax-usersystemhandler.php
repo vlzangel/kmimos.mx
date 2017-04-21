@@ -68,7 +68,7 @@ function pf_ajax_usersystemhandler(){
                   echo json_encode( array( 'login'=>false, 'mes'=>esc_html__( 'Wrong username or password!','pointfindert2d' )));
               } else {
                   wp_set_auth_cookie($user_signon->ID);
-                  echo json_encode( array( 'login'=>true, 'mes'=>esc_html__('Login successful, redirecting...','pointfindert2d' ),'referurl' => $wpreferurl,'redirectpage' => $wpreferurl));
+                  echo json_encode( array( 'login'=>true, 'mes'=>esc_html__('Login successful, redirecting...','pointfindert2d' ),'referurl' => $wpreferurl,'redirectpage' => $redirectpage));
               }
             }else{
               echo json_encode( array( 'login'=>false, 'mes'=>esc_html__('Wrong reCaptcha. Please verify first.','pointfindert2d' )));
@@ -83,7 +83,7 @@ function pf_ajax_usersystemhandler(){
               echo json_encode( array( 'login'=>false, 'mes'=>esc_html__( 'Wrong username or password!','pointfindert2d' )));
           } else {
               wp_set_auth_cookie($user_signon->ID);
-              echo json_encode( array( 'login'=>true, 'mes'=>esc_html__('Login successful, redirecting...','pointfindert2d' ),'referurl' => $wpreferurl,'redirectpage' => $wpreferurl));
+              echo json_encode( array( 'login'=>true, 'mes'=>esc_html__('Login successful, redirecting...','pointfindert2d' ),'referurl' => $wpreferurl,'redirectpage' => $redirectpage));
           }
         }
         

@@ -237,7 +237,7 @@
                         "preferences"   => array(
                             0 => array(
                                 "type"  => 'kmimostoken',
-                                "value" => $temp
+                                "value" => $token
                             )
                         ),
                         "cohorts" => array(
@@ -258,7 +258,7 @@
                     "error" => "SI",
                     "msg" => "Se encontraron los siguientes errores:\n\n".$respuesta->message
                 );
-                // echo "(".json_encode( $error ).")";
+                //echo "(".json_encode( $error ).")";
             }
 
             $error = array(
@@ -559,8 +559,19 @@
 
                     }
 
+                    $info = array();
+                    $info['user_login']     = sanitize_user($email, true);
+                    $info['user_password']  = sanitize_text_field($clave);
+
+                    $user_signon = wp_signon( $info, true );
+                    wp_set_auth_cookie($user_signon->ID);
+
             }else{
-                echo "false";
+                $error = array(
+                    "error" => "SI",
+                    "msg" => "No se ha podido completar el registro."
+                );
+                echo "(".json_encode( $error ).")";
             }
         }
         

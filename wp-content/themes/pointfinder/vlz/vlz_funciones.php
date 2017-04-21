@@ -147,6 +147,10 @@
 
 			if( $param['estados'] != "" ){
 
+				if( $orderby == "" ){
+					$orderby = "DISTANCIA ASC";
+				}
+
 				if($param['municipios'] != ""){
 					$municipio = "AND ubi.municipios LIKE '%=".$param['municipios']."=%'";
 				}
@@ -203,9 +207,6 @@
 						    ) <= 100
 						)
 					)";
-				// if( $orderby == "" ){
-				// 	$orderby = "DISTANCIA ASC";
-				// }
 
 			}else{
 				$ubicaciones_inner = "";
@@ -213,85 +214,6 @@
 					$orderby = "rating DESC, valoraciones DESC";
 				}
 			}
-
-			// if( $param['otra_latitud'] != "" && $param['otra_longitud'] != "" ){
-			// 	$DISTANCIA = ",
-			// 		( 6371 * 
-			// 			acos(
-			// 		    	cos(
-			// 		    		radians({$param['otra_latitud']})
-			// 		    	) * 
-			// 		    	cos(
-			// 		    		radians(latitud)
-			// 		    	) * 
-			// 		    	cos(
-			// 		    		radians(longitud) - 
-			// 		    		radians({$param['otra_longitud']})
-			// 		    	) + 
-			// 		    	sin(
-			// 		    		radians({$param['otra_latitud']})
-			// 		    	) * 
-			// 		    	sin(
-			// 		    		radians(latitud)
-			// 		    	)
-			// 		    )
-			// 	    ) as DISTANCIA 
-			// 	";
-
-			// 	if( ($param['otra_distancia']+0) < 50 ){
-			// 		$param['otra_distancia'] = 100;
-			// 	}
-					
-			// 	if( ($param['otra_distancia']+0 > 0) && ($tipo_busqueda != 'otra-localidad') ){$FILTRO_UBICACION = "HAVING DISTANCIA < ".($param['otra_distancia']+0);}
-
-			// }else{
-			// 	$DISTANCIA = "";
-			// 	$FILTRO_UBICACION = "";
-			// }
-
-			
-
-			// if( $param['estados'] != "" && $param['municipios'] != "" ){
-			// 	$ubicaciones_filtro = "
-			// 		AND (
-			// 			(
-			// 				ubi.estado LIKE '%=".$param['estados']."=%' AND 
-			// 				ubi.municipios LIKE '%=".$param['municipios']."=%'
-			// 			) OR (
-			// 				( 6371 * 
-			// 					acos(
-			// 				    	cos(
-			// 				    		radians({$param['latitud']})
-			// 				    	) * 
-			// 				    	cos(
-			// 				    		radians(latitud)
-			// 				    	) * 
-			// 				    	cos(
-			// 				    		radians(longitud) - 
-			// 				    		radians({$param['longitud']})
-			// 				    	) + 
-			// 				    	sin(
-			// 				    		radians({$param['latitud']})
-			// 				    	) * 
-			// 				    	sin(
-			// 				    		radians(latitud)
-			// 				    	)
-			// 				    )
-			// 			    ) <= 100
-			// 			)
-			// 		)";
-
-			// }else{
-				
-			// 	if( $param['estados'] != "" ){
-			// 		$ubicaciones_filtro = "AND ( ubi.estado LIKE '%=".$param['estados']."=%' )";
-			// 	}
-
-			// 	if( $param['municipios'] != "" ){
-			// 		$ubicaciones_filtro = "AND ( ubi.municipios LIKE '%=".$param['municipios']."=%' )";
-			// 	}
-
-			// }
 
 		}else{
 
@@ -347,6 +269,7 @@
 				{$ubicaciones_filtro}
 			{$FILTRO_UBICACION}
 			ORDER BY {$orderby}
+			LIMIT {$pagina}, 15
 		";
 //			LIMIT {$pagina}, 15
 

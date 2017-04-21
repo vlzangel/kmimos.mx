@@ -25,7 +25,7 @@
 	}elseif( file_exists("wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg") ){
 		$foto = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg";
 	}else{
-		$foto = get_template_directory_uri().'/images/noimg.png';
+		$foto = get_home_url()."/wp-content/themes/pointfinder".'/images/noimg.png';
 	}
 
 	$tama_aceptados = unserialize( $cuidador->tamanos_aceptados );

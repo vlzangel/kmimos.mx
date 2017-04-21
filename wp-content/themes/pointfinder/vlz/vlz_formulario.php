@@ -93,13 +93,13 @@
 
 	if($_POST['municipios'] != ""){
 		$municipios_array = $wpdb->get_results("SELECT * FROM locations WHERE state_id = {$_POST['estados']} ORDER BY name ASC");
-	    $muni = "<option value=''>Seleccione un municipio</option>";
+	    $muni = "<option value=''>Seleccione un municipio</option>"; $xxx = 0;
 	    foreach($municipios_array as $municipio) { 
 	    	if( $_POST['municipios'] == $municipio->id ){
 				$sel = "selected"; 
-				echo "Concuerda";
 			}else{ $sel = ""; }
-	        $muni .= "<option value='".$municipio->id."' $sel>".$municipio->name."</option>";
+	        $muni .= "<option value='".$municipio->id."' data-id='".$xxx."' $sel>".$municipio->name."</option>";
+	        $xxx++;
 	    } 
 		$muni = utf8_decode($muni);
     }else{
@@ -108,12 +108,12 @@
 
 	$selects_estados = "
 		<div class='vlz_sub_seccion'>
-			<SELECT class='vlz_input' id='estados' name='estados' onchange='vlz_ver_municipios()' style='border: solid 1px #CCC;'>
+			<SELECT class='vlz_input' id='estados' name='estados' style='border: solid 1px #CCC;'>
 				{$estados}
 			</SELECT>
 		</div>
 		<div class='vlz_sub_seccion'>
-			<SELECT class='vlz_input' id='municipios' name='municipios' onchange='vlz_coordenadas()' style='border: solid 1px #CCC;'>
+			<SELECT class='vlz_input' id='municipios' name='municipios' style='border: solid 1px #CCC;'>
 				{$muni}
 			</SELECT>
 		</div>

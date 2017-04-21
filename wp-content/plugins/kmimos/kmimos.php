@@ -14,6 +14,13 @@
  * Version:     1.0.0
  * License:     GPL2
  */
+include_once('includes/class/class_kmimos_map.php');
+include_once('includes/functions/kmimos_functions.php');
+include_once('plugins/woocommerce.php');
+
+if(!function_exists('get_estados_municipios')){
+    return get_estados_municipios();
+}
 
 if(!function_exists('kmimos_mails_administradores')){
     function kmimos_mails_administradores(){
@@ -32,6 +39,68 @@ if(!function_exists('kmimos_mails_administradores')){
 
         return $headers;
     }
+}
+
+if(!function_exists('servicios_adicionales')){
+    function servicios_adicionales(){
+
+        $extras = array(
+            'corte' => array( 
+                'label'=>'Corte de Pelo y Uñas',
+                'icon' => 'peluqueria'
+            ),
+            'bano' => array( 
+                'label'=>'Baño y Secado',
+                'icon' => 'bano'
+            ),
+            'transportacion_sencilla' => array( 
+                'label'=>'Transporte Sencillo',
+                'icon' => 'transporte'
+            ),
+            'transportacion_redonda' => array( 
+                'label'=>'Transporte Redondo',
+                'icon' => 'transporte2'
+            ),
+            'visita_al_veterinario' => array( 
+                'label'=>'Visita al Veterinario',
+                'icon' => 'veterinario'
+            ),
+            'limpieza_dental' => array( 
+                'label'=>'Limpieza Dental',
+                'icon' => 'limpieza'
+            ),
+            'acupuntura' => array( 
+                'label'=>'Acupuntura',
+                'icon' => 'acupuntura'
+            )
+        );
+
+        return $extras;
+    }
+}
+
+// 
+
+if(!function_exists('kmimos_get_foto_cuidador')){
+    function kmimos_get_foto_cuidador($id){
+        global $wpdb;
+        $name_photo = get_user_meta($id, "name_photo", true);
+        $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id = ".$id);
+        $cuidador_id = $cuidador->id;
+        $xx = $name_photo;
+        if( empty($name_photo)  ){ $name_photo = "0"; }
+        if( file_exists("wp-content/uploads/cuidadores/avatares/".$cuidador_id."/{$name_photo}") ){
+            $img = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/{$name_photo}";
+        }else{
+            if( file_exists("wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg") ){
+                $img = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg";
+            }else{
+                $img = get_home_url()."/wp-content/themes/pointfinder".'/images/noimg.png';
+            }
+        }
+        return $img;
+    }
+    
 }
 
 if(!function_exists('kmimos_style')){
@@ -281,12 +350,12 @@ if(!function_exists('kmimos_include_scripts')){
 
     function kmimos_include_scripts(){
         wp_enqueue_script( 'kmimos_jqueryui_script', '//code.jquery.com/ui/1.11.4/jquery-ui.js', array(), '1.11.1', true  );
-        wp_enqueue_script( 'kmimos_filters_script', plugins_url('javascript/kmimos-filters.js', __FILE__), array(), '1.0.0', true );
-        wp_enqueue_script( 'kmimos_script', plugins_url('javascript/kmimos.js', __FILE__), array(), '1.0.0', true );
-        wp_enqueue_script( 'kmimos_fancy', plugins_url('javascript/jquery.fancybox.pack.js', __FILE__), array(), '2.1.5', true );
-        wp_enqueue_style( 'kmimos_style', plugins_url('css/kmimos.css', __FILE__) );
-        wp_enqueue_style( 'kmimos_filters_style', plugins_url('css/kmimos-filters.css', __FILE__) );
-        wp_enqueue_style( 'kmimos_fancy_style', plugins_url('css/jquery.fancybox.css?v=2.1.5', __FILE__) );
+        wp_enqueue_script( 'kmimos_filters_script',     get_home_url()."/wp-content/plugins/kmimos/".'javascript/kmimos-filters.js', array(), '1.0.0', true );
+        wp_enqueue_script( 'kmimos_script',             get_home_url()."/wp-content/plugins/kmimos/".'javascript/kmimos.js', array(), '1.0.0', true );
+        wp_enqueue_script( 'kmimos_fancy',              get_home_url()."/wp-content/plugins/kmimos/".'javascript/jquery.fancybox.pack.js', array(), '2.1.5', true );
+        wp_enqueue_style( 'kmimos_style',               get_home_url()."/wp-content/plugins/kmimos/".'css/kmimos.css' );
+        wp_enqueue_style( 'kmimos_filters_style',       get_home_url()."/wp-content/plugins/kmimos/".'css/kmimos-filters.css' );
+        wp_enqueue_style( 'kmimos_fancy_style',         get_home_url()."/wp-content/plugins/kmimos/".'css/jquery.fancybox.css?v=2.1.5' );
     }
 
 }
@@ -295,8 +364,9 @@ if(!function_exists('kmimos_include_admin_scripts')){
 
     function kmimos_include_admin_scripts(){
 
-        wp_enqueue_script( 'kmimos_script', plugins_url('javascript/kmimos-admin.js', __FILE__), array(), '1.0.0', true );
-        wp_enqueue_style( 'kmimos_style', plugins_url('css/kmimos-admin.css', __FILE__) );
+        wp_enqueue_script( 'kmimos_script', get_home_url()."/wp-content/plugins/kmimos/".'javascript/kmimos-admin.js', array(), '1.0.0', true );
+        wp_enqueue_style( 'kmimos_style', get_home_url()."/wp-content/plugins/kmimos/".'css/kmimos-admin.css' );
+
 
         global $current_user;
 
@@ -361,7 +431,7 @@ if(!function_exists('kmimos_admin_menu')){
                 'slug'=>'kmimos',
                 'access'=>'manage_options',
                 'page'=>'kmimos_panel',
-                'icon'=>plugins_url('/assets/images/icon.png', __FILE__),
+                'icon'=>get_home_url()."/wp-content/plugins/kmimos/".'/assets/images/icon.png',
                 'position'=>4,
             ),
 
@@ -373,6 +443,16 @@ if(!function_exists('kmimos_admin_menu')){
                 'access'=>'manage_options',
                 'page'=>'kmimos_panel',
                 'icon'=>'',
+            ),
+
+            array(
+                'title'=>'Control de Reservas',
+                'short-title'=>'Control de Reservas',
+                'parent'=>'kmimos',
+                'slug'=>'bp_Reservas',
+                'access'=>'manage_options',
+                'page'=>'kmimos_backpanel',
+                'icon'=>get_home_url()."/wp-content/plugins/kmimos/".'/assets/images/icon.png',
             ),
 
             array(
@@ -426,6 +506,17 @@ if(!function_exists('kmimos_panel')){
             wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
         }*/
         include_once('dashboard/kmimos_panel.php');
+    }
+
+}
+
+if(!function_exists('kmimos_backpanel')){
+
+    function kmimos_backpanel(){
+        /*if ( !current_user_can( 'manage_options' ) )  {
+            wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
+        }*/
+        include_once('dashboard/kmimos_backpanel.php');
     }
 
 }
@@ -1379,7 +1470,9 @@ if(!function_exists('get_referred_list_options')){
             'Agencia IQPR'  =>  'Agencia IQPR',
             'Revistas o periodicos' =>  'Revistas o periodicos',
             'Vintermex'             =>  'Vintermex',
-            'Otros'                 =>  'Otros',
+            'Amigo/Familiar'        =>  'Recomendación de amigo o familiar',
+            'Youtube'               =>  'Youtube',
+            'Otros'                 =>  'Otros'
         );
         return $opciones;
     }
@@ -1871,7 +1964,9 @@ if(!function_exists('kmimos_get_my_pets')){
 
         $sql  = "SELECT COUNT(*) AS count, GROUP_CONCAT(p.ID SEPARATOR ',') AS list, ";
 
-        $sql .= "GROUP_CONCAT(pn.meta_value SEPARATOR ',') AS names ";
+        $sql .= "GROUP_CONCAT(pn.meta_value SEPARATOR ',') AS names, ";
+
+        $sql .= "pr.nombre AS breed_name ";
 
         $sql .= "FROM $wpdb->posts AS p  ";
 
@@ -1879,11 +1974,13 @@ if(!function_exists('kmimos_get_my_pets')){
 
         $sql .= "LEFT JOIN $wpdb->postmeta AS pn ON (p.ID=pn.post_id AND pn.meta_key='name_pet') ";
 
+        $sql .= "LEFT JOIN $wpdb->postmeta AS pb ON (p.ID=pb.post_id AND pb.meta_key='breed_pet') ";
+
+        $sql .= "LEFT JOIN razas AS pr ON pr.id=pb.meta_value ";
+
         $sql .= "WHERE p.post_type = 'pets' AND p.post_status = 'publish' ";
 
         $sql .= "AND pm.meta_value = ".$user_id;
-
-//return $sql;
 
         return $wpdb->get_row($sql, ARRAY_A);
 
@@ -2453,7 +2550,11 @@ if(!function_exists('kmimos_get_pet_info')){
 
         
 
-        $sql = "SELECT pt.ID AS pet_id, GROUP_CONCAT(ty.term_taxonomy_id SEPARATOR ',') AS type, br.meta_value AS breed, ";
+        $sql = "SELECT  
+        
+
+
+        pt.ID AS pet_id, GROUP_CONCAT(ty.term_taxonomy_id SEPARATOR ',') AS type, br.meta_value AS breed, ";
 
         $sql .= "ph.meta_value as photo, nm.meta_value AS name, gr.meta_value AS gender, co.meta_value AS colors, bd.meta_value AS birthdate, ";
 
@@ -2468,6 +2569,13 @@ if(!function_exists('kmimos_get_pet_info')){
         $sql .= "LEFT JOIN $wpdb->term_relationships AS ty ON pt.ID =ty.object_id ";
 
         $sql .= "LEFT JOIN $wpdb->postmeta AS br ON (pt.ID =br.post_id AND br.meta_key='breed_pet') ";
+
+
+
+        
+       // $sql .= "LEFT JOIN $wpdb->razas AS raza  ON raza.id = br.meta_value  ";
+
+
 
         $sql .= "LEFT JOIN $wpdb->postmeta AS ph ON (pt.ID =ph.post_id AND ph.meta_key='photo_pet') ";
 
