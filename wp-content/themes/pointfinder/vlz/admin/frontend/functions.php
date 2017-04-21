@@ -20,43 +20,45 @@
         background: #e80000;
     }
 
-</script>
+</style>
 
 <?php
 
-function date_boooking($date=''){
-    $date=strtotime($date);
-    $date=date('d/m/Y',$date);
-    //$date=substr($date, 6, 2)."/".substr($date, 4, 2)."/".substr($date, 0, 4);
-    return $date;
+if(!function_exists('date_boooking')){
+    function date_boooking($date=''){
+        $date=strtotime($date);
+        $date=date('d/m/Y',$date);
+        //$date=substr($date, 6, 2)."/".substr($date, 4, 2)."/".substr($date, 0, 4);
+        return $date;
+    }
 }
 
-
-function build_table($args=array()){
-    $table='';
-    foreach($args as $data){
-        if(count($data['tr'])>0){
-            $table.='<h1 class="vlz_h1 jj_h1 theme_tite table_title">'.$data['title'].'</h1>';
-            $table.='<table class="vlz_tabla jj_tabla table table-striped table-responsive">';
-            $table.='<tr>';
-            foreach($data['th'] as $th){
-                $table.='<th class="'.$th['class'].'">'.$th['data'].'</th>';
-            }
-            $table.='</tr>';
-
-
-            foreach($data['tr'] as $tr){
+if(!function_exists('build_table')){
+    function build_table($args=array()){
+        $table='';
+        foreach($args as $data){
+            if(count($data['tr'])>0){
+                $table.='<h1 class="vlz_h1 jj_h1 theme_tite table_title">'.$data['title'].'</h1>';
+                $table.='<table class="vlz_tabla jj_tabla table table-striped table-responsive">';
                 $table.='<tr>';
-                foreach($tr as $td){
-                    $table.='<td class="'.$td['class'].'">'.$td['data'].'</th>';
+                foreach($data['th'] as $th){
+                    $table.='<th class="'.$th['class'].'">'.$th['data'].'</th>';
                 }
                 $table.='</tr>';
+
+
+                foreach($data['tr'] as $tr){
+                    $table.='<tr>';
+                    foreach($tr as $td){
+                        $table.='<td class="'.$td['class'].'">'.$td['data'].'</th>';
+                    }
+                    $table.='</tr>';
+                }
+
+                $table.='</table>';
             }
-
-            $table.='</table>';
         }
+        return $table;
     }
-    return $table;
 }
-
 ?>
