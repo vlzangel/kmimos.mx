@@ -129,7 +129,7 @@ var CURRENT_URL = window.location.href.split('#')[0].split('?')[0],
 				var handleDataTableButtons = function() {
 				  if ($(".datatable-buttons").length) {
 					$(".datatable-buttons").DataTable({
-					  dom: '<"col-md-6"B><"col-md-6"f><"#tblreserva"t>ip',
+					  dom: '<"col-md-6"B><"col-md-6"f><"#tblreserva"t><"col-sm-12"i>',
 					  buttons: [
 						// {
 						//   extend: "copy",
@@ -147,17 +147,17 @@ var CURRENT_URL = window.location.href.split('#')[0].split('?')[0],
 						  extend: "excelHtml5",
 						  className: "btn-sm"
 						},
-						// {
-						//   extend: "pdfHtml5",
-						//   className: "btn-sm"
-						// },
-						// {
-						//   extend: "print",
-						//   className: "btn-sm"
-						// },
-					  ],
-					  responsive: false,
-					  scrollX: true
+						{
+						  extend: "pdfHtml5",
+						  className: "btn-sm"
+						},
+						{
+						  extend: "print",
+						  className: "btn-sm"
+						},					  ],
+					  
+					  bPaginate: false,
+					  responsive: false
 					});
 				  }
 				};
@@ -206,7 +206,7 @@ var CURRENT_URL = window.location.href.split('#')[0].split('?')[0],
 				});
 
 				TableManageButtons.init();
-				$('#adminmenuwrap').css('position', 'fixed');
+				
 			};
 	   
 	$(document).ready(function() {

@@ -36,5 +36,4 @@ table.dataTable tbody tr.child ul li:last-child{
 
 #tblreserva table{
     overflow-x: scroll;
-    height: 300px;
 }
