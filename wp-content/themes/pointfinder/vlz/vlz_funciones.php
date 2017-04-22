@@ -56,10 +56,6 @@
 
 	function vlz_sql_busqueda($param, $pagina){
 
-		// echo "<pre>";
-		// 	print_r($param);
-		// echo "</pre>";
-
 		$condiciones = "";
 		if( isset($param["servicios"]) ){
 			foreach ($param["servicios"] as $key => $value) {
@@ -109,7 +105,7 @@
 
 		// Ordenamiento
 
-		$orderby = (isset($param['orderby']))? $param['orderby'] : "rating_desc" ;
+		$orderby = (isset($param['orderby'])) ? "" : "" ;
 
 		if( $orderby == "rating_desc" ){
 			$orderby = "rating DESC, valoraciones DESC";
@@ -146,10 +142,6 @@
 		if( $param['tipo_busqueda'] == "otra-localidad" ){
 
 			if( $param['estados'] != "" ){
-
-				if( $orderby == "" ){
-					$orderby = "DISTANCIA ASC";
-				}
 
 				if($param['municipios'] != ""){
 					$municipio = "AND ubi.municipios LIKE '%=".$param['municipios']."=%'";
@@ -208,6 +200,10 @@
 						)
 					)";
 
+				if( $orderby == "" ){
+					$orderby = "DISTANCIA ASC";
+				}
+
 			}else{
 				$ubicaciones_inner = "";
 				if( $orderby == "" ){
@@ -244,15 +240,19 @@
 
 				$FILTRO_UBICACION = "HAVING DISTANCIA < ".($param['distancia']+0);
 
+				if( $orderby == "" ){
+					$orderby = "DISTANCIA ASC";
+				}
+
 			}else{
 				$DISTANCIA = "";
 				$FILTRO_UBICACION = "";
 			}
 
-			if( $orderby == "" ){
-				$orderby = "DISTANCIA ASC";
-			}
+		}
 
+		if( $orderby == "" ){
+			$orderby = "rating DESC, valoraciones DESC";
 		}
 
 		
@@ -271,7 +271,6 @@
 			ORDER BY {$orderby}
 			LIMIT {$pagina}, 15
 		";
-//			LIMIT {$pagina}, 15
 
 		return $sql;
 	}
