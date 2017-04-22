@@ -14,19 +14,31 @@ body{
     line-height: 1.5;
 }
 .kmimos_select{
-    background: transparent;
-    border: solid 0px;
     box-shadow: 0px 0px 0px;
-    font-size: 12px;
+    border: solid 1px #CCC !important;
 }
 .kmimos_select:focus{
-    background: transparent;
-    border: solid 0px;
     box-shadow: 0px 0px 0px;
+    border: solid 1px #CCC !important;
+}
+.kmimos_buscador{
+    width: 100%; 
+    margin-bottom: 5px; 
+    border: solid 1px #CCC !important;
+    box-shadow: 0 0 0 #CCC !important;
+}
+input{
+    min-width: 100px;
+}
+table{
+    #margin-bottom: 10px;
+}
+.table_head{
+    margin-bottom: 0px;
+    background: #CCC;
 }
 th{
     font-family: Roboto;
-    background: #CCC;
 	padding: 5px;
 }
 td{
@@ -38,15 +50,15 @@ thead, tfoot{
 	border-right: solid 1px #CCC;
 }
 tbody{
-	border-left: solid 1px #CCC;
-	border-right: solid 1px #CCC;
+	/*border-left: solid 1px #CCC;
+	border-right: solid 1px #CCC;*/
 }
 tbody tr:hover td{
 	background-color: #FFF;
 	cursor: pointer;
 }
 #kmimos_panel_setup{
-	height: 200px;
+	height: 240px;
 	overflow: auto;
 }
 .submit{
@@ -75,6 +87,7 @@ tbody tr:hover td{
 	display: inline-block;
 	padding: 20px;
 	background: #FFF;
+    border-radius: 3px;
 }
 .editar_tipo_usuario{
 	cursor: pointer;
@@ -85,29 +98,8 @@ tbody tr:hover td{
 	padding: 10px 0px 0px;
 }
 
-/*  Paginación */
-
-.kmimos_paginacion{
-	overflow: hidden;
-}
-
-.kmimos_paginacion{
-	text-align: right;
-}
-
-.kmimos_paginacion_item{
-    display: inline-block;
-    padding: 3px 8px;
-    border: solid 1px #AAA;
-    margin: 2px;
-    font-size: 13px;
-    cursor: pointer;
-}
-
-.kmimos_paginacion_item:hover{
-	background: rgba(255, 255, 255, 0.6);
-}
-
-.kmimos_paginacion_activa{
-	background: rgba(255, 255, 255, 0.6);
+.kmimos_contenedor_table{
+    overflow: auto;
+    height: 240px;
+    background: #e6e6e6;
 }

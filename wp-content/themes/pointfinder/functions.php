@@ -896,6 +896,4 @@ add_filter('image_send_to_editor', 'remove_thumbnail_dimensions', 10);
 
 add_filter( 'loop_shop_per_page', create_function( '$cols', 'return 12;' ), 20 );
 
-
-
 ?>

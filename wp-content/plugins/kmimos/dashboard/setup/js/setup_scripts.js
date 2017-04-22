@@ -1,6 +1,13 @@
 function update_tipo_usuario(){
-	var tipo 	 = jQuery("#tipo_usuario").attr('value');
-  	var user_id  = jQuery("#user_id").attr('value');
+	var tipo 	 = jQuery("#editar_tipo_usuario_modal_tipo_usuario").attr('value');
+  	var user_id  = jQuery("#editar_tipo_usuario_modal_user_id").attr('value');
+  	var index  = jQuery("#editar_tipo_usuario_modal_index").attr('value');
+
+  	console.log(index);
+  	administradores.registros[index][3] = tipo;
+	jQuery(".kmimos_panel_setup"+user_id).attr("data-desc", tipo);
+	jQuery(".kmimos_panel_setup"+user_id+" .editar_tipo_usuario_td").html(tipo);
+
 	jQuery.ajax({
 	    url: SETUP_URL_AJAX,
 	    type: "post",
@@ -19,6 +26,12 @@ function update_tipo_usuario(){
 function update_descripcion(){
 	var descripcion = jQuery("#descripcion").val();
   	var page_id  = jQuery("#page_id").attr('value');
+  	var index  = jQuery("#index").attr('value');
+
+	jQuery(".editar_descripcion_pagina_"+page_id).attr("data-desc", descripcion);
+	jQuery(".editar_descripcion_pagina_"+page_id+" .editar_descripcion_pagina_td").html(descripcion);
+	paginas.registros[index][1] = descripcion;
+
 	jQuery.ajax({
 	    url: SETUP_URL_AJAX,
 	    type: "post",
@@ -29,14 +42,38 @@ function update_descripcion(){
 	    },
 	    success: function (data) {
   			jQuery(".kmimos_modal_interno").css("display", "none");
-  			refresh();
 	    }
 	});
 }
 
 // Refresh
+ 
+function listar_administradores(){
+	var HTML = "";
+	var txt = jQuery("#buscar_administrador").val();
 
-function listar_administradores(page = 0){
+	for (var i = 0; i < administradores.registros.length; i++) {
+		if( buscar(txt, administradores.registros[i][2]) ){
+			HTML += "<tr class='editar_tipo_usuario' data-id='"+administradores.registros[i][0]+"' data-tipo='"+administradores.registros[i][3]+"' data-index='"+i+"'>";
+				HTML += "<td style='width: 20%;'> <a href='"+URL_HOME+"/?i="+administradores.registros[i][4]+"' target='_blank'> "+administradores.registros[i][2]+" </a> </td>";
+				HTML += "<td style='width: 50%;'> "+administradores.registros[i][1]+" </td>";
+				HTML += "<td style='width: 30%;' class='editar_tipo_usuario_td'> "+administradores.registros[i][3]+" </td>";
+			HTML += "</tr>";
+		}
+	}
+	jQuery("#kmimos_panel_setup").html(HTML);
+	
+	jQuery(".editar_tipo_usuario").on("click", function(e){
+		var user_id = jQuery(this).attr( "data-id" );
+		var tipo = jQuery(this).attr( "data-tipo" );
+		var index = jQuery(this).attr( "data-index" );
+		jQuery("#editar_tipo_usuario_modal_tipo_usuario > option[value='"+tipo+"']").attr('selected', 'selected'); 
+		jQuery("#editar_tipo_usuario_modal_user_id").attr('value', user_id); 
+		jQuery("#editar_tipo_usuario_modal_index").attr('value', index); 
+		jQuery("#editar_tipo_usuario_modal").css("display", "table");
+	});
+
+	/*
 	jQuery.ajax({
 	    url: SETUP_URL_AJAX,
 	    type: "post",
@@ -45,54 +82,63 @@ function listar_administradores(page = 0){
 	    	pagina: page
 	    },
 	    success: function (data) {
-
 	    	var datos = data.split("====");
-
       		jQuery("#kmimos_panel_setup").html(datos[0]);
       		jQuery("#kmimos_panel_setup_paginacion").html(datos[1]);
-
       		jQuery(".editar_tipo_usuario").on("click", function(e){
       			var user_id = jQuery(this).attr( "data-id" );
       			var tipo = jQuery(this).attr( "data-tipo" );
-
       			jQuery("#tipo_usuario > option[value='"+tipo+"']").attr('selected', 'selected'); 
       			jQuery("#user_id").attr('value', user_id); 
-
       			jQuery("#editar_tipo_usuario_modal").css("display", "table");
       		});
 	    }
 	});
+	*/
 }
 
-function listar_descripciones(page = 0){
-	jQuery.ajax({
-	    url: SETUP_URL_AJAX,
-	    type: "post",
-	    data: {
-	    	action: "paginas",
-	    	pagina: page
-	    },
-	    success: function (data) {
+function listar_descripciones(){
+	var HTML = "";
+	var txt = jQuery("#buscar_pagina").val();
 
-	    	var datos = data.split("====");
+	for (var i = 0; i < paginas.registros.length; i++) {
+		if( buscar(txt, paginas.registros[i][2]) ){
+			HTML += "<tr class='editar_descripcion_pagina editar_descripcion_pagina_"+paginas.registros[i][0]+"' data-id='"+paginas.registros[i][0]+"' data-desc='"+paginas.registros[i][1]+"' data-index='"+i+"'>";
+			HTML += "<td style='width: 40%;'> <a href='"+URL_HOME+"/"+paginas.registros[i][3]+"' target='_blank'> "+paginas.registros[i][2]+" </a> </td>";
+			HTML += "<td style='width: 60%;' class='editar_descripcion_pagina_td'> "+paginas.registros[i][1]+" </td>";
+			HTML += "</tr>";
+		}
+	}
+	jQuery("#kmimos_setup_descripciones").html(HTML);
+	jQuery(".editar_descripcion_pagina").on("click", function(e){
+		var page_id = jQuery(this).attr( "data-id" );
+		var index = jQuery(this).attr( "data-index" );
+		var desc = jQuery(this).attr( "data-desc" );
 
-      		jQuery("#kmimos_setup_descripciones").html(datos[0]);
-      		jQuery("#kmimos_setup_descripciones_paginacion").html(datos[1]);
+		jQuery("#page_id").attr("value", page_id);
+		jQuery("#index").attr("value", index);
+		jQuery("#descripcion").val(desc);
 
-      		jQuery(".editar_descripcion_pagina").on("click", function(e){
-      			var page_id = jQuery(this).attr( "data-id" );
-      			var desc = jQuery(this).attr( "data-desc" );
-
-      			jQuery("#descripcion").val(desc);
-
-      			jQuery("#editar_descripcion_modal").css("display", "table");
-      		});
-	    }
+		jQuery("#editar_descripcion_modal").css("display", "table");
 	});
 }
 
-function refresh(){
-	listar_administradores(0);
-	listar_descripciones(0);
+jQuery(function() {
+  	refresh();
+  	jQuery("#buscar_administrador").on("keyup", listar_administradores);
+  	jQuery("#buscar_pagina").on("keyup", listar_descripciones);
+
+});
+
+function buscar(txt, txt_completo){
+	if(txt_completo.toLowerCase().indexOf(txt.toLowerCase()) >= 0){
+		return true;
+	}else{
+		return false;
+	}
 }
-refresh();
+
+function refresh(){
+	listar_administradores();
+	listar_descripciones();
+}

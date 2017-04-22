@@ -87,8 +87,9 @@
 		break;
 
 		case "paginas":
+			$xpagina = $_POST['pagina']*10;
 
-			$sql = "SELECT SQL_CALC_FOUND_ROWS * FROM wp_posts WHERE post_type = 'page' AND post_status = 'publish' LIMIT $pagina, 10";
+			$sql = "SELECT SQL_CALC_FOUND_ROWS * FROM wp_posts WHERE post_type = 'page' AND post_status = 'publish' LIMIT $xpagina, 10";
 			$paginas = $conn_my->query($sql);
 
 			$num_rows = $conn_my->query('SELECT FOUND_ROWS() AS cantidad');
@@ -98,37 +99,51 @@
 			$item_by_page = 10;
 			$paginacion = "";
 
-			$resultados = "";
+			$resultados = [];
+			$resultados["log"] = $sql;
 			if( $paginas->num_rows > 0 ){
 				while( $xpagina = $paginas->fetch_assoc() ){
 					extract($xpagina);
 
 					$num_rows = $conn_my->query("SELECT meta_value AS descripcion FROM wp_postmeta WHERE post_id = '{$ID}' AND meta_key = 'kmimos_descripcion'");
 					$descripcion = $num_rows->fetch_assoc();
-					$descripcion = $descripcion['descripcion'];
+					$descripcion = ($descripcion['descripcion'] != null) ? $descripcion['descripcion'] : "";
 
-					$resultados .= "
-					<tr class='editar_descripcion_pagina' data-id='{$ID}' data-desc='{$descripcion}'>
-						<td> <a href='".$_SERVER['REQUEST_SCHEME']."://".$_sSERVER['HTTP_HOST']."/{$post_name}' target='_blank'> {$post_title} </a> </td>
-						<td> {$descripcion} </td>
-					</tr>";
+					$resultados["registros"][] = [
+						$ID,
+						($descripcion),
+						($post_title),
+						$post_name
+					];
 				}
-			}
+			} 
 
 			$t = $total_registros;
 			if($t > $item_by_page){
-				$ps = ceil($t/$item_by_page);
+				$ps = ceil($t/$item_by_page)+1;
 				for( $i=1; $i<$ps; $i++){
 					$active = ( $pagina == ($i-1) || ($pagina == 0 && $i == 1)  ) ? "kmimos_paginacion_activa" : "";
-					$paginacion .= "<span class='kmimos_paginacion_item {$active}' onclick='listar_descripciones(".($i-1).")' ".$active.">".$i."</span>";
+					$resultados["paginas"][] = [
+						$i,
+						$active
+					];
 				}
 			}
-			$w = 40*$ps;
-			
-			$resultados = $resultados."===="."<div class='kmimos_paginacion'>".$paginacion."</div>";
 
-			echo utf8_encode( $resultados );
+			$resultados["total"] = $total_registros;
 
+			echo json_encode(utf8_encode($resultados));
+
+		break;
+
+		case "update_descripcion":
+			$xtipo = $conn_my->query("SELECT meta_value AS descripcion FROM wp_postmeta WHERE post_id = {$id} AND meta_key = 'kmimos_descripcion'");
+			$desc = utf8_decode($desc);
+			if($xtipo->num_rows == 0 ){
+				$conn_my->query("INSERT INTO wp_postmeta VALUES (NULL, {$id}, 'kmimos_descripcion', '{$desc}')");
+			}else{
+				$conn_my->query("UPDATE wp_postmeta SET meta_value = '{$desc}' WHERE post_id = '{$id}' AND meta_key = 'kmimos_descripcion';");
+			}
 		break;
 		
 	}

@@ -252,7 +252,7 @@
 			}elseif( file_exists("../../uploads/cuidadores/avatares/".$cuidador_id."/0.jpg") ){
 				$img = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg";
 			}else{
-				$img = get_template_directory_uri().'/images/noimg.png';
+				$img = get_home_url()."/wp-content/themes/pointfinder".'/images/noimg.png';
 			}
 
 	        $post = get_post($cuidador->id_post);
