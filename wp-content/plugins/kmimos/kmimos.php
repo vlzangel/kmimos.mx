@@ -444,12 +444,29 @@ if(!function_exists('kmimos_admin_menu')){
                 'title'=>'Control de Reservas',
                 'short-title'=>'Control de Reservas',
                 'parent'=>'kmimos',
-                'slug'=>'bp_Reservas',
+                'slug'=>'bp_reservas',
                 'access'=>'manage_options',
-                'page'=>'kmimos_backpanel',
-                'icon'=>get_home_url()."/wp-content/plugins/kmimos/".'/assets/images/icon.png',
+                'page'=>'backpanel_reservas',
+                'icon'=>plugins_url('/assets/images/icon.png', __FILE__),
             ),
-
+            array(
+                'title'=>'Control Conocer a Cuidador',
+                'short-title'=>'Control Conocer a Cuidador',
+                'parent'=>'kmimos',
+                'slug'=>'bp_conocer_cuidador',
+                'access'=>'manage_options',
+                'page'=>'backpanel_conocer_cuidador',
+                'icon'=>plugins_url('/assets/images/icon.png', __FILE__),
+            ),
+            array(
+                'title'=>'Listado de Suscriptores',
+                'short-title'=>'Listado de Suscriptores',
+                'parent'=>'kmimos',
+                'slug'=>'bp_subscribe',
+                'access'=>'manage_options',
+                'page'=>'backpanel_subscribe',
+                'icon'=>plugins_url('/assets/images/icon.png', __FILE__),
+            ),
             array(
                 'title'=> __('Settings'),
                 'short-title'=> __('Settings'),
@@ -505,15 +522,22 @@ if(!function_exists('kmimos_panel')){
 
 }
 
-if(!function_exists('kmimos_backpanel')){
-
-    function kmimos_backpanel(){
-        /*if ( !current_user_can( 'manage_options' ) )  {
-            wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
-        }*/
-        include_once('dashboard/kmimos_backpanel.php');
+if(!function_exists('backpanel_conocer_cuidador')){
+    function backpanel_conocer_cuidador(){
+        include_once('dashboard/backpanel_conocer_cuidador.php');
     }
+}
 
+if(!function_exists('backpanel_reservas')){
+    function backpanel_reservas(){
+        include_once('dashboard/backpanel_reservas.php');
+    }
+}
+
+if(!function_exists('backpanel_subscribe')){
+    function backpanel_subscribe(){
+        include_once('dashboard/backpanel_subscribe.php');
+    }
 }
 
 /**
