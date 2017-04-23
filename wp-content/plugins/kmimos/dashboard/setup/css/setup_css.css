@@ -101,5 +101,23 @@ tbody tr:hover td{
 .kmimos_contenedor_table{
     overflow: auto;
     height: 240px;
-    background: #e6e6e6;
+    background: #ececec;
 }
+
+.kmimos_md2{
+    padding-right: 5px;
+}
+
+.kmimos_md10{
+    padding-left: 0px;
+}
+
+@media (max-width: 980px){  
+    .kmimos_md2{
+        padding-right: 15px;
+    }
+
+    .kmimos_md10{
+        padding-left: 15px;
+    }
+}   

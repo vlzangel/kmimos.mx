@@ -74,10 +74,15 @@ if ( ! $checkout->enable_signup && ! $checkout->enable_guest_checkout && ! is_us
 		    font-weight: bold;
 		    text-shadow: 3px 2px 12px rgba(255, 255, 255, 0.57);
 		}
+		.wc-terms-and-conditions a{
+			font-size: 15px;
+		    color: #54c8a7;
+		    font-weight: 600;
+		}
 		<?php
 			global $current_user;
 			$roles = wp_get_current_user()->roles;
-			if( $roles[0] != "administrator" ){
+			if(  $_SESSION['admin_sub_login'] != 'YES' ){
 				echo "
 					.payment_method_wcvendors_test_gateway{
 						display: none;
@@ -92,6 +97,7 @@ if ( ! $checkout->enable_signup && ! $checkout->enable_guest_checkout && ! is_us
 
 		}
 	</style>
+
 	<?php do_action( 'woocommerce_checkout_after_order_review' ); ?>
 
 
@@ -104,5 +110,10 @@ jQuery( document ).ready(function() {
     jQuery('dt.variation-Duracin').css('display', 'none');
     jQuery('dd.variation-Duracin').css('display', 'none');
     // jQuery('label[for=payment_method_openpay_cards]').css('display', 'none');
+    <?php if(  $_SESSION['admin_sub_login'] == 'YES' ){ ?>
+	    jQuery("#payment_method_wcvendors_test_gateway").attr("checked", "checked");
+		jQuery(".payment_method_wcvendors_test_gateway").css("display", "block");
+		jQuery("div.payment_method_openpay_cards").css("display", "none");
+    <?php } ?>
 });
 </script>
