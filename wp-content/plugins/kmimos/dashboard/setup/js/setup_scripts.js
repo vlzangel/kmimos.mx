@@ -47,15 +47,32 @@ function update_descripcion(){
 }
 
 // Refresh
- 
+
+function listar_usuarios(){
+	var HTML = "";
+	var fil = jQuery("#filtrar_usuarios").val();
+	var txt = jQuery("#buscar_usuarios").val();
+
+	for (var i = 0; i < kmimos_usuarios.registros[fil].length; i++) {
+		if( buscar(txt, kmimos_usuarios.registros[fil][i][1]) || buscar(txt, kmimos_usuarios.registros[fil][i][2]) ){
+			HTML += "<tr class='kmimos_usuario' data-id='"+i+"'>";
+				HTML += "<td style='width: 50%;'> <a href='"+URL_HOME+"?i="+kmimos_usuarios.registros[fil][i][3]+"' target='_blank' id='kmimos_usuario_"+i+"'> "+kmimos_usuarios.registros[fil][i][1]+" </a> </td>";
+				HTML += "<td style='width: 50%;'> "+kmimos_usuarios.registros[fil][i][2]+" </td>";
+			HTML += "</tr>";
+		}
+	}
+	jQuery("#kmimos_panel_usuarios").html(HTML);
+}
+
+
 function listar_administradores(){
 	var HTML = "";
 	var txt = jQuery("#buscar_administrador").val();
 
 	for (var i = 0; i < administradores.registros.length; i++) {
-		if( buscar(txt, administradores.registros[i][2]) ){
+		if( buscar(txt, administradores.registros[i][1]) || buscar(txt, administradores.registros[i][2]) ){
 			HTML += "<tr class='editar_tipo_usuario' data-id='"+administradores.registros[i][0]+"' data-tipo='"+administradores.registros[i][3]+"' data-index='"+i+"'>";
-				HTML += "<td style='width: 20%;'> <a href='"+URL_HOME+"/?i="+administradores.registros[i][4]+"' target='_blank'> "+administradores.registros[i][2]+" </a> </td>";
+				HTML += "<td style='width: 20%;'> <a href='"+URL_HOME+"/?i="+administradores.registros[i][4]+"'> "+administradores.registros[i][2]+" </a> </td>";
 				HTML += "<td style='width: 50%;'> "+administradores.registros[i][1]+" </td>";
 				HTML += "<td style='width: 30%;' class='editar_tipo_usuario_td'> "+administradores.registros[i][3]+" </td>";
 			HTML += "</tr>";
@@ -72,29 +89,6 @@ function listar_administradores(){
 		jQuery("#editar_tipo_usuario_modal_index").attr('value', index); 
 		jQuery("#editar_tipo_usuario_modal").css("display", "table");
 	});
-
-	/*
-	jQuery.ajax({
-	    url: SETUP_URL_AJAX,
-	    type: "post",
-	    data: {
-	    	action: "administradores",
-	    	pagina: page
-	    },
-	    success: function (data) {
-	    	var datos = data.split("====");
-      		jQuery("#kmimos_panel_setup").html(datos[0]);
-      		jQuery("#kmimos_panel_setup_paginacion").html(datos[1]);
-      		jQuery(".editar_tipo_usuario").on("click", function(e){
-      			var user_id = jQuery(this).attr( "data-id" );
-      			var tipo = jQuery(this).attr( "data-tipo" );
-      			jQuery("#tipo_usuario > option[value='"+tipo+"']").attr('selected', 'selected'); 
-      			jQuery("#user_id").attr('value', user_id); 
-      			jQuery("#editar_tipo_usuario_modal").css("display", "table");
-      		});
-	    }
-	});
-	*/
 }
 
 function listar_descripciones(){
@@ -125,20 +119,20 @@ function listar_descripciones(){
 
 jQuery(function() {
   	refresh();
+  	jQuery("#buscar_usuarios").on("keyup", listar_usuarios);
   	jQuery("#buscar_administrador").on("keyup", listar_administradores);
   	jQuery("#buscar_pagina").on("keyup", listar_descripciones);
+
+  	jQuery("#filtrar_usuarios").on("change", listar_usuarios);
 
 });
 
 function buscar(txt, txt_completo){
-	if(txt_completo.toLowerCase().indexOf(txt.toLowerCase()) >= 0){
-		return true;
-	}else{
-		return false;
-	}
+	if(txt_completo.toLowerCase().indexOf(txt.toLowerCase()) >= 0){ return true; }else{ return false; }
 }
 
 function refresh(){
+	listar_usuarios();
 	listar_administradores();
 	listar_descripciones();
 }

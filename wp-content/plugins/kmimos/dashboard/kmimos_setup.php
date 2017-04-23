@@ -7,6 +7,7 @@
 	include("setup/php/scripts.php");
 	paginas();
 	administradores();
+	usuarios();
 ?>
 
 <link rel="stylesheet" href="<?php echo get_home_url()."/wp-content/plugins/kmimos/dashboard/setup/css/setup_css.css"; ?>">
@@ -22,6 +23,46 @@
 	?>
 
 	<div>
+
+	    <div class="row">
+	        <div class="col-md-12">
+				<h2 class="kmimos_titulos">Listado de Usuarios</h2>
+			</div>
+		</div>
+
+	    <div class="row" style="overflow: hidden;">
+	        <div class="col-md-12">
+	        	<div style='position: relative;'> 
+
+	        		<div class="row">
+	        			<div class="col-md-2 kmimos_md2">
+				        	<SELECT id="filtrar_usuarios" class="kmimos_buscador">
+				        		<OPTION value='subscriber'>Cliente</OPTION>
+				        		<OPTION value='vendor'>Cuidador</OPTION>
+				        		<OPTION value='author'>Editor</OPTION>
+				        	</SELECT>
+				        </div>
+	        			<div class="col-md-10 kmimos_md10">
+	        				<input type='text' id='buscar_usuarios' class="kmimos_buscador" placeholder="Ingrese texto a buscar">
+	        			</div>
+	        		</div>
+
+					<table width="100%" class='table_head' cellpadding="0" cellspacing="0">
+						<thead>
+							<tr>
+								<th style="width: 50%;"> Usuario </th>
+								<th style="width: 50%;"> Email </th>
+							</tr>
+						</thead>
+					</table>
+					<div class='kmimos_contenedor_table'>
+						<table width="100%" class='' cellpadding="0" cellspacing="0">
+							<tbody id="kmimos_panel_usuarios"></tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
 
 	    <div class="row">
 	        <div class="col-md-12">
@@ -52,7 +93,7 @@
 		        		</div>
 	        		</div>
 
-	        		<input type='text' id='buscar_administrador' class="kmimos_buscador">
+	        		<input type='text' id='buscar_administrador' class="kmimos_buscador" placeholder="Ingrese texto a buscar">
 					<table width="100%" class='table_head' cellpadding="0" cellspacing="0">
 						<thead>
 							<tr>
@@ -93,7 +134,7 @@
 	        		</div>
 	    		</div>
 
-        		<input type='text' id='buscar_pagina' class="kmimos_buscador">
+        		<input type='text' id='buscar_pagina' class="kmimos_buscador" placeholder="Ingrese texto a buscar">
 				<table width="100%" class='table_head' cellpadding="0" cellspacing="0">
 					<thead>
 						<tr>
