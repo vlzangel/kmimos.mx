@@ -5,7 +5,7 @@
 	    padding: 0px 10px;
 	    border: solid 3px #87b8ab;
 	    border-radius: 0px 3px 3px 3px;
-	    margin-top: 50px;
+	    margin-top: 40px;
 	}
 
 	.vlz_titulo_parte{
