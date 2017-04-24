@@ -153,11 +153,65 @@
 							<div class="summary entry-summary">
 								<?php do_action( 'woocommerce_single_product_summary' ); ?>
 							</div>
-							<?php //do_action( 'woocommerce_after_single_product_summary' ); ?>
+
 							<meta itemprop="url" content="<?php the_permalink(); ?>" />
 
-							<div>
-							Hola
+							<div style="clear: both;">
+								<pre>
+									<?php
+
+										echo "SELECT * FROM cuidadores WHERE id_post = '".$propietario."'";
+
+										$cuidador = $wpdb->get_row( "SELECT * FROM cuidadores WHERE user_id = '".$propietario."'" );
+
+							            $lat = $cuidador->latitud;
+							            $lon = $cuidador->longitud;
+
+										$sql = "
+							                SELECT 
+							                    DISTINCT id,
+							                    ROUND ( ( 6371 * 
+							                        acos(
+							                            cos(
+							                                radians({$lat})
+							                            ) * 
+							                            cos(
+							                                radians(latitud)
+							                            ) * 
+							                            cos(
+							                                radians(longitud) - 
+							                                radians({$lon})
+							                            ) + 
+							                            sin(
+							                                radians({$lat})
+							                            ) * 
+							                            sin(
+							                                radians(latitud)
+							                            )
+							                        )
+							                    ), 2 ) as DISTANCIA,
+							                    id_post,
+							                    hospedaje_desde
+							                FROM 
+							                    cuidadores
+							                WHERE
+							                    id_post != {$propietario} AND
+							                    portada = 1 AND
+							                    activo = 1
+							                ORDER BY DISTANCIA ASC
+							                LIMIT 0, 4
+							            ";
+
+										$sugeridos = $wpdb->get_results( $sql );
+										$cuidadores = array();
+            							foreach ($sugeridos as $key => $cuidador) {
+            								$cuidadores[] = $cuidador;
+            							}
+
+										print_r( $cuidador );
+										print_r( $cuidadores );
+									?>
+								</pre>
 							</div>
 
 						</div>
