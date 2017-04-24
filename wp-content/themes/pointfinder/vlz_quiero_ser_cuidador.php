@@ -202,6 +202,10 @@
 					width: calc(70% - 9px) !important;
 				}
 
+				.vlz_parte{
+				    margin-top: 30px !important;
+				}
+
 			}		
 
 			@media screen and (max-width: 420px){
