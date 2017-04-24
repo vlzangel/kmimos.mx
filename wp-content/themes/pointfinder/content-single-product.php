@@ -153,8 +153,13 @@
 							<div class="summary entry-summary">
 								<?php do_action( 'woocommerce_single_product_summary' ); ?>
 							</div>
-							<?php do_action( 'woocommerce_after_single_product_summary' ); ?>
+							<?php //do_action( 'woocommerce_after_single_product_summary' ); ?>
 							<meta itemprop="url" content="<?php the_permalink(); ?>" />
+
+							<div>
+							Hola
+							</div>
+
 						</div>
 						<?php do_action( 'woocommerce_after_single_product' ); 
 					}
