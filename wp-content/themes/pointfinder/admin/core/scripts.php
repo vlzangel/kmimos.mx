@@ -163,9 +163,9 @@ function pf_styleandscripts()
 
 		if ($usemin == 1) {$script_file_2n = "theme-map-functions.min.js";}else{$script_file_2n = "theme-map-functions.js";}
 
-		wp_register_script('theme-google-api', 'https://maps.googleapis.com/maps/api/js?v=3.18&libraries=places&language='.$maplanguage, array('jquery'), '',true); 
-		wp_register_script('theme-gmap3', get_home_url()."/wp-content/themes/pointfinder" . '/js/gmap3.js', array('theme-google-api'), '6.1',true); 
-		wp_register_script('theme-map-functionspf', get_home_url()."/wp-content/themes/pointfinder" . '/js/'.$script_file_2n, array('theme-gmap3','pftheme-minified-package','theme-scriptspf'), '1.0.0',true); 
+		// wp_register_script('theme-google-api', 'https://maps.googleapis.com/maps/api/js?v=3.18&libraries=places&language='.$maplanguage, array('jquery'), '',true); 
+		// wp_register_script('theme-gmap3', get_home_url()."/wp-content/themes/pointfinder" . '/js/gmap3.js', array('theme-google-api'), '6.1',true); 
+		// wp_register_script('theme-map-functionspf', get_home_url()."/wp-content/themes/pointfinder" . '/js/'.$script_file_2n, array('theme-gmap3','pftheme-minified-package','theme-scriptspf'), '1.0.0',true); 
 		
 		global $post;
 
