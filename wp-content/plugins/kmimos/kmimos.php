@@ -308,7 +308,31 @@ if(!function_exists('kmimos_style')){
                     }
                 ";
             }
-        
+
+            if( in_array("form_errores", $styles)){
+                $salida .= "
+                    .no_error{
+                        display: none;
+                    }
+
+                    .error{
+                        display: block;
+                        font-size: 10px;
+                        border: solid 1px #CCC;
+                        padding: 3px;
+                        border-radius: 0px 0px 3px 3px;
+                        background: #ffdcdc;
+                        line-height: 1.2;
+                        font-weight: 600;
+                    }
+
+                    .vlz_input_error{
+                        border-radius: 3px 3px 0px 0px !important;
+                        border-bottom: 0px !important;
+                    }
+                ";
+            }
+
         $salida .= "</style>";
 
         return $salida;
