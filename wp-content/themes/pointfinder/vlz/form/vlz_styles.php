@@ -22,16 +22,17 @@
 	.vlz_form div{ vertical-align: top; }
 
 	.vlz_titulo{
-	    text-align: center;
+	    text-align: left;
 	    font-size: 36px;
-	    margin-top: 20px;
+	    margin-top: 0px;
    	 	margin-bottom: 20px;
+   	 	line-height: 1.1;
 	}
 	.vlz_sub_titulo{
-		font-size: 18px;
+		font-size: 16px;
 		color: #555555 !important;
-		margin-bottom: 20px !important;
-		text-align: center;
+		margin-bottom: 0px !important;
+		text-align: justify;
 	}
 
 	.vlz_titulo_interno{

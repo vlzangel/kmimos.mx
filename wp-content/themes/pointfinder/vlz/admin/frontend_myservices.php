@@ -367,7 +367,7 @@
     			<div class='vlz_seccion_interna' id='precios_hospedaje'>
     				".$hospedaje."
     			</div>
-				<div class='no_error' id='error_hospedaje'>Debe llenar por lo menos uno de los campos</div>
+				<div class='no_error' id='error_hospedaje'>Debe llenar al menos uno de los campos</div>
     		</div>
     		
     		".$precios_adicionales."

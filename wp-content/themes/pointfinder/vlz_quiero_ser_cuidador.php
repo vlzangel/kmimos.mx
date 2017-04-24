@@ -48,13 +48,98 @@
 			    margin-bottom: 5px;
 			}
 
+			.vlz_banner_cuidador_contenedor{
+				text-align: right;
+			}
+
+			.vlz_banner_cuidador{
+			    
+			}
+
+			div{
+				vertical-align: top;
+			}
+
+			.vlz_banner_footer{
+				margin: 15px 0px; 
+				border-top: solid 1px #000; 
+				border-bottom: solid 1px #000; 
+				padding: 5px;
+			}
+
+			.vlz_banner_footer .vlz_cell75{
+				color: #CCC;
+				font-size: 19px;
+				line-height: 1.1;
+				text-align: justify;
+			}
+
+			.vlz_verde {
+			    color: #2d9a7a;
+			}
+
+			.vlz_naranja {
+			    color: #ffa500;
+			}
+
+			.vlz_gris_footer {
+			    position: absolute;
+			    bottom: 0px;
+			    display: inline-block;
+			    left: 0px;
+			}
+
+			.vlz_banner_footer div{
+				height: 100px;
+			}
+
+			.vlz_banner_footer img{
+				height: 100%;
+			}
+
+			.vlz_banner_footer .vlz_cell25{
+				text-align: center;
+			}
+
+			@media (max-width: 992px){
+				.wpf-container {
+				    margin: 0px !important;
+				}
+				.vlz_banner_footer .vlz_cell75{
+					font-size: 17px;
+				}
+			}
+
+			@media screen and (max-width: 769px){
+				section.blog-full-width .pf-container {
+				    margin-top: 110px !important;
+				}
+				.vlz_titulo_contenedor,
+				.vlz_banner_cuidador_contenedor
+				{
+					width: calc(100% - 9px) !important;
+				}
+				.vlz_banner_footer .vlz_cell75{
+					font-size: 16px;
+				}
+				.vlz_banner_footer .vlz_cell25{
+					width: calc(25% - 9px) !important;
+				}
+			}
+
 			@media screen and (max-width: 750px){
 				.vlz_modal_ventana{
 					width: 90% !important;
 				}
+				.vlz_banner_footer div{
+					height: 110px;
+				}
 			}
 
 			@media screen and (max-width: 568px){
+				section.blog-full-width .pf-container {
+				    margin-top: 40px !important;
+				}
 				#vlz_mapa {
 				    height: 250px !important;
 				}
@@ -83,6 +168,58 @@
 			        width: calc( 100% - 9px ) !important;
     				margin-bottom: 5px;
 				}
+				.vlz_banner_footer .vlz_cell75{
+					font-size: 13px;
+				}
+
+				.vlz_banner_footer div{
+					height: 80px;
+				}
+
+				.vlz_banner_footer .vlz_cell25{
+					width: calc(25% - 9px) !important;
+				}
+				.vlz_banner_footer .vlz_cell75{
+					width: calc(75% - 9px) !important;
+				}
+
+			}	
+
+			@media screen and (max-width: 500px){
+	
+				.vlz_banner_footer .vlz_cell75{
+					font-size: 12px;
+				}
+
+				.vlz_banner_footer div{
+					height: 100px;
+				}
+
+				.vlz_banner_footer .vlz_cell25{
+					width: calc(30% - 9px) !important;
+				}
+				.vlz_banner_footer .vlz_cell75{
+					width: calc(70% - 9px) !important;
+				}
+
+			}		
+
+			@media screen and (max-width: 420px){
+	
+				.vlz_banner_footer .vlz_cell75{
+					font-size: 10px;
+				}
+
+				.vlz_banner_footer div{
+					height: 100px;
+				}
+
+				.vlz_banner_footer .vlz_cell25{
+					width: calc(40% - 9px) !important;
+				}
+				.vlz_banner_footer .vlz_cell75{
+					width: calc(60% - 9px) !important;
+				}
 
 			}	
 		</style>
@@ -93,14 +230,21 @@
 				<div class="pf-row">
 					<div class="col-lg-12">
 
-						<article>
+						<article style='position: relative'>
 
 							<?php 
 								include("vlz/form/vlz_styles.php"); 
 							?>
 
-							<h1 class="vlz_titulo jj_titulo">Sé parte de Kmimos</h1>
-							<div class="vlz_sub_titulo">Para registrarte como cuidador de Kmimos, llena este formulario y nos pondremos en contacto contigo.</div>
+							<div class="vlz_seccion">
+								<div class="vlz_cell75 vlz_titulo_contenedor">
+									<h1 class="vlz_titulo">Sé parte de Kmimos</h1>
+									<div class="vlz_sub_titulo">Para registrarte como cuidador de Kmimos, llena este formulario y nos pondremos en contacto contigo.</div>
+								</div>
+								<div class="vlz_cell25 vlz_banner_cuidador_contenedor">
+									<img class="vlz_banner_cuidador" src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/banner_cuidador.jpeg">
+								</div>
+							</div>
 
 							<form id="vlz_form_nuevo_cuidador" class="vlz_form" enctype="multipart/form-data" method="POST">
 
@@ -301,55 +445,6 @@
 													
 												});
 											}
-											/*var edos = jQuery("#estado");
-            								var mpos = jQuery("#municipio");
-
-											edos.change(function(){
-								                vlz_ver_municipios();
-								            });
-
-								            mpos.change(function(){
-								                vlz_coordenadas();
-								            });
-
-								            function vlz_ver_municipios(){
-								                var id =  jQuery("#estado").val();
-								                var txt = jQuery("#estado option:selected").text();
-
-								                jQuery.ajax( {
-								                    method: "POST",
-								                        data: { estado: id },
-								                    url: "<?php echo get_home_url()."/wp-content/themes/pointfinder"; ?>/vlz/ajax_municipios_2.php",
-								                    beforeSend: function( xhr ) {
-								                        jQuery("#municipio").html("<option value=''>Cargando Municipios</option>");
-								                    }
-								                }).done(function(data){
-								                    jQuery("#municipio").html("<option value=''>Seleccione un Municipio</option>"+data);
-								                    vlz_coordenadas();
-								                });
-								            }
-
-								            function vlz_coordenadas(){
-								                var estado = jQuery("#estado option:selected").text();
-								                var municipio_val = jQuery("#municipio option:selected").val();
-								                var municipio = jQuery("#municipio option:selected").text();
-
-								                var adress = "mexico+"+estado;
-								                if( municipio_val != "" ){ 
-								                    adress+="+"+municipio; 
-								                }
-
-								                jQuery.ajax({ 
-								                    url: 'https://maps.googleapis.com/maps/api/geocode/json?address='+adress+'&key=AIzaSyD-xrN3-wUMmJ6u2pY_QEQtpMYquGc70F8'
-								                }).done(function(data){
-								                    var location = data.results[0].geometry.location;
-								                    var dir = data.results[0].formatted_address;
-
-								                    jQuery("#latitud").attr("value", location.lat);
-								                    jQuery("#longitud").attr("value", location.lng);
-								                    jQuery("#direccion").attr("value", dir);
-								                });
-								            } */
 										</script>
 
 									</div>
@@ -663,7 +758,7 @@
 											<?php
 												foreach ($rutas as $key => $value) {
 													echo '
-														<div class="vlz_cell33 jj_input_cell00">
+														<div class="vlz_cell33">
 															<input type="text" class="vlz_input" id="trans_redonda_'.$key.'" name="trans_redonda_'.$key.'" placeholder="'.$value.'">
 														</div>
 													';
@@ -931,6 +1026,18 @@
 										
 										</div>
 
+									</div>
+								</div>
+
+								<div class="vlz_banner_footer">
+									<div class="vlz_cell25">
+										<img src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/hombre.png">
+									</div>
+									<div class="vlz_cell75">
+										<span class='vlz_verde'>Tienes dudas sobre el registro? Tienes poco tiempo para registrarte?</span> Kmimos te ayuda!
+										Ponte en contacto con nosotros. Mándanos un mail a <span class='vlz_naranja'>a.vera@kmimos.la</span> o por Teléfono o Whatsapp al <span class='vlz_naranja'>(55) 6178 0320</span>.
+
+										<span class='vlz_gris_footer'>La familia Kmimos te espera!!</span>
 									</div>
 								</div>
 
