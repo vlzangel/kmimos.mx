@@ -169,7 +169,6 @@ function getServices( $num_reserva = 0 ){
 			and i.order_item_id = o.order_item_id
 	";
 	$services = $wpdb->get_results($sql);
-
 	return $services;
 }
 
