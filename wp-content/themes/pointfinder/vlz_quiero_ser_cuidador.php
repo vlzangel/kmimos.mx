@@ -1286,7 +1286,7 @@
 									      		jQuery("#vlz_cargando").html("<h2>Registrando, por favor espere...</h2>");
 									      		jQuery("#vlz_titulo_registro").html("Registrando, por favor espere...");
 								             	
-									      		jQuery.post( a, jQuery("#vlz_form_nuevo_cuidador").serialize(), function( data ) {
+									      		/*jQuery.post( a, jQuery("#vlz_form_nuevo_cuidador").serialize(), function( data ) {
 										      		data = eval(data);
 										      		if( data.error == "SI" ){
 										      			jQuery('html, body').animate({ scrollTop: jQuery("#email").offset().top-75 }, 2000);
@@ -1301,7 +1301,34 @@
 										      		}else{
 										      			mail_ext_temp();
 										      		}
-												});
+												});*/
+
+												// console.log(data);
+												jQuery.post( a, jQuery("#vlz_form_nuevo_cuidador").serialize(), function( data ) {
+										      		data = eval(data);
+
+										      		if( data.error == "SI" ){
+
+										      			jQuery('html, body').animate({ scrollTop: jQuery("#email").offset().top-75 }, 2000);
+
+										      			alert(data.msg);
+
+										      			jQuery("#terminos_y_condiciones").css("display", "none");
+
+										      			jQuery("#vlz_contenedor_botones").css("display", "block");
+											      		jQuery(".vlz_modal_contenido").css("display", "block");
+											      		jQuery("#terminos").css("display", "block");
+											      		jQuery("#vlz_cargando").css("height", "auto");
+											      		jQuery("#vlz_cargando").css("text-align", "justify");
+
+											      		jQuery("#vlz_titulo_registro").html('Términos y Condiciones');
+									      				jQuery("#boton_registrar_modal").css("display", "inline-block");
+
+										      		}else{
+										      			mail_ext_temp();
+										      		}
+										      	});
+
 									      	}else{
 									      		jQuery('.vlz_modal').css('display', 'none');
 									      	}
@@ -1314,50 +1341,6 @@
 						      		}
 
 						      		e.preventDefault();
-						      	});
-
-
-						      	function initMap() {
-							       	
-						      	}
-
-						      	jQuery("#vlz_obtener_direccion").on("click", function(e){
-						      		e.preventDefault();
-
-						      		var lat = jQuery("#latitud").attr("value");
-						      		var lon = jQuery("#longitud").attr("value");
-
-						      		var url = "https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lon+"&key=AIzaSyD-xrN3-wUMmJ6u2pY_QEQtpMYquGc70F8";
-						      		
-						      		jQuery("#vlz_bloqueador_dir").css("display", "block");
-						      		jQuery("#vlz_obtener_direccion").html("Cargando...");
-						      		jQuery("#vlz_obtener_direccion").css("background-color", "#cecece");
-						      		jQuery("#vlz_obtener_direccion").css("border", "solid 1px #a7a7a7");
-
-						      		jQuery.post( url, function( data ) {
-						      			var adress = "";
-						      			if( data.results.length > 1){
-						      				data.results[1].address_components.forEach(function(item, index){
-							      				if(index == 0){
-							      					adress += item.long_name;
-							      				}else{
-							      					adress += ", "+item.long_name;
-							      				}
-							      			});
-						      			}else{
-						      				if( data.results.length == 0 ){
-						      					adress = "No se pudo obtener una dirección valida";
-						      				}else{
-						      					adress = data.results[0].address_components[0].long_name;
-						      				}
-						      			}
-									  	jQuery("#direccion").attr("value", adress);
-
-									  	jQuery("#vlz_bloqueador_dir").css("display", "none");
-						      			jQuery("#vlz_obtener_direccion").html("Obtener Direcci&oacute;n");
-							      		jQuery("#vlz_obtener_direccion").css("background-color", "rgb(254, 254, 120)");
-							      		jQuery("#vlz_obtener_direccion").css("border", "solid 1px #2ca683");
-									});
 						      	});
 
 						      	function clvs_iguales(e){
