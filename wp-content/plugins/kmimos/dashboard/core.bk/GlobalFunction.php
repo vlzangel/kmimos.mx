@@ -7,7 +7,7 @@ function getUserByEmail($user_email=""){
 		FROM wp_users
 		WHERE user_email = '{$user_email}'
 	";
-	$result = get_fetch_assoc($sql);
+	$result = execute($sql);
 	return $result;	
 }
 
@@ -20,7 +20,7 @@ function get_metaUser($user_id=0, $condicion=''){
 			m.user_id = {$user_id} 
 			{$condicion}
 	";
-	$result = get_fetch_assoc($sql);
+	$result = execute($sql);
 	return $result;	
 }
 
@@ -29,10 +29,7 @@ function date_convert( $str_date, $format = 'd-m-Y H:i:s' ){
 }
 
 function currency_format( $str, $signo="$ " ){
-	if(!empty($str)){
-		$str = $signo.number_format($str, 2, ',', '.');
-	}
-	return $str;
+	return $signo.number_format($str, 2, ',', '.');
 }
 
 function get_metaPost($post_id=0, $condicion=''){
@@ -43,7 +40,7 @@ function get_metaPost($post_id=0, $condicion=''){
 			u.post_id = {$post_id} 
 			{$condicion}
 	";
-	$result = get_fetch_assoc($sql);
+	$result = execute($sql);
 	return $result;	
 }
 

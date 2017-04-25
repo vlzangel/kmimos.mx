@@ -174,18 +174,17 @@ function getServices( $num_reserva = 0 ){
 }
 
 function getMetaCliente( $user_id ){
-	$condicion = " AND m.meta_key IN ('first_name', 'last_name', 'user_referred')";
+	$condicion = " AND m.meta_key IN ('first_name', 'last_name')";
 	$result = get_metaUser($user_id, $condicion);
 	$data = [
 		'first_name' =>'', 
 		'last_name' =>'', 
-		'user_referred' =>'', 
 	];
 	if( !empty($result) ){
 		if( $result->num_rows > 0){
 			while ($row = $result->fetch_assoc()) {
 				$data[$row['meta_key']] = utf8_encode( $row['meta_value'] );
-				//$data['cliente_nombre'] = utf8_encode( $row['meta_value'] );
+				$data['cliente_nombre'] = utf8_encode( $row['meta_value'] );
 			}
 		}
 	}
