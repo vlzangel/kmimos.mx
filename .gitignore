@@ -91,3 +91,6 @@ vlz_config.php
 
 /wp-content/plugins/woocommerce-bookings/.tx/
 .idea/workspace.xml
+wp-content/plugins/kmimos/dashboard/core/GlobalFunction.php
+wp-content/plugins/kmimos/dashboard/core/ControllerConocerCuidador.php
+wp-content/plugins/kmimos/dashboard/backpanel_conocer_cuidador.php
