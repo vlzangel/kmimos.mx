@@ -3,6 +3,8 @@
 	* The template for displaying product content in the single-product.php template
 	**/
 
+	include("vlz/vlz_style.php");
+
 	global $wpdb;
 
 	$D = $wpdb;
@@ -153,8 +155,84 @@
 							<div class="summary entry-summary">
 								<?php do_action( 'woocommerce_single_product_summary' ); ?>
 							</div>
-							<?php do_action( 'woocommerce_after_single_product_summary' ); ?>
+
 							<meta itemprop="url" content="<?php the_permalink(); ?>" />
+
+							<div style="clear: both;">
+								<!-- <pre> -->
+									<?php
+										$cuidador = $wpdb->get_row( "SELECT * FROM cuidadores WHERE user_id = '".$propietario."'" );
+
+							            $lat = $cuidador->latitud;
+							            $lon = $cuidador->longitud;
+
+										$sql = "
+							                SELECT 
+							                    DISTINCT id,
+							                    ROUND ( ( 6371 * 
+							                        acos(
+							                            cos(
+							                                radians({$lat})
+							                            ) * 
+							                            cos(
+							                                radians(latitud)
+							                            ) * 
+							                            cos(
+							                                radians(longitud) - 
+							                                radians({$lon})
+							                            ) + 
+							                            sin(
+							                                radians({$lat})
+							                            ) * 
+							                            sin(
+							                                radians(latitud)
+							                            )
+							                        )
+							                    ), 2 ) as DISTANCIA,
+							                    id_post,
+							                    hospedaje_desde,
+							                    adicionales
+							                FROM 
+							                    cuidadores
+							                WHERE
+							                    user_id != {$propietario} AND
+							                    portada = 1 AND
+							                    activo = 1
+							                ORDER BY DISTANCIA ASC
+							                LIMIT 0, 4
+							            ";
+
+										$sugeridos = $wpdb->get_results( $sql );
+										$cuidadores = array();
+            							$top_destacados = ""; $cont = 0;
+            							foreach ($sugeridos as $key => $cuidador) {
+											$data = $wpdb->get_row("SELECT post_title AS nom, post_name AS url FROM wp_posts WHERE ID = {$cuidador->id_post}");
+											$nombre = $data->nom;
+											$img_url = kmimos_get_foto_cuidador($cuidador->id);
+											$url = get_home_url() . "/petsitters/" . $data->url;
+											$top_destacados .= "
+												<a class='vlz_destacados_contenedor' href='{$url}'>
+													<div class='vlz_destacados_contenedor_interno'>
+														<div class='vlz_destacados_img'>
+															<div class='vlz_descado_img_fondo' style='background-image: url({$img_url});'></div>
+															<div class='vlz_descado_img_normal' style='background-image: url({$img_url});'></div>
+															<div class='vlz_destacados_precio'><sub style='bottom: 0px;'>Hospedaje desde</sub><br>MXN $".$cuidador->hospedaje_desde."</div>
+														</div>
+														<div class='vlz_destacados_data' >
+															<div class='vlz_destacados_nombre'>{$nombre}</div>
+															<div class='vlz_destacados_adicionales'>".vlz_servicios($cuidador->adicionales)."</div>
+														</div>
+													</div>
+												</a>
+											";
+											$cont++;
+										}
+
+										echo '<div class="pfwidgettitle"> <div class="widgetheader">Otros cuidadores recomendados</div> </div> <div class="row" style="margin: 10px auto 20px;">'.$top_destacados;
+									?>
+								<!-- </pre> -->
+							</div>
+
 						</div>
 						<?php do_action( 'woocommerce_after_single_product' ); 
 					}

@@ -288,9 +288,73 @@ footer aside{
 }
 
 /***************************************/
+/*  Help                               */
+/***************************************/
+#section-help{
+	text-align: left!important;
+	background: #fff;
+	padding-bottom: 15px!important;
+    padding-top: 15px!important;
+    position: fixed;
+    bottom:0px;
+    width: 100%;
+    vertical-align: middle;
+}
+
+.no-padding{
+	padding: 0px!important;
+	margin: 0px!important;
+}
+
+#section-help .help-title span.title,
+#section-help .help-title{
+	font-size: 22px!important;
+    font-weight: normal;
+    padding-top: 5px;
+}
+
+#section-help p{
+	margin:3px;
+}
+
+#section-help .resaltar{
+	color: #eabc35;
+}
+
+.help-title span,
+.help-subtitle,
+.font-gris
+{
+	color: #9c9c9c; 
+}
+
+#section-help .help-title span,
+#section-help .help-subtitle{
+	font-size: 16px!important;
+}
+
+/***************************************/
 /*  Media                              */
 /***************************************/
+@media (orientation: landscape) {
+	.col-xs-3,
+	.col-sm-3
+	{
+		width: 14%;
+	}		
 
+	.col-xs-12{
+		width: 80%;
+	}
+
+	#section-help .help-title span.title,
+	#section-help .help-title{
+		font-size: 26px!important;
+	    font-weight: normal;
+	    padding-top: 10px;
+	}
+
+}
 @media (max-width: 766px){ 
 	#section-1 h1{
 		font-size: 20px;
@@ -312,6 +376,38 @@ footer aside{
 	#section-5{
 		text-align: center!important;
 	}
+	footer{
+		margin-bottom: 100px;
+	}
+
+/* ********************** */
+#section-help .col-xs-3,
+#section-help .col-sm-3
+{
+	width: 17%;
+	padding: 0px;
+}		
+
+#section-help .col-xs-9,
+#section-help .col-xs-12{
+	width: 82%;
+	padding: 0px;
+}
+
+#section-help .help-title span.title,
+#section-help .help-title{
+	font-size: 16px!important;
+    padding-top: 3px;
+}
+
+#section-help .help-title span,
+#section-help .help-subtitle{
+	font-size: 13px!important;
+}
+
+/* ********************** */
+
+
 }
 @media (min-width: 767px) and (max-width: 991px){ 
 	#section-1 h1{
@@ -334,16 +430,23 @@ footer aside{
 	#section-5{
 		text-align: center;
 	}
+	footer{
+		margin-bottom: 180px;
+	}
 }
 @media (min-width: 992px) { 
 
 	.img-kmimos{
 		width: 80%;
 	}
-	
+	footer{
+		margin-bottom: 180px;
+	}	
 
 }
 @media (min-width: 1200px) { 
 
-
+	footer{
+		margin-bottom: 180px;
+	}
 }

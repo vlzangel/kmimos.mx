@@ -41,6 +41,285 @@ if(!function_exists('kmimos_mails_administradores')){
     }
 }
 
+if(!function_exists('vlz_servicios')){
+    function vlz_servicios($adicionales){
+        $r = ""; $adiestramiento = false;
+
+        $r .= '<span class="tooltip icono-servicios"><span class="tooltiptext">Hospedaje</span><i class="icon-hospedaje"></i></span>';
+
+        $adicionales = unserialize($adicionales);
+        
+        if( $adicionales != "" ){
+            if( count($adicionales) > 0 ){
+                foreach($adicionales as $key => $value){
+                    switch ($key) {
+                        case 'guarderia':
+                            $r .= '<span class="tooltip icono-servicios"><span class="tooltiptext">Guardería</span><i class="icon-guarderia"></i></span>';
+                        break;
+                        case 'adiestramiento_basico':
+                            $adiestramiento = true;
+                        break;
+                        case 'adiestramiento_intermedio':
+                            $adiestramiento = true;
+                        break;
+                        case 'adiestramiento_avanzado':
+                            $adiestramiento = true;
+                        break;
+                        case 'corte':
+                            $r .= '<div class="tooltip icono-servicios"><span class="tooltiptext">Corte de pelo y uñas</span><i class="icon-peluqueria"></i></div>';
+                        break;
+                        case 'bano':
+                            $r .= '<div class="tooltip icono-servicios"><span class="tooltiptext">Baño y secado</span><i class="icon-bano"></i></div>';
+                        break;
+                        case 'transportacion_sencilla':
+                            $r .= '<div class="tooltip icono-servicios"><span class="tooltiptext">Transporte Sencillo</span><i class="icon-transporte"></i></div>';
+                        break;
+                        case 'transportacion_redonda':
+                            $r .= '<div class="tooltip icono-servicios"><span class="tooltiptext">Transporte Redondo</span><i class="icon-transporte2"></i></div>';
+                        break;
+                        case 'visita_al_veterinario':
+                            $r .= '<div class="tooltip icono-servicios"><span class="tooltiptext">Visita al Veterinario</span><i class="icon-veterinario"></i></div>';
+                        break;
+                        case 'limpieza_dental':
+                            $r .= '<div class="tooltip icono-servicios"><span class="tooltiptext">Limpieza dental</span><i class="icon-limpieza"></i></div>';
+                        break;
+                        case 'acupuntura':
+                            $r .= '<div class="tooltip icono-servicios"><span class="tooltiptext">Acupuntura</span><i class="icon-acupuntura"></i></div>';
+                        break;
+                    }
+                }
+            }
+        }
+        if($adiestramiento){
+            $r .= '<div class="tooltip icono-servicios" ><span class="tooltiptext">Adiestramiento de Obediencia</span><i class="icon-adiestramiento"></i></div>';
+        }
+        return $r;
+    }
+}
+
+if(!function_exists('vlz_sql_busqueda')){
+    function vlz_sql_busqueda($param, $pagina, $actual = false){
+
+        $condiciones = "";
+        if( isset($param["servicios"]) ){
+            foreach ($param["servicios"] as $key => $value) {
+                if( $value != "hospedaje" ){
+                    $condiciones .= " AND adicionales LIKE '%".$value."%'";
+                }
+            }
+        }
+
+        if( isset($param['tamanos']) ){
+            foreach ($param['tamanos'] as $key => $value) {
+                $condiciones .= " AND ( tamanos_aceptados LIKE '%\"".$value."\";i:1%' || tamanos_aceptados LIKE '%\"".$value."\";s:1:\"1\"%' ) ";
+            }
+        }
+
+        if( isset($param['n']) ){
+            if( $param['n'] != "" ){
+                $condiciones .= " AND nombre LIKE '".$param['n']."%' ";
+            }
+        }
+
+        if( $param['rangos'][0] != "" ){
+            $condiciones .= " AND (hospedaje_desde*1.2) >= '".$param['rangos'][0]."' ";
+        }
+
+        if( $param['rangos'][1] != "" ){
+            $condiciones .= " AND (hospedaje_desde*1.2) <= '".$param['rangos'][1]."' ";
+        }
+
+        if( $param['rangos'][2] != "" ){
+            $anio_1 = date("Y")-$param['rangos'][2];
+            $condiciones .= " AND experiencia <= '".$anio_1."' ";
+        }
+
+        if( $param['rangos'][3] != "" ){
+            $anio_2 = date("Y")-$param['rangos'][3];
+            $condiciones .= " AND experiencia >= '".$anio_2."' ";
+        }
+
+        if( $param['rangos'][4] != "" ){
+            $condiciones .= " AND rating >= '".$param['rangos'][4]."' ";
+        }
+
+        if( $param['rangos'][5] != "" ){
+            $condiciones .= " AND rating <= '".$param['rangos'][5]."' ";
+        }
+
+        // Ordenamiento
+
+        $orderby = (isset($param['orderby'])) ? "" : "" ;
+
+        if( $orderby == "rating_desc" ){
+            $orderby = "rating DESC, valoraciones DESC";
+        }
+
+        if( $orderby == "rating_asc" ){
+            $orderby = "rating ASC, valoraciones ASC";
+        }
+
+        if( $orderby == "distance_asc" ){
+            $orderby = "DISTANCIA ASC";
+        }
+
+        if( $orderby == "distance_desc" ){
+            $orderby = "DISTANCIA DESC";
+        }
+
+        if( $orderby == "price_asc" ){
+            $orderby = "hospedaje_desde ASC";
+        }
+
+        if( $orderby == "price_desc" ){
+            $orderby = "hospedaje_desde DESC";
+        }
+
+        if( $orderby == "experience_asc" ){
+            $orderby = "experiencia ASC";
+        }
+
+        if( $orderby == "experience_desc" ){
+            $orderby = "experiencia DESC";
+        }
+
+        if( $param['tipo_busqueda'] == "otra-localidad" ){
+
+            if( $param['estados'] != "" ){
+
+                if($param['municipios'] != ""){
+                    $municipio = "AND ubi.municipios LIKE '%=".$param['municipios']."=%'";
+                }
+
+                $DISTANCIA = ",
+                    ( 6371 * 
+                        acos(
+                            cos(
+                                radians({$param['otra_latitud']})
+                            ) * 
+                            cos(
+                                radians(latitud)
+                            ) * 
+                            cos(
+                                radians(longitud) - 
+                                radians({$param['otra_longitud']})
+                            ) + 
+                            sin(
+                                radians({$param['otra_latitud']})
+                            ) * 
+                            sin(
+                                radians(latitud)
+                            )
+                        )
+                    ) as DISTANCIA 
+                ";
+
+                $ubicaciones_inner = "INNER JOIN ubicaciones AS ubi ON ( cuidadores.id = ubi.cuidador )";
+                $ubicaciones_filtro = "
+                    AND (
+                        (
+                            ubi.estado LIKE '%=".$param['estados']."=%'
+                            ".$municipio."
+                        ) OR (
+                            ( 6371 * 
+                                acos(
+                                    cos(
+                                        radians({$param['otra_latitud']})
+                                    ) * 
+                                    cos(
+                                        radians(latitud)
+                                    ) * 
+                                    cos(
+                                        radians(longitud) - 
+                                        radians({$param['otra_longitud']})
+                                    ) + 
+                                    sin(
+                                        radians({$param['otra_latitud']})
+                                    ) * 
+                                    sin(
+                                        radians(latitud)
+                                    )
+                                )
+                            ) <= 100
+                        )
+                    )";
+
+                if( $orderby == "" ){
+                    $orderby = "DISTANCIA ASC";
+                }
+
+            }else{
+                $ubicaciones_inner = "";
+                if( $orderby == "" ){
+                    $orderby = "rating DESC, valoraciones DESC";
+                }
+            }
+
+        }else{
+
+            if( $param['latitud'] != "" && $param['longitud'] != "" ){
+
+                $DISTANCIA = ",
+                    ( 6371 * 
+                        acos(
+                            cos(
+                                radians({$param['latitud']})
+                            ) * 
+                            cos(
+                                radians(latitud)
+                            ) * 
+                            cos(
+                                radians(longitud) - 
+                                radians({$param['longitud']})
+                            ) + 
+                            sin(
+                                radians({$param['latitud']})
+                            ) * 
+                            sin(
+                                radians(latitud)
+                            )
+                        )
+                    ) as DISTANCIA 
+                ";
+
+                $FILTRO_UBICACION = "HAVING DISTANCIA < ".($param['distancia']+0);
+
+                if( $orderby == "" ){
+                    $orderby = "DISTANCIA ASC";
+                }
+
+            }else{
+                $DISTANCIA = "";
+                $FILTRO_UBICACION = "";
+            }
+
+        }
+
+        if( $orderby == "" ){
+            $orderby = "rating DESC, valoraciones DESC";
+        }
+
+        
+        $sql = "
+            SELECT 
+                SQL_CALC_FOUND_ROWS  
+                cuidadores.*
+                {$DISTANCIA}
+            FROM 
+                cuidadores
+                {$ubicaciones_inner}
+            WHERE 
+                activo = '1' {$condiciones}
+                {$ubicaciones_filtro}
+            {$FILTRO_UBICACION}
+            ORDER BY {$orderby}
+            LIMIT {$pagina}, 15
+        ";
+
+        return $sql;
+    }
+}
+
 if(!function_exists('servicios_adicionales')){
     function servicios_adicionales(){
 
@@ -228,7 +507,7 @@ if(!function_exists('kmimos_style')){
                     .column-wpseo-score,
                     .column-wpseo-score-readability,
                     .column-ratings,
-                    #toplevel_page_kmimos li:nth-child(6),
+                    #toplevel_page_kmimos li:last-child,
                     #menu-posts-wc_booking li:nth-child(3),
                     #menu-posts-wc_booking li:nth-child(6),
                     #menu-posts-wc_booking li:nth-child(7),
@@ -308,7 +587,31 @@ if(!function_exists('kmimos_style')){
                     }
                 ";
             }
-        
+
+            if( in_array("form_errores", $styles)){
+                $salida .= "
+                    .no_error{
+                        display: none;
+                    }
+
+                    .error{
+                        display: block;
+                        font-size: 10px;
+                        border: solid 1px #CCC;
+                        padding: 3px;
+                        border-radius: 0px 0px 3px 3px;
+                        background: #ffdcdc;
+                        line-height: 1.2;
+                        font-weight: 600;
+                    }
+
+                    .vlz_input_error{
+                        border-radius: 3px 3px 0px 0px !important;
+                        border-bottom: 0px !important;
+                    }
+                ";
+            }
+
         $salida .= "</style>";
 
         return $salida;
@@ -367,6 +670,7 @@ if(!function_exists('kmimos_include_admin_scripts')){
         wp_enqueue_script( 'kmimos_script', get_home_url()."/wp-content/plugins/kmimos/".'javascript/kmimos-admin.js', array(), '1.0.0', true );
         wp_enqueue_style( 'kmimos_style', get_home_url()."/wp-content/plugins/kmimos/".'css/kmimos-admin.css' );
 
+        include_once('dashboard/assets/config_backpanel.php');
 
         global $current_user;
 
@@ -375,11 +679,7 @@ if(!function_exists('kmimos_include_admin_scripts')){
         switch ($tipo) {
             case 'Customer Service':
 
-                echo kmimos_style(array(
-                    "quitar_edicion",
-                    "menu_kmimos",
-                    "menu_reservas"
-                ));
+                global $post;
                 $types = array(
                     'petsitters',
                     'pets',
@@ -391,17 +691,16 @@ if(!function_exists('kmimos_include_admin_scripts')){
                     'kmimos',
                     'create_booking'
                 );
-                global $post;
-
-                // echo "<script> alert('".$post->post_type."'); </script>";
-
-                // echo "<pre>";
-                //     print_r($_SERVER);
-                // echo "</pre>";
 
                 if( count($_GET) == 0 || (!in_array($post->post_type, $types) && !in_array($_GET['page'], $pages)) ){
                     header("location: edit.php?post_type=petsitters");
                 }
+
+                echo kmimos_style(array(
+                    "quitar_edicion",
+                    "menu_kmimos",
+                    "menu_reservas"
+                ));
 
                 if( $post->post_type == 'shop_order' || $post->post_type == 'wc_booking' ){
                     echo kmimos_style(array(
@@ -449,10 +748,37 @@ if(!function_exists('kmimos_admin_menu')){
                 'title'=>'Control de Reservas',
                 'short-title'=>'Control de Reservas',
                 'parent'=>'kmimos',
-                'slug'=>'bp_Reservas',
+                'slug'=>'bp_reservas',
                 'access'=>'manage_options',
-                'page'=>'kmimos_backpanel',
-                'icon'=>get_home_url()."/wp-content/plugins/kmimos/".'/assets/images/icon.png',
+                'page'=>'backpanel_reservas',
+                'icon'=>plugins_url('/assets/images/icon.png', __FILE__),
+            ),
+            array(
+                'title'=>'Control Conocer a Cuidador',
+                'short-title'=>'Control Conocer a Cuidador',
+                'parent'=>'kmimos',
+                'slug'=>'bp_conocer_cuidador',
+                'access'=>'manage_options',
+                'page'=>'backpanel_conocer_cuidador',
+                'icon'=>plugins_url('/assets/images/icon.png', __FILE__),
+            ),
+            array(
+                'title'=>'Listado de Suscriptores',
+                'short-title'=>'Listado de Suscriptores',
+                'parent'=>'kmimos',
+                'slug'=>'bp_suscriptores',
+                'access'=>'manage_options',
+                'page'=>'backpanel_subscribe',
+                'icon'=>plugins_url('/assets/images/icon.png', __FILE__),
+            ),
+            array(
+                'title'=>'Listado de Usuarios',
+                'short-title'=>'Listado de Usuarios',
+                'parent'=>'kmimos',
+                'slug'=>'bp_usuarios',
+                'access'=>'manage_options',
+                'page'=>'backpanel_usuarios',
+                'icon'=>plugins_url('/assets/images/icon.png', __FILE__),
             ),
 
             array(
@@ -510,15 +836,28 @@ if(!function_exists('kmimos_panel')){
 
 }
 
-if(!function_exists('kmimos_backpanel')){
-
-    function kmimos_backpanel(){
-        /*if ( !current_user_can( 'manage_options' ) )  {
-            wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
-        }*/
-        include_once('dashboard/kmimos_backpanel.php');
+if(!function_exists('backpanel_conocer_cuidador')){
+    function backpanel_conocer_cuidador(){
+        include_once('dashboard/backpanel_conocer_cuidador.php');
     }
+}
 
+if(!function_exists('backpanel_reservas')){
+    function backpanel_reservas(){
+        include_once('dashboard/backpanel_reservas.php');
+    }
+}
+
+if(!function_exists('backpanel_subscribe')){
+    function backpanel_subscribe(){
+        include_once('dashboard/backpanel_subscribe.php');
+    }
+}
+
+if(!function_exists('backpanel_usuarios')){
+    function backpanel_usuarios(){
+        include_once('dashboard/backpanel_usuarios.php');
+    }
 }
 
 /**

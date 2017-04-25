@@ -618,6 +618,7 @@
                         font-family: Roboto;
                         background: #CCC;
                         border: solid 2px #BBB;
+                        z-index: 999999999999999999;
                     '>
                         X
                     </a>
