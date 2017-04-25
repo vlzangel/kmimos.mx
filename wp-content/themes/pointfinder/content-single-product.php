@@ -3,6 +3,8 @@
 	* The template for displaying product content in the single-product.php template
 	**/
 
+	include("vlz/vlz_style.php");
+
 	global $wpdb;
 
 	$D = $wpdb;
@@ -157,11 +159,8 @@
 							<meta itemprop="url" content="<?php the_permalink(); ?>" />
 
 							<div style="clear: both;">
-								<pre>
+								<!-- <pre> -->
 									<?php
-
-										echo "SELECT * FROM cuidadores WHERE id_post = '".$propietario."'";
-
 										$cuidador = $wpdb->get_row( "SELECT * FROM cuidadores WHERE user_id = '".$propietario."'" );
 
 							            $lat = $cuidador->latitud;
@@ -191,11 +190,12 @@
 							                        )
 							                    ), 2 ) as DISTANCIA,
 							                    id_post,
-							                    hospedaje_desde
+							                    hospedaje_desde,
+							                    adicionales
 							                FROM 
 							                    cuidadores
 							                WHERE
-							                    id_post != {$propietario} AND
+							                    user_id != {$propietario} AND
 							                    portada = 1 AND
 							                    activo = 1
 							                ORDER BY DISTANCIA ASC
@@ -204,14 +204,33 @@
 
 										$sugeridos = $wpdb->get_results( $sql );
 										$cuidadores = array();
+            							$top_destacados = ""; $cont = 0;
             							foreach ($sugeridos as $key => $cuidador) {
-            								$cuidadores[] = $cuidador;
-            							}
+											$data = $wpdb->get_row("SELECT post_title AS nom, post_name AS url FROM wp_posts WHERE ID = {$cuidador->id_post}");
+											$nombre = $data->nom;
+											$img_url = kmimos_get_foto_cuidador($cuidador->id);
+											$url = get_home_url() . "/petsitters/" . $data->url;
+											$top_destacados .= "
+												<a class='vlz_destacados_contenedor' href='{$url}'>
+													<div class='vlz_destacados_contenedor_interno'>
+														<div class='vlz_destacados_img'>
+															<div class='vlz_descado_img_fondo' style='background-image: url({$img_url});'></div>
+															<div class='vlz_descado_img_normal' style='background-image: url({$img_url});'></div>
+															<div class='vlz_destacados_precio'><sub style='bottom: 0px;'>Hospedaje desde</sub><br>MXN $".$cuidador->hospedaje_desde."</div>
+														</div>
+														<div class='vlz_destacados_data' >
+															<div class='vlz_destacados_nombre'>{$nombre}</div>
+															<div class='vlz_destacados_adicionales'>".vlz_servicios($cuidador->adicionales)."</div>
+														</div>
+													</div>
+												</a>
+											";
+											$cont++;
+										}
 
-										print_r( $cuidador );
-										print_r( $cuidadores );
+										echo $top_destacados;
 									?>
-								</pre>
+								<!-- </pre> -->
 							</div>
 
 						</div>
