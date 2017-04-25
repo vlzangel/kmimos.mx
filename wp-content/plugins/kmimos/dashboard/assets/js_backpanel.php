@@ -1,7 +1,8 @@
 <!--
 // ========================================
 // BEGIN JS Dashboard ( New backpanel )
-// ======================================== 
+// ========================================    
+//
 -->
 <!-- script type="text/javascript"
 	 src="<?php echo $url_base; ?>/wp-content/plugins/kmimos/dashboard/assets/vendor/jquery/dist/jquery.min.js"></script -->
