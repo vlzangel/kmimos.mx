@@ -75,7 +75,7 @@ $solicitudes = getSolicitud($desde, $hasta);
 			  </thead>
 			  <tbody>
 			  	<?php $count=0; ?>
-			  	<?php while( $solicitud = $solicitudes->fetch_assoc() ){ ?>
+			  	<?php foreach($solicitudes['rows'] as $solicitud ){ ?>
  
 				  	<?php 
 				  		// *************************************

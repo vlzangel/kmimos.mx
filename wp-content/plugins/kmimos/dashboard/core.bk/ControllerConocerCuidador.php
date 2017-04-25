@@ -15,10 +15,12 @@ function get_metaCuidador($user_id=0){
 		'user_mobile' =>'',
 	];
 	if( !empty($result) ){
-		foreach ( $result['rows'] as $row ) {
-			$data['email'] = utf8_encode( $row['user_email'] );
-			$data['id'] = $row['user_id'];
-			$data[$row['meta_key']] = utf8_encode( $row['meta_value'] );
+		if( $result->num_rows > 0){
+			while ($row = $result->fetch_assoc()) {
+				$data['email'] = utf8_encode( $row['user_email'] );
+				$data['id'] = $row['user_id'];
+				$data[$row['meta_key']] = utf8_encode( $row['meta_value'] );
+			}
 		}
 	}
 	return $data;
@@ -35,10 +37,12 @@ function get_metaCliente($user_id=0){
 		'user_mobile' =>'',
 	];
 	if( !empty($result) ){
-		foreach ( $result['rows'] as $row ) {
-			$data['email'] = utf8_encode( $row['user_email'] );
-			$data['id'] = $row['user_id'];
-			$data[$row['meta_key']] = utf8_encode( $row['meta_value'] );
+		if( $result->num_rows > 0){
+			while ($row = $result->fetch_assoc()) {
+				$data['email'] = utf8_encode( $row['user_email'] );
+				$data['id'] = $row['user_id'];
+				$data[$row['meta_key']] = utf8_encode( $row['meta_value'] );
+			}
 		}
 	}
 	return $data;
@@ -88,7 +92,7 @@ function getSolicitud($desde="", $hasta=""){
 		;
 	";
 
-	$result = get_fetch_assoc($sql);
+	$result = execute($sql);
 	return $result;
 }
 
