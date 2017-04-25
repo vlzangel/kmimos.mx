@@ -260,6 +260,21 @@
 					$options='<a class="theme_btn" href="'.$_metas['_openpay_pdf'][0].'">Ver PDF</a>';
 					$options.='<a class="theme_btn" href="'.get_home_url().'/ver/'.$reserva->post_parent.'">Ver</a>';
 					$options.='<a class="theme_btn cancelled" href="'.get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$reserva->post_parent.'&s=0">Cancelar</a>';
+					$options=build_select(
+						array(
+							array(
+								'text'=>'Ver PDF',
+								'value'=>$_metas['_openpay_pdf'][0]
+							),
+							array(
+								'text'=>'Ver',
+								'value'=>get_home_url().'/ver/'.$reserva->post_parent
+							),
+							array(
+								'text'=>'Cancelar',
+								'value'=>get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$reserva->post_parent.'&s=0'
+							)
+						));
 
 					$booking_th=array();
 					$booking_th[]=array('class'=>'','data'=>'RESERVA');
@@ -286,6 +301,17 @@
 
 					$options='<a class="theme_btn" href="'.get_home_url().'/ver/'.$reserva->post_parent.'">Ver</a>';
 					$options.='<a class="theme_btn cancelled" href="'.get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$reserva->post_parent.'&s=0">Cancelar</a>';
+					$options=build_select(
+						array(
+							array(
+								'text'=>'Ver',
+								'value'=>get_home_url().'/ver/'.$reserva->post_parent
+							),
+							array(
+								'text'=>'Cancelar',
+								'value'=>get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$reserva->post_parent.'&s=0'
+							)
+						));
 
 					$booking_th=array();
 					$booking_th[]=array('class'=>'','data'=>'RESERVA');
@@ -309,6 +335,18 @@
 
 					$options='<a class="theme_btn" href="'.get_home_url().'/ver/'.$reserva->post_parent.'">Ver</a>';
 					$options.='<a class="theme_btn cancelled" href="'.get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$reserva->post_parent.'&s=0">Cancelar</a>';
+					$options=build_select(
+						array(
+							array(
+								'text'=>'Ver',
+								'value'=>get_home_url().'/ver/'.$reserva->post_parent
+							),
+							array(
+								'text'=>'Cancelar',
+								'value'=>get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$reserva->post_parent.'&s=0'
+							)
+						));
+
 
 					$booking_th=array();
 					$booking_th[]=array('class'=>'','data'=>'RESERVA');
@@ -331,9 +369,25 @@
 					//RESERVAS COMPLETADAS
 				}else if($reserva->post_status=='wc-completed'){
 
+
 					$options='<a class="theme_btn" href="'.get_home_url().'/ver/'.$reserva->post_parent.'">Ver</a>';
 					$options='<a class="theme_btn" href="'.get_home_url().'/valorar-cuidador/?id='.$reserva->ID.'">Valorar</a>';
 					$options.='<a class="theme_btn cancelled" href="'.get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$reserva->post_parent.'&s=0">Cancelar</a>';
+					$options=build_select(
+						array(
+							array(
+								'text'=>'Ver',
+								'value'=>get_home_url().'/ver/'.$reserva->post_parent
+							),
+							array(
+								'text'=>'Valorar',
+								'value'=>get_home_url().'/valorar-cuidador/?id='.$reserva->ID
+							),
+							array(
+								'text'=>'Cancelar',
+								'value'=>get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$reserva->post_parent.'&s=0'
+							)
+						));
 
 					$booking_th=array();
 					$booking_th[]=array('class'=>'','data'=>'RESERVA');

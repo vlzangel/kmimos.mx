@@ -18,7 +18,7 @@ if($redirect_to!='') {
 }
 
 if(isset($_GET['ua']) && $_GET['ua']!=''){
-$ua_action = esc_attr($_GET['ua']);
+	$ua_action = esc_attr($_GET['ua']);
 }
 $setup4_membersettings_dashboard = PFSAIssetControl('setup4_membersettings_dashboard','','');
 
@@ -87,7 +87,8 @@ if(isset($ua_action)){
                         $setup29_dashboard_contents_vendor_purchases_menuname = 'Mis Compras';
                         $setup29_dashboard_contents_vendor_pictures_menuname= 'Mis Fotos';
                         $setup29_dashboard_contents_pets_list_menuname = 'Mis Mascotas';
-                        $setup29_dashboard_contents_vendor_bookings_menuname = 'Mis Reservas';
+						$setup29_dashboard_contents_pets_list_menuname = 'Mis Mascotas';
+                        $setup29_dashboard_contents_caregiver_menuname = 'Conocer al Cuidador';
 						$setup_invoices_sh = PFASSIssetControl('setup_invoices_sh','','1');
 
 						$pfmenu_output = '';
@@ -297,6 +298,12 @@ if(isset($ua_action)){
                             $pfmenu_output .= '<li'.$class.'><a href="'.$setup4_membersettings_dashboard_link.$pfmenu_perout.'ua=invoices"><i class="pfadmicon-glyph-33"></i>Historial</a></li>';
                         }
 
+						if($_GET['ua']=='caregiver'){
+							$pfmenu_output .= '<li class="selected_option"><a href="#" onclick="return false;"><i class="pfadmicon-glyph-33"></i>Conocer al Cuidador</a></li>';
+						} else {
+							$class = ($_GET['ua']=='caregiver')? ' class="selected_option"':'';
+							$pfmenu_output .= '<li'.$class.'><a href="'.$setup4_membersettings_dashboard_link.$pfmenu_perout.'ua=caregiver"><i class="pfadmicon-glyph-33"></i>Conocer al Cuidador</a></li>';
+						}
                         /*
                         *   Si el usuario es administrador muestra botón para acceder al back-panel
                         */
@@ -306,6 +313,7 @@ if(isset($ua_action)){
                             $pfmenu_output .= '<li class="negative">ADMINISTRADOR</li>';
                             $pfmenu_output .= '<li><a href="'.get_home_url().'/wp-admin" target="_blank"><i class="pfadmicon-glyph-421"></i> '. $setup29_dashboard_contents_back_end_menuname.'</a></li>';
                         }
+
                         /* --- */
                         /*
                         *   Si el usuario es un Cuidador muestra las opciones de los cuidadores
@@ -370,7 +378,6 @@ if(isset($ua_action)){
                                 $class = ($_GET['ua']=='mybooking')? ' class="selected_option"':'';
                                 $pfmenu_output .= '<li'.$class.'><a href="'.$setup4_membersettings_dashboard_link.$pfmenu_perout.'ua=mybookings"><i class="pfadmicon-glyph-28"></i> '. $setup29_dashboard_contents_vendor_bookings_menuname.'<span class="pfbadge">'.$bookings['count'].'</span></a></li>';
                             }
-                          
                         }
 
 						$pfmenu_output .= ($setup11_reviewsystem_check == 1) ? '<li><a href="'.$setup4_membersettings_dashboard_link.$pfmenu_perout.'ua=reviews"><i class="pfadmicon-glyph-377"></i> '. $setup29_dashboard_contents_rev_page_menuname.'</a></li>' : '';
@@ -498,9 +505,8 @@ if(isset($ua_action)){
 					*End: Page Start Actions / Divs etc...
 					**/
 
-					
 					get_template_part('admin/estatemanagement/includes/pages/dashboard/dashboard','frontend');
-				
+
 					$errorval = '';
 					$sccval = '';
 
@@ -660,7 +666,7 @@ if(isset($ua_action)){
                         case 'mypictures':
 							include("./wp-content/themes/pointfinder/vlz/admin/process/mypictures.php");
                         break;
-						
+
                         case 'newpicture':
                             echo '<h1>Agregar Nueva Foto </h1><hr><br>';
                             if(isset($_POST) && $_POST!='' && count($_POST)>0){
@@ -1052,6 +1058,10 @@ if(isset($ua_action)){
 
 						case 'invoices':
 							include("./wp-content/themes/pointfinder/vlz/admin/page_invoices.php");
+						break;
+
+						case 'caregiver':
+							include("./wp-content/themes/pointfinder/vlz/admin/frontend/caregiver.php");
 						break;
 
 					}

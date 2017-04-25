@@ -30,7 +30,8 @@
 *
 ***********************************************************************************************************************************/
 
-include_once("./wp-content/themes/pointfinder/vlz/admin/frontend/functions.php");
+get_template_part('vlz/admin/frontend/functions');
+
 
 if ( ! class_exists( 'PF_Frontend_Fields' ) ){
 	class PF_Frontend_Fields{
@@ -150,6 +151,10 @@ if ( ! class_exists( 'PF_Frontend_Fields' ) ){
 
 					case 'invoices':
 						include("./wp-content/themes/pointfinder/vlz/admin/frontend_invoices.php");
+					break;
+
+					case 'caregiver':
+						//include("./wp-content/themes/pointfinder/vlz/admin/frontend/caregiver.php");
 					break;
 
 				}
