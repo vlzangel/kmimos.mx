@@ -96,7 +96,7 @@ function get_caregiver_tables($user_select="",$strcaregiver="",$strnocaregiver="
 
                 $booking_th=array();
                 $booking_th[]=array('class'=>'','data'=>'SOLICITUD');
-                $booking_th[]=array('class'=>'td_responsive','data'=>'CLIENTE');
+                $booking_th[]=array('class'=>'','data'=>'CLIENTE');
                 $booking_th[]=array('class'=>'','data'=>'CUIDADOR');
                 $booking_th[]=array('class'=>'td_responsive','data'=>'FECHA');
                 //$booking_th[]=array('class'=>'td_responsive','data'=>'ESTATUS');
@@ -130,7 +130,7 @@ function get_caregiver_tables($user_select="",$strcaregiver="",$strnocaregiver="
 
                 $booking_th=array();
                 $booking_th[]=array('class'=>'','data'=>'SOLICITUD');
-                $booking_th[]=array('class'=>'td_responsive','data'=>'CLIENTE');
+                $booking_th[]=array('class'=>'','data'=>'CLIENTE');
                 $booking_th[]=array('class'=>'','data'=>'CUIDADOR');
                 $booking_th[]=array('class'=>'td_responsive','data'=>'FECHA');
                 $booking_th[]=array('class'=>'','data'=>'ACCIONES');
@@ -150,7 +150,7 @@ function get_caregiver_tables($user_select="",$strcaregiver="",$strnocaregiver="
 
                 $booking_th=array();
                 $booking_th[]=array('class'=>'','data'=>'SOLICITUD');
-                $booking_th[]=array('class'=>'td_responsive','data'=>'CLIENTE');
+                $booking_th[]=array('class'=>'','data'=>'CLIENTE');
                 $booking_th[]=array('class'=>'','data'=>'CUIDADOR');
                 $booking_th[]=array('class'=>'td_responsive','data'=>'FECHA');
                 $booking_th[]=array('class'=>'','data'=>'ACCIONES');
@@ -170,7 +170,7 @@ function get_caregiver_tables($user_select="",$strcaregiver="",$strnocaregiver="
 
                 $booking_th=array();
                 $booking_th[]=array('class'=>'','data'=>'SOLICITUD');
-                $booking_th[]=array('class'=>'td_responsive','data'=>'CLIENTE');
+                $booking_th[]=array('class'=>'','data'=>'CLIENTE');
                 $booking_th[]=array('class'=>'','data'=>'CUIDADOR');
                 $booking_th[]=array('class'=>'td_responsive','data'=>'FECHA');
                 $booking_th[]=array('class'=>'td_responsive','data'=>'ESTATUS');
