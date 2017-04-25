@@ -507,7 +507,7 @@ if(!function_exists('kmimos_style')){
                     .column-wpseo-score,
                     .column-wpseo-score-readability,
                     .column-ratings,
-                    #toplevel_page_kmimos li:nth-child(6),
+                    #toplevel_page_kmimos li:last-child,
                     #menu-posts-wc_booking li:nth-child(3),
                     #menu-posts-wc_booking li:nth-child(6),
                     #menu-posts-wc_booking li:nth-child(7),
