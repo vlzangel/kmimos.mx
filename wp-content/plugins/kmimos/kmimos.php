@@ -670,6 +670,7 @@ if(!function_exists('kmimos_include_admin_scripts')){
         wp_enqueue_script( 'kmimos_script', get_home_url()."/wp-content/plugins/kmimos/".'javascript/kmimos-admin.js', array(), '1.0.0', true );
         wp_enqueue_style( 'kmimos_style', get_home_url()."/wp-content/plugins/kmimos/".'css/kmimos-admin.css' );
 
+        include_once('dashboard/assets/config_backpanel.php');
 
         global $current_user;
 
