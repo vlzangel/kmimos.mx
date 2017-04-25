@@ -2,7 +2,8 @@
 require_once('base_db.php');
 require_once('GlobalFunction.php');
 
-function getListsuscribe($landing="", $desde="", $hasta=""){
+
+function getListsubscribe($landing="", $desde="", $hasta=""){
 
 	$filtro_adicional = "";
 	if( !empty($landing) ){
@@ -23,18 +24,10 @@ function getListsuscribe($landing="", $desde="", $hasta=""){
 
 	$result = [];
 	$sql = "
-		SELECT s.*,
-				CASE WHEN u.user_registered THEN u.user_registered ELSE '---' END as fecha_registro,
-				CASE WHEN u.user_email = s.email THEN 'Registrado' ELSE 'No Registrado' END as estatus,
-				CASE WHEN u.ID = c.user_id THEN 'Cuidador'
-						 WHEN u.ID IS NULL THEN '---'
-						 ELSE 'Cliente' END as 'tipo' 
-			FROM list_subscribe as s
-				LEFT JOIN wp_users as u ON u.user_email = s.email 
-				LEFT JOIN cuidadores as c ON u.ID = c.user_id
+		SELECT * 
+		FROM list_subscriber
 		{$filtro_adicional}
 	";
-
 	$result = execute($sql);
 	return $result;
 }

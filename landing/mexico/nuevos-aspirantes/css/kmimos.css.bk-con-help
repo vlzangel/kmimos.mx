@@ -337,6 +337,9 @@ footer aside{
 /*  Media                              */
 /***************************************/
 @media (orientation: landscape) {
+
+
+
 	.col-xs-3,
 	.col-sm-3
 	{
@@ -379,35 +382,6 @@ footer aside{
 	footer{
 		margin-bottom: 100px;
 	}
-
-/* ********************** */
-#section-help .col-xs-3,
-#section-help .col-sm-3
-{
-	width: 17%;
-	padding: 0px;
-}		
-
-#section-help .col-xs-9,
-#section-help .col-xs-12{
-	width: 82%;
-	padding: 0px;
-}
-
-#section-help .help-title span.title,
-#section-help .help-title{
-	font-size: 16px!important;
-    padding-top: 3px;
-}
-
-#section-help .help-title span,
-#section-help .help-subtitle{
-	font-size: 13px!important;
-}
-
-/* ********************** */
-
-
 }
 @media (min-width: 767px) and (max-width: 991px){ 
 	#section-1 h1{

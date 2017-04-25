@@ -19,7 +19,7 @@
        
        	<div class="container-fluid">
 
-		<section class="row " id="section-1">
+		<section class="row " id="section-1" style="padding-bottom:20px;">
 			<header class="text-center">
 	       	 	<img src="img/LogoKmimos.png" class="logo">
 	       	</header>
@@ -36,8 +36,12 @@
 	       		<img src="img/Character_section1.png" class="img-kmimos img-responsive">
 	       	</article>
 
-       	 	<article class="col-xs-12 text-center">
-	       	 	<a href="https://www.kmimos.com.mx/quiero-ser-cuidador/" class="btn btn-kmimos">Quiero ser un Cuidador Certificado Kmimos</a>
+       	 	<article class="col-xs-12 text-center" style="z-index:999!important;">
+	       	 	<button type="button" class="btn btn-lg btn-kmimos" data-toggle="modal" 
+	       	 			data-target="#list-subscribe">
+					Quiero ser un Cuidador Certificado Kmimos
+				</button>
+	       	 	<!-- a href="https://www.kmimos.com.mx/quiero-ser-cuidador/" class="btn btn-kmimos">Quiero ser un Cuidador Certificado Kmimos</a -->
        	 	</article>
        	 	<article class="col-sm-12 text-center">
 				<a  href="#section-2" 
@@ -268,17 +272,55 @@
 	</div>
 	<footer class="text-center">
 		<h2>¡EN KMIMOS, LLEGAN COMO HU&Eacute;SPED Y CONSIGUEN A UN NUEVO AMIGO!</h2>
-		<a href="https://www.kmimos.com.mx/quiero-ser-cuidador/" class="btn btn-kmimos">Quiero ser un Cuidador Certificado Kmimos</a>
+		<button type="button" class="btn btn-lg btn-kmimos" data-toggle="modal" 
+   	 			data-target="#list-subscribe">
+			Quiero ser un Cuidador Certificado Kmimos
+		</button>
+   	 	<!-- a href="https://www.kmimos.com.mx/quiero-ser-cuidador/" class="btn btn-kmimos">Quiero ser un Cuidador Certificado Kmimos</a -->
 		<aside class="text-center">
        	 	<img src="img/LogoKmimos.png" width="150px">
        	</aside>
 	</footer>
 
+	<!-- Registro de Email -->
+	<div class="modal" id="list-subscribe" role="dialog">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h3 class="modal-title"> Quiero ser un Cuidador Certificado Kmimos</h3>
+	      </div>
+	      <div class="modal-body">
+	      		<br>
+	      	<form id="frm-temp">
+		        <div class="input-group input-group-lg">
+		        	<span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+				    <input type="email" class="form-control" name="email" id="email" placeholder="escribe@tu-email.com">
+				    <span class="input-group-btn">
+				    	<button class="btn btn-success" type="button" id="subscribe">Continuar</button>
+				    </span>
+				</div><!-- /input-group -->
+	      		<br>
+				<div>
+					<i id="loading" class="hidden" style="font-size:12px;" class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+					<span id="msg"></span>
+				</div>
+	      		<br>
+      		</form>
+			<form id="frm-redirect" action="https://www.kmimos.com.mx/quiero-ser-cuidador-certificado-de-perros/"  method="post" >
+      		</form>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+
 	<script
 	  src="https://code.jquery.com/jquery-2.2.4.min.js"
 	  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
 	  crossorigin="anonymous"></script>
-    <script src="js/main.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>  
+    <script src="js/main_.js"></script>
     
     </body>
 </html>

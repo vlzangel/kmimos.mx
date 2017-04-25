@@ -765,11 +765,21 @@ if(!function_exists('kmimos_admin_menu')){
                 'title'=>'Listado de Suscriptores',
                 'short-title'=>'Listado de Suscriptores',
                 'parent'=>'kmimos',
-                'slug'=>'bp_subscribe',
+                'slug'=>'bp_suscriptores',
                 'access'=>'manage_options',
                 'page'=>'backpanel_subscribe',
                 'icon'=>plugins_url('/assets/images/icon.png', __FILE__),
             ),
+            array(
+                'title'=>'Listado de Usuarios',
+                'short-title'=>'Listado de Usuarios',
+                'parent'=>'kmimos',
+                'slug'=>'bp_usuarios',
+                'access'=>'manage_options',
+                'page'=>'backpanel_usuarios',
+                'icon'=>plugins_url('/assets/images/icon.png', __FILE__),
+            ),
+
             array(
                 'title'=> __('Settings'),
                 'short-title'=> __('Settings'),
@@ -840,6 +850,12 @@ if(!function_exists('backpanel_reservas')){
 if(!function_exists('backpanel_subscribe')){
     function backpanel_subscribe(){
         include_once('dashboard/backpanel_subscribe.php');
+    }
+}
+
+if(!function_exists('backpanel_usuarios')){
+    function backpanel_usuarios(){
+        include_once('dashboard/backpanel_usuarios.php');
     }
 }
 
