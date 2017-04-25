@@ -192,18 +192,17 @@
         	);
         ";
 
-        $existen = $conn->query( "SELECT * FROM wp_users WHERE  user_nicename = '{$username}' OR user_email = '{$email}'" );
+        $existen = $conn->query( "SELECT * FROM wp_users WHERE  user_login = '{$username}' OR user_email = '{$email}'" );
         if( $existen->num_rows > 0 ){
-            $datos = $existen->fetch_assoc();
-
             $msg = "Se encontraron los siguientes errores:\n\n";
+            while($datos = $existen->fetch_assoc()){
+                if( $datos['user_email'] == $email ){
+                    $msg .= "Este E-mail [{$email}] ya esta en uso\n";
+                }
 
-            if( $datos['user_email'] == $email ){
-                $msg .= "Este E-mail [{$email}] ya esta en uso\n";
-            }
-
-            if( $datos['user_nicename'] == $username ){
-                $msg .= "Este nombre de Usuario [{$username}] ya esta en uso\n";
+                if( $datos['user_login'] == $username ){
+                    $msg .= "Este nombre de Usuario [{$username}] ya esta en uso\n";
+                }
             }
 
             $error = array(
@@ -214,52 +213,51 @@
             echo "(".json_encode( $error ).")";
 
             exit;
-
         }else{
 
             $temp = array( "token" => $token );
 
-            include('Requests.php');
+            // include('Requests.php');
 
-            Requests::register_autoloader();
+            // Requests::register_autoloader();
 
-            $options = array(
-                'wstoken'               =>  "496e2def61883d009a258ef2ee03aed6",
-                'wsfunction'            =>  "kmimos_user_create_users",
-                'moodlewsrestformat'    =>  "json",
-                'users' => array(
-                    0 => array(
-                        'username'      => $username,
-                        'password'      => $clave,
-                        'firstname'     => $nombres,
-                        "lastname"      => $apellidos,
-                        "email"         => $email,
-                        "preferences"   => array(
-                            0 => array(
-                                "type"  => 'kmimostoken',
-                                "value" => $token
-                            )
-                        ),
-                        "cohorts" => array(
-                            0 => array(
-                                "type"  => 'idnumber',
-                                "value" => "kmi-qsc"
-                            )
-                        )
-                    )
-                )
-            );
+            // $options = array(
+            //     'wstoken'               =>  "496e2def61883d009a258ef2ee03aed6",
+            //     'wsfunction'            =>  "kmimos_user_create_users",
+            //     'moodlewsrestformat'    =>  "json",
+            //     'users' => array(
+            //         0 => array(
+            //             'username'      => $username,
+            //             'password'      => $clave,
+            //             'firstname'     => $nombres,
+            //             "lastname"      => $apellidos,
+            //             "email"         => $email,
+            //             "preferences"   => array(
+            //                 0 => array(
+            //                     "type"  => 'kmimostoken',
+            //                     "value" => $token
+            //                 )
+            //             ),
+            //             "cohorts" => array(
+            //                 0 => array(
+            //                     "type"  => 'idnumber',
+            //                     "value" => "kmi-qsc"
+            //                 )
+            //             )
+            //         )
+            //     )
+            // );
 
-            $request = Requests::post('http://kmimos.ilernus.com/webservice/rest/server.php', array(), $options );
+            // $request = Requests::post('http://kmimos.ilernus.com/webservice/rest/server.php', array(), $options );
 
-            $respuesta = json_decode($request->body);
-            if( isset($respuesta->exception)){
-                $error = array(
-                    "error" => "SI",
-                    "msg" => "Se encontraron los siguientes errores:\n\n".$respuesta->message
-                );
-                //echo "(".json_encode( $error ).")";
-            }
+            // $respuesta = json_decode($request->body);
+            // if( isset($respuesta->exception)){
+            //     $error = array(
+            //         "error" => "SI",
+            //         "msg" => "Se encontraron los siguientes errores:\n\n".$respuesta->message
+            //     );
+            //     //echo "(".json_encode( $error ).")";
+            // }
 
             $error = array(
                 "error" => "NO",
@@ -271,7 +269,7 @@
 
                 $cuidador_id = $conn->insert_id;
 
-                $sql = "INSERT INTO ubicaciones VALUES (NULL, '{$cuidador_id}', '{$estado}', '={$municipio}=')";
+                $sql = "INSERT INTO ubicaciones VALUES (NULL, '{$cuidador_id}', '={$estado}=', '={$municipio}=')";
 
                 $conn->query( utf8_decode( $sql ) );
 
