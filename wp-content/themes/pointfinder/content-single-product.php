@@ -228,7 +228,7 @@
 											$cont++;
 										}
 
-										echo $top_destacados;
+										echo '<div class="pfwidgettitle"> <div class="widgetheader">Otros cuidadores recomendados</div> </div> <div class="row" style="margin: 10px auto 20px;">'.$top_destacados;
 									?>
 								<!-- </pre> -->
 							</div>
