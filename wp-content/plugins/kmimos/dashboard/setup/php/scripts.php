@@ -60,17 +60,71 @@
 					md5($admin->id)
 				];
 
-				/*$resultados .= "
-				<tr class='editar_tipo_usuario' data-id='{$admin['id']}' data-tipo='{$tipo}'>
-					<td> <a href='".get_home_url()."/?i=".md5($id)."'> {$nombre} </a> </td>
-					<td>{$email}</td>
-					<td style='width: 150px;'> <span>{$tipo}</span> </td>
-				</tr>";*/
 			}
 
 		}
 		
 		$json = json_encode($resultados);
 		echo ( "<script> var administradores = jQuery.parseJSON( '".$json."' ); </script>" );
+	}
+
+	function usuarios(){
+		global $wpdb;
+		$sql = "
+			SELECT 
+				U.ID			AS id,
+				U.user_email 	AS email,
+				U.display_name 	AS nombre,
+				UM_1.meta_value AS tipo
+			FROM 
+				wp_users AS U 
+			INNER JOIN wp_usermeta AS UM_1 ON ( U.ID = UM_1.user_id ) 
+			WHERE 
+				1=1 AND 
+				( UM_1.meta_key = 'wp_capabilities' AND UM_1.meta_value != 'a:1:{s:13:\"administrator\";b:1;}' ) 
+			GROUP BY 
+				U.ID
+		";
+
+		$result = $wpdb->get_results($sql);
+		$resultados = [];
+		if( count($result) > 0 ){
+			foreach ($result as $admin) {
+				$tipo = explode('"', $admin->tipo);
+
+				if( $tipo[1] == "vendor" ){
+					$sql = "
+					SELECT 
+						CONCAT(C.nombre, ' ', C.apellido, ' (', P.post_title, ')') As nombre
+					FROM 
+						wp_posts AS P 
+					INNER JOIN cuidadores AS C ON ( P.ID = C.id_post ) 
+					WHERE 
+						1=1 AND 
+						P.post_author = '{$admin->id}' AND
+						P.post_type='petsitters'
+					GROUP BY 
+						P.ID;";
+					$admin->nombre = "".$wpdb->get_var($sql);
+				}
+
+				$resultados["registros"][$tipo[1]][] = [
+					$admin->id,
+					$admin->nombre,
+					$admin->email,
+					md5($admin->id)
+				];
+			}
+		}
+		
+		$json = json_encode($resultados);
+		echo ( "
+			<script> 
+				var kmimos_usuarios = jQuery.parseJSON( '".$json."' ); 
+				var kmimos_tipos_usuarios = [];
+				jQuery.each( kmimos_usuarios.registros, function( key, value ) {
+				  	kmimos_tipos_usuarios.push(key);
+				});
+			</script>" );
 	}
 ?>

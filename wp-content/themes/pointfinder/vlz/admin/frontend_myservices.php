@@ -305,7 +305,9 @@
 	// 	print_r($status_servicios);
 	// echo "</pre>";
 
-	$this->FieldOutput .= "
+	$stylos = kmimos_style( array("form_errores") );
+
+	$this->FieldOutput .= $stylos."
 		<style>
 			.alertas{
 				padding: 10px;
@@ -361,10 +363,11 @@
     			</div>
     		</div>
     		<div class='vlz_seccion'>
-    			<div class='vlz_titulo_seccion'>Hospedaje {$boton} </div>
-    			<div class='vlz_seccion_interna'>
+    			<div class='vlz_titulo_seccion'>Hospedaje <!-- {$boton} --> </div>
+    			<div class='vlz_seccion_interna' id='precios_hospedaje'>
     				".$hospedaje."
     			</div>
+				<div class='no_error' id='error_hospedaje'>Debe llenar al menos uno de los campos</div>
     		</div>
     		
     		".$precios_adicionales."
@@ -399,6 +402,37 @@
 			  			jQuery('#oculto_'+e.target.id).val(1);
 			  		}
 			  	});
+			});
+			jQuery( document ).ready(function(){
+				jQuery('#pfuaprofileform').submit(function(e){
+
+					var z = 0;
+					var t = [
+						'pequenos',
+						'medianos',
+						'grandes',
+						'gigantes'
+					];
+
+					jQuery.each(t, function( index, value ) {
+
+						var temp = jQuery('#hospedaje_'+value).attr('value');
+						if( temp == '' ){ temp = 0; }
+						z += parseInt( temp );
+
+						console.log( jQuery('#hospedaje_'+value).attr('value') );
+					});
+
+					console.log('z: '+z);
+
+					if( z == 0 ){
+						jQuery('#error_hospedaje').attr('class', 'error');
+						jQuery('html, body').animate({ scrollTop: jQuery('#precios_hospedaje').offset().top-75 }, 2000);
+						e.preventDefault();
+					}else{
+						jQuery('#error_hospedaje').attr('class', 'no_error');
+					}
+				});
 			});
     	</script>
     ";
