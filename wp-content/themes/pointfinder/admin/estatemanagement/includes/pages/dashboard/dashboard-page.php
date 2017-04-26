@@ -86,6 +86,7 @@ if(isset($ua_action)){
                         $setup29_dashboard_contents_vendor_sales_menuname = 'Mis Ventas';
                         $setup29_dashboard_contents_vendor_purchases_menuname = 'Mis Compras';
                         $setup29_dashboard_contents_vendor_pictures_menuname= 'Mis Fotos';
+						$setup29_dashboard_contents_vendor_bookings_menuname = 'Mis Reservas';
                         $setup29_dashboard_contents_pets_list_menuname = 'Mis Mascotas';
 						$setup29_dashboard_contents_pets_list_menuname = 'Mis Mascotas';
                         $setup29_dashboard_contents_caregiver_menuname = 'Conocer al Cuidador';
