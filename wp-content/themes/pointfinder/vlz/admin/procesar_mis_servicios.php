@@ -149,7 +149,7 @@
   		$sql = "UPDATE wp_postmeta SET meta_value = '{$base_hospedaje}' WHERE post_id = '{$hospedaje}' AND (meta_key = '_price' OR meta_key = '_wc_booking_base_cost');";
   		$db->query($sql);
 
-        if( $base_hospedaje > 0 && $_POST['status_hospedaje'] == 1 ){
+        if( $base_hospedaje > 0 ){
             $status = $status_global;
         }else{
             $status = "unpublish";
