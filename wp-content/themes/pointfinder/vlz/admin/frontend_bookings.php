@@ -299,7 +299,8 @@
 				if($reserva->status=='confirmed'){
 
 					$options='<a class="theme_btn" href="'.get_home_url().'/detalle/'.$reserva->orden.'">Ver</a>';
-					$options.='<a class="theme_btn cancelled" href="'.get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$reserva->orden.'&s=0">Cancelar</a>';
+					//$options.='<a class="theme_btn cancelled" href="'.get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$reserva->orden.'&s=0">Cancelar</a>';
+
 
 					$booking_th=array();
 					$booking_th[]=array('class'=>'','data'=>'RESERVA');
@@ -375,6 +376,22 @@
 					$options='<a class="theme_btn" href="'.get_home_url().'/detalle/'.$reserva->orden.'">Ver</a>';
 					$options.='<a class="theme_btn" href="'.get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$reserva->orden.'&s=1">Confirmar</a>';
 					$options.='<a class="theme_btn cancelled" href="'.get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$reserva->orden.'&s=0">Cancelar</a>';
+					$options=build_select(
+						array(
+							array(
+								'text'=>'Ver',
+								'value'=>get_home_url().'/detalle/'.$reserva->orden
+							),
+							array(
+								'text'=>'Confirmar',
+								'value'=>get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$reserva->orden.'&s=1'
+							),
+							array(
+								'text'=>'Cancelar',
+								'class'=>'cancelled',
+								'value'=>get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$reserva->orden.'&s=0'
+							)
+						));
 
 					$booking_th=array();
 					$booking_th[]=array('class'=>'','data'=>'RESERVA');

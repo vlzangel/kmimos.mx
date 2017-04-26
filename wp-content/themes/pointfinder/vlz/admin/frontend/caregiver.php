@@ -89,6 +89,7 @@ function get_caregiver_tables($user_select="",$strcaregiver="",$strnocaregiver="
                         ),
                         array(
                             'text'=>'Cancelar',
+                            'class'=>'cancelled',
                             'value'=>get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$caregiver->Nro_solicitud.'&s=0'
                         )
                     ));
@@ -124,6 +125,7 @@ function get_caregiver_tables($user_select="",$strcaregiver="",$strnocaregiver="
                         ),
                         array(
                             'text'=>'Cancelar',
+                            'class'=>'cancelled',
                             'value'=>get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$caregiver->Nro_solicitud.'&s=0'
                         )
                     ));
