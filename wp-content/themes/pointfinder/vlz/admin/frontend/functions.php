@@ -31,7 +31,8 @@
         border-radius: 2px;
         background: #54c8a7;
     }
-    .theme_btn.cancelled{
+    .theme_btn.cancelled,
+    .theme_btn .cancelled{
         background: #e80000;
     }
 
@@ -93,9 +94,15 @@ if(!function_exists('build_select')){
         $select='';
         if(count($args)>0){
             $select.='<select class="redirect theme_btn">';
-            $select.='<option value="">Seleccionar Acción</option>';
+            $select.='<option value="" selected="selected">Seleccionar Acción</option>';
             foreach($args as $option){
-                $select.='<option value="'.$option['value'].'">'.$option['text'].'</option>';
+                if(array_key_exists('text',$option)){
+                    $class='';
+                    if(array_key_exists('class',$option)){
+                        $class=$option['class'];
+                    }
+                    $select.='<option class="'.$class.'" value="'.$option['value'].'">'.$option['text'].'</option>';
+                }
             }
             $select.='</select>';
         }
