@@ -96,12 +96,13 @@ if(!function_exists('build_select')){
             $select.='<select class="redirect theme_btn">';
             $select.='<option value="" selected="selected">Seleccionar Acción</option>';
             foreach($args as $option){
-                $class='';
-                if(array_key_exists('class',$option)){
-                    $class=$option['class'];
+                if(array_key_exists('text',$option)){
+                    $class='';
+                    if(array_key_exists('class',$option)){
+                        $class=$option['class'];
+                    }
+                    $select.='<option class="'.$class.'" value="'.$option['value'].'">'.$option['text'].'</option>';
                 }
-
-                $select.='<option class="'.$class.'" value="'.$option['value'].'">'.$option['text'].'</option>';
             }
             $select.='</select>';
         }
