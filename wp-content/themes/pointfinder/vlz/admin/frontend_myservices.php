@@ -415,15 +415,10 @@
 					];
 
 					jQuery.each(t, function( index, value ) {
-
 						var temp = jQuery('#hospedaje_'+value).attr('value');
 						if( temp == '' ){ temp = 0; }
 						z += parseInt( temp );
-
-						console.log( jQuery('#hospedaje_'+value).attr('value') );
 					});
-
-					console.log('z: '+z);
 
 					if( z == 0 ){
 						jQuery('#error_hospedaje').attr('class', 'error');
