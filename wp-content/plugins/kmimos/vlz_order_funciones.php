@@ -193,7 +193,9 @@
 			"pequenos" => "Mascotas Pequeños", 
 			"medianos" => "Mascotas Medianos", 
 			"grandes"  => "Mascotas Grandes", 
-			"gigantes" => "Mascotas Gigantes"
+			"gigantes" => "Mascotas Gigantes",
+			"pequenos" => "Mascotas Pequeñas", 
+			"medianos" => "Mascotas Medianas"
 		);
 
 		$txts = array(
