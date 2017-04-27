@@ -49,7 +49,6 @@
 	global $wpdb;
 
 	$sql = "SELECT * FROM $wpdb->posts WHERE post_type = 'wc_booking' AND post_author = {$user_id} AND post_status NOT LIKE '%cart%'";
-
 	$reservas = $wpdb->get_results($sql);
 
 
@@ -194,10 +193,30 @@
 								?>
 							</td>
 							<td style='text-align: right; width: 166px;'>
-								<a href="<?php echo esc_url( WC()->cart->get_cart_url()); ?>" class="theme_btn">Ver</a>
-								<a href="<?php echo esc_url( WC()->cart->get_checkout_url()); ?>" class="theme_btn">Pagar</a>
-								<a href="<?php echo esc_url( $_product->get_permalink($cart_item)); ?>" class="theme_btn">Modificar</a>
-								<a href="<?php echo esc_url( WC()->cart->get_remove_url($cart_item_key)); ?>" class="theme_btn">Eliminar</a>
+
+								<?php
+									echo build_select(
+										array(
+											array(
+												'text'=>'Ver',
+												'value'=>esc_url( WC()->cart->get_cart_url())
+											),
+											array(
+												'text'=>'Pagar',
+												'value'=>esc_url( WC()->cart->get_checkout_url())
+											),
+											/*
+											array(
+												'text'=>'Modificar',
+												'value'=>esc_url( $_product->get_permalink($cart_item))
+											),
+											*/
+											array(
+												'text'=>'Eliminar',
+												'value'=>esc_url( WC()->cart->get_remove_url($cart_item_key))
+											)
+										));
+								?>
 							</td>
 						</tr>
 					<?php
@@ -212,7 +231,7 @@
 
 		$booking_coming=array();
 		$booking_coming['openpay_unpaid']=array();
-		$booking_coming['openpay_unpaid']['title']='Reservas pendientes en Tienda por Coveniencia';
+		$booking_coming['openpay_unpaid']['title']='Reservas pendientes por pgar en tienda por coveniencia';
 		$booking_coming['openpay_unpaid']['th']=array();
 		$booking_coming['openpay_unpaid']['tr']=array();
 
@@ -231,10 +250,10 @@
 		$booking_coming['confirmed']['th']=array();
 		$booking_coming['confirmed']['tr']=array();
 
-		$booking_coming['wc-completed']=array();
-		$booking_coming['wc-completed']['title']='Reservas Completadas';
-		$booking_coming['wc-completed']['th']=array();
-		$booking_coming['wc-completed']['tr']=array();
+		$booking_coming['completed']=array();
+		$booking_coming['completed']['title']='Reservas Completadas';
+		$booking_coming['completed']['th']=array();
+		$booking_coming['completed']['tr']=array();
 
 		$booking_coming['cancelled']=array();
 		$booking_coming['cancelled']['title']='Reservas Canceladas';
@@ -263,34 +282,37 @@
 				if($reserva->post_status=='unpaid' && $_metas['_payment_method'][0]=='openpay_stores'){
 
 					$pdf=array();
-					if($_metas['_openpay_pdf'][0]!=''){
-						$pdf=array(
-							'text'=>'Ver PDF',
-							'value'=>$_metas['_openpay_pdf'][0]
-							);
-					}
 
 					$options='<a class="theme_btn" href="'.$_metas['_openpay_pdf'][0].'">Ver PDF</a>';
 					$options.='<a class="theme_btn" href="'.get_home_url().'/ver/'.$reserva->post_parent.'">Ver</a>';
 					$options.='<a class="theme_btn cancelled" href="'.get_home_url().'/wp-content/plugins/kmimos/orden.php?o='.$reserva->post_parent.'&s=0">Cancelar</a>';
-					$options=build_select(
-						array(
-							$pdf,
-							array(
-								'text'=>'Ver',
-								'value'=>get_home_url().'/ver/'.$reserva->post_parent
-							),
-							array(
-								'text'=>'Cancelar',
-								'class'=>'cancelled',
-								'value'=>get_home_url().'/wp-content/plugins/kmimos/orden.php?o='.$reserva->post_parent.'&s=0&action=noaction'
-							)
-						));
+
+
+
+					$options_args=array();
+					if($_metas['_openpay_pdf'][0]!=''){
+						$options_args[]=array(
+							'text'=>'Ver PDF',
+							'value'=>$_metas['_openpay_pdf'][0]
+						);
+					}
+
+					$options_args[]=array(
+						'text'=>'Ver',
+						'value'=>get_home_url().'/ver/'.$reserva->post_parent
+					);
+					$options_args[]= array(
+						'text'=>'Cancelar',
+						'class'=>'cancelled action_confirmed',
+						'value'=>get_home_url().'/wp-content/plugins/kmimos/orden.php?o='.$reserva->post_parent.'&s=0&action=noaction&show=noshow'
+					);
+
+					$options=build_select($options_args);
 
 					$booking_th=array();
 					$booking_th[]=array('class'=>'','data'=>'RESERVA');
 					$booking_th[]=array('class'=>'','data'=>'SERVICIO');
-					$booking_th[]=array('class'=>'','data'=>'ESTATUS');
+					//$booking_th[]=array('class'=>'','data'=>'ESTATUS');
 					$booking_th[]=array('class'=>'td_responsive','data'=>'INICIO');
 					$booking_th[]=array('class'=>'td_responsive','data'=>'FIN');
 					$booking_th[]=array('class'=>'','data'=>'ACCIONES');
@@ -299,7 +321,7 @@
 					$booking_td=array();
 					$booking_td[]=array('class'=>'','data'=>$reserva->ID);
 					$booking_td[]=array('class'=>'','data'=>'<a href="'.get_home_url().'/producto/'.$pedido->post_name.'" target="_blank" >'.$pedido->post_title.'</a>');
-					$booking_td[]=array('class'=>'','data'=>$reserva->post_status);
+					//$booking_td[]=array('class'=>'','data'=>$reserva->post_status);
 					$booking_td[]=array('class'=>'td_responsive','data'=>date_boooking($_metas_reserva['_booking_start'][0]));
 					$booking_td[]=array('class'=>'td_responsive','data'=>date_boooking($_metas_reserva['_booking_end'][0]));
 					$booking_td[]=array('class'=>'','data'=>$options);
@@ -327,7 +349,7 @@
 					$booking_th=array();
 					$booking_th[]=array('class'=>'','data'=>'RESERVA');
 					$booking_th[]=array('class'=>'','data'=>'SERVICIO');
-					$booking_th[]=array('class'=>'','data'=>'ESTATUS');
+					//$booking_th[]=array('class'=>'','data'=>'ESTATUS');
 					$booking_th[]=array('class'=>'td_responsive','data'=>'INICIO');
 					$booking_th[]=array('class'=>'td_responsive','data'=>'FIN');
 					$booking_th[]=array('class'=>'','data'=>'ACCIONES');
@@ -336,7 +358,7 @@
 					$booking_td=array();
 					$booking_td[]=array('class'=>'','data'=>$reserva->ID);
 					$booking_td[]=array('class'=>'','data'=>'<a href="'.get_home_url().'/producto/'.$pedido->post_name.'" target="_blank" >'.$pedido->post_title.'</a>');
-					$booking_td[]=array('class'=>'','data'=>$reserva->post_status);
+					//$booking_td[]=array('class'=>'','data'=>$reserva->post_status);
 					$booking_td[]=array('class'=>'td_responsive','data'=>date_boooking($_metas_reserva['_booking_start'][0]));
 					$booking_td[]=array('class'=>'td_responsive','data'=>date_boooking($_metas_reserva['_booking_end'][0]));
 					$booking_td[]=array('class'=>'','data'=>$options);
@@ -345,7 +367,7 @@
 
 
 					//RESERVAS COMPLETADAS
-				}else if($reserva->post_status=='wc-completed'){
+				}else if($reserva->post_status=='complete'){
 
 					$options='<a class="theme_btn" href="'.get_home_url().'/ver/'.$reserva->post_parent.'">Ver</a>';
 					$options='<a class="theme_btn" href="'.get_home_url().'/valorar-cuidador/?id='.$reserva->ID.'">Valorar</a>';
@@ -365,31 +387,31 @@
 					$booking_th=array();
 					$booking_th[]=array('class'=>'','data'=>'RESERVA');
 					$booking_th[]=array('class'=>'','data'=>'SERVICIO');
-					$booking_th[]=array('class'=>'','data'=>'ESTATUS');
+					//$booking_th[]=array('class'=>'','data'=>'ESTATUS');
 					$booking_th[]=array('class'=>'td_responsive','data'=>'INICIO');
 					$booking_th[]=array('class'=>'td_responsive','data'=>'FIN');
 					$booking_th[]=array('class'=>'','data'=>'ACCIONES');
-					$booking_coming['wc-completed']['th']=$booking_th;
+					$booking_coming['completed']['th']=$booking_th;
 
 					$booking_td=array();
 					$booking_td[]=array('class'=>'','data'=>$reserva->ID);
 					$booking_td[]=array('class'=>'','data'=>'<a href="'.get_home_url().'/producto/'.$pedido->post_name.'" target="_blank" >'.$pedido->post_title.'</a>');
-					$booking_td[]=array('class'=>'','data'=>$reserva->post_status);
+					//$booking_td[]=array('class'=>'','data'=>$reserva->post_status);
 					$booking_td[]=array('class'=>'td_responsive','data'=>date_boooking($_metas_reserva['_booking_start'][0]));
 					$booking_td[]=array('class'=>'td_responsive','data'=>date_boooking($_metas_reserva['_booking_end'][0]));
 					$booking_td[]=array('class'=>'','data'=>$options);
-					$booking_coming['wc-completed']['tr'][]=$booking_td;
+					$booking_coming['completed']['tr'][]=$booking_td;
 
 
 					//RESERVAS CANCELADAS
-				}else if($reserva->post_status=='cancelled'){
+				}else if($reserva->post_status=='cancelled' || $reserva->post_status=='wc_cancelled'){
 
 					$options='<a class="theme_btn" href="'.get_home_url().'/ver/'.$reserva->post_parent.'">Ver</a>';
 
 					$booking_th=array();
 					$booking_th[]=array('class'=>'','data'=>'RESERVA');
 					$booking_th[]=array('class'=>'','data'=>'SERVICIO');
-					$booking_th[]=array('class'=>'','data'=>'ESTATUS');
+					//$booking_th[]=array('class'=>'','data'=>'ESTATUS');
 					$booking_th[]=array('class'=>'td_responsive','data'=>'INICIO');
 					$booking_th[]=array('class'=>'td_responsive','data'=>'FIN');
 					$booking_th[]=array('class'=>'','data'=>'ACCIONES');
@@ -398,7 +420,7 @@
 					$booking_td=array();
 					$booking_td[]=array('class'=>'','data'=>$reserva->ID);
 					$booking_td[]=array('class'=>'','data'=>'<a href="'.get_home_url().'/producto/'.$pedido->post_name.'" target="_blank" >'.$pedido->post_title.'</a>');
-					$booking_td[]=array('class'=>'','data'=>$reserva->post_status);
+					//$booking_td[]=array('class'=>'','data'=>$reserva->post_status);
 					$booking_td[]=array('class'=>'td_responsive','data'=>date_boooking($_metas_reserva['_booking_start'][0]));
 					$booking_td[]=array('class'=>'td_responsive','data'=>date_boooking($_metas_reserva['_booking_end'][0]));
 					$booking_td[]=array('class'=>'','data'=>$options);
@@ -418,7 +440,7 @@
 							),
 							array(
 								'text'=>'Cancelar',
-								'class'=>'cancelled',
+								'class'=>'cancelled action_confirmed',
 								'value'=>get_home_url().'/wp-content/plugins/kmimos/orden.php?o='.$reserva->post_parent.'&s=0'
 							)
 						));
@@ -426,7 +448,7 @@
 					$booking_th=array();
 					$booking_th[]=array('class'=>'','data'=>'RESERVA');
 					$booking_th[]=array('class'=>'','data'=>'SERVICIO');
-					$booking_th[]=array('class'=>'','data'=>'ESTATUS');
+					//$booking_th[]=array('class'=>'','data'=>'ESTATUS');
 					$booking_th[]=array('class'=>'td_responsive','data'=>'INICIO');
 					$booking_th[]=array('class'=>'td_responsive','data'=>'FIN');
 					$booking_th[]=array('class'=>'','data'=>'ACCIONES');
@@ -435,7 +457,7 @@
 					$booking_td=array();
 					$booking_td[]=array('class'=>'','data'=>$reserva->ID);
 					$booking_td[]=array('class'=>'','data'=>'<a href="'.get_home_url().'/producto/'.$pedido->post_name.'" target="_blank" >'.$pedido->post_title.'</a>');
-					$booking_td[]=array('class'=>'','data'=>$reserva->post_status);
+					//$booking_td[]=array('class'=>'','data'=>$reserva->post_status);
 					$booking_td[]=array('class'=>'td_responsive','data'=>date_boooking($_metas_reserva['_booking_start'][0]));
 					$booking_td[]=array('class'=>'td_responsive','data'=>date_boooking($_metas_reserva['_booking_end'][0]));
 					$booking_td[]=array('class'=>'','data'=>$options);

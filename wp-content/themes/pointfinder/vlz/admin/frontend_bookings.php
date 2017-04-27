@@ -347,7 +347,7 @@
 
 
 					//RESERVAS COMPLETADAS
-				}else if($reserva->status=='cancelled'){
+				}else if(($reserva->status=='cancelled' || $reserva->post_status=='wc_cancelled') && $_metas['_show'][0]!='noshow'){
 
 					$options='<a class="theme_btn" href="'.get_home_url().'/detalle/'.$reserva->orden.'">Ver</a>';
 
@@ -371,7 +371,7 @@
 
 
 					//RESERVAS PENDIENTES
-				}else{
+				}else if($_metas['_show'][0]!='noshow'){
 
 					$options='<a class="theme_btn" href="'.get_home_url().'/detalle/'.$reserva->orden.'">Ver</a>';
 					$options.='<a class="theme_btn" href="'.get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$reserva->orden.'&s=1">Confirmar</a>';
@@ -388,7 +388,7 @@
 							),
 							array(
 								'text'=>'Cancelar',
-								'class'=>'cancelled',
+								'class'=>'cancelled action_confirmed',
 								'value'=>get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$reserva->orden.'&s=0'
 							)
 						));

@@ -40,7 +40,8 @@ function get_caregiver($user_select=""){
     return $wpdb->get_results($sql);
 }
 
-function get_caregiver_tables($user_select="",$strcaregiver="",$strnocaregiver=""){
+function get_caregiver_tables($user_select="",$strcaregiver="",$strnocaregiver="",$show=false){
+    $user_id=get_current_user_id();
     $caregivers = get_caregiver($user_select);
     if(count($caregivers) > 0){
 
@@ -73,26 +74,45 @@ function get_caregiver_tables($user_select="",$strcaregiver="",$strnocaregiver="
             $cuidador = get_userdata($caregiver->Cuidador_id);
             $cliente = get_userdata($caregiver->Cliente_id);
 
+            /*
+                        $caregiver_args = array('posts_per_page' => '1','post_type' => 'sitters', 'author' => $caregiver->Cuidador_id);
+                        $caregiver_query = new WP_Query($caregiver_args);
+                        //var_dump($caregiver_query);
+                        if($caregiver_query->have_posts()){
+                            while($caregiver_query ->have_posts()){
+                                $caregiver_query ->the_post();
+                                echo get_the_title();
+                                var_dump($caregiver_query->post_name);
+                                //<a href="'.get_home_url().'/petsitters/'.$cuidador->display_name.'" target="_blank" >'.$cuidador->display_name.'</a>
+                            }
+                        }
+            */
+            
             if($caregiver->Estatus=='pending'){
                 $options='<a class="theme_btn" href="'.get_home_url().'/solicitud/'.$caregiver->Nro_solicitud.'">Ver</a>';
                 $options.='<a class="theme_btn" href="'.get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$caregiver->Nro_solicitud.'&s=1">Confirmar</a>';
                 $options.='<a class="theme_btn cancelled" href="'.get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$caregiver->Nro_solicitud.'&s=0">Cancelar</a>';
-                $options=build_select(
-                    array(
-                        array(
+
+                $options_args=array();
+                $options_args[]=array(
                             'text'=>'Ver',
                             'value'=>get_home_url().'/solicitud/'.$caregiver->Nro_solicitud
-                        ),
-                        array(
-                            'text'=>'Confirmar',
-                            'value'=>get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$caregiver->Nro_solicitud.'&s=1'
-                        ),
-                        array(
-                            'text'=>'Cancelar',
-                            'class'=>'cancelled',
-                            'value'=>get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$caregiver->Nro_solicitud.'&s=0'
-                        )
-                    ));
+                            );
+
+                if($caregiver->Cuidador_id==$user_id){
+                    $options_args[]= array(
+                                'text'=>'Confirmar',
+                                'value'=>get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$caregiver->Nro_solicitud.'&s=1'
+                            );
+                    $options_args[]= array(
+                                'text'=>'Cancelar',
+                                'class'=>'cancelled action_confirmed',
+                                'value'=>get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$caregiver->Nro_solicitud.'&s=0'
+                            );
+                }
+
+                $options=build_select($options_args);
+
 
 
                 $booking_th=array();
@@ -116,19 +136,21 @@ function get_caregiver_tables($user_select="",$strcaregiver="",$strnocaregiver="
 
             }else if($caregiver->Estatus=='publish'){
                 $options='<a class="theme_btn" href="'.get_home_url().'/solicitud/'.$caregiver->Nro_solicitud.'">Ver</a>';
-                $options.='<a class="theme_btn cancelled" href="'.get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$caregiver->Nro_solicitud.'&s=0">Cancelar</a>';
+                //$options.='<a class="theme_btn cancelled" href="'.get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$caregiver->Nro_solicitud.'&s=0">Cancelar</a>';
+                /*
                 $options=build_select(
                     array(
                         array(
                             'text'=>'Ver',
                             'value'=>get_home_url().'/solicitud/'.$caregiver->Nro_solicitud
                         ),
-                        array(
-                            'text'=>'Cancelar',
-                            'class'=>'cancelled',
+                        /*
+                        arrat'=>'Cancelar',
+                            'class'=>'cancelled action_confirmed',
                             'value'=>get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$caregiver->Nro_solicitud.'&s=0'
                         )
                     ));
+                */
 
                 $booking_th=array();
                 $booking_th[]=array('class'=>'','data'=>'SOLICITUD');
@@ -196,13 +218,15 @@ function get_caregiver_tables($user_select="",$strcaregiver="",$strnocaregiver="
         echo '<h1 style="line-height: normal;">'.$strcaregiver.'</h1><hr>';
         echo build_table($booking_coming);
     }else{
-        echo '<h1 style="line-height: normal;">'.$strnocaregiver.'</h1><hr>';
+        if($show){
+            echo '<h1 style="line-height: normal;">'.$strnocaregiver.'</h1><hr>';
+        }
     }
 
 }
 
 
 get_caregiver_tables("cu.post_author={$user_id}",'Como Cuidador.','No hay solicitudes como cuidador.');
-get_caregiver_tables("cl.meta_value={$user_id}",'Como Cliente.','No hay solicitudes como cliente.');
+get_caregiver_tables("cl.meta_value={$user_id}",'Como Cliente.','No hay solicitudes como cliente.',true);
 
 ?>

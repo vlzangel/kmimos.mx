@@ -112,6 +112,12 @@
 			wp_mail( $email_admin, "Cancelación de Reserva", $msg_admin, kmimos_mails_administradores());
 		}
 
+		if($show =='noshow'){
+			if(!add_post_meta($o, '_show', 'banana', true)){
+				update_post_meta($o, '_show', 'noshow');
+			}
+		}
+
    		$msg_cuidador = $styles.'
 	    	<p><strong>Cancelación de Reserva (N°. '.$reserva_id.')</strong></p>
 			<p>Hola <strong>'.$cuidador_post->post_title.'</strong>,</p>
