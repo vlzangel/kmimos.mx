@@ -129,7 +129,7 @@ function pf_styleandscripts()
 		if ($usemin == 1) {$script_file_member = "theme-scripts-dash-jauregui.js";}else{$script_file_member = "theme-scripts-dash-jauregui.js";}
 		if (is_page($setup4_membersettings_dashboard)) {
 			$as_mobile_dropdowns = PFASSIssetControl('as_mobile_dropdowns','','0');
-			wp_register_script('theme-scriptspfm', get_home_url()."/wp-content/themes/pointfinder" . '/js/'.$script_file_member, array('jquery','jquery-ui-core','jquery-ui-draggable','jquery-ui-tooltip','jquery-effects-core','pftheme-minified-package','jquery-ui-slider','jquery-effects-fade','jquery-effects-slide','jquery-ui-dialog','theme-scriptspf'), '1.0.0',true); 
+			wp_register_script('theme-scriptspfm', get_home_url()."/wp-content/themes/pointfinder" . '/js/'.$script_file_member, array('jquery','jquery-ui-core','jquery-ui-draggable','jquery-ui-tooltip','jquery-effects-core','pftheme-minified-package','jquery-ui-slider','jquery-effects-fade','jquery-effects-slide','jquery-ui-dialog','theme-scriptspf'), '1.0.1',true); 
 	        wp_enqueue_script('theme-scriptspfm'); 
 	        wp_localize_script( 'theme-scriptspfm', 'theme_scriptspfm', array( 
 				'delmsg' => esc_html__('Are you sure that you want to delete this? (This action cannot rollback.)','pointfindert2d'),

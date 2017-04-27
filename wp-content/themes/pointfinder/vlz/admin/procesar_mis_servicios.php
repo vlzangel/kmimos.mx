@@ -251,16 +251,17 @@
 	  			$sql = "UPDATE wp_posts SET post_excerpt = 'Precio: \${$valor} c/u', post_status = '{$status}', post_title = 'Mascotas {$tamanos[$tamano]}' WHERE post_parent = '{$extra}' AND post_name LIKE '%{$tamano}%' AND post_type = 'bookable_person';";
 	  			$db->query( utf8_decode( $sql ) );
 
-	  			$id_variante = $db->get_var("SELECT ID FROM wp_posts WHERE post_parent = '{$extra}' AND post_name = '%{$tamano}%' AND post_type = 'bookable_person';");
-	  			
+                $sql = "SELECT ID FROM wp_posts WHERE post_parent = '{$extra}' AND post_name LIKE '%{$tamano}%' AND post_type = 'bookable_person';";
+	  			$id_variante = $db->get_var($sql);
+
 	  			$sql = "UPDATE wp_postmeta SET meta_value = '{$base_variante}' WHERE post_id = '{$id_variante}' AND meta_key = 'block_cost';";
 	  			$db->query($sql);
-
-                $db->query("UPDATE wp_postmeta SET meta_value = '{$addons}' WHERE post_id = {$extra} AND meta_key = '_product_addons';");
-                $db->query("UPDATE wp_postmeta SET meta_value = '{$imgs_product[$nombre]}' WHERE post_id = {$extra} AND meta_key = '_thumbnail_id';");
-                $db->query("UPDATE wp_postmeta SET meta_value = '1' WHERE post_id = {$extra} AND meta_key = '_wc_booking_min_duration';");
-                $db->query("UPDATE wp_postmeta SET meta_value = '0' WHERE post_id = {$extra} AND meta_key = '_wc_booking_min_date';");
 	  		}
+
+            $db->query("UPDATE wp_postmeta SET meta_value = '{$addons}' WHERE post_id = {$extra} AND meta_key = '_product_addons';");
+            $db->query("UPDATE wp_postmeta SET meta_value = '{$imgs_product[$nombre]}' WHERE post_id = {$extra} AND meta_key = '_thumbnail_id';");
+            $db->query("UPDATE wp_postmeta SET meta_value = '1' WHERE post_id = {$extra} AND meta_key = '_wc_booking_min_duration';");
+            $db->query("UPDATE wp_postmeta SET meta_value = '0' WHERE post_id = {$extra} AND meta_key = '_wc_booking_min_date';");
 	  	}else{
 
             $hoy = date("Y-m-d H:i:s");
@@ -342,5 +343,5 @@
 
     // k_log($_POST);
     
-    header("location: ".$_SERVER["HTTP_REFERER"]);
+   header("location: ".$_SERVER["HTTP_REFERER"]);
 ?>
