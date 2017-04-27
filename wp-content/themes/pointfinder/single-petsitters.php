@@ -248,7 +248,7 @@
 								}else{
 									$tams = "";
 								} ?>
-							<p class="label-small"> <?php echo "<b>".$cuidador->num_mascotas" Perro(s) en casa {$tams}</b>"; ?> </p>
+							<p class="label-small"> <?php echo "<b>".$cuidador->num_mascotas." Perro(s) en casa {$tams}</b>"; ?> </p>
 						<?php }else{ ?>
 							<p class="label-small"> <?php echo "<b>No tiene mascotas propias</b>"; ?> </p>
 						<?php } ?>
