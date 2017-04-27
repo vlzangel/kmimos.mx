@@ -723,6 +723,8 @@
 												';
 											}
 										?>
+
+										<div class='no_error' id='error_hospedaje' style="margin: 3px 6px 0px;">Debe llenar al menos uno de los campos</div>
 																			
 									</div>
 
@@ -1113,6 +1115,29 @@
 
 								      		return ( clv1 == clv2 );
 										break;
+										case "hospedaje":
+								      		var z = 0;
+											var t = [
+												'pequenos',
+												'medianos',
+												'grandes',
+												'gigantes'
+											];
+
+											jQuery.each(t, function( index, value ) {
+												var temp = jQuery('#hospedaje_'+value).attr('value');
+												if( temp == '' ){ temp = 0; }
+												z += parseInt( temp );
+											});
+
+											if( z == 0 ){
+												jQuery('#error_hospedaje').attr('class', 'error');
+											}else{
+												jQuery('#error_hospedaje').attr('class', 'no_error');
+											}
+
+											return ( z == 0 );
+										break;
 										default:
 											return true;
 										break;
@@ -1286,24 +1311,6 @@
 									      		jQuery("#vlz_cargando").html("<h2>Registrando, por favor espere...</h2>");
 									      		jQuery("#vlz_titulo_registro").html("Registrando, por favor espere...");
 								             	
-									      		/*jQuery.post( a, jQuery("#vlz_form_nuevo_cuidador").serialize(), function( data ) {
-										      		data = eval(data);
-										      		if( data.error == "SI" ){
-										      			jQuery('html, body').animate({ scrollTop: jQuery("#email").offset().top-75 }, 2000);
-										      			jQuery("#terminos_y_condiciones").css("display", "none");
-										      			jQuery("#vlz_contenedor_botones").css("display", "block");
-											      		jQuery(".vlz_modal_contenido").css("display", "block");
-											      		jQuery("#terminos").css("display", "block");
-											      		jQuery("#vlz_cargando").css("height", "auto");
-											      		jQuery("#vlz_cargando").css("text-align", "justify");
-											      		jQuery("#vlz_titulo_registro").html('Términos y Condiciones');
-									      				jQuery("#boton_registrar_modal").css("display", "inline-block");
-										      		}else{
-										      			mail_ext_temp();
-										      		}
-												});*/
-
-												// console.log(data);
 												jQuery.post( a, jQuery("#vlz_form_nuevo_cuidador").serialize(), function( data ) {
 										      		data = eval(data);
 
@@ -1379,6 +1386,10 @@
 						      		}
 
 						      		if( !especiales("clave") ){
+						      			error++;						      			
+						      		}
+
+						      		if( !especiales("hospedaje") ){
 						      			error++;						      			
 						      		}
 
