@@ -283,7 +283,7 @@
                             border: solid 1px #CCC;
                             border-top: 0;">
                             Hospedaje desde<br>
-                            MXN $'.$cuidador->hospedaje_desde.'
+                            MXN $'.($cuidador->hospedaje_desde*1.2).'
                         </div>
                     </a>
                 </div>
