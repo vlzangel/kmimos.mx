@@ -1,5 +1,224 @@
 <style type="text/css">
 
+.vlz_titulo_interno span {
+			    color: #d80606;
+			    font-size: 11px;
+			    vertical-align: middle;
+			    float: none;
+			    display: block;
+			    line-height: 1.2;
+			    margin-top: 0px;
+			}
+
+			label{
+			    display: block;
+			}
+
+			.no_error{
+				display: none;
+			}
+
+			.error{
+				display: block;
+			    font-size: 10px;
+			    border: solid 1px #CCC;
+			    padding: 3px;
+			    border-radius: 0px 0px 3px 3px;
+			    background: #ffdcdc;
+			    line-height: 1.2;
+			    font-weight: 600;
+			}
+
+			.vlz_input_error{
+			    border-radius: 3px 3px 0px 0px !important;
+    			border-bottom: 0px !important;
+			}
+
+			.vlz_contenedor_listados {
+			    width: calc( 50% - 2px );
+			    display: inline-block;
+			    margin-bottom: 5px;
+			}
+
+			.vlz_banner_cuidador_contenedor{
+				text-align: right;
+			}
+
+			.vlz_banner_cuidador{
+			    
+			}
+
+			div{
+				vertical-align: top;
+			}
+
+			.vlz_banner_footer{
+				margin: 15px 0px; 
+				border-top: solid 1px #000; 
+				border-bottom: solid 1px #000; 
+				padding: 5px;
+			}
+
+			.vlz_banner_footer .vlz_cell75{
+				color: #CCC;
+				font-size: 19px;
+				line-height: 1.1;
+				text-align: justify;
+			}
+
+			.vlz_verde {
+			    color: #2d9a7a;
+			}
+
+			.vlz_naranja {
+			    color: #ffa500;
+			}
+
+			.vlz_gris_footer {
+			    position: absolute;
+			    bottom: 0px;
+			    display: inline-block;
+			    left: 0px;
+			}
+
+			.vlz_banner_footer div{
+				height: 100px;
+			}
+
+			.vlz_banner_footer img{
+				height: 100%;
+			}
+
+			.vlz_banner_footer .vlz_cell25{
+				text-align: center;
+			}
+
+			@media (max-width: 992px){
+				.wpf-container {
+				    margin: 0px !important;
+				}
+				.vlz_banner_footer .vlz_cell75{
+					font-size: 17px;
+				}
+			}
+
+			@media screen and (max-width: 769px){
+				section.blog-full-width .pf-container {
+				    margin-top: 110px !important;
+				}
+				.vlz_titulo_contenedor,
+				.vlz_banner_cuidador_contenedor
+				{
+					width: calc(100% - 9px) !important;
+				}
+				.vlz_banner_footer .vlz_cell75{
+					font-size: 16px;
+				}
+				.vlz_banner_footer .vlz_cell25{
+					width: calc(25% - 9px) !important;
+				}
+			}
+
+			@media screen and (max-width: 750px){
+				.vlz_modal_ventana{
+					width: 90% !important;
+				}
+				.vlz_banner_footer div{
+					height: 110px;
+				}
+			}
+
+			@media screen and (max-width: 568px){
+				section.blog-full-width .pf-container {
+				    margin-top: 40px !important;
+				}
+				#vlz_mapa {
+				    height: 250px !important;
+				}
+				#vlz_boton_dir, #vlz_campo_dir{
+				    width: calc(100% - 9px) !important;
+				}
+				#vlz_boton_dir{
+				    margin-top: 5px !important;
+				}
+				#check_term{
+				    display: block;
+				    padding-right: 30px;
+				    font-size: 12px !important;
+				    height: auto !important;
+				}
+				#boton_registrar_modal{
+			        display: inline-block;
+				    font-size: 13px;
+				    margin-top: 5px;
+				}
+				.vlz_modal_contenido {
+				    height: 320px !important;
+				}
+
+				.vlz_contenedor_listados, .vlz_contenedor_dir{
+			        width: calc( 100% - 9px ) !important;
+    				margin-bottom: 5px;
+				}
+				.vlz_banner_footer .vlz_cell75{
+					font-size: 13px;
+				}
+
+				.vlz_banner_footer div{
+					height: 80px;
+				}
+
+				.vlz_banner_footer .vlz_cell25{
+					width: calc(25% - 9px) !important;
+				}
+				.vlz_banner_footer .vlz_cell75{
+					width: calc(75% - 9px) !important;
+				}
+
+			}	
+
+			@media screen and (max-width: 500px){
+	
+				.vlz_banner_footer .vlz_cell75{
+					font-size: 12px;
+				}
+
+				.vlz_banner_footer div{
+					height: 100px;
+				}
+
+				.vlz_banner_footer .vlz_cell25{
+					width: calc(30% - 9px) !important;
+				}
+				.vlz_banner_footer .vlz_cell75{
+					width: calc(70% - 9px) !important;
+				}
+
+				.vlz_parte{
+				    margin-top: 30px !important;
+				}
+
+			}		
+
+			@media screen and (max-width: 420px){
+	
+				.vlz_banner_footer .vlz_cell75{
+					font-size: 10px;
+				}
+
+				.vlz_banner_footer div{
+					height: 100px;
+				}
+
+				.vlz_banner_footer .vlz_cell25{
+					width: calc(40% - 9px) !important;
+				}
+				.vlz_banner_footer .vlz_cell75{
+					width: calc(60% - 9px) !important;
+				}
+
+			}	
+
 	.vlz_parte{
 	    position: relative;
 	    padding: 0px 10px;
@@ -95,7 +314,7 @@
 
 	textarea.vlz_input{
 		resize: none;
-		height: 153px;
+		height: 103px;
 	}
 
 	.vlz_check, .vlz_no_check{
