@@ -9,7 +9,7 @@
 	add_filter( 'wp_mail_from', function( $email ) {
 		return 'kmimos@kmimos.la';
 	});
-	
+
     include("vlz_data_orden.php");
     include("vlz_order_funciones.php");
 

@@ -36,16 +36,22 @@
 		$cuidador_post 	= $wpdb->get_row("SELECT * FROM $wpdb->posts WHERE ID = '".$producto->post_parent."'");
 		$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE user_id = '".$producto->post_author."'");
 
-		$email_cuidador = $cuidador->email;
 
 		$metas_cuidador = get_user_meta($cuidador->user_id);
-
 		$telf = $metas_cuidador["user_phone"][0];
+		$dir = $metas_cuidador["user_address"][0];
+		$dir = $cuidador->direccion;
+		$email_cuidador = $cuidador->email;
+
 		if( $telf == "" ){
 			$telf = $metas_cuidador["user_mobile"][0];
 		}
 		if( $telf == "" ){
 			$telf = "No registrado";
+		}
+
+		if( $dir == "" || $dir == 0 ){
+			$dir = "No registrada";
 		}
 
 		$detalles_cuidador = '
@@ -61,11 +67,11 @@
 				</tr>
 				<tr>
 					<td valign="top"> <strong>Correo:</strong> </td>
-					<td valign="top">'.$cuidador->email.'</td>
+					<td valign="top">'.$email_cuidador.'</td>
 				</tr>
 				<tr>
 					<td valign="top"> <strong>Dirección: </strong> </td>
-					<td valign="top"> '.$cuidador->direccion.'</td>
+					<td valign="top"> '.$dir.'</td>
 				</tr>
 			</table>
 		';
@@ -86,8 +92,8 @@
 
 		$nom = $nombre." ".$apellido;
 		$dir = $metas_cliente["user_address"][0];
-
 		$telf = $metas_cliente["user_phone"][0];
+
 		if( $telf == "" ){
 			$telf = $metas_cliente["user_mobile"][0];
 		}
@@ -95,7 +101,7 @@
 			$telf = "No registrado";
 		}
 
-		if( $dir == "" ){
+		if( $dir == "" || $dir == 0 ){
 			$dir = "No registrada";
 		}
 
@@ -129,6 +135,8 @@
 
 		$mascotas = $wpdb->get_results("SELECT * FROM $wpdb->posts WHERE post_author = '".$cliente."' AND post_type='pets'");
 		$detalles_mascotas = "";
+
+		/*
 		$detalles_mascotas .= '
 			<h2 style="color: #557da1; font-size: 16px;">Detalles de las mascotas: </h2>
 			<table style="width:100%" cellspacing=0 cellpadding=0>
@@ -139,6 +147,15 @@
 					<th style="padding: 3px; background: #00d2b7;"> <strong>Tamaño</strong> </th>
 					<th style="padding: 3px; background: #00d2b7;"> <strong>Comportamiento</strong> </th> 
 				</tr>';
+		*/
+		$detalles_mascotas .= '
+			<h2 style="color: #557da1; font-size: 16px;">Detalles de las mascotas: </h2>
+			<table style="width:100%" cellspacing=0 cellpadding=0>
+				<tr>
+					<th style="padding: 3px; background: #00d2b7;"> <strong>Nombre</strong> </th>
+					<th style="padding: 3px; background: #00d2b7;"> <strong>Detalles</strong> </th>
+				</tr>';
+
 
 		$comportamientos_array = array(
 			"pet_sociable" 			 => "Sociables",
@@ -185,7 +202,7 @@
 				$edad = date("Y")-$anio[0];
 
 				$raza = $wpdb->get_var("SELECT nombre FROM razas WHERE id=".$data_mascota['breed_pet'][0]);
-
+				/*
 				$detalles_mascotas .= '
 					<tr>
 						<td style="border-bottom: solid 1px #00d2b7; padding: 3px;" valign="top"> '.$data_mascota['name_pet'][0].'</td>
@@ -195,11 +212,31 @@
 						<td style="padding: 3px; border-bottom: solid 1px #00d2b7;" valign="top"> '.implode("<br>", $temp).'</td>
 					</tr>
 				';
+				*/
+
+				$detalles_mascotas .= '
+					<tr>
+						<td style="border-bottom: solid 1px #00d2b7; padding: 3px;" valign="top"> '.$data_mascota['name_pet'][0].'</td>
+						<td style="padding: 5px; border-bottom: solid 1px #00d2b7;" valign="top">
+							<strong>Raza:</strong> '.$raza.'<br>
+							<strong>Edad:</strong> '.$edad.' año(s)<br>
+							<strong>Tamaño:</strong> '.$tamanos_array[ $data_mascota['size_pet'][0] ].'<br>
+							<strong>Comportamiento:</strong> '.implode("<br>", $temp).'<br>
+						</td>
+					</tr>
+				';
 			}
 		}else{
+			/*
 			$detalles_mascotas .= '
 				<tr>
 					<td colspan="5">No tiene mascotas registradas.</td>
+				</tr>
+			';
+			*/
+			$detalles_mascotas .= '
+				<tr>
+					<td colspan="2">No tiene mascotas registradas.</td>
 				</tr>
 			';
 		}
@@ -308,4 +345,4 @@
             </ol>
 	    ';
 
-?>z
+?>
