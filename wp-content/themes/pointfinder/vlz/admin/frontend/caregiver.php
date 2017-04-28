@@ -93,25 +93,25 @@ function get_caregiver_tables($user_select="",$strcaregiver="",$strnocaregiver="
                 $options.='<a class="theme_btn" href="'.get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$caregiver->Nro_solicitud.'&s=1">Confirmar</a>';
                 $options.='<a class="theme_btn cancelled" href="'.get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$caregiver->Nro_solicitud.'&s=0">Cancelar</a>';
 
-                $options_args=array();
-                $options_args[]=array(
+                if($caregiver->Cuidador_id==$user_id){
+                    $options=build_select(array(
+                        array(
                             'text'=>'Ver',
                             'value'=>get_home_url().'/solicitud/'.$caregiver->Nro_solicitud
-                            );
-
-                if($caregiver->Cuidador_id==$user_id){
-                    $options_args[]= array(
-                                'text'=>'Confirmar',
-                                'value'=>get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$caregiver->Nro_solicitud.'&s=1'
-                            );
-                    $options_args[]= array(
-                                'text'=>'Cancelar',
-                                'class'=>'cancelled action_confirmed',
-                                'value'=>get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$caregiver->Nro_solicitud.'&s=0'
-                            );
+                        ),
+                        array(
+                            'text'=>'Confirmar',
+                            'value'=>get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$caregiver->Nro_solicitud.'&s=1'
+                        ),
+                        array(
+                            'text'=>'Cancelar',
+                            'class'=>'cancelled action_confirmed',
+                            'value'=>get_home_url().'/wp-content/plugins/kmimos/solicitud.php?o='.$caregiver->Nro_solicitud.'&s=0'
+                            )
+                    ));
+                }else{
+                    $options='<a class="theme_btn" href="'.get_home_url().'/solicitud/'.$caregiver->Nro_solicitud.'">Ver</a>';
                 }
-
-                $options=build_select($options_args);
 
 
 
@@ -215,10 +215,12 @@ function get_caregiver_tables($user_select="",$strcaregiver="",$strnocaregiver="
 
 
         //BUILD TABLE
-        echo '<h1 style="line-height: normal;">'.$strcaregiver.'</h1><hr>';
+        if($strcaregiver!=''){
+            echo '<h1 style="line-height: normal;">'.$strcaregiver.'</h1><hr>';
+        }
         echo build_table($booking_coming);
     }else{
-        if($show){
+        if($show && $strnocaregiver!=''){
             echo '<h1 style="line-height: normal;">'.$strnocaregiver.'</h1><hr>';
         }
     }
@@ -227,6 +229,6 @@ function get_caregiver_tables($user_select="",$strcaregiver="",$strnocaregiver="
 
 
 get_caregiver_tables("cu.post_author={$user_id}",'Como Cuidador.','No hay solicitudes como cuidador.');
-get_caregiver_tables("cl.meta_value={$user_id}",'Como Cliente.','No hay solicitudes como cliente.',true);
+get_caregiver_tables("cl.meta_value={$user_id}",'','No hay solicitudes como cliente.',true);
 
 ?>

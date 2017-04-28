@@ -231,7 +231,7 @@
 
 		$booking_coming=array();
 		$booking_coming['openpay_unpaid']=array();
-		$booking_coming['openpay_unpaid']['title']='Reservas pendientes por pgar en tienda por coveniencia';
+		$booking_coming['openpay_unpaid']['title']='Reservas pendientes por pagar en tienda por conveniencia';
 		$booking_coming['openpay_unpaid']['th']=array();
 		$booking_coming['openpay_unpaid']['tr']=array();
 
@@ -333,8 +333,9 @@
 
 
 					//RESERVAS CONFIRMADAS
-				}else if($reserva->post_status=='confirmed'){
-
+				}else if($reserva->post_status=='confirmed' && strtotime($_metas_reserva['_booking_end'][0])>time()){
+					//&& (strtotime($_metas_reserva['_booking_start'][0])
+					echo strtotime($_metas_reserva['_booking_start'][0]);
 					$options='<a class="theme_btn" href="'.get_home_url().'/ver/'.$reserva->post_parent.'">Ver</a>';
 					$options.='<a class="theme_btn cancelled" href="'.get_home_url().'/wp-content/plugins/kmimos/orden.php?o='.$reserva->post_parent.'&s=0">Cancelar</a>';
 					$options=build_select(
@@ -367,7 +368,7 @@
 
 
 					//RESERVAS COMPLETADAS
-				}else if($reserva->post_status=='complete'){
+				}else if($reserva->post_status=='complete' || ($reserva->post_status=='confirmed' && strtotime($_metas_reserva['_booking_end'][0])<time())){
 
 					$options='<a class="theme_btn" href="'.get_home_url().'/ver/'.$reserva->post_parent.'">Ver</a>';
 					$options='<a class="theme_btn" href="'.get_home_url().'/valorar-cuidador/?id='.$reserva->ID.'">Valorar</a>';

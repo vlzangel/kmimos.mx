@@ -107,16 +107,7 @@
 			.$detalles_servicio;
 	    
    		$msg_admin = kmimos_get_email_html("Reserva Cancelada por Cliente - ".$cuidador_post->post_title, $msg, "", true, true);
-
-		if($action !='noaction'){
-			wp_mail( $email_admin, "Cancelación de Reserva", $msg_admin, kmimos_mails_administradores());
-		}
-
-		if($show =='noshow'){
-			if(!add_post_meta($o, '_show', 'banana', true)){
-				update_post_meta($o, '_show', 'noshow');
-			}
-		}
+		wp_mail( $email_admin, "Cancelación de Reserva", $msg_admin, kmimos_mails_administradores());
 
    		$msg_cuidador = $styles.'
 	    	<p><strong>Cancelación de Reserva (N°. '.$reserva_id.')</strong></p>
@@ -125,9 +116,18 @@
 			.$detalles_cliente
 			.$detalles_mascotas
 			.$detalles_servicio;
-	    
+
+
    		$msg_cuidador = kmimos_get_email_html("Cancelación de Reserva", $msg_cuidador, "", true, true);
-   		wp_mail( $email_cuidador, "Cancelación de Reserva", $msg_cuidador);
+		if($action !='noaction'){
+   			wp_mail( $email_cuidador, "Cancelación de Reserva", $msg_cuidador);
+		}
+
+		if($show =='noshow'){
+			if(!add_post_meta($o, '_show', 'banana', true)){
+				update_post_meta($o, '_show', 'noshow');
+			}
+		}
 
 	    $msg_a_mostrar = $styles.'
 	    	<p><strong>Cancelación de Reserva (N°. '.$reserva_id.')</strong></p>

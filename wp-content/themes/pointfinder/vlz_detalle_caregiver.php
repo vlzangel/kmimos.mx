@@ -85,29 +85,37 @@ $result = $wpdb->get_results($sql);
 												<strong># Solicitud</strong>:
 												<?php echo $solicitud->Nro_solicitud; ?>
 											</div>
-											<div>
-												<strong>Fecha</strong>:
-												<?php echo $solicitud->Fecha_solicitud; ?>
+											<div style="padding:10px;">
+												<h3>Detalle de la Solicitud</h3>
+												<div>
+													<strong>Fecha</strong>:
+													<?php echo $solicitud->Fecha_solicitud; ?>
+												</div>
+												<div>
+													<strong>Desde</strong>:
+													<?php echo $solicitud->Servicio_desde; ?>
+												</div>
+												<div>
+													<strong>Hasta</strong>:
+													<?php echo $solicitud->Servicio_hasta; ?>
+												</div>
 											</div>
-											<div>
-												<strong>Desde</strong>:
-												<?php echo $solicitud->Servicio_desde; ?>
+
+											<div style="padding:10px;">
+												<div>
+													<strong>Lugar</strong>:
+													<?php echo utf8_encode($solicitud->Donde); ?>
+												</div>
+												<div>
+													<strong>Cuando</strong>:
+													<?php echo $solicitud->Cuando.' '.$solicitud->Hora; ?>
+												</div>
 											</div>
-											<div>
-												<strong>Hasta</strong>:
-												<?php echo $solicitud->Servicio_hasta; ?>
-											</div>
-											<div>
-												<strong>Lugar</strong>:
-												<?php echo utf8_encode($solicitud->Donde); ?>
-											</div>
-											<div>
-												<strong>Cuando</strong>:
-												<?php echo $solicitud->Cuando.' '.$solicitud->Hora; ?>
-											</div>
+
 											<!-- nombre de la(s) mascota -->
 											<!-- tamaño -->
 											<div style="padding:10px;">
+												<h3>Detalle del Cliente</h3>
 												<div>
 													<strong>Nombre del cliente</strong>:
 													<?php echo $cliente_meta['first_name'][0].' '. $cliente_meta['last_name'][0]; ?>
@@ -123,6 +131,7 @@ $result = $wpdb->get_results($sql);
 											</div>
 
 											<div style="padding:10px;">
+												<h3>Detalle del Cuidador</h3>
 												<div>
 													<strong>Nombre del cuidador</strong>:
 													<?php echo $cuidador_meta['first_name'][0].' '. $cuidador_meta['last_name'][0]; ?>
@@ -137,9 +146,22 @@ $result = $wpdb->get_results($sql);
 												</div>
 											</div>
 
-											<div>
-												<strong>Estatus</strong>:
-												<?php echo $solicitud->Estatus;?>
+											<div style="padding:10px;">
+												<div>
+													<strong>Estatus</strong>:
+													<?php
+														if($solicitud->Estatus=='draft'){
+															echo 'Cancelado';
+
+														}else if($solicitud->Estatus=='publish'){
+															echo 'Confirmado';
+
+														}else{
+															echo 'Pendiente';
+															//echo $solicitud->Estatus;
+														}
+													?>
+												</div>
 											</div>
 
 								<?php
