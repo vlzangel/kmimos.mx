@@ -124,7 +124,7 @@
 		}
 
 		if($show =='noshow'){
-			if(!add_post_meta($o, '_show', 'banana', true)){
+			if(!add_post_meta($o, '_show', 'noshow', true)){
 				update_post_meta($o, '_show', 'noshow');
 			}
 		}
