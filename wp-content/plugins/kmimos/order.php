@@ -100,7 +100,7 @@
 	   		wp_mail( $email_admin, "Cancelación de Reserva", $msg_admin, kmimos_mails_administradores());
 
 	   		$msg = $styles.'
-	   			<div style="padding-right: 10px;">
+	   			<div>
 			    	<p><strong>Cancelación de Reserva (N°. '.$reserva_id.')</strong></p>
 					<p>Hola <strong>'.$nom.'</strong>,</p>
 					<p align="justify">Te notificamos que el cuidador <strong>'.$cuidador_post->post_title.'</strong> ha cancelado la reserva N° <strong>'.$reserva_id.'</strong>.</p>
