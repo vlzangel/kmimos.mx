@@ -93,8 +93,13 @@
             break;
         }
 
-        $_wc_booking_min_duration = 1;
-        $_wc_booking_count_nights = "no";
+        if( $data['slug'] == 'hospedaje' ){
+            $_wc_booking_min_duration = 2;
+            $_wc_booking_count_nights = "yes";
+        }else{
+            $_wc_booking_min_duration = 1;
+            $_wc_booking_count_nights = "no";
+        }
 
         return utf8_decode("
             INSERT INTO wp_postmeta VALUES 
@@ -167,7 +172,7 @@
                 (NULL, '".$data['id_servicio']."', '_wc_booking_requires_confirmation', 'no'), 
                 (NULL, '".$data['id_servicio']."', '_wc_booking_first_block_time', ''), 
                 (NULL, '".$data['id_servicio']."', '_wc_booking_min_date_unit', 'day'), 
-                (NULL, '".$data['id_servicio']."', '_wc_booking_min_date', '1'), 
+                (NULL, '".$data['id_servicio']."', '_wc_booking_min_date', '0'), 
                 (NULL, '".$data['id_servicio']."', '_wc_booking_max_date_unit', 'month'), 
                 (NULL, '".$data['id_servicio']."', '_wc_booking_max_date', '12'), 
                 (NULL, '".$data['id_servicio']."', '_wc_booking_cancel_limit_unit', 'day'), 
