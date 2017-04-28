@@ -73,6 +73,12 @@
 	/* Cliente */
 
 		$cliente = $metas_orden["_customer_user"][0];
+
+		if( $cliente == 0 ){
+			$temp_email = $metas_orden["_billing_email"][0];
+			$cliente = get_var("SELECT ID FROM wp_users WHERE user_email = '{$temp_email}'");
+		}
+
 		$metas_cliente = get_user_meta($cliente);
 
 		$nombre = $metas_cliente["first_name"][0];
