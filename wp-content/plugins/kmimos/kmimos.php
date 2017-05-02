@@ -363,10 +363,10 @@ if(!function_exists('servicios_adicionales')){
 if(!function_exists('kmimos_get_foto_cuidador')){
     function kmimos_get_foto_cuidador($id){
         global $wpdb;
-        $name_photo = get_user_meta($id, "name_photo", true);
         $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id = ".$id);
         $cuidador_id = $cuidador->id;
         $xx = $name_photo;
+        $name_photo = get_user_meta($cuidador->user_id, "name_photo", true);
         if( empty($name_photo)  ){ $name_photo = "0"; }
         if( file_exists("wp-content/uploads/cuidadores/avatares/".$cuidador_id."/{$name_photo}") ){
             $img = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/{$name_photo}";
@@ -379,7 +379,6 @@ if(!function_exists('kmimos_get_foto_cuidador')){
         }
         return $img;
     }
-    
 }
 
 if(!function_exists('kmimos_style')){
