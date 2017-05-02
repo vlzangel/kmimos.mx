@@ -772,14 +772,34 @@ if(!function_exists('kmimos_admin_menu')){
                 'icon'=>plugins_url('/assets/images/icon.png', __FILE__),
             ),
             array(
-                'title'=>'Listado de Usuarios',
-                'short-title'=>'Listado de Usuarios',
+                'title'=>'Listado de Clientes',
+                'short-title'=>'Listado de Clientes',
                 'parent'=>'kmimos',
-                'slug'=>'bp_usuarios',
+                'slug'=>'bp_clientes',
                 'access'=>'manage_options',
-                'page'=>'backpanel_usuarios',
+                'page'=>'backpanel_clientes',
                 'icon'=>plugins_url('/assets/images/icon.png', __FILE__),
             ),
+
+            array(
+                'title'=>'Listado de Cuidadores',
+                'short-title'=>'Listado de Cuidadores',
+                'parent'=>'kmimos',
+                'slug'=>'bp_cuidadores',
+                'access'=>'manage_options',
+                'page'=>'backpanel_cuidadores',
+                'icon'=>plugins_url('/assets/images/icon.png', __FILE__),
+            ),
+
+            // array(
+            //     'title'=>'Estados por Cuidador',
+            //     'short-title'=>'Estados por Cuidador',
+            //     'parent'=>'kmimos',
+            //     'slug'=>'bp_estados_cuidadores',
+            //     'access'=>'manage_options',
+            //     'page'=>'backpanel_estados_cuidadores',
+            //     'icon'=>plugins_url('/assets/images/icon.png', __FILE__),
+            // ),
 
             array(
                 'title'=> __('Settings'),
@@ -854,9 +874,21 @@ if(!function_exists('backpanel_subscribe')){
     }
 }
 
-if(!function_exists('backpanel_usuarios')){
-    function backpanel_usuarios(){
-        include_once('dashboard/backpanel_usuarios.php');
+if(!function_exists('backpanel_clientes')){
+    function backpanel_clientes(){
+        include_once('dashboard/backpanel_clientes.php');
+    }
+}
+
+if(!function_exists('backpanel_cuidadores')){
+    function backpanel_cuidadores(){
+        include_once('dashboard/backpanel_cuidadores.php');
+    }
+}
+
+if(!function_exists('backpanel_estados_cuidadores')){
+    function backpanel_estados_cuidadores(){
+        include_once('dashboard/backpanel_estados_cuidadores.php');
     }
 }
 

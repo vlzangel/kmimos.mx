@@ -157,7 +157,8 @@ var CURRENT_URL = window.location.href.split('#')[0].split('?')[0],
 						// },
 					  ],
 					  responsive: false,
-					  scrollX: true
+					  scrollX: true,
+					  processing: true
 					});
 				  }
 				};
