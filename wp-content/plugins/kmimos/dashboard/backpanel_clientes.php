@@ -25,7 +25,7 @@ $users = getUsers($desde, $hasta);
 		<!-- Filtros -->
 		<div class="row text-right"> 
 			<div class="col-sm-12">
-		    	<form class="form-inline" action="/wp-admin/admin.php?page=bp_usuarios" method="POST">
+		    	<form class="form-inline" action="/wp-admin/admin.php?page=bp_clientes" method="POST">
 					<label>Filtrar:</label>
 					<div class="form-group">
 						<div class="input-group">
