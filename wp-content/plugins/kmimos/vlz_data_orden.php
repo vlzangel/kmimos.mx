@@ -150,7 +150,7 @@
 		*/
 		$detalles_mascotas .= '
 			<h2 style="color: #557da1; font-size: 16px;">Detalles de las mascotas: </h2>
-			<table style="width:100%" cellspacing=0 cellpadding=0>
+			<table style="width:100%" cellspacing=0 cellpadding=0 align="left">
 				<tr>
 					<th style="padding: 3px; background: #00d2b7;"> <strong>Nombre</strong> </th>
 					<th style="padding: 3px; background: #00d2b7;"> <strong>Detalles</strong> </th>
