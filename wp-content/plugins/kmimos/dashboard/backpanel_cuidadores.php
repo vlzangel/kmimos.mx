@@ -1,6 +1,6 @@
 <?php global $wpdb;
 // Usuarios 
-require_once('core/ControllerUsuarios.php');
+require_once('core/ControllerCuidadores.php');
 // Parametros: Filtro por fecha
 $landing = '';
 $date = getdate();
@@ -18,7 +18,7 @@ $users = getUsers($desde, $hasta);
 <div class="x_panel">
 	<div class="col-md-12 col-sm-12 col-xs-12">
 		<div class="x_title">
-			<h2>Panel de Control <small>Lista de usuarios</small></h2>
+			<h2>Panel de Control <small>Lista de cuidadores</small></h2>
 			<hr>
 			<div class="clearfix"></div>
 		</div>
@@ -64,7 +64,6 @@ $users = getUsers($desde, $hasta);
 			      <th>Nombre y Apellido</th>
 			      <th>Email</th>
 			      <th>Teléfono</th>
-			      <th>Tipo</th>
 			      <th>Donde nos conocio?</th>
 			      <th>Estatus</th>
 			    </tr>
@@ -87,14 +86,14 @@ $users = getUsers($desde, $hasta);
 							</a>
 						</th>
 						<th><?php echo $usermeta['phone']; ?></th>
-						<th><?php echo $row['tipo']; ?></th>
 						<th><?php echo (!empty($usermeta['user_referred']))? $usermeta['user_referred'] : 'Otros' ; ?></th>
-						<th><?php echo ($row['user_status']==0)? 'Activo' : 'Inactivo' ; ?></th>
+						<th><?php echo ($row['estatus']==1)? 'Activo' : 'Inactivo' ; ?></th>
 				    </tr>
 			   	<?php } ?>
 			  </tbody>
 			</table>
 			</div>
+			
 		</div>
 	<?php } ?>	
   </div>

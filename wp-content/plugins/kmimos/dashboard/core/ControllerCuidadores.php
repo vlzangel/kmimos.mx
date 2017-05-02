@@ -35,14 +35,11 @@ function getUsers($desde="", $hasta=""){
 	// }
 	$filtro_adicional = (!empty($filtro_adicional))? ' WHERE '.$filtro_adicional : $filtro_adicional ;
 	$sql = "
-		SELECT u.*, 
-			CASE WHEN u.ID = c.user_id THEN 'Cuidador'
-				ELSE 'Cliente' END as 'tipo' 
+		SELECT u.*, c.activo as 'estatus'
 		FROM wp_users as u
-			left join cuidadores as c ON c.user_id = u.ID
+			INNER JOIN cuidadores as c ON c.user_id = u.ID
 		{$filtro_adicional}
-		ORDER BY DATE_FORMAT(u.user_registered,'%d-%m-%Y') DESC
-		;
+		ORDER BY DATE_FORMAT(u.user_registered,'%d-%m-%Y') DESC;
 	";
 	
 	$result = get_fetch_assoc($sql);
