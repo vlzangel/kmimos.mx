@@ -2,7 +2,7 @@
 // Reservas 
 require_once('core/ControllerReservas.php');
 // Parametros: Filtro por fecha
-$date = getdate();
+$date = getdate(); 
 $desde = date("Y-m-01", $date[0] );
 $hasta = date("Y-m-d", $date[0]);
 if(	!empty($_POST['desde']) && !empty($_POST['hasta']) ){
@@ -102,6 +102,8 @@ function dias_transcurridos($fecha_i,$fecha_f)
 				  		// *************************************
 				  		// Cargar Metadatos
 				  		// *************************************
+				  		# MetaDatos del Cuidador
+				  		$meta_cuidador = getMetaCuidador($reserva->cuidador_id);
 				  		# MetaDatos del Cliente
 				  		$cliente = getMetaCliente($reserva->cliente_id);
 				  		# MetaDatos del Reserva
@@ -118,7 +120,7 @@ function dias_transcurridos($fecha_i,$fecha_f)
 				  		$estatus = get_status(
 				  			$reserva->estatus_reserva, 
 				  			$reserva->estatus_pago, 
-				  			$reserva->metodo_pago_pk 
+				  			$meta_Pedido['_payment_method'] 
 				  		);
 				  		$pets_nombre = "";
 				  		$pets_razas  = "";
@@ -137,7 +139,13 @@ function dias_transcurridos($fecha_i,$fecha_f)
 							$pets_edad .= getEdad( $pet['birthdate'] );
 						} 
 
-						$nro_noches = dias_transcurridos(date_convert($meta_reserva['_booking_end'], 'd-m-Y'), date_convert($meta_reserva['_booking_start'], 'd-m-Y') );
+						$nro_noches = dias_transcurridos(
+								date_convert($meta_reserva['_booking_end'], 'd-m-Y'), 
+								date_convert($meta_reserva['_booking_start'], 'd-m-Y') 
+							);					
+						if( $nro_noches == 0 && strpos($meta_Pedido['post_name'], 'hospedaje') != false ){
+							$nro_noches = 1;
+						}
 
 				  	?>
 				    <tr>
@@ -145,9 +153,11 @@ function dias_transcurridos($fecha_i,$fecha_f)
 					<th><?php echo $reserva->nro_reserva; ?></th>
 					<th class="text-center"><?php echo $estatus['sts_corto']; ?></th>
 					<th class="text-center"><?php echo $reserva->fecha_solicitud; ?></th>
-					<th><?php echo date_convert($meta_reserva['_booking_start'], 'd-m-Y'); ?></th>
-					<th><?php echo date_convert($meta_reserva['_booking_end'], 'd-m-Y'); ?></th>
-					<th class="text-center"><?php echo $nro_noches; //$reserva->nro_noches; ?></th>
+
+					<th><?php echo date_convert($meta_reserva['_booking_start'], 'd-m-Y', true); ?></th>
+					<th><?php echo date_convert($meta_reserva['_booking_end'], 'd-m-Y', true); ?></th>
+
+					<th class="text-center"><?php echo $nro_noches; ?></th>
 					<th class="text-center"><?php echo $reserva->nro_mascotas; ?></th>
 					<th><?php echo $nro_noches * $reserva->nro_mascotas; ?></th>
 					<th><?php echo $cliente['first_name'].' '.$cliente['last_name']; ?></th>
@@ -155,7 +165,7 @@ function dias_transcurridos($fecha_i,$fecha_f)
 					<th><?php echo $pets_nombre; ?></th>
 					<th><?php echo $pets_razas; ?></th>
 					<th><?php echo $pets_edad; ?></th>
-					<th><?php echo $reserva->cuidador_nombre; ?></th>
+					<th><?php echo $meta_cuidador['first_name'] . ' ' . $meta_cuidador['last_name']; ?></th>
 					<th><?php echo $reserva->producto_title; ?></th>
 					<th>
 					<?php foreach( $services as $service ){ ?>
@@ -165,10 +175,11 @@ function dias_transcurridos($fecha_i,$fecha_f)
 					</th>
 					<th><?php echo utf8_decode( $ubicacion['estado'] ); ?></th>
 					<th><?php echo utf8_decode( $ubicacion['municipio'] ); ?></th>
-					<th><?php echo $meta_Pedido['_payment_method_title']; ?></th>
+					<th><?php echo (!empty($meta_Pedido['_payment_method_title']))? 
+							$meta_Pedido['_payment_method_title'] : 'Manual' ; ?></th>
 					<th><?php echo currency_format($meta_reserva['_booking_cost']); ?></th>
-					<th><?php echo currency_format($meta_reserva['_order_total']); ?></th>
-					<th><?php echo currency_format($meta_reserva['_wc_deposits_remaining']); ?></th>
+					<th><?php echo currency_format($meta_Pedido['_order_total']); ?></th>
+					<th><?php echo currency_format($meta_Pedido['_wc_deposits_remaining']); ?></th>
 					<th><?php echo $reserva->nro_pedido; ?></th>
 					<th><?php echo $estatus['sts_largo']; ?></th>
 
