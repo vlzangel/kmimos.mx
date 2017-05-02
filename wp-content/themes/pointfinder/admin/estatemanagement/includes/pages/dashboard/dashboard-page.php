@@ -378,11 +378,11 @@ if(isset($ua_action)){
                             */
                             $bookings = kmimos_get_my_bookings($current_user->ID);
                             if ($_GET['ua']=='mybookings'){
-                                $pfmenu_output .= '<li class="selected_option"><a href="#" onclick="return false;"><i class="pfadmicon-glyph-28"></i> '. $setup29_dashboard_contents_vendor_bookings_menuname.'<span class="pfbadge">'.$bookings['count'].'</span></li>';
+                                $pfmenu_output .= '<li class="selected_option"><a href="#" onclick="return false;"><i class="pfadmicon-glyph-28"></i> '. $setup29_dashboard_contents_vendor_bookings_menuname.'</li>';//<span class="pfbadge">'.$bookings['count'].'</span>
                             }
                             else {
                                 $class = ($_GET['ua']=='mybooking')? ' class="selected_option"':'';
-                                $pfmenu_output .= '<li'.$class.'><a href="'.$setup4_membersettings_dashboard_link.$pfmenu_perout.'ua=mybookings"><i class="pfadmicon-glyph-28"></i> '. $setup29_dashboard_contents_vendor_bookings_menuname.'<span class="pfbadge">'.$bookings['count'].'</span></a></li>';
+                                $pfmenu_output .= '<li'.$class.'><a href="'.$setup4_membersettings_dashboard_link.$pfmenu_perout.'ua=mybookings"><i class="pfadmicon-glyph-28"></i> '. $setup29_dashboard_contents_vendor_bookings_menuname.'</a></li>';//<span class="pfbadge">'.$bookings['count'].'</span>
                             }
 
 							//SOLICITUDES DE CONOCER AL CUIDADOR
