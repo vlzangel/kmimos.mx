@@ -122,7 +122,6 @@ jQuery( document ).ready(function() {
     	echo "jQuery('#billing_phone').attr('value', '+52{$metas_cliente["user_mobile"][0]}');";
     ?>
 
-    jQuery('#billing_email').attr('disabled', 'disabled');
     jQuery('#billing_state > option[value="Distrito Federal"]').attr('selected', 'selected');
     jQuery('#billing_address_1').attr('value', 'México');
     jQuery('#billing_address_2').attr('value', 'México');

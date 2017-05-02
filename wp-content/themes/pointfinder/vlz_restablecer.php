@@ -511,6 +511,8 @@
 
 												<script>
 
+													jQuery("#boton_registrar_modal").attr("value", "Actualizar");
+
 													var form = document.getElementById('vlz_form_recuperar');
 													form.addEventListener( 'invalid', function(event){
 												        event.preventDefault();
