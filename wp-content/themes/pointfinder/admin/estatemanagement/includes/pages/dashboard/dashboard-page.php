@@ -1074,10 +1074,6 @@ if(isset($ua_action)){
 							include("./wp-content/themes/pointfinder/vlz/admin/page_invoices.php");
 						break;
 
-						case 'caregiver':
-							include("./wp-content/themes/pointfinder/vlz/admin/frontend/caregiver.php");
-						break;
-
 					}
 					
 					/**
