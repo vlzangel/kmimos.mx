@@ -311,15 +311,15 @@
 
                     }else{
 
-                       // if( is_home() ){
-                            echo "
-                                <script>
-                                    setTimeout(function(){
-                                        jQuery('#jj_modal_bienvenida_xxx').css('display', 'table');
-                                    }, 100);
-                                </script>
-                            ";
-                       // }
+                       // // if( is_home() ){
+                       //      echo "
+                       //          <script>
+                       //              setTimeout(function(){
+                       //                  jQuery('#jj_modal_bienvenida_xxx').css('display', 'table');
+                       //              }, 100);
+                       //          </script>
+                       //      ";
+                       // // }
                     }
 
                 }
