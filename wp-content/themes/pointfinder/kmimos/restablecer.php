@@ -24,7 +24,7 @@
         update_user_meta( $user->ID, 'clave_temp', $clave );
 
         $mensaje = '
-            <h1>¡Nueva Contraseña Temporal!</h1>
+            <h1>¡Recuperación de Contraseña!</h1>
             <p style="text-align: justify;">Hola <strong>'.$user->display_name.'</strong>,</p>
             <p style="text-align: justify;">
                 Hemos recibido tu solicitud para restablecer tu contraseña en Kmimos.

@@ -1082,7 +1082,8 @@
 									});
 						      	}
 						      	function GoToHomePage(){
-							    	location = '<?php echo get_home_url()."/perfil-usuario/?ua=profile"; ?>';   
+							    	// location = '<?php echo get_home_url()."/perfil-usuario/?ua=profile"; ?>';   
+							    	location = 'http://kmimos.ilernus.com/';   
 							  	}
 
 						      	jQuery("#vlz_form_nuevo_cuidador").submit(function(e){
