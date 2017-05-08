@@ -13,7 +13,9 @@
 			array('jquery'),
 			'1.0.0',
 			true
-		); ?>
+		); 
+
+		echo get_estados_municipios(); ?>
 
 
 		<?php include("vlz/form/vlz_styles.php"); ?>
@@ -198,56 +200,46 @@
 
 										<script type="text/javascript">
 											jQuery("#estado").on("change", function(e){
-												jQuery.ajax( {
-													method: "POST",
-											 		data: { 
-											 			estado: 	jQuery("#estado").val(),
-											 			municipio: 	""
-											 		},
-													url: '<?php echo get_home_url().'/wp-content/themes/pointfinder/vlz/ajax_municipios_2.php'; ?>'
-												}).done(function(datos){
+												var estado_id = jQuery("#estado").val();            
+	    
+											    if( estado_id != "" ){
 
-													if( datos != false ){
-														datos = eval(datos);
-														var locaciones = jQuery.makeArray( datos.mun );
-														var html = "<option value=''>Seleccione un municipio</option>";
-											            jQuery.each(locaciones, function(i, val) {
-											                html += "<option value="+val.id+">"+val.name+"</option>";
-											            });
-											            jQuery("#municipio").html(html);
-											            var location 	= datos.geo.referencia;
-									                    jQuery("#latitud").attr("value", location.lat);
-									                    jQuery("#longitud").attr("value", location.lng);
-													}
+											        var html = "<option value=''>Seleccione un municipio</option>";
+											        jQuery.each(estados_municipios[estado_id]['municipios'], function(i, val) {
+											            html += "<option value="+val.id+" data-id='"+i+"'>"+val.nombre+"</option>";
+											        });
 
-												});
+											        jQuery("#municipio").html(html);
+
+											        var location    = estados_municipios[estado_id]['coordenadas']['referencia'];
+											        var norte       = estados_municipios[estado_id]['coordenadas']['norte'];
+											        var sur         = estados_municipios[estado_id]['coordenadas']['sur'];
+
+											        jQuery("#latitud").attr("value", location.lat);
+											        jQuery("#longitud").attr("value", location.lng);
+
+											    }
+
 											});
 
 											jQuery("#municipio").on("change", function(e){
 												vlz_coordenadas();
 											});
 
-											function vlz_coordenadas(CB){
-												jQuery.ajax( {
-													method: "POST",
-											 		data: { 
-											 			municipio: jQuery("#municipio").val() 
-											 		},
-													url: '<?php echo get_home_url()."/wp-content/themes/pointfinder".'/vlz/ajax_municipios_2.php'; ?>'
-												}).done(function(datos){
+											function vlz_coordenadas(){
+												var estado_id = jQuery("#estado").val();            
+										        var municipio_id = jQuery('#municipio > option[value="'+jQuery("#municipio").val()+'"]').attr('data-id');   
 
-													if( datos != false ){
-														datos = eval(datos);
-											            var location 	= datos.geo.referencia;
-									                    jQuery("#latitud").attr("value", location.lat);
-									                    jQuery("#longitud").attr("value", location.lng);
-													}
+										        if( estado_id != "" ){
 
-													if( CB != undefined) {
-														CB();
-													}
-													
-												});
+										            var location    = estados_municipios[estado_id]['municipios'][municipio_id]['coordenadas']['referencia'];
+										            var norte       = estados_municipios[estado_id]['municipios'][municipio_id]['coordenadas']['norte'];
+										            var sur         = estados_municipios[estado_id]['municipios'][municipio_id]['coordenadas']['sur'];
+
+											        jQuery("#latitud").attr("value", location.lat);
+											        jQuery("#longitud").attr("value", location.lng);
+
+										        }
 											}
 										</script>
 
@@ -888,7 +880,7 @@
 											      		jQuery(".vlz_modal_contenido").css("display", "block");
 											      		jQuery("#terminos").css("display", "block");
 											      		jQuery("#vlz_cargando").css("height", "auto");
-											      		
+
 											      		jQuery("#vlz_cargando").css("display", "none");
 
 											      		jQuery("#vlz_cargando").css("text-align", "justify");
