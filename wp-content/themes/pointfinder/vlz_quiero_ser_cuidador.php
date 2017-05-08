@@ -100,7 +100,7 @@
 
 										</div>
 									
-										<div class="vlz_cell50 jj_input_cell00">
+										<div id="cargar_imagen_1" class="vlz_cell50 jj_input_cell00">
 
 											<div class="">
 												<div class="vlz_img_portada">
