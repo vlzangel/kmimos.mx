@@ -95,3 +95,7 @@ wp-content/plugins/kmimos/dashboard/core/GlobalFunction.php
 wp-content/plugins/kmimos/dashboard/core/ControllerConocerCuidador.php
 wp-content/plugins/kmimos/dashboard/backpanel_conocer_cuidador.php
 wp-content/plugins/kmimos/dashboard/core/base_db.php
+.idea/kmimos.mx.iml
+.idea/misc.xml
+.idea/vcs.xml
+.idea/modules.xml
