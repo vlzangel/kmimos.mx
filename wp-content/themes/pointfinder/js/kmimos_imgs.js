@@ -29,7 +29,8 @@ function contenedor_temp(){
 
         var cont_general = jQuery("<div>", {
             id: "kmimos_redimencionar_imagenes",
-            html: cont_canvas+img
+            html: cont_canvas+img,
+            style: "display: none;"
         })[0].outerHTML;
 
         return jQuery("body").append(cont_general);
@@ -44,7 +45,8 @@ function contenedor_temp(){
 
         var cont_general = jQuery("<div>", {
             id: "kmimos_redimencionar_imagenes",
-            html: cont_canvas+img
+            html: cont_canvas+img,
+            style: "display: none;"
         })[0].outerHTML;
 
         jQuery("#kmimos_redimencionar_imagenes").html(cont_general);
