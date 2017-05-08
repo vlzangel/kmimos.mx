@@ -72,7 +72,7 @@
 												</div>
 												
 												<div class="vlz_cell50">
-													<input data-title="Debes ingresar tu número telefónico<br>Este debe tener entre 10 y 11 dígitos." type='number' id='telefono' maxlength="11" name='telefono' class='vlz_input' placeholder='Tel&eacute;fono' required pattern="[0-9]{11}">
+													<input data-title="Debes ingresar tu número telefónico<br>Este debe tener al menos 10 dígitos." type='number' id='telefono' name='telefono' min="10" class='vlz_input' placeholder='Tel&eacute;fono' required pattern="[0-9]">
 												</div>
 											</div>
 
@@ -469,8 +469,7 @@
 									</div>
 							
 									<h2 class="vlz_titulo_interno">Precios de Hospedaje </h2>
-
-									<!-- Modal "Precios de Hosedajes"-->				 
+				 
 									<div id="jj_modal" class="vlz_modal">
 
 										<div class="vlz_modal_interno">
@@ -675,7 +674,7 @@
 										case "telefono":
 								      		var telefono = jQuery( "#telefono" ).val();
 
-								      		if( telefono.length >= 10 && telefono.length <= 11 ){
+								      		if( telefono.length >= 10 ){
 								      			return true;
 								      		}else{
 								      			return false;
@@ -889,6 +888,9 @@
 											      		jQuery(".vlz_modal_contenido").css("display", "block");
 											      		jQuery("#terminos").css("display", "block");
 											      		jQuery("#vlz_cargando").css("height", "auto");
+											      		
+											      		jQuery("#vlz_cargando").css("display", "none");
+
 											      		jQuery("#vlz_cargando").css("text-align", "justify");
 
 											      		jQuery("#vlz_titulo_registro").html('Términos y Condiciones');
