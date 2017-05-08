@@ -15,6 +15,8 @@
  * License:     GPL2
  */
 include_once('includes/class/class_kmimos_map.php');
+include_once('includes/class/class_kmimos_booking.php');
+include_once('includes/class/class_kmimos_tables.php');
 include_once('includes/functions/kmimos_functions.php');
 include_once('plugins/woocommerce.php');
 
