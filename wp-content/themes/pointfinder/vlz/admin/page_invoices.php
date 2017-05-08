@@ -44,12 +44,91 @@
 		</style>
 	";
 
+global $wpdb;
+$sql = "SELECT * FROM $wpdb->posts WHERE post_type = 'wc_booking' AND post_author = {$user_id} AND post_status NOT LIKE '%cart%'";
+$reservas = $wpdb->get_results($sql);
 
 
-	global $wpdb;
+//CART
+$items = WC()->cart->get_cart();
+if(count($items) > 0){
+	?>
+	<h1 class='vlz_h1 jj_h1'>Reservas Por Completar</h1>
+	<table class='vlz_tabla jj_tabla table table-striped table-responsive'>
+		<tr>
+			<th class="product-name"><?php _e( 'SERVICIO', 'woocommerce' ); ?></th>
+			<th class="product-service"><?php _e( 'DETALLE', 'woocommerce' ); ?></th>
+			<th class="product-subtotal"><?php _e( 'TOTAL', 'woocommerce' ); ?></th>
+			<th>ACCIONES</th>
+		</tr>
 
-	$sql = "SELECT * FROM $wpdb->posts WHERE post_type = 'wc_booking' AND post_author = {$user_id} AND post_status NOT LIKE '%cart%'";
-	$reservas = $wpdb->get_results($sql);
+		<?php
+		foreach($items as $cart_item_key => $cart_item){
+			$_product     = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+			$product_id   = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
+			?>
+			<tr>
+				<td class="product-name" data-title="<?php _e( 'Product', 'woocommerce' ); ?>">
+					<?php
+					if ( ! $_product->is_visible() ) {
+						echo apply_filters( 'woocommerce_cart_item_name', $_product->get_title(), $cart_item, $cart_item_key ) . '&nbsp;';
+					} else {
+						echo apply_filters( 'woocommerce_cart_item_name', sprintf( '<a href="%s">%s</a>', esc_url( $_product->get_permalink( $cart_item ) ), $_product->get_title() ), $cart_item, $cart_item_key );
+					}
+					?>
+				</td>
+				<td class="product-service" data-title="<?php _e( 'Service', 'woocommerce' ); ?>">
+
+					<?php
+					// Meta data
+					echo WC()->cart->get_item_data( $cart_item );
+
+					// Backorder notification
+					if ( $_product->backorders_require_notification() && $_product->is_on_backorder( $cart_item['quantity'] ) ) {
+						echo '<p class="backorder_notification">' . esc_html__( 'Available on backorder', 'woocommerce' ) . '</p>';
+					}
+					?>
+				</td>
+				<td class="product-subtotal" data-title="<?php _e( 'Total', 'woocommerce' ); ?>">
+					<?php
+					echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key );
+					?>
+				</td>
+				<td style='text-align: right; width: 166px;'>
+
+					<?php
+					echo build_select(
+						array(
+							array(
+								'text'=>'Ver',
+								'value'=>esc_url( WC()->cart->get_cart_url())
+							),
+							array(
+								'text'=>'Pagar',
+								'value'=>esc_url( WC()->cart->get_checkout_url())
+							),
+							/*
+                            array(
+                                'text'=>'Modificar',
+                                'value'=>esc_url( $_product->get_permalink($cart_item))
+                            ),
+                            */
+							array(
+								'text'=>'Eliminar',
+								'value'=>esc_url( WC()->cart->get_remove_url($cart_item_key))
+							)
+						));
+					?>
+				</td>
+			</tr>
+			<?php
+		}
+		?>
+	</table>
+	<?php
+}
+
+
 
 
 	$completadas = array();
@@ -146,85 +225,6 @@
 		}
 
 
-
-		//CART
-		$items = WC()->cart->get_cart();
-		if(count($items) > 0){
-			?>
-				<h1 class='vlz_h1 jj_h1'>Reservas Por Completar</h1>
-				<table class='vlz_tabla jj_tabla table table-striped table-responsive'>
-					<tr>
-						<th class="product-name"><?php _e( 'SERVICIO', 'woocommerce' ); ?></th>
-						<th class="product-service"><?php _e( 'DETALLE', 'woocommerce' ); ?></th>
-						<th class="product-subtotal"><?php _e( 'TOTAL', 'woocommerce' ); ?></th>
-						<th>ACCIONES</th>
-					</tr>
-
-					<?php
-					foreach($items as $cart_item_key => $cart_item){
-						$_product     = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
-						$product_id   = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
-					?>
-						<tr>
-							<td class="product-name" data-title="<?php _e( 'Product', 'woocommerce' ); ?>">
-								<?php
-								if ( ! $_product->is_visible() ) {
-									echo apply_filters( 'woocommerce_cart_item_name', $_product->get_title(), $cart_item, $cart_item_key ) . '&nbsp;';
-								} else {
-									echo apply_filters( 'woocommerce_cart_item_name', sprintf( '<a href="%s">%s</a>', esc_url( $_product->get_permalink( $cart_item ) ), $_product->get_title() ), $cart_item, $cart_item_key );
-								}
-								?>
-							</td>
-							<td class="product-service" data-title="<?php _e( 'Service', 'woocommerce' ); ?>">
-
-								<?php
-								// Meta data
-								echo WC()->cart->get_item_data( $cart_item );
-
-								// Backorder notification
-								if ( $_product->backorders_require_notification() && $_product->is_on_backorder( $cart_item['quantity'] ) ) {
-									echo '<p class="backorder_notification">' . esc_html__( 'Available on backorder', 'woocommerce' ) . '</p>';
-								}
-								?>
-							</td>
-							<td class="product-subtotal" data-title="<?php _e( 'Total', 'woocommerce' ); ?>">
-								<?php
-								echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key );
-								?>
-							</td>
-							<td style='text-align: right; width: 166px;'>
-
-								<?php
-									echo build_select(
-										array(
-											array(
-												'text'=>'Ver',
-												'value'=>esc_url( WC()->cart->get_cart_url())
-											),
-											array(
-												'text'=>'Pagar',
-												'value'=>esc_url( WC()->cart->get_checkout_url())
-											),
-											/*
-											array(
-												'text'=>'Modificar',
-												'value'=>esc_url( $_product->get_permalink($cart_item))
-											),
-											*/
-											array(
-												'text'=>'Eliminar',
-												'value'=>esc_url( WC()->cart->get_remove_url($cart_item_key))
-											)
-										));
-								?>
-							</td>
-						</tr>
-					<?php
-					}
-					?>
-				</table>
-			<?php
-		}
 
 
 
