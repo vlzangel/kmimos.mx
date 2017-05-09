@@ -280,7 +280,11 @@ if(count($items) > 0){
 				$pedido = $wpdb->get_row("SELECT * FROM $wpdb->posts WHERE ID = ".$_metas_reserva['_booking_product_id'][0]);
 				//var_dump($pedido);
 
-				if($reserva->post_status=='unpaid' && $_metas['_payment_method'][0]=='openpay_stores'){
+				//RESERVAS PENDIENTES POR ERROR DE PAGOS DE TARJETAS
+				if($pedido->post_status=='pending') {
+					
+
+				}else if($reserva->post_status=='unpaid' && $_metas['_payment_method'][0]=='openpay_stores'){
 
 					$pdf=array();
 
@@ -328,9 +332,6 @@ if(count($items) > 0){
 					$booking_td[]=array('class'=>'','data'=>$options);
 					$booking_coming['openpay_unpaid']['tr'][]=$booking_td;
 
-
-				//RESERVAS PENDIENTES POR ERROR DE PAGOS DE TARJETAS
-				//$reserva->post_status=='pending'
 
 
 					//RESERVAS CONFIRMADAS
