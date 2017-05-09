@@ -40,6 +40,9 @@
 	  			jQuery("#cargar_imagen_2").html(img);
 	  			document.getElementById("portada").addEventListener("change", vista_previa, false);
 	  			jQuery("#cargar_imagen_2").css("display", "block");
+
+	  			jQuery("#kmimos_datos_personales").removeClass("vlz_cell50");
+
   			}else{
 	  			jQuery("#cargar_imagen_1").css("display", "none");
   			}
@@ -50,6 +53,8 @@
 	  			jQuery("#cargar_imagen_2").html("");
 	  			jQuery("#cargar_imagen_1").html(img);
 	  			document.getElementById("portada").addEventListener("change", vista_previa, false);
+
+	  			jQuery("#kmimos_datos_personales").addClass("vlz_cell50");
   			}else{
 	  			jQuery("#cargar_imagen_2").css("display", "none");
   			}
