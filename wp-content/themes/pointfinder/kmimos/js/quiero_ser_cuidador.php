@@ -33,7 +33,7 @@
 
 	function cambiar_img(){
 	  	var w = jQuery( window ).width();
-  		if( w < 568 ){
+  		if( w < 992 ){
   			var img = jQuery("#cargar_imagen_1").html();
   			if( img != "" ){
 	  			jQuery("#cargar_imagen_1").html("");
