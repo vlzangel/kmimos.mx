@@ -51,6 +51,7 @@ $reservas = $wpdb->get_results($sql);
 
 //CART
 $items = WC()->cart->get_cart();
+//var_dump($items);
 if(count($items) > 0){
 	?>
 	<h1 class='vlz_h1 jj_h1'>Reservas Por Completar</h1>
