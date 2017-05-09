@@ -216,49 +216,49 @@
             exit;
         }else{
 
-            // $temp = array( "token" => $token );
+            $temp = array( "token" => $token );
 
-            // include('Requests.php');
+            include('Requests.php');
 
-            // Requests::register_autoloader();
+            Requests::register_autoloader();
 
-            // $options = array(
-            //     'wstoken'               =>  "496e2def61883d009a258ef2ee03aed6",
-            //     'wsfunction'            =>  "kmimos_user_create_users",
-            //     'moodlewsrestformat'    =>  "json",
-            //     'users' => array(
-            //         0 => array(
-            //             'username'      => $username,
-            //             'password'      => $clave,
-            //             'firstname'     => $nombres,
-            //             "lastname"      => $apellidos,
-            //             "email"         => $email,
-            //             "preferences"   => array(
-            //                 0 => array(
-            //                     "type"  => 'kmimostoken',
-            //                     "value" => $token
-            //                 )
-            //             ),
-            //             "cohorts" => array(
-            //                 0 => array(
-            //                     "type"  => 'idnumber',
-            //                     "value" => "kmi-qsc"
-            //                 )
-            //             )
-            //         )
-            //     )
-            // );
+            $options = array(
+                'wstoken'               =>  "61331bc52bfb74f944fd84b8b6458c14",
+                'wsfunction'            =>  "kmimos_user_create_users",
+                'moodlewsrestformat'    =>  "json",
+                'users' => array(
+                    0 => array(
+                        'username'      => $username,
+                        'password'      => $clave,
+                        'firstname'     => $nombres,
+                        "lastname"      => $apellidos,
+                        "email"         => $email,
+                        "preferences"   => array(
+                            0 => array(
+                                "type"  => 'kmimostoken',
+                                "value" => $token
+                            )
+                        ),
+                        "cohorts" => array(
+                            0 => array(
+                                "type"  => 'idnumber',
+                                "value" => "kmi-qsc"
+                            )
+                        )
+                    )
+                )
+            );
 
-            // $request = Requests::post('http://kmimos.ilernus.com/webservice/rest/server.php', array(), $options );
+            $request = Requests::post('http://kmimos.ilernus.com/webservice/rest/server.php', array(), $options );
 
-            // $respuesta = json_decode($request->body);
-            // if( isset($respuesta->exception)){
-            //     $error = array(
-            //         "error" => "SI",
-            //         "msg" => "Se encontraron los siguientes errores:\n\n".$respuesta->message
-            //     );
-            //     //echo "(".json_encode( $error ).")";
-            // }
+            /*$respuesta = json_decode($request->body);
+            if( isset($respuesta->exception)){
+                $error = array(
+                    "error" => "SI",
+                    "msg" => "Se encontraron los siguientes errores:\n\n".$respuesta->message
+                );
+                echo "(".json_encode( $error ).")";
+            }*/
 
             if( $conn->query( utf8_decode( $sql ) ) ){
 

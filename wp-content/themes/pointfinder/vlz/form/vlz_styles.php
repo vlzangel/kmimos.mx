@@ -516,4 +516,14 @@
 		    display: none;
 		}
 
+		.kmimos_cargando{
+			position: absolute;
+		    top: calc( 50% - 25px );
+		    left: calc( 50% - 25px );
+		    z-index: 99999999999999;
+		    width: 50px;
+		    opacity: 0.7;
+		    display: none;
+		}
+
 </style>
