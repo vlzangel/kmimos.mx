@@ -572,7 +572,6 @@
 										<h2 class="vlz_titulo_interno">Otros Servicios</h2>
 
 										<div class="vlz_seccion jj_input_cell00">
-
 											<?php
 											    $adicionales_extra = array(
 											        "bano"                      => "Baño",
@@ -581,7 +580,6 @@
 											        "visita_al_veterinario"     => "Visita al Veterinario",
 											        "acupuntura"                => "Acupuntura"
 											    );
-
 												foreach ($adicionales_extra as $key => $value) {
 													echo '
 														<div class="vlz_cell20 jj_input_cell00">
@@ -590,14 +588,11 @@
 													';
 												}
 											?>
-
 										</div>
 
 									</div>
 
 									<div id="cargar_imagen_2" style="display: none;"></div>
-
-									
 
 									<?php include("vlz_terminos_cuidador.php"); ?>
 

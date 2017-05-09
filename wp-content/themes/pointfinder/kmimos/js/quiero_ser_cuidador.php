@@ -1,6 +1,6 @@
 <script>
 	//MODAL PRECIOS SUGERIDOS-----------------------------------------------------------------------------------------------
-	/*	var modalOpend= false;
+		var modalOpend= false;
 		function modalPrecios(){
 			jQuery(window).scroll(function() {
 			    if (jQuery(document).scrollTop() > 1800) {
@@ -20,7 +20,7 @@
 			jQuery('#jj_modal').fadeOut();
 			jQuery('#jj_modal').css('display', 'none');
 			modalOpend= true;
-		}*/
+		}
 	//MODAL PRECIOS SUGERIDOS END-----------------------------------------------------------------------------------------------
 
 	jQuery( document ).ready(function() {
