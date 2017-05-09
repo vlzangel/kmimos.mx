@@ -41,6 +41,7 @@ function get_caregiver($user_select=""){
 }
 
 function get_caregiver_tables($user_select="",$strcaregiver="",$strnocaregiver="",$show=false){
+    global $count;
     $user_id=get_current_user_id();
     $caregivers = get_caregiver($user_select);
     if(count($caregivers) > 0){
@@ -68,6 +69,7 @@ function get_caregiver_tables($user_select="",$strcaregiver="",$strnocaregiver="
 
         //PENDIENTE POR PAGO EN TIENDA DE CONVENINCIA
         foreach($caregivers as $key => $caregiver){
+            $count++;
 
             $_metas=get_post_meta($caregiver->ID);
             //var_dump($_metas);
@@ -227,8 +229,13 @@ function get_caregiver_tables($user_select="",$strcaregiver="",$strnocaregiver="
 
 }
 
-
+$count=0;
 get_caregiver_tables("cu.post_author={$user_id}",'Como Cuidador.','No hay solicitudes como cuidador.');
 get_caregiver_tables("cl.meta_value={$user_id}",'','No hay solicitudes como cliente.',true);
+
+global $count;
+if($count==0){
+    echo '<h1 style="line-height: normal;">No hay solicitudes</h1><hr>';
+}
 
 ?>
