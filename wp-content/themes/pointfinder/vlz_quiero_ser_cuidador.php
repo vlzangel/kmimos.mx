@@ -56,7 +56,7 @@
 									
 									<div class="">
 
-										<div class="vlz_cell50 jj_input_cell00">
+										<div id="kmimos_datos_personales" class="vlz_cell50 jj_input_cell00">
 
 											<div class="vlz_sub_seccion">
 												<div class="vlz_cell50">
@@ -124,7 +124,6 @@
 									<div class="vlz_seccion">
 
 										<div class="vlz_cell25">
-											<!-- data-toggle="tooltip" data-placement="top" -->
 											<input data-title="Ingresa un usuario<br>Este debe tener una longitud de al menos 3 caracteres."  title="El nombre de usuario que colocaste aquí es con el que vas a ingresar en tu perfil y tu nombre y apellido será utilizado en las reservas" type='text' id='username' name='username' class='vlz_input' placeholder='Nombre de Usuario' required minlength="3">
 										</div>
 
