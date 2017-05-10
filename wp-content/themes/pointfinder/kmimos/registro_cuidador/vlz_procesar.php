@@ -216,7 +216,7 @@
             exit;
         }else{
 
-            $temp = array( "token" => $token );
+            /*$temp = array( "token" => $token );
 
             include('Requests.php');
 
@@ -249,16 +249,7 @@
                 )
             );
 
-            $request = Requests::post('http://kmimos.ilernus.com/webservice/rest/server.php', array(), $options );
-
-            /*$respuesta = json_decode($request->body);
-            if( isset($respuesta->exception)){
-                $error = array(
-                    "error" => "SI",
-                    "msg" => "Se encontraron los siguientes errores:\n\n".$respuesta->message
-                );
-                echo "(".json_encode( $error ).")";
-            }*/
+            $request = Requests::post('http://kmimos.ilernus.com/webservice/rest/server.php', array(), $options );*/
 
             if( $conn->query( utf8_decode( $sql ) ) ){
 

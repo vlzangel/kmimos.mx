@@ -115,7 +115,7 @@
 		                                	</div>
 			                                <input 
 												data-help='Te recomendamos que en la foto de perfil, aparezcas tú sonriente con perritos.'
-												type="text" id="vlz_img_perfil" name="vlz_img_perfil" class="vlz_input" style="visibility: hidden; height: 0px !important; margin: 0px; padding: 0px;" value="" data-title="Debes cargar una foto. Fomatos aceptados: png, jpg, jpeg, gif"  />
+												type="text" id="vlz_img_perfil" name="vlz_img_perfil" class="vlz_input" style="visibility: hidden; height: 0px !important; margin: 0px; padding: 0px;" value="" data-title="Debes cargar una foto. Fomatos aceptados: png, jpg, jpeg, gif" required />
 										</div>
 
 									</div>
