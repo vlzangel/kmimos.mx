@@ -40,9 +40,7 @@
 	  			jQuery("#cargar_imagen_2").html(img);
 	  			document.getElementById("portada").addEventListener("change", vista_previa, false);
 	  			jQuery("#cargar_imagen_2").css("display", "block");
-
 	  			jQuery("#kmimos_datos_personales").removeClass("vlz_cell50");
-
   			}else{
 	  			jQuery("#cargar_imagen_1").css("display", "none");
   			}
@@ -53,7 +51,6 @@
 	  			jQuery("#cargar_imagen_2").html("");
 	  			jQuery("#cargar_imagen_1").html(img);
 	  			document.getElementById("portada").addEventListener("change", vista_previa, false);
-
 	  			jQuery("#kmimos_datos_personales").addClass("vlz_cell50");
   			}else{
 	  			jQuery("#cargar_imagen_2").css("display", "none");
@@ -73,7 +70,6 @@
 		switch(id){
 			case "ife":
 	      		var ife = jQuery( "#ife" ).val();
-
 	      		if( ife.length == 13 ){
 	      			return true;
 	      		}else{
@@ -82,8 +78,7 @@
 			break;
 			case "telefono":
 	      		var telefono = jQuery( "#telefono" ).val();
-
-	      		if( telefono.length >= 10 ){
+	      		if( telefono.length >= 7 ){
 	      			return true;
 	      		}else{
 	      			return false;
@@ -312,25 +307,20 @@
 	function clvs_iguales(e){
 		var clv1 = jQuery("#clave").attr("value");
 		var clv2 = jQuery("#clave2").attr("value");
-
 		if( clv1 == clv2 ){
-
 			jQuery("#error_clave").removeClass("error");
-		jQuery("#error_clave").addClass("no_error");
-		jQuery("#clave").removeClass("vlz_input_error");
-
+			jQuery("#error_clave").addClass("no_error");
+			jQuery("#clave").removeClass("vlz_input_error");
 			jQuery("#error_clave2").removeClass("error");
-		jQuery("#error_clave2").addClass("no_error");
-		jQuery("#clave2").removeClass("vlz_input_error");
-
+			jQuery("#error_clave2").addClass("no_error");
+			jQuery("#clave2").removeClass("vlz_input_error");
 		}else{
-		jQuery("#error_clave").removeClass("no_error");
-		jQuery("#error_clave").addClass("error");
-		jQuery("#clave").addClass("vlz_input_error");
-
-		jQuery("#error_clave2").removeClass("no_error");
-		jQuery("#error_clave2").addClass("error");
-		jQuery("#clave2").addClass("vlz_input_error");
+			jQuery("#error_clave").removeClass("no_error");
+			jQuery("#error_clave").addClass("error");
+			jQuery("#clave").addClass("vlz_input_error");
+			jQuery("#error_clave2").removeClass("no_error");
+			jQuery("#error_clave2").addClass("error");
+			jQuery("#clave2").addClass("vlz_input_error");
 		}
 	}
 
@@ -340,17 +330,9 @@
 	function vlz_validar(){
 		var error = 0;
 
-		if( !form.checkValidity() ){
-			error++;						      			
-		}
-
-		if( !especiales("clave") ){
-			error++;						      			
-		}
-
-		if( especiales("hospedaje") ){
-			error++;						      			
-		}
+		if( !form.checkValidity() )		{ error++; }
+		if( !especiales("clave") )		{ error++; }
+		if(  especiales("hospedaje") )	{ error++; }
 
 		if( error > 0 ){
 			var primer_error = ""; var z = true;
@@ -378,5 +360,43 @@
 				jQuery("#boton_registrar_modal").css("display", "inline-block");
 			break;
 		}
+	}
+
+	/* DIRECCIONES */
+
+	jQuery("#estado").on("change", function(e){
+		var estado_id = jQuery("#estado").val(); 
+	    if( estado_id != "" ){
+	        var html = "<option value=''>Seleccione un municipio</option>";
+	        jQuery.each(estados_municipios[estado_id]['municipios'], function(i, val) {
+	            html += "<option value="+val.id+" data-id='"+i+"'>"+val.nombre+"</option>";
+	        });
+	        jQuery("#municipio").html(html);
+	        var location    = estados_municipios[estado_id]['coordenadas']['referencia'];
+	        var norte       = estados_municipios[estado_id]['coordenadas']['norte'];
+	        var sur         = estados_municipios[estado_id]['coordenadas']['sur'];
+	        jQuery("#latitud").attr("value", location.lat);
+	        jQuery("#longitud").attr("value", location.lng);
+	    }
+	});
+
+	jQuery("#municipio").on("change", function(e){
+		vlz_coordenadas();
+	});
+
+	function vlz_coordenadas(){
+		var estado_id = jQuery("#estado").val();            
+	    var municipio_id = jQuery('#municipio > option[value="'+jQuery("#municipio").val()+'"]').attr('data-id');   
+
+	    if( estado_id != "" ){
+
+	        var location    = estados_municipios[estado_id]['municipios'][municipio_id]['coordenadas']['referencia'];
+	        var norte       = estados_municipios[estado_id]['municipios'][municipio_id]['coordenadas']['norte'];
+	        var sur         = estados_municipios[estado_id]['municipios'][municipio_id]['coordenadas']['sur'];
+
+	        jQuery("#latitud").attr("value", location.lat);
+	        jQuery("#longitud").attr("value", location.lng);
+
+	    }
 	}
 </script>
