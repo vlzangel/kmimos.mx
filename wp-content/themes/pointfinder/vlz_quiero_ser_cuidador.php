@@ -3,10 +3,9 @@
 		Template Name: vlz quiero ser cuidador
 	*/
 
-	get_header();
+		get_header();
 	
 		if(function_exists('PFGetHeaderBar')){PFGetHeaderBar();} 
-
 		wp_enqueue_script(
 			'redimencionar_imagenes',
 			get_home_url()."/wp-content/themes/pointfinder/js/kmimos_imgs.js",
@@ -14,9 +13,7 @@
 			'1.0.0',
 			true
 		); 
-
 		echo get_estados_municipios(); ?>
-
 
 		<?php include("vlz/form/vlz_styles.php"); ?>
 
@@ -74,7 +71,7 @@
 												</div>
 												
 												<div class="vlz_cell50">
-													<input data-title="Debes ingresar tu número telefónico<br>Este debe tener al menos 10 dígitos." type='number' id='telefono' name='telefono' min="10" class='vlz_input' placeholder='Tel&eacute;fono' required pattern="[0-9]">
+													<input data-title="Debes ingresar tu número telefónico<br>Este debe tener al menos 10 dígitos." type='number' id='telefono' name='telefono' min="7" class='vlz_input' placeholder='Tel&eacute;fono' required pattern="[0-9]">
 												</div>
 											</div>
 
@@ -122,49 +119,24 @@
 									<h2 class="vlz_titulo_interno">Datos de Acceso</h2>
 									
 									<div class="vlz_seccion">
-
 										<div class="vlz_cell25">
 											<input data-title="Ingresa un usuario<br>Este debe tener una longitud de al menos 3 caracteres."  title="El nombre de usuario que colocaste aquí es con el que vas a ingresar en tu perfil y tu nombre y apellido será utilizado en las reservas" type='text' id='username' name='username' class='vlz_input' placeholder='Nombre de Usuario' required minlength="3">
 										</div>
-
 										<div class="vlz_cell25">
 											<input data-title="Ingresa tu E-mail<br>Ej: xxxx@xxx.xx" autocomplete="off" type='text' id='email' name='email' class='vlz_input' placeholder='E-mail' required pattern="^[\w._%-]+@[\w.-]+\.[a-zA-Z]{2,4}$" title="Ej. xxxx@xxxxx.xx">
-										</div>
-																				
+										</div>								
 										<div class="vlz_cell25">
-											<input 
-												type='password' 
-												id='clave' 
-												name='clave' 
-												data-title="<strong>Las contraseñas son requeridas y deben ser iguales</strong>" 
-												class='vlz_input' 
-												placeholder='Contraseña' 
-												required 
-												autocomplete="off"
-											>
+											<input type='password' id='clave' name='clave' data-title="<strong>Las contraseñas son requeridas y deben ser iguales</strong>" class='vlz_input' placeholder='Contraseña' required autocomplete="off">
 										</div>
-										
 										<div class="vlz_cell25">
-											<input 
-												type='password' 
-												id='clave2' 
-												name='clave2' 
-												data-title="<strong>Las contraseñas son requeridas y deben ser iguales</strong>" 
-												class='vlz_input' 
-												placeholder='Contraseña' 
-												required 
-												autocomplete="off"
-											>
+											<input type='password' id='clave2' name='clave2' data-title="<strong>Las contraseñas son requeridas y deben ser iguales</strong>" class='vlz_input' placeholder='Contraseña' required autocomplete="off">
 										</div>
-										
 									</div>
 
 									<h2 class="vlz_titulo_interno">Datos de Ubicaci&oacute;n</h2>
 									
 									<div class="vlz_seccion" style="margin: 0 !important;">
-
 										<div class="vlz_sub_seccion" style="margin: 0 !important;">
-
 											<div class="vlz_contenedor_listados">
 												<select id="estado" name="estado" class="vlz_input" data-title="Debe seleccionar un Estado" required>
 													<option value="">Seleccione un Estado</option>
@@ -181,67 +153,17 @@
 													?>
 												</select>
 											</div>
-
 											<div class="vlz_contenedor_listados">
 												<select id="municipio" name="municipio" class="vlz_input" data-title="Debe seleccionar un Municipio">
 													<option value="">Seleccione un Municipio</option>
 												</select>
 											</div>
-
 											<div class="vlz_contenedor_dir">
 												<input type='text' id='direccion' name='direccion' class='vlz_input' placeholder='Direcci&oacute;n' data-title="Debe agregar una Dirección">
 											</div>
-
 											<input type="hidden" class="geolocation" id="latitud" name="latitud" placeholder="Latitud" step="any" value="" />
 											<input type="hidden" class="geolocation" id="longitud" name="longitud" placeholder="Longitud" step="any" value="" />
-
-
 										</div>
-
-										<script type="text/javascript">
-											jQuery("#estado").on("change", function(e){
-												var estado_id = jQuery("#estado").val();            
-	    
-											    if( estado_id != "" ){
-
-											        var html = "<option value=''>Seleccione un municipio</option>";
-											        jQuery.each(estados_municipios[estado_id]['municipios'], function(i, val) {
-											            html += "<option value="+val.id+" data-id='"+i+"'>"+val.nombre+"</option>";
-											        });
-
-											        jQuery("#municipio").html(html);
-
-											        var location    = estados_municipios[estado_id]['coordenadas']['referencia'];
-											        var norte       = estados_municipios[estado_id]['coordenadas']['norte'];
-											        var sur         = estados_municipios[estado_id]['coordenadas']['sur'];
-
-											        jQuery("#latitud").attr("value", location.lat);
-											        jQuery("#longitud").attr("value", location.lng);
-
-											    }
-
-											});
-
-											jQuery("#municipio").on("change", function(e){
-												vlz_coordenadas();
-											});
-
-											function vlz_coordenadas(){
-												var estado_id = jQuery("#estado").val();            
-										        var municipio_id = jQuery('#municipio > option[value="'+jQuery("#municipio").val()+'"]').attr('data-id');   
-
-										        if( estado_id != "" ){
-
-										            var location    = estados_municipios[estado_id]['municipios'][municipio_id]['coordenadas']['referencia'];
-										            var norte       = estados_municipios[estado_id]['municipios'][municipio_id]['coordenadas']['norte'];
-										            var sur         = estados_municipios[estado_id]['municipios'][municipio_id]['coordenadas']['sur'];
-
-											        jQuery("#latitud").attr("value", location.lat);
-											        jQuery("#longitud").attr("value", location.lng);
-
-										        }
-											}
-										</script>
 
 									</div>
 
@@ -402,59 +324,31 @@
 
 									<h2 class="vlz_titulo_interno">Horario</h2>
 
+									<?php
+										$dial = " a.m."; $horas = "";
+										for ($i=7; $i < 20; $i++) {
+											$t = $i;
+											if( $t > 12 ){ $t = $t-12; $dial = ' p.m.'; }else{ if($t == 12){ $dial = ' m'; } }
+											if( $t < 10 ){ $x = "0"; }else{ $x = ''; }
+											if( $i < 10 ){ $xi = "0"; }else{ $xi = ''; }
+											$horas .= '<option value="'.$xi.$i.':00:00" data-id="'.$i.'">'.$x.$t.':00 '.$dial.'</option>';
+											if( $i != 19){ $horas .= '<option value="'.$xi.$i.':30:00" data-id="'.$i.'.5">'.$x.$t.':30 '.$dial.'</option>'; }
+										}
+									?>
+
 									<div>
 
 										<div class="vlz_cell25">
 											<select class='vlz_input' id="entrada" name="entrada" required>
 												<option value="">Hora de Entrada</option>
-												<?php
-													$dial = " a.m.";
-													for ($i=7; $i < 20; $i++) {
-
-														$t = $i;
-														if( $t > 12 ){ 
-															$t = $t-12; $dial = ' p.m.';
-														}else{
-															if($t == 12){
-																$dial = ' m';
-															}
-														}
-														if( $t < 10 ){ $x = "0"; }else{ $x = ''; }
-														if( $i < 10 ){ $xi = "0"; }else{ $xi = ''; }
-
-														echo '<option value="'.$xi.$i.':00:00" data-id="'.$i.'">'.$x.$t.':00 '.$dial.'</option>';
-														if( $i != 19){
-															echo '<option value="'.$xi.$i.':30:00" data-id="'.$i.'.5">'.$x.$t.':30 '.$dial.'</option>';
-														}
-													}
-												?>
+												<?php echo $horas; ?>
 											</select>
 										</div>
 
 										<div class="vlz_cell25">
 											<select class='vlz_input' id="salida" name="salida" required>
 												<option value="">Hora de Salida</option>
-												<?php
-													$dial = " a.m.";
-													for ($i=7; $i < 20; $i++) {
-
-														$t = $i;
-														if( $t > 12 ){ 
-															$t = $t-12; $dial = ' p.m.';
-														}else{
-															if($t == 12){
-																$dial = ' m';
-															}
-														}
-														if( $t < 10 ){ $x = "0"; }else{ $x = ''; }
-														if( $i < 10 ){ $xi = "0"; }else{ $xi = ''; }
-
-														echo '<option value="'.$xi.$i.':00:00" data-id="'.$i.'">'.$x.$t.':00 '.$dial.'</option>';
-														if( $i != 19){
-															echo '<option value="'.$xi.$i.':30:00" data-id="'.$i.'.5">'.$x.$t.':30 '.$dial.'</option>';
-														}
-													}
-												?>
+												<?php echo $horas; ?>
 											</select>
 										</div>
 								
