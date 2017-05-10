@@ -14,11 +14,11 @@
 	    display: block;
 	}
 
-	.no_error{
+	.no_error, .no_kmiayuda{
 		display: none;
 	}
 
-	.error{
+	.error, .kmiayuda{
 		display: block;
 	    font-size: 10px;
 	    border: solid 1px #CCC;
@@ -29,13 +29,17 @@
 	    font-weight: 600;
 	}
 
+	.kmiayuda{
+	    background: #fdffdc;
+	}
+
 	.vlz_input_error{
 	    border-radius: 3px 3px 0px 0px !important;
 		border-bottom: 0px !important;
 	}
 
-	.vlz_contenedor_listados {
-	    width: calc( 50% - 2px );
+	.vlz_contenedor_listados, .vlz_contenedor_dir {
+	    width: calc( 33.3333% - 4px );
 	    display: inline-block;
 	    margin-bottom: 5px;
 	}
