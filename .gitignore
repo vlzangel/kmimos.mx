@@ -18,7 +18,7 @@ Respaldo*
 
 .htaccess
 favicon.ico
-index.php
+/index.php
 wp-activate.php
 wp-blog-header.php
 wp-comments-post.php
@@ -91,3 +91,4 @@ vlz_config.php
 
 /wp-content/plugins/woocommerce-bookings/.tx/
 .idea/workspace.xml
+wp-content/index.php
