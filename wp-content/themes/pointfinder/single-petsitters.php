@@ -159,20 +159,20 @@
 			</div>
 		</div>
 		
-		<h3 class="vlz_titulo">Descripción del Cuidador</h3>
-		<div class="vlz_seccion vlz_descripcion">
-			<p>
-				<?php echo $descripcion; ?>
-			</p>
-		</div>
+		<?php if( $descripcion != "" ){ ?>
+			<div class="vlz_separador"></div>
+			<h3 class="vlz_titulo">Descripción del Cuidador</h3>
+			<div class="vlz_seccion vlz_descripcion">
+				<p> <?php echo $descripcion; ?> </p>
+			</div>
+		<?php } ?>
 
 		<?php if( $galeria != "" ){ ?>
-
+			<div class="vlz_separador"></div>
 			<h3 class="vlz_titulo">Mi Galería</h3>
 			<div class="vlz_seccion vlz_descripcion">
 				<?php echo $galeria; ?>
 			</div>
-
 		<?php } ?>
 
 		<div class="vlz_separador"></div>
@@ -197,7 +197,12 @@
 						<div class="icon"><img alt="Detalles perro grande" height="32px" src="<?php echo get_home_url(); ?>/wp-content/plugins/kmimos/assets/images/detalles-perro-grande.png"></div>
 						<p class="label-small">
 							<?php 
-								echo '<b>'.implode(', ',$aceptados).'</b>';
+								if( count($aceptados) > 0 ){
+									$tams_acep = '<br>('.implode(', ',$aceptados).')';
+								}else{
+									$tams_acep = "Todos";
+								}
+								echo '<b>'.$tams_acep.'</b>';
 							?>
 						</p>
 					</div>
@@ -236,8 +241,14 @@
 						<div class="icon">
 							<img alt="Otros detalles otros perros" height="32px" src="<?php echo get_home_url(); ?>/wp-content/plugins/kmimos/assets/images/otros-detalles-otros-perros.png">
 						</div>
-						<?php if($cuidador->num_mascotas+0 > 0){ ?>
-							<p class="label-small"> <?php echo "<b>".$cuidador->num_mascotas.' Perro(s) en casa<br>('.implode(', ',$mascotas_cuidador).')'."</b>"; ?> </p>
+						<?php 
+							if($cuidador->num_mascotas+0 > 0){ 
+								if( count($mascotas_cuidador) > 0 ){
+									$tams = '<br>('.implode(', ',$mascotas_cuidador).')';
+								}else{
+									$tams = "";
+								} ?>
+							<p class="label-small"> <?php echo "<b>".$cuidador->num_mascotas." Perro(s) en casa {$tams}</b>"; ?> </p>
 						<?php }else{ ?>
 							<p class="label-small"> <?php echo "<b>No tiene mascotas propias</b>"; ?> </p>
 						<?php } ?>

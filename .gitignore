@@ -91,4 +91,8 @@ vlz_config.php
 
 /wp-content/plugins/woocommerce-bookings/.tx/
 .idea/workspace.xml
+.idea/kmimos.mx.iml
+.idea/misc.xml
+.idea/vcs.xml
+.idea/modules.xml
 wp-content/index.php

@@ -15,6 +15,8 @@
  * License:     GPL2
  */
 include_once('includes/class/class_kmimos_map.php');
+include_once('includes/class/class_kmimos_booking.php');
+include_once('includes/class/class_kmimos_tables.php');
 include_once('includes/functions/kmimos_functions.php');
 include_once('plugins/woocommerce.php');
 
@@ -363,10 +365,10 @@ if(!function_exists('servicios_adicionales')){
 if(!function_exists('kmimos_get_foto_cuidador')){
     function kmimos_get_foto_cuidador($id){
         global $wpdb;
-        $name_photo = get_user_meta($id, "name_photo", true);
         $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id = ".$id);
         $cuidador_id = $cuidador->id;
         $xx = $name_photo;
+        $name_photo = get_user_meta($cuidador->user_id, "name_photo", true);
         if( empty($name_photo)  ){ $name_photo = "0"; }
         if( file_exists("wp-content/uploads/cuidadores/avatares/".$cuidador_id."/{$name_photo}") ){
             $img = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/{$name_photo}";
@@ -379,7 +381,6 @@ if(!function_exists('kmimos_get_foto_cuidador')){
         }
         return $img;
     }
-    
 }
 
 if(!function_exists('kmimos_style')){
@@ -507,7 +508,7 @@ if(!function_exists('kmimos_style')){
                     .column-wpseo-score,
                     .column-wpseo-score-readability,
                     .column-ratings,
-                    #toplevel_page_kmimos li:nth-child(6),
+                    #toplevel_page_kmimos li:last-child,
                     #menu-posts-wc_booking li:nth-child(3),
                     #menu-posts-wc_booking li:nth-child(6),
                     #menu-posts-wc_booking li:nth-child(7),
@@ -1892,35 +1893,22 @@ if(!function_exists('kmimos_get_my_services')){
 if(!function_exists('kmimos_user_info_ready')){
 
     function kmimos_user_info_ready($user_id){
-
         $nombre = get_user_meta($user_id,'first_name',true);
-
         $apellido = get_user_meta($user_id,'last_name',true);
-
         $local = get_user_meta($user_id,'user_phone',true);
-
         $movil = get_user_meta($user_id,'user_mobile',true);
-
         if ($local!='' || $movil!='') {
             $telefono= true;
         }else{
             $telefono= false;
         }
-
         $ready = ($nombre!='' && $apellido!='' && $telefono==true );
-
-//print_r($user);
-
         return $ready;
-
     }
-
 }
 
 /**
-
  *  Devuelve la cantidad y la lista de servicios que posee el usuario como cuidador.
-
  * */
 
 if(!function_exists('kmimos_get_petsitter_services_categories')){

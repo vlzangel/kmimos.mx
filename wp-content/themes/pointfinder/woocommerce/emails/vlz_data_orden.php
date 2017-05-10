@@ -48,6 +48,12 @@
 
 	/* Clientes */
 		$cliente = $metas_orden["_customer_user"][0];
+
+		if( $cliente == 0 ){
+			$temp_email = $metas_orden["_billing_email"][0];
+			$cliente = get_var("SELECT ID FROM wp_users WHERE user_email = '{$temp_email}'");
+		}
+		
 		$metas_cliente = get_user_meta($cliente);
 
 		$nombre = $metas_cliente["first_name"][0];
@@ -366,7 +372,9 @@
 			"pequenos" => "Mascotas Pequeños", 
 			"medianos" => "Mascotas Medianos", 
 			"grandes"  => "Mascotas Grandes", 
-			"gigantes" => "Mascotas Gigantes"
+			"gigantes" => "Mascotas Gigantes",
+			"pequenos" => "Mascotas Pequeñas", 
+			"medianos" => "Mascotas Medianas"
 		);
 
 		$txts = array(

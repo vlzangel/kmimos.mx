@@ -82,181 +82,7 @@
 
 		$reservas = $wpdb->get_results($sql);
 
-		$completadas = "";
-		$confirmadas = "";
-		$canceladas  = "";
-		$pendientes  = "";
-
-		$contenedor = array();
 		if( count($reservas) > 0 ){
-			foreach ($reservas as $reserva) {
-
-				$temp = explode("-", $reserva->titulo);
-				$tipo_servicio = trim( $temp[0] );
-
-				$metas = get_post_meta($reserva->ID);
-
-				$inicio = $metas['_booking_start'][0];
-				$fin    = $metas['_booking_end'][0];
-				
-				$inicio = substr($inicio, 6, 2)."/".substr($inicio, 4, 2)."/".substr($inicio, 0, 4);
-				$fin    = substr($fin, 6, 2)."/".substr($fin, 4, 2)."/".substr($fin, 0, 4);
-
-				$user = $wpdb->get_row( "SELECT * FROM wp_users WHERE ID = {$metas['_booking_customer_id'][0]}" );
-				$metas_user = get_user_meta($metas['_booking_customer_id'][0]);
-
-				$nom = $metas_user['first_name'][0]." ".$metas_user['last_name'][0];
-
-				$no_tomada = true;
-
-				if( $reserva->status == "complete" ){
-					$completadas .= "
-					<tr>
-						<td>".$nom."</td>
-						<td style='width: 100px; font-weight: bold;'>".trim($tipo_servicio)."</td>
-						<td class='td_responsive' style='text-align: center; width: 35px;'>".$inicio."</td>
-						<td class='td_responsive' style='text-align: center; width: 35px;'>".$fin."</td>
-
-						<td style='text-align: center; width: 35px;'>
-							<a class='btn_ver'
-								href='".get_home_url()."/detalle/".($reserva->orden)."/'
-								style='   
-									font-weight: 600;
-								    background: #54c8a7;
-								    padding: 3px 5px;
-								    border-radius: 2px;
-								    color: #FFF;
-								'
-							>Ver</a>
-						</td>
-					</tr>";
-					$no_tomada = false;
-				}
-
-				if( $reserva->status == "cancelled" ){
-					$canceladas .= "
-					<tr>
-						<td>".$nom."</td>
-						<td style='width: 100px; font-weight: bold;'>".trim($tipo_servicio)."</td>
-						<td class='td_responsive' style='text-align: center; width: 35px;'>".$inicio."</td>
-						<td class='td_responsive' style='text-align: center; width: 35px;'>".$fin."</td>
-
-						<td style='text-align: center; width: 35px;'>
-							<a class='btn_ver'
-								href='".get_home_url()."/detalle/".($reserva->orden)."/'
-								style='   
-									font-weight: 600;
-								    background: #54c8a7;
-								    padding: 3px 5px;
-								    border-radius: 2px;
-								    color: #FFF;
-								'
-							>Ver</a>
-						</td>
-					</tr>";
-					$no_tomada = false;
-				}
-
-				if( $reserva->status == "confirmed" ){
-					$confirmadas .= "
-					<tr>
-						<td>".$nom."</td>
-						<td style='width: 100px; font-weight: bold;'>".trim($tipo_servicio)."</td>
-						<td class='td_responsive' style='text-align: center; width: 35px;'>".$inicio."</td>
-						<td class='td_responsive' style='text-align: center; width: 35px;'>".$fin."</td>
-
-						<td style='text-align: center; width: 35px;'>
-							<a class='btn_ver'
-								href='".get_home_url()."/detalle/".($reserva->orden)."/'
-								style='   
-									font-weight: 600;
-								    background: #54c8a7;
-								    padding: 3px 5px;
-								    border-radius: 2px;
-								    color: #FFF;
-								'
-							>Ver</a>
-						</td>
-					</tr>";
-					$no_tomada = false;
-				}
-
-				if( $no_tomada ){
-
-					$pendientes .= "
-						<tr>
-							<td>".$nom."</td>
-							<td style='width: 100px; font-weight: bold;'>".trim($tipo_servicio)."</td>
-							<td class='td_responsive' style='text-align: center; width: 35px;'>".$inicio."</td>
-							<td class='td_responsive' style='text-align: center; width: 35px;'>".$fin."</td>
-
-							<td style='text-align: right; width: 194px;'>
-								<a 
-									href='".get_home_url()."/detalle/".($reserva->orden)."/'
-									style='   
-									    font-weight: 600;
-									    background: #54c8a7;
-									    padding: 3px 5px;
-									    border-radius: 2px;
-									    color: #FFF;
-									    display: block;
-									    margin: 2px 0px;
-									    text-align: center;
-									'
-								>Ver</a>
-								<a class='btn_ver'
-									href='".get_home_url()."/wp-content/plugins/kmimos/order.php?o=".($reserva->orden)."&s=1'
-									style='   
-										font-weight: 600;
-									    background: #54c8a7;
-									    padding: 3px 5px;
-									    border-radius: 2px;
-									    color: #FFF;
-									'
-								>Confirmar</a>
-								<a class='btn_cancelar'
-									href='".get_home_url()."/wp-content/plugins/kmimos/order.php?o=".($reserva->orden)."&s=0'
-									style='   
-										font-weight: 600;
-									    background: #e80000;
-									    padding: 3px 5px;
-									    border-radius: 2px;
-									    color: #FFF;
-									'
-								>Cancelar</a>
-							</td>
-						</tr>";
-
-				}
-			}
-		/*
-			$txts = array(
-				"Pendientes"  => $pendientes,
-				"Confirmadas"  => $confirmadas,
-				"Completadas" => $completadas,
-				"Canceladas"  => $canceladas
-			);
-
-			foreach ($txts as $key => $valor) {
-				if( $valor != "" ){
-					$this->FieldOutput .= '<h1 class="vlz_h1">Reservas '.$key.'</h1>';
-					$this->FieldOutput .= "
-						<table class='vlz_tabla table table-striped'>
-							<tr>
-								<th style='text-align: left;'>CLIENTE</th>
-								<th>SERVICIO</th>
-								<th class='td_responsive'>DESDE</th>
-								<th class='td_responsive'>HASTA</th>
-								<th style='text-align: rigth;'>ACCIONES</th>
-							</tr>
-							".$valor."
-						</table>";
-				}
-			}
-		*/
-
-
-
 
 			//NUEVO
 			$booking_coming=array();
@@ -296,10 +122,11 @@
 
 
 				//RESERVAS CONFIRMADAS
-				if($reserva->status=='confirmed'){
+				if($reserva->status=='confirmed' && (strtotime($_metas_reserva['_booking_end'][0])>time())){
 
 					$options='<a class="theme_btn" href="'.get_home_url().'/detalle/'.$reserva->orden.'">Ver</a>';
-					$options.='<a class="theme_btn cancelled" href="'.get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$reserva->orden.'&s=0">Cancelar</a>';
+					//$options.='<a class="theme_btn cancelled" href="'.get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$reserva->orden.'&s=0">Cancelar</a>';
+
 
 					$booking_th=array();
 					$booking_th[]=array('class'=>'','data'=>'RESERVA');
@@ -320,8 +147,8 @@
 					$booking_coming['confirmed']['tr'][]=$booking_td;
 
 
-					//RESERVAS COMPLETADAS
-				}else if($reserva->status=='complete'){
+				//RESERVAS COMPLETADAS
+				}else if($reserva->status=='complete' || ($reserva->status=='confirmed' && strtotime($_metas_reserva['_booking_end'][0])<=time())){
 
 					$options='<a class="theme_btn" href="'.get_home_url().'/detalle/'.$reserva->orden.'">Ver</a>';
 
@@ -345,8 +172,8 @@
 
 
 
-					//RESERVAS COMPLETADAS
-				}else if($reserva->status=='cancelled'){
+				//RESERVAS CANCELADAS
+				}else if(($reserva->status=='cancelled' || $reserva->post_status=='wc_cancelled') && $_metas['_show'][0]!='noshow'){
 
 					$options='<a class="theme_btn" href="'.get_home_url().'/detalle/'.$reserva->orden.'">Ver</a>';
 
@@ -370,11 +197,27 @@
 
 
 					//RESERVAS PENDIENTES
-				}else{
+				}else if($_metas['_show'][0]!='noshow'){
 
 					$options='<a class="theme_btn" href="'.get_home_url().'/detalle/'.$reserva->orden.'">Ver</a>';
 					$options.='<a class="theme_btn" href="'.get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$reserva->orden.'&s=1">Confirmar</a>';
 					$options.='<a class="theme_btn cancelled" href="'.get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$reserva->orden.'&s=0">Cancelar</a>';
+					$options=build_select(
+						array(
+							array(
+								'text'=>'Ver',
+								'value'=>get_home_url().'/detalle/'.$reserva->orden
+							),
+							array(
+								'text'=>'Confirmar',
+								'value'=>get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$reserva->orden.'&s=1'
+							),
+							array(
+								'text'=>'Cancelar',
+								'class'=>'cancelled action_confirmed',
+								'value'=>get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$reserva->orden.'&s=0'
+							)
+						));
 
 					$booking_th=array();
 					$booking_th[]=array('class'=>'','data'=>'RESERVA');
