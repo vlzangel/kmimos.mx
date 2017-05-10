@@ -28,6 +28,41 @@ function get_razas(){
 	return $razas;
 }
 
+function getCountReservas( $author_id=0, $interval=12, $desde="", $hasta=""){
+
+	$filtro_adicional = "";
+	if( !empty($landing) ){
+		$filtro_adicional = " source = '{$landing}'";
+	}
+	if( !empty($desde) && !empty($hasta) ){
+		$filtro_adicional .= (!empty($filtro_adicional))? ' AND ' : '' ;
+		$filtro_adicional .= " 
+			DATE_FORMAT(post_date, '%m-%d-%Y') between DATE_FORMAT('{$desde}','%m-%d-%Y') and DATE_FORMAT('{$hasta}','%m-%d-%Y')
+		";
+	}else{
+		$filtro_adicional .= (!empty($filtro_adicional))? ' AND ' : '' ;
+		$filtro_adicional .= " MONTH(post_date) = MONTH(NOW()) AND YEAR(post_date) = YEAR(NOW()) ";
+	}
+
+
+	$filtro_adicional = ( !empty($filtro_adicional) )? " WHERE {$filtro_adicional}" : $filtro_adicional ;
+
+	$result = [];
+	$sql = "
+		SELECT 
+			count(ID) as cant
+		FROM wp_posts
+		WHERE post_type = 'wc_booking' 
+			AND not post_status like '%cart%'
+			AND post_status = 'confirmed' 
+			AND post_author = {$author_id}
+			AND post_date > DATE_SUB(CURDATE(), INTERVAL {$interval} MONTH)
+	";
+
+	$result = get_fetch_assoc($sql);
+	return $result;
+}
+
 function get_status($sts_reserva, $sts_pedido, $forma_pago=""){
 	
 	// Resultado
