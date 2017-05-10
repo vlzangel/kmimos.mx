@@ -77,6 +77,7 @@ function dias_transcurridos($fecha_i,$fecha_f)
 			      <th># Mascotas</th>
 			      <th># Noches Totales</th>
 			      <th>Cliente</th>
+			      <th>Recompra (12Meses)</th>
 			      <th>Donde nos conocio?</th>
 			      <th>Mascotas</th>
 			      <th>Razas</th>
@@ -106,6 +107,13 @@ function dias_transcurridos($fecha_i,$fecha_f)
 				  		$meta_cuidador = getMetaCuidador($reserva->cuidador_id);
 				  		# MetaDatos del Cliente
 				  		$cliente = getMetaCliente($reserva->cliente_id);
+				  		# MetaDatos del Reserva
+				  		$cliente_n_reserva = getCountReservas($reserva->cliente_id);
+				  		if(array_key_exists('rows', $cliente_n_reserva)){
+					  		foreach ($cliente_n_reserva["rows"] as $value) {
+				  				$recompra = ($value['cant']>0)? "SI" : "NO" ;
+					  		}
+					  	}
 				  		# MetaDatos del Reserva
 				  		$meta_reserva = getMetaReserva($reserva->nro_reserva);
 				  		# MetaDatos del Pedido
@@ -161,6 +169,7 @@ function dias_transcurridos($fecha_i,$fecha_f)
 					<th class="text-center"><?php echo $reserva->nro_mascotas; ?></th>
 					<th><?php echo $nro_noches * $reserva->nro_mascotas; ?></th>
 					<th><?php echo $cliente['first_name'].' '.$cliente['last_name']; ?></th>
+					<th class="text-center"><?php echo $recompra; ?></th>
 					<th><?php echo (empty($cliente['user_referred']))? 'Otros' : $cliente['user_referred'] ; ?></th>
 					<th><?php echo $pets_nombre; ?></th>
 					<th><?php echo $pets_razas; ?></th>
