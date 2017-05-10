@@ -37,16 +37,27 @@
 	{
 		$meta = explode('@', $email);
 		$username = $meta[0];
-	    $password = wp_generate_password( 12, false );
+	    $password = md5(wp_generate_password( 5, false ));
 	    $user_id  = wp_create_user( $username, $password, $email );
 	
 	    wp_update_user( array( 'ID' => $user_id, 'display_name' => "{$name}" ));		
 
 		// Registrado desde el landing page
 		update_user_meta( $user_id, 'first_name', $name );
+		update_user_meta( $user_id, 'user_referred', 'Amigo/Familiar' );
 
 	    $user = new WP_User( $user_id );
 	    $user->set_role( 'subscriber' );
+
+		add_filter( 'wp_mail_from_name', function( $name ) { return 'Kmimos Mexico'; });
+	    add_filter( 'wp_mail_from', function( $email ) { return 'kmimos@kmimos.la'; });
+		require_once('email_template/user-registro.php');
+	    $message = kmimos_get_email_html("Registro de Nuevo Usuario.", $mensaje_mail, '', true, true);
+	    if(wp_mail( $email, "Kmimos Mexico – Gracias por registrarte! Kmimos la NUEVA forma de cuidar a tu perro!", $message)){
+	    	#echo 'enviado';
+	    }else{
+	    	#echo 'no enviado';
+	    }
 
 	    $estatus_registro = 1;
 	    $notificaciones = "Nuevo Usuario Registrado.";
@@ -68,33 +79,5 @@
 			}
 		}
 	}
-
-	// ***************************************************
-	// Email
-	// ***************************************************
-	if(isset($user->ID) && $estatus_registro==1)
-	{
-		if($user->ID > 0){
-
-		    add_filter( 'wp_mail_from_name', function( $name ) {
-		        return 'Kmimos Mexico';
-		    });
-		    add_filter( 'wp_mail_from', function( $email ) {
-		        return 'kmimos@kmimos.la';
-		    });
-
-			// ***************************************************
-			// Envio de Email a usuarios
-			// ***************************************************
-			require_once('email_template/user-registro.php');
-		    $message = kmimos_get_email_html("Registro de Nuevo Usuario.", $mensaje_mail, '', true, true);
-		    if(wp_mail( $email, "Kmimos Mexico – Gracias por registrarte! Kmimos la NUEVA forma de cuidar a tu perro!", $message)){
-		    	$opt_result = 1;
-			}else{
-		    	$opt_result = 0;
-		    }
-		}
-	}
-
 
 print_r($estatus_registro);
