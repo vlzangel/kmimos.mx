@@ -25,7 +25,7 @@ $subscribe = getListsuscribe($landing, $referido, $desde, $hasta);
 <div class="x_panel">
 	<div class="col-md-12 col-sm-12 col-xs-12">
 		<div class="x_title">
-			<h2>Panel de Control <small>Lista de referidos</small></h2>
+			<h1>Panel de Control <small>Lista de referidos</small></h1>
 			<div class="clearfix"></div>
 		</div>
 		<!-- Filtros -->
@@ -52,7 +52,7 @@ $subscribe = getListsuscribe($landing, $referido, $desde, $hasta);
 		</div>
 	</div>
   	<div class="col-sm-10">
-  		<h3><?php echo (!empty($referido))? "Participante: $referido" : ""; ?></h3>
+  		<h3><?php echo (!empty($referido))? "Referidos por: $referido" : ""; ?></h3>
   	</div>
   	<div class="col-sm-2 text-right">
 		<a class="btn btn-default pull-rigth" href="/panel/?p=suscriptores"><< Volver al listado</a>
