@@ -13,12 +13,6 @@ $razas = get_razas();
 // Buscar Reservas
 $reservas = getReservas($desde, $hasta);
 
-function dias_transcurridos($fecha_i,$fecha_f)
-{
-	$dias	= (strtotime($fecha_i)-strtotime($fecha_f))/86400;
-	$dias 	= abs($dias); $dias = floor($dias);		
-	return $dias;
-}
 
 ?>
 
@@ -96,6 +90,11 @@ function dias_transcurridos($fecha_i,$fecha_f)
 			    </tr>
 			  </thead>
 			  <tbody>
+			  	<?php 
+			  		$total_a_pagar=0;
+			  		$total_pagado=0;
+			  		$total_remanente=0;
+			  	 ?>
 			  	<?php $count=0; ?>
 			  	<?php foreach( $reservas as $reserva ){ ?>
  
@@ -107,7 +106,7 @@ function dias_transcurridos($fecha_i,$fecha_f)
 				  		$meta_cuidador = getMetaCuidador($reserva->cuidador_id);
 				  		# MetaDatos del Cliente
 				  		$cliente = getMetaCliente($reserva->cliente_id);
-				  		# MetaDatos del Reserva
+				  		# Recompra
 				  		$cliente_n_reserva = getCountReservas($reserva->cliente_id);
 				  		if(array_key_exists('rows', $cliente_n_reserva)){
 					  		foreach ($cliente_n_reserva["rows"] as $value) {
@@ -130,6 +129,13 @@ function dias_transcurridos($fecha_i,$fecha_f)
 				  			$reserva->estatus_pago, 
 				  			$meta_Pedido['_payment_method'] 
 				  		);
+
+				  		if($estatus['addTotal'] == 1){
+							$total_a_pagar += currency_format($meta_reserva['_booking_cost'], "");
+					  		$total_pagado += currency_format($meta_Pedido['_order_total'], "");
+					  		$total_remanente += currency_format($meta_Pedido['_wc_deposits_remaining'], "");
+				  		}
+
 				  		$pets_nombre = "";
 				  		$pets_razas  = "";
 				  		$pets_edad	 = "";
@@ -194,11 +200,36 @@ function dias_transcurridos($fecha_i,$fecha_f)
 
 				    </tr>
 			   	<?php } ?>
+			   		<tr class="warning">
+			   			<th><?php echo ++$count; ?></th>
+			   			<th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th>
+			   			<th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th>
+			   			<th class="text-right"><strong>Total Reservas Confirmadas:</strong></th>
+			   			<th><?php echo currency_format($total_a_pagar); ?> </th>
+					  	<th><?php echo currency_format($total_pagado); ?></th>
+					  	<th><?php echo currency_format($total_remanente); ?></th>
+			   			<th></th><th></th>
+			   		</tr>
 			  </tbody>
 			</table>
 			</div>
 		</div>
-	<?php } ?>	
+	<?php } ?>
+
+	<div>	
+		<div class="col-xs-12 col-sm-12 col-md-2" style="margin:5px; padding:10px; ">
+			<strong>Reservas Confirmadas</strong>
+		</div>
+		<div class="col-xs-12 col-sm-12 col-md-3" style="margin:5px;background: #e8e8e8; padding:10px; ">
+			<span>Total a pagar: <?php echo currency_format($total_a_pagar); ?> </span>
+		</div>
+		<div class="col-xs-12 col-sm-12 col-md-3" style="margin:5px;background: #e8e8e8; padding:10px; ">
+			<span>Total pagado: <?php echo currency_format($total_pagado); ?></span>
+		</div>
+		<div class="col-xs-12 col-sm-12 col-md-3" style="margin:5px;background: #e8e8e8; padding:10px; ">
+			<span>Total Remanente: <?php echo currency_format($total_remanente); ?></span>
+		</div>	
+	</div>
   </div>
 </div>
 </div>
