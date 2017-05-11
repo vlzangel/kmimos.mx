@@ -1,27 +1,4 @@
 <script>
-	//MODAL PRECIOS SUGERIDOS-----------------------------------------------------------------------------------------------
-		var modalOpend= false;
-		function modalPrecios(){
-			jQuery(window).scroll(function() {
-			    if (jQuery(document).scrollTop() > 1800) {
-				    if (modalOpend != true) {
-				    	jQuery('#jj_modal').fadeIn();
-				       	modalOpend= true;
-				    }  
-			      
-			    // } else {
-			      jQuery('#jj_modal').fadeOut();
-			      //console.log('Modal cierra')
-			     }
-			});
-		}
-
-		function ocultarModal(){
-			jQuery('#jj_modal').fadeOut();
-			jQuery('#jj_modal').css('display', 'none');
-			modalOpend= true;
-		}
-	//MODAL PRECIOS SUGERIDOS END-----------------------------------------------------------------------------------------------
 
 	// Carga y optimización de la carga de imagenes
 
@@ -446,7 +423,6 @@
 
 	// Generales
 
-
 		function GoToHomePage(){
 			location = 'http://kmimos.ilernus.com';  
 			// location = "<?php echo get_home_url().'/perfil-usuario/?ua=profile'; ?>";  
@@ -460,6 +436,34 @@
 					jQuery("#boton_registrar_modal").css("display", "inline-block");
 				break;
 			}
+		}
+
+	//MODAL PRECIOS SUGERIDOS-----------------------------------------------------------------------------------------------
+
+		var modalOpend = true;
+		jQuery(window).scroll(function() {
+			if( jQuery(window).width() < 550 ) {
+				var trigger_precios = jQuery("#trigger_precios").offset().top-200;
+			}else{
+				var trigger_precios = jQuery("#trigger_precios").offset().top-400;
+			}
+		    if(jQuery(document).scrollTop() > trigger_precios){
+
+				console.log( jQuery(document).scrollTop()+" > "+trigger_precios );
+
+			    if(modalOpend){
+			    	jQuery('#jj_modal').fadeIn();
+			       	modalOpend = false;
+			    }
+		     }else{
+		      	jQuery('#jj_modal').fadeOut();
+		     }
+		});
+
+		function ocultarModal(){
+			jQuery('#jj_modal').fadeOut();
+			jQuery('#jj_modal').css('display', 'none');
+			modalOpend = false;
 		}
 
 </script>

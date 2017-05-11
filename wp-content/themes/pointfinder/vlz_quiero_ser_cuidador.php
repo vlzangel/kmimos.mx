@@ -363,7 +363,7 @@
 							
 								</div>
 						
-								<h2 class="vlz_titulo_interno">Precios de Hospedaje </h2>
+								<h2 id="trigger_precios" class="vlz_titulo_interno">Precios de Hospedaje </h2>
 			 
 								<div id="jj_modal" class="vlz_modal">
 
