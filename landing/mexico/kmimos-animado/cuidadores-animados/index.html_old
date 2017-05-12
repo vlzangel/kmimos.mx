@@ -33,7 +33,7 @@
 		       		<img src="img/Character_section1.png" class="img-kmimos img-responsive">
 		       	</article>
 	       	 	<article class="col-xs-12 text-center margin-bottom-20">
-		       	 	<a href="https://www.kmimos.com.mx/busqueda?utm_source=youtube&utm_medium=landing_page&utm_campaign=buscar_cuidador_disponible&utm_term=cuidador%2Bperros%2Bmexico&utm_content=landing_page" class="btn btn-kmimos">Buscar Cuidador Disponible</a>
+		       	 	<a href="https://www.kmimos.com.mx/?home&utm_source=youtube&utm_medium=landing_page&utm_campaign=buscar_cuidador_disponible&utm_term=cuidador%2Bperros%2Bmexico&utm_content=landing_page#jj-landing-page" class="btn btn-kmimos">Buscar Cuidador Disponible</a>
 	       	 	</article>
 			</section>
 			<div class="clearfix"></div>
@@ -111,7 +111,7 @@
 									frameborder="0" allowfullscreen></iframe>
 							</article>
 							<article class="col-sm-12 text-center" style="padding-top:20px;">
-								<a href="https://www.kmimos.com.mx/busqueda?utm_source=youtube&utm_medium=landing_page&utm_campaign=buscar_cuidador_disponible&utm_term=cuidador%2Bperros%2Bmexico&utm_content=landing_page" class="btn btn-kmimos">Buscar Cuidadores Disponibles</a>
+								<a href="https://www.kmimos.com.mx/?home&utm_source=youtube&utm_medium=landing_page&utm_campaign=buscar_cuidador_disponible&utm_term=cuidador%2Bperros%2Bmexico&utm_content=landing_page#jj-landing-page" class="btn btn-kmimos">Buscar Cuidadores Disponibles</a>
 							</article>
 						</div>
 					</div>
@@ -151,6 +151,6 @@
 		  crossorigin="anonymous"></script>
 	    <script src="js/wow.js  "></script>
 	    <script src="js/main.js?"></script>
-    
+    <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script><script type="text/javascript">require(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us12.list-manage.com","uuid":"7d48532b21ffc4109cde43484","lid":"efc08d8a92"}) })</script>
     </body>
 </html>

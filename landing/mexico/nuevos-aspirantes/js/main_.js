@@ -24,7 +24,7 @@ function _subscribe(){
 
     $('#loading').removeClass('hidden');
     $('#msg').html('Enviando...');
-    $.ajax( "https://www.kmimos.com.mx/landing/list-subscriber.php?source=kmimos-mx-cuidadores&email="+$('#email').val() )
+    $.ajax( "https://mx.kmimos/landing/list-subscriber.php?source=kmimos-mx-cuidadores&email="+$('#email').val()+"&phone="+$('#phone').val() )
     .done(function(data) { 
       if(data == 1){ 
         $('#loading').addClass('hidden');
