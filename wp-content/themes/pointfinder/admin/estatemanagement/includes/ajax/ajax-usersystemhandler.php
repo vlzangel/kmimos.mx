@@ -158,7 +158,7 @@ function pf_ajax_usersystemhandler(){
             wp_update_user( array( 'ID' => $user_id ));
 
             $user = new WP_User( $user_id );
-            $user->set_role( 'subscriber' );
+            $user->set_role( '_subscriber' );
 
            
             $message_reply = pointfinder_mailsystem_mailsender(

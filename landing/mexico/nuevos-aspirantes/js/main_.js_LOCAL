@@ -5,11 +5,10 @@ $(window).load(function() {
 	
 });
 
-//$(window).resize(function(){
-//	$('iframe').width( ($(window).width() * 97) / 100 );
-//	$('iframe').height( ($(window).height() * 97) / 100 );
-// $('iframe').contentDocument.location.reload(true);
-//});
+$(window).resize(function(){
+	$('iframe').width( ($(window).width() * 70) / 100 );
+	$('iframe').height( ($(window).height() * 70) / 100 );
+});
 
 
 $('#subscribe').on('click', function(){
