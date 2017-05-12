@@ -308,9 +308,7 @@ footer{
 	padding-top: 30px;
 }
 footer a{
-	z-index: 100;
-	position: relative;
-	bottom:-30px;
+	color:#fff;
 }
 footer aside{
 	background: #00b18f;
