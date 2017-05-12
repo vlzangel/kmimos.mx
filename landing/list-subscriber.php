@@ -10,6 +10,10 @@
 		if( !isset($_GET['email'])) { return; }
 		if( empty($_GET['email'])) { return; }
 
+		if( !isset($_GET['phone'])) { 
+			$_GET['phone'] = "";
+		}
+
 		$cnn = new mysqli($host, $user, $pass, $db);
 		if($cnn){
 
@@ -17,8 +21,9 @@
 			$r = $cnn->query( $rows );
 			if( $r->num_rows == 0){
 				# Insertar registro
-				$sql = "insert into list_subscribe( source, email) values ( '".$_GET['source']."','".$_GET['email']."' )";
-				$rows = $cnn->query( $sql );
+				$sql = "insert into list_subscribe( source, email, phone) 
+					values ( '".$_GET['source']."','".$_GET['email']."','".$_GET['phone']."' )";
+				$rows = $cnn->query( $sql );		
 			}
 			$sts = 1;
 		}else{
