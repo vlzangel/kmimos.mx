@@ -374,6 +374,10 @@ footer aside{
 /*  Media                              */
 /***************************************/
 @media (orientation: landscape) {
+	.img-circle{
+		padding: 12px 15px 12px 15px;
+	}
+
 	.col-xs-3,
 	.col-sm-3
 	{
@@ -393,6 +397,10 @@ footer aside{
 
 }
 @media (max-width: 766px){ 
+	.img-circle{
+		padding: 12px 15px 12px 15px;
+	}
+
 	#section-1 h1{
 		font-size: 20px;
 	}
@@ -447,6 +455,11 @@ footer aside{
 
 }
 @media (min-width: 767px) and (max-width: 991px){ 
+
+	.img-circle{
+		padding: 12px 15px 12px 15px;
+	}
+
 	#section-1 h1{
 		font-size: 18px;
 	}
@@ -470,6 +483,7 @@ footer aside{
 
 }
 @media (min-width: 992px) { 
+
 
 	.img-kmimos{
 		width: 80%;
