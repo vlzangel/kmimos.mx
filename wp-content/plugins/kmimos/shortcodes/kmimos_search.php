@@ -345,20 +345,18 @@
                     jQuery("#otra_longitud").attr("value", location.lng);
                     jQuery("#otra_distancia").attr("value", distancia);
 
-
                     if( CB != undefined) {
                         CB();
                     }
-		}
+		        }
             }
-
-            
 
             jQuery("#estado_cuidador").on("change", function(e){
                 cargar_municipios();
             });
             cargar_municipios(function(){
                 jQuery('#municipio_cuidador > option[value="'+jQuery("#municipio_cache").val()+'"]').attr('selected', 'selected');
+                vlz_coordenadas();
             });
 
             jQuery("#municipio_cuidador").on("change", function(e){
@@ -367,8 +365,10 @@
             });
 
             function vlz_coordenadas(){
-                var estado_id = jQuery("#estado_cuidador").val();            
-                var municipio_id = jQuery('#municipio_cuidador > option[value="'+jQuery("#municipio_cache").val()+'"]').attr('data-id');            
+                var estado_id = jQuery("#estado_cuidador").val();
+                var municipio_id = jQuery('#municipio_cuidador > option[value="'+jQuery("#municipio_cache").val()+'"]').attr('data-id');
+                
+                console.log(jQuery("#municipio_cache").val());
                 
                 if( estado_id != "" ){
 

@@ -61,6 +61,68 @@
 		</section>
 		<div class="clearfix"></div>
 
+		<aside class="row" id="section-2-1">
+			<div class="container">
+				<article class="col-md-12">
+					<div class="col-sm-offset-1 col-sm-2 col-xs-6 col-md-2">
+						<img src="/wp-content/uploads/2017/02/expansion-360x150.png" class="img-responsive"></div>
+					<div class="col-sm-2 col-xs-6 col-md-2">
+						<img src="/wp-content/uploads/2017/02/reforma-360x150-360x150.png" class="img-responsive"></div>
+					<div class="col-sm-2 col-xs-6 col-md-2">
+						<img src="/wp-content/uploads/2017/02/entrepreneur-360x150.png" class="img-responsive"></div>
+					<div class="col-sm-2 col-xs-6 col-md-2">
+						<img src="/wp-content/uploads/2017/02/el-universal-360x150-360x150.png" class="img-responsive"></div>
+					<div class="col-sm-2 col-xs-6 col-md-2">
+						<img src="/wp-content/uploads/2017/02/el-financiero-360x150-360x150.png" class="img-responsive"></div>
+				</article>
+				<article class="col-md-6 col-lg-6">
+					<img src="img/mapa.jpg" class="img-responsive">
+				</article>
+				<article class="col-md-6 col-lg-6">
+					<h2 class="subtitle title">En tres años estamos ubicados en México, Panamá, Colombia, Perú y Argentina.</h2>
+
+					<div class="margin-top-50  col-sm-4 text-center">
+						<div>
+							<span class="img-circle"><i class="fa fa-star"></i></span>
+						</div>
+						<br>
+						<br>
+						<span class="circulos">+21,000</span>
+						<br>
+						<span>Noches Reservadas</span>
+					</div>
+					
+
+					<div class="margin-top-50   col-sm-4 text-center">
+						<div>
+							<span class="img-circle"><i class="fa fa-star"></i></span>
+						</div>
+						<br>
+						<br>
+						<span class="circulos">+3,400</span>
+						<br>
+						<span>Clientes</span>
+					</div>
+					
+			
+					<div class="margin-top-50  col-sm-4 text-center">
+						<div>
+							<span class="img-circle"><i class="fa fa-star"></i></span>
+						</div>
+						<br>
+						<br>
+						<span class="circulos">+4,200</span>
+						<br>
+						<span>Perros</span>
+					</div>
+					
+
+				</article>
+
+			</div>
+		</aside>
+		<div class="clearfix"></div>
+
 		<section class="row" id="section-2">
 			<div>
 				<article class="col-sm-12">
@@ -278,14 +340,19 @@
 		<div class="clearfix"></div>
 
 	</div>
-	<footer class="text-center">
-		<h2>¡EN KMIMOS, LLEGAN COMO HU&Eacute;SPED Y CONSIGUEN A UN NUEVO AMIGO!</h2>
-		<button type="button" class="btn btn-lg btn-kmimos" data-toggle="modal" 
-   	 			data-target="#list-subscribe">
-			Quiero ser un Cuidador Certificado Kmimos
-		</button>
-   	 	<!-- a href="https://www.kmimos.com.mx/quiero-ser-cuidador/" class="btn btn-kmimos">Quiero ser un Cuidador Certificado Kmimos</a -->
-		<aside class="text-center">
+	<footer class="text-center row">
+		<div class="col-sm-12">		
+			<h2>¡EN KMIMOS, LLEGAN COMO HU&Eacute;SPED Y CONSIGUEN A UN NUEVO AMIGO!</h2>
+			<button type="button" class="btn btn-lg btn-kmimos" data-toggle="modal" 
+	   	 			data-target="#list-subscribe">
+				Quiero ser un Cuidador Certificado Kmimos
+			</button>
+		</div>
+		<div class="col-sm-12 margin-top-20">
+			<a href="https://www.kmimos.com.mx/">¿Quieres Conocer Kmimos?</a>
+		</div>
+
+		<aside class="text-center col-sm-12">
        	 	<img src="img/LogoKmimos.png" width="150px">
        	</aside>
 	</footer>
@@ -346,13 +413,21 @@
 	      <div class="modal-body">
 	      		<br>
 	      	<form id="frm-temp">
-		        <div class="input-group input-group-lg">
-		        	<span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
-				    <input type="email" class="form-control" name="email" id="email" placeholder="escribe@tu-email.com">
-				    <span class="input-group-btn">
-				    	<button class="btn btn-success" type="button" id="subscribe">Continuar</button>
-				    </span>
-				</div><!-- /input-group -->
+		      	<div class="form-group">
+			        <div class="input-group input-group">
+			        	<span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
+					    <input type="email" class="form-control" name="email" id="email" placeholder="escribe@tu-email.com" required>
+					</div><!-- /input-group -->
+				</div>
+				<div class="form-group">
+			        <div class="input-group input-group">
+			        	<span class="input-group-addon"><i class="fa fa-phone fa-fw"></i></span>
+					    <input type="text" class="form-control" name="phone" id="phone" placeholder="Escribe tu Tel&eacute;fono">
+					</div><!-- /input-group -->
+				</div>
+				<div class="form-group">
+			    	<button class="btn btn-success" type="button" id="subscribe">Continuar</button>
+			    </div>
 	      		<br>
 				<div>
 					<i id="loading" class="hidden" style="font-size:12px;" class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>

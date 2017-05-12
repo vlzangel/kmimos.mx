@@ -5,10 +5,11 @@ $(window).load(function() {
 	
 });
 
-$(window).resize(function(){
-	$('iframe').width( ($(window).width() * 70) / 100 );
-	$('iframe').height( ($(window).height() * 70) / 100 );
-});
+//$(window).resize(function(){
+//	$('iframe').width( ($(window).width() * 97) / 100 );
+//	$('iframe').height( ($(window).height() * 97) / 100 );
+// $('iframe').contentDocument.location.reload(true);
+//});
 
 
 $('#subscribe').on('click', function(){
@@ -24,7 +25,7 @@ function _subscribe(){
 
     $('#loading').removeClass('hidden');
     $('#msg').html('Enviando...');
-    $.ajax( "https://www.kmimos.com.mx/landing/list-subscriber.php?source=kmimos-mx-cuidadores&email="+$('#email').val() )
+    $.ajax( "http://kmimosmx.sytes.net/landing/list-subscriber.php?source=kmimos-mx-cuidadores&email="+$('#email').val()+"&phone="+$('#phone').val() )
     .done(function(data) { 
       if(data == 1){ 
         $('#loading').addClass('hidden');

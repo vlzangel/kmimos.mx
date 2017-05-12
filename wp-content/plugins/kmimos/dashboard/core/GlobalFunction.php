@@ -11,6 +11,13 @@ function getUserByEmail($user_email=""){
 	return $result;	
 }
 
+function dias_transcurridos($fecha_i,$fecha_f)
+{
+	$dias	= (strtotime($fecha_i)-strtotime($fecha_f))/86400;
+	$dias 	= abs($dias); $dias = floor($dias);		
+	return $dias;
+}
+
 function get_metaUser($user_id=0, $condicion=''){
 	$sql = "
 		SELECT u.user_email, m.*

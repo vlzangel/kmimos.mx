@@ -26,6 +26,7 @@ strong{
 	font-weight: 900;
 }
 
+
 .back-white{
 	margin-top: 10px;
 	color:#fff;
@@ -101,6 +102,9 @@ strong{
 	color: #00B191!important;
 }
 
+.back-green-kmimos{
+	background: #00B190;
+}
 /***************************************/
 /*  Section-1                          */
 /***************************************/
@@ -137,6 +141,33 @@ strong{
 	margin-top:10%;
 	font-weight: lighter;
 	font-size: 32px;
+}
+
+/***************************************/
+/*  Section-2-1                        */
+/***************************************/
+#section-2-1{
+	background: #fff;
+	padding-top:10px;
+	padding-bottom:10px;
+}
+
+.circulos{
+	color:red;
+	font-size:20px;
+	font-weight: bold;
+	margin-top:10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.margin-top-50{
+	margin-top: 50px;
+}
+.img-circle{
+	background:#999; 
+	color:yellow; 
+	padding: 30px; 
+	font-size:24px;
 }
 
 /***************************************/
@@ -277,9 +308,7 @@ footer{
 	padding-top: 30px;
 }
 footer a{
-	z-index: 100;
-	position: relative;
-	bottom:-30px;
+	color:#fff;
 }
 footer aside{
 	background: #00b18f;
@@ -287,6 +316,10 @@ footer aside{
 	padding-bottom: 30px;
 }
 
+footer aside{
+    padding-bottom: 160px;
+    margin-top: 20px;
+}
 /***************************************/
 /*  Help                               */
 /***************************************/
@@ -434,23 +467,16 @@ footer aside{
 	#section-5{
 		text-align: center;
 	}
-	footer{
-		margin-bottom: 180px;
-	}
+
 }
 @media (min-width: 992px) { 
 
 	.img-kmimos{
 		width: 80%;
 	}
-	footer{
-		margin-bottom: 180px;
-	}	
 
 }
 @media (min-width: 1200px) { 
 
-	footer{
-		margin-bottom: 180px;
-	}
+
 }

@@ -217,47 +217,47 @@
 
             $temp = array( "token" => $token );
 
-            // include('Requests.php');
+            include('Requests.php');
 
-            // Requests::register_autoloader();
+            Requests::register_autoloader();
 
-            // $options = array(
-            //     'wstoken'               =>  "496e2def61883d009a258ef2ee03aed6",
-            //     'wsfunction'            =>  "kmimos_user_create_users",
-            //     'moodlewsrestformat'    =>  "json",
-            //     'users' => array(
-            //         0 => array(
-            //             'username'      => $username,
-            //             'password'      => $clave,
-            //             'firstname'     => $nombres,
-            //             "lastname"      => $apellidos,
-            //             "email"         => $email,
-            //             "preferences"   => array(
-            //                 0 => array(
-            //                     "type"  => 'kmimostoken',
-            //                     "value" => $token
-            //                 )
-            //             ),
-            //             "cohorts" => array(
-            //                 0 => array(
-            //                     "type"  => 'idnumber',
-            //                     "value" => "kmi-qsc"
-            //                 )
-            //             )
-            //         )
-            //     )
-            // );
+            $options = array(
+                'wstoken'               =>  "496e2def61883d009a258ef2ee03aed6",
+                'wsfunction'            =>  "kmimos_user_create_users",
+                'moodlewsrestformat'    =>  "json",
+                'users' => array(
+                    0 => array(
+                        'username'      => $username,
+                        'password'      => $clave,
+                        'firstname'     => $nombres,
+                        "lastname"      => $apellidos,
+                        "email"         => $email,
+                        "preferences"   => array(
+                            0 => array(
+                                "type"  => 'kmimostoken',
+                                "value" => $token
+                            )
+                        ),
+                        "cohorts" => array(
+                            0 => array(
+                                "type"  => 'idnumber',
+                                "value" => "kmi-qsc"
+                            )
+                        )
+                    )
+                )
+            );
 
-            // $request = Requests::post('http://kmimos.ilernus.com/webservice/rest/server.php', array(), $options );
+            $request = Requests::post('http://kmimos.ilernus.com/webservice/rest/server.php', array(), $options );
 
-            // $respuesta = json_decode($request->body);
-            // if( isset($respuesta->exception)){
-            //     $error = array(
-            //         "error" => "SI",
-            //         "msg" => "Se encontraron los siguientes errores:\n\n".$respuesta->message
-            //     );
-            //     //echo "(".json_encode( $error ).")";
-            // }
+            $respuesta = json_decode($request->body);
+            if( isset($respuesta->exception)){
+                $error = array(
+                    "error" => "SI",
+                    "msg" => "Se encontraron los siguientes errores:\n\n".$respuesta->message
+                );
+                //echo "(".json_encode( $error ).")";
+            }
 
             $error = array(
                 "error" => "NO",
@@ -301,7 +301,7 @@
 
                     $dir = "../../../../uploads/cuidadores/avatares/".$cuidador_id."/";
 
-                    @mkdir($dir, 0777, true);
+                    @mkdir($dir);
 
                     file_put_contents($dir.'temp.jpg', $sImagen);
 
@@ -384,6 +384,7 @@
                         (NULL, ".$user_id.", 'user_photo',          '".$img_id."'),
                         (NULL, ".$user_id.", 'user_address',        '".$direccion."'),
                         (NULL, ".$user_id.", 'user_mobile',         '".$telefono."'),
+                        (NULL, ".$user_id.", 'user_phone',          '".$telefono."'),
                         (NULL, ".$user_id.", 'user_country',        'México'),
                         (NULL, ".$user_id.", 'nickname',            '".$username."'),
                         (NULL, ".$user_id.", 'first_name',          '".$nombres."'),

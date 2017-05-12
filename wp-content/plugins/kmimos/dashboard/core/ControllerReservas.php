@@ -28,8 +28,45 @@ function get_razas(){
 	return $razas;
 }
 
+function getCountReservas( $author_id=0, $interval=12, $desde="", $hasta=""){
+
+	$filtro_adicional = "";
+	if( !empty($landing) ){
+		$filtro_adicional = " source = '{$landing}'";
+	}
+	if( !empty($desde) && !empty($hasta) ){
+		$filtro_adicional .= (!empty($filtro_adicional))? ' AND ' : '' ;
+		$filtro_adicional .= " 
+			DATE_FORMAT(post_date, '%m-%d-%Y') between DATE_FORMAT('{$desde}','%m-%d-%Y') and DATE_FORMAT('{$hasta}','%m-%d-%Y')
+		";
+	}else{
+		$filtro_adicional .= (!empty($filtro_adicional))? ' AND ' : '' ;
+		$filtro_adicional .= " MONTH(post_date) = MONTH(NOW()) AND YEAR(post_date) = YEAR(NOW()) ";
+	}
+
+
+	$filtro_adicional = ( !empty($filtro_adicional) )? " WHERE {$filtro_adicional}" : $filtro_adicional ;
+
+	$result = [];
+	$sql = "
+		SELECT 
+			count(ID) as cant
+		FROM wp_posts
+		WHERE post_type = 'wc_booking' 
+			AND not post_status like '%cart%'
+			AND post_status = 'confirmed' 
+			AND post_author = {$author_id}
+			AND post_date > DATE_SUB(CURDATE(), INTERVAL {$interval} MONTH)
+	";
+
+	$result = get_fetch_assoc($sql);
+	return $result;
+}
+
 function get_status($sts_reserva, $sts_pedido, $forma_pago=""){
 	
+	// Cargar a totales
+	$addTotal = 0;
 	// Resultado
 	$sts_corto = "---";
 	$sts_largo = "Estatus Reserva: {$sts_reserva}  /  Estatus Pedido: {$sts_pedido}";
@@ -67,6 +104,7 @@ function get_status($sts_reserva, $sts_pedido, $forma_pago=""){
 		case 'confirmed':
 			$sts_corto = 'Confirmado';
 			$sts_largo = 'Confirmado';
+			$addTotal  = 1;
 			break;
 		case 'paid':
 			$sts_corto = 'Pagado';
@@ -83,6 +121,7 @@ function get_status($sts_reserva, $sts_pedido, $forma_pago=""){
 		"pedido"   => $sts_pedido,
 		"sts_corto"=> $sts_corto,
 		"sts_largo"=> $sts_largo,
+		"addTotal" => $addTotal,
 	];
 
 }
@@ -287,10 +326,10 @@ function getReservas($desde="", $hasta=""){
 
 	if( !empty($desde) && !empty($hasta) ){
 		$filtro_adicional = " 
-			AND DATE_FORMAT(re.post_date, '%m-%d-%Y') between DATE_FORMAT('{$desde}','%m-%d-%Y') and DATE_FORMAT('{$hasta}','%m-%d-%Y')
+			AND DATE_FORMAT(r.post_date, '%m-%d-%Y') between DATE_FORMAT('{$desde}','%m-%d-%Y') and DATE_FORMAT('{$hasta}','%m-%d-%Y')
 		";
 	}else{
-		$filtro_adicional = " AND MONTH(re.post_date) = MONTH(NOW()) AND YEAR(re.post_date) = YEAR(NOW()) ";
+		$filtro_adicional = " AND MONTH(r.post_date) = MONTH(NOW()) AND YEAR(r.post_date) = YEAR(NOW()) ";
 	}
 
 	global $wpdb;
@@ -329,10 +368,9 @@ function getReservas($desde="", $hasta=""){
 			and not r.post_status like '%cart%' 
 			and cl.ID > 0 
 			and p.ID > 0
+			{$filtro_adicional}
 		ORDER BY r.post_parent desc
 		;";
-//			{$filtro_adicional}
-		
 
 	$reservas = $wpdb->get_results($sql);
 	return $reservas;

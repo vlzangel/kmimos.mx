@@ -75,11 +75,16 @@ $users = getUsers($desde, $hasta);
 			  			// Metadata usuarios
 			  			$usermeta = getmetaUser( $row['ID'] );
 			  			$link_login = "/?i=".md5($row['ID']);
+
+			  			$name = "{$usermeta['first_name']} {$usermeta['last_name']}";
+			  			if(empty( trim($name)) ){
+			  			 	$name = $usermeta['nickname'];
+			  			}
 			  		?>
 				    <tr>
-				    	<th class="text-center"><?php echo ++$count; ?></th>
+				    	<th class="text-center"><?php echo $row['ID']; ?></th>
 						<th><?php echo date_convert($row['user_registered'], 'd-m-Y') ; ?></th>
-						<th><?php echo "{$usermeta['first_name']} {$usermeta['last_name']}"; ?></th>
+						<th><?php echo $name; ?></th>
 						<th>
 					  		<a href="<?php echo $link_login; ?>">
 								<?php echo $row['user_email']; ?>
