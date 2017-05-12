@@ -174,6 +174,12 @@
 						/* Datos del cliente */
 
 						$cliente = $metas_orden["_customer_user"][0];
+
+						if( $cliente == 0 ){
+							$temp_email = $metas_orden["_billing_email"][0];
+							$cliente = get_var("SELECT ID FROM wp_users WHERE user_email = '{$temp_email}'");
+						}
+						
 						$metas_cliente = get_user_meta($cliente);
 
 						$nombre = $metas_cliente["first_name"][0];
@@ -476,7 +482,9 @@
 							"pequenos" => "Mascotas Pequeños", 
 							"medianos" => "Mascotas Medianos", 
 							"grandes"  => "Mascotas Grandes", 
-							"gigantes" => "Mascotas Gigantes"
+							"gigantes" => "Mascotas Gigantes",
+							"pequenos" => "Mascotas Pequeñas", 
+							"medianos" => "Mascotas Medianas"
 						);
 
 						$txts = array(
@@ -486,7 +494,7 @@
 							"gigantes" => "Mascotas Gigantes"
 						);
 
-						$dias = (((($xfin - $xini)/60)/60)/24);
+						$dias = ceil(((($xfin - $xini)/60)/60)/24);
 
 						$dias_noches = "Noche";
 						if( trim($tipo_servicio) != "Hospedaje" ){
@@ -567,22 +575,19 @@
 								<tr>
 									<td></td>
 									<td></td>
-									<td></td>
-									<th style="padding: 3px; border-bottom: solid 1px #00d2b7; border-left: solid 1px #00d2b7; text-align: left;">Total</th>
+									<th colspan=2 style="padding: 3px; border-bottom: solid 1px #00d2b7; border-left: solid 1px #00d2b7;">Total</th>
 									<td style="padding: 3px; border-bottom: solid 1px #00d2b7; border-right: solid 1px #00d2b7;" align="right">'.number_format( $pago, 2, ',', '.').'$</td>
 								</tr>
 								<tr>
 									<td></td>
 									<td></td>
-									<td></td>
-									<th style="padding: 3px; border-bottom: solid 1px #00d2b7; border-left: solid 1px #00d2b7; text-align: left;">Pago en Tienda</th>
+									<th colspan=2 style="padding: 3px; border-bottom: solid 1px #00d2b7; border-left: solid 1px #00d2b7;">Pago en Tienda</th>
 									<td style="padding: 3px; border-bottom: solid 1px #00d2b7; border-right: solid 1px #00d2b7;" align="right">'.number_format( $remanente['deposit'], 2, ',', '.').'$</td>
 								</tr>
 								<tr>
 									<td></td>
 									<td></td>
-									<td></td>
-									<th style="padding: 3px; border-bottom: solid 1px #00d2b7; border-left: solid 1px #00d2b7; text-align: left;">Pago al Cuidador</th>
+									<th colspan=2 style="padding: 3px; border-bottom: solid 1px #cccccc;  text-align: left;">Cliente debe pagar al Cuidador:<div style="color: red;">en efectivo, al llevar a la mascota</div></th>
 									<td style="padding: 3px; border-bottom: solid 1px #00d2b7; border-right: solid 1px #00d2b7;" align="right">'.number_format( $remanente['remaining'], 2, ',', '.').'$</td>
 								</tr>
 							';
@@ -592,22 +597,19 @@
 								<tr>
 									<td></td>
 									<td></td>
-									<td></td>
-									<th style="padding: 3px; border-bottom: solid 1px #00d2b7; border-left: solid 1px #00d2b7; text-align: left;">Total</th>
+									<th colspan=2 style="padding: 3px; border-bottom: solid 1px #00d2b7; border-left: solid 1px #00d2b7; text-align: left;">Total</th>
 									<td style="padding: 3px; border-bottom: solid 1px #00d2b7; border-right: solid 1px #00d2b7;" align="right">'.number_format( $pago, 2, ',', '.').'$</td>
 								</tr>
 								<tr>
 									<td></td>
 									<td></td>
-									<td></td>
-									<th style="padding: 3px; border-bottom: solid 1px #00d2b7; border-left: solid 1px #00d2b7; text-align: left;">Pagado</th>
+									<th colspan=2 style="padding: 3px; border-bottom: solid 1px #00d2b7; border-left: solid 1px #00d2b7; text-align: left;">Pagado</th>
 									<td style="padding: 3px; border-bottom: solid 1px #00d2b7; border-right: solid 1px #00d2b7;" align="right">'.number_format( $remanente['deposit'], 2, ',', '.').'$</td>
 								</tr>
 								<tr>
 									<td></td>
 									<td></td>
-									<td></td>
-									<th style="padding: 3px; border-bottom: solid 1px #00d2b7; border-left: solid 1px #00d2b7; text-align: left;">Pago al Cuidador</th>
+									<th colspan=2 style="padding: 3px; border-bottom: solid 1px #cccccc;  text-align: left;">Cliente debe pagar al Cuidador:<div style="color: red;">en efectivo, al llevar a la mascota</div></th>
 									<td style="padding: 3px; border-bottom: solid 1px #00d2b7; border-right: solid 1px #00d2b7;" align="right">'.number_format( $remanente['remaining'], 2, ',', '.').'$</td>
 								</tr>
 							';
@@ -630,7 +632,7 @@
 									<th style="padding: 3px; background: #00d2b7; border-left: solid 1px #00d2b7;"> Tamaño </th>
 									<th style="padding: 3px; background: #00d2b7;"> Num. Mascotas </th>
 									<th style="padding: 3px; background: #00d2b7;"> Tiempo </th>
-									<th style="padding: 3px; background: #00d2b7;"> Precio Unitario </th>
+									<th style="padding: 3px; background: #00d2b7; width: 150px;"> Precio Unitario </th>
 									<th style="padding: 3px; background: #00d2b7; border-right: solid 1px #00d2b7;"> Precio Total </th>
 								</tr>
 								'.$variaciones.'
@@ -655,7 +657,7 @@
 									<th style="padding: 3px; background: #00d2b7; border-left: solid 1px #00d2b7;"> Tamaño </th>
 									<th style="padding: 3px; background: #00d2b7;"> Num. Mascotas </th>
 									<th style="padding: 3px; background: #00d2b7;"> Tiempo </th>
-									<th style="padding: 3px; background: #00d2b7;"> Precio Unitario </th>
+									<th style="padding: 3px; background: #00d2b7; width: 150px;"> Precio Unitario </th>
 									<th style="padding: 3px; background: #00d2b7; border-right: solid 1px #00d2b7;"> Precio Total </th>
 								</tr>
 								'.$variaciones.'

@@ -363,7 +363,9 @@
 			"pequenos" => "Mascotas Pequeños", 
 			"medianos" => "Mascotas Medianos", 
 			"grandes"  => "Mascotas Grandes", 
-			"gigantes" => "Mascotas Gigantes"
+			"gigantes" => "Mascotas Gigantes",
+			"pequenos" => "Mascotas Pequeñas", 
+			"medianos" => "Mascotas Medianas"
 		);
 
 		$txts = array(
@@ -452,8 +454,7 @@
 					<tr>
 						<td></td>
 						<td></td>
-						<td></td>
-						<th style="padding: 3px; border-bottom: solid 1px #cccccc; ">Descuento</th>
+						<th colspan=2 style="padding: 3px; border-bottom: solid 1px #cccccc; ">Descuento</th>
 						<td style="padding: 3px; border-bottom: solid 1px #cccccc; " align="right">'.number_format( $metas_orden["_cart_discount"][0], 2, ',', '.').'$</td>
 					</tr>
 				';
@@ -466,7 +467,6 @@
 			if( $metas_orden["_cart_discount"][0] != "0" ){
 				$descuento_parcial = '
 					<tr>
-						<td></td>
 						<td></td>
 						<td></td>
 						<th style="padding: 3px; border-bottom: solid 1px #cccccc; ">Descuento</th>
@@ -484,24 +484,21 @@
 				<tr>
 					<td></td>
 					<td></td>
-					<td></td>
-					<th style="padding: 3px; border-bottom: solid 1px #cccccc; ">Total</th>
+					<th colspan=2 style="padding: 3px; border-bottom: solid 1px #cccccc; ">Total</th>
 					<td style="padding: 3px; border-bottom: solid 1px #cccccc; " align="right">'.number_format( $pago, 2, ',', '.').'$</td>
 				</tr>
 				'.$descuento_total.'
 				<tr>
 					<td></td>
 					<td></td>
-					<td></td>
-					<th style="padding: 3px; border-bottom: solid 1px #cccccc; ">Pago en Tienda</th>
+					<th colspan=2 style="padding: 3px; border-bottom: solid 1px #cccccc; ">Pago en Tienda</th>
 					<td style="padding: 3px; border-bottom: solid 1px #cccccc; " align="right">'.number_format( $remanente['deposit'], 2, ',', '.').'$</td>
 				</tr>
 				'.$descuento_parcial.'
 				<tr>
 					<td></td>
 					<td></td>
-					<td></td>
-					<th style="padding: 3px; border-bottom: solid 1px #cccccc; ">Pago al Cuidador</th>
+					<th colspan=2 style="padding: 3px; border-bottom: solid 1px #cccccc;  text-align: left;">Cliente debe pagar al Cuidador:<div style="color: red;">en efectivo, al llevar a la mascota</div></th>
 					<td style="padding: 3px; border-bottom: solid 1px #cccccc; " align="right">'.number_format( $remanente['remaining'], 2, ',', '.').'$</td>
 				</tr>
 			';
@@ -511,24 +508,21 @@
 				<tr>
 					<td></td>
 					<td></td>
-					<td></td>
-					<th style="padding: 3px; border-bottom: solid 1px #cccccc;  text-align: left;">Total</th>
+					<th colspan=2 style="padding: 3px; border-bottom: solid 1px #cccccc;  text-align: left;">Total</th>
 					<td style="padding: 3px; border-bottom: solid 1px #cccccc; " align="right">'.number_format( $pago, 2, ',', '.').'$</td>
 				</tr>
 				'.$descuento_total.'
 				<tr>
 					<td></td>
 					<td></td>
-					<td></td>
-					<th style="padding: 3px; border-bottom: solid 1px #cccccc;  text-align: left;">Pagado</th>
+					<th colspan=2 style="padding: 3px; border-bottom: solid 1px #cccccc;  text-align: left;">Pagado</th>
 					<td style="padding: 3px; border-bottom: solid 1px #cccccc; " align="right">'.number_format( $remanente['deposit'], 2, ',', '.').'$</td>
 				</tr>
 				'.$descuento_parcial.'
 				<tr>
 					<td></td>
 					<td></td>
-					<td></td>
-					<th style="padding: 3px; border-bottom: solid 1px #cccccc;  text-align: left;">Pago al Cuidador</th>
+					<th colspan=2 style="padding: 3px; border-bottom: solid 1px #cccccc;  text-align: left;">Cliente debe pagar al Cuidador:<div style="color: red;">en efectivo, al llevar a la mascota</div></th>
 					<td style="padding: 3px; border-bottom: solid 1px #cccccc; " align="right">'.number_format( $remanente['remaining'], 2, ',', '.').'$</td>
 				</tr>
 			';
@@ -561,7 +555,7 @@
 					<th style="padding: 3px; border-bottom: solid 1px #cccccc;"> Tamaño </th>
 					<th style="padding: 3px; border-bottom: solid 1px #cccccc;"> Num. Mascotas </th>
 					<th style="padding: 3px; border-bottom: solid 1px #cccccc;"> Tiempo </th>
-					<th style="padding: 3px; border-bottom: solid 1px #cccccc;"> Precio Unitario </th>
+					<th style="padding: 3px; border-bottom: solid 1px #cccccc; width: 150px;"> Precio Unitario </th>
 					<th style="padding: 3px; border-bottom: solid 1px #cccccc;"> Precio Total </th>
 				</tr>
 				'.$variaciones.'

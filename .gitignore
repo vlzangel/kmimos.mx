@@ -18,7 +18,7 @@ Respaldo*
 
 .htaccess
 favicon.ico
-index.php
+/index.php
 wp-activate.php
 wp-blog-header.php
 wp-comments-post.php
@@ -84,8 +84,15 @@ vlz_config.php
 /wp-content/plugins/yith-woocommerce-dynamic-pricing-and-discounts-premium/
 /wp-content/plugins/yith-woocommerce-product-slider-carousel-premium/
 /wp-content/plugins/zopim-live-chat/
+/wp-content/plugins/domain-mirror/
 
 /wp-content/plugins/wpmandrill/
 
 
 /wp-content/plugins/woocommerce-bookings/.tx/
+.idea/workspace.xml
+.idea/kmimos.mx.iml
+.idea/misc.xml
+.idea/vcs.xml
+.idea/modules.xml
+wp-content/index.php

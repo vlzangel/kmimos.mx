@@ -24,6 +24,10 @@
 							); 
 
 							include("./wp-content/themes/pointfinder/vlz/admin/ver_orden.php");
+
+							//CLASS BOOKING
+							$_kmimos_booking->Booking_Details($orden);
+
 						?>
 
 						<section>
@@ -36,22 +40,11 @@
 
 						<section>
 							<div class="cell25">
-								<div class="vlz_titulos_tablas">Detalles del cliente</div>
-								<div class="vlz_contenido_tablas">
-									<?php echo $detalles_cliente; ?>
-								</div>
-
-								<div class="vlz_titulos_tablas">Detalles del servicio</div>
-								<div class="vlz_contenido_tablas">
-									<?php echo $detalles_servicio; ?>
-								</div>
+								<?php echo $_kmimos_tables->Create_Table_Client($_kmimos_booking->user_client,$_kmimos_booking->user_meta_client); ?>
+								<?php echo $_kmimos_tables->Create_Table_Service($orden); ?>
 							</div>
 							<div class="cell75">
-								<div class="vlz_titulos_tablas">Detalles de las mascotas</div>
-								<div class="vlz_contenido_tablas">
-									<?php echo $detalles_mascotas; ?>
-								</div>
-
+								<?php echo $_kmimos_tables->Create_Table_Pets($_kmimos_booking->user_client); ?>
 								<div class="vlz_titulos_tablas">Detalles de facturación</div>
 								<div class="vlz_contenido_tablas">
 									<?php echo $detalles_factura; ?>

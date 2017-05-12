@@ -89,7 +89,7 @@
 
             $cuidador_post = $wpdb->get_row( "SELECT * FROM wp_posts WHERE ID = '".$id_cuidador_post."'" );
 
-             $sql = "
+            $sql = "
                 SELECT 
                     DISTINCT id,
                     ROUND ( ( 6371 * 
@@ -122,7 +122,6 @@
                     activo = 1
                 ORDER BY DISTANCIA ASC
                 LIMIT 0, 4
-
             ";
      
             $sugeridos = $wpdb->get_results( $sql );

@@ -192,18 +192,17 @@
         	);
         ";
 
-        $existen = $conn->query( "SELECT * FROM wp_users WHERE  user_nicename = '{$username}' OR user_email = '{$email}'" );
+        $existen = $conn->query( "SELECT * FROM wp_users WHERE  user_login = '{$username}' OR user_email = '{$email}'" );
         if( $existen->num_rows > 0 ){
-            $datos = $existen->fetch_assoc();
-
             $msg = "Se encontraron los siguientes errores:\n\n";
+            while($datos = $existen->fetch_assoc()){
+                if( $datos['user_email'] == $email ){
+                    $msg .= "Este E-mail [{$email}] ya esta en uso\n";
+                }
 
-            if( $datos['user_email'] == $email ){
-                $msg .= "Este E-mail [{$email}] ya esta en uso\n";
-            }
-
-            if( $datos['user_nicename'] == $username ){
-                $msg .= "Este nombre de Usuario [{$username}] ya esta en uso\n";
+                if( $datos['user_login'] == $username ){
+                    $msg .= "Este nombre de Usuario [{$username}] ya esta en uso\n";
+                }
             }
 
             $error = array(
@@ -214,7 +213,6 @@
             echo "(".json_encode( $error ).")";
 
             exit;
-
         }else{
 
             $temp = array( "token" => $token );
@@ -237,7 +235,7 @@
                         "preferences"   => array(
                             0 => array(
                                 "type"  => 'kmimostoken',
-                                "value" => $temp
+                                "value" => $token
                             )
                         ),
                         "cohorts" => array(
@@ -258,7 +256,7 @@
                     "error" => "SI",
                     "msg" => "Se encontraron los siguientes errores:\n\n".$respuesta->message
                 );
-                // echo "(".json_encode( $error ).")";
+                //echo "(".json_encode( $error ).")";
             }
 
             $error = array(
@@ -271,7 +269,7 @@
 
                 $cuidador_id = $conn->insert_id;
 
-                $sql = "INSERT INTO ubicaciones VALUES (NULL, '{$cuidador_id}', '{$estado}', '={$municipio}=')";
+                $sql = "INSERT INTO ubicaciones VALUES (NULL, '{$cuidador_id}', '={$estado}=', '={$municipio}=')";
 
                 $conn->query( utf8_decode( $sql ) );
 
@@ -303,7 +301,7 @@
 
                     $dir = "../../../../uploads/cuidadores/avatares/".$cuidador_id."/";
 
-                    @mkdir($dir, 0777, true);
+                    @mkdir($dir);
 
                     file_put_contents($dir.'temp.jpg', $sImagen);
 
@@ -386,10 +384,12 @@
                         (NULL, ".$user_id.", 'user_photo',          '".$img_id."'),
                         (NULL, ".$user_id.", 'user_address',        '".$direccion."'),
                         (NULL, ".$user_id.", 'user_mobile',         '".$telefono."'),
+                        (NULL, ".$user_id.", 'user_phone',          '".$telefono."'),
                         (NULL, ".$user_id.", 'user_country',        'México'),
                         (NULL, ".$user_id.", 'nickname',            '".$username."'),
                         (NULL, ".$user_id.", 'first_name',          '".$nombres."'),
                         (NULL, ".$user_id.", 'last_name',           '".$apellidos."'),
+                        (NULL, ".$user_id.", 'user_referred',       '".$referido."'),
                         (NULL, ".$user_id.", 'description',         ''),
                         (NULL, ".$user_id.", 'rich_editing',        'true'),
                         (NULL, ".$user_id.", 'comment_shortcuts',   'false'),
@@ -559,8 +559,19 @@
 
                     }
 
+                    $info = array();
+                    $info['user_login']     = sanitize_user($email, true);
+                    $info['user_password']  = sanitize_text_field($clave);
+
+                    $user_signon = wp_signon( $info, true );
+                    wp_set_auth_cookie($user_signon->ID);
+
             }else{
-                echo "false";
+                $error = array(
+                    "error" => "SI",
+                    "msg" => "No se ha podido completar el registro."
+                );
+                echo "(".json_encode( $error ).")";
             }
         }
         

@@ -1,3 +1,4 @@
+<?php $post_type = get_post_type(); ?>
         <?php if (!is_page_template('pf-empty-page.php' ) && !is_page_template('terms-conditions.php' )) {?>
             </div>
             </div> 
@@ -129,9 +130,23 @@
                     </div>
                  </div> 
               </div>
-              <div class="jj-xs-offiset-2 col-md-offset-1 col-md-offset-3 jj-offset-2">
-                <span id="siteseal"><script async type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=c5u9pjdoyKXQ6dRtmwnDmY0bV6KVBrdZGPEAnPkeSt7ZRCetPjIUzVK0bnHa"></script></span>   
-            </div>
+
+
+
+                <div class="jj-xs-offiset-2 col-md-offset-1 col-md-offset-3 jj-offset-2 inline" >
+                    <span id="siteseal"><script async type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=c5u9pjdoyKXQ6dRtmwnDmY0bV6KVBrdZGPEAnPkeSt7ZRCetPjIUzVK0bnHa"></script></span>   
+
+
+                <?php if($post_type=='post'){ ?>
+
+                        <a class="inline" href="http://es.paperblog.com/" rel="paperblog kmimos" title="Paperblog : Los mejores artículos de los blogs" ><img src="/wp-content/uploads/iconos/paperblog.gif" border="0" alt="Paperblog : Los mejores artículos de los blogs" width="131" height="32"/></a>
+
+                        <a class="inline" href="http://www.boosterblog.es" target="_blank"><img src="/wp-content/uploads/iconos/boosterblog-es-logo.png" width="131" height="32" alt="Publicidad por tu blog con Boosterblog" /></a>
+                <?php } ?>
+                </div>
+
+
+
             </footer>
             <?php
             }
@@ -199,6 +214,11 @@
                 .jj-patica-menu{
                     display: none;
                 }
+                .inline{
+                    display: inline;
+                    margin-bottom:3px;
+                }
+
             }
             @media (max-width: 120px) and (min-width: 962px){
                 .socialBtns{
@@ -218,11 +238,15 @@
                 .jj-xs-offiset-2{
                     margin-left: 20%;
                 }
+
+                .inline{
+                    display: block;
+                }
             }
 
             @media (max-width: 520px){
                 .vlz_modal_contenido{
-                    height: 300px!important;
+                    height: 300px;
                 }
             }           
 
@@ -236,41 +260,12 @@
         </script>
 
         <?php
-
             global $wpdb;
-            
             if( isset( $_GET['r'] ) ){
-
                 $xuser = $wpdb->get_row("SELECT * FROM wp_users WHERE md5(ID) = '{$_GET['r']}'");
-
-                // $sql = "SELECT meta_value FROM wp_usermeta WHERE meta_key = 'clave_temp' AND user_id = ".$xuser->ID;
-                // $clave_temp = $wpdb->get_var($sql);
-
-                // if( $clave_temp != "" ){
-                //     $sql = "UPDATE wp_users SET user_pass = '".md5($clave_temp)."' WHERE ID = ".$xuser->ID;
-                //     $wpdb->query($sql);
-
-                //     $sql = "UPDATE wp_usermeta SET meta_value = '' WHERE meta_key = 'clave_temp' AND user_id = ".$xuser->ID;
-                //     $wpdb->query($sql);
-                // }
-
-                // echo "
-                //     <script>
-                //         (function($) {
-                //             'use strict';
-                //             $(function(){
-                //                 $.pfOpenLogin('open','login');
-                //             })
-                //            })(jQuery);
-                //     </script>
-                // ";
-
-                
-
             }else{
             
                 if( isset( $_GET['a'] ) ){
-
                     echo "
                         <script>
                             (function($) {
@@ -281,25 +276,7 @@
                                })(jQuery);
                         </script>
                     ";
-
-                }else{
-                    if( isset( $_GET['home'] ) ){
-
-                    }else{
-
-                       // if( is_home() ){
-                            echo "
-                                <script>
-                                    setTimeout(function(){
-                                        jQuery('#jj_modal_bienvenida_xxx').css('display', 'table');
-                                    }, 100);
-                                </script>
-                            ";
-                       // }
-                    }
-
                 }
-
             }
 
             if( $post->post_name == "carro" ){
@@ -312,20 +289,14 @@
                             window.onhashchange=function(){window.location.hash='no-back-button';}
                         }
                         jQuery('body').attr('onload', 'nobackbutton();');
-
                         jQuery('.woocommerce-message>a.button.wc-forward').css('display', 'none');
                         jQuery('.variation-Duracin').css('display', 'none');
                         jQuery('.variation-Ofrecidopor').css('display', 'none');
                     </script>
-                ";
 
-                echo "
                     <style>
                         .woocommerce-message>a.button.wc-forward{
                             display; none;
-                        }
-                        .shop_table_responsive{
-                            
                         }
                         input[name=coupon_code]{color: #000!important;}
                         input[name=update_cart]{display: none!important;}
@@ -338,7 +309,6 @@
                 ";
             }
             if( $post->post_name == "perfil-usuario" ){
-
                 echo "
                     <script>
                         var es_firefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;  
@@ -364,7 +334,7 @@
                         @media (max-width: 568px){ 
                             .cell50{width:100%!important;}
                             .cell25{width:50%!important;}
-                           
+                        }
                     </style>
                 ";
             }
@@ -438,123 +408,104 @@
             if( $post->post_name == "finalizar-comprar" && $_GET['key'] == "" ){
 
             echo "
-                        <!-- Modal Jauregui-->
                 <style>
-                .jj_modal{
-                    position: fixed;
-                    top: 0px;
-                    left: 0px;
-                    width: 100%;
-                    height: 100%;
-                    display: table;
-                    z-index: 10000000000!important;
-                    background: rgba(0, 0, 0, 0.8);
-                    vertical-align: middle !important;
-                    display: none;
-                }
-
-                .jj_modal_interno{
-                    display: table-cell;
-                    text-align: center;
-                    vertical-align: middle !important;
-                }
-
-                .jj_modal_ventana{
-                    position: relative;
-                    display: inline-block;
-                    text-align: left;
-                    width: 40%;
-                    box-shadow: 0px 0px 4px #FFF;
-                    border-radius: 5px;
-                    z-index: 1000;
-                }
-
-                .jj_modal_titulo{
-                    background: #FFF;
-                    padding: 15px 10px;
-                    font-size: 18px;
-                    color: #52c8b6;
-                    font-weight: 600;
-                    border-radius: 5px 5px 0px 0px;
-                }
-
-                .jj_modal_contenido{
-                    background: #FFF;
-                    height: auto;
-                    box-sizing: border-box;
-                    padding: 5px 15px;
-                    border-top: solid 1px #d6d6d6;
-                    border-bottom: solid 1px #d6d6d6;
-                    overflow: auto;
-                    text-align: justify;
-                }
-
-                .jj_modal_pie{
-                    background: #FFF;
-                    padding: 15px 10px;
-                    border-radius: 0px 0px 5px 5px;
-                    height: 70px;
-                }
-
-                .jj_modal_fondo{
-                    position: fixed;
-                    top: 0px;
-                    left: 0px;
-                    width: 100%;
-                    height: 100%;
-                    z-index: 500;
-                }
-                .jj_boton_siguiente{
-                    padding: 10px 50px;
-                    background-color: #a8d8c9;
-                    display: inline-block;
-                    font-size: 16px;
-                    border: solid 1px #2ca683;
-                    border-radius: 3px;
-                    float: right;
-                    cursor: pointer;
-                } 
-                @media screen and (max-width: 750px){
-                    
-
-                }
-
-                @media (max-width: 520px){
-                    .jj_modal_ventana{
-                        width: 84% ;
+                    .jj_modal{
+                        position: fixed;
+                        top: 0px;
+                        left: 0px;
+                        width: 100%;
+                        height: 100%;
+                        display: table;
+                        z-index: 10000000000!important;
+                        background: rgba(0, 0, 0, 0.8);
+                        vertical-align: middle !important;
+                        display: none;
                     }
-                }
-
-            </style>                         
+                    .jj_modal_interno{
+                        display: table-cell;
+                        text-align: center;
+                        vertical-align: middle !important;
+                    }
+                    .jj_modal_ventana{
+                        position: relative;
+                        display: inline-block;
+                        text-align: left;
+                        width: 40%;
+                        box-shadow: 0px 0px 4px #FFF;
+                        border-radius: 5px;
+                        z-index: 1000;
+                    }
+                    .jj_modal_titulo{
+                        background: #FFF;
+                        padding: 15px 10px;
+                        font-size: 18px;
+                        color: #52c8b6;
+                        font-weight: 600;
+                        border-radius: 5px 5px 0px 0px;
+                    }
+                    .jj_modal_contenido{
+                        background: #FFF;
+                        height: auto;
+                        box-sizing: border-box;
+                        padding: 5px 15px;
+                        border-top: solid 1px #d6d6d6;
+                        border-bottom: solid 1px #d6d6d6;
+                        overflow: auto;
+                        text-align: justify;
+                    }
+                    .jj_modal_pie{
+                        background: #FFF;
+                        padding: 15px 10px;
+                        border-radius: 0px 0px 5px 5px;
+                        height: 70px;
+                    }
+                    .jj_modal_fondo{
+                        position: fixed;
+                        top: 0px;
+                        left: 0px;
+                        width: 100%;
+                        height: 100%;
+                        z-index: 500;
+                    }
+                    .jj_boton_siguiente{
+                        padding: 10px 50px;
+                        background-color: #a8d8c9;
+                        display: inline-block;
+                        font-size: 16px;
+                        border: solid 1px #2ca683;
+                        border-radius: 3px;
+                        float: right;
+                        cursor: pointer;
+                    } 
+                    @media screen and (max-width: 750px){
+                        
+                    }
+                    @media (max-width: 520px){
+                        .jj_modal_ventana{
+                            width: 84% ;
+                        }
+                    }
+                </style>                         
                 <div id='jj_modal_jauregui' class='jj_modal'>
-
                     <div class='jj_modal_interno'>
-
                         <div class='jj_modal_fondo' onclick='jQuery('#jj_modal_bienvenida').css('display', 'none');'></div>
-
                         <div class='jj_modal_ventana jj_modal_ventana'>
-
                             <div class='jj_modal_titulo'>¡Espera!</div>
-
                             <div class='jj_modal_contenido' style='height: auto;'>
                                     <p align='center'>
-                                        Transacción en progreso, esta ventana se cerrará automáticamente.<img src='https://www.kmimos.com.mx/wp-content/uploads/2016/02/preloader.gif'></p> 
+                                        Transacción en progreso, esta ventana se cerrará automáticamente.<img src='https://www.kmimos.com.mx/wp-content/uploads/2016/02/preloader.gif'>
+                                    </p> 
                             </div>
-                            
                         </div>
                     </div>
-                </div>
-                <!-- /Modal Jauregui-->";
-
+                </div>";
             }
-
         ?>
 
         <script type="text/javascript">
             jQuery( document ).ready(function() {
                 jQuery( ".reservar" ).unbind();
                 jQuery( ".reservar" ).off();
-
                 jQuery( ".conocer-cuidador" ).unbind();
                 jQuery( ".conocer-cuidador" ).off();
                 <?php
@@ -566,21 +517,15 @@
                     }
                 ?>
             });
-
             <?php if( $post->post_name == "finalizar-comprar" && $_GET['key'] == "" ){ ?>
-
                 var abrir = true;
                 jQuery(window).scroll(function() {
-
                     if (jQuery(document).scrollTop() > 10) {
                         jQuery('#vlz_modal_popup').fadeOut();
                     }
-
                 });
             <?php } ?>
-
         </script>
-
         <?php
             if(  $_SESSION['admin_sub_login'] == 'YES' ){
                 echo "
@@ -594,6 +539,7 @@
                         font-family: Roboto;
                         background: #CCC;
                         border: solid 2px #BBB;
+                        z-index: 999999999999999999;
                     '>
                         X
                     </a>
