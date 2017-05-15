@@ -5,7 +5,7 @@ class Class_WhiteLabel{
     var $args;
 
     function __construct($args=array()){
-        global $wpdb, $_GET, $_SESSION;
+        global $wpdb, $_GET, $_SESSION, $_COOKIE;
         if (!isset($_SESSION)) {
             session_start();
         }
@@ -14,6 +14,7 @@ class Class_WhiteLabel{
         $this->wpdb = $wpdb;
         $this->GET = $_GET;
         $this->SESSION = $_SESSION;
+        $this->COOKIE = $_COOKIE;
         $this->wlabel = '';
         $this->wlabel_active = false;
         $this->wlabel_table = $this->wpdb->prefix.'kmimos_wlabel';
@@ -37,20 +38,37 @@ class Class_WhiteLabel{
     }
 
     function vGET(){
-        global $_SESSION;
+        global $_SESSION, $_COOKIE;
         if(array_key_exists('wlabel',$this->GET)){
             $this->wlabel=$this->GET['wlabel'];
+
+            //SESSION
             $_SESSION['wlabel']=$this->wlabel;
             $this->SESSION = $_SESSION;
+
+            //COOKIE
+            setcookie('wlabel',$this->wlabel, (time() + (86400*1)));
+            $this->COOKIE = $_COOKIE;
             return true;
         }
         return false;
     }
 
     function vSESSION(){
+        global $_SESSION, $_COOKIE;
         $vGET = $this->vGET();
+
+        //SESSION
         if(array_key_exists('wlabel',$this->SESSION)){
             $this->wlabel=$this->SESSION['wlabel'];
+            return true;
+        }
+
+        //COOKIE
+        if(array_key_exists('wlabel',$this->COOKIE)){
+            $this->wlabel=$this->COOKIE['wlabel'];
+            $_SESSION['wlabel']=$this->wlabel;
+            $this->SESSION = $_SESSION;
             return true;
         }
         return $vGET;
