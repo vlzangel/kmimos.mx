@@ -23,7 +23,7 @@
         extract($_POST);
 
         $foto = "0";
-        if( $vlz_img_perfil != "0" ){
+        if( $vlz_img_perfil != "" ){
         	$foto = "1";
         }
         $experiencia = date("Y")-$cuidando_desde;
@@ -303,7 +303,16 @@
 
                     @mkdir($dir, 0777, true);
 
-                    file_put_contents($dir.'temp.jpg', $sImagen);
+                    $path_origen = "../../../../../imgs/Temp/".$vlz_img_perfil;
+                    $path_destino = $dir.$vlz_img_perfil;
+
+                    if( file_exists($path_origen) ){
+                        copy($path_origen, $path_destino);
+                    }
+
+                    // move_uploaded_file(, destination)
+
+                    /*file_put_contents($dir.'temp.jpg', $sImagen);
 
                     $sExt = mime_content_type( $dir.'temp.jpg' );
 
@@ -342,7 +351,7 @@
                     imageDestroy( $aImage );
                     imageDestroy( $aThumb );
 
-                    unlink($dir."temp.jpg");
+                    unlink($dir."temp.jpg");*/
                 }
                 
                 $sql = ("

@@ -534,7 +534,7 @@
 
 		}
 
-		$detalles_servicio .= '
+		$detalles_servicio = '
 			<br>
 			<p><h2 style="color: #557da1;">Detalles del Servicio Reservado</h2></p>
 			<table>

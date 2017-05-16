@@ -1,9 +1,105 @@
 <script>
 
+	<?php
+		$campos = array();
+
+		$campos["nombres"] = "text";
+		$campos["apellidos"] = "text";
+		$campos["ife"] = "text";
+		$campos["telefono"] = "text";
+		$campos["referido"] = "list";
+		$campos["descripcion"] = "text";
+		$campos["vlz_img_perfil"] = "text";
+		$campos["username"] = "text";
+		$campos["email"] = "text";
+		$campos["clave"] = "text";
+		$campos["clave2"] = "text";
+		$campos["estado"] = "list";
+		$campos["municipio"] = "list";
+		$campos["direccion"] = "text";
+		$campos["latitud"] = "text";
+		$campos["longitud"] = "text";
+		$campos["num_mascotas_casa"] = "text";
+		$campos["num_mascotas_aceptadas"] = "list";
+		$campos["cuidando_desde"] = "list";
+		$campos["emergencia"] = "list";
+
+		foreach ($tam as $key => $value) {
+			$campos["tengo_".$key] = "check";
+			$campos["acepto_".$key] = "check";
+			$campos["hospedaje_".$key] = "text";
+		}
+
+		foreach ($Comportamientos as $key => $value) {
+			$campos["comportamiento_".$key] = "check";
+		}
+
+		$campos["cachorros"] = "check";
+		$campos["adultos"] = "check";
+		$campos["esterilizado"] = "check";
+		$campos["tipo_propiedad"] = "list";
+		$campos["areas_verdes"] = "check";
+		$campos["tiene_patio"] = "check";
+		$campos["entrada"] = "list";
+		$campos["salida"] = "list";
+
+		$campos["vlz_img_perfil"] = "img";
+		/*
+		$campos[""] = "text";
+		$campos[""] = "text";
+		$campos[""] = "text";
+		*/
+
+		$datos_json = json_encode($campos, JSON_UNESCAPED_UNICODE );
+		echo "
+			var xcampos_form = jQuery.makeArray(
+			eval(
+				'(".$datos_json.")'
+				)
+			);
+			var campos_form = xcampos_form[0] ;
+		";
+	?>
+
+		function verificar_cache_form(){
+
+		  	jQuery.each(campos_form, function( id, tipo ) {
+				
+		  		var valor = jQuery.cookie("CR_"+id);
+
+		  		if( valor != undefined ){
+					switch( tipo ){
+						case "text":
+							jQuery("#"+id).attr("value", valor );
+						break;
+						case "list":
+							jQuery('#'+id+' > option[value="'+valor+'"]').attr('selected', 'selected');
+						break;
+						case "check":
+							
+							if( valor == 1 ){
+								jQuery("#"+id).parent().click();
+							}
+
+						break;
+						case "img":
+							jQuery(".vlz_img_portada_fondo").css("background-image", "url(<?php echo get_home_url()."/imgs/Temp/"; ?>"+valor+")");
+		        			jQuery(".vlz_img_portada_normal").css("background-image", "url(<?php echo get_home_url()."/imgs/Temp/"; ?>"+valor+")");
+		        			jQuery("#vlz_img_perfil").attr("value", valor);
+		        			jQuery("#error_vlz_img_perfil").css("display", "none");
+						break;
+					}
+		  		}
+			});
+
+		}
+
 	// Carga y optimización de la carga de imagenes
 
 		jQuery( document ).ready(function() {
 		  	cambiar_img();
+
+		  	verificar_cache_form();
 		});
 
 		jQuery( window ).resize(function() {
@@ -46,19 +142,19 @@
 		       	var reader = new FileReader();
 		       	reader.onload = (function(theFile) {
 		           return function(e) {
-
 		           		jQuery(".kmimos_cargando").css("display", "block");
-		           		
 		    			redimencionar(e.target.result, function(img_reducida){
-		    				jQuery(".vlz_img_portada_fondo").css("background-image", "url("+img_reducida+")");
-		        			jQuery(".vlz_img_portada_normal").css("background-image", "url("+img_reducida+")");
-		        			jQuery("#vlz_img_perfil").attr("value", img_reducida);
-		        			jQuery("#error_vlz_img_perfil").css("display", "none");
+		    				var a = "<?php echo get_home_url()."/imgs/vlz_subir_img.php"; ?>";
+		    				jQuery.post( a, {img: img_reducida}, function( url ) {
+					      		jQuery(".vlz_img_portada_fondo").css("background-image", "url(<?php echo get_home_url()."/imgs/Temp/"; ?>"+url+")");
+			        			jQuery(".vlz_img_portada_normal").css("background-image", "url(<?php echo get_home_url()."/imgs/Temp/"; ?>"+url+")");
+			        			jQuery("#vlz_img_perfil").attr("value", url);
+			        			jQuery("#error_vlz_img_perfil").css("display", "none");
+			           			jQuery(".kmimos_cargando").css("display", "none");
 
-		           			jQuery(".kmimos_cargando").css("display", "none");
+			           			jQuery.cookie("CR_vlz_img_perfil", jQuery("#vlz_img_perfil").attr("value") );
+					      	});
 		    			});
-
-		    			
 		           };
 		       })(f);
 		       reader.readAsDataURL(f);
@@ -75,6 +171,7 @@
 		      		if( ife.length == 13 ){
 		      			return true;
 		      		}else{
+		      			ver_error(id);
 		      			return false;
 		      		}
 				break;
@@ -83,6 +180,7 @@
 		      		if( telefono.length >= 7 ){
 		      			return true;
 		      		}else{
+		      			ver_error(id);
 		      			return false;
 		      		}
 				break;
@@ -90,13 +188,23 @@
 		      		var clv1 = jQuery("#clave").attr("value");
 		      		var clv2 = jQuery("#clave2").attr("value");
 
-		      		return ( clv1 == clv2 );
+		      		if( clv1 == clv2 ){
+		      			return true;
+		      		}else{
+		      			ver_error(id);
+		      			return false;
+		      		}
 				break;
 				case "clave2":
 		      		var clv1 = jQuery("#clave").attr("value");
 		      		var clv2 = jQuery("#clave2").attr("value");
 
-		      		return ( clv1 == clv2 );
+		      		if( clv1 == clv2 ){
+		      			return true;
+		      		}else{
+		      			ver_error(id);
+		      			return false;
+		      		}
 				break;
 				case "hospedaje":
 		      		var z = 0;
@@ -110,8 +218,7 @@
 					jQuery.each(t, function( index, value ) {
 						var temp = jQuery('#hospedaje_'+value).attr('value');
 						if( temp == '' ){ temp = 0; }
-						z += parseInt( temp );
-							console.log("Z: "+z);	
+						z += parseInt( temp );	
 					});
 
 					if( z == 0 ){
@@ -148,24 +255,24 @@
 			}
 		}
 
-
 		function vlz_validar(){
 			var error = 0;
 
 			if( !form.checkValidity() )		{ error++; }
 			if( !especiales("clave") )		{ error++; }
 			if(  especiales("hospedaje") )	{ error++; }
+			if( !especiales("ife") )		{ error++; }
+			if( !especiales("telefono") )	{ error++; }
 
 			if( error > 0 ){
 				var primer_error = ""; var z = true;
 				jQuery( ".error" ).each(function() {
-			  	if( jQuery( this ).css( "display" ) == "block" ){
-			  		if( z ){
-			  			primer_error = "#"+jQuery( this ).attr("data-id");
-			  			z = false;
-			  		}
-			  	}
-			});
+				  	if( jQuery( this ).css( "display" ) == "block" ){
+				  		if( z ){
+				  			primer_error = "#"+jQuery( this ).attr("data-id"); z = false;
+				  		}
+				  	}
+				});
 
 				jQuery('html, body').animate({ scrollTop: jQuery(primer_error).offset().top-75 }, 2000);
 			}else{
@@ -182,10 +289,11 @@
 		    jQuery("#error_"+event.target.id).removeClass("no_error");
 		    jQuery("#error_"+event.target.id).addClass("error");
 		    jQuery("#"+event.target.id).addClass("vlz_input_error");
+		    console.log(event.target.id);
 		}, true);
 
 		form.addEventListener( 'keyup', function(event){
-		    if ( event.target.validity.valid && especiales(event.target.id) ) {
+		    if ( event.target.validity.valid && especiales(event.target.id)  ) {
 		    	if( jQuery("#error_"+event.target.id).hasClass( "error" ) ){
 		    		jQuery("#error_"+event.target.id).removeClass("error");
 		        	jQuery("#error_"+event.target.id).addClass("no_error");
@@ -198,6 +306,21 @@
 		        	jQuery("#"+event.target.id).addClass("vlz_input_error");
 		    	} 
 		    }
+
+		    /*$.cookie("example", "foo"); // Sample 1
+			$.cookie("example", "foo", { expires: 7 }); // Sample 2
+			$.cookie("example", "foo", { path: '/admin', expires: 7 }); // Sample 3
+			Get a cookie
+
+			alert( $.cookie("example") );
+			Delete the cookie
+
+			jQuery.removeCookie("cache_registro");*/
+
+			jQuery.cookie("CR_"+event.target.id, jQuery("#"+event.target.id).attr("value") );
+			// console.log( jQuery("CR_"+event.target.id).attr("value", valor ) );
+			// jQuery.removeCookie("cache_registro");
+
 		}, true);
 
 		form.addEventListener( 'change', function(event){
@@ -214,6 +337,8 @@
 		        	jQuery("#"+event.target.id).addClass("vlz_input_error");
 		    	} 
 		    }
+
+			jQuery.cookie("CR_"+event.target.id, jQuery("#"+event.target.id).attr("value") );
 		}, true);
 
 		jQuery( "#clave" ).keyup(clvs_iguales);
@@ -259,6 +384,12 @@
 
 	// Modificar el DOM
 
+		function ver_error(id){
+			jQuery("#error_"+id).removeClass("no_error");
+        	jQuery("#error_"+id).addClass("error");
+        	jQuery("#"+id).addClass("vlz_input_error");
+		}
+
 		jQuery(".vlz_input").each(function( index ) {
 		  	var error = jQuery("<div class='no_error' id='error_"+( jQuery( this ).attr('id') )+"' data-id='"+( jQuery( this ).attr('id') )+"'></div>");
 		  	var txt = jQuery( this ).attr("data-title");
@@ -286,6 +417,8 @@
 				jQuery(this).removeClass("vlz_check");
 				jQuery(this).addClass("vlz_no_check");
 			}
+
+			jQuery.cookie("CR_"+jQuery("input", this).attr("id"), jQuery("input", this).attr("value") );
 		});
 
 		jQuery(".vlz_boton_agregar").on("click", function(){
@@ -353,7 +486,10 @@
 			  		jQuery("#vlz_titulo_registro").html("Registrando, por favor espere...");
 			     	
 					jQuery.post( a, jQuery("#vlz_form_nuevo_cuidador").serialize(), function( data ) {
-			      		data = eval(data);
+
+						console.log(data);
+
+			      		/*data = eval(data);
 			      		if( data.error == "SI" ){
 			      			jQuery('html, body').animate({ scrollTop: jQuery("#email").offset().top-75 }, 2000);
 			      			alert(data.msg);
@@ -370,7 +506,7 @@
 			      			jQuery("#vlz_titulo_registro").html("Registro Completado!");
 						  	jQuery("#vlz_cargando").html(data.msg);
 				      		jQuery("#vlz_registro_cuidador_cerrar").css("display", "inline-block");
-			      		}
+			      		}*/
 			      	});
 
 					}else{
@@ -448,11 +584,8 @@
 				var trigger_precios = jQuery("#trigger_precios").offset().top-400;
 			}
 		    if(jQuery(document).scrollTop() > trigger_precios){
-
-				console.log( jQuery(document).scrollTop()+" > "+trigger_precios );
-
 			    if(modalOpend){
-			    	jQuery('#jj_modal').fadeIn();
+			    	//jQuery('#jj_modal').fadeIn();
 			       	modalOpend = false;
 			    }
 		     }else{
