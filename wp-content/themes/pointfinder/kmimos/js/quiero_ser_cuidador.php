@@ -497,7 +497,6 @@
 			  		jQuery("#vlz_titulo_registro").html("Registrando, por favor espere...");
 			     	
 					jQuery.post( a, jQuery("#vlz_form_nuevo_cuidador").serialize(), function( data ) {
-
 			      		data = eval(data);
 			      		if( data.error == "SI" ){
 			      			jQuery('html, body').animate({ scrollTop: jQuery("#email").offset().top-75 }, 2000);
@@ -516,7 +515,11 @@
 						  	jQuery("#vlz_cargando").html(data.msg);
 				      		jQuery("#vlz_registro_cuidador_cerrar").css("display", "inline-block");
 
-				      		_gaq.push(['_trackEvent','registro_cuidador','click','aspirantes','1']);
+				      		<?php
+				      			if( substr($_SERVER["HTTP_REFERER"], -10) == "nuevos-aspirantes/" ){
+				      				echo "_gaq.push(['_trackEvent','registro_cuidador','click','aspirantes','1']);";
+				      			}
+				      		?>
 
 			  				jQuery.each(campos_form, function( id, tipo ) {
 			  					borrar_cookie(id);
