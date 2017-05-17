@@ -6,6 +6,19 @@ header{
 	vertical-align: top;
 }
 
+pre{
+    padding:20px;
+    border-radius: 10px;
+    background: #84ff00;
+}
+
+#subtitulo{
+    color: #fff;
+    padding: 15px;
+    background: #881c9b;
+    border-radius: 10px;
+    font-size: 19px;
+}
 .btn-kmimos:hover,
 .btn-kmimos:focus
 {

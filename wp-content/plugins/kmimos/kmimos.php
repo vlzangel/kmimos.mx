@@ -792,6 +792,17 @@ if(!function_exists('kmimos_admin_menu')){
                 'icon'=>plugins_url('/assets/images/icon.png', __FILE__),
             ),
 
+
+            array(
+                'title'=>'Control WhiteLabel',
+                'short-title'=>'Control WhiteLabel',
+                'parent'=>'kmimos',
+                'slug'=>'bp_wlabel',
+                'access'=>'manage_options',
+                'page'=>'backpanel_wlabel',
+                'icon'=>plugins_url('/assets/images/icon.png', __FILE__),
+            ),
+
             // array(
             //     'title'=>'Estados por Cuidador',
             //     'short-title'=>'Estados por Cuidador',
@@ -890,6 +901,12 @@ if(!function_exists('backpanel_cuidadores')){
 if(!function_exists('backpanel_estados_cuidadores')){
     function backpanel_estados_cuidadores(){
         include_once('dashboard/backpanel_estados_cuidadores.php');
+    }
+}
+
+if(!function_exists('backpanel_wlabel')){
+    function backpanel_wlabel(){
+        include_once('wlabel/admin/backpanel.php');
     }
 }
 
