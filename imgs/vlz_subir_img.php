@@ -1,6 +1,10 @@
 <?php
 	extract($_POST);
 
+	if( $previa != "" ){
+		unlink("Temp/".$previa);
+	}
+
 	$img = end(explode(',', $img));
     $sImagen = base64_decode($img);
 

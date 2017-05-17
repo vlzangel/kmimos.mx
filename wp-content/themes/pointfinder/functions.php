@@ -32,12 +32,12 @@ function set_input_attrs( $fields ) {
 
 /*function wpdm_filter_siteurl($content) {
 	$current_server = $_SERVER['SERVER_NAME'];
-   	return "http://".$current_server."/kmis/kmimos.mx";
+   	return "http://".$current_server."/";
 }
 
 function wpdm_filter_home($content) {
 	$current_server = $_SERVER['SERVER_NAME'];
-   	return "http://".$current_server."/kmis/kmimos.mx";
+   	return "http://".$current_server."/";
 }
 
 function wpdm_conv_tag($content) {
