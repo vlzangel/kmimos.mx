@@ -116,7 +116,7 @@
 
 	// Carga y optimización de la carga de imagenes
 
-		jQuery( document ).ready(function() {
+		/*jQuery( document ).ready(function() {
 		  	cambiar_img();
 
 		  	verificar_cache_form();
@@ -151,7 +151,7 @@
 		  			jQuery("#cargar_imagen_2").css("display", "none");
 	  			}
 	  		}
-		}
+		}*/
 
 		function vista_previa(evt) {
 		  	var files = evt.target.files;
@@ -330,20 +330,8 @@
 		    	} 
 		    }
 
-		    /*$.cookie("example", "foo"); // Sample 1
-			$.cookie("example", "foo", { expires: 7 }); // Sample 2
-			$.cookie("example", "foo", { path: '/admin', expires: 7 }); // Sample 3
-			Get a cookie
-
-			alert( $.cookie("example") );
-			Delete the cookie
-
-			jQuery.removeCookie("cache_registro");*/
-
 			set_cookie(event.target.id, jQuery("#"+event.target.id).attr("value") );
-			// console.log( jQuery(event.target.id).attr("value", valor ) );
-			// jQuery.removeCookie("cache_registro");
-
+		
 		}, true);
 
 		form.addEventListener( 'change', function(event){
@@ -527,6 +515,8 @@
 			      			jQuery("#vlz_titulo_registro").html("Registro Completado!");
 						  	jQuery("#vlz_cargando").html(data.msg);
 				      		jQuery("#vlz_registro_cuidador_cerrar").css("display", "inline-block");
+
+				      		_gaq.push(['_trackEvent','registro_cuidador','click','aspirantes','1']);
 
 			  				jQuery.each(campos_form, function( id, tipo ) {
 			  					borrar_cookie(id);
