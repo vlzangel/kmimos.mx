@@ -135,7 +135,7 @@
 											name='username' 
 											class='vlz_input' 
 											placeholder='Nombre de Usuario' 
-											minlength="3" maxlength="50" required pattern="[A-Za-z0-9]+">
+											minlength="3" maxlength="50" required pattern="[A-Za-z0-9\-_\.]+">
 									</div>
 									<div class="vlz_cell25">
 										<input data-title="Ingresa tu E-mail<br>Ej: xxxx@xxx.xx" autocomplete="off" type='text' id='email' name='email' class='vlz_input' placeholder='E-mail' required pattern="^[\w._%-]+@[\w.-]+\.[a-zA-Z]{2,4}$" title="Ej. xxxx@xxxxx.xx">
