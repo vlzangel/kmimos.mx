@@ -103,7 +103,7 @@
 								
 									<div id="cargar_imagen_1" class="vlz_cell50 jj_input_cell00" style="display: none;">
 
-										<div class="">
+										<div style="position: relative;">
 											<img src="<?php echo get_home_url()."/wp-content/themes/pointfinder/images/cargando.gif"; ?>" class="kmimos_cargando">
 											<div class="vlz_img_portada">
 				                                <div class="vlz_img_portada_fondo" style="background-image: url(<?php echo get_home_url()."/wp-content/themes/pointfinder"."/images/noimg.png"; ?>);"></div>
