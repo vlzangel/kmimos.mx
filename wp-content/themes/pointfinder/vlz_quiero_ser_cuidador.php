@@ -101,7 +101,7 @@
 
 									</div>
 								
-									<div id="cargar_imagen_1" class="vlz_cell50 jj_input_cell00" style="display: none;">
+									<div id="cargar_imagen_1" class="vlz_cell50 jj_input_cell00">
 
 										<div style="position: relative;">
 											<img src="<?php echo get_home_url()."/wp-content/themes/pointfinder/images/cargando.gif"; ?>" class="kmimos_cargando">
@@ -420,7 +420,7 @@
 										foreach ($tam as $key => $value) {
 											echo '
 												<div class="vlz_cell25">
-													<input type="text" class="vlz_input" id="hospedaje_'.$key.'" name="hospedaje_'.$key.'" placeholder="'.$value.'" data-help="'.$txts[$key].'" >
+													<input type="number" class="vlz_input" id="hospedaje_'.$key.'" name="hospedaje_'.$key.'" placeholder="'.$value.'" data-help="'.$txts[$key].'" >
 												</div>
 											';
 										}
