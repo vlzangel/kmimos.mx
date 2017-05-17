@@ -28,6 +28,63 @@ function set_input_attrs( $fields ) {
    	return $fields;
 }*/
 
+
+
+/*function wpdm_filter_siteurl($content) {
+	$current_server = $_SERVER['SERVER_NAME'];
+   	return "http://".$current_server."/kmis/kmimos.mx";
+}
+
+function wpdm_filter_home($content) {
+	$current_server = $_SERVER['SERVER_NAME'];
+   	return "http://".$current_server."/kmis/kmimos.mx";
+}
+
+function wpdm_conv_tag($content) {
+	$search = "/\[dmWpAddr\]/";
+	if (preg_match($search, $content)){
+		$replace = get_option('siteurl');
+		$content = preg_replace ($search, $replace, $content);
+	}
+	$search = "/\[dmBlogAddr\]/";
+	if (preg_match($search, $content)){
+		$replace = get_option('home');
+		$content = preg_replace ($search, $replace, $content);
+	}
+	$search = "/\[dmBlogTitle\]/";
+	if (preg_match($search, $content)){
+		$replace = get_option('blogname');
+		$content = preg_replace ($search, $replace, $content);
+	}
+	$search = "/\[dmTagLine\]/";
+	if (preg_match($search, $content)){
+		$replace = get_option('blogdescription');
+		$content = preg_replace ($search, $replace, $content);
+	}
+	return $content;
+}
+
+// Add the hooks:
+add_filter('option_siteurl', 'wpdm_filter_siteurl', 1);
+add_filter('option_home', 'wpdm_filter_home', 1);
+
+
+add_filter('the_content', 'wpdm_conv_tag'); 
+add_filter('the_excerpt', 'wpdm_conv_tag'); */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 load_theme_textdomain( 'pointfindert2d',get_template_directory() . '/languages');
 
 add_filter( 'woocommerce_product_tabs', 'sb_woo_remove_reviews_tab', 98);
