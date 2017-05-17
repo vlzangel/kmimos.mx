@@ -127,9 +127,15 @@
 								<div class="vlz_seccion">
 									<div class="vlz_cell25">
 										<input 
-											data-title="Ingresa un usuario<br>Este debe tener una longitud de al menos 3 caracteres."
+											data-title="Ingresa un usuario valido<br>Este debe tener solo letras, numeros y<br> una longitud minima de 3 caracteres."
 											data-help='Ingresa un usuario, sin espacios en blanco. Ej.: Lucas1'
-											title="El nombre de usuario que colocaste aquí es con el que vas a ingresar en tu perfil y tu nombre y apellido será utilizado en las reservas" type='text' id='username' name='username' class='vlz_input' placeholder='Nombre de Usuario' required minlength="3">
+											title="El nombre de usuario que colocaste aquí es con el que vas a ingresar en tu perfil y tu nombre y apellido será utilizado en las reservas" 
+											type='text' 
+											id='username' 
+											name='username' 
+											class='vlz_input' 
+											placeholder='Nombre de Usuario' 
+											minlength="3" maxlength="50" required pattern="[A-Za-z0-9]+">
 									</div>
 									<div class="vlz_cell25">
 										<input data-title="Ingresa tu E-mail<br>Ej: xxxx@xxx.xx" autocomplete="off" type='text' id='email' name='email' class='vlz_input' placeholder='E-mail' required pattern="^[\w._%-]+@[\w.-]+\.[a-zA-Z]{2,4}$" title="Ej. xxxx@xxxxx.xx">
