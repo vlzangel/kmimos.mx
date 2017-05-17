@@ -68,7 +68,7 @@
 
 										<div class="vlz_sub_seccion">
 											<div class="vlz_cell50">
-												<input data-title="El IFE debe ser de 13 dígitos." data-help="Coloca los 13 Números que se encuentran en la parte trasera de tu IFE o INE" type='number' id='ife' name='ife' class='vlz_input' placeholder='IFE' maxlength="13" required pattern="[0-9]{13}" >
+												<input data-title="El IFE debe ser de 13 dígitos." data-help="Coloca los 13 Números que se encuentran en la parte trasera de tu IFE o INE" type='number' id='ife' name='ife' class='vlz_input' placeholder='IFE' min=13 pattern="^\d{13}$" >
 											</div>
 											
 											<div class="vlz_cell50">
