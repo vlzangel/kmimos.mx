@@ -54,7 +54,25 @@
 
             $conn->query( utf8_decode( $new_user ) );
             $user_id = $conn->insert_id;
-            
+
+
+
+
+            //WHITE_LABEL
+            if (!isset($_SESSION)) {
+                session_start();
+            }
+
+            if(array_key_exists('wlabel',$_SESSION)){
+                $wlabel=$_SESSION['wlabel'];
+                if ($wlabel!=''){
+                    $query_wlabel = "INSERT INTO wp_usermeta VALUES (NULL, '".$user_id."', '_wlabel', '".$wlabel."');";
+                    $conn->query( utf8_decode( $query_wlabel ) );
+                }
+            }
+
+
+
             $name_photo = "";
             $user_photo = 0;
             if( $vlz_img_perfil != "" ){

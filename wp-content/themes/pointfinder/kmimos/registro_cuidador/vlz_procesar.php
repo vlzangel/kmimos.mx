@@ -23,7 +23,7 @@
         extract($_POST);
 
         $foto = "0";
-        if( $vlz_img_perfil != "0" ){
+        if( $vlz_img_perfil != "" ){
         	$foto = "1";
         }
         $experiencia = date("Y")-$cuidando_desde;
@@ -279,56 +279,34 @@
                 $conn->query( utf8_decode( $new_user ) );
                 $user_id = $conn->insert_id;
 
+
+                //WHITE_LABEL
+                if (!isset($_SESSION)) {
+                    session_start();
+                }
+
+                if(array_key_exists('wlabel',$_SESSION)){
+                    $wlabel=$_SESSION['wlabel'];
+                    if ($wlabel!=''){
+                        $query_wlabel = "INSERT INTO wp_usermeta VALUES (NULL, '".$user_id."', '_wlabel', '".$wlabel."');";
+                        $conn->query( utf8_decode( $query_wlabel ) );
+                    }
+                }
+
                 $conn->query( "UPDATE cuidadores SET user_id = '".$user_id."' WHERE id = ".$cuidador_id);
 
-                if($foto == 1){
-                    $img = end(explode(',', $vlz_img_perfil));
-                    $sImagen = base64_decode($img);
-
+                if($vlz_img_perfil != ""){
                     $dir = "../../../../uploads/cuidadores/avatares/".$cuidador_id."/";
 
-                    @mkdir($dir, 0777, true);
+                    @mkdir($dir);
 
-                    file_put_contents($dir.'temp.jpg', $sImagen);
+                    $path_origen = "../../../../../imgs/Temp/".$vlz_img_perfil;
+                    $path_destino = $dir.$vlz_img_perfil;
 
-                    $sExt = mime_content_type( $dir.'temp.jpg' );
-
-                    switch( $sExt ) {
-                        case 'image/jpeg':
-                            $aImage = @imageCreateFromJpeg( $dir.'temp.jpg' );
-                        break;
-                        case 'image/gif':
-                            $aImage = @imageCreateFromGif( $dir.'temp.jpg' );
-                        break;
-                        case 'image/png':
-                            $aImage = @imageCreateFromPng( $dir.'temp.jpg' );
-                        break;
-                        case 'image/wbmp':
-                            $aImage = @imageCreateFromWbmp( $dir.'temp.jpg' );
-                        break;
+                    if( file_exists($path_origen) ){
+                        copy($path_origen, $path_destino);
+                        unlink($path_origen);
                     }
-
-                    $nWidth  = 800;
-                    $nHeight = 600;
-
-                    $aSize = getImageSize( $dir.'temp.jpg' );
-
-                    if( $aSize[0] > $aSize[1] ){
-                        $nHeight = round( ( $aSize[1] * $nWidth ) / $aSize[0] );
-                    }else{
-                        $nWidth = round( ( $aSize[0] * $nHeight ) / $aSize[1] );
-                    }
-
-                    $aThumb = imageCreateTrueColor( $nWidth, $nHeight );
-
-                    imageCopyResampled( $aThumb, $aImage, 0, 0, 0, 0, $nWidth, $nHeight, $aSize[0], $aSize[1] );
-
-                    imagejpeg( $aThumb, $dir."0.jpg" );
-
-                    imageDestroy( $aImage );
-                    imageDestroy( $aThumb );
-
-                    unlink($dir."temp.jpg");
                 }
                 
                 $sql = ("
@@ -369,6 +347,7 @@
                         (NULL, ".$user_id.", 'user_favorites',      ''),
                         (NULL, ".$user_id.", 'user_photo',          '".$img_id."'),
                         (NULL, ".$user_id.", 'user_address',        '".$direccion."'),
+                        (NULL, ".$user_id.", 'user_phone',          '".$telefono."'),
                         (NULL, ".$user_id.", 'user_mobile',         '".$telefono."'),
                         (NULL, ".$user_id.", 'user_country',        'México'),
                         (NULL, ".$user_id.", 'nickname',            '".$username."'),
@@ -376,6 +355,7 @@
                         (NULL, ".$user_id.", 'last_name',           '".$apellidos."'),
                         (NULL, ".$user_id.", 'user_referred',       '".$referido."'),
                         (NULL, ".$user_id.", 'description',         '".$descripcion."'),
+                        (NULL, ".$user_id.", 'name_photo',          '".$vlz_img_perfil."'),
                         (NULL, ".$user_id.", 'rich_editing',        'true'),
                         (NULL, ".$user_id.", 'comment_shortcuts',   'false'),
                         (NULL, ".$user_id.", 'admin_color',         'fresh'),

@@ -54,8 +54,18 @@ function pf_ajax_usersystemhandler(){
         }else{
           $rememberme = false;
         }
-        $info = array();
-            $info['user_login'] = sanitize_user($vars['username'],true);
+            $info = array();
+
+            $username = sanitize_user($vars['username'], true);
+
+            $user = get_user_by( 'email', $username );
+            if ( isset( $user, $user->user_login, $user->user_status ) && 0 == (int) $user->user_status ){
+                $username = $user->user_login;
+            }else{
+                $username = sanitize_user($vars['username'], true);
+            }
+
+            $info['user_login'] = $username;
             $info['user_password'] = sanitize_text_field($vars['password']);
             $info['remember'] = $rememberme;
 
