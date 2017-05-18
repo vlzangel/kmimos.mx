@@ -116,6 +116,10 @@
 
 	// Carga y optimización de la carga de imagenes
 
+		jQuery( document ).ready(function() {
+		  	verificar_cache_form();
+		});
+
 		/*jQuery( document ).ready(function() {
 		  	cambiar_img();
 
@@ -477,6 +481,82 @@
 
 		});
 
+	/* DIRECCIONES */
+
+		jQuery("#estado").on("change", function(e){
+			var estado_id = jQuery("#estado").val(); 
+		    if( estado_id != "" ){
+		        var html = "<option value=''>Seleccione un municipio</option>";
+		        jQuery.each(estados_municipios[estado_id]['municipios'], function(i, val) {
+		            html += "<option value="+val.id+" data-id='"+i+"'>"+val.nombre+"</option>";
+		        });
+		        jQuery("#municipio").html(html);
+		        var location    = estados_municipios[estado_id]['coordenadas']['referencia'];
+		        var norte       = estados_municipios[estado_id]['coordenadas']['norte'];
+		        var sur         = estados_municipios[estado_id]['coordenadas']['sur'];
+		        jQuery("#latitud").attr("value", location.lat);
+		        jQuery("#longitud").attr("value", location.lng);
+		    }
+		});
+
+		jQuery("#municipio").on("change", function(e){
+			vlz_coordenadas();
+		});
+
+		function vlz_coordenadas(){
+			var estado_id = jQuery("#estado").val();            
+		    var municipio_id = jQuery('#municipio > option[value="'+jQuery("#municipio").val()+'"]').attr('data-id');   
+		    if( estado_id != "" ){
+		        var location    = estados_municipios[estado_id]['municipios'][municipio_id]['coordenadas']['referencia'];
+		        var norte       = estados_municipios[estado_id]['municipios'][municipio_id]['coordenadas']['norte'];
+		        var sur         = estados_municipios[estado_id]['municipios'][municipio_id]['coordenadas']['sur'];
+		        jQuery("#latitud").attr("value", location.lat);
+		        jQuery("#longitud").attr("value", location.lng);
+		    }
+		}
+
+	// Generales
+
+		function GoToHomePage(){
+			// location = 'http://kmimos.ilernus.com';  
+			location = "<?php echo get_home_url().'/perfil-usuario/?ua=profile'; ?>";  
+		}
+			
+		function vlz_modal(tipo, titulo, contenido){
+			switch(tipo){
+				case "terminos":
+					jQuery("#vlz_titulo_registro").html(titulo);
+					jQuery("#terminos_y_condiciones").css("display", "table");
+					jQuery("#boton_registrar_modal").css("display", "inline-block");
+				break;
+			}
+		}
+
+	//MODAL PRECIOS SUGERIDOS-----------------------------------------------------------------------------------------------
+
+		var modalOpend = true;
+		jQuery(window).scroll(function() {
+			if( jQuery(window).width() < 550 ) {
+				var trigger_precios = jQuery("#trigger_precios").offset().top-200;
+			}else{
+				var trigger_precios = jQuery("#trigger_precios").offset().top-500;
+			}
+		    if(jQuery(document).scrollTop() > trigger_precios){
+			    if(modalOpend){
+			    	jQuery('#jj_modal').fadeIn();
+			       	modalOpend = false;
+			    }
+		     }else{
+		      	jQuery('#jj_modal').fadeOut();
+		     }
+		});
+
+		function ocultarModal(){
+			jQuery('#jj_modal').fadeOut();
+			jQuery('#jj_modal').css('display', 'none');
+			modalOpend = false;
+		}
+
 	// Envio de formulario
 
 		jQuery("#vlz_form_nuevo_cuidador").submit(function(e){
@@ -516,7 +596,11 @@
 				      		jQuery("#vlz_registro_cuidador_cerrar").css("display", "inline-block");
 
 				      		<?php
-				      			if( substr($_SERVER["HTTP_REFERER"], -10) == "nuevos-aspirantes/" ){
+				      			if( substr($_SERVER["HTTP_REFERER"], -18) == "nuevos-aspirantes/" ){
+				      				$_SESSION['nuevosAspirantes'] = "SI";
+				      			}
+
+				      			if( isset($_SESSION['nuevosAspirantes']) ){
 				      				echo "_gaq.push(['_trackEvent','registro_cuidador','click','aspirantes','1']);";
 				      			}
 				      		?>
@@ -536,81 +620,5 @@
 
 			e.preventDefault();
 		});
-
-	/* DIRECCIONES */
-
-		jQuery("#estado").on("change", function(e){
-			var estado_id = jQuery("#estado").val(); 
-		    if( estado_id != "" ){
-		        var html = "<option value=''>Seleccione un municipio</option>";
-		        jQuery.each(estados_municipios[estado_id]['municipios'], function(i, val) {
-		            html += "<option value="+val.id+" data-id='"+i+"'>"+val.nombre+"</option>";
-		        });
-		        jQuery("#municipio").html(html);
-		        var location    = estados_municipios[estado_id]['coordenadas']['referencia'];
-		        var norte       = estados_municipios[estado_id]['coordenadas']['norte'];
-		        var sur         = estados_municipios[estado_id]['coordenadas']['sur'];
-		        jQuery("#latitud").attr("value", location.lat);
-		        jQuery("#longitud").attr("value", location.lng);
-		    }
-		});
-
-		jQuery("#municipio").on("change", function(e){
-			vlz_coordenadas();
-		});
-
-		function vlz_coordenadas(){
-			var estado_id = jQuery("#estado").val();            
-		    var municipio_id = jQuery('#municipio > option[value="'+jQuery("#municipio").val()+'"]').attr('data-id');   
-		    if( estado_id != "" ){
-		        var location    = estados_municipios[estado_id]['municipios'][municipio_id]['coordenadas']['referencia'];
-		        var norte       = estados_municipios[estado_id]['municipios'][municipio_id]['coordenadas']['norte'];
-		        var sur         = estados_municipios[estado_id]['municipios'][municipio_id]['coordenadas']['sur'];
-		        jQuery("#latitud").attr("value", location.lat);
-		        jQuery("#longitud").attr("value", location.lng);
-		    }
-		}
-
-	// Generales
-
-		function GoToHomePage(){
-			location = 'http://kmimos.ilernus.com';  
-			// location = "<?php echo get_home_url().'/perfil-usuario/?ua=profile'; ?>";  
-		}
-			
-		function vlz_modal(tipo, titulo, contenido){
-			switch(tipo){
-				case "terminos":
-					jQuery("#vlz_titulo_registro").html(titulo);
-					jQuery("#terminos_y_condiciones").css("display", "table");
-					jQuery("#boton_registrar_modal").css("display", "inline-block");
-				break;
-			}
-		}
-
-	//MODAL PRECIOS SUGERIDOS-----------------------------------------------------------------------------------------------
-
-		var modalOpend = true;
-		jQuery(window).scroll(function() {
-			if( jQuery(window).width() < 550 ) {
-				var trigger_precios = jQuery("#trigger_precios").offset().top-200;
-			}else{
-				var trigger_precios = jQuery("#trigger_precios").offset().top-500;
-			}
-		    if(jQuery(document).scrollTop() > trigger_precios){
-			    if(modalOpend){
-			    	jQuery('#jj_modal').fadeIn();
-			       	modalOpend = false;
-			    }
-		     }else{
-		      	jQuery('#jj_modal').fadeOut();
-		     }
-		});
-
-		function ocultarModal(){
-			jQuery('#jj_modal').fadeOut();
-			jQuery('#jj_modal').css('display', 'none');
-			modalOpend = false;
-		}
 
 </script>
