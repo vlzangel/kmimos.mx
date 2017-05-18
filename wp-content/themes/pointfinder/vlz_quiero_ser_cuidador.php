@@ -3,6 +3,10 @@
 		Template Name: vlz quiero ser cuidador
 	*/
 
+	if (!isset($_SESSION)) {
+        session_start();
+    }
+
 	get_header();
 
 	if(function_exists('PFGetHeaderBar')){PFGetHeaderBar();} 
@@ -504,12 +508,12 @@
 										?>
 									</div>
 
-									<h2 class="vlz_titulo_interno" style="margin-top: 10px;">Servicios Adicionales</h2>
-									<div class="vlz_seccion">
-										<div class="vlz_contenedor_adicionales"></div>
-										<div class="vlz_boton_agregar">Agregar Servicio Adicional</div>
-									</div>
+								</div>
 
+								<h2 class="vlz_titulo_interno" style="margin-top: 10px;">Servicios Adicionales</h2>
+								<div class="vlz_seccion">
+									<div class="vlz_contenedor_adicionales"></div>
+									<div class="vlz_boton_agregar">Agregar Servicio Adicional</div>
 								</div>
 
 								<div id="cargar_imagen_2" style="display: none;"></div>

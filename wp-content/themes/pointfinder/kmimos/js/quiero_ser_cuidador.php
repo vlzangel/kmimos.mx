@@ -116,6 +116,10 @@
 
 	// Carga y optimización de la carga de imagenes
 
+		jQuery( document ).ready(function() {
+		  	verificar_cache_form();
+		});
+
 		/*jQuery( document ).ready(function() {
 		  	cambiar_img();
 
@@ -477,63 +481,6 @@
 
 		});
 
-	// Envio de formulario
-
-		jQuery("#vlz_form_nuevo_cuidador").submit(function(e){
-
-			jQuery("#vlz_modal_cerrar_registrar").attr("onclick", "");
-
-			if( form.checkValidity() ){
-		    	var terminos = jQuery("#terminos").attr("value");
-				if( terminos == 1){
-
-					var a = "<?php echo get_home_url()."/wp-content/themes/pointfinder/kmimos/registro_cuidador/vlz_procesar.php"; ?>";
-			  		jQuery("#vlz_contenedor_botones").css("display", "none");
-			  		jQuery(".vlz_modal_contenido").css("display", "none");
-			  		jQuery("#vlz_cargando").css("display", "block");
-			  		jQuery("#vlz_cargando").css("height", "auto");
-			  		jQuery("#vlz_cargando").css("text-align", "center");
-			  		jQuery("#vlz_cargando").html("<h2>Registrando, por favor espere...</h2>");
-			  		jQuery("#vlz_titulo_registro").html("Registrando, por favor espere...");
-			     	
-					jQuery.post( a, jQuery("#vlz_form_nuevo_cuidador").serialize(), function( data ) {
-
-			      		data = eval(data);
-			      		if( data.error == "SI" ){
-			      			jQuery('html, body').animate({ scrollTop: jQuery("#email").offset().top-75 }, 2000);
-			      			alert(data.msg);
-			      			jQuery("#terminos_y_condiciones").css("display", "none");
-			      			jQuery("#vlz_contenedor_botones").css("display", "block");
-				      		jQuery(".vlz_modal_contenido").css("display", "block");
-				      		jQuery("#terminos").css("display", "block");
-				      		jQuery("#vlz_cargando").css("height", "auto");
-				      		jQuery("#vlz_cargando").css("display", "none");
-				      		jQuery("#vlz_cargando").css("text-align", "justify");
-				      		jQuery("#vlz_titulo_registro").html('Términos y Condiciones');
-			  				jQuery("#boton_registrar_modal").css("display", "inline-block");
-			      		}else{
-			      			jQuery("#vlz_titulo_registro").html("Registro Completado!");
-						  	jQuery("#vlz_cargando").html(data.msg);
-				      		jQuery("#vlz_registro_cuidador_cerrar").css("display", "inline-block");
-
-				      		_gaq.push(['_trackEvent','registro_cuidador','click','aspirantes','1']);
-
-			  				jQuery.each(campos_form, function( id, tipo ) {
-			  					borrar_cookie(id);
-			  				});
-			      		}
-			      	});
-
-					}else{
-			  		alert("Debe aceptar los términos y condiciones.");
-					vlz_modal('terminos', 'Términos y Condiciones');
-				}
-
-			}
-
-			e.preventDefault();
-		});
-
 	/* DIRECCIONES */
 
 		jQuery("#estado").on("change", function(e){
@@ -571,8 +518,8 @@
 	// Generales
 
 		function GoToHomePage(){
-			location = 'http://kmimos.ilernus.com';  
-			// location = "<?php echo get_home_url().'/perfil-usuario/?ua=profile'; ?>";  
+			// location = 'http://kmimos.ilernus.com';  
+			location = "<?php echo get_home_url().'/perfil-usuario/?ua=profile'; ?>";  
 		}
 			
 		function vlz_modal(tipo, titulo, contenido){
@@ -609,5 +556,69 @@
 			jQuery('#jj_modal').css('display', 'none');
 			modalOpend = false;
 		}
+
+	// Envio de formulario
+
+		jQuery("#vlz_form_nuevo_cuidador").submit(function(e){
+
+			jQuery("#vlz_modal_cerrar_registrar").attr("onclick", "");
+
+			if( form.checkValidity() ){
+		    	var terminos = jQuery("#terminos").attr("value");
+				if( terminos == 1){
+
+					var a = "<?php echo get_home_url()."/wp-content/themes/pointfinder/kmimos/registro_cuidador/vlz_procesar.php"; ?>";
+			  		jQuery("#vlz_contenedor_botones").css("display", "none");
+			  		jQuery(".vlz_modal_contenido").css("display", "none");
+			  		jQuery("#vlz_cargando").css("display", "block");
+			  		jQuery("#vlz_cargando").css("height", "auto");
+			  		jQuery("#vlz_cargando").css("text-align", "center");
+			  		jQuery("#vlz_cargando").html("<h2>Registrando, por favor espere...</h2>");
+			  		jQuery("#vlz_titulo_registro").html("Registrando, por favor espere...");
+			     	
+					jQuery.post( a, jQuery("#vlz_form_nuevo_cuidador").serialize(), function( data ) {
+			      		data = eval(data);
+			      		if( data.error == "SI" ){
+			      			jQuery('html, body').animate({ scrollTop: jQuery("#email").offset().top-75 }, 2000);
+			      			alert(data.msg);
+			      			jQuery("#terminos_y_condiciones").css("display", "none");
+			      			jQuery("#vlz_contenedor_botones").css("display", "block");
+				      		jQuery(".vlz_modal_contenido").css("display", "block");
+				      		jQuery("#terminos").css("display", "block");
+				      		jQuery("#vlz_cargando").css("height", "auto");
+				      		jQuery("#vlz_cargando").css("display", "none");
+				      		jQuery("#vlz_cargando").css("text-align", "justify");
+				      		jQuery("#vlz_titulo_registro").html('Términos y Condiciones');
+			  				jQuery("#boton_registrar_modal").css("display", "inline-block");
+			      		}else{
+			      			jQuery("#vlz_titulo_registro").html("Registro Completado!");
+						  	jQuery("#vlz_cargando").html(data.msg);
+				      		jQuery("#vlz_registro_cuidador_cerrar").css("display", "inline-block");
+
+				      		<?php
+				      			if( substr($_SERVER["HTTP_REFERER"], -18) == "nuevos-aspirantes/" ){
+				      				$_SESSION['nuevosAspirantes'] = "SI";
+				      			}
+
+				      			if( isset($_SESSION['nuevosAspirantes']) ){
+				      				echo "_gaq.push(['_trackEvent','registro_cuidador','click','aspirantes','1']);";
+				      			}
+				      		?>
+
+			  				jQuery.each(campos_form, function( id, tipo ) {
+			  					borrar_cookie(id);
+			  				});
+			      		}
+			      	});
+
+					}else{
+			  		alert("Debe aceptar los términos y condiciones.");
+					vlz_modal('terminos', 'Términos y Condiciones');
+				}
+
+			}
+
+			e.preventDefault();
+		});
 
 </script>
