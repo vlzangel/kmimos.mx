@@ -99,6 +99,16 @@ function get_status($sts_reserva, $sts_pedido, $forma_pago=""){
 			}
 			if( $sts_pedido == 'wc-pending'){
 				$sts_largo = 'Pendiente de pago';
+/*
+				$sts_corto = "Fallida";
+				if( in_array($forma_pago, $payment_method_cards) ){
+					$sts_largo = "Pendiente por confirmar el cuidador"; // metodo de pago es por TDC / TDD ( parcial )
+				}elseif( in_array($forma_pago, $payment_method_store) ){
+					$sts_largo = "Pendiente de pago en tienda"; // Tienda por conv
+				}else{
+					$sts_largo = "Estatus Pedido: {$sts_pedido}"; 
+				}
+*/
 			}
 			break;
 		case 'confirmed':

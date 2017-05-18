@@ -45,6 +45,16 @@ if( isset($_GET['r']) ){
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/kmimos.css">
 
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', 'UA-56422840-1', 'auto');
+		  ga('send', 'pageview');
+		</script>
+
 	</head>
 	<body  class="container">
 
@@ -67,7 +77,7 @@ if( isset($_GET['r']) ){
 								<input type="text"   id="name"  name="name" class="form-control" value="" placeholder="Nombre y Apellido" required>
 								<input type="email"  id="email" name="email" class="form-control" value="<?php echo $email; ?>" placeholder="Correo electr&oacute;nico" required>
 							</div>
-							<button type="button" id="send" class="btn-kmimos btn">Quiero participar</button>
+							<button type="button" id="send" class="btn-kmimos btn">¡Quiero participar!</button>
 						</form>
 						<form action="compartir/?e=" method="post" id="temp"></form>
 					</div>
@@ -90,14 +100,6 @@ if( isset($_GET['r']) ){
 		</script>		
 		<script src="js/main.js"></script>
 
-	    <script>
-		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-		  ga('create', 'UA-56422840-1', 'auto');
-		  ga('send', 'pageview');
-		</script>
+	    
 	</body>
 </html>
