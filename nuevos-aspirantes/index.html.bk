@@ -29,14 +29,22 @@
 	       	</article>
        	 	<article class="col-sm-7">
 				<h1>Kmimos es un servicio digital que 
-				<strong>conecta Doglovers como t&uacute;</strong>, con dueños de perros que necesitan que les cuiden a sus peludos mientras no est&aacute;n en casa
+					<strong>conecta Doglovers como t&uacute;</strong>, con dueños de perros que necesitan que les cuiden a sus peludos mientras no est&aacute;n en casa
 				</h1>
+
+				<div class="text-center">				
+		       	 	<button type="button" class="btn btn-lg btn-kmimos" data-toggle="modal" 
+		       	 			data-target="#list-subscribe">
+						Quiero ser un Cuidador Certificado Kmimos
+					</button>
+				</div>
+
        	 	</article>
 	       	<article class="img-section-1 col-sm-5 pull-left  hidden-md hidden-sm hidden-lg">
 	       		<img src="img/Character_section1.png" class="img-kmimos img-responsive">
 	       	</article>
 
-       	 	<article class="col-xs-12 text-center" style="z-index:999!important;">
+       	 	<article class="col-xs-12 hidden text-center" style="z-index:999!important;">
 	       	 	<button type="button" class="btn btn-lg btn-kmimos" data-toggle="modal" 
 	       	 			data-target="#list-subscribe">
 					Quiero ser un Cuidador Certificado Kmimos
@@ -282,6 +290,51 @@
        	</aside>
 	</footer>
 
+	<section id="section-help">
+		<!-- BEGIN col-md and col-lg -->
+		<div class="container hidden-xs">
+			<article class="col-sm-1 col-md-1 no-padding">
+				<img src="img/help.jpg" class="img-responsive">
+			</article>
+			<article class="col-sm-11 col-md-11">
+				<span class="help-title title">
+					Tienes dudas sobre el registro? Tienes poco tiempo para registrarte?
+					<span>kmimos te ayuda!</span>
+				</span>
+				<p class="help-subtitle">
+					Ponte en contacto con nosotros. Mándanos un email a 
+					<span class="resaltar"> a.vera@kmimos.la </span> 
+					o por Teléfono o Whatsapp al 
+					<span class="resaltar"> (55)61780320 </span>
+				</p>
+				<span class="help-title font-gris">La familia Kmimos te espera!!</span>
+			</article>
+		</div>		
+		<!-- END col-md and col-lg -->
+
+		<!-- BEGIN col-xs  and col-sm -->
+		<div class="container hidden-sm hidden-md hidden-lg hidden-xl">
+			<article class="col-xs-3 col-sm-3 col-md-1 no-padding">
+				<img src="img/help.jpg" class="img-responsive">
+			</article>
+			<article class="col-xs-9 col-sm-9">
+				<span class="help-title title">
+					Tienes dudas sobre el registro?
+				</span>
+			</article>
+			<article class="col-xs-12">
+				<p class="help-subtitle">
+					Ponte en contacto con nosotros. 
+					<span class="resaltar"> a.vera@kmimos.la </span> 
+					ó   
+					<span class="resaltar"> (55)61780320 </span>
+				</p>
+			</article>
+		</div>
+		<!-- END col-xs  and col-sm -->
+
+	</section>
+
 	<!-- Registro de Email -->
 	<div class="modal" id="list-subscribe" role="dialog">
 	  <div class="modal-dialog" role="document">
@@ -322,5 +375,16 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>  
     <script src="js/main_.js"></script>
     
+    <script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-56422840-1', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
+
     </body>
 </html>

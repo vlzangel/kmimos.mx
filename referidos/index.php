@@ -77,7 +77,7 @@ if( isset($_GET['r']) ){
 								<input type="text"   id="name"  name="name" class="form-control" value="" placeholder="Nombre y Apellido" required>
 								<input type="email"  id="email" name="email" class="form-control" value="<?php echo $email; ?>" placeholder="Correo electr&oacute;nico" required>
 							</div>
-							<button type="button" id="send" class="btn-kmimos btn">Quiero participar</button>
+							<button type="button" id="send" class="btn-kmimos btn">¡Quiero participar!</button>
 						</form>
 						<form action="compartir/?e=" method="post" id="temp"></form>
 					</div>

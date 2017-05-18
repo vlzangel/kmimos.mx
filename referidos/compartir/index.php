@@ -43,7 +43,7 @@ if(isset($_GET['e'])){
 			<header class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2">
 				<img src="img/dogs-top.jpg" class="img-responsive" width="100%" alt="">
 				<div class="col-md-12"><h1 id="subtitulo" class="col-md-offset-2 col-md-8 text-center">
-					Felicidades ya formas partes del club!
+					¡Felicidades, ya formas parte de nuestro Club!
 				</h1><br>
 				</div>
 				<h1 class="text-center" style="font-size: 2.14em;">Suma huellas y gana descuentos</h1>
@@ -90,7 +90,7 @@ if(isset($_GET['e'])){
 				</div>		
 					<div id="info" class="col-sm-11 clearfix hidden">
 						<strong style="color:#9F159F;font-size:23px;">copia el enlace y comparte con amigos y familiares</strong>
-						<pre><strong><?php echo $url;?></strong></pre>
+						<pre style="font-size: 15px;"><strong><?php echo $url;?></strong></pre>
 					</div>
 			</section>
 
