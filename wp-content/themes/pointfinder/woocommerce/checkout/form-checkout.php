@@ -29,6 +29,21 @@ if ( ! $checkout->enable_signup && ! $checkout->enable_guest_checkout && ! is_us
 	return;
 }
 
+// Modificacion Ángel Veloz
+if( !isset($_SESSION) ){ session_start(); }
+
+global $current_user;
+$user_id = md5($current_user->ID);
+
+if( isset( $_SESSION["MR_".$user_id] ) ){
+    $DS = $_SESSION["MR_".$user_id];
+
+    $ver_formulario = " style='display: block;' ";
+    if( isset($DS["no_pagar"]) ){
+    	$ver_formulario = " style='display: none;' ";
+    }
+}
+
 ?>
 
 <form name="checkout" method="post" class="checkout woocommerce-checkout" action="<?php echo esc_url( wc_get_checkout_url() ); ?>" enctype="multipart/form-data">
@@ -37,23 +52,6 @@ if ( ! $checkout->enable_signup && ! $checkout->enable_guest_checkout && ! is_us
 
 
 		<?php do_action( 'woocommerce_checkout_before_customer_details' ); ?>
-
-		<?php
-            // Modificacion Ángel Veloz
-            if( !isset($_SESSION) ){ session_start(); }
-
-            global $current_user;
-            $user_id = md5($current_user->ID);
-
-            if( isset( $_SESSION["MR_".$user_id] ) ){
-                $DS = $_SESSION["MR_".$user_id];
-
-                $ver_formulario = " style='display: block;' ";
-                if( isset($DS["no_pagar"]) ){
-                	$ver_formulario = " style='display: none;' ";
-                }
-            }
-        ?>
 
         <div id="customer_details" <?php echo $ver_formulario; ?> >
 			<div class="col-1">
@@ -87,17 +85,6 @@ if ( ! $checkout->enable_signup && ! $checkout->enable_guest_checkout && ! is_us
 		    color: #54c8a7;
 		    font-weight: 600;
 		}
-		<?php
-			global $current_user;
-			$roles = wp_get_current_user()->roles;
-			if(  $_SESSION['admin_sub_login'] != 'YES' ){
-				echo "
-					.payment_method_wcvendors_test_gateway{
-						display: none;
-					}
-				";
-			}
-		?>
 		@media (max-width: 592px){
 			#add_payment_method #payment ul.payment_methods, .woocommerce-checkout #payment ul.payment_methods>li>label {
 				font-size: x-small;
