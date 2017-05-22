@@ -228,50 +228,49 @@
 									
 								</div>
 
-								<div style="display: none;">
-									<h2 class="vlz_titulo_interno">&#191;Qu&eacute; Tama&ntilde;os tienen tus Mascotas?</h2>
-																	
-									<div class="vlz_seccion">
+								
+								<h2 class="vlz_titulo_interno">&#191;Qu&eacute; Tama&ntilde;os tienen tus Mascotas?</h2>
+																
+								<div class="vlz_seccion">
 
-										<?php
-											foreach ($tam as $key => $value) {
-												echo '
-													<div class="vlz_cell25">
-														<div class="vlz_input vlz_no_check vlz_pin_check"><input type="hidden" id="tengo_'.$key.'" name="tengo_'.$key.'" value="0">'.$value.'</div>
-													</div>
-												';
-											}
-										?>
+									<?php
+										foreach ($tam as $key => $value) {
+											echo '
+												<div class="vlz_cell25">
+													<div class="vlz_input vlz_no_check vlz_pin_check"><input type="hidden" id="tengo_'.$key.'" name="tengo_'.$key.'" value="0">'.$value.'</div>
+												</div>
+											';
+										}
+									?>
+									
+								</div>
+
+								<div class="vlz_seccion">
+
+									<div class="vlz_cell50 jj_input_cell00">
+
+										<h2 class="vlz_titulo_interno">&#191;Qu&eacute; Edades Aceptas?</h2>
+
+										<div class="vlz_cell50">
+											<div class="vlz_input vlz_no_check vlz_pin_check"><input type="hidden" id="cachorros" name="cachorros" value="0">Cachorros</div>
+										</div>
 										
-									</div>
-
-									<div class="vlz_seccion">
-
-										<div class="vlz_cell50 jj_input_cell00">
-
-											<h2 class="vlz_titulo_interno">&#191;Qu&eacute; Edades Aceptas?</h2>
-
-											<div class="vlz_cell50">
-												<div class="vlz_input vlz_no_check vlz_pin_check"><input type="hidden" id="cachorros" name="cachorros" value="0">Cachorros</div>
-											</div>
-											
-											<div class="vlz_cell50 ">
-												<div class="vlz_input vlz_no_check vlz_pin_check"><input type="hidden" id="adultos" name="adultos" value="0">Adultos</div>
-											</div>
-
+										<div class="vlz_cell50 ">
+											<div class="vlz_input vlz_no_check vlz_pin_check"><input type="hidden" id="adultos" name="adultos" value="0">Adultos</div>
 										</div>
 
-										<div class="vlz_cell50 jj_input_cell00">
-											
-											<h2 class="vlz_titulo_interno">&#191;Qu&eacute; Condiciones Aceptas?</h2>
-
-											<div class="vlz_cell50 jj_input_cell00">
-												<div class="vlz_input vlz_no_check vlz_pin_check"><input type="hidden" id="esterilizado" name="esterilizado" value="0">No Esterilizados</div>
-											</div>
-
-										</div>
-																			
 									</div>
+
+									<div class="vlz_cell50 jj_input_cell00">
+										
+										<h2 class="vlz_titulo_interno">&#191;Qu&eacute; Condiciones Aceptas?</h2>
+
+										<div class="vlz_cell50 jj_input_cell00">
+											<div class="vlz_input vlz_no_check vlz_pin_check"><input type="hidden" id="esterilizado" name="esterilizado" value="0">No Esterilizados</div>
+										</div>
+
+									</div>
+																		
 								</div>
 
 								<h2 class="vlz_titulo_interno">&#191;Qu&eacute; Tama&ntilde;o de Mascotas Aceptas?</h2>

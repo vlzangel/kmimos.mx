@@ -92,8 +92,8 @@ if (is_user_logged_in() && count($user_favorites_arr)>0) {
 				<div class="pflist-item-inner">
 					<div class="pflist-imagecontainer pflist-subitem" >
 						<div class="vlz_postada_cuidador">
-							<a class="vlz_img_cuidador" href="'.$url.'" style="background-image: url('.$img.');"></a>
-							<span class="vlz_img_cuidador_interno" data-href="'.$url.'" style="background-image: url('.$img.');"></span>
+							<a class="vlz_img_cuidador easyload" data-original="'.$img.'" href="'.$url.'" style="background-image: url(); filter:blur(2px);"></a>
+							<span class="vlz_img_cuidador_interno easyload" data-original="'.$img.'" data-href="'.$url.'" style="background-image: url();"></span>
 						</div>
 						<div class="RibbonCTR">
 					        <span class="Sign">

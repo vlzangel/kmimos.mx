@@ -125,7 +125,7 @@
                         <a href="https://www.facebook.com/Kmimosmx" target="_blank" class="facebookBtn socialBtn" title="@kmimosmx"></a>
                         <a href="https://www.twitter.com/Kmimosmx"  target="_blank"class="twitterBtn socialBtn" title="@kmimosmx"></a>
                         <a href="https://www.instagram.com/kmimosmx/" target="_blank" class="instagramBtn socialBtn" title="@kmimosmx"></a>
-                        <img src="<?php bloginfo( 'template_directory' ); ?>/images/dog.png" alt="">
+                        <img class=" easyload" data-original="<?php bloginfo( 'template_directory' ); ?>/images/dog.png" src="" alt="">
                       </div>
                     </div>
                  </div> 

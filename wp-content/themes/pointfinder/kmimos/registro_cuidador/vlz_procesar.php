@@ -369,10 +369,6 @@
                 $nombres    = trim($nombres);
                 $apellidos  = trim($apellidos);
 
-                $slug = $user_id."-".( $nombres  )."-".( substr($apellidos, 0, 1) );
-
-                $slug = urls_amigables( utf8_decode($slug) );
-
                 $nom = strtoupper( substr($nombres, 0, 1) ).strtolower( substr($nombres, 1)  )." ".strtoupper( substr($apellidos, 0, 1) ).".";
 
                 $sql_post_cuidador = "
@@ -441,7 +437,7 @@
                                     "hoy"           => $hoy,
                                     "titulo"        => $adicionales_principales[$key]." - ".$nom,
                                     "descripcion"   => descripciones($key),
-                                    "slug"          => $key."-".$slug,
+                                    "slug"          =>  $user_id."-".$key,
                                     "cuidador"      => $id_post,
                                     "status"        => $status
                                 ));

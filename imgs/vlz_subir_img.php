@@ -9,6 +9,11 @@
     $sImagen = base64_decode($img);
 
     $dir = "Temp/";
+
+    if( !file_exists($dir) ){
+        @mkdir($dir);
+    }
+
     $name = time().".jpg";
     $path = $dir.$name;
 
