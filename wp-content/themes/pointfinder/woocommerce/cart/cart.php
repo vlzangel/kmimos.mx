@@ -105,17 +105,11 @@ do_action( 'woocommerce_before_cart' ); ?>
 	        		"UPDATE wp_postmeta SET meta_value = '".$manana."'      WHERE post_id = ".$id_cupon." AND meta_key = 'expiry_date'"
 	        	);
 
-	        	// echo "<pre>";
-	        	// 	print_r($sqls);
-	        	// echo "</pre>";
-
 	        	foreach ($sqls as $sql) {
 	        		$wpdb->query($sql);
 	        	}
 
 	        }
-
-	        // exit;
 
 	        if( !WC()->cart->has_discount( "saldo-".$current_user->ID ) ){
 				WC()->cart->add_discount( "saldo-".$current_user->ID );
@@ -129,7 +123,6 @@ do_action( 'woocommerce_before_cart' ); ?>
 			print_r($DS);
 		echo "</pre>";
     }
-
 
     // exit;
 ?>
