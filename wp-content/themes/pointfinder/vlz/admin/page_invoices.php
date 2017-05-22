@@ -281,8 +281,8 @@ if(count($items) > 0){
 				//var_dump($pedido);
 
 				//RESERVAS PENDIENTES POR ERROR DE PAGOS DE TARJETAS
-				if($pedido->post_status=='pending') {
-					
+				if($pedido->post_status=='wc_pending') {
+
 
 				}else if($reserva->post_status=='unpaid' && $_metas['_payment_method'][0]=='openpay_stores'){
 

@@ -90,11 +90,11 @@
 	      	$cant_imgs = count($imagenes);
 	      	if( $cant_imgs > 0 ){
 	      		$items = array(); $home = get_home_url()."/";
-	      		foreach ($imagenes as $value) {
+	      		foreach ($imagenes as $value) {//
 	      			$items[] = "
-	      				<div class='vlz_item' onclick=\"vlz_galeria_ver('".$home.$value."')\">
-	      					<div class='vlz_item_fondo'  style='background-image: url(".$home.$value.");'></div>
-	      					<div class='vlz_item_imagen' style='background-image: url(".$home.$value.");'></div>
+	      				<div class='vlz_item scroll_animate' data-scale='small' data-position='top' onclick=\"vlz_galeria_ver('".$home.$value."')\">
+	      					<div class='vlz_item_fondo easyload' data-original='".$home.$value."'  style='background-image: url(); filter:blur(2px);'></div>
+	      					<div class='vlz_item_imagen easyload' data-original='".$home.$value."' style='background-image: url();'></div>
 	      				</div>
 	      			";
 	      		}
@@ -131,14 +131,33 @@
 		vlz_actualizar_ratings($value->id_post);
 	} ?>
 
+	<style type="text/css">
+		.vlz_contenedor_galeria {
+			height: auto;
+			overflow: hidden;
+		}
+		.vlz_contenedor_galeria_interno{
+			width:auto !important;
+			text-align: center;
+		}
+		.vlz_item{
+			height: 0;
+			width: 100%;
+			max-width: 250px;
+			padding-top: 25%;
+			float: none;
+			display: inline-block;
+		}
+	</style>
+
 	<div class="vlz_contenedor">
 
 		<div class="vlz_contenedor_header">
 
 			<div class='vlz_lados'>
 				<div class="vlz_img_portada">
-	                <div class="vlz_img_portada_fondo" style="background-image: url(<?php echo $foto; ?>);"></div>
-	                <div class="vlz_img_portada_normal" style="background-image: url(<?php echo $foto; ?>);"></div>
+	                <div class="vlz_img_portada_fondo easyload" data-original="<?php echo $foto; ?>" style="background-image: url(); filter:blur(2px);"></div>
+	                <div class="vlz_img_portada_normal easyload" data-original="<?php echo $foto; ?>" style="background-image: url();"></div>
 	            </div>
 			</div>
 
