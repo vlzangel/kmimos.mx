@@ -27,21 +27,25 @@ class WC_Deposits_Cart{
     }
 
     private function update_deposit_meta($product, $quantity, &$cart_item_data){
+        echo "Hola";
+
+        // Modificacion Ángel Veloz
+        if( !isset($_SESSION) ){ session_start(); }
+
+        global $current_user;
+        $user_id = md5($current_user->ID);
+
+        $amount = $cart_item_data['booking']['_cost'];
+
         if ($product->wc_deposits_enable_deposit === 'yes' && isset($cart_item_data['deposit']) && $cart_item_data['deposit']['enable'] === 'yes') {
             
             $deposit_amount = $product->wc_deposits_deposit_amount;
             $deposit = $deposit_amount;
 
             if ($product->is_type('booking')) {
-                $amount = $cart_item_data['booking']['_cost'];
+               
 
                 if ($product->wc_deposits_amount_type === 'percent') {
-
-                    // Modificacion Ángel Veloz
-                    if( !isset($_SESSION) ){ session_start(); }
-
-                    global $current_user;
-                    $user_id = md5($current_user->ID);
 
                     if( isset( $_SESSION["MR_".$user_id] ) ){
                         $DS = $_SESSION["MR_".$user_id];
@@ -64,6 +68,7 @@ class WC_Deposits_Cart{
                                 $DS['saldo_permanente'] = $saldo-$amount;
                                 $deposit = 0;
                                 $DS["deposit"] = "NO";
+                                $DS["no_pagar"] = "YES";
                             }else{
                                 $deposit = 0;
                                 $DS['monto_cupon'] = $saldo;
@@ -85,6 +90,21 @@ class WC_Deposits_Cart{
                 $cart_item_data['deposit']['total']     = $amount;
             } else {
                 $cart_item_data['deposit']['enable'] = 'no';
+            }
+        }else{
+            if( isset( $_SESSION["MR_".$user_id] ) ){
+                $DS = $_SESSION["MR_".$user_id];
+
+                $saldo = $DS['saldo'];
+
+                if( $saldo > $amount ){
+                    $DS['saldo_permanente'] = $saldo-$amount;
+                    $DS["no_pagar"] = "YES";
+                }else{
+                    $DS['monto_cupon'] = $saldo;
+                }
+
+                $_SESSION["MR_".$user_id] = $DS;
             }
         }
     }

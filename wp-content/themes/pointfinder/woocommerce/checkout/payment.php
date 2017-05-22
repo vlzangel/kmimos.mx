@@ -50,9 +50,9 @@ if( isset( $_SESSION["MR_".$user_id] ) ){
 						// 	print_r($gateway);
 						// echo "</pre>";
 
-						wc_get_template( 'checkout/payment-method.php', array( 'gateway' => $gateway ) );
+						// wc_get_template( 'checkout/payment-method.php', array( 'gateway' => $gateway ) );
 
-						/*if( $pagar == "NO"){
+						if( $pagar == "NO"){
 							if( $gateway->method_title == "Contra reembolso" ){
 								wc_get_template( 'checkout/payment-method.php', array( 'gateway' => $gateway ) );
 							}
@@ -60,7 +60,7 @@ if( isset( $_SESSION["MR_".$user_id] ) ){
 							if( $gateway->method_title != "Contra reembolso" ){
 								wc_get_template( 'checkout/payment-method.php', array( 'gateway' => $gateway ) );
 							}
-						}*/
+						}
 						
 					}
 				} else {
