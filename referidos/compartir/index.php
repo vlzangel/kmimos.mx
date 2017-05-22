@@ -25,6 +25,15 @@ if(isset($_GET['e'])){
 		<meta property="og:title"         content="Kmimos - Clientes Referidos" />
 		<meta property="og:description"   content="Suma huellas a nuestro club y gana descuentos" />
 		<meta property="og:image"         content="https://mx.kmimos/referidos/img/1backgroundfoto.png" />
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', 'UA-56422840-1', 'auto');
+		  ga('send', 'pageview');
+		</script>
 
 	</head>
 	<body>
@@ -33,7 +42,11 @@ if(isset($_GET['e'])){
 			
 			<header class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2">
 				<img src="img/dogs-top.jpg" class="img-responsive" width="100%" alt="">
-				<h1 class="text-left" style="font-size: 2.14em;">Suma huellas a nuestro club y gana descuentos</h1>
+				<div class="col-md-12"><h1 id="subtitulo" class="col-md-offset-2 col-md-8 text-center">
+					¡Felicidades, ya formas parte de nuestro Club!
+				</h1><br>
+				</div>
+				<h1 class="text-center" style="font-size: 2.14em;">Suma huellas y gana descuentos</h1>
 			</header>
 
 			<section class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2 text-center">
@@ -75,9 +88,9 @@ if(isset($_GET['e'])){
 					</section>
 
 				</div>		
-					<div id="info" class="col-sm-10 col-sm-offset-1 clearfix hidden">
-						<strong style="color:#9F159F;">Copia el enlace y Comparte con amigos y familiares.</strong>
-						<pre><strong><?php echo $url;?></strong></pre>
+					<div id="info" class="col-sm-11 clearfix hidden">
+						<strong style="color:#9F159F;font-size:23px;">copia el enlace y comparte con amigos y familiares</strong>
+						<pre style="font-size: 15px;"><strong><?php echo $url;?></strong></pre>
 					</div>
 			</section>
 

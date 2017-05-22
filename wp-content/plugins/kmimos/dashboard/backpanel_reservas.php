@@ -110,7 +110,7 @@ $reservas = getReservas($desde, $hasta);
 				  		$cliente_n_reserva = getCountReservas($reserva->cliente_id);
 				  		if(array_key_exists('rows', $cliente_n_reserva)){
 					  		foreach ($cliente_n_reserva["rows"] as $value) {
-				  				$recompra = ($value['cant']>0)? "SI" : "NO" ;
+				  				$recompra = ($value['cant']>1)? "SI" : "NO" ;
 					  		}
 					  	}
 				  		# MetaDatos del Reserva
@@ -200,23 +200,13 @@ $reservas = getReservas($desde, $hasta);
 
 				    </tr>
 			   	<?php } ?>
-			   		<tr class="warning">
-			   			<th><?php echo ++$count; ?></th>
-			   			<th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th>
-			   			<th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th>
-			   			<th class="text-right"><strong>Total Reservas Confirmadas:</strong></th>
-			   			<th><?php echo currency_format($total_a_pagar); ?> </th>
-					  	<th><?php echo currency_format($total_pagado); ?></th>
-					  	<th><?php echo currency_format($total_remanente); ?></th>
-			   			<th></th><th></th>
-			   		</tr>
 			  </tbody>
 			</table>
 			</div>
 		</div>
 	<?php } ?>
 
-	<div>	
+	<div class="hidden">	
 		<div class="col-xs-12 col-sm-12 col-md-2" style="margin:5px; padding:10px; ">
 			<strong>Reservas Confirmadas</strong>
 		</div>

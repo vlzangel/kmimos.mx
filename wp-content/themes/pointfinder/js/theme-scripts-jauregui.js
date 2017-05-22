@@ -30,7 +30,7 @@ jQuery.validator.addMethod("pattern", function(value, element, param) {
   	$.fn.reverse = [].reverse;
 
 	function pfOrientResizeFunction(){
-		window.location.reload();
+		// window.location.reload();
 	}
 	if (window.DeviceOrientationEvent) {
 		window.addEventListener('orientationchange', pfOrientResizeFunction, false);
