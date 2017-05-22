@@ -428,7 +428,7 @@ header.pfshrink #pfpostitemlink {
     }
 
     .wpf-container, #pfuaprofileform div.mce-fullscreen {
-        margin: 48px 0 0 0 !important;
+        margin: 0px 0 0 0 !important;
     }
 
     #sticky{
