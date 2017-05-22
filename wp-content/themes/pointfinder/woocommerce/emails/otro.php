@@ -3,11 +3,10 @@
 	/* Administrador */
 
 		$saludo = "<p>Hola <strong>Administrador</strong>,</p>";
-		$msg_id_reserva ='<p>Se ha pagado la Reserva <strong># '.$reserva->ID.'</strong> </p>';
+		$msg_id_reserva ='<p>Se ha pagado la Reserva <strong># '.$reserva_id.'</strong> </p>';
 		
 		$mensaje_admin 	= 
 			$saludo.
-			$modificacion.
 	  		$msg_id_reserva.
 	  		"<br>".$aceptar_rechazar.
   			$detalles_cliente.
@@ -17,18 +16,18 @@
 	  		"<br>".$aceptar_rechazar
 		;
 
-		$mensaje_admin = kmimos_get_email_html('Nueva Reserva - '.$producto->post_title, $mensaje_admin, 'Nueva Reserva - '.$producto->post_title, true, true);
+		$mensaje_admin = kmimos_get_email_html('Nueva Reserva - '.$producto, $mensaje_admin, 'Nueva Reserva - '.$producto, true, true);
 
-		wp_mail( $email_admin, "Solicitud de reserva #".$reserva->ID, $mensaje_admin, kmimos_mails_administradores() );
+		wp_mail( $email_admin, "Solicitud de reserva #".$reserva_id, $mensaje_admin, kmimos_mails_administradores() );
 
 	/* Correo Cliente */
 
-		$msg_id_reserva ='<p>Solicitud de reserva de servicio <strong>(N° '.$reserva->ID.')</strong> </p>';
+		$msg_id_reserva ='<p>Solicitud de reserva de servicio <strong>(N° '.$reserva_id.')</strong> </p>';
 
 		$saludo = '
-			<center style="font-size: 16px; font-weight: 600;">¡Gracias '.$nombre.' '.$apellido.'!</center>
+			<center style="font-size: 16px; font-weight: 600;">¡Gracias '.$nom_cliente.'!</center>
 
-			<p>Recibimos tu solicitud de reserva de <strong>'.$tipo_servicio.'</strong>, para que <strong>'.$cuidador_post->post_title.'</strong> atienda a tu(s) peludo(s).</p>
+			<p>Recibimos tu solicitud de reserva de <strong>'.$tipo_servicio.'</strong>, para que <strong>'.$nom_cuidador.'</strong> atienda a tu(s) peludo(s).</p>
 
 			<p align="justify">
 				Dentro de las próximas 12 horas el cuidador confirmará la disponibilidad para tu solicitud. 
@@ -47,10 +46,9 @@
 			<h2>Detalles de tu reservación pendiente a confirmar:</h2>
 		';
 
-		$mensaje_cliente = 
-			$saludo.	
-			$modificacion.
+		$mensaje_cliente = 	
 			$msg_id_reserva.
+			$saludo.
 			$detalles_cuidador.
 			$detalles_mascotas.
 			$detalles_servicio.
@@ -65,11 +63,11 @@
 		Correo Cuidador
 	*/
 
-		$msg_id_reserva ='<p>Reserva #: <strong>'.$reserva->ID.'</strong> </p>';
+		$msg_id_reserva ='<p>Reserva #: <strong>'.$reserva_id.'</strong> </p>';
 
 		$saludo = '
-			<p>Hola <strong>'.$cuidador_post->post_title.'</strong>,</p>
-			<p>El cliente <strong>'.$nombre.' '.$apellido.'</strong> te ha enviado una solicitud de Reserva.</p>
+			<p>Hola <strong>'.$nom_cuidador.'</strong>,</p>
+			<p>El cliente <strong>'.$nom_cliente.'</strong> te ha enviado una solicitud de Reserva.</p>
 			'.$aceptar_rechazar.'
 			<h2>Detalles de la solicitud:</h2>
 		';
@@ -109,7 +107,6 @@
 
 		$mensaje_cuidador  	= 	
 			$saludo.
-			$modificacion.
 			$msg_id_reserva.
 	  		$detalles_cuidador.
 	  		$detalles_cliente.
@@ -120,8 +117,8 @@
 	  		$dudas
 		;
 
-		$mensaje_cuidador = kmimos_get_email_html('Nueva Reserva - '.$tipo_servicio.' por: '.$nombre.' '.$apellido, $mensaje_cuidador, 'Nueva Reserva - '.$tipo_servicio.' por: '.$nombre.' '.$apellido, true, true);
+		$mensaje_cuidador = kmimos_get_email_html('Nueva Reserva - '.$tipo_servicio.' por: '.$nom_cliente, $mensaje_cuidador, 'Nueva Reserva - '.$tipo_servicio.' por: '.$nom_cliente, true, true);
 
-		wp_mail( $cuidador->email, 'Nueva Reserva - '.$tipo_servicio.' por: '.$nombre.' '.$apellido, $mensaje_cuidador, kmimos_mails_administradores());
+		wp_mail( $cuidador_email, 'Nueva Reserva - '.$tipo_servicio.' por: '.$nom_cliente, $mensaje_cuidador, kmimos_mails_administradores());
 
 ?>

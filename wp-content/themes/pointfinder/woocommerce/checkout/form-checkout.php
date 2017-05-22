@@ -117,12 +117,16 @@ if ( ! $checkout->enable_signup && ! $checkout->enable_guest_checkout && ! is_us
 	    jQuery('dt.variation-Duracin').css('display', 'none');
 	    jQuery('dd.variation-Duracin').css('display', 'none');
 
-	   /* <?php
+	   <?php
 	    	$cu = wp_get_current_user();
-	    	echo "jQuery('#billing_email').attr('value', '{$cu->user_email}');";
+	    	echo "jQuery('#billing_email').attr('value', '_{$cu->user_email}');";
 	    	$metas_cliente = get_user_meta($cu->ID);
-	    	echo "jQuery('#billing_first_name').attr('value', 'Nom: {$cu->user_firstname}');";
-	    	echo "jQuery('#billing_last_name').attr('value', 'Ape: {$cu->user_lastname}');";
+
+	    	if($cu->user_firstname == ""){ $cu->user_firstname = "_"; }
+	    	if($cu->user_lastname == ""){ $cu->user_lastname = "_"; }
+
+	    	echo "jQuery('#billing_first_name').attr('value', '{$cu->user_firstname}');";
+	    	echo "jQuery('#billing_last_name').attr('value', '{$cu->user_lastname}');";
 	    	echo "jQuery('#billing_phone').attr('value', '+52{$metas_cliente["user_mobile"][0]}');";
 	    ?>
 
@@ -136,6 +140,6 @@ if ( ! $checkout->enable_signup && ! $checkout->enable_guest_checkout && ! is_us
 		    jQuery("#payment_method_wcvendors_test_gateway").attr("checked", "checked");
 			jQuery(".payment_method_wcvendors_test_gateway").css("display", "block");
 			jQuery("div.payment_method_openpay_cards").css("display", "none");
-	    <?php } ?>*/
+	    <?php } ?>
 	});
 </script>

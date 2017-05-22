@@ -2,13 +2,13 @@
 	
 	/* Cliente */
 
-		$msg_id_reserva ='<p>Solicitud de reserva de servicio <strong>(N° '.$reserva->ID.')</strong> </p>';
+		$msg_id_reserva ='<p>Solicitud de reserva de servicio <strong>(N° '.$reserva_id.')</strong> </p>';
 
 		$pdf = $metas_orden['_openpay_pdf'][0];
 
 		$saludo = $sql.'
-			<center style="font-size: 16px; font-weight: 600;">¡Gracias '.$nombre.' '.$apellido.'!</center>
-			<p>Recibimos tu solicitud de reserva de <strong>'.trim($tipo_servicio).'</strong>, para que <strong>'.$cuidador_post->post_title.'</strong> atienda a tu(s) peludo(s).</p>
+			<center style="font-size: 16px; font-weight: 600;">¡Gracias '.$nom_cliente.'!</center>
+			<p>Recibimos tu solicitud de reserva de <strong>'.trim($tipo_servicio).'</strong>, para que <strong>'.$nom_cuidador.'</strong> atienda a tu(s) peludo(s).</p>
 			<p align="justify">
 				Has seleccionado como método de pago: <strong>Pago en efectivo en tiendas de conveniencia</strong>, a continuación encontrarás los pasos a seguir para poder completar tu reservación.
 			</p>
@@ -36,7 +36,7 @@
 	/* Administrador */
 
 		$saludo = "<p>Hola <strong>Administrador</strong>,</p>";
-		$msg_id_reserva ='<p> Se ha realizado una solicitud de reserva con el ID: <strong># '.$reserva->ID.'</strong>. </p>';
+		$msg_id_reserva ='<p> Se ha realizado una solicitud de reserva con el ID: <strong># '.$reserva_id.'</strong>. </p>';
 		
 		$mensaje_admin 	= 
 			$saludo.
@@ -52,8 +52,8 @@
 			$detalles_mascotas.
 			$detalles_servicio
 		;
-		$mensaje_admin = kmimos_get_email_html('Nueva Reserva - '.$producto->post_title, $mensaje_admin, 'Nueva Reserva - '.$producto->post_title, true, true);
+		$mensaje_admin = kmimos_get_email_html('Nueva Reserva - '.$producto, $mensaje_admin, 'Nueva Reserva - '.$producto, true, true);
 
-		wp_mail( $email_admin, "Solicitud de reserva #".$reserva->ID, $mensaje_admin, kmimos_mails_administradores());
+		wp_mail( $email_admin, "Solicitud de reserva #".$reserva_id, $mensaje_admin, kmimos_mails_administradores());
 
 ?>

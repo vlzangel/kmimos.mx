@@ -55,7 +55,9 @@ if( isset( $_SESSION["MR_".$user_id] ) ){
 								wc_get_template( 'checkout/payment-method.php', array( 'gateway' => $gateway ) );
 							}
 						}else{
-							wc_get_template( 'checkout/payment-method.php', array( 'gateway' => $gateway ) );
+							if( $gateway->method_title != "Contra reembolso" ){
+								wc_get_template( 'checkout/payment-method.php', array( 'gateway' => $gateway ) );
+							}
 						}
 						
 					}
