@@ -14,24 +14,22 @@
  * Version:     1.0.0
  * License:     GPL2
  */
-
 include_once('wlabel/wlabel.php');
-include_once('includes/class/class_kmimos_map.php');
 include_once('includes/class/class_kmimos_booking.php');
 include_once('includes/class/class_kmimos_tables.php');
-include_once('includes/class/class_kmimos_script.php');
 include_once('includes/functions/kmimos_functions.php');
+include_once('includes/class/class_kmimos_script.php');
 include_once('plugins/woocommerce.php');
 
 if(!function_exists('kmimos_mails_administradores')){
     function kmimos_mails_administradores(){
 
-        $headers[] = 'BCC: e.celli@kmimos.la';
-        $headers[] = 'BCC: r.cuevas@kmimos.la';
-        $headers[] = 'BCC: r.gonzalez@kmimos.la';
-        $headers[] = 'BCC: m.castellon@kmimos.la';
-        $headers[] = 'BCC: a.veloz@kmimos.la';
-        $headers[] = 'BCC: a.pedroza@kmimos.la';
+        // $headers[] = 'BCC: e.celli@kmimos.la';
+        // $headers[] = 'BCC: r.cuevas@kmimos.la';
+        // $headers[] = 'BCC: r.gonzalez@kmimos.la';
+        // $headers[] = 'BCC: m.castellon@kmimos.la';
+        // $headers[] = 'BCC: a.veloz@kmimos.la';
+        // $headers[] = 'BCC: a.pedroza@kmimos.la';
 
         /*        
         $headers[] = 'BCC: vlzangel91@gmail.com';

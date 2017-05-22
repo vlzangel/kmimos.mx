@@ -14,6 +14,21 @@
 		return 'contactomex@kmimos.la'; 
 	});
 
+	// Modificacion Ángel Veloz
+	if( !isset($_SESSION) ){ session_start(); }
+	global $current_user;
+	$user_id = md5($current_user->ID);
+
+	if( isset( $_SESSION["MR_".$user_id] ) ){
+		$data = $_SESSION["MR_".$user_id];
+		$modificando = $data["reserva"];
+		global $wpdb;
+		$id_reserva_modificada = $wpdb->get_var("SELECT post_parent FROM wp_posts WHERE ID = '{$modificando}'");
+		$modificacion = '<p align="justify">Esta es una modificación de la reserva #: '.$id_reserva_modificada.'</p>';
+	}else{
+		$modificacion = "";
+	}
+
 	include("vlz_data_orden.php");
 
 	$email_admin = "contactomex@kmimos.la";

@@ -7,6 +7,7 @@
 		
 		$mensaje_admin 	= 
 			$saludo.
+			$modificacion.
 	  		$msg_id_reserva.
 	  		"<br>".$aceptar_rechazar.
   			$detalles_cliente.
@@ -46,9 +47,10 @@
 			<h2>Detalles de tu reservación pendiente a confirmar:</h2>
 		';
 
-		$mensaje_cliente = 	
+		$mensaje_cliente = 
+			$saludo.	
+			$modificacion.
 			$msg_id_reserva.
-			$saludo.
 			$detalles_cuidador.
 			$detalles_mascotas.
 			$detalles_servicio.
@@ -107,6 +109,7 @@
 
 		$mensaje_cuidador  	= 	
 			$saludo.
+			$modificacion.
 			$msg_id_reserva.
 	  		$detalles_cuidador.
 	  		$detalles_cliente.

@@ -127,7 +127,8 @@ $reservas = getReservas($desde, $hasta);
 				  		$estatus = get_status(
 				  			$reserva->estatus_reserva, 
 				  			$reserva->estatus_pago, 
-				  			$meta_Pedido['_payment_method'] 
+				  			$meta_Pedido['_payment_method'],
+				  			$reserva->nro_reserva // Modificacion Ángel Veloz
 				  		);
 
 				  		if($estatus['addTotal'] == 1){

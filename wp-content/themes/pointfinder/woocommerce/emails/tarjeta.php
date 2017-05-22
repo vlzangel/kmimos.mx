@@ -6,6 +6,7 @@
 		
 		$mensaje_admin 	= 
 			$saludo.
+			$modificacion.
 			$msg_id_reserva.
 			"<br>".$aceptar_rechazar.
 			$detalles_cliente.
@@ -40,8 +41,9 @@
 		';
 
 		$mensaje_cliente = 	
-			$msg_id_reserva.
 			$saludo.
+			$modificacion.
+			$msg_id_reserva.
 			$detalles_cuidador.
 			$detalles_mascotas.
 			$detalles_servicio.
@@ -104,6 +106,7 @@
 
 		$mensaje_cuidador  	= 	
 			$saludo.
+			$modificacion.
 			$msg_id_reserva.
 	  		$detalles_cuidador.
 	  		$detalles_cliente.
