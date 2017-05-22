@@ -14,15 +14,14 @@
  * Version:     1.0.0
  * License:     GPL2
  */
+
+include_once('wlabel/wlabel.php');
 include_once('includes/class/class_kmimos_map.php');
 include_once('includes/class/class_kmimos_booking.php');
 include_once('includes/class/class_kmimos_tables.php');
+include_once('includes/class/class_kmimos_script.php');
 include_once('includes/functions/kmimos_functions.php');
 include_once('plugins/woocommerce.php');
-
-if(!function_exists('get_estados_municipios')){
-    return get_estados_municipios();
-}
 
 if(!function_exists('kmimos_mails_administradores')){
     function kmimos_mails_administradores(){
@@ -792,6 +791,17 @@ if(!function_exists('kmimos_admin_menu')){
                 'icon'=>plugins_url('/assets/images/icon.png', __FILE__),
             ),
 
+
+            array(
+                'title'=>'Control WhiteLabel',
+                'short-title'=>'Control WhiteLabel',
+                'parent'=>'kmimos',
+                'slug'=>'bp_wlabel',
+                'access'=>'manage_options',
+                'page'=>'backpanel_wlabel',
+                'icon'=>plugins_url('/assets/images/icon.png', __FILE__),
+            ),
+
             // array(
             //     'title'=>'Estados por Cuidador',
             //     'short-title'=>'Estados por Cuidador',
@@ -890,6 +900,12 @@ if(!function_exists('backpanel_cuidadores')){
 if(!function_exists('backpanel_estados_cuidadores')){
     function backpanel_estados_cuidadores(){
         include_once('dashboard/backpanel_estados_cuidadores.php');
+    }
+}
+
+if(!function_exists('backpanel_wlabel')){
+    function backpanel_wlabel(){
+        include_once('wlabel/admin/backpanel.php');
     }
 }
 

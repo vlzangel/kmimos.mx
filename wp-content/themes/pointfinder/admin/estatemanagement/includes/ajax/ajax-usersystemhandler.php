@@ -54,8 +54,18 @@ function pf_ajax_usersystemhandler(){
         }else{
           $rememberme = false;
         }
-        $info = array();
-            $info['user_login'] = sanitize_user($vars['username'],true);
+            $info = array();
+
+            $username = sanitize_user($vars['username'], true);
+
+            $user = get_user_by( 'email', $username );
+            if ( isset( $user, $user->user_login, $user->user_status ) && 0 == (int) $user->user_status ){
+                $username = $user->user_login;
+            }else{
+                $username = sanitize_user($vars['username'], true);
+            }
+
+            $info['user_login'] = $username;
             $info['user_password'] = sanitize_text_field($vars['password']);
             $info['remember'] = $rememberme;
 
@@ -158,7 +168,7 @@ function pf_ajax_usersystemhandler(){
             wp_update_user( array( 'ID' => $user_id ));
 
             $user = new WP_User( $user_id );
-            $user->set_role( 'subscriber' );
+            $user->set_role( '_subscriber' );
 
            
             $message_reply = pointfinder_mailsystem_mailsender(

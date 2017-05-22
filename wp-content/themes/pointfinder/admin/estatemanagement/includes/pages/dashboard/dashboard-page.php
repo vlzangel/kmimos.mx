@@ -242,16 +242,6 @@ if(isset($ua_action)){
 								}else{
 									$user_photo_field_output = get_home_url()."/wp-content/themes/pointfinder".'/images/noimg.png';
 								}
-
-								// if( $cuidador->portada != '0' ){
-								// 	$referred = get_user_meta($cuidador->user_id, 'name_photo', true);
-	       						//	if( $referred == "" ){
-								// 		$referred = "0";
-								// 	}
-								// 	$user_photo_field_output = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador->id."/".$referred;
-								// }else{
-								// 	$user_photo_field_output = get_home_url()."/wp-content/themes/pointfinder".'/images/noimg.png';
-								// }
 								
 								$pfmenu_output .= '<li class="pf-dash-userprof"><img src="'.$user_photo_field_output.'" class="pf-dash-userphoto" style="width: 70px; height: 70px;"/><span class="pf-dash-usernamef">'.$user_name_field.'</span></li>';
 							}else{

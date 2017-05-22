@@ -3,6 +3,10 @@
 		Template Name: vlz quiero ser cuidador
 	*/
 
+	if (!isset($_SESSION)) {
+        session_start();
+    }
+
 	get_header();
 
 	if(function_exists('PFGetHeaderBar')){PFGetHeaderBar();} 
@@ -68,7 +72,7 @@
 
 										<div class="vlz_sub_seccion">
 											<div class="vlz_cell50">
-												<input data-title="El IFE debe ser de 13 dígitos." data-help="Coloca los 13 Números que se encuentran en la parte trasera de tu IFE o INE" type='number' id='ife' name='ife' class='vlz_input' placeholder='IFE' maxlength="13" required pattern="[0-9]{13}" >
+												<input data-title="El IFE debe ser de 13 dígitos." data-help="Coloca los 13 Números que se encuentran en la parte trasera de tu IFE o INE" type='number' id='ife' name='ife' class='vlz_input' placeholder='IFE' min=13 pattern="^\d{13}$" >
 											</div>
 											
 											<div class="vlz_cell50">
@@ -101,9 +105,9 @@
 
 									</div>
 								
-									<div id="cargar_imagen_1" class="vlz_cell50 jj_input_cell00" style="display: none;">
+									<div id="cargar_imagen_1" class="vlz_cell50 jj_input_cell00">
 
-										<div class="">
+										<div style="position: relative;">
 											<img src="<?php echo get_home_url()."/wp-content/themes/pointfinder/images/cargando.gif"; ?>" class="kmimos_cargando">
 											<div class="vlz_img_portada">
 				                                <div class="vlz_img_portada_fondo" style="background-image: url(<?php echo get_home_url()."/wp-content/themes/pointfinder"."/images/noimg.png"; ?>);"></div>
@@ -127,9 +131,15 @@
 								<div class="vlz_seccion">
 									<div class="vlz_cell25">
 										<input 
-											data-title="Ingresa un usuario<br>Este debe tener una longitud de al menos 3 caracteres."
+											data-title="Ingresa un usuario valido<br>Este debe tener solo letras, numeros y<br> una longitud minima de 3 caracteres."
 											data-help='Ingresa un usuario, sin espacios en blanco. Ej.: Lucas1'
-											title="El nombre de usuario que colocaste aquí es con el que vas a ingresar en tu perfil y tu nombre y apellido será utilizado en las reservas" type='text' id='username' name='username' class='vlz_input' placeholder='Nombre de Usuario' required minlength="3">
+											title="El nombre de usuario que colocaste aquí es con el que vas a ingresar en tu perfil y tu nombre y apellido será utilizado en las reservas" 
+											type='text' 
+											id='username' 
+											name='username' 
+											class='vlz_input' 
+											placeholder='Nombre de Usuario' 
+											minlength="3" maxlength="50" required pattern="[A-Za-z0-9\-_\.]+">
 									</div>
 									<div class="vlz_cell25">
 										<input data-title="Ingresa tu E-mail<br>Ej: xxxx@xxx.xx" autocomplete="off" type='text' id='email' name='email' class='vlz_input' placeholder='E-mail' required pattern="^[\w._%-]+@[\w.-]+\.[a-zA-Z]{2,4}$" title="Ej. xxxx@xxxxx.xx">
@@ -218,50 +228,49 @@
 									
 								</div>
 
-								<div style="display: none;">
-									<h2 class="vlz_titulo_interno">&#191;Qu&eacute; Tama&ntilde;os tienen tus Mascotas?</h2>
-																	
-									<div class="vlz_seccion">
+								
+								<h2 class="vlz_titulo_interno">&#191;Qu&eacute; Tama&ntilde;os tienen tus Mascotas?</h2>
+																
+								<div class="vlz_seccion">
 
-										<?php
-											foreach ($tam as $key => $value) {
-												echo '
-													<div class="vlz_cell25">
-														<div class="vlz_input vlz_no_check vlz_pin_check"><input type="hidden" id="tengo_'.$key.'" name="tengo_'.$key.'" value="0">'.$value.'</div>
-													</div>
-												';
-											}
-										?>
+									<?php
+										foreach ($tam as $key => $value) {
+											echo '
+												<div class="vlz_cell25">
+													<div class="vlz_input vlz_no_check vlz_pin_check"><input type="hidden" id="tengo_'.$key.'" name="tengo_'.$key.'" value="0">'.$value.'</div>
+												</div>
+											';
+										}
+									?>
+									
+								</div>
+
+								<div class="vlz_seccion">
+
+									<div class="vlz_cell50 jj_input_cell00">
+
+										<h2 class="vlz_titulo_interno">&#191;Qu&eacute; Edades Aceptas?</h2>
+
+										<div class="vlz_cell50">
+											<div class="vlz_input vlz_no_check vlz_pin_check"><input type="hidden" id="cachorros" name="cachorros" value="0">Cachorros</div>
+										</div>
 										
-									</div>
-
-									<div class="vlz_seccion">
-
-										<div class="vlz_cell50 jj_input_cell00">
-
-											<h2 class="vlz_titulo_interno">&#191;Qu&eacute; Edades Aceptas?</h2>
-
-											<div class="vlz_cell50">
-												<div class="vlz_input vlz_no_check vlz_pin_check"><input type="hidden" id="cachorros" name="cachorros" value="0">Cachorros</div>
-											</div>
-											
-											<div class="vlz_cell50 ">
-												<div class="vlz_input vlz_no_check vlz_pin_check"><input type="hidden" id="adultos" name="adultos" value="0">Adultos</div>
-											</div>
-
+										<div class="vlz_cell50 ">
+											<div class="vlz_input vlz_no_check vlz_pin_check"><input type="hidden" id="adultos" name="adultos" value="0">Adultos</div>
 										</div>
 
-										<div class="vlz_cell50 jj_input_cell00">
-											
-											<h2 class="vlz_titulo_interno">&#191;Qu&eacute; Condiciones Aceptas?</h2>
-
-											<div class="vlz_cell50 jj_input_cell00">
-												<div class="vlz_input vlz_no_check vlz_pin_check"><input type="hidden" id="esterilizado" name="esterilizado" value="0">No Esterilizados</div>
-											</div>
-
-										</div>
-																			
 									</div>
+
+									<div class="vlz_cell50 jj_input_cell00">
+										
+										<h2 class="vlz_titulo_interno">&#191;Qu&eacute; Condiciones Aceptas?</h2>
+
+										<div class="vlz_cell50 jj_input_cell00">
+											<div class="vlz_input vlz_no_check vlz_pin_check"><input type="hidden" id="esterilizado" name="esterilizado" value="0">No Esterilizados</div>
+										</div>
+
+									</div>
+																		
 								</div>
 
 								<h2 class="vlz_titulo_interno">&#191;Qu&eacute; Tama&ntilde;o de Mascotas Aceptas?</h2>
@@ -414,7 +423,7 @@
 										foreach ($tam as $key => $value) {
 											echo '
 												<div class="vlz_cell25">
-													<input type="text" class="vlz_input" id="hospedaje_'.$key.'" name="hospedaje_'.$key.'" placeholder="'.$value.'" data-help="'.$txts[$key].'" >
+													<input type="number" class="vlz_input" id="hospedaje_'.$key.'" name="hospedaje_'.$key.'" placeholder="'.$value.'" data-help="'.$txts[$key].'" >
 												</div>
 											';
 										}
@@ -498,12 +507,12 @@
 										?>
 									</div>
 
-									<h2 class="vlz_titulo_interno" style="margin-top: 10px;">Servicios Adicionales</h2>
-									<div class="vlz_seccion">
-										<div class="vlz_contenedor_adicionales"></div>
-										<div class="vlz_boton_agregar">Agregar Servicio Adicional</div>
-									</div>
+								</div>
 
+								<h2 class="vlz_titulo_interno" style="margin-top: 10px;">Servicios Adicionales</h2>
+								<div class="vlz_seccion">
+									<div class="vlz_contenedor_adicionales"></div>
+									<div class="vlz_boton_agregar">Agregar Servicio Adicional</div>
 								</div>
 
 								<div id="cargar_imagen_2" style="display: none;"></div>
