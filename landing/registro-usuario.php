@@ -76,6 +76,9 @@
 			if( empty($meta) ){
 				update_user_meta( $user->ID, 'landing-referencia', $referencia );
 				update_user_meta( $user->ID, "landing-{$landing_name}", date('Y-m-d H:i:s') ); 
+
+
+				// enviar correo al participante
 			}
 		}
 	}

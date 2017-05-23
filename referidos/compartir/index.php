@@ -23,7 +23,7 @@ if(isset($_GET['e'])){
 		<meta property="og:type"          content="website" />
 		<meta property="og:title"         content="Kmimos - Clientes Referidos" />
 		<meta property="og:description"   content="Suma huellas a nuestro club y gana descuentos" />
-		<meta property="og:image"         content="https://www.kmimos.com.mx/referidos/img/1backgroundfoto.png" />
+		<meta property="og:image"         content="https://www.kmimos.com.mx/referidos" />
 		<script>
 		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -101,6 +101,15 @@ if(isset($_GET['e'])){
 				<!-- Link Twitter -->	
 				<div id="twitter" class="col-sm-11 clearfix hidden">
 					<div class="fondo-verde">
+						<h3 class="text-center">
+							¿Y ahora qué sigue?
+						</h3>
+						<div class="text-left">							
+							<span><strong>Paso 1:</strong> Te vamos a dirigir a tu red social twitter para que puedas compartir esta promoción con tus amigos. Copia y pega el siguiente enlace para que tus amigos puedan unirse a nuestro club.</span><br>
+							<span><strong>Paso 2:</strong> Cuando alguno de los amigos a los que les hiciste llegar la promoción se registren en el club de las patitas felices, recibirás un correo notificandote que uno de tus amigos se ha unido al club referido por ti.</span><br>
+							<span><strong>Paso 3:</strong> Cuando alguno de tus referidos complete su primera reserva con nosotros, te llegará un correo de notificación avisándote que estás mas cerca de cumplir tu meta de referidos.</span><br>
+						</div>
+						<br>	
 						<a class="btn btn-info twitter-share-button"
 						  href="https://twitter.com/share"
 						  data-size="large"
@@ -108,7 +117,8 @@ if(isset($_GET['e'])){
 						  data-url="Suma huellas y gana descuentos <?php echo $url;?>"
 						  data-hashtags="#kmimos"
 						  data-via="kmimosmx"
-						  data-related="twitterapi,twitter">
+						  data-related="twitterapi,twitter"
+						  target="_blank">
 							<i class="fa fa-twitter"></i> Tweet
 						</a>
 					</div>
@@ -117,14 +127,31 @@ if(isset($_GET['e'])){
 				<!-- Link Facebook -->	
 				<div id="facebook" class="col-sm-11 clearfix hidden">
 					<div class="fondo-verde">				
+						<h3 class="text-center">
+							¿Y ahora qué sigue?
+						</h3>
+						<div class="text-left">							
+							<span><strong>Paso 1:</strong> Te vamos a dirigir a tu red social facebook para que puedas compartir esta promoción con tus amigos. Copia y pega el siguiente enlace para que tus amigos puedan unirse a nuestro club.</span><br>
+							<span><strong>Paso 2:</strong> Cuando alguno de los amigos a los que les hiciste llegar la promoción se registren en el club de las patitas felices, recibirás un correo notificandote que uno de tus amigos se ha unido al club referido por ti.</span><br>
+							<span><strong>Paso 3:</strong> Cuando alguno de tus referidos complete su primera reserva con nosotros, te llegará un correo de notificación avisándote que estás mas cerca de cumplir tu meta de referidos.</span><br>
+						</div>
+						<br>	
 						<div class="fb-share-button" data-href="<?php echo $url;?>" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u&amp;src=sdkpreparse">Compartir</a></div>
 					</div>
 				</div>
 
 				<!-- Link Email -->
 				<div id="info" class="col-sm-11 clearfix hidden">
-					<strong style="color:#9F159F;font-size:23px;">copia el enlace y comparte con amigos y familiaresaaaa</strong>
 					<div class="fondo-verde">
+						<h3 class="text-center">
+							¿Y ahora qué sigue?
+						</h3>
+						<div class="text-left">							
+							<span><strong>Paso 1:</strong>  En un correo electrónico copia y pega el siguiente enlace para que tus amigos puedan unirse a nuestro club. Envialo a todos los contactos que quieras</span><br>
+							<span><strong>Paso 2:</strong> Cuando alguno de los amigos a los que les hiciste llegar la promoción se registren en el club de las patitas felices, recibirás un correo notificandote que uno de tus amigos se ha unido al club referido por ti.</span><br>
+							<span><strong>Paso 3:</strong> Cuando alguno de tus referidos complete su primera reserva con nosotros, te llegará un correo de notificación avisándote que estás mas cerca de cumplir tu meta de referidos.</span><br>
+						</div>
+						<br>
 						<strong><?php echo $url;?></strong>
 					</div>
 				</div>
