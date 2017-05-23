@@ -84,7 +84,12 @@ class Class_WhiteLabel{
             if(count($result)>0){
                 $this->wlabel_active = true;
                 $this->wlabel_result=$result[0];
-                $this->wlabel_data=json_decode($this->wlabel_result->data);//,true
+                $data = preg_replace('[\n|\r|\n\r|\r\n]','', $this->wlabel_result->data);
+                //var_dump($data);
+
+                $this->wlabel_data=json_decode($data);//,true
+                //var_dump($this->wlabel_result->data);
+                //var_dump($this->wlabel_data);
             }
         }
     }
@@ -119,8 +124,10 @@ class Class_WhiteLabel{
         $html='<style type="text/css">';
         if($color!=''){
             $html.='.wpf-header{background-color:'.$color.' !important;}';
+            $html.='.wpf-header .pftopline{background-color:'.$color.' !important; border-bottom:1px solid #333;}';
             $html.='.wpf-footer{background-color:'.$color.' !important; background-image:none !important;}';
             $html.='.pfnavmenu li:hover{background-color:'.$color.' !important;}';
+            $html.='.pfnavmenu .pfnavsub-menu li:hover{background-color:'.$color.' !important;}';
         }
         $html.=$css;
         $html.='</style>';
@@ -137,8 +144,8 @@ class Class_WhiteLabel{
     function Header(){
         if($this->wlabel_active){
             $html=$this->Image();
-            $html.=$this->Script();
             $html.=$this->Css();
+            $html.=$this->Script();
             $html.=$this->Html();
             echo $html;
         }

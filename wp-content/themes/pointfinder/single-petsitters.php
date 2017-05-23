@@ -132,6 +132,7 @@
 	} ?>
 
 	<style type="text/css">
+		/*
 		.vlz_contenedor_galeria {
 			height: auto;
 			overflow: hidden;
@@ -148,6 +149,7 @@
 			float: none;
 			display: inline-block;
 		}
+		*/
 	</style>
 
 	<div class="vlz_contenedor">
@@ -167,10 +169,10 @@
 
 				<?php
 					if(is_user_logged_in()){
-						echo '<a class="button conocer-cuidador" href="'.get_home_url().'/conocer-al-cuidador/?id='.$post_id.'">Conocer al Cuidador</a>';
+						echo '<a class="theme_button button conocer-cuidador" href="'.get_home_url().'/conocer-al-cuidador/?id='.$post_id.'">Conocer al Cuidador</a>';
 						echo '<a class="button reservar" href="'.get_home_url().'/producto/hospedaje-'.$slug.'/'.'">Reservar</a>';
 					}else{
-						echo '<span class="button conocer-cuidador" onclick="jQuery(\'#pf-login-trigger-button\').click();">Conocer al Cuidador</span>';
+						echo '<span class="theme_button button conocer-cuidador" onclick="jQuery(\'#pf-login-trigger-button\').click();">Conocer al Cuidador</span>';
 						echo '<span class="button reservar" onclick="jQuery(\'#pf-login-trigger-button\').click();">Reservar</span>';
 					}
 				?>		
