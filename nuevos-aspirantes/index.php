@@ -427,8 +427,17 @@
 					</div><!-- /input-group -->
 				</div>
 				<div class="form-group">
-			    	<button class="btn btn-success" type="button" id="subscribe">Continuar</button>
-			    </div>
+					<div class="col-sm-6 text-left">
+						<label class="checkbox">
+							<input type="checkbox" id="terminos" name="terminos" value="0">
+							<span>Acepto los t&eacute;rminos y condiciones</span>
+						</label>
+				    </div>
+					<div class="col-sm-6 text-right">
+				    	<button class="btn btn-success" type="button" id="subscribe">Continuar</button>
+				    </div>
+					
+				</div>
 	      		<br>
 				<div>
 					<i id="loading" class="hidden" style="font-size:12px;" class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>

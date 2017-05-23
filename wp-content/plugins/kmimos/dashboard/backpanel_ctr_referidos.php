@@ -111,13 +111,12 @@ $subscribe = getListsuscribe($landing, $referido, $desde, $hasta);
 			    			$showReferencia++;
 			    		}
 			    	}
-
 			  		// Cargar datos de reservas generadas
 			  		$metaReservasResult = getCountReservas($row['referido_id'] );
 			  		$metaReservas = $metaReservasResult['rows'][0];
 
 			  		// testing 
-			  		$metaReservas['cant'] = 1;
+			  		// $metaReservas['cant'] = 1;
 			  	 ?>
 				    <tr id="<?php echo $row['user_email']; ?>">
 				    	<th class="text-center"><?php echo ++$count; ?></th>
@@ -131,6 +130,7 @@ $subscribe = getListsuscribe($landing, $referido, $desde, $hasta);
 				    		<?php }else{ echo '<i class="fa fa-minus-square-o fa-2x" aria-hidden="true"></i>'; } ?>
 					    	</th>
 				    	<?php } ?>
+
 						<th class="bg-info"><?php echo $row['user_email']; ?></th>
 						<th><?php echo $metaReferido['first_name']." ".$metaReferido['last_name']; ?></th>
 						<th><?php echo ($metaReservas['cant']>0)? "1": "0" ; ?></th>

@@ -41,6 +41,21 @@ function getListsuscribe($landing="", $desde="", $hasta=""){
 
 function getListlanding(){
 	$sql = "SELECT DISTINCT source FROM list_subscribe";
-	$result = execute($sql);
+	$result = get_fetch_assoc($sql);
+	return $result;
+}
+
+function get_total_reservas( $participante_email = 0 ){
+	$sql = "
+		SELECT count(p.ID) as total_reservas
+		FROM wp_usermeta as m
+			INNER JOIN wp_posts as p ON m.user_id = p.post_author and p.post_type = 'wc_booking'
+		WHERE 
+			m.meta_value = md5('{$participante_email}')
+			and p.post_date > '2011-05-12'
+		GROUP BY m.user_id
+	";
+	
+	$result = get_fetch_assoc($sql);
 	return $result;
 }
