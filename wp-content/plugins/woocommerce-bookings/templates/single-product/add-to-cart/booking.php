@@ -95,7 +95,7 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 			</script>
 		';
 	}
-	if ( date( 'Ymd', strtotime($DS['fechas']['inicio']) ) < date( 'Ymd', current_time( 'timestamp' ) ) ) {
+	if ( date( 'Ymd', strtotime($DS['fechas']['inicio']) ) < date( 'Ymd', current_time( 'timestamp' ) ) && isset( $_SESSION["MR_".$user_id] ) ) {
 		echo '<script type="text/javascript"> var solo_fecha_fin = "YES"; </script>';
 	}else{
 		echo '<script type="text/javascript"> var solo_fecha_fin = "NO"; </script>';
