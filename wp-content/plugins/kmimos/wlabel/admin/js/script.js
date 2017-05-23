@@ -19,12 +19,14 @@ jQuery(function($){
 
 		$('#loading').removeClass('hidden');
 		$('#msg').html('Enviando...');
-		$.post( $("#formsave").attr('action'), { 
+		$.post( $("#frm-wlabel").attr('action'), { 
 			"titulo" : $('#titulo').val(),
 			"nombre" : $('#nombre').val(),
-			"vigencia" : $('#vigencia').val(),
+			"image" : $('#logo').val(),
 			"color" : $('#color').val(),
-			"logo" : $('#logo').val(),
+			"color_botones" : $('#color_botones').val(),
+			"color_fuentes" : $('#color_fuentes').val(),
+			"limitday" : $('#vigencia').val(),
 			"css" : $('#css').val(),
 			"js" : $('#js').val(),
 			"hhtml" : $("#hhtml").val(),
