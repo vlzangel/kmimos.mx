@@ -118,10 +118,6 @@ do_action( 'woocommerce_before_cart' ); ?>
 		}else{
 			echo "No se genera cupon";
 		}
-
-	    echo "<pre>";
-			print_r($DS);
-		echo "</pre>";
     }
 
     // exit;
