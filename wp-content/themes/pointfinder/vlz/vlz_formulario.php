@@ -131,7 +131,7 @@
 	<div id='filtros'></div>
 	<form action='".get_home_url()."/busqueda' method='POST' class='vlz_form' id='vlz_form_buscar' style='margin-top: 20px;'>
 
-		<input type='submit' value='Aplicar Filtros' class='vlz_boton'>
+		<input type='submit' value='Aplicar Filtros' class='theme_button vlz_boton'>
 
 		<div class='vlz_sub_seccion'>
 			<div class='vlz_sub_seccion_titulo'>Ordenar por:</div>
@@ -249,7 +249,7 @@
 			</div>
 		</div>
 
-		<input type='submit' value='Aplicar Filtros' class='vlz_boton'>
+		<input type='submit' value='Aplicar Filtros' class='theme_button vlz_boton'>
 	</form>";
 
 	/*

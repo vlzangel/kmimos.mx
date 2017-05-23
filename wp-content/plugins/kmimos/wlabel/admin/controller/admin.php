@@ -1,4 +1,5 @@
-<?php
+<?php 
+
 	// *****************************************
 	//	Javascript
 	// *****************************************
@@ -13,14 +14,10 @@
 	wp_enqueue_style( 'style_wlabel', get_home_url()."/wp-content/plugins/kmimos/wlabel/admin/css/style.css" );
 	wp_enqueue_style( 'style_wlabel_daterangepicker', get_home_url()."/panel/assets/vendors/bootstrap-daterangepicker/daterangepicker.css" );
 
-
+	
 	// *****************************************
 	//	Function
 	// *****************************************
-	function Wlabel_save($post=[]){
-		print_r($post);
-	}
-
 
 	function Wlabel_FetchAll($desde="", $hasta=""){
 
@@ -45,7 +42,7 @@
 			{$filtro_adicional}
 		";
 
-		$result = $wpdb->get_row($sql);
+		$result = get_fetch_assoc($sql);
 
 		return $result;
 
