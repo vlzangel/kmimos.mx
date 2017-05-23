@@ -19,6 +19,50 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// Modificacion Ángel Veloz
+global $wpdb;
+
+if( !isset($_SESSION) ){ session_start(); }
+
+global $current_user;
+$user_id = md5($current_user->ID);
+
+if( isset( $_SESSION["MR_".$user_id] ) ){
+	$data_session = $_SESSION["MR_".$user_id];
+
+	$new_order   = $order->get_order_number();
+	$new_reserva = $wpdb->get_var("SELECT ID FROM wp_posts WHERE post_parent = '{$new_order}' AND post_type='wc_booking'");
+
+	$servicio = $wpdb->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = '{$new_reserva}' AND meta_key='_booking_product_id'");
+
+	if( $servicio == $data_session["servicio"] ){
+		$id_reserva = $data_session["reserva"];
+
+		$sql_SELECT = "SELECT * FROM wp_posts WHERE ID = '{$id_reserva}'";
+		$data = $wpdb->get_row($sql_SELECT);
+		$id_reserva = $data->ID;
+		$id_orden   = $data->post_parent;
+
+		$sql_UPDATE = "UPDATE wp_posts SET post_status = 'modified' WHERE ID IN ( '{$id_reserva}', '{$id_orden}' );";
+
+		$wpdb->query($sql_UPDATE);
+
+		update_post_meta($id_reserva,  'reserva_modificada', $new_reserva);
+		update_post_meta($new_reserva, 'modificacion_de',    $id_reserva );
+
+		$saldo_persistente = get_user_meta($current_user->ID, "kmisaldo", true)+0;
+
+		if( $saldo_persistente > 0 ){
+			$saldo_persistente += ($data_session["saldo_permanente"]+0);
+		}
+
+		update_user_meta($current_user->ID, "kmisaldo", $saldo_persistente);
+
+		// unset($_SESSION["MR_".$user_id]);
+	}
+
+}
+
 if ( $order ) : ?>
 
 	<?php if ( $order->has_status( 'failed' ) ) : ?>
@@ -62,7 +106,7 @@ if ( $order ) : ?>
 				Pícale para ver las instrucciones para<br> Pago en Tiendas por Conveniencia
 			</a>                  
             <br>                    
-            <iframe id="pdf" src="<?php echo WC()->session->get( 'pdf_url' ) ?>https://dashboard.openpay.mx/paynet-pdf/mbagfbv0xahlop5kxrui/PAYNET000CCHSSLI7" style="width:100%; height:950px;" frameborder="0"></iframe>
+            <iframe id="pdf" src="<?php echo WC()->session->get( 'pdf_url' ) ?>" style="width:100%; height:950px;" frameborder="0"></iframe>
         	<style type="text/css">
 				@media (max-width: 600px){
 					#pdf {
@@ -86,4 +130,7 @@ if ( $order ) : ?>
 
 <?php endif; ?>
 
-<div class="text-center"><a href="<?php echo get_option('siteurl'); ?>" class="button pay">Finalizar</a></div>
+<div style="text-align: right;">
+	<a href="<?php echo get_option('siteurl'); ?>" class="button pay">Inicio</a>
+	<a href="<?php echo get_option('siteurl')."/perfil-usuario/?ua=invoices"; ?>" class="button pay">Mis reservas</a>
+</div>
