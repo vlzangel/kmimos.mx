@@ -800,6 +800,26 @@ if(!function_exists('kmimos_admin_menu')){
                 'icon'=>plugins_url('/assets/images/icon.png', __FILE__),
             ),
 
+            array(
+                'title'=>'Club Patitas Felices (Participantes)',
+                'short-title'=>'Club Patitas Felices (Participantes)',
+                'parent'=>'kmimos',
+                'slug'=>'bp_participantes_club_patitas_felices',
+                'access'=>'manage_options',
+                'page'=>'backpanel_ctr_participantes',
+                'icon'=>plugins_url('/assets/images/icon.png', __FILE__),
+            ),
+            array(
+                'title'=>'Control de Referidos (Club Patitas Felices)',
+                'short-title'=>'Control de Referidos Club Patitas Felices',
+                'parent'=>'kmimos',
+                'slug'=>'bp_referidos_club_patitas_felices',
+                'access'=>'manage_options',
+                'page'=>'backpanel_ctr_referidos',
+                'icon'=>plugins_url('/assets/images/icon.png', __FILE__),
+            ),
+
+
             // array(
             //     'title'=>'Estados por Cuidador',
             //     'short-title'=>'Estados por Cuidador',
@@ -863,6 +883,18 @@ if(!function_exists('kmimos_panel')){
         include_once('dashboard/kmimos_panel.php');
     }
 
+}
+
+if(!function_exists('backpanel_ctr_participantes')){
+    function backpanel_ctr_participantes(){
+        include_once('dashboard/backpanel_ctr_participantes.php');
+    }
+}
+
+if(!function_exists('backpanel_ctr_referidos')){
+    function backpanel_ctr_referidos(){
+        include_once('dashboard/backpanel_ctr_referidos.php');
+    }
 }
 
 if(!function_exists('backpanel_conocer_cuidador')){

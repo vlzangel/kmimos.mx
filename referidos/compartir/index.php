@@ -3,7 +3,6 @@ $url="";
 if(isset($_GET['e'])){
 	$url = "https://www.kmimos.com.mx/referidos/?r=".md5($_GET['e']);
 }
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -24,7 +23,7 @@ if(isset($_GET['e'])){
 		<meta property="og:type"          content="website" />
 		<meta property="og:title"         content="Kmimos - Clientes Referidos" />
 		<meta property="og:description"   content="Suma huellas a nuestro club y gana descuentos" />
-		<meta property="og:image"         content="https://mx.kmimos/referidos/img/1backgroundfoto.png" />
+		<meta property="og:image"         content="https://www.kmimos.com.mx/referidos/img/1backgroundfoto.png" />
 		<script>
 		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -37,6 +36,15 @@ if(isset($_GET['e'])){
 
 	</head>
 	<body>
+		<!-- Load Facebook SDK for JavaScript -->
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.9";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
 
 		<div class="container">
 			
@@ -62,14 +70,14 @@ if(isset($_GET['e'])){
 						<section id="shared" class="text-right row">
 							<?php if(!empty($url)){ ?>
 							<div class="col-xs-4 col-sm-4 col-sm-4">
-								<a class="twitter-share-button" target="_blank" href="https://twitter.com/intent/tweet?text=Suma huellas y gana descuentos <?php echo $url; ?>" class="btn-kmimos btn btn-lg">
+								<span id="twitter_shared" data-target="1">
 									<img src="img/btntwitter.png" width="50px">
-								</a>
+								</span>
 							</div>
 							<div class="col-xs-4 col-sm-4 col-sm-4">
-								<a href="http://facebook.com/sharer.php?u=<?php echo $url; ?>"  target="_blank">
+								<span id="facebook_shared" data-target="1">
 									<img src="img/btnfacebook.png" width="50px">
-								</a>
+								</span>
 							</div>
 							<div class="col-xs-4 col-sm-4 col-sm-4">
 								<span id="mail_publicar" data-target="1">
@@ -82,16 +90,44 @@ if(isset($_GET['e'])){
 						</section>					
 					</div>
 					<section id="bloque3" class="bloque col-xs-12 col-sm-4 col-md-4 ">
-						<span>Por cada amigo que se una a nuestro club t&uacute; ganas 
-						<span style="font-size:18px;color:#9F159F;text-decoration: underline;font-weight: bold;">150$</span> y tu amigo gana su primera noche de cuida <span style="font-size:18px;color:#9F159F;text-decoration: underline;font-weight: bold;">gratis.</span>
+						<span>Por cada amigo que complete una reservacion, t&uacute; ganas 
+						<span class="resaltar">150$</span> acumulables hasta  <span class="resaltar">750$</span> y tu amigo gana otros <span class="resaltar">150$</span>
 						</span>
 					</section>
 
-				</div>		
-					<div id="info" class="col-sm-11 clearfix hidden">
-						<strong style="color:#9F159F;font-size:23px;">copia el enlace y comparte con amigos y familiares</strong>
-						<pre style="font-size: 15px;"><strong><?php echo $url;?></strong></pre>
+				</div>	
+
+
+				<!-- Link Twitter -->	
+				<div id="twitter" class="col-sm-11 clearfix hidden">
+					<div class="fondo-verde">
+						<a class="btn btn-info twitter-share-button"
+						  href="https://twitter.com/share"
+						  data-size="large"
+						  data-text="Suma huellas y gana descuentos"
+						  data-url="Suma huellas y gana descuentos <?php echo $url;?>"
+						  data-hashtags="#kmimos"
+						  data-via="kmimosmx"
+						  data-related="twitterapi,twitter">
+							<i class="fa fa-twitter"></i> Tweet
+						</a>
 					</div>
+				</div>
+
+				<!-- Link Facebook -->	
+				<div id="facebook" class="col-sm-11 clearfix hidden">
+					<div class="fondo-verde">				
+						<div class="fb-share-button" data-href="<?php echo $url;?>" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u&amp;src=sdkpreparse">Compartir</a></div>
+					</div>
+				</div>
+
+				<!-- Link Email -->
+				<div id="info" class="col-sm-11 clearfix hidden">
+					<strong style="color:#9F159F;font-size:23px;">copia el enlace y comparte con amigos y familiaresaaaa</strong>
+					<div class="fondo-verde">
+						<strong><?php echo $url;?></strong>
+					</div>
+				</div>
 			</section>
 
 			<aside class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2 text-center">
@@ -107,15 +143,45 @@ if(isset($_GET['e'])){
 		<script>
 		$(document).ready(function(){
 			$("#mail_publicar").click(function(){
+		        if(!$("#twitter").hasClass('hidden')){ $("#twitter").addClass('hidden'); }
+		        if(!$("#facebook").hasClass('hidden')){ $("#facebook").addClass('hidden'); }
+
 		        if($("#info").hasClass('hidden')){
 		        	$("#info").removeClass('hidden');
 				}else{
 		        	$("#info").addClass('hidden');
 				}
-
 		    });
+
+			$("#facebook_shared").click(function(){
+		        if(!$("#twitter").hasClass('hidden')){ $("#twitter").addClass('hidden'); }
+		        if(!$("#info").hasClass('hidden')){ $("#info").addClass('hidden'); }
+
+		        if($("#facebook").hasClass('hidden')){
+		        	$("#facebook").removeClass('hidden');
+				}else{
+		        	$("#facebook").addClass('hidden');
+				}
+		    });
+
+			$("#twitter_shared").click(function(){
+		        if(!$("#facebook").hasClass('hidden')){ $("#facebook").addClass('hidden'); }
+		        if(!$("#info").hasClass('hidden')){ $("#info").addClass('hidden'); }
+
+		        if($("#twitter").hasClass('hidden')){
+		        	$("#twitter").removeClass('hidden');
+				}else{
+		        	$("#twitter").addClass('hidden');
+				}
+		    });
+
+
 		});
 		</script>
+
+		
+
+
 
 	</body>
 </html>

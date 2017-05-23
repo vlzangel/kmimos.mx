@@ -6,10 +6,14 @@ header{
 	vertical-align: top;
 }
 
-pre{
+.fondo-verde{
     padding:20px;
     border-radius: 10px;
-    background: #84ff00;
+    background: #84ff00;    
+}
+
+.resaltar{
+    font-size:18px;color:#9F159F;text-decoration: underline;font-weight: bold;
 }
 
 #subtitulo{
