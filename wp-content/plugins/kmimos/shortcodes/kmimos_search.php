@@ -100,7 +100,7 @@
                         <label id="estoy_buscando"><strong>ESTOY BUSCANDO</strong></label>
                     </div>
                     <div class="mt10 derecha">
-                        <a href="#mas_servicios" class="prettyphoto" rel="more_services" id="ver_mas_servicios">Servicios adicionales...</a>
+                        <a href="#mas_servicios" class="theme_button prettyphoto" rel="more_services" id="ver_mas_servicios">Servicios adicionales...</a>
                     </div>
                 </div>
 
@@ -264,7 +264,7 @@
 
                 <div class="w100pc text-center">
                     <div class="boton_buscar">
-                        <a class="button pfsearch" id="pf-search-button-manual"><i class="pfadmicon-glyph-627"></i> Buscar Cuidador</a>
+                        <a class="theme_button button pfsearch" id="pf-search-button-manual"><i class="pfadmicon-glyph-627"></i> Buscar Cuidador</a>
                     </div>
                 </div>
                 

@@ -1,5 +1,4 @@
 <?php
-    //var_dump($_kmimos_wlabel_user->wlabel_result);
     $title=$_wlabel_user->wlabel_result->title;
     $image=$_wlabel_user->wlabel_data->image;
     $color=$_wlabel_user->wlabel_data->color;

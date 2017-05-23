@@ -536,7 +536,7 @@
 													<li>
 														<a class='ser_cuidador' href='".get_home_url()."/quiero-ser-cuidador-certificado-de-perros/'>
 															<span></span>
-															<div>Quiero ser cuidador</div>
+															<div class='theme_button'>Quiero ser cuidador</div>
 														</a>
 													<li>
 												";
@@ -552,9 +552,9 @@
 										<?php 
 										if ( !is_user_logged_in() ){
 										?>
-											<li class="pf-login-register<?php echo $pflogintext?>" id="pf-login-trigger-button-mobi"><a href="#"><i class="pfadmicon-glyph-584"></i> <?php  echo esc_html__('Login','pointfindert2d')?></a></li>
-											<li class="pf-login-register<?php echo $pflogintext?>"><a href="<?php echo get_home_url()."/registrar/"; ?>"><i class="pfadmicon-glyph-365"></i> <?php  echo esc_html__('Register','pointfindert2d')?></a></li>
-											<li class="pf-login-register<?php echo $pflogintext?>" id="pf-lp-trigger-button-mobi"><a href="#"><i class="pfadmicon-glyph-889"></i><?php  echo esc_html__('Forgot Password','pointfindert2d')?></a></li>
+											<li class="pf-login-register<?php echo $pflogintext; ?>" id="pf-login-trigger-button-mobi"><a href="#"><i class="pfadmicon-glyph-584"></i> <?php  echo esc_html__('Login','pointfindert2d')?></a></li>
+											<li class="pf-login-register<?php echo $pflogintext; ?>"><a href="<?php echo get_home_url()."/registrar/"; ?>"><i class="pfadmicon-glyph-365"></i> <?php  echo esc_html__('Register','pointfindert2d')?></a></li>
+											<li class="pf-login-register<?php echo $pflogintext; ?>" id="pf-lp-trigger-button-mobi"><a href="#"><i class="pfadmicon-glyph-889"></i><?php  echo esc_html__('Forgot Password','pointfindert2d')?></a></li>
 										<?php 
 										}else {
 										
