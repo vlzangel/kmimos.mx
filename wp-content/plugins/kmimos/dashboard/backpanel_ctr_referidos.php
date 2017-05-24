@@ -103,6 +103,7 @@ $subscribe = getListsuscribe($landing, $referido, $desde, $hasta);
 			  	<?php while( $row = $subscribe->fetch_assoc() ){
 			  		// Cargar datos del usuario referido
 			  		$metaReferido = getmetaUser($row['referido_id']);
+
 			  		// Cargar datos de referencia
 			  		$referencia = getReferencia($row['user_email'], $landing);
 			  		$referencia = $referencia['rows'][0];
@@ -116,8 +117,8 @@ $subscribe = getListsuscribe($landing, $referido, $desde, $hasta);
 			  		$metaReservasResult = getCountReservas($row['referido_id'] );
 			  		$metaReservas = $metaReservasResult['rows'][0];
 
-			  		// testing 
-			  		$metaReservas['cant'] = 1;
+			  		// testing //
+			  		//print_r($metaReservas);
 			  	 ?>
 				    <tr id="<?php echo $row['user_email']; ?>">
 				    	<th class="text-center"><?php echo ++$count; ?></th>
@@ -131,6 +132,7 @@ $subscribe = getListsuscribe($landing, $referido, $desde, $hasta);
 				    		<?php }else{ echo '<i class="fa fa-minus-square-o fa-2x" aria-hidden="true"></i>'; } ?>
 					    	</th>
 				    	<?php } ?>
+
 						<th class="bg-info"><?php echo $row['user_email']; ?></th>
 						<th><?php echo $metaReferido['first_name']." ".$metaReferido['last_name']; ?></th>
 						<th><?php echo ($metaReservas['cant']>0)? "1": "0" ; ?></th>
@@ -184,7 +186,10 @@ $subscribe = getListsuscribe($landing, $referido, $desde, $hasta);
 <script>
 	jQuery(function($){
 		$("#referencia").addClass('disabled');
-		countRefNotEmpty();
+		var disabled = $('[data-target="ref"]:not(:empty)').size(); 
+	    if( disabled >= 25 ){
+	      $("#referencia").addClass('disabled');
+	    }
 	});
 </script>
 <?php } ?>
