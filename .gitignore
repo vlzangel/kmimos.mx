@@ -64,9 +64,9 @@ vlz_config.php
 /wp-content/plugins/wc-vendors/
 /wp-content/plugins/widget-shortcode/
 /wp-content/plugins/woocommerce/
-/wp-content/plugins/WooCommerce.Deposits.Partial.Payments.Plugin.v1.4.2/
+# /wp-content/plugins/WooCommerce.Deposits.Partial.Payments.Plugin.v1.4.2/
 /wp-content/plugins/woocommerce-accommodation-bookings/
-/wp-content/plugins/woocommerce-bookings/
+# /wp-content/plugins/woocommerce-bookings/
 /wp-content/plugins/woocommerce-menu-bar-cart/
 /wp-content/plugins/woocommerce-product-addons/
 /wp-content/plugins/woocommerce-product-csv-import-suite/
@@ -88,7 +88,9 @@ vlz_config.php
 /wp-content/plugins/domain-mirror2/
 
 /wp-content/plugins/wpmandrill/
-
+/wp-content/plugins/bwp-minify/
+/wp-content/w3tc-config/ 
+/wp-content/cache/  
 
 /wp-content/plugins/woocommerce-bookings/.tx/
 .idea/workspace.xml
@@ -97,3 +99,6 @@ vlz_config.php
 .idea/vcs.xml
 .idea/modules.xml
 wp-content/index.php
+wp-content/plugins/WooCommerce.Deposits.Partial.Payments.Plugin.v1.4.2/changelog.txt
+wp-content/plugins/WooCommerce.Deposits.Partial.Payments.Plugin.v1.4.2/Licensing/GPL.txt
+wp-content/plugins/WooCommerce.Deposits.Partial.Payments.Plugin.v1.4.2/Licensing/README_License.txt

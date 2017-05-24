@@ -14,22 +14,40 @@
  * Version:     1.0.0
  * License:     GPL2
  */
+
 include_once('wlabel/wlabel.php');
-include_once('includes/class/class_kmimos_map.php');
 include_once('includes/class/class_kmimos_booking.php');
 include_once('includes/class/class_kmimos_tables.php');
 include_once('includes/functions/kmimos_functions.php');
+include_once('includes/functions/vlz_functions.php');
+include_once('includes/class/class_kmimos_script.php');
 include_once('plugins/woocommerce.php');
+
+if(!function_exists('kmimos_get_info_syte')){
+    function kmimos_get_info_syte(){
+        return array(
+            "pais"      => "México",
+            "titulo"    => "Kmimos México",
+            "email"     => "contactomx@kmimos.la",
+            "telefono"  => "+52 (55) 1791.4931/ +52 (55) 66319264",
+            "twitter"   => "kmimosmx",
+            "facebook"  => "Kmimosmx",
+            "instagram" => "kmimosmx",
+            "mon_izq" => "",
+            "mon_der" => "$"
+        );
+    }
+}
 
 if(!function_exists('kmimos_mails_administradores')){
     function kmimos_mails_administradores(){
 
-        $headers[] = 'BCC: e.celli@kmimos.la';
-        $headers[] = 'BCC: r.cuevas@kmimos.la';
-        $headers[] = 'BCC: r.gonzalez@kmimos.la';
-        $headers[] = 'BCC: m.castellon@kmimos.la';
-        $headers[] = 'BCC: a.veloz@kmimos.la';
-        $headers[] = 'BCC: a.pedroza@kmimos.la';
+        // $headers[] = 'BCC: e.celli@kmimos.la';
+        // $headers[] = 'BCC: r.cuevas@kmimos.la';
+        // $headers[] = 'BCC: r.gonzalez@kmimos.la';
+        // $headers[] = 'BCC: m.castellon@kmimos.la';
+        // $headers[] = 'BCC: a.veloz@kmimos.la';
+        // $headers[] = 'BCC: a.pedroza@kmimos.la';
 
         /*        
         $headers[] = 'BCC: vlzangel91@gmail.com';

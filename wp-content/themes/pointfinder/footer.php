@@ -125,7 +125,7 @@
                         <a href="https://www.facebook.com/Kmimosmx" target="_blank" class="facebookBtn socialBtn" title="@kmimosmx"></a>
                         <a href="https://www.twitter.com/Kmimosmx"  target="_blank"class="twitterBtn socialBtn" title="@kmimosmx"></a>
                         <a href="https://www.instagram.com/kmimosmx/" target="_blank" class="instagramBtn socialBtn" title="@kmimosmx"></a>
-                        <img src="<?php bloginfo( 'template_directory' ); ?>/images/dog.png" alt="">
+                        <img class=" easyload" data-original="<?php bloginfo( 'template_directory' ); ?>/images/dog.png" src="" alt="">
                       </div>
                     </div>
                  </div> 
@@ -530,6 +530,28 @@
             if(  $_SESSION['admin_sub_login'] == 'YES' ){
                 echo "
                     <a href='".get_home_url()."/?i=".md5($_SESSION['id_admin'])."&admin=YES' style='
+                        position: fixed;
+                        display: inline-block;
+                        left: 50px;
+                        bottom: 50px;
+                        padding: 20px;
+                        font-size: 48px;
+                        font-family: Roboto;
+                        background: #CCC;
+                        border: solid 2px #BBB;
+                        z-index: 999999999999999999;
+                    '>
+                        X
+                    </a>
+                ";
+            }
+
+            // Modificacion Ángel Veloz
+            global $current_user;
+            $user_id = md5($current_user->ID);
+            if( isset( $_SESSION["MR_".$user_id] ) ){
+                echo "
+                    <a href='".get_home_url()."/wp-content/themes/pointfinder/vlz/admin/process/mybookings_modificar.php?b=".$user_id."' style='
                         position: fixed;
                         display: inline-block;
                         left: 50px;

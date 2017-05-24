@@ -2069,8 +2069,6 @@ jQuery.validator.addMethod("pattern", function(value, element, param) {
 	
 	$( window ).resize(function() {
 		if ($(window).width() < 550) {
-			$('tr.order-remaining>td').attr('data-title', 'Monto a pagar al cuidador');
-			$('tr.order-remaining>th').attr('data-title', 'Monto a pagar al cuidador');
 			$('div.vlz_bloquear_map>p').text('Toca la pantalla para ver en el mapa');
 		}
 
@@ -2081,8 +2079,8 @@ jQuery.validator.addMethod("pattern", function(value, element, param) {
 		$(".pointfinderexfooterclassx").appendTo(".wpf-footer-row-move");
 		 /*Jaurgeui*/
 		$('a.edit').addClass('button');
-		$('a.checkout-button.button.alt.wc-forward').text('Pague Ahora');
-		$('a.checkout-button.button.alt.wc-forward').css({'color': '#fff', 'background-color': '#5ec9aa'});
+		// $('a.checkout-button.button.alt.wc-forward').text('Pague Ahora');
+		// $('a.checkout-button.button.alt.wc-forward').css({'color': '#fff', 'background-color': '#5ec9aa'});
 		$('p.return-to-shop>a.button.alt.wc-backward').hide();
 		$('p.return-to-shop>a.button.wc-backward').hide();
 		$('button.wc-bookings-booking-form-button.single_add_to_cart_button.button.alt').css('text-transform', 'uppercase');

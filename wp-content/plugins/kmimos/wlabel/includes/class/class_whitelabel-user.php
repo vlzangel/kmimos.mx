@@ -113,7 +113,9 @@ class Class_WhiteLabel_User{
             if(count($result)>0){
                 $this->wlabel=$label;
                 $this->wlabel_result=$result[0];
-                $this->wlabel_data=json_decode($this->wlabel_result->data);//,true
+
+                $data = preg_replace('[\n|\r|\n\r|\r\n]','', $this->wlabel_result->data);
+                $this->wlabel_data=json_decode($data);//,true
                 return $this->wlabel_result;
             }
         }
