@@ -192,6 +192,52 @@
 			$msg_cliente = kmimos_get_email_html("Confirmación de Reserva", $msg_cliente, "", true, true);
 	   		wp_mail( $email_cliente, "Confirmación de Reserva", $msg_cliente);
 
+
+	   		// ********************************************************************
+	   		// BEGIN Notificacion para usuario referidos - Landing WOM /Referidos
+	   		// ********************************************************************
+	   		$user_info = get_user_by( 'email', $email_cliente );
+	   		if(isset($user_info->ID)){	
+	   			global $wpdb;
+				$count_reservas = $wpdb->get_results( 
+					"SELECT  
+						count(ID) as cant
+					FROM wp_posts
+					WHERE post_type = 'wc_booking' 
+						AND not post_status like '%cart%' AND post_status = 'confirmed' 
+						AND post_author = {$user_info->ID}
+						AND DATE_FORMAT(post_date, '%m-%d-%Y') between DATE_FORMAT('2017-05-12','%m-%d-%Y') and DATE_FORMAT(now(),'%m-%d-%Y')"
+				);
+
+		   		$user_referido = get_user_meta($user_info->ID, 'landing-referencia', true);
+
+
+		   		if(!empty($user_referido)){
+					$username = $nom;
+					require_once('../../../landing/email_template/notificacion_registro_referido.php');
+					$user_participante = $wpdb->get_results( "
+						select ID, user_email 
+						from wp_users 
+						where md5(user_email) = '{$user_referido}'" 
+					);
+					$user_participante = (count($user_participante)>0)? $user_participante[0] : [];
+
+
+					if(isset($user_participante->user_email)){
+						$message_participante = kmimos_get_email_html(
+							"Club de las patitas felices",
+							$mensaje_mail_partitipante,
+							'', true, true);
+						wp_mail( $user_participante->user_email, 
+								"¡Felicidades, has hecho a la manada más grande!", 
+								$message_participante );
+					}
+				} 
+			}
+	   		// ********************************************************************
+	   		// END Notificacion para usuario referidos - Landing WOM /Referidos
+	   		// ********************************************************************
+
 	    }
 
 	}

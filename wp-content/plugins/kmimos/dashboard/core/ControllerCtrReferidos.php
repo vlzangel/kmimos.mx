@@ -63,7 +63,6 @@ function getReferencia( $email = '', $landing = '' ){
 			AND post_author = {$author_id}
 			AND DATE_FORMAT(post_date, '%m-%d-%Y') between DATE_FORMAT('2017-05-12','%m-%d-%Y') and DATE_FORMAT(now(),'%m-%d-%Y')
 	";
-
 	$result = get_fetch_assoc($sql);
 	return $result;
 }
