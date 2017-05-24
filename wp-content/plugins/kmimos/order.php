@@ -211,7 +211,6 @@
 
 		   		$user_referido = get_user_meta($user_info->ID, 'landing-referencia', true);
 
-
 		   		if(!empty($user_referido)){
 					$username = $nom;
 					require_once('../../../landing/email_template/notificacion_registro_referido.php');
@@ -221,7 +220,6 @@
 						where md5(user_email) = '{$user_referido}'" 
 					);
 					$user_participante = (count($user_participante)>0)? $user_participante[0] : [];
-
 
 					if(isset($user_participante->user_email)){
 						$message_participante = kmimos_get_email_html(
