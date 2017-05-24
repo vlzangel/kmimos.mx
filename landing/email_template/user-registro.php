@@ -8,7 +8,7 @@ $mensaje_mail = '
         <p>
             <table>
                 <tr> <td> <strong>E-mail:</strong> </td><td>'.$email.'</td> </tr>
-                <tr> <td> <strong>Contraseña:</strong> </td><td> Debes generar tu clave en Olvido Contraseña </td> </tr>
+                <tr> <td> <strong>Contraseña:</strong> </td><td> Debes recuperar tu contraseña </td> </tr>
             </table>
         </p>
         <p style="text-align: center;">
