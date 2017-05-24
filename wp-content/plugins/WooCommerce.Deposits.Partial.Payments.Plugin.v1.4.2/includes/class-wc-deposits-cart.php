@@ -27,7 +27,6 @@ class WC_Deposits_Cart{
     }
 
     private function update_deposit_meta($product, $quantity, &$cart_item_data){
-        echo "Hola";
 
         // Modificacion Ángel Veloz
         if( !isset($_SESSION) ){ session_start(); }
@@ -282,6 +281,11 @@ class WC_Deposits_Cart{
                         <td style='color: #60cbac' data-title="<?php _e('Pague Hoy', 'woocommerce-deposits'); ?>"><?php $this->deposit_paid_html(); ?></td>
                     </tr> <?php
                 }
+            }else{ ?>
+                <tr class="order-paid">
+                    <th style='color: #60cbac'><?php _e('Pague Hoy:', 'woocommerce-deposits'); ?></th>
+                    <td style='color: #60cbac' data-title="<?php _e('Pague Hoy', 'woocommerce-deposits'); ?>"><?php $this->deposit_paid_html(); ?></td>
+                </tr> <?php
             }
         ?>
 

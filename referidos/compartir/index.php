@@ -90,7 +90,7 @@ if(isset($_GET['e'])){
 						</section>					
 					</div>
 					<section id="bloque3" class="bloque col-xs-12 col-sm-4 col-md-4 ">
-						<span>Por cada amigo que complete una reservacion, t&uacute; ganas 
+						<span>Por cada amigo que complete una reservaci&oacute;n, t&uacute; ganas 
 						<span class="resaltar">150$</span> acumulables hasta  <span class="resaltar">750$</span> y tu amigo gana otros <span class="resaltar">150$</span>
 						</span>
 					</section>
@@ -105,9 +105,11 @@ if(isset($_GET['e'])){
 							¿Y ahora qué sigue?
 						</h3>
 						<div class="text-left">							
-							<span><strong>Paso 1:</strong> Te vamos a dirigir a tu red social twitter para que puedas compartir esta promoción con tus amigos. Copia y pega el siguiente enlace para que tus amigos puedan unirse a nuestro club.</span><br>
-							<span><strong>Paso 2:</strong> Cuando alguno de los amigos a los que les hiciste llegar la promoción se registren en el club de las patitas felices, recibirás un correo notificandote que uno de tus amigos se ha unido al club referido por ti.</span><br>
-							<span><strong>Paso 3:</strong> Cuando alguno de tus referidos complete su primera reserva con nosotros, te llegará un correo de notificación avisándote que estás mas cerca de cumplir tu meta de referidos.</span><br>
+							<span><strong>Paso 1: COMPARTE.</strong> Te vamos a redirigir a tu red social twitter para que compartas el siguiente enlace con tus amigos.</span><br>
+							
+							<span><strong>Paso 2: ESPERA.</strong> Cuando tus amigos se unan al club gracias a tu referencia, te notificaremos con un email.</span><br>
+							
+							<span><strong>Paso 3: GANA.</strong> Cuando alguno de tus referidos haga su primera reserva con Kmimos, te avisaremos con un email. Este es el momento en el que puedes hacer válida tu recompensa.</span><br>
 						</div>
 						<br>	
 						<a class="btn btn-info twitter-share-button"
@@ -131,9 +133,11 @@ if(isset($_GET['e'])){
 							¿Y ahora qué sigue?
 						</h3>
 						<div class="text-left">							
-							<span><strong>Paso 1:</strong> Te vamos a dirigir a tu red social facebook para que puedas compartir esta promoción con tus amigos. Copia y pega el siguiente enlace para que tus amigos puedan unirse a nuestro club.</span><br>
-							<span><strong>Paso 2:</strong> Cuando alguno de los amigos a los que les hiciste llegar la promoción se registren en el club de las patitas felices, recibirás un correo notificandote que uno de tus amigos se ha unido al club referido por ti.</span><br>
-							<span><strong>Paso 3:</strong> Cuando alguno de tus referidos complete su primera reserva con nosotros, te llegará un correo de notificación avisándote que estás mas cerca de cumplir tu meta de referidos.</span><br>
+							<span><strong>Paso 1: COMPARTE.</strong> Te vamos a redirigir a tu red social facebook para que compartas el siguiente enlace con tus amigos.</span><br>
+							
+							<span><strong>Paso 2: ESPERA.</strong> Cuando tus amigos se unan al club gracias a tu referencia, te notificaremos con un email.</span><br>
+							
+							<span><strong>Paso 3: GANA.</strong> Cuando alguno de tus referidos haga su primera reserva con Kmimos, te avisaremos con un email. Este es el momento en el que puedes hacer válida tu recompensa.</span><br>
 						</div>
 						<br>	
 						<div class="fb-share-button" data-href="<?php echo $url;?>" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u&amp;src=sdkpreparse">Compartir</a></div>
@@ -147,9 +151,11 @@ if(isset($_GET['e'])){
 							¿Y ahora qué sigue?
 						</h3>
 						<div class="text-left">							
-							<span><strong>Paso 1:</strong>  En un correo electrónico copia y pega el siguiente enlace para que tus amigos puedan unirse a nuestro club. Envialo a todos los contactos que quieras</span><br>
-							<span><strong>Paso 2:</strong> Cuando alguno de los amigos a los que les hiciste llegar la promoción se registren en el club de las patitas felices, recibirás un correo notificandote que uno de tus amigos se ha unido al club referido por ti.</span><br>
-							<span><strong>Paso 3:</strong> Cuando alguno de tus referidos complete su primera reserva con nosotros, te llegará un correo de notificación avisándote que estás mas cerca de cumplir tu meta de referidos.</span><br>
+							<span><strong>Paso 1: COMPARTE.</strong> Copia y pega el enlace que aparece en este mensaje. Envíalo a tus amigos por email.</span><br>
+							
+							<span><strong>Paso 2: ESPERA.</strong> Cuando tus amigos se unan al club gracias a tu referencia, te notificaremos con un email.</span><br>
+
+							<span><strong>Paso 3: GANA.</strong> Cuando alguno de tus referidos haga su primera reserva con Kmimos, te avisaremos con un email. Este es el momento en el que puedes hacer válida tu recompensa.</span><br>
 						</div>
 						<br>
 						<strong><?php echo $url;?></strong>

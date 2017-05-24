@@ -61,6 +61,7 @@ $subscribe = getListsuscribe($landing, $desde, $hasta);
 			      <th>#</th>
 			      <th>Landing</th>
 			      <th>Email</th>
+			      <th>Cant. Reservas Ref.</th>
 			      <th>Fecha Suscripción</th>
 			      <th>Fecha Registro</th>
 			      <th>Tipo de Usuario</th>
@@ -69,7 +70,13 @@ $subscribe = getListsuscribe($landing, $desde, $hasta);
 			  </thead>
 			  <tbody>
 			  	<?php $count=0; ?>
-			  	<?php while( $row = $subscribe->fetch_assoc() ){ ?>
+			  	<?php while( $row = $subscribe->fetch_assoc() ){
+			  		$cant_reservas = get_total_reservas( $row['email'] );
+			  		if( count($cant_reservas['rows']) > 0 ){
+			  			$cant_reservas = $cant_reservas['rows'][0];
+			  		}
+			  		
+			  	?>
 				    <tr>
 				    	<th class="text-center"><?php echo ++$count; ?></th>
 						<th><?php echo $row['source']; ?></th>
@@ -78,6 +85,7 @@ $subscribe = getListsuscribe($landing, $desde, $hasta);
 								<?php echo $row['email']; ?>	
 							</a>
 						</th>
+						<th class="text-center"><?php echo ($cant_reservas['total_reservas']>0)?$cant_reservas['total_reservas']: 0; ?></th>
 						<th class="text-center"><?php echo $row['fecha']; ?></th>
 						<th class="text-center"><?php echo $row['fecha_registro']; ?></th>
 						<th class="text-center"><?php echo $row['tipo']; ?></th>

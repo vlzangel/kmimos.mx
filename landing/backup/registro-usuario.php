@@ -6,7 +6,6 @@
     //date_default_timezone_set('America/Mexico_City');
     global $wpdb;
 
-
     $landing_url = "https://www.kmimos.com.mx/referidos";     // URL Landing
 	$landing_name = 'kmimos-mx-clientes-referidos'; 	// Name Landing Page
 
@@ -46,29 +45,6 @@
 		// Registrado desde el landing page
 		update_user_meta( $user_id, 'first_name', $name );
 		update_user_meta( $user_id, 'user_referred', 'Amigo/Familiar' );
-		update_user_meta( $user_id, "landing-{$landing_name}", date('Y-m-d H:i:s') ); 		
-
-	    // Buscar clientes referidos
-	    if( !empty($referencia) ){
-			update_user_meta( $user_id, 'landing-referencia', $referencia );
-			// enviar correo al participante
-
-			$sql2 = "select ID, user_email from wp_users where md5(user_email) = '{$referencia}'";
-			$user_participante = get_fetch_assoc($sql2);
-			// Envio de email cuando se registra un referido
-			require_once('email_template/notificacion_registro_referido.php');
-			$message_participante = kmimos_get_email_html(
-				"Club de las patitas felices",
-				$mensaje_mail_partitipante,
-				'', true, true);
-
-			if(wp_mail( 
-				$user_participante['rows'][0]['user_email'], 
-				"¡Felicidades, has hecho a la manada más grande!", 
-				$message_participante
-			)){
-			}
-		}
 
 	    $user = new WP_User( $user_id );
 	    $user->set_role( 'subscriber' );
@@ -86,24 +62,25 @@
 	    $estatus_registro = 1;
 	    $notificaciones = "Nuevo Usuario Registrado.";
 
-		
-
 	}
 
+	// ***************************************************
+	// Registrar metas
+	// ***************************************************
+	if(isset( $user->ID ) )
+	{
+		if($user->ID > 0){
+			$estatus_registro = 1;
+			$meta = get_user_meta( $user->ID, 'landing-referencia');
 
-	function get_fetch_assoc($sql){
-		$cnn = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-		$data = [];
-		if($cnn){
-			$rows = $cnn->query( $sql );
-			if(isset($rows->num_rows)){
-				if( $rows->num_rows > 0){
-					$data['info'] = $rows;
-					$data['rows'] = mysqli_fetch_all($rows,MYSQLI_ASSOC);
-				}
+			if( empty($meta) ){
+				update_user_meta( $user->ID, 'landing-referencia', $referencia );
+				update_user_meta( $user->ID, "landing-{$landing_name}", date('Y-m-d H:i:s') ); 
+
+
+				// enviar correo al participante
 			}
 		}
-		return $data;
 	}
 
 print_r($estatus_registro);

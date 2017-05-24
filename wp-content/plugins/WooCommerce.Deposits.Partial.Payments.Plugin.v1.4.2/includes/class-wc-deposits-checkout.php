@@ -45,6 +45,9 @@ class WC_Deposits_Checkout
                     <th style='color: #60cbac'><?php _e('Pague Hoy', 'woocommerce-deposits'); ?></th>
                     <td style="color: #60cbac"><?php $this->wc_deposits->cart->deposit_paid_html(); ?></td> <?php
                 }
+            }else{ ?>
+              <th style='color: #60cbac'><?php _e('Pague Hoy', 'woocommerce-deposits'); ?></th>
+              <td style="color: #60cbac"><?php $this->wc_deposits->cart->deposit_paid_html(); ?></td> <?php
             }
         ?>
         
