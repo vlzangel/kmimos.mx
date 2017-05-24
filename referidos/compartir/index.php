@@ -106,8 +106,8 @@ if(isset($_GET['e'])){
 						</h3>
 						<div class="text-left">							
 							<span><strong>Paso 1:</strong> Te vamos a dirigir a tu red social twitter para que puedas compartir esta promoción con tus amigos. Copia y pega el siguiente enlace para que tus amigos puedan unirse a nuestro club.</span><br>
-							<span><strong>Paso 2:</strong> Cuando alguno de los amigos a los que les hiciste llegar la promoción se registren en el club de las patitas felices, recibirás un correo notificandote que uno de tus amigos se ha unido al club referido por ti.</span><br>
-							<span><strong>Paso 3:</strong> Cuando alguno de tus referidos complete su primera reserva con nosotros, te llegará un correo de notificación avisándote que estás mas cerca de cumplir tu meta de referidos.</span><br>
+							<span><strong>Paso 2:</strong> Cuando alguno de los amigos a los que les hiciste llegar la promoción se registren en el club de las patitas felices, recibirás un correo notificándote que uno de tus amigos se ha unido al club referido por ti.</span><br>
+							<span><strong>Paso 3:</strong> Cuando alguno de tus referidos complete su primera reserva con nosotros, te llegará un correo de notificación avisándote que estás más cerca de cumplir tu meta de referidos.</span><br>
 						</div>
 						<br>	
 						<a class="btn btn-info twitter-share-button"
@@ -132,8 +132,8 @@ if(isset($_GET['e'])){
 						</h3>
 						<div class="text-left">							
 							<span><strong>Paso 1:</strong> Te vamos a dirigir a tu red social facebook para que puedas compartir esta promoción con tus amigos. Copia y pega el siguiente enlace para que tus amigos puedan unirse a nuestro club.</span><br>
-							<span><strong>Paso 2:</strong> Cuando alguno de los amigos a los que les hiciste llegar la promoción se registren en el club de las patitas felices, recibirás un correo notificandote que uno de tus amigos se ha unido al club referido por ti.</span><br>
-							<span><strong>Paso 3:</strong> Cuando alguno de tus referidos complete su primera reserva con nosotros, te llegará un correo de notificación avisándote que estás mas cerca de cumplir tu meta de referidos.</span><br>
+							<span><strong>Paso 2:</strong> Cuando alguno de los amigos a los que les hiciste llegar la promoción se registren en el club de las patitas felices, recibirás un correo notificándote que uno de tus amigos se ha unido al club referido por ti.</span><br>
+							<span><strong>Paso 3:</strong> Cuando alguno de tus referidos complete su primera reserva con nosotros, te llegará un correo de notificación avisándote que estás más cerca de cumplir tu meta de referidos.</span><br>
 						</div>
 						<br>	
 						<div class="fb-share-button" data-href="<?php echo $url;?>" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u&amp;src=sdkpreparse">Compartir</a></div>
@@ -147,9 +147,9 @@ if(isset($_GET['e'])){
 							¿Y ahora qué sigue?
 						</h3>
 						<div class="text-left">							
-							<span><strong>Paso 1:</strong>  En un correo electrónico copia y pega el siguiente enlace para que tus amigos puedan unirse a nuestro club. Envialo a todos los contactos que quieras</span><br>
-							<span><strong>Paso 2:</strong> Cuando alguno de los amigos a los que les hiciste llegar la promoción se registren en el club de las patitas felices, recibirás un correo notificandote que uno de tus amigos se ha unido al club referido por ti.</span><br>
-							<span><strong>Paso 3:</strong> Cuando alguno de tus referidos complete su primera reserva con nosotros, te llegará un correo de notificación avisándote que estás mas cerca de cumplir tu meta de referidos.</span><br>
+							<span><strong>Paso 1:</strong>  En un correo electrónico copia y pega el siguiente enlace para que tus amigos puedan unirse a nuestro club. Envíalo a todos los contactos que quieras.</span><br>
+							<span><strong>Paso 2:</strong> Cuando alguno de los amigos a los que les hiciste llegar la promoción se registren en el club de las patitas felices, recibirás un correo notificándote que uno de tus amigos se ha unido al club referido por ti.</span><br>
+							<span><strong>Paso 3:</strong> Cuando alguno de tus referidos complete su primera reserva con nosotros, te llegará un correo de notificación avisándote que estás más cerca de cumplir tu meta de referidos.</span><br>
 						</div>
 						<br>
 						<strong><?php echo $url;?></strong>

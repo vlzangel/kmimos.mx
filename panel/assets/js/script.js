@@ -13,13 +13,6 @@ jQuery(function($){
     }
   });
 
-  function countRefNotEmpty(){
-    var disabled = $('[data-target="ref"]:not(:empty)').size(); 
-    if( disabled >= num_ref_max ){
-      $("#referencia").addClass('disabled');
-    }
-  }
-
   $('#saveRef').on('click', function(){
 
     if( $('#ref').val() != ""){
@@ -71,6 +64,12 @@ jQuery(function($){
           $('#loading').addClass('hidden');
         }
     }
-});
+  });
 
+  function countRefNotEmpty(){
+    var disabled = $('[data-target="ref"]:not(:empty)').size(); 
+    if( disabled >= num_ref_max ){
+      $("#referencia").addClass('disabled');
+    }
+  }
 });
