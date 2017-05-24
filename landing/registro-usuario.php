@@ -7,13 +7,6 @@
     global $wpdb;
 
 
-
-$user_participante = $wpdb->get_results( "select ID, user_email from wp_users where md5(user_email) = 'f52a9495056830c9afc9bda059035e24'" );
-print_r( $user_participante );
-exit();
-
-
-
     $landing_url = "https://www.kmimos.com.mx/referidos";     // URL Landing
 	$landing_name = 'kmimos-mx-clientes-referidos'; 	// Name Landing Page
 
