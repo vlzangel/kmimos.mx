@@ -29,7 +29,13 @@
 	  		$dudas
 		;
 
-		$mensaje_cliente = kmimos_get_email_html('Solicitud de Reserva Recibida Exitosamente!', $mensaje_cliente, 'Solicitud de Reserva Recibida Exitosamente!', true, true);
+		if( $modificacion == "" ){
+			$titulo_mail = 'Solicitud de Reserva Recibida Exitosamente!';
+		}else{
+			$titulo_mail = $modificacion;
+		}
+		
+		$mensaje_cliente = kmimos_get_email_html($titulo_mail, $mensaje_cliente, 'Solicitud de Reserva Recibida Exitosamente!', true, true);
 
 		wp_mail( $cliente_email, "Solicitud de Reserva Recibida Exitosamente!", $mensaje_cliente, kmimos_mails_administradores());
 
@@ -52,7 +58,14 @@
 			$detalles_mascotas.
 			$detalles_servicio
 		;
-		$mensaje_admin = kmimos_get_email_html('Nueva Reserva - '.$producto, $mensaje_admin, 'Nueva Reserva - '.$producto, true, true);
+
+		if( $modificacion == "" ){
+			$titulo_mail = 'Nueva Reserva - '.$producto;
+		}else{
+			$titulo_mail = $modificacion;
+		}
+		
+		$mensaje_admin = kmimos_get_email_html($titulo_mail, $mensaje_admin, 'Nueva Reserva - '.$producto, true, true);
 
 		wp_mail( $email_admin, "Solicitud de reserva #".$reserva_id, $mensaje_admin, kmimos_mails_administradores());
 
