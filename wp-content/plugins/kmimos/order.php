@@ -185,7 +185,7 @@
 	   		// ********************************************************************
 	   		// BEGIN Notificacion para usuario referidos - Landing WOM /Referidos
 	   		// ********************************************************************
-	   		$user_info = get_user_by( 'email', $email_cliente );
+	   		$user_info = get_user_by( 'email', $cliente_email );
 	   		if(isset($user_info->ID)){	
 	   			global $wpdb;
 				$count_reservas = $wpdb->get_results( 
@@ -201,8 +201,8 @@
 		   		$user_referido = get_user_meta($user_info->ID, 'landing-referencia', true);
 
 		   		if(!empty($user_referido)){
-					$username = $nom;
-					require_once('../../../landing/email_template/notificacion_registro_referido.php');
+					$username = $nom_cliente;
+					require_once('../../../landing/email_template/notificacion_reserva_referido.php');
 					$user_participante = $wpdb->get_results( "
 						select ID, user_email 
 						from wp_users 
@@ -211,13 +211,15 @@
 					$user_participante = (count($user_participante)>0)? $user_participante[0] : [];
 
 					if(isset($user_participante->user_email)){
-						$message_participante = kmimos_get_email_html(
+						$mensaje_reserva_partitipante = kmimos_get_email_html(
 							"Club de las patitas felices",
-							$mensaje_mail_partitipante,
+							$mensaje_reserva_partitipante,
 							'', true, true);
+						
 						wp_mail( $user_participante->user_email, 
-								"¡Felicidades, has hecho a la manada más grande!", 
-								$message_participante );
+								"¡Felicidades, otro perrhijo moverá su colita de felicidad!", 
+								$mensaje_reserva_partitipante );
+
 					}
 				} 
 			}
