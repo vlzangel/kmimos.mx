@@ -23,8 +23,19 @@ $('#frm-temp').on('submit', function(e){
 
 function _subscribe(){
 
+    if( !$('#terminos').prop('checked') || $('#email').val() == "" ){
+
+      if( !$('#terminos').prop('checked') ){
+        $('#msg').html('Debe aceptar los terminos y condiciones');
+      }
+      if( $('#email').val() == "" ){
+        $('#msg').html('Debe completar los campos');
+      }
+      return;
+    }
+
     $('#loading').removeClass('hidden');
-    $('#msg').html('Enviando...');
+    $('#msg').html('Validando datos...');
     $.ajax( "https://www.kmimos.com.mx/landing/list-subscriber.php?source=kmimos-mx-cuidadores&email="+$('#email').val()+"&phone="+$('#phone').val() )
     .done(function(data) { 
       if(data == 1){ 

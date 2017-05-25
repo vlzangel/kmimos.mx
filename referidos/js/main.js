@@ -9,11 +9,22 @@ $('#send').on('click', function(e){
   _registerLanding();
 });
 
+$("input").change(function(){
+  if( $(this).val() != "" ){
+    $('msg').html("");
+  }
+});
+
 function _registerLanding(){
+
+  if( $('#email').val() == "" || $('#name').val() == "" ){
+    $('#msg').html('Debe completar los datos');
+    return;
+  }
 
   $('#loading').removeClass('hidden');
   $('#msg').html('Registrando Usuario.');
-  $.ajax( "/landing/registro-usuario.php?email="+$('#email').val()+"&name="+$('#email').val()+"&referencia="+$('#referencia').val() )
+  $.ajax( "/landing/registro-usuario.php?email="+$('#email').val()+"&name="+$('#name').val()+"&referencia="+$('#referencia').val() )
   .done(function() {
     $('#msg').html('Generando url.');
     $('#frm-redirect').submit();
