@@ -1,7 +1,7 @@
 jQuery(function($){
 
-  var num_select_max = 5; // Numero de items seleccionar por referencia
-  var num_ref_max = 25; // Numero maximo de referencia asignadas por participantes
+  var num_select_max = 1; // Numero de items seleccionar por referencia
+  var num_ref_max = 5; // Numero maximo de referencia asignadas por participantes
 
   $('#referencia').on('click', function(){
     if( !$('#referencia').hasClass('disabled') ){
