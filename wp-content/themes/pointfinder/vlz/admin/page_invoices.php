@@ -238,7 +238,6 @@ if( count($reservas) > 0 ){
 				//RESERVAS CONFIRMADAS
 			}else if($reserva->post_status=='confirmed' && strtotime($_metas_reserva['_booking_end'][0])>time()){
 				
-				echo strtotime($_metas_reserva['_booking_start'][0]);
 				$options='<a class="theme_btn" href="'.get_home_url().'/ver/'.$reserva->post_parent.'">Ver</a>';
 				$options.='<a class="theme_btn cancelled" href="'.get_home_url().'/wp-content/plugins/kmimos/orden.php?o='.$reserva->post_parent.'&s=0">Cancelar</a>';
 				
