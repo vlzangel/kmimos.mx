@@ -3,7 +3,7 @@
 
 	$id = $order->id;
 
-	$datos_generales = kmimos_datos_generales_desglose($id, true);
+	$datos_generales = kmimos_datos_generales_desglose($id, true, true);
 
 	$detalles_cliente = $datos_generales["cliente"];
 	$detalles_cuidador = $datos_generales["cuidador"];

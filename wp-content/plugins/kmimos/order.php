@@ -12,7 +12,7 @@
         return $info["email"]; 
     });
 
-    $mostrar_direccion = false;
+    $mostrar_direccion = true;
 
 	include("vlz_data_orden.php");
 	include("vlz_order_funciones.php");
