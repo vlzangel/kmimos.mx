@@ -182,12 +182,12 @@ $subscribe = getListsuscribe($landing, $referido, $desde, $hasta);
 
 <div class="clearfix"></div>
 
-<?php if( $showReferencia < 5 ){ ?>
+<?php if( $showReferencia >= 5 ){ ?>
 <script>
 	jQuery(function($){
 		$("#referencia").addClass('disabled');
 		var disabled = $('[data-target="ref"]:not(:empty)').size(); 
-	    if( disabled >= 25 ){
+	    if( disabled >= 5 ){
 	      $("#referencia").addClass('disabled');
 	    }
 	});
