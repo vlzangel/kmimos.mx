@@ -8,7 +8,7 @@
 
     global $wpdb;
 
-	$datos_generales = kmimos_datos_generales_desglose($o, true);
+	$datos_generales = kmimos_datos_generales_desglose($o, true, $mostrar_direccion);
 
 	$detalles_cliente = $datos_generales["cliente"];
 	$detalles_cuidador = $datos_generales["cuidador"];
