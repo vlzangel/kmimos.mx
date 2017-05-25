@@ -25,10 +25,7 @@
  		
  	if( isset( $_SESSION["MR_".$user_id] ) ){		
  		$data = $_SESSION["MR_".$user_id];		
- 		$modificando = $data["reserva"];		
- 		global $wpdb;		
- 		$id_reserva_modificada = $wpdb->get_var("SELECT post_parent FROM wp_posts WHERE ID = '{$modificando}'");		
- 		$modificacion = 'Esta es una modificación de la reserva #: '.$id_reserva_modificada;		
+ 		$modificacion = 'Esta es una modificación de la reserva #: '.$data["reserva"];
  	}else{		
  		$modificacion = "";		
  	}
