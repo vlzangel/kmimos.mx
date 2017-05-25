@@ -7,6 +7,7 @@ date_default_timezone_set('America/Mexico_City');
 // Validar si existe referencia de usuario
 $hidden = "";
 $email = '';
+$name = '';
 $referencia = '';
 if( isset($_GET['r']) ){
 	$referencia = $_GET['r'];
@@ -23,6 +24,7 @@ if( isset($_GET['r']) ){
 			$row = mysqli_fetch_all($r,MYSQLI_ASSOC);
 			if( count($row)>0 ){
 				$hidden = "hidden";
+				$name = $row[0]['user_nicename'];
 			}
 		}
 	}
@@ -59,7 +61,7 @@ if( isset($_GET['r']) ){
 	<body  class="container">
 
 		<div  class="col-md-offset-1">
-
+			
 			<section class="col-xs-12 col-sm-12 col-md-3 col-lg-3" style="z-index:9999!important;">
 
 				<header ><img id="img-text" src="img/20titular1.png"></header>
@@ -74,10 +76,11 @@ if( isset($_GET['r']) ){
 						<form id="frm">
 							<div class="<?php echo $hidden; ?>">
 								<input type="hidden" id="referencia" name="referencia" class="form-control" value="<?php echo $referencia; ?>">
-								<input type="text"   id="name"  name="name" class="form-control" value="" placeholder="Nombre y Apellido" required>
+								<input type="text"   id="name"  name="name" class="form-control " value="<?php echo $name; ?>" placeholder="Nombre y Apellido">
 								<input type="email"  id="email" name="email" class="form-control" value="<?php echo $email; ?>" placeholder="Correo electr&oacute;nico" required>
 							</div>
 							<button type="button" id="send" class="btn-kmimos btn">¡Quiero participar!</button>
+							<span id="msg" style="padding-top:3px;color:#fff;"></span>
 						</form>
 						<form action="compartir/?e=" method="post" id="temp"></form>
 					</div>
@@ -98,6 +101,7 @@ if( isset($_GET['r']) ){
 		  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
 		  crossorigin="anonymous">  
 		</script>		
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		<script src="js/main.js"></script>
 
 	    
