@@ -157,8 +157,6 @@
                 $mascotas = $wpdb->get_results("SELECT * FROM $wpdb->posts WHERE post_author = '".$cliente."' AND post_type='pets'");
                 $detalles_mascotas = "";
 
-                    
-
                 if( $is_mail ){
                     $detalles_mascotas = '
                         <table style="width:100%" cellspacing=0 cellpadding=0>

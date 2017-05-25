@@ -191,8 +191,17 @@ $reservas = getReservas($desde, $hasta);
 					</th>
 					<th><?php echo utf8_decode( $ubicacion['estado'] ); ?></th>
 					<th><?php echo utf8_decode( $ubicacion['municipio'] ); ?></th>
-					<th><?php echo (!empty($meta_Pedido['_payment_method_title']))? 
-							$meta_Pedido['_payment_method_title'] : 'Manual' ; ?></th>
+					<th><?php
+						if( !empty($meta_Pedido['_payment_method_title']) ){
+							echo $meta_Pedido['_payment_method_title']; 
+						}else{
+							if( !empty($meta_reserva['modificacion_de']) ){
+								echo 'Saldo a favor' ; 
+							}else{
+								echo 'Manual'; 
+							}
+						} ?>
+					</th>
 					<th><?php echo currency_format($meta_reserva['_booking_cost']); ?></th>
 					<th><?php echo currency_format($meta_Pedido['_order_total']); ?></th>
 					<th><?php echo currency_format($meta_Pedido['_wc_deposits_remaining']); ?></th>
