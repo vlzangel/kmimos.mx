@@ -106,7 +106,7 @@ if( isset( $_SESSION["MR_".$user_id] ) ){
 
 	   <?php
 	    	$cu = wp_get_current_user();
-	    	echo "jQuery('#billing_email').attr('value', '_{$cu->user_email}');";
+	    	echo "jQuery('#billing_email').attr('value', '{$cu->user_email}');";
 	    	$metas_cliente = get_user_meta($cu->ID);
 
 	    	if($cu->user_firstname == ""){ $cu->user_firstname = "_"; }
