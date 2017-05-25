@@ -18,7 +18,8 @@
     <script src="/panel/assets/vendor/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
     <script src="/panel/assets/vendor/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
     <script src="/panel/assets/vendor/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-	<script type="text/javascript" src="/panel/assets/js/custom.js"></script>
+    <script type="text/javascript" src="/panel/assets/js/custom.js"></script>
+	<script type="text/javascript" src="/panel/assets/js/script.js"></script>
 	<?php } ?>
  </body>
 </html>
