@@ -221,11 +221,17 @@
                         $edad = date("Y")-$anio[0];
 
                         $raza = $wpdb->get_var("SELECT nombre FROM razas WHERE id=".$data_mascota['breed_pet'][0]);
-                    
+                        
+                        if( $is_mail ){
+                            $border = "border-bottom: solid 1px #00d2b7;";
+                        }else{
+                            $border = "border-top: solid 1px #00d2b7;";
+                        }
+
                         $detalles_mascotas .= '
                             <tr>
-                                <td style="border-top: solid 1px #00d2b7; padding: 3px;" valign="top"> '.$data_mascota['name_pet'][0].'</td>
-                                <td style="padding: 5px; border-top: solid 1px #00d2b7;" valign="top">
+                                <td style="'.$border.' padding: 3px;" valign="top"> '.$data_mascota['name_pet'][0].'</td>
+                                <td style="padding: 5px; '.$border.';" valign="top">
                                     <strong>Raza:</strong> '.$raza.'<br>
                                     <strong>Edad:</strong> '.$edad.' año(s)<br>
                                     <strong>Tamaño:</strong> '.$tamanos_array[ $data_mascota['size_pet'][0] ].'<br>
@@ -566,6 +572,16 @@
 
             }
 
+            if( $metas_orden['_payment_method_title'][0] != "" ){
+                $pagado_con = "
+                    <tr>
+                        <td> <strong>Pagado con:</strong> </td> <td> ".$metas_orden['_payment_method_title'][0]." </td>
+                    </tr>
+                ";
+            }else{
+                $pagado_con = "";
+            }
+
             $detalles_servicio = '
                 <table>
                     <tr>
@@ -580,9 +596,7 @@
                     <tr>
                         <td> <strong>Duración:</strong> </td> <td> '.$dias.' '.$dias_noches.' </td>
                     </tr>
-                    <tr>
-                        <td> <strong>Pagado con:</strong> </td> <td> '.$metas_orden['_payment_method_title'][0].' </td>
-                    </tr>
+                    '.$pagado_con.'
                 </table>
             ';
 

@@ -12,10 +12,11 @@
 	$cliente_email  = $datos_generales["cliente_email"];
 	$cuidador_email = $datos_generales["cuidador_email"];
 
-	$booking = new WC_Booking($datos_generales["booking"]);
-    $order = new WC_Order($datos_generales["orden"]);
+    $orden_id = $datos_generales["orden"];
+    $reserva_id = $datos_generales["booking"];
 
-    $reserva_id = $datos_generales["orden"];
+    $order = new WC_Order($orden_id);
+	$booking = new WC_Booking($reserva_id);
 
     $nom_cliente  = $datos_generales["nombre_cliente"];
     $nom_cuidador = $datos_generales["nombre_cuidador"];
