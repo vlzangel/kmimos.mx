@@ -56,11 +56,11 @@
                     $dir = "No registrada";
                 }
 
-                if(!$direccion){
+                if($direccion){
                     $dir = "
                     <tr>
                         <td valign='top'> <strong>Dirección: </strong> </td>
-                        <td valign='top'> '.$dir.'</td>
+                        <td valign='top'> ".$dir."</td>
                     </tr>";
                 }else{
                     $dir = "";
