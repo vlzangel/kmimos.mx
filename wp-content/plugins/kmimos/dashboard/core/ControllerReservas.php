@@ -254,7 +254,7 @@ function getMetaCuidador( $user_id ){
 }
 
 function getMetaReserva( $post_id ){
-	$condicion = " AND meta_key IN ( '_booking_start', '_booking_end', '_booking_cost' )";
+	$condicion = " AND meta_key IN ( '_booking_start', '_booking_end', '_booking_cost', 'modificacion_de' )";
 	$result = get_metaPost($post_id, $condicion);
 
 	$data = [
