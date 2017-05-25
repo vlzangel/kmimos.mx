@@ -569,42 +569,103 @@
             }
         ?>
 
-        <?php # Scritp Mixpanel Javascript Solo para "Home"
+        <?php 
+        # Scritp Mixpanel Javascript Solo para "Home"
         if( is_front_page() ){ ?> 
-            <script>
-                
-mixpanel.identify();
-var distinct_ID = mixpanel.get_distinct_id();
-document.getElementById('pf-search-button-manual').addEventListener("click", ClickBuscar);
+            <script>      
+                mixpanel.identify();
+                var distinct_ID = mixpanel.get_distinct_id();
+                document.getElementById('pf-search-button-manual').addEventListener("click", ClickBuscar);
 
-function ClickBuscar() {
+                function ClickBuscar() {
 
+                p=document.getElementsByClassName('boton_portada boton_servicio activo');
 
-p=document.getElementsByClassName('boton_portada boton_servicio activo');
+                for (i = 0; i< p.length; i++) {
+                var tt = p[i].getElementsByTagName('input');
+                var id = "#" + jQuery (tt).attr('id');
+                console.log(id);
+                if( jQuery (id).prop('checked'))    {
 
+                  console.log('chequiao')
+                  var nombre = jQuery (tt).attr('value')
+                  mixpanel.people.set({ nombre: "si" });
+                                                    }
+                                              }
+                  var estadoss = document.getElementById("estado_cuidador");
+                  var municipioss = document.getElementById("municipio_cache");
+                  mixpanel.people.set({ 'estadoBuscado' : estadoss });
+                  mixpanel.people.set({ 'municipioBuscado' : municipioss });
+                  var FechadeBusqueda = new Date();
+                  mixpanel.people.set({ 'UltimaFechaDeBusqueda' : FechadeBusqueda });
 
-
-for (i = 0; i< p.length; i++) {
-var tt = p[i].getElementsByTagName('input');
-var id = "#" + jQuery (tt).attr('id');
-console.log(id);
-if( jQuery (id).prop('checked'))    {
-
-  console.log('chequiao')
-  var nombre = jQuery (tt).attr('value')
-  mixpanel.people.set({ nombre: "si" });
-                                    }
-                              }
-  var estadoss = document.getElementById("estado_cuidador");
-  var municipioss = document.getElementById("municipio_cache");
-  mixpanel.people.set({ 'estadoBuscado' : estadoss });
-  mixpanel.people.set({ 'municipioBuscado' : municipioss });
-  var FechadeBusqueda = new Date();
-  mixpanel.people.set({ 'UltimaFechaDeBusqueda' : FechadeBusqueda });
-
-}
+                }
             </script>
         <?php } ?>
+        
+
+        <?php if(isset($_GET['ua'])){ ?>
+            <?php if($_GET['ua'] == 'profile'){ ?>
+            <script>
+mixpanel.identify();
+var distinct_ID = mixpanel.get_distinct_id();
+sidebarList= document.getElementsByTagName("ul")[7];
+verificarCuidador= sidebarList.getElementsByTagName("li")[5];
+
+if (verificarCuidador.innerText == 'CUIDADOR') {
+  mixpanel.people.set({ 'TipoDeUsuario': 'Cuidador' });
+} else {
+    mixpanel.people.set({ 'TipoDeUsuario': 'Cliente' });
+}
+
+
+
+perfil=document.getElementsByClassName('input');
+
+for (i = 0; i<perfil.length; i++){
+
+if (i == 7){
+var perfilvalue = perfil[i].value
+
+mixpanel.people.set({ $email: perfilvalue });
+
+}
+else {
+var perfilname = perfil[i].name
+var perfilvalue = perfil[i].value
+mixpanel.people.set({ perfilname: perfilvalue });
+//mixpanel.people.set({ 'UltimaFechaDeBusqueda' : FechadeBusqueda });
+}
+}
+//document.getElementById('pf-search-button-manual').addEventListener("click", ClickBuscar);
+document.getElementById('pf-ajax-profileupdate-button').addEventListener("click", ActualizarPerfil);
+function ActualizarPerfil() {
+
+  perfil=document.getElementsByClassName('input');
+
+  for (i = 0; i<perfil.length; i++){
+
+    if (i == 7){
+
+      var perfilvalue = perfil[i].value
+    mixpanel.people.set({ $email: perfilvalue });
+
+  } else {
+    var perfilname = perfil[i].name
+    var perfilvalue = perfil[i].value
+  mixpanel.people.set({ perfilname: perfilvalue });
+        }
+  }
+
+
+}
+
+
+
+</script>
+            <?php } ?>
+        <?php } ?>
+        
 
 
     </body>
