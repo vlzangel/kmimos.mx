@@ -14,16 +14,14 @@
         <link rel="stylesheet" href="css/kmimos.css">
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-	  ga('create', 'UA-56422840-1', 'auto');
-	  ga('send', 'pageview');
-
-	</script>
+	    <script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		  ga('create', 'UA-56422840-1', 'auto');
+		  ga('send', 'pageview');
+		</script>
  
     </head>
     <body>
@@ -427,23 +425,33 @@
 					</div><!-- /input-group -->
 				</div>
 				<div class="form-group">
-					<div class="col-sm-6 text-left">
+					<div class="col-xs-7" style="padding-left:21px;" >
 						<label class="checkbox">
-							<input type="checkbox" id="terminos" name="terminos" value="0">
-							<span>Acepto los t&eacute;rminos y condiciones</span>
+							<input type="checkbox" id="terminos" name="terminos" required value="0">
+							<span>Acepto los 
+							<a role="button" data-toggle="collapse" href="#terminos_condiciones" aria-expanded="false" aria-controls="terminos_condiciones">t&eacute;rminos y condiciones</a>
+							</span>
 						</label>
 				    </div>
-					<div class="col-sm-6 text-right">
+					<div class="col-xs-4 pull-right text-right">
 				    	<button class="btn btn-success" type="button" id="subscribe">Continuar</button>
 				    </div>
 					
 				</div>
-	      		<br>
-				<div>
+				<div class="col-xs-12 col-sm-12 col-md-12">
 					<i id="loading" class="hidden" style="font-size:12px;" class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
 					<span id="msg"></span>
 				</div>
 	      		<br>
+	      		<br>
+  				<div class="collapse" id="terminos_condiciones" style="width: 100%!important;">
+				  <div class="well" style="width: 100%!important; text-align:justify; height: 200px; overflow: auto;">
+				    <?php include_once('terminos.php'); ?>
+	  				<div class="clearfix"></div>
+				  </div>
+				</div>
+  				<div class="clearfix"></div>
+				
       		</form>
 			<form id="frm-redirect" action="https://www.kmimos.com.mx/quiero-ser-cuidador-certificado-de-perros/"  method="post" >
       		</form>

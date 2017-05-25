@@ -113,13 +113,7 @@ if(isset($_GET['e'])){
 						</div>
 						<br>	
 						<a class="btn btn-info twitter-share-button"
-						  href="https://twitter.com/share"
-						  data-size="large"
-						  data-text="Suma huellas y gana descuentos"
-						  data-url="Suma huellas y gana descuentos <?php echo $url;?>"
-						  data-hashtags="#kmimos"
-						  data-via="kmimosmx"
-						  data-related="twitterapi,twitter"
+						  href="https://twitter.com/intent/tweet?text=Suma%20huellas%20y%20gana%20descuentos%20<?php echo $url;?>"
 						  target="_blank">
 							<i class="fa fa-twitter"></i> Tweet
 						</a>
@@ -173,6 +167,8 @@ if(isset($_GET['e'])){
 		  src="https://code.jquery.com/jquery-2.2.4.min.js?<?php echo time(); ?>"
 		  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
 		  crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		  
 		<script>
 		$(document).ready(function(){
 			$("#mail_publicar").click(function(){
