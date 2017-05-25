@@ -47,16 +47,16 @@ function getListlanding(){
 
 function get_total_reservas( $participante_email = 0 ){
 	$sql = "
-		SELECT count(p.ID) as total_reservas
+		SELECT count(DISTINCT p.post_author) as total_reservas
 		FROM wp_usermeta as m
-			INNER JOIN wp_posts as p ON m.user_id = p.post_author and p.post_type = 'wc_booking'
+			inner join wp_posts as p ON p.post_author = m.user_id 
+				and p.post_type = 'wc_booking'
+				and p.post_status = 'confirmed'
+				and not p.post_status like '%cart%'
+				and p.post_date > '2017-05-12'
 		WHERE 
-
 			m.meta_value = md5('{$participante_email}')
-			and p.post_date > '2017-05-12'
-			AND not p.post_status like '%cart%'
-			AND p.post_status = 'confirmed'
-		GROUP BY m.user_id
+			 
 	";
 
 	$result = get_fetch_assoc($sql);

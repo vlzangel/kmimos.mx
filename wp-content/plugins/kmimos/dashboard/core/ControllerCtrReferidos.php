@@ -77,7 +77,7 @@ function getListsuscribe($landing="", $referido="", $desde="", $hasta=""){
 	}
 	if( !empty($referido) ){
 		$filtro_adicional .= (!empty($filtro_adicional))? ' AND ' : '' ;
-		$filtro_adicional = " l.email = '{$referido}'";
+		$filtro_adicional .= " l.email = '{$referido}'";
 	}
 	if( !empty($desde) && !empty($hasta) ){
 		$filtro_adicional .= (!empty($filtro_adicional))? ' AND ' : '' ;
