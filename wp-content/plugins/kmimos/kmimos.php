@@ -28,7 +28,7 @@ if(!function_exists('kmimos_get_info_syte')){
         return array(
             "pais"      => "México",
             "titulo"    => "Kmimos México",
-            "email"     => "contactomx@kmimos.la",
+            "email"     => "contactomex@kmimos.la",
             "telefono"  => "+52 (55) 1791.4931/ +52 (55) 66319264",
             "twitter"   => "kmimosmx",
             "facebook"  => "Kmimosmx",
