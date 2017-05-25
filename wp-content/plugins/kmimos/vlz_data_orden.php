@@ -18,7 +18,7 @@
 	$booking = new WC_Booking($datos_generales["booking"]);
     $order = new WC_Order($datos_generales["orden"]);
 
-    $reserva_id = $datos_generales["booking"];
+    $reserva_id = $datos_generales["orden"];
 
     $nom_cliente  = $datos_generales["nombre_cliente"];
     $nom_cuidador = $datos_generales["nombre_cuidador"];
