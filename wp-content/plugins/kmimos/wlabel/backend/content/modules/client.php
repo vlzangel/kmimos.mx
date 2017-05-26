@@ -35,49 +35,39 @@
 
    $sql = "
          SELECT
-             posts.*,
-             posts.ID AS ID,
-             posts.post_type AS ptype,
-             posts.post_status AS status,
-             posts.post_parent AS porder,
-             posts.post_author AS customer
+             users.*
          FROM
-             wp_posts AS posts
-             LEFT JOIN wp_postmeta AS postmeta ON (postmeta.post_id=posts.ID AND postmeta.meta_key='_wlabel')
-             LEFT JOIN wp_usermeta AS usermeta ON (usermeta.user_id=posts.post_author AND usermeta.meta_key='_wlabel')
+             wp_user AS users
+             LEFT JOIN wp_usermeta AS usermeta ON (usermeta.meta_key='_wlabel')
          WHERE
-             posts.post_type = 'wc_booking' AND
-             (
-                usermeta.meta_value = '{$wlabel}' OR
-                postmeta.meta_value = '{$wlabel}'
-             )
+             usermeta.meta_value = '{$wlabel}'
           ORDER BY
-            posts.ID DESC
+            users.ID DESC
      ";
 
    //var_dump($sql);
    //var_dump($wpdb);
-   $bookings = $wpdb->get_results($sql);
-   //var_dump($bookings);
+   $users = $wpdb->get_results($sql);
+   //var_dump($users);
 
-    $BUILDbookings = array();
-   foreach($bookings as $key => $booking){
-        //var_dump($booking);
-        $ID=$booking->ID;
-        $date=strtotime($booking->post_date);
-        $customer=$booking->post_author;
-        $status=$booking->post_status;
-        $order=$booking->post_parent;
+    $BUILDusers = array();
+   foreach($users as $key => $user){
+        //var_dump($user);
+        $ID=$user->ID;
+        $date=strtotime($user->post_date);
+        $customer=$user->post_author;
+        $status=$user->post_status;
+        $order=$user->post_parent;
         $status_name=$status;
 
-        $_metas_booking = get_post_meta($ID);
+        $_metas_user = get_post_meta($ID);
         $_metas_order = get_post_meta($order);
-        //var_dump($_metas_booking);
+        //var_dump($_metas_user);
         //var_dump($_metas_order);
 
-        $IDproduct=$_metas_booking['_booking_product_id'][0];
-        $IDcustomer=$_metas_booking['_booking_customer_id'][0];
-        $IDorder_item=$_metas_booking['_booking_order_item_id'][0];
+        $IDproduct=$_metas_user['_user_product_id'][0];
+        $IDcustomer=$_metas_user['_user_customer_id'][0];
+        $IDorder_item=$_metas_user['_user_order_item_id'][0];
 
         //$_meta_WCorder = wc_get_order_item_meta($IDorder_item,'_line_total');
         $_meta_WCorder_line_total = wc_get_order_item_meta($IDorder_item,'_line_total');
@@ -92,7 +82,7 @@
 
         $html='
         <tr data-day="'.date('d',$date).'" data-month="'.date('n',$date).'" data-year="'.date('Y',$date).'" data-status="'.$status.'">
-            <td>'.$booking->ID.'</td>
+            <td>'.$user->ID.'</td>
             <td>'.date('d/m/Y',$date).'</td>
             <td>'.$_customer_name.'</td>
             <td>'.$status_name.'</td>
@@ -107,17 +97,17 @@
         //echo $html;
 
 
-       $BUILDbookings[$ID] = array();
-       $BUILDbookings[$ID]['booking'] = $ID;
-       $BUILDbookings[$ID]['order'] = $order;
-       $BUILDbookings[$ID]['date'] = $date;
-       $BUILDbookings[$ID]['customer'] = $customer;
-       $BUILDbookings[$ID]['status'] = $status;
-       $BUILDbookings[$ID]['status_name'] = $status_name;
-       $BUILDbookings[$ID]['metas_booking'] = $_metas_booking;
-       $BUILDbookings[$ID]['metas_order'] = $_metas_order;
-       $BUILDbookings[$ID]['WCorder_line_total'] = $_meta_WCorder_line_total*1;
-       //$BUILDbookings[$ID][''] = ;
+       $BUILDusers[$ID] = array();
+       $BUILDusers[$ID]['user'] = $ID;
+       $BUILDusers[$ID]['order'] = $order;
+       $BUILDusers[$ID]['date'] = $date;
+       $BUILDusers[$ID]['customer'] = $customer;
+       $BUILDusers[$ID]['status'] = $status;
+       $BUILDusers[$ID]['status_name'] = $status_name;
+       $BUILDusers[$ID]['metas_user'] = $_metas_user;
+       $BUILDusers[$ID]['metas_order'] = $_metas_order;
+       $BUILDusers[$ID]['WCorder_line_total'] = $_meta_WCorder_line_total*1;
+       //$BUILDusers[$ID][''] = ;
     }
 
 
@@ -138,16 +128,16 @@
 
                     for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
 
-                        foreach($BUILDbookings as $booking){
-                            if(strtotime(date('m/d/Y',$booking['date']))==strtotime(date('m/d/Y',$day))){
-                                $amount_booking=0;
-                                if($booking['status']!='cancelled'){
-                                    $amount_booking=$booking['WCorder_line_total'];
+                        foreach($BUILDusers as $user){
+                            if(strtotime(date('m/d/Y',$user['date']))==strtotime(date('m/d/Y',$day))){
+                                $amount_user=0;
+                                if($user['status']!='cancelled'){
+                                    $amount_user=$user['WCorder_line_total'];
                                 }
-                                $amount_booking=(round($amount_booking*100)/100);
-                                $amount_day=$amount_day+$amount_booking;
-                                $amount_month=$amount_month+$amount_booking;
-                                $amount_year=$amount_year+$amount_booking;
+                                $amount_user=(round($amount_user*100)/100);
+                                $amount_day=$amount_day+$amount_user;
+                                $amount_month=$amount_month+$amount_user;
+                                $amount_year=$amount_year+$amount_user;
                             }
                         }
 
@@ -181,16 +171,16 @@
 
             for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
 
-                foreach($BUILDbookings as $booking){
-                    if(strtotime(date('m/d/Y',$booking['date']))==strtotime(date('m/d/Y',$day))){
-                        $amount_booking=0;
-                        if($booking['status']!='cancelled'){
-                            $amount_booking=$booking['WCorder_line_total']*0.17;
+                foreach($BUILDusers as $user){
+                    if(strtotime(date('m/d/Y',$user['date']))==strtotime(date('m/d/Y',$day))){
+                        $amount_user=0;
+                        if($user['status']!='cancelled'){
+                            $amount_user=$user['WCorder_line_total']*0.17;
                         }
-                        $amount_booking=(round($amount_booking*100)/100);
-                        $amount_day=$amount_day+$amount_booking;
-                        $amount_month=$amount_month+$amount_booking;
-                        $amount_year=$amount_year+$amount_booking;
+                        $amount_user=(round($amount_user*100)/100);
+                        $amount_day=$amount_day+$amount_user;
+                        $amount_month=$amount_month+$amount_user;
+                        $amount_year=$amount_year+$amount_user;
                     }
                 }
 
@@ -224,16 +214,16 @@
 
             for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
 
-                foreach($BUILDbookings as $booking){
-                    if(strtotime(date('m/d/Y',$booking['date']))==strtotime(date('m/d/Y',$day))){
-                        $amount_booking=0;
-                        if($booking['status']!='cancelled'){
-                            $amount_booking=$booking['WCorder_line_total']*0.17*0.6;
+                foreach($BUILDusers as $user){
+                    if(strtotime(date('m/d/Y',$user['date']))==strtotime(date('m/d/Y',$day))){
+                        $amount_user=0;
+                        if($user['status']!='cancelled'){
+                            $amount_user=$user['WCorder_line_total']*0.17*0.6;
                         }
-                        $amount_booking=(round($amount_booking*100)/100);
-                        $amount_day=$amount_day+$amount_booking;
-                        $amount_month=$amount_month+$amount_booking;
-                        $amount_year=$amount_year+$amount_booking;
+                        $amount_user=(round($amount_user*100)/100);
+                        $amount_day=$amount_day+$amount_user;
+                        $amount_month=$amount_month+$amount_user;
+                        $amount_year=$amount_year+$amount_user;
                     }
                 }
 
@@ -267,16 +257,16 @@
 
             for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
 
-                foreach($BUILDbookings as $booking){
-                    if(strtotime(date('m/d/Y',$booking['date']))==strtotime(date('m/d/Y',$day))){
-                        $amount_booking=0;
-                        if($booking['status']!='cancelled'){
-                            $amount_booking=$booking['WCorder_line_total']*0.17*0.4;
+                foreach($BUILDusers as $user){
+                    if(strtotime(date('m/d/Y',$user['date']))==strtotime(date('m/d/Y',$day))){
+                        $amount_user=0;
+                        if($user['status']!='cancelled'){
+                            $amount_user=$user['WCorder_line_total']*0.17*0.4;
                         }
-                        $amount_booking=(round($amount_booking*100)/100);
-                        $amount_day=$amount_day+$amount_booking;
-                        $amount_month=$amount_month+$amount_booking;
-                        $amount_year=$amount_year+$amount_booking;
+                        $amount_user=(round($amount_user*100)/100);
+                        $amount_day=$amount_day+$amount_user;
+                        $amount_month=$amount_month+$amount_user;
+                        $amount_year=$amount_year+$amount_user;
                     }
                 }
 
@@ -313,16 +303,16 @@
 
             for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
 
-                foreach($BUILDbookings as $booking){
-                    if(strtotime(date('m/d/Y',$booking['date']))==strtotime(date('m/d/Y',$day))){
-                        $amount_booking=0;
-                        if($booking['status']=='cancelled'){
-                            $amount_booking=$booking['WCorder_line_total'];
+                foreach($BUILDusers as $user){
+                    if(strtotime(date('m/d/Y',$user['date']))==strtotime(date('m/d/Y',$day))){
+                        $amount_user=0;
+                        if($user['status']=='cancelled'){
+                            $amount_user=$user['WCorder_line_total'];
                         }
-                        $amount_booking=(round($amount_booking*100)/100);
-                        $amount_day=$amount_day+$amount_booking;
-                        $amount_month=$amount_month+$amount_booking;
-                        $amount_year=$amount_year+$amount_booking;
+                        $amount_user=(round($amount_user*100)/100);
+                        $amount_day=$amount_day+$amount_user;
+                        $amount_month=$amount_month+$amount_user;
+                        $amount_year=$amount_year+$amount_user;
                     }
                 }
 
@@ -359,16 +349,16 @@
 
             for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
 
-                foreach($BUILDbookings as $booking){
-                    if(strtotime(date('m/d/Y',$booking['date']))==strtotime(date('m/d/Y',$day))){
-                        $amount_booking=0;
-                        if($booking['status']=='unpaid' && $booking['metas_order']['_payment_method'][0] == 'openpay_stores'){
-                            $amount_booking=$booking['WCorder_line_total'];
+                foreach($BUILDusers as $user){
+                    if(strtotime(date('m/d/Y',$user['date']))==strtotime(date('m/d/Y',$day))){
+                        $amount_user=0;
+                        if($user['status']=='unpaid' && $user['metas_order']['_payment_method'][0] == 'openpay_stores'){
+                            $amount_user=$user['WCorder_line_total'];
                         }
-                        $amount_booking=(round($amount_booking*100)/100);
-                        $amount_day=$amount_day+$amount_booking;
-                        $amount_month=$amount_month+$amount_booking;
-                        $amount_year=$amount_year+$amount_booking;
+                        $amount_user=(round($amount_user*100)/100);
+                        $amount_day=$amount_day+$amount_user;
+                        $amount_month=$amount_month+$amount_user;
+                        $amount_year=$amount_year+$amount_user;
                     }
                 }
 

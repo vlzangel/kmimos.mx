@@ -94,7 +94,7 @@ vlz_config.php
 /wp-content/plugins/wpmandrill/
 /wp-content/plugins/bwp-minify/
 /wp-content/w3tc-config/ 
-/wp-content/cache/  
+/wp-content/cache/
 
 /wp-content/plugins/woocommerce-bookings/.tx/
 .idea/workspace.xml
