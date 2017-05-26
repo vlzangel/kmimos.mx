@@ -78,6 +78,7 @@
 					( posts.post_status = 'unpaid' AND orden.post_status = 'wc-partially-paid' )					
 				) AND
 				producto.post_author = '{$user_id}'
+			ORDER BY posts.ID DESC
 		";
 
 		$reservas = $wpdb->get_results($sql);

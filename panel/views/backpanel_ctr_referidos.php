@@ -1,8 +1,9 @@
 <?php 
 // Subscribe 
-require_once('core/ControllerCtrReferidos.php');
+require_once('controller/ControllerCtrReferidos.php');
 // Parametros: Filtro por fecha
 $date = getdate();
+$showReferencia = 0;
 $hoy = date("Y-m-d", $date[0]);
 $desde = date("Y-05-09", $date[0] );
 $hasta = date("Y-m-d", $date[0]);
@@ -34,7 +35,7 @@ $subscribe = getListsuscribe($landing, $referido, $desde, $hasta);
 		  	<div class="col-sm-4">
 			  	<ul class="list-inline">
 					<li>
-						<a class="btn btn-default pull-rigth" href="/wp-admin/admin.php?page=bp_participantes_club_patitas_felices"><< </a>
+						<a class="btn btn-default pull-rigth" href="/panel/?p=suscriptores"><< </a>
 					</li>
 					<?php if(!empty($referido)) { ?>
 					<li>
@@ -46,7 +47,7 @@ $subscribe = getListsuscribe($landing, $referido, $desde, $hasta);
 				</ul>		
 		  	</div>
 			<div class="col-sm-8  text-right">
-		    	<form class="form-inline" action="/wp-admin/admin.php?page=bp_referidos&ref=<?php echo $referido; ?>" method="POST">
+		    	<form class="form-inline" action="/panel/?p=suscriptores&ref=<?php echo $referido; ?>" method="POST">
 					<label>Filtrar:</label>
 					<div class="form-group">
 						<div class="input-group">
@@ -99,7 +100,7 @@ $subscribe = getListsuscribe($landing, $referido, $desde, $hasta);
 			  </thead>
 			  <tbody>
 			  	<?php $count=0;?>
-			  	<?php $showReferencia=0;?>
+			  	<?php $showReferencia=0; ?>
 			  	<?php while( $row = $subscribe->fetch_assoc() ){
 			  		// Cargar datos del usuario referido
 			  		$metaReferido = getmetaUser($row['referido_id']);
@@ -107,6 +108,7 @@ $subscribe = getListsuscribe($landing, $referido, $desde, $hasta);
 			  		// Cargar datos de referencia
 			  		$referencia = getReferencia($row['user_email'], $landing);
 			  		$referencia = $referencia['rows'][0];
+			  		// Cargar datos de reservas generadas
 			  		$metaReservasResult = getCountReservas($row['referido_id'] );
 			  		$metaReservas = $metaReservasResult['rows'][0];
 		    		if( $metaReservas['cant'] > 0 ){ 
@@ -115,7 +117,6 @@ $subscribe = getListsuscribe($landing, $referido, $desde, $hasta);
 			    		}
 			    	}
 
-			  		// Cargar datos de reservas generadas
 
 			  		// testing //
 			  		//print_r($metaReservas);

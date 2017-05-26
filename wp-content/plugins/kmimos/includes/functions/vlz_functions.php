@@ -2,7 +2,7 @@
 
     if(!function_exists('kmimos_datos_generales_desglose')){
 
-        function kmimos_datos_generales_desglose($ID_ORDEN, $is_mail = false){
+        function kmimos_datos_generales_desglose($ID_ORDEN, $is_mail = false, $direccion = false){
             global $wpdb;
 
             $ID_RESERVA   = $wpdb->get_var("SELECT ID FROM wp_posts WHERE post_parent = {$ID_ORDEN} AND post_type = 'wc_booking'");
@@ -29,20 +29,47 @@
                 $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE user_id = '".$producto->post_author."'");
 
                 $metas_cuidador = get_user_meta($cuidador->user_id);
-                $telf = $metas_cuidador["user_phone"][0];
+
                 $dir = $metas_cuidador["user_address"][0];
-                $dir = $cuidador->direccion;
+
+                if( strlen($dir) < 2 ){
+                    $dir = $cuidador->direccion;
+                }
+
                 $email_cuidador = $cuidador->email;
 
-                if( $telf == "" ){
-                    $telf = $metas_cuidador["user_mobile"][0];
-                }
-                if( $telf == "" ){
-                    $telf = "No registrado";
+                $movil = $metas_cuidador["user_mobile"][0];
+                $telfo = $metas_cuidador["user_phone"][0];
+
+                $telefono = "";
+                if( $movil != "" && $telfo != "" ){
+                    $telefono .= $movil." / ".$telfo;
+                }else{
+                    if( $movil != "" ){
+                        $telefono = $movil;
+                    }
+                    
+                    if( $telfo != "" ){
+                        $telefono = $telfo;
+                    }
+                    
+                    if( $telefono == "" ){
+                        $telefono = "No registrado";
+                    }
                 }
 
-                if( $dir == "" || $dir == 0 ){
+                if( strlen($dir) < 2 ){
                     $dir = "No registrada";
+                }
+
+                if($direccion){
+                    $dir = "
+                    <tr>
+                        <td valign='top'> <strong>Dirección: </strong> </td>
+                        <td valign='top'> ".$dir."</td>
+                    </tr>";
+                }else{
+                    $dir = "";
                 }
 
                 $detalles_cuidador = '
@@ -53,16 +80,9 @@
                         </tr>
                         <tr>
                             <td valign="top"> <strong>Teléfono:</strong> </td>
-                            <td valign="top">'.$telf.'</td>
+                            <td valign="top">'.$telefono.'</td>
                         </tr>
-                        <tr>
-                            <td valign="top"> <strong>Correo:</strong> </td>
-                            <td valign="top">'.$email_cuidador.'</td>
-                        </tr>
-                        <tr>
-                            <td valign="top"> <strong>Dirección: </strong> </td>
-                            <td valign="top"> '.$dir.'</td>
-                        </tr>
+                        '.$dir.'
                     </table>
                 ';
 
@@ -72,7 +92,7 @@
 
                 if( $cliente == 0 ){
                     $temp_email = $metas_orden["_billing_email"][0];
-                    $cliente = get_var("SELECT ID FROM wp_users WHERE user_email = '{$temp_email}'");
+                    $cliente = $wpdb->get_var("SELECT ID FROM wp_users WHERE user_email = '{$temp_email}'");
                 }
 
                 $metas_cliente = get_user_meta($cliente);
@@ -82,13 +102,25 @@
 
                 $nom = $nombre." ".$apellido;
                 $dir = $metas_cliente["user_address"][0];
-                $telf = $metas_cliente["user_phone"][0];
 
-                if( $telf == "" ){
-                    $telf = $metas_cliente["user_mobile"][0];
-                }
-                if( $telf == "" ){
-                    $telf = "No registrado";
+                $movil = $metas_cliente["user_mobile"][0];
+                $telfo = $metas_cliente["user_phone"][0];
+
+                $telefono_cliente = "";
+                if( $movil != "" && $telfo != "" ){
+                    $telefono_cliente .= $movil." / ".$telfo;
+                }else{
+                    if( $movil != "" ){
+                        $telefono_cliente = $movil;
+                    }
+                    
+                    if( $telfo != "" ){
+                        $telefono_cliente = $telfo;
+                    }
+                    
+                    if( $telefono_cliente == "" ){
+                        $telefono_cliente = "No registrado";
+                    }
                 }
 
                 if( $dir == "" || $dir == 0 ){
@@ -107,7 +139,7 @@
                         </tr>
                         <tr>
                             <td valign="top"> <strong>Teléfono:</strong> </td>
-                            <td valign="top">'.$telf.'</td>
+                            <td valign="top">'.$telefono_cliente.'</td>
                         </tr>
                         <tr>
                             <td valign="top"> <strong>Correo:</strong> </td>
@@ -124,8 +156,6 @@
 
                 $mascotas = $wpdb->get_results("SELECT * FROM $wpdb->posts WHERE post_author = '".$cliente."' AND post_type='pets'");
                 $detalles_mascotas = "";
-
-                    
 
                 if( $is_mail ){
                     $detalles_mascotas = '
@@ -189,11 +219,17 @@
                         $edad = date("Y")-$anio[0];
 
                         $raza = $wpdb->get_var("SELECT nombre FROM razas WHERE id=".$data_mascota['breed_pet'][0]);
-                    
+                        
+                        if( $is_mail ){
+                            $border = "border-bottom: solid 1px #00d2b7;";
+                        }else{
+                            $border = "border-top: solid 1px #00d2b7;";
+                        }
+
                         $detalles_mascotas .= '
                             <tr>
-                                <td style="border-top: solid 1px #00d2b7; padding: 3px;" valign="top"> '.$data_mascota['name_pet'][0].'</td>
-                                <td style="padding: 5px; border-top: solid 1px #00d2b7;" valign="top">
+                                <td style="'.$border.' padding: 3px;" valign="top"> '.$data_mascota['name_pet'][0].'</td>
+                                <td style="padding: 5px; '.$border.';" valign="top">
                                     <strong>Raza:</strong> '.$raza.'<br>
                                     <strong>Edad:</strong> '.$edad.' año(s)<br>
                                     <strong>Tamaño:</strong> '.$tamanos_array[ $data_mascota['size_pet'][0] ].'<br>
@@ -534,6 +570,16 @@
 
             }
 
+            if( $metas_orden['_payment_method_title'][0] != "" ){
+                $pagado_con = "
+                    <tr>
+                        <td> <strong>Pagado con:</strong> </td> <td> ".$metas_orden['_payment_method_title'][0]." </td>
+                    </tr>
+                ";
+            }else{
+                $pagado_con = "";
+            }
+
             $detalles_servicio = '
                 <table>
                     <tr>
@@ -548,9 +594,7 @@
                     <tr>
                         <td> <strong>Duración:</strong> </td> <td> '.$dias.' '.$dias_noches.' </td>
                     </tr>
-                    <tr>
-                        <td> <strong>Pagado con:</strong> </td> <td> '.$metas_orden['_payment_method_title'][0].' </td>
-                    </tr>
+                    '.$pagado_con.'
                 </table>
             ';
 

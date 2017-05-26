@@ -1,6 +1,6 @@
 <?php
-require_once('base_db.php');
-require_once('GlobalFunction.php');
+//require_once('../include/base_db.php');
+//require_once('../include/GlobalFunction.php');
 
 function getmetaUser($user_id=0){
 	$condicion = " AND m.meta_key IN ( 'nickname', 'first_name', 'last_name' )";

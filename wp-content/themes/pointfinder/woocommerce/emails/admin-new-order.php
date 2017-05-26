@@ -18,6 +18,18 @@
         return $info["email"]; 
     });
 
+    // Modificacion Ángel Veloz
+ 	if( !isset($_SESSION) ){ session_start(); }		
+ 	global $current_user;		
+ 	$user_id = md5($current_user->ID);		
+ 		
+ 	if( isset( $_SESSION["MR_".$user_id] ) ){		
+ 		$data = $_SESSION["MR_".$user_id];		
+ 		$modificacion = 'Esta es una modificación de la reserva #: '.$data["reserva"];
+ 	}else{		
+ 		$modificacion = "";		
+ 	}
+
 	include("vlz_data_orden.php");
 
 	$email_admin = $info["email"];
@@ -26,10 +38,10 @@
 		<center>
 			<p><strong>¿ACEPTAS ESTA RESERVA?</strong></p>
 			<table> <tr> <td>
-				<a href="'.get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$reserva_id.'&s=1&t=1" style="text-decoration: none; padding: 7px 0px; background: #00d2b7; color: #FFF; font-size: 16px; font-weight: 500; border-radius: 5px; width: 100px; display: inline-block; text-align: center;">
+				<a href="'.get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$orden_id.'&s=1&t=1" style="text-decoration: none; padding: 7px 0px; background: #00d2b7; color: #FFF; font-size: 16px; font-weight: 500; border-radius: 5px; width: 100px; display: inline-block; text-align: center;">
 					Aceptar
 				</a> </td> <td>
-				 <a href="'.get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$reserva_id.'&s=0&t=1" style="text-decoration: none; padding: 7px 0px; background: #dc2222; color: #FFF; font-size: 16px; font-weight: 500; border-radius: 5px; width: 100px; display: inline-block; text-align: center;">
+				 <a href="'.get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$orden_id.'&s=0&t=1" style="text-decoration: none; padding: 7px 0px; background: #dc2222; color: #FFF; font-size: 16px; font-weight: 500; border-radius: 5px; width: 100px; display: inline-block; text-align: center;">
 				 	Rechazar
 				 </a> </td> </tr>
 			</table>

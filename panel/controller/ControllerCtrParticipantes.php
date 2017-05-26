@@ -1,6 +1,6 @@
 <?php
-require_once('base_db.php');
-require_once('GlobalFunction.php');
+// require_once('../include/base_db.php');
+// require_once('../include/GlobalFunction.php');
 
 function getListsuscribe($landing="", $desde="", $hasta=""){
 
