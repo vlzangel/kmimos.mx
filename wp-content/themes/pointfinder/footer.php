@@ -83,6 +83,10 @@
                 filter: grayscale(0%) !important;
                 opacity: 1 !important;
             }
+
+            .wpmenucartli {
+                display: none !important;
+            }
         </style>
 
         <style>
