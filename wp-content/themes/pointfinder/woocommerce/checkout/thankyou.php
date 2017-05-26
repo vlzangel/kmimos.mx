@@ -21,6 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Modificacion Ángel Veloz
 global $wpdb;
+global $current_user;
 
 $data_session = kmimos_session();
 if( $data_session ){
@@ -45,10 +46,7 @@ if( $data_session ){
 		update_post_meta($id_reserva,  'reserva_modificada', $new_reserva);
 		update_post_meta($new_reserva, 'modificacion_de',    $id_reserva );
 
-		$saldo_persistente = kmimos_get_kmisaldo();
-		$saldo_persistente += ($data_session["saldo_permanente"]+0);
-
-		update_user_meta($current_user->ID, "kmisaldo", $saldo_persistente);
+		update_user_meta($current_user->ID, "kmisaldo", ($data_session["saldo_permanente"]+0) );
 
 		kmimos_quitar_session();
 	}
