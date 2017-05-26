@@ -68,7 +68,10 @@
             $descuento = 0;
             if( $metas_orden[ "_cart_discount" ][0] != "" ){
                 $descuento = $metas_orden[ "_cart_discount" ][0]+0;
+                $saldo += $descuento;
             }
+
+            echo "Saldo: ".$saldo;
 
             $saldo_persistente = get_user_meta($id_cliente, "kmisaldo", true)+0;
             update_user_meta($id_cliente, "kmisaldo", $saldo_persistente+$saldo);
