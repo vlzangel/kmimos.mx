@@ -87,33 +87,42 @@
 		$adicionales = array();
 
 		foreach ($items as $key => $value) {
-			$retorno = array_search($value, $trans);
+			$retorno = array_search(utf8_encode($value), $trans);
+
 			if( $retorno ){
 				$transporte[] = $retorno;
 			}
-			$retorno = array_search($value, $adic);
+			$retorno = array_search(utf8_encode($value), $adic);
 			if( $retorno ){
+			
+				echo utf8_encode($value)."<br>";
 				$adicionales[] = $retorno;
 			}
 		}
 
+		$kmisaldo = $conn->query("SELECT meta_value FROM wp_usermeta WHERE md5(user_id) = {$param[1]} AND meta_key = 'kmisaldo'");
+		if( $kmisaldo->num_rows > 0 ){
+			$kmisaldo = $kmisaldo->fetch_assoc();
+			$kmisaldo = $kmisaldo["meta_value"];
+		}
+
 		$parametros = array( 
-			"reserva"      => $id_reserva,
-			"servicio"     => $data['ID'],
-			"saldo"	       => $saldo+$descuento,
-			"variaciones"  => $variaciones,
-			"fechas"       => $fechas,
-			"transporte"   => $transporte,
-			"adicionales"  => $adicionales
+			"reserva"         => $id_reserva,
+			"servicio"        => $data['ID'],
+			"saldo"	          => $saldo+$descuento,
+			"saldo_temporal"  => $saldo+$descuento,
+			"variaciones"     => $variaciones,
+			"fechas"          => $fechas,
+			"transporte"      => $transporte,
+			"adicionales"     => $adicionales
 		);
 
-		echo "<pre>";
-			print_r($items);
-			print_r($parametros);
-		echo "</pre>";
+/*		echo "<pre>";
+			print_r($adicionales);
+		echo "</pre>";*/
 
-		// $_SESSION["MR_".$param[1]] = $parametros;
-		// header("location: ".$home['server']."producto/".$data['post_name']."/");
+		$_SESSION["MR_".$param[1]] = $parametros;
+		header("location: ".$home['server']."producto/".$data['post_name']."/");
 	}
 
 	if( isset($b) ){

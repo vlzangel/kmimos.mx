@@ -26,6 +26,8 @@
     $nom_cliente  = $datos_generales["nombre_cliente"];
     $nom_cuidador = $datos_generales["nombre_cuidador"];
 
+    $cliente_id = $datos_generales["cliente"];
+
 	/* Sugeridos */
 
 		$cuidador = $datos_generales["cuidador_obj"];

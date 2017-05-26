@@ -51,6 +51,8 @@
 			$order->update_status('wc-cancelled');
 			$booking->update_status('cancelled');
 
+			kmimos_set_kmisaldo($cliente_id, $orden_id, $reserva_id);
+
 			$msg = $styles.'
 		    	<p><strong>Cancelación de Reserva (N°. '.$reserva_id.')</strong></p>
 				<p>Hola <strong>'.$nom_cuidador.'</strong></p>
