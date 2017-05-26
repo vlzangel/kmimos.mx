@@ -1,15 +1,10 @@
 <?php
 
 /**********************************************************************************************************************************
-
 *
-
 * PointFinder Functions
-
 * 
-
 * Author: Webbu Design
-
 *
 
 ***********************************************************************************************************************************/
@@ -28,9 +23,8 @@ function set_input_attrs( $fields ) {
    	return $fields;
 }*/
 
-
-
-/*function wpdm_filter_siteurl($content) {
+/*
+function wpdm_filter_siteurl($content) {
 	$current_server = $_SERVER['SERVER_NAME'];
    	return "http://".$current_server."/";
 }
@@ -70,20 +64,8 @@ add_filter('option_home', 'wpdm_filter_home', 1);
 
 
 add_filter('the_content', 'wpdm_conv_tag'); 
-add_filter('the_excerpt', 'wpdm_conv_tag'); */
-
-
-
-
-
-
-
-
-
-
-
-
-
+add_filter('the_excerpt', 'wpdm_conv_tag'); 
+*/
 
 load_theme_textdomain( 'pointfindert2d',get_template_directory() . '/languages');
 
@@ -129,7 +111,6 @@ function is_cuidador(){
 	if( $user->roles[0] == 'vendor' ){
 		return 1;
 	}
-
 	$user_id = $user->ID;
 	if( $user_id != 0 ){
 		$query_postulaciones = new WP_Query( 
@@ -146,7 +127,6 @@ function is_cuidador(){
 	}else{
 		return 0;
 	}
-
 	/*
 		0: No esta logeado
 		1: Es cuidador

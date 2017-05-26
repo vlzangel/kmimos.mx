@@ -30,16 +30,14 @@ if ( ! $checkout->enable_signup && ! $checkout->enable_guest_checkout && ! is_us
 }
 
 // Modificacion Ángel Veloz
-if( !isset($_SESSION) ){ session_start(); }
-
-global $current_user;
-$user_id = md5($current_user->ID);
-
-if( isset( $_SESSION["MR_".$user_id] ) ){
-    $DS = $_SESSION["MR_".$user_id];
-
+$DS = kmimos_session();
+if( !$DS ){
     $ver_formulario = " style='display: block;' ";
     if( isset($DS["no_pagar"]) ){
+    	$ver_formulario = " style='display: none;' ";
+    }
+}else{
+	if( WC()->cart->total-WC()->cart->tax_total == 0 ){
     	$ver_formulario = " style='display: none;' ";
     }
 }
@@ -74,6 +72,14 @@ if( isset( $_SESSION["MR_".$user_id] ) ){
 		?>
 	</div>
 	<style type="text/css">
+		.product-total,
+		.cart-subtotal td,
+		.cart-discount td,
+		.order-total td,
+		.order-remaining td
+		{
+			text-align: right;
+		}
 		#add_payment_method #payment ul.payment_methods, .woocommerce-checkout #payment ul.payment_methods>li>label {
 		    color: #54c8a7;
 		    font-size: large;
