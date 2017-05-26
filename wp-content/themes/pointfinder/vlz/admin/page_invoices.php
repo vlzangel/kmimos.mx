@@ -44,8 +44,12 @@
 		</style>
 	";
 
+if( isset($_GET["fm"]) ){
+	WC()->cart->empty_cart();
+}
+
 global $wpdb;
-$sql = "SELECT * FROM $wpdb->posts WHERE post_type = 'wc_booking' AND post_author = {$user_id} AND post_status NOT LIKE '%cart%'";
+$sql = "SELECT * FROM $wpdb->posts WHERE post_type = 'wc_booking' AND post_author = {$user_id} AND post_status NOT LIKE '%cart%' ORDER BY id DESC";
 $reservas = $wpdb->get_results($sql);
 
 
@@ -238,7 +242,6 @@ if( count($reservas) > 0 ){
 				//RESERVAS CONFIRMADAS
 			}else if($reserva->post_status=='confirmed' && strtotime($_metas_reserva['_booking_end'][0])>time()){
 				
-				echo strtotime($_metas_reserva['_booking_start'][0]);
 				$options='<a class="theme_btn" href="'.get_home_url().'/ver/'.$reserva->post_parent.'">Ver</a>';
 				$options.='<a class="theme_btn cancelled" href="'.get_home_url().'/wp-content/plugins/kmimos/orden.php?o='.$reserva->post_parent.'&s=0">Cancelar</a>';
 				

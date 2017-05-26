@@ -107,12 +107,13 @@
 			"adicionales"  => $adicionales
 		);
 
-		// echo "<pre>";
-		// 	print_r($parametros);
-		// echo "</pre>";
+		echo "<pre>";
+			print_r($items);
+			print_r($parametros);
+		echo "</pre>";
 
-		$_SESSION["MR_".$param[1]] = $parametros;
-		header("location: ".$home['server']."producto/".$data['post_name']."/");
+		// $_SESSION["MR_".$param[1]] = $parametros;
+		// header("location: ".$home['server']."producto/".$data['post_name']."/");
 	}
 
 	if( isset($b) ){

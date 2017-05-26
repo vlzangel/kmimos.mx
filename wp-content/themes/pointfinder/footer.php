@@ -1,113 +1,22 @@
 <?php $post_type = get_post_type(); ?>
-        <?php if (!is_page_template('pf-empty-page.php' ) && !is_page_template('terms-conditions.php' )) {?>
-            </div>
-            </div> 
+     </div>
+ </div> 
 
-            <div id="pf-membersystem-dialog"></div>
-            <a title="<?php esc_html__('Back to Top','pointfindert2d'); ?>" class="pf-up-but"><i class="pfadmicon-glyph-859"></i></a>
-            <?php
-            /*
-            * Start: Footer Row option
-            */
-                global $post;
-                $webbupointfinder_gbf_status = get_post_meta( $post->ID, 'webbupointfinder_gbf_status', true );
-                $pgfooterrow = 0;
-                if (PFASSIssetControl('gbf_status','',0) == 1 || !empty($webbupointfinder_gbf_status)) {
+<div id="pf-membersystem-dialog"></div>
+    <a title="<?php esc_html__('Back to Top','pointfindert2d'); ?>" class="pf-up-but"><i class="pfadmicon-glyph-859"></i></a>
 
-                    $footer_row1 = $footer_row2 = $footer_row3 = $footer_row4 = '';
+    <footer class="wpf-footer">            
+        <div class="container" style="overflow: hidden;">
+            <div class="row">
 
-                    if (!empty($webbupointfinder_gbf_status)) {
-
-                        $footer_cols = get_post_meta( $post->ID, 'webbupointfinder_gbf_cols', true );
-
-                        $footer_row1 = get_post_meta( $post->ID, 'webbupointfinder_gbf_sidebar1', true );
-                        $footer_row2 = get_post_meta( $post->ID, 'webbupointfinder_gbf_sidebar2', true );
-                        $footer_row3 = get_post_meta( $post->ID, 'webbupointfinder_gbf_sidebar3', true );
-                        $footer_row4 = get_post_meta( $post->ID, 'webbupointfinder_gbf_sidebar4', true );
-
-                        $gbfooterrowstatus = ' gbfooterrow=""';
-                        $pgfooterrowstatus = ' pgfooterrow="yes"';
-                        $pgfooterrow = 1;
-
-                    }elseif (empty($webbupointfinder_gbf_status) && PFASSIssetControl('gbf_status','',0) == 1) {
-
-                        $footer_cols = PFASSIssetControl('gbf_cols','',4);
-
-                        $footer_row1 = PFASSIssetControl('gbf_sidebar1','','');
-                        $footer_row2 = PFASSIssetControl('gbf_sidebar2','','');
-                        $footer_row3 = PFASSIssetControl('gbf_sidebar3','','');
-                        $footer_row4 = PFASSIssetControl('gbf_sidebar4','','');
-
-                        $gbfooterrowstatus = ' gbfooterrow="yes"';
-                        $pgfooterrowstatus = ' pgfooterrow=""';
-                    }
-                    if ($pgfooterrow == 0) {
-                        echo '<div class="wpf-footer-row-move">';
-                    }else{
-                        echo '<div class="wpf-footer-row-move wpf-footer-row-movepg">';
-                    }
-                    $foutput = '';
-                    $foutput .= '[vc_row footerrow=""'.$gbfooterrowstatus.$pgfooterrowstatus.']';
-
-                    switch ($footer_cols) {
-                        case 4:
-                            $foutput .= '[vc_column width="1/4"][vc_widget_sidebar sidebar_id="'.$footer_row1.'"][/vc_column]';
-                            $foutput .= '[vc_column width="1/4"][vc_widget_sidebar sidebar_id="'.$footer_row2.'"][/vc_column]';
-                            $foutput .= '[vc_column width="1/4"][vc_widget_sidebar sidebar_id="'.$footer_row3.'"][/vc_column]';
-                            $foutput .= '[vc_column width="1/4"][vc_widget_sidebar sidebar_id="'.$footer_row4.'"][/vc_column]';
-                            break;
-
-                        case 3:
-                            $foutput .= '[vc_column width="1/3"][vc_widget_sidebar sidebar_id="'.$footer_row1.'"][/vc_column]';
-                            $foutput .= '[vc_column width="1/3"][vc_widget_sidebar sidebar_id="'.$footer_row2.'"][/vc_column]';
-                            $foutput .= '[vc_column width="1/3"][vc_widget_sidebar sidebar_id="'.$footer_row3.'"][/vc_column]';
-                            break;
-
-                        case 2:
-                            $foutput .= '[vc_column width="1/2"][vc_widget_sidebar sidebar_id="'.$footer_row1.'"][/vc_column]';
-                            $foutput .= '[vc_column width="1/2"][vc_widget_sidebar sidebar_id="'.$footer_row2.'"][/vc_column]';
-                            break;
-
-                        case 1:
-                            $foutput .= '[vc_column width="1/1"][vc_widget_sidebar sidebar_id="'.$footer_row1.'"][/vc_column]';
-                            break;
-
-                        default:
-                            $foutput .= '[vc_column width="1/4"][vc_widget_sidebar sidebar_id="'.$footer_row1.'"][/vc_column]';
-                            $foutput .= '[vc_column width="1/4"][vc_widget_sidebar sidebar_id="'.$footer_row2.'"][/vc_column]';
-                            $foutput .= '[vc_column width="1/4"][vc_widget_sidebar sidebar_id="'.$footer_row3.'"][/vc_column]';
-                            $foutput .= '[vc_column width="1/4"][vc_widget_sidebar sidebar_id="'.$footer_row4.'"][/vc_column]';
-                            break;
-                    }
-
-
-                    $foutput .= '[/vc_row]';
-                    echo do_shortcode($foutput);
-                }else{
-                    echo '<div class="wpf-footer-row-move">';
-                }
-            /*
-            * End: Footer Row option
-            */
-            ?></div>
-            <?php
-            $setup_footerbar_status = PFSAIssetControl('setup_footerbar_status','','1');
-            if ($setup_footerbar_status == 1) {
-            ?>
-            <footer class="wpf-footer">            
-              <div class="container" style="overflow: hidden;">
-                <div class="row">
-
-                    <div class="col-xs-12 jj-xs-offiset-2 col-sm-4 col-md-3 col-lg-3 col-lg-offset-2 left">
-                      <h2>Contáctanos</h2>
-                      <p><!-- <strong>Dirección:</strong> Bosques Duraznos 65, int 211, Col. Bosques de las Lomas,
-                        Miguel Hidalgo, Ciudad de México, México.<br> -->
-                        <strong>Tlf:</strong> +52 (55) 1791.4931/  +52 (55) 66319264 <br>
-                        <strong>Email:</strong>  contactomex@kmimos.la
-                    </div>
-                    <div class="col-sm-4 jj-xs-offiset-2 col-md-3 center col-lg-3 center">
-                      <h2>Navega</h2>
-                      <ul>
+                <div class="col-xs-12 jj-xs-offiset-2 col-sm-4 col-md-3 col-lg-3 col-lg-offset-2 left">
+                  <h2>Contáctanos</h2>
+                    <strong>Tlf:</strong> +52 (55) 1791.4931/  +52 (55) 66319264 <br>
+                    <strong>Email:</strong>  contactomex@kmimos.la
+                </div>
+                <div class="col-sm-4 jj-xs-offiset-2 col-md-3 center col-lg-3 center">
+                    <h2>Navega</h2>
+                    <ul>
                         <li><a href="#">Nosotros</a></li>
                         <li><a href="https://www.kmimos.com.mx/tips-e-informacion-sobre-perros/">Blog</a></li>
                         <li><a href="#">Preguntas y Respuestas</a></li>
@@ -116,42 +25,31 @@
                         <li><a href="#">Términos y Condiciones</a></li>
                         <li><a href="#">Nuestros Aliados</a></li>
                         <li><a href="https://www.kmimos.com.mx/contacto/">Contáctanos</a></li>
-                      </ul>
-                    </div>
-                
-                    <div class="hidden-xs col-sm-4  col-md-3 col-lg-3 right">
-                      <h2>¡B&uacute;scanos en nuestra redes sociales!</h2>
-                      <div class="socialBtns">
+                    </ul>
+                </div>
+            
+                <div class="hidden-xs col-sm-4  col-md-3 col-lg-3 right">
+                    <h2>¡B&uacute;scanos en nuestra redes sociales!</h2>
+                    <div class="socialBtns">
                         <a href="https://www.facebook.com/Kmimosmx" target="_blank" class="facebookBtn socialBtn" title="@kmimosmx"></a>
                         <a href="https://www.twitter.com/Kmimosmx"  target="_blank"class="twitterBtn socialBtn" title="@kmimosmx"></a>
                         <a href="https://www.instagram.com/kmimosmx/" target="_blank" class="instagramBtn socialBtn" title="@kmimosmx"></a>
                         <img class=" easyload" data-original="<?php bloginfo( 'template_directory' ); ?>/images/dog.png" src="" alt="">
-                      </div>
                     </div>
-                 </div> 
-              </div>
-
-
-
-                <div class="jj-xs-offiset-2 col-md-offset-1 col-md-offset-3 jj-offset-2 inline" >
-                    <span id="siteseal"><script async type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=c5u9pjdoyKXQ6dRtmwnDmY0bV6KVBrdZGPEAnPkeSt7ZRCetPjIUzVK0bnHa"></script></span>   
-
-
-                <?php if($post_type=='post'){ ?>
-
-                        <a class="inline" href="http://es.paperblog.com/" rel="paperblog kmimos" title="Paperblog : Los mejores artículos de los blogs" ><img src="/wp-content/uploads/iconos/paperblog.gif" border="0" alt="Paperblog : Los mejores artículos de los blogs" width="131" height="32"/></a>
-
-                        <a class="inline" href="http://www.boosterblog.es" target="_blank"><img src="/wp-content/uploads/iconos/boosterblog-es-logo.png" width="131" height="32" alt="Publicidad por tu blog con Boosterblog" /></a>
-                <?php } ?>
                 </div>
+            </div> 
+        </div>
 
-
-
-            </footer>
-            <?php
-            }
-        }
-        ?>
+        <div class="jj-xs-offiset-2 col-md-offset-1 col-md-offset-3 jj-offset-2 inline" >
+            <span id="siteseal">
+                <script async type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=c5u9pjdoyKXQ6dRtmwnDmY0bV6KVBrdZGPEAnPkeSt7ZRCetPjIUzVK0bnHa"></script>
+            </span>  
+            <?php if($post_type=='post'){ ?>
+                <a class="inline" href="http://es.paperblog.com/" rel="paperblog kmimos" title="Paperblog : Los mejores artículos de los blogs" ><img src="/wp-content/uploads/iconos/paperblog.gif" border="0" alt="Paperblog : Los mejores artículos de los blogs" width="131" height="32"/></a>
+                <a class="inline" href="http://www.boosterblog.es" target="_blank"><img src="/wp-content/uploads/iconos/boosterblog-es-logo.png" width="131" height="32" alt="Publicidad por tu blog con Boosterblog" /></a>
+            <?php } ?>
+        </div>
+    </footer>
         <?php wp_footer(); ?>
 
         <style type="text/css">
@@ -283,12 +181,6 @@
 
                 echo "
                     <script>
-                        function nobackbutton(){
-                            window.location.hash='no-back-button';
-                            window.location.hash='Again-No-back-button';
-                            window.onhashchange=function(){window.location.hash='no-back-button';}
-                        }
-                        jQuery('body').attr('onload', 'nobackbutton();');
                         jQuery('.woocommerce-message>a.button.wc-forward').css('display', 'none');
                         jQuery('.variation-Duracin').css('display', 'none');
                         jQuery('.variation-Ofrecidopor').css('display', 'none');
@@ -556,55 +448,117 @@
                         display: inline-block;
                         left: 50px;
                         bottom: 50px;
-                        padding: 20px;
-                        font-size: 48px;
+                        padding: 8px;
+                        font-size: 20px;
                         font-family: Roboto;
-                        background: #CCC;
-                        border: solid 2px #BBB;
+                        background: #61ccac;
+                        border: solid 2px #313131;
                         z-index: 999999999999999999;
+                        color: #FFF;
                     '>
-                        X
+                        Salir de modificar reserva
                     </a>
                 ";
             }
         ?>
 
-        <?php # Scritp Mixpanel Javascript Solo para "Home"
+        <?php 
+        # Scritp Mixpanel Javascript Solo para "Home"
         if( is_front_page() ){ ?> 
-            <script>
-                
-mixpanel.identify();
-var distinct_ID = mixpanel.get_distinct_id();
-document.getElementById('pf-search-button-manual').addEventListener("click", ClickBuscar);
+            <script>      
+                mixpanel.identify();
+                var distinct_ID = mixpanel.get_distinct_id();
+                document.getElementById('pf-search-button-manual').addEventListener("click", ClickBuscar);
 
-function ClickBuscar() {
+                function ClickBuscar() {
 
+                p=document.getElementsByClassName('boton_portada boton_servicio activo');
 
-p=document.getElementsByClassName('boton_portada boton_servicio activo');
+                for (i = 0; i< p.length; i++) {
+                var tt = p[i].getElementsByTagName('input');
+                var id = "#" + jQuery (tt).attr('id');
+                console.log(id);
+                if( jQuery (id).prop('checked'))    {
 
+                  console.log('chequiao')
+                  var nombre = jQuery (tt).attr('value')
+                  mixpanel.people.set({ nombre: "si" });
+                                                    }
+                                              }
+                  var estadoss = document.getElementById("estado_cuidador");
+                  var municipioss = document.getElementById("municipio_cache");
+                  mixpanel.people.set({ 'estadoBuscado' : estadoss });
+                  mixpanel.people.set({ 'municipioBuscado' : municipioss });
+                  var FechadeBusqueda = new Date();
+                  mixpanel.people.set({ 'UltimaFechaDeBusqueda' : FechadeBusqueda });
 
-
-for (i = 0; i< p.length; i++) {
-var tt = p[i].getElementsByTagName('input');
-var id = "#" + jQuery (tt).attr('id');
-console.log(id);
-if( jQuery (id).prop('checked'))    {
-
-  console.log('chequiao')
-  var nombre = jQuery (tt).attr('value')
-  mixpanel.people.set({ nombre: "si" });
-                                    }
-                              }
-  var estadoss = document.getElementById("estado_cuidador");
-  var municipioss = document.getElementById("municipio_cache");
-  mixpanel.people.set({ 'estadoBuscado' : estadoss });
-  mixpanel.people.set({ 'municipioBuscado' : municipioss });
-  var FechadeBusqueda = new Date();
-  mixpanel.people.set({ 'UltimaFechaDeBusqueda' : FechadeBusqueda });
-
-}
+                }
             </script>
         <?php } ?>
+        
+
+        <?php if(isset($_GET['ua'])){ ?>
+            <?php if($_GET['ua'] == 'profile'){ ?>
+            <script>
+mixpanel.identify();
+var distinct_ID = mixpanel.get_distinct_id();
+sidebarList= document.getElementsByTagName("ul")[7];
+verificarCuidador= sidebarList.getElementsByTagName("li")[5];
+
+if (verificarCuidador.innerText == 'CUIDADOR') {
+  mixpanel.people.set({ 'TipoDeUsuario': 'Cuidador' });
+} else {
+    mixpanel.people.set({ 'TipoDeUsuario': 'Cliente' });
+}
+
+
+
+perfil=document.getElementsByClassName('input');
+
+for (i = 0; i<perfil.length; i++){
+
+if (i == 7){
+var perfilvalue = perfil[i].value
+
+mixpanel.people.set({ $email: perfilvalue });
+
+}
+else {
+var perfilname = perfil[i].name
+var perfilvalue = perfil[i].value
+mixpanel.people.set({ perfilname: perfilvalue });
+//mixpanel.people.set({ 'UltimaFechaDeBusqueda' : FechadeBusqueda });
+}
+}
+//document.getElementById('pf-search-button-manual').addEventListener("click", ClickBuscar);
+document.getElementById('pf-ajax-profileupdate-button').addEventListener("click", ActualizarPerfil);
+function ActualizarPerfil() {
+
+  perfil=document.getElementsByClassName('input');
+
+  for (i = 0; i<perfil.length; i++){
+
+    if (i == 7){
+
+      var perfilvalue = perfil[i].value
+    mixpanel.people.set({ $email: perfilvalue });
+
+  } else {
+    var perfilname = perfil[i].name
+    var perfilvalue = perfil[i].value
+  mixpanel.people.set({ perfilname: perfilvalue });
+        }
+  }
+
+
+}
+
+
+
+</script>
+            <?php } ?>
+        <?php } ?>
+        
 
 
     </body>

@@ -12,9 +12,6 @@
         return $info["email"]; 
     });
 
-	include("vlz_data_orden.php");
-	include("vlz_order_funciones.php");
-
 	echo "
 		<style>
     		html, body{ margin: 0px; min-height: 100%; padding: 0px; font-size: 12px; }
@@ -54,6 +51,17 @@
 
 		exit;
 	}
+
+	if($s == "0"){
+		$mostrar_direccion = false;
+	}else{
+		$mostrar_direccion = true;
+	}
+	
+	$mostrar_direccion = true;
+
+	include("vlz_data_orden.php");
+	include("vlz_order_funciones.php");
 
 	if($s == "0"){
 		$styles = "
