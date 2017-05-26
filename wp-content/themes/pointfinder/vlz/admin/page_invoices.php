@@ -1,3 +1,7 @@
+<div style="border: solid 1px #01b79e; padding: 10px; font-size: 14px; background: rgba(89, 201, 168, 0.52);">
+	<strong>Kmisaldo:</strong> MXN $<?php echo kmimos_get_kmisaldo(); ?>
+</div>
+
 <?php
 	echo "
 		<style>
@@ -45,8 +49,17 @@
 	";
 
 if( isset($_GET["fm"]) ){
+	global $wpdb;
+	foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+		$wpdb->query( "DELETE FROM wp_posts WHERE ID = ".$cart_item["booking"]["_booking_id"] );
+		$wpdb->query( "DELETE FROM wp_postmeta WHERE post_id = ".$cart_item["booking"]["_booking_id"] );
+	}
 	WC()->cart->empty_cart();
 }
+
+/*foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+	echo $cart_item["booking"]["_booking_id"]."<br>";
+}*/
 
 global $wpdb;
 $sql = "SELECT * FROM $wpdb->posts WHERE post_type = 'wc_booking' AND post_author = {$user_id} AND post_status NOT LIKE '%cart%' ORDER BY id DESC";
@@ -55,7 +68,7 @@ $reservas = $wpdb->get_results($sql);
 
 //CART
 $items = WC()->cart->get_cart();
-//var_dump($items);
+
 if(count($items) > 0){
 	?>
 	<h1 class='vlz_h1 jj_h1'>Reservas Por Completar</h1>

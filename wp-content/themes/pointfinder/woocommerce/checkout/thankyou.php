@@ -22,13 +22,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Modificacion Ángel Veloz
 global $wpdb;
 
-if( !isset($_SESSION) ){ session_start(); }
-
-global $current_user;
-$user_id = md5($current_user->ID);
-
-if( isset( $_SESSION["MR_".$user_id] ) ){
-	$data_session = $_SESSION["MR_".$user_id];
+$data_session = kmimos_session();
+if( $data_session ){
 
 	$new_order   = $order->get_order_number();
 	$new_reserva = $wpdb->get_var("SELECT ID FROM wp_posts WHERE post_parent = '{$new_order}' AND post_type='wc_booking'");
@@ -50,15 +45,12 @@ if( isset( $_SESSION["MR_".$user_id] ) ){
 		update_post_meta($id_reserva,  'reserva_modificada', $new_reserva);
 		update_post_meta($new_reserva, 'modificacion_de',    $id_reserva );
 
-		$saldo_persistente = get_user_meta($current_user->ID, "kmisaldo", true)+0;
-
-		if( $saldo_persistente > 0 ){
-			$saldo_persistente += ($data_session["saldo_permanente"]+0);
-		}
+		$saldo_persistente = kmimos_get_kmisaldo();
+		$saldo_persistente += ($data_session["saldo_permanente"]+0);
 
 		update_user_meta($current_user->ID, "kmisaldo", $saldo_persistente);
 
-		// unset($_SESSION["MR_".$user_id]);
+		kmimos_quitar_session();
 	}
 
 }
