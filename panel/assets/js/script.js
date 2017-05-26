@@ -5,7 +5,9 @@ jQuery(function($){
 
   $('#referencia').on('click', function(){
     if( !$('#referencia').hasClass('disabled') ){
-      if( $('[name="opt[]"]:checked').size() == num_select_max ){
+      var itemSelect = $('[name="opt[]"]:checked').size(); 
+console.log(itemSelect+" > 0 && "+itemSelect+" <= "+num_ref_max);           
+      if( itemSelect > 0 && itemSelect <= num_ref_max ){
         $('#modalRef').modal('toggle');
       }else{
         alert('Debe seleccionar '+num_select_max+' referidos');
@@ -22,7 +24,8 @@ jQuery(function($){
           list.push($(this).val());
         });
 
-        if( count == num_select_max ){
+        if( count > 0 && count <= num_ref_max ){
+
             var datos = {
               'ref': $('#ref').val(),
               'fec': $('#fecha').val(),
