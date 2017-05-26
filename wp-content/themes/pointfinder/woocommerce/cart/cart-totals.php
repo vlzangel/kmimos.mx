@@ -35,8 +35,31 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<?php foreach ( WC()->cart->get_coupons() as $code => $coupon ) : ?>
 			<tr class="cart-discount coupon-<?php echo esc_attr( sanitize_title( $code ) ); ?>">
-				<th><?php wc_cart_totals_coupon_label( $coupon ); ?></th>
-				<td data-title="<?php wc_cart_totals_coupon_label( $coupon ); ?>"><?php wc_cart_totals_coupon_html( $coupon ); ?></td>
+				<th>
+					<?php 
+						if( substr($coupon->code, 0, 5) != "saldo" ){
+							wc_cart_totals_coupon_label( $coupon ); 
+						}else{
+							echo "<span style='color: #59c9a8;'>Kmisaldo: </span>";
+						}
+					?>
+				</th>
+				<td data-title="<?php wc_cart_totals_coupon_label( $coupon ); ?>">
+					<?php 
+
+						if( substr($coupon->code, 0, 5) == "saldo" ){
+							if ( $amount = WC()->cart->get_coupon_discount_amount( $coupon->code, WC()->cart->display_cart_ex_tax ) ) {
+								$discount_html = wc_price( $amount );
+							} else {
+								$discount_html = '';
+							}
+
+							echo "<span style='color: #59c9a8; font-weight: 800;'>- ".$discount_html."</span>";
+						}else{
+							wc_cart_totals_coupon_html( $coupon ); 
+						}
+					?>
+				</td>
 			</tr>
 		<?php endforeach; ?>
 

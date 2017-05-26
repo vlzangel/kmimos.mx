@@ -13,51 +13,28 @@ class WC_Deposits_Checkout
   public $wc_deposits;
   public $checkout;
 
-  public function __construct(&$wc_deposits)
-  {
-    $this->wc_deposits = $wc_deposits;
+    public function __construct(&$wc_deposits){
+        $this->wc_deposits = $wc_deposits;
 
-    add_action('woocommerce_review_order_after_order_total', array($this, 'review_order_after_order_total'));
-    add_action('woocommerce_checkout_order_processed', array($this, 'checkout_order_processed'), 10, 2);
+        add_action('woocommerce_review_order_after_order_total', array($this, 'review_order_after_order_total'));
+        add_action('woocommerce_checkout_order_processed', array($this, 'checkout_order_processed'), 10, 2);
 
-    // Hook the payments gateways filter to remove the ones we don't want
-    add_filter('woocommerce_available_payment_gateways', array($this, 'available_payment_gateways'));
-  }
+        // Hook the payments gateways filter to remove the ones we don't want
+        add_filter('woocommerce_available_payment_gateways', array($this, 'available_payment_gateways'));
+    }
 
-  public function review_order_after_order_total()
-  {
-    ?>
-    <tr class="order-paid">
-        <?php
-            // Modificacion Ángel Veloz
-            if( !isset($_SESSION) ){ session_start(); }
-
-            global $current_user;
-            $user_id = md5($current_user->ID);
-
-            if( isset( $_SESSION["MR_".$user_id] ) ){
-                $DS = $_SESSION["MR_".$user_id];
-
-                if( isset($DS["no_pagar"]) ){ ?>
-                    <th style='color: #60cbac'><?php _e('Reembolso', 'woocommerce-deposits'); ?></th>
-                    <td style="color: #60cbac"><?php $this->wc_deposits->cart->deposit_paid_html(); ?></td> <?php
-                }else{ ?>
-                    <th style='color: #60cbac'><?php _e('Pague Hoy', 'woocommerce-deposits'); ?></th>
-                    <td style="color: #60cbac"><?php $this->wc_deposits->cart->deposit_paid_html(); ?></td> <?php
-                }
-            }else{ ?>
-              <th style='color: #60cbac'><?php _e('Pague Hoy', 'woocommerce-deposits'); ?></th>
-              <td style="color: #60cbac"><?php $this->wc_deposits->cart->deposit_paid_html(); ?></td> <?php
-            }
-        ?>
-        
-    </tr>
-    <tr class="order-remaining">
-        <th style="color: #FF0000"><?php _e('Monto a pagar al cuidador en efectivo al entregar el perrito', 'woocommerce-deposits'); ?></th>
-        <td style="color: #FF0000"><?php $this->wc_deposits->cart->deposit_remaining_html(); ?></td>
-    </tr>
-    <?php
-  }
+    public function review_order_after_order_total(){
+        if( WC()->cart->total-WC()->cart->tax_total > 0 ){ ?>
+            <tr class="order-paid">
+                <th style='color: #60cbac'><?php _e('Pague Hoy', 'woocommerce-deposits'); ?></th>
+                <td style="color: #60cbac"><?php $this->wc_deposits->cart->deposit_paid_html(); ?></td>
+            </tr> <?php
+        } ?>
+        <tr class="order-remaining">
+            <th style="color: #FF0000"><?php _e('Monto a pagar al cuidador en efectivo al entregar el perrito', 'woocommerce-deposits'); ?></th>
+            <td style="color: #FF0000"><?php $this->wc_deposits->cart->deposit_remaining_html(); ?></td>
+        </tr> <?php
+    }
 
   /**
   * @brief Updates the order metadata with deposit information

@@ -17,9 +17,11 @@
  * @version 2.4.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
-}
-?>
+	if ( ! defined( 'ABSPATH' ) ) {
+		exit; // Exit if accessed directly
+	}
 
-<a href="<?php echo esc_url( wc_get_checkout_url() ) ;?>" class="checkout-button button alt wc-forward" style="color: rgb(255, 255, 255); background-color: rgb(94, 201, 170);">Pague Ahora</a>
+	$txt_boton = "Pague Ahora";
+	if( WC()->cart->total-WC()->cart->tax_total == 0 ){ $txt_boton = "Continuar"; } ?>
+
+	<a href="<?php echo esc_url( wc_get_checkout_url() ) ;?>" class="checkout-button button alt wc-forward" style="color: rgb(255, 255, 255); background-color: rgb(94, 201, 170);"><?php echo $txt_boton; ?></a>

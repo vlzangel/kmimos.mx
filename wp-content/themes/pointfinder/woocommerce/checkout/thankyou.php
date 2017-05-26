@@ -98,7 +98,7 @@ if ( $order ) : ?>
 				Pícale para ver las instrucciones para<br> Pago en Tiendas por Conveniencia
 			</a>                  
             <br>                    
-            <iframe id="pdf" src="<?php echo WC()->session->__isset('pdf_url') ?>" style="width:100%; height:950px;" frameborder="0"></iframe>
+            <iframe id="pdf" src="<?php echo WC()->session->isset('pdf_url') ?>" style="width:100%; height:950px;" frameborder="0"></iframe>
         	<style type="text/css">
 				@media (max-width: 600px){
 					#pdf {
