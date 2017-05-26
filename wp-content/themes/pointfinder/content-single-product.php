@@ -21,7 +21,6 @@
 	$DS = kmimos_session();
     if( $DS ){ ?>
 		<div style="border: solid 1px #01b79e; padding: 10px; font-size: 14px; background: rgba(89, 201, 168, 0.52); margin-bottom: 20px;">
-			<strong>Esto es para depurar:</strong>
 			<strong>Kmisaldo:</strong> MXN $<?php echo kmimos_get_kmisaldo(); ?><br>
 			<strong>Saldo por reserva anterior:</strong> MXN $<?php echo $DS["saldo_temporal"]; ?><br>
 			<strong>Saldo actual disponible:</strong> MXN $<?php echo $DS["saldo"]; ?>
