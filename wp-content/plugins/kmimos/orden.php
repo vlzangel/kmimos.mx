@@ -20,6 +20,17 @@
     	</style>
 	";
 
+	if($s == "0"){
+		$mostrar_direccion = false;
+	}else{
+		$mostrar_direccion = true;
+	}
+	
+	$mostrar_direccion = true;
+
+	include("vlz_data_orden.php");
+	include("vlz_order_funciones.php");
+
 	if($booking->get_status() == "cancelled" ){
 
 		$msg_a_mostrar = $styles.'
@@ -53,17 +64,6 @@
 	}
 
 	if($s == "0"){
-		$mostrar_direccion = false;
-	}else{
-		$mostrar_direccion = true;
-	}
-	
-	$mostrar_direccion = true;
-
-	include("vlz_data_orden.php");
-	include("vlz_order_funciones.php");
-
-	if($s == "0"){
 		$styles = "
 			<style>
 				.undoreset div p {
@@ -73,6 +73,8 @@
 		";
 		$order->update_status('wc-cancelled');
 		$booking->update_status('cancelled');
+
+		kmimos_set_kmisaldo($cliente_id, $orden_id, $reserva_id);
 
 		$msg_cliente = $styles.'
 	    	<p><strong>Cancelación de Reserva (N°. '.$reserva_id.')</strong></p>

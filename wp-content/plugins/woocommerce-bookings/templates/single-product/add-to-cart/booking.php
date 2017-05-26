@@ -56,8 +56,10 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 		$fin    = explode("-", $DS['fechas']['fin']);
 
 		$script_variaciones = "";
-		foreach ($DS['variaciones'] as $key => $value) {
-			$script_variaciones .= "jQuery('#wc_bookings_field_persons_{$key}').attr('value', '{$value}');";
+		if( count($DS['variaciones']) > 0){
+			foreach ($DS['variaciones'] as $key => $value) {
+				$script_variaciones .= "jQuery('#wc_bookings_field_persons_{$key}').attr('value', '{$value}');";
+			}
 		}
 
 		$script_transporte = "";

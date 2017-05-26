@@ -1,5 +1,157 @@
 <?php
 
+    if(!function_exists('kmimos_session')){
+        function kmimos_session(){
+            if( !isset($_SESSION) ){ session_start(); }
+            global $current_user;
+            $user_id = md5($current_user->ID);
+
+            if( isset( $_SESSION["MR_".$user_id] ) ){
+                return $_SESSION["MR_".$user_id];
+            }else{
+                return false;
+            }
+
+        }
+    }
+
+    if(!function_exists('kmimos_set_session')){
+        function kmimos_set_session($DS){
+            if( !isset($_SESSION) ){ session_start(); }
+            global $current_user;
+            $user_id = md5($current_user->ID);
+            $_SESSION["MR_".$user_id] = $DS;
+        }
+    }
+
+    if(!function_exists('kmimos_quitar_session')){
+        function kmimos_quitar_session(){
+            if( !isset($_SESSION) ){ session_start(); }
+            global $current_user;
+            $user_id = md5($current_user->ID);
+            unset($_SESSION["MR_".$user_id]);
+        }
+    }
+
+    if(!function_exists('kmimos_get_kmisaldo')){
+        function kmimos_get_kmisaldo(){
+            global $current_user;
+            return get_user_meta($current_user->ID, "kmisaldo", true)+0;
+            
+        }
+    }
+
+    if(!function_exists('kmimos_set_kmisaldo')){
+        function kmimos_set_kmisaldo($id_cliente, $id_orden, $id_reserva){
+            global $wpdb;
+
+            $metas_orden = get_post_meta($id_orden);
+            $metas_reserva  = get_post_meta( $id_reserva );
+
+            $itemmetas = $wpdb->get_results("SELECT * FROM wp_woocommerce_order_itemmeta WHERE order_item_id = '{$metas_reserva['_booking_order_item_id'][0]}' AND (meta_key = '_wc_deposit_meta' OR meta_key = '_line_total' )"); 
+
+            $items = array();
+            foreach ($itemmetas as $key => $value) {
+                $items[ $value->meta_key ] = $value->meta_value;
+            }
+
+            $deposito = unserialize( $items['_wc_deposit_meta'] );
+
+            $saldo = 0;
+
+            if( $deposito['enable'] == 'yes' ){
+                $saldo = $deposito['deposit'];
+            }else{
+                $saldo = $items['_line_total'];
+            }
+
+            $descuento = 0;
+            if( $metas_orden[ "_cart_discount" ][0] != "" ){
+                $descuento = $metas_orden[ "_cart_discount" ][0]+0;
+            }
+
+            $saldo_persistente = get_user_meta($id_cliente, "kmisaldo", true)+0;
+            update_user_meta($id_cliente, "kmisaldo", $saldo_persistente+$saldo);
+            
+        }
+    }
+
+    if(!function_exists('kmimos_cupon_saldo')){
+        function kmimos_cupon_saldo($param){
+            global $wpdb;
+
+            $monto_cupon = $param["monto_cupon"];
+            $servicio    = $param["servicio"];
+            $manana      = $param["manana"];
+            
+            if( $monto_cupon > 0){
+                global $current_user;
+                $id_cupon = $wpdb->get_var("SELECT ID FROM wp_posts WHERE post_name='saldo-{$current_user->ID}'");
+                if( $id_cupon == NULL ){
+                    date_default_timezone_set('America/Mexico_City');
+                    $hoy = date("Y-m-d H:i:s");
+                    $id_cupon = $wpdb->insert('wp_posts', array(
+                        "ID" => NULL,
+                        "post_author" => $current_user->ID,
+                        "post_date" => $hoy,
+                        "post_date_gmt" => $hoy,
+                        "post_content" => "",
+                        "post_title" => "saldo-".$current_user->ID,
+                        "post_excerpt" => "",
+                        "post_status" => "publish",
+                        "comment_status" => "closed",
+                        "ping_status" => "closed",
+                        "post_password" => "",
+                        "post_name" => "saldo-".$current_user->ID,
+                        "to_ping" => "",
+                        "pinged" => "",
+                        "post_modified" => $hoy,
+                        "post_modified_gmt" => $hoy,
+                        "post_content_filtered" => "",
+                        "post_parent" => 0,
+                        "guid" => get_home_url()."/?post_type=shop_coupon&#038;p=",
+                        "menu_order" => 0,
+                        "post_type" => "shop_coupon",
+                        "post_mime_type" => "",
+                        "comment_count" => 0
+                    ));
+                    $id_cupon = $wpdb->get_var("SELECT ID FROM wp_posts WHERE post_name='saldo-{$current_user->ID}'");
+                    $wpdb->query("UPDATE wp_posts SET guid = '".get_home_url()."/?post_type=shop_coupon&#038;p=".$id_cupon."' WHERE ID = ".$id_cupon);
+                    $wpdb->query("
+                        INSERT INTO wp_postmeta VALUES
+                            (NULL, ".$id_cupon.", 'discount_type', 'fixed_cart'),
+                            (NULL, ".$id_cupon.", 'coupon_amount', '".$monto_cupon."'),
+                            (NULL, ".$id_cupon.", 'individual_use', 'no'),
+                            (NULL, ".$id_cupon.", 'product_ids', '".$servicio."'),
+                            (NULL, ".$id_cupon.", 'exclude_product_ids', ''),
+                            (NULL, ".$id_cupon.", 'usage_limit', '0'),
+                            (NULL, ".$id_cupon.", 'usage_limit_per_user', '0'),
+                            (NULL, ".$id_cupon.", 'limit_usage_to_x_items', ''),
+                            (NULL, ".$id_cupon.", 'expiry_date', '".$manana."'),
+                            (NULL, ".$id_cupon.", 'free_shipping', 'no'),
+                            (NULL, ".$id_cupon.", 'exclude_sale_items', 'no'),
+                            (NULL, ".$id_cupon.", 'product_categories', 'a:0:{}'),
+                            (NULL, ".$id_cupon.", 'exclude_product_categories', 'a:0:{}'),
+                            (NULL, ".$id_cupon.", 'minimum_amount', ''),
+                            (NULL, ".$id_cupon.", 'maximum_amount', ''),                    
+                            (NULL, ".$id_cupon.", 'customer_email', 'a:0:{}');
+                    ");
+                }else{
+                    $sqls = array(
+                        "UPDATE wp_postmeta SET meta_value = '".$monto_cupon."' WHERE post_id = ".$id_cupon." AND meta_key = 'coupon_amount'",
+                        "UPDATE wp_postmeta SET meta_value = '".$servicio."'    WHERE post_id = ".$id_cupon." AND meta_key = 'product_ids'",
+                        "UPDATE wp_postmeta SET meta_value = '".$manana."'      WHERE post_id = ".$id_cupon." AND meta_key = 'expiry_date'"
+                    );
+                    foreach ($sqls as $sql) {
+                        $wpdb->query($sql);
+                    }
+                }
+
+                return "saldo-".$current_user->ID;
+            }
+        }
+    }
+
     if(!function_exists('kmimos_datos_generales_desglose')){
 
         function kmimos_datos_generales_desglose($ID_ORDEN, $is_mail = false, $direccion = false){
@@ -261,6 +413,8 @@
                     "booking" => $ID_RESERVA,
                     "orden"   => $ID_ORDEN,
 
+                    "cliente"   => $cliente,
+
                     "nombre_cuidador" => $cuidador_post->post_title,
                     "nombre_cliente"  => $nom,
 
@@ -403,7 +557,7 @@
                 "medianos2" => "Mascotas Medianas"
             );
 
-            $dias = (((($xfin - $xini)/60)/60)/24);
+            $dias = ceil(((($xfin - $xini)/60)/60)/24);
 
             $dias_noches = "Noche(s)";
             if( trim($tipo_servicio) != "Hospedaje" ){
