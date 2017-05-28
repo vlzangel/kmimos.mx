@@ -158,7 +158,8 @@ if(isset($_GET['e'])){
 			</section>
 
 			<aside class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2 text-center">
-				<img src="img/opciones.png" class="img-responsive hidden-xs" >
+				<img src="img/opciones.png" class="img-responsive hidden-xs hidden-sm " >
+				<img src="img/opciones_mobile.png" class="img-responsive hidden-md hidden-lg" >
 			</aside>
 
 		</div>

@@ -1,7 +1,6 @@
 <?php
     
-    define('WP_USE_THEMES', false);
-    require('../wp-blog-header.php');
+    require('../wp-load.php');
     require('../wp-content/themes/pointfinder/vlz/vlz_funciones.php');
 
     require('./cron_sqls.php');
@@ -53,6 +52,7 @@
                 post_status IN (
                     'pending',
                     'wc-completed',
+                    'wc-processing',
                     'wc-partially-paid'
                 ) AND 
                 post_date < '".date("Y-m-d H:i:s", $fecha_cancelacion)."'
@@ -62,6 +62,7 @@
         foreach ($r as $request) {
             $metadata = get_post_meta( $request->ID );
 
+            $cliente_id_reserva = 0;
             if( $request->post_type == "request" ){
                 $id_cuidador_post = $metadata['requested_petsitter'][0];
                 $email_cliente = $wpdb->get_var( "SELECT user_email FROM wp_users WHERE ID = '".$request->post_author."'" );
@@ -71,6 +72,7 @@
                 $id_orden = $request->ID;
                 $id_reserva = $id_orden-1;
                 $cliente_id = $wpdb->get_var( "SELECT post_author FROM wp_posts WHERE ID = '".($id_reserva)."'" );
+                $cliente_id_reserva = $cliente_id;
                 $email_cliente = $wpdb->get_var( "SELECT user_email FROM wp_users WHERE ID = '".$cliente_id."'" );
                 $cliente = get_user_meta( $cliente_id );
                 $cliente = $cliente['first_name'][0]." ".$cliente['last_name'][0];
@@ -89,7 +91,7 @@
 
             $cuidador_post = $wpdb->get_row( "SELECT * FROM wp_posts WHERE ID = '".$id_cuidador_post."'" );
 
-            $sql = "
+             $sql = "
                 SELECT 
                     DISTINCT id,
                     ROUND ( ( 6371 * 
@@ -122,6 +124,7 @@
                     activo = 1
                 ORDER BY DISTANCIA ASC
                 LIMIT 0, 4
+
             ";
      
             $sugeridos = $wpdb->get_results( $sql );
@@ -189,14 +192,17 @@
             require('./cron_plantilla.php'); 
             $msg_cliente = kmimos_get_email_html($title, $message, '', true, true);
 
+            $info = kmimos_get_info_syte();
             add_filter( 'wp_mail_from_name', function( $name ) {
-                return 'Kmimos México';
+                global $info;
+                return $info["titulo"];
             });
             add_filter( 'wp_mail_from', function( $email ) {
-                return 'kmimos@kmimos.la';
+                global $info;
+                return $info["email"]; 
             });
 
-            $email_admin    = "contactomex@kmimos.la";
+            $email_admin = $info["email"];
 
             if( $request->post_type == "request" ){
                 
@@ -238,6 +244,8 @@
 
                 $order->update_status('wc-cancelled');
                 $booking->update_status('cancelled');
+
+                kmimos_set_kmisaldo($cliente_id_reserva, $id_orden, $id_reserva);
 
                 $msg = $styles.'
                     <p><strong>Cancelación de Reserva (N°. '.$id_reserva.')</strong></p>

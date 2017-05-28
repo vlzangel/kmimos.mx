@@ -170,11 +170,11 @@ class WC_Deposits_Orders
       __('To Pay:', 'woocommerce-deposits') : __('Amount Paid:', 'woocommerce-deposits');
 
     $total_rows['order_total'] = array(
-      'label' => __('Order Total:', 'woocommerce'),
+      'label' => __('Total:', 'woocommerce'),
       'value' => woocommerce_price($order_total, array('currency' => $order->get_order_currency()))
     );
 
-    if( $paid_today != "0.00"){
+    if( ($paid_today+0) > 0 ){
       $total_rows['paid_today'] = array(
         'label' => "Pague hoy",
         'value' => woocommerce_price($paid_today, array('currency' => $order->get_order_currency()))
