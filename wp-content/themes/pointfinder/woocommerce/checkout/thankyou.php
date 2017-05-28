@@ -26,31 +26,35 @@ global $current_user;
 $data_session = kmimos_session();
 if( $data_session ){
 
-	$new_order   = $order->get_order_number();
-	$new_reserva = $wpdb->get_var("SELECT ID FROM wp_posts WHERE post_parent = '{$new_order}' AND post_type='wc_booking'");
+	if( isset($data_session["reserva"]) ){
 
-	$servicio = $wpdb->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = '{$new_reserva}' AND meta_key='_booking_product_id'");
+		$new_order   = $order->get_order_number();
+		$new_reserva = $wpdb->get_var("SELECT ID FROM wp_posts WHERE post_parent = '{$new_order}' AND post_type='wc_booking'");
 
-	if( $servicio == $data_session["servicio"] ){
-		$id_reserva = $data_session["reserva"];
+		$servicio = $wpdb->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = '{$new_reserva}' AND meta_key='_booking_product_id'");
 
-		$sql_SELECT = "SELECT * FROM wp_posts WHERE ID = '{$id_reserva}'";
-		$data = $wpdb->get_row($sql_SELECT);
-		$id_reserva = $data->ID;
-		$id_orden   = $data->post_parent;
+		if( $servicio == $data_session["servicio"] ){
+			$id_reserva = $data_session["reserva"];
 
-		$sql_UPDATE = "UPDATE wp_posts SET post_status = 'modified' WHERE ID IN ( '{$id_reserva}', '{$id_orden}' );";
+			$sql_SELECT = "SELECT * FROM wp_posts WHERE ID = '{$id_reserva}'";
+			$data = $wpdb->get_row($sql_SELECT);
+			$id_reserva = $data->ID;
+			$id_orden   = $data->post_parent;
 
-		$wpdb->query($sql_UPDATE);
+			$sql_UPDATE = "UPDATE wp_posts SET post_status = 'modified' WHERE ID IN ( '{$id_reserva}', '{$id_orden}' );";
 
-		update_post_meta($id_reserva,  'reserva_modificada', $new_reserva);
-		update_post_meta($new_reserva, 'modificacion_de',    $id_reserva );
+			$wpdb->query($sql_UPDATE);
 
+			update_post_meta($id_reserva,  'reserva_modificada', $new_reserva);
+			update_post_meta($new_reserva, 'modificacion_de',    $id_reserva );
+
+			update_user_meta($current_user->ID, "kmisaldo", ($data_session["saldo_permanente"]+0) );
+		}
+	}else{
 		update_user_meta($current_user->ID, "kmisaldo", ($data_session["saldo_permanente"]+0) );
-
-		kmimos_quitar_session();
 	}
 
+	kmimos_quitar_session();
 }
 
 if ( $order ) : ?>

@@ -3,50 +3,57 @@
 </div>
 
 <?php
-	echo "
-		<style>
-			.vlz_tabla{
-				width: 100%;
-			    margin-bottom: 40px;
-			}
-			.vlz_tabla th{
-			    background: #59c9a8!important;
-				color: #FFF;
-				border-top: 1px solid #888;
-				border-right: 1px solid #888;
-				text-align: center;
-			}
-			.vlz_tabla td{
-				border-top: 1px solid #888;
-				border-right: 1px solid #888;
-			}
-			h1{
-				line-height: 0px;
-			}
-			hr{
-			    border-top: 2px solid #eee;
-			}
-			a{
-			    color: #005796;
-				font-weight: 600;
-			    opacity: 0.8;
-			}
-			.vlz_h1{
-				background: #59c9a8;
-			    display: inline-block;
-			    padding: 5px 50px 5px 5px;
-			    line-height: 1 !important;
-			    margin: 0px;
-			    border: solid 1px #888;
-			    border-bottom: 0;
-			    border-radius: 0px 5px 0px 0px;
-			    color: #FFF;
-			}
-			a:hover{
-			    opacity: 1;
-			}
-		</style>
-	";
+
+$styles = "
+	<style>
+		.vlz_tabla{
+			width: 100%;
+		    margin-bottom: 40px;
+		}
+		.vlz_tabla th{
+		    background: #59c9a8!important;
+			color: #FFF;
+			border-top: 1px solid #888;
+			border-right: 1px solid #888;
+			text-align: center;
+		}
+		.vlz_tabla td{
+			border-top: 1px solid #888;
+			border-right: 1px solid #888;
+		}
+		h1{
+			line-height: 0px;
+		}
+		hr{
+		    border-top: 2px solid #eee;
+		}
+		a{
+		    color: #005796;
+			font-weight: 600;
+		    opacity: 0.8;
+		}
+		.vlz_h1{
+			background: #59c9a8;
+		    display: inline-block;
+		    padding: 5px 50px 5px 5px;
+		    line-height: 1 !important;
+		    margin: 0px;
+		    border: solid 1px #888;
+		    border-bottom: 0;
+		    border-radius: 0px 5px 0px 0px;
+		    color: #FFF;
+		}
+		a:hover{
+		    opacity: 1;
+		}
+	</style>
+";
+
+$styles = str_replace("\t", "", $styles);
+$styles = str_replace("  ", " ", $styles);
+$styles = str_replace("\n", " ", $styles);
+
+echo $styles;
 
 if( isset($_GET["fm"]) ){
 	global $wpdb;
@@ -57,14 +64,9 @@ if( isset($_GET["fm"]) ){
 	WC()->cart->empty_cart();
 }
 
-/*foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
-	echo $cart_item["booking"]["_booking_id"]."<br>";
-}*/
-
 global $wpdb;
 $sql = "SELECT * FROM $wpdb->posts WHERE post_type = 'wc_booking' AND post_author = {$user_id} AND post_status NOT LIKE '%cart%' ORDER BY id DESC";
 $reservas = $wpdb->get_results($sql);
-
 
 //CART
 $items = WC()->cart->get_cart();
@@ -178,6 +180,11 @@ if( count($reservas) > 0 ){
 	$booking_coming['cancelled']['title']='Reservas Canceladas';
 	$booking_coming['cancelled']['th']=array();
 	$booking_coming['cancelled']['tr']=array();
+
+	$booking_coming['modified']=array();
+	$booking_coming['modified']['title']='Reservas Modificadas';
+	$booking_coming['modified']['th']=array();
+	$booking_coming['modified']['tr']=array();
 
 	$booking_coming['other']=array();
 	$booking_coming['other']['title']='Otras Reservas';
@@ -355,7 +362,25 @@ if( count($reservas) > 0 ){
 
 			//RESERVAS PNDIENTES POR CONFIRMAR
 			}else if($reserva->post_status=='modified'){
+	
+				// Modificacion Ángel Veloz
+				$options='<a class="theme_btn" href="'.get_home_url().'/ver/'.$reserva->post_parent.'">Ver</a>';
 
+				$booking_th=array();
+				$booking_th[]=array('class'=>'','data'=>'RESERVA');
+				$booking_th[]=array('class'=>'','data'=>'SERVICIO');
+				$booking_th[]=array('class'=>'td_responsive','data'=>'INICIO');
+				$booking_th[]=array('class'=>'td_responsive','data'=>'FIN');
+				$booking_th[]=array('class'=>'','data'=>'ACCIONES');
+				$booking_coming['modified']['th']=$booking_th;
+
+				$booking_td=array();
+				$booking_td[]=array('class'=>'','data'=>$reserva->ID);
+				$booking_td[]=array('class'=>'','data'=>'<a href="'.get_home_url().'/producto/'.$pedido->post_name.'" target="_blank" >'.$pedido->post_title.'</a>');
+				$booking_td[]=array('class'=>'td_responsive','data'=>date_boooking($_metas_reserva['_booking_start'][0]));
+				$booking_td[]=array('class'=>'td_responsive','data'=>date_boooking($_metas_reserva['_booking_end'][0]));
+				$booking_td[]=array('class'=>'','data'=>$options);
+				$booking_coming['modified']['tr'][]=$booking_td;
 
 			}else if($reserva->post_status!='confirmed'){
 
@@ -423,6 +448,7 @@ if( count($reservas) > 0 ){
 			}
 		}
 	}
+	
 
 	//BUILD TABLE
 	echo build_table($booking_coming);

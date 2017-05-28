@@ -76,6 +76,8 @@ if( !$DS ){
 		.cart-subtotal td,
 		.cart-discount td,
 		.order-total td,
+		.order-paid td,
+		.vlz_totales td,
 		.order-remaining td
 		{
 			text-align: right;
