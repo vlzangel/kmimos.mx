@@ -52,7 +52,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 	}
 
 	if( $saldo > 0 ){ ?>
-		<div class="theme_button">
+		<div class="theme_button" style="padding: 10px; margin-bottom: 20px;">
 			<strong>Kmisaldo:</strong> MXN $<?php echo kmimos_get_kmisaldo(); ?><br>
 			<?php if( $DS["saldo"] > 0 ){ ?>
 				<strong>Kmisaldo:</strong> MXN $<?php echo $DS["saldo"]; ?>
