@@ -42,6 +42,8 @@
 			reserva.total > 0
 
 		ORDER BY reserva.id ASC
+
+		LIMIT 0, 10
 	";
 
 	$reservas = $c->query($sql);
