@@ -22,9 +22,16 @@
     if( $DS ){ ?>
 		<div style="border: solid 1px #01b79e; padding: 10px; font-size: 14px; background: rgba(89, 201, 168, 0.52); margin-bottom: 20px;">
 			<strong>Kmisaldo:</strong> MXN $<?php echo kmimos_get_kmisaldo(); ?><br>
-			<strong>Saldo por reserva anterior:</strong> MXN $<?php echo $DS["saldo_temporal"]; ?><br>
-			<strong>Saldo actual disponible:</strong> MXN $<?php echo $DS["saldo"]; ?>
+			<?php if( $DS["saldo_temporal"] > 0 ){ ?>
+				<strong>Reserva anterior:</strong> MXN $<?php echo $DS["saldo_temporal"]; ?><br>
+				<strong>Saldo actual disponible:</strong> MXN $<?php echo $DS["saldo"]; ?>
+			<?php } ?>
 		</div>
+
+		<div style="border: solid 1px #01b79e; padding: 10px; font-size: 14px; background: rgba(89, 201, 168, 0.52); margin-bottom: 20px;">
+			<span style="font-weight: 600;">Importante:</span> confirme previamente con el cuidador la disponibilidad del ajuste usted desea realizar.
+		</div>
+		
     <?php }
 
 	// Modificacion Ángel Veloz

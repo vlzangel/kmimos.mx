@@ -83,6 +83,10 @@
                 filter: grayscale(0%) !important;
                 opacity: 1 !important;
             }
+
+            .wpmenucartli {
+                display: none !important;
+            }
         </style>
 
         <style>
@@ -403,7 +407,6 @@
                 <?php
                     if( $post->post_name == "finalizar-comprar" ){
                         echo '
-                            jQuery(".order_details tr:nth-child(3) th").html("Total del Servicio:");
                             jQuery(".payment_method_wc-booking-gateway").css("display", "none");
                         ';
                     }
@@ -439,26 +442,27 @@
             }
 
             // Modificacion Ángel Veloz
-            global $current_user;
-            $user_id = md5($current_user->ID);
-            if( isset( $_SESSION["MR_".$user_id] ) ){
-                echo "
-                    <a href='".get_home_url()."/wp-content/themes/pointfinder/vlz/admin/process/mybookings_modificar.php?b=".$user_id."' style='
-                        position: fixed;
-                        display: inline-block;
-                        left: 50px;
-                        bottom: 50px;
-                        padding: 8px;
-                        font-size: 20px;
-                        font-family: Roboto;
-                        background: #61ccac;
-                        border: solid 2px #313131;
-                        z-index: 999999999999999999;
-                        color: #FFF;
-                    '>
-                        Salir de modificar reserva
-                    </a>
-                ";
+            $DS = kmimos_session();
+            if( $DS ){
+                if( isset($DS["reserva"]) ){
+                    echo "
+                        <a href='".get_home_url()."/wp-content/themes/pointfinder/vlz/admin/process/mybookings_modificar.php?b=".$user_id."' style='
+                            position: fixed;
+                            display: inline-block;
+                            left: 50px;
+                            bottom: 50px;
+                            padding: 8px;
+                            font-size: 20px;
+                            font-family: Roboto;
+                            background: #61ccac;
+                            border: solid 2px #313131;
+                            z-index: 999999999999999999;
+                            color: #FFF;
+                        '>
+                            Salir de modificar reserva
+                        </a>
+                    ";
+                }
             }
         ?>
 

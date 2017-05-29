@@ -45,12 +45,17 @@ do_action( 'woocommerce_before_cart' ); ?>
 		}
     }
 
+    // echo "<pre>";
+    // 	print_r($DS);
+    // echo "</pre>";
 ?>
 
 <div style="border: solid 1px #01b79e; padding: 10px; font-size: 14px; background: rgba(89, 201, 168, 0.52); margin-bottom: 20px;">
 	<strong>Kmisaldo:</strong> MXN $<?php echo kmimos_get_kmisaldo(); ?><br>
-	<strong>Reserva anterior:</strong> MXN $<?php echo $DS["saldo_temporal"]; ?><br>
-	<strong>Saldo actual disponible:</strong> MXN $<?php echo $DS["saldo_temporal"]; ?>
+	<?php if( $DS["saldo_temporal"] > 0 ){ ?>
+		<strong>Reserva anterior:</strong> MXN $<?php echo $DS["saldo_temporal"]; ?><br>
+		<strong>Saldo actual disponible:</strong> MXN $<?php echo $DS["saldo"]; ?>
+	<?php } ?>
 </div>
 
 <?php
@@ -88,8 +93,8 @@ do_action( 'woocommerce_before_cart' ); ?>
 			<th class="product-remove">&nbsp;</th>
 			<th class="product-thumbnail">&nbsp;</th>
 			<th class="product-name"><?php _e( 'Product', 'woocommerce' ); ?></th>
-			<th class="product-price"><?php _e( 'Price', 'woocommerce' ); ?></th>
-			<th class="product-quantity"><?php _e( 'Quantity', 'woocommerce' ); ?></th>
+			<?php /* <th class="product-price"><?php _e( 'Price', 'woocommerce' ); ?></th> */ ?>
+			<?php /* <th class="product-quantity"><?php _e( 'Quantity', 'woocommerce' ); ?></th> */ ?>
 			<th class="product-subtotal"><?php _e( 'Total', 'woocommerce' ); ?></th>
 		</tr>
 	</thead>
@@ -146,13 +151,14 @@ do_action( 'woocommerce_before_cart' ); ?>
 							}
 						?>
 					</td>
-
+					<?php /* 
 					<td class="product-price" data-title="<?php _e( 'Price', 'woocommerce' ); ?>">
 						<?php
 							echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key );
 						?>
 					</td>
-
+					*/ ?>
+					<?php /*
 					<td class="product-quantity" data-title="<?php _e( 'Quantity', 'woocommerce' ); ?>">
 						<?php
 							if ( $_product->is_sold_individually() ) {
@@ -169,6 +175,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 							echo apply_filters( 'woocommerce_cart_item_quantity', $product_quantity, $cart_item_key, $cart_item );
 						?>
 					</td>
+					*/ ?>
 
 					<td class="product-subtotal" data-title="<?php _e( 'Total', 'woocommerce' ); ?>">
 						<?php
@@ -221,6 +228,16 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 <!-- Modificacion Ángel Veloz -->
 <style>
+	.product-total,
+	.cart-subtotal td,
+	.cart-discount td,
+	.order-total td,
+	.order-paid td,
+	.vlz_totales td,
+	.order-remaining td
+	{
+		text-align: right !important;
+	}
 	.woocommerce .cart-collaterals .cross-sells, .woocommerce-page .cart-collaterals .cross-sells, .woocommerce .cart-collaterals .cart_totals, .woocommerce-page .cart-collaterals .cart_totals {
 	    width: 100% !important;
 	}
@@ -228,9 +245,6 @@ do_action( 'woocommerce_before_cart' ); ?>
 	    margin-top: 10px;
 	    max-width: 300px;
 	    float: right;
-	}
-	.vlz_totales td {
-	    text-align: right;
 	}
 	.woocommerce-cart .cart-collaterals .cart_totals table th {
 	    width: auto;

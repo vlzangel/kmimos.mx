@@ -100,7 +100,8 @@
 			}
 		}
 
-		$kmisaldo = $conn->query("SELECT meta_value FROM wp_usermeta WHERE md5(user_id) = {$param[1]} AND meta_key = 'kmisaldo'");
+		$sql = "SELECT meta_value FROM wp_usermeta WHERE md5(user_id) = '{$param[1]}' AND meta_key = 'kmisaldo'";
+		$kmisaldo = $conn->query($sql);
 		if( $kmisaldo->num_rows > 0 ){
 			$kmisaldo = $kmisaldo->fetch_assoc();
 			$kmisaldo = $kmisaldo["meta_value"];
@@ -109,7 +110,7 @@
 		$parametros = array( 
 			"reserva"         => $id_reserva,
 			"servicio"        => $data['ID'],
-			"saldo"	          => $saldo+$descuento,
+			"saldo"	          => $saldo+$descuento+$kmisaldo,
 			"saldo_temporal"  => $saldo+$descuento,
 			"variaciones"     => $variaciones,
 			"fechas"          => $fechas,
@@ -117,9 +118,9 @@
 			"adicionales"     => $adicionales
 		);
 
-/*		echo "<pre>";
-			print_r($adicionales);
-		echo "</pre>";*/
+		// echo "<pre>";
+		// 	print_r($parametros);
+		// echo "</pre>";
 
 		$_SESSION["MR_".$param[1]] = $parametros;
 		header("location: ".$home['server']."producto/".$data['post_name']."/");
@@ -127,7 +128,11 @@
 
 	if( isset($b) ){
 		$home = $conn->query("SELECT option_value AS server FROM wp_options WHERE option_name = 'siteurl'"); $home = $home->fetch_assoc();
-		unset($_SESSION["MR_".$b]);
+		foreach ($_SESSION as $key => $value) {
+			if(	substr($key, 0, 3) == "MR_" ){
+				unset($_SESSION[$key]);
+			}
+		}
 		header("location: ".$home['server']."perfil-usuario/?ua=invoices&fm=_");
 	}
 

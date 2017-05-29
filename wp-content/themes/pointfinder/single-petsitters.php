@@ -167,19 +167,61 @@
 				<h1 class="center-white"><?php the_title(); ?></h1>
 				<?php echo kmimos_petsitter_rating($post_id); ?>
 
-				<?php
+				<?php 
 					if(is_user_logged_in()){
 						echo '<a class="theme_button button conocer-cuidador" href="'.get_home_url().'/conocer-al-cuidador/?id='.$post_id.'">Conocer al Cuidador</a>';
-						echo '<a class="button reservar" href="'.get_home_url().'/producto/hospedaje-'.$slug.'/'.'">Reservar</a>';
-					}else{
-						echo '<span class="theme_button button conocer-cuidador" onclick="jQuery(\'#pf-login-trigger-button\').click();">Conocer al Cuidador</span>';
-						echo '<span class="button reservar" onclick="jQuery(\'#pf-login-trigger-button\').click();">Reservar</span>';
-					}
-				?>		
+						// ******************************************
+						// BEGIN Imprime boton Reserva segun su busqueda
+						// ******************************************
+						include("vlz/seleccion_boton_reserva.php");
+						// END Imprime boton Reserva segun su busqueda
+						
+					}else{ ?>
+						<span 
+							class="theme_button button conocer-cuidador" 
+							onclick="jQuery('#pf-login-trigger-button').click();"
+						>Conocer al Cuidador</span>
+						<span 
+							class="button reservar" 
+							onclick="jQuery('#pf-login-trigger-button').click();"
+						>Reservar</span>
+				<?php } ?>		
 
 			</div>
 		</div>
 		
+
+			<!-- Italo Sprint 2 -->
+			<div class="vlz_separador"></div>
+			<h3 class="vlz_titulo">Estos son mis servicios</h3>
+			<div class="vlz_seccion">
+
+				<?php
+
+					$args = array(
+						'post_type' => 'product',
+				        'post_status' => 'publish',
+				        'author' => $cuidador->user_id
+				    );
+
+				    $products = get_posts( $args );
+
+				    $ids = '';
+				    foreach($products as $product){
+				        if( $ids != '') $ids .= ',';
+				        $ids .= $product->ID;
+				    }
+
+				    if($ids != ''){
+				        $comando = '[products ids="'.$ids.'"]';
+				        echo do_shortcode($comando);
+				    }
+
+				?>
+
+			</div>
+			<!-- Italo Sprint 2 -->
+
 		<?php if( $descripcion != "" ){ ?>
 			<div class="vlz_separador"></div>
 			<h3 class="vlz_titulo">Descripción del Cuidador</h3>
@@ -314,8 +356,9 @@
 
 			</div>
 
-		<div class="vlz_separador"></div>
 
+			<!-- Italo Sprint 2 
+			<div class="vlz_separador"></div>
 			<h3 class="vlz_titulo">Estos son mis servicios</h3>
 			<div class="vlz_seccion">
 
@@ -342,7 +385,7 @@
 
 				?>
 
-			</div>
+			</div> -->
 
 		<?php if( $atributos['video_youtube'][0] != ''){ ?>
 
