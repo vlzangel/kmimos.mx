@@ -24,7 +24,6 @@ wc_print_notices();
 do_action( 'woocommerce_before_cart' ); ?>
 
 <?php
-
 	// Modificacion Ángel Veloz
 	$DS = kmimos_session();
     if( $DS ){
@@ -45,20 +44,23 @@ do_action( 'woocommerce_before_cart' ); ?>
 		}
     }
 
-    // echo "<pre>";
-    // 	print_r($DS);
-    // echo "</pre>";
-?>
+    $saldo = 0;
+    if( $DS["saldo"] > 0 ){
+		$saldo = $DS["saldo"];
+	}else{
+		$saldo = kmimos_get_kmisaldo();
+	}
 
-<div style="border: solid 1px #01b79e; padding: 10px; font-size: 14px; background: rgba(89, 201, 168, 0.52); margin-bottom: 20px;">
-	<strong>Kmisaldo:</strong> MXN $<?php echo kmimos_get_kmisaldo(); ?><br>
-	<?php if( $DS["saldo_temporal"] > 0 ){ ?>
-		<strong>Reserva anterior:</strong> MXN $<?php echo $DS["saldo_temporal"]; ?><br>
-		<strong>Saldo actual disponible:</strong> MXN $<?php echo $DS["saldo"]; ?>
-	<?php } ?>
-</div>
-
-<?php
+	if( $saldo > 0 ){ ?>
+		<div class="theme_button">
+			<strong>Kmisaldo:</strong> MXN $<?php echo kmimos_get_kmisaldo(); ?><br>
+			<?php if( $DS["saldo"] > 0 ){ ?>
+				<strong>Kmisaldo:</strong> MXN $<?php echo $DS["saldo"]; ?>
+			<?php }else{ ?>
+				<strong>Kmisaldo:</strong> MXN $<?php echo kmimos_get_kmisaldo(); ?>
+			<?php } ?>
+		</div> <?php
+	}
 /**
  * Cart Page
  *

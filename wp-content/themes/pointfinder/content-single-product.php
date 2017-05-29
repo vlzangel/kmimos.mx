@@ -28,8 +28,10 @@
 			<?php } ?>
 		</div>
 
-		<div style="border: solid 1px #01b79e; padding: 10px; font-size: 14px; background: rgba(89, 201, 168, 0.52); margin-bottom: 20px;">
-			<span style="font-weight: 600;">Importante:</span> confirme previamente con el cuidador la disponibilidad del ajuste usted desea realizar.
+		<div style="border: solid 1px #01b79e; padding: 10px 10px 10px 40px; font-size: 14px; background: rgba(89, 201, 168, 0.52); margin-bottom: 20px; position: relative;">
+			<img src="<?php echo get_template_directory_uri()."/images/advertencia.png"; ?>" style="position: absolute; top: 4px; left: 6px; width: 30px;" />
+			
+			<span style="font-weight: 600;">Importante:</span> Confirme previamente con el cuidador la disponibilidad del ajuste usted desea realizar.
 		</div>
 		
     <?php }
