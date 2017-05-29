@@ -241,7 +241,8 @@
 
             /* Cliente */
 
-                $cliente = $metas_orden["_customer_user"][0];
+                $cliente = $metas_reserva["_booking_customer_id"][0];
+                $xcliente = $cliente;
 
                 if( $cliente == 0 ){
                     $temp_email = $metas_orden["_billing_email"][0];
@@ -314,14 +315,14 @@
                     $detalles_mascotas = '
                         <table style="width:100%" cellspacing=0 cellpadding=0>
                             <tr>
-                                <th style="padding: 3px; background: #00d2b7; text-align: left;"> <strong>Nombre</strong> </th>
+                                <th style="padding: 3px; background: #00d2b7; text-align: left;"> <strong>Nombre </strong> </th>
                                 <th style="padding: 3px; background: #00d2b7; text-align: left;"> <strong>Detalles</strong> </th>
                             </tr>';
                 }else{
                     $detalles_mascotas = '
                         <table style="width:100%" cellspacing=0 cellpadding=0>
                             <tr>
-                                <th style="padding: 3px; text-align: left;"> <strong>Nombre</strong> </th>
+                                <th style="padding: 3px; text-align: left;"> <strong>Nombre id: '.$xcliente.'</strong> </th>
                                 <th style="padding: 3px; text-align: left;"> <strong>Detalles</strong> </th>
                             </tr>';
                 }
@@ -580,6 +581,11 @@
 
             $info = kmimos_get_info_syte();
 
+            $detale_largo = true;
+            if( isset($metas_reserva['_booking_type']) ){
+                $detale_largo = false;
+            }
+
             $variaciones = ''; $grupo = 0;
             foreach ($variaciones_array as $key => $value) {
                 if( isset( $detalles_reserva[$value] ) ){
@@ -589,13 +595,22 @@
 
                     $unitario = $metas_producto['_price'][0]+$metas_variacion['block_cost'][0];
 
+                    if( $detale_largo ){
+                        $precios_detalle = '
+                            <td style="'.$styles_celdas_center.'" align="right"> '.$info["mon_izq"].' '.number_format( $unitario, 2, ',', '.').' '.$info["mon_der"].' </td>
+                            <td style="'.$styles_celdas_right.'" align="right"> '.$info["mon_izq"].' '.number_format( ($unitario*$detalles_reserva[$value]*$dias), 2, ',', '.').' '.$info["mon_der"].' </td>';
+                    }else{
+                        $precios_detalle = '
+                            <td style="'.$styles_celdas_center.'" align="right"> </td>
+                            <td style="'.$styles_celdas_right.'" align="right"> </td>';
+                    }
+
                     $variaciones .= '
                     <tr>
                         <td style="'.$styles_celdas_left.'"> '.$txts[$key].' </td>
                         <td style="'.$styles_celdas_center.'" align="center"> '.$detalles_reserva[$value].' </td>
                         <td style="'.$styles_celdas_center.'" align="center"> '.$dias.' '.$dias_noches.' </td>
-                        <td style="'.$styles_celdas_center.'" align="right"> '.$info["mon_izq"].' '.number_format( $unitario, 2, ',', '.').' '.$info["mon_der"].' </td>
-                        <td style="'.$styles_celdas_right.'" align="right"> '.$info["mon_izq"].' '.number_format( ($unitario*$detalles_reserva[$value]*$dias), 2, ',', '.').' '.$info["mon_der"].' </td>
+                        '.$precios_detalle.'
                     </tr>';
 
                     $grupo += $detalles_reserva[$value];
@@ -608,12 +623,22 @@
                 foreach ($adicionales_array as $key => $value) {
                     $servicio = $value[0];
                     $costo = ($value[1]);
+
+                    if( $detale_largo ){
+                        $precios_detalle = '
+                            <td style="'.$styles_celdas_center.'" align="right"> '.$info["mon_izq"].' '.number_format( $costo, 2, ',', '.').' '.$info["mon_der"].' </td>
+                            <td style="'.$styles_celdas_right.'" align="right"> '.$info["mon_izq"].' '.number_format( ($costo*$grupo), 2, ',', '.').' '.$info["mon_der"].' </td>';
+                    }else{
+                        $precios_detalle = '
+                            <td style="'.$styles_celdas_center.'" align="right"> </td>
+                            <td style="'.$styles_celdas_right.'" align="right"> </td>';
+                    }
+
                     $adicionales .= '
                     <tr>
                         <td style="'.$styles_celdas_left.'" colspan=2> '.$servicio.' </td>
                         <td style="'.$styles_celdas_center.'" align="center"> '.$grupo.' Mascota(s) </td>
-                        <td style="'.$styles_celdas_center.'" align="right"> '.$info["mon_izq"].' '.number_format( $costo, 2, ',', '.').' '.$info["mon_der"].' </td>
-                        <td style="'.$styles_celdas_right.'" align="right"> '.$info["mon_izq"].' '.number_format( ($costo*$grupo), 2, ',', '.').' '.$info["mon_der"].' </td>
+                        '.$precios_detalle.'
                     </tr>';
                 }
 
@@ -625,12 +650,21 @@
                 foreach ($transporte as $key => $value) {
                     $servicio = $value[0];
                     $costo = ($value[1]);
+
+                    if( $detale_largo ){
+                        $precios_detalle = '
+                            <td style="'.$styles_celdas_center.'" align="right"> '.$info["mon_izq"].' '.number_format( $costo, 2, ',', '.').' '.$info["mon_der"].' </td>
+                            <td style="'.$styles_celdas_right.'" align="right"> '.$info["mon_izq"].' '.number_format( $costo, 2, ',', '.').' '.$info["mon_der"].' </td>';
+                    }else{
+                        $precios_detalle = '
+                            <td style="'.$styles_celdas_center.'" align="right"> </td>
+                            <td style="'.$styles_celdas_right.'" align="right"> </td>';
+                    }
                     $transporte_str .= '
                     <tr>
                         <td style="'.$styles_celdas_left.'" colspan=2> '.$servicio.' </td>
                         <td style="'.$styles_celdas_center.'" align="center"> Precio por Grupo </td>
-                        <td style="'.$styles_celdas_center.'" align="right"> '.$info["mon_izq"].' '.number_format( $costo, 2, ',', '.').' '.$info["mon_der"].' </td>
-                        <td style="'.$styles_celdas_right.'" align="right"> '.$info["mon_izq"].' '.number_format( $costo, 2, ',', '.').' '.$info["mon_der"].' </td>
+                        '.$precios_detalle.'
                     </tr>';
                 }
 
@@ -645,7 +679,7 @@
 
                 $remanente['deposit'] = $pago;
 
-                if( $metas_orden["_cart_discount"][0] != "0" ){
+                if( $metas_orden["_cart_discount"][0]+0 > 0 ){
                     $descuento_total = '
                         <tr>
                             <td></td>
@@ -660,7 +694,7 @@
                 
             }else{
 
-                if( $metas_orden["_cart_discount"][0] != "0" ){
+                if( $metas_orden["_cart_discount"][0]+0 > 0 ){
                     $descuento_parcial = '
                         <tr>
                             <td></td>
@@ -700,6 +734,18 @@
                 ';
             }else{
 
+                if( $detale_largo ){
+                    $precios_detalle = '
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <th colspan=2 style="'.$styles_celdas_left.'">Cliente debe pagar al Cuidador:<div style="color: red;">en efectivo, al llevar a la mascota</div></th>
+                            <td style="'.$styles_celdas_right.'" align="right"> '.$info["mon_izq"].' '.number_format( $remanente['remaining'], 2, ',', '.').' '.$info["mon_der"].' </td>
+                        </tr>';
+                }else{
+                    $precios_detalle = '';
+                }
+
                 $totales = '
                     <tr>
                         <td></td>
@@ -715,12 +761,7 @@
                         <td style="'.$styles_celdas_right.'" align="right"> '.$info["mon_izq"].' '.number_format( $remanente['deposit'], 2, ',', '.').' '.$info["mon_der"].' </td>
                     </tr>
                     '.$descuento_parcial.'
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <th colspan=2 style="'.$styles_celdas_left.'">Cliente debe pagar al Cuidador:<div style="color: red;">en efectivo, al llevar a la mascota</div></th>
-                        <td style="'.$styles_celdas_right.'" align="right"> '.$info["mon_izq"].' '.number_format( $remanente['remaining'], 2, ',', '.').' '.$info["mon_der"].' </td>
-                    </tr>
+                    '.$precios_detalle.'
                 ';
 
             }
@@ -753,14 +794,23 @@
                 </table>
             ';
 
+            if( $detale_largo ){
+                $precios_detalle = '
+                    <th style="'.$styles_celdas_center.' width: 150px;"> Precio Unitario </th>
+                    <th style="'.$styles_celdas_right.'"> Precio Total </th>';
+            }else{
+                $precios_detalle = '
+                    <th style="'.$styles_celdas_center.' width: 150px;">  </th>
+                    <th style="'.$styles_celdas_right.'">  </th>';
+            }
+
             $detalles_factura .= '
                 <table style="width:100%" cellspacing=0 cellpadding=0>
                     <tr>
                         <th style="'.$styles_celdas_left.'"> Tamaño </th>
                         <th style="'.$styles_celdas_center.'"> Num. Mascotas </th>
                         <th style="'.$styles_celdas_center.'"> Tiempo </th>
-                        <th style="'.$styles_celdas_center.' width: 150px;"> Precio Unitario </th>
-                        <th style="'.$styles_celdas_right.'"> Precio Total </th>
+                        '.$precios_detalle.'
                     </tr>
                     '.$variaciones.'
                     '.$transporte_str.'
