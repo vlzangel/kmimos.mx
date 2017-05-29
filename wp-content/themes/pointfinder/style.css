@@ -30,10 +30,9 @@
 .theme_title{}
 .theme_content{}
 .theme_button{
-	color: #FFF !important;
-	background-color: #00d2b7 !important;
-	background: linear-gradient(#00d2b7 , #00d2b7);
-	border-color: #00d2b7 !important;
+	color: #FFF;
+	background-color: #00d2b7;
+	border-color: #00d2b7;
 }
 
 
