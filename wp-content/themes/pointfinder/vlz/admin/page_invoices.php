@@ -1,4 +1,4 @@
-<div style="border: solid 1px #01b79e; padding: 10px; font-size: 14px; background: rgba(89, 201, 168, 0.52);">
+<div class="theme_button" style="padding: 10px; font-size: 14px;">
 	<strong>Kmisaldo:</strong> MXN $<?php echo kmimos_get_kmisaldo(); ?>
 </div>
 

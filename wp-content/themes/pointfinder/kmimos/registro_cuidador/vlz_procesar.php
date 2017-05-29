@@ -601,13 +601,13 @@
                         <h1>¡Gracias por unirte a nuestra familia Kmimos!</h1>
                         <p>Hola <strong>'.$nombres.' '.$apellidos.'</strong>,</p>
                         <p style="text-align: justify;">
-                           Estimado Kmiamigo, tu perfil ha sido creado con éxito. El mismo permanecerá INACTIVO en la página hasta que completes tu proceso de certificación que consta: "
+                           Estimado Kmiamigo, tu perfil ha sido creado con éxito. El mismo permanecerá INACTIVO en la página hasta que completes tu proceso de certificación que consta:
                         </p>
                         <p style="text-align: justify;  text-align: left;">
                             <ul style="text-align: justify;  text-align: left;">
-                                <li>Pruebas de conocimiento veterinario</li>
+                                <li>Pruebas de conocimiento veterinario.</li>
                                 <li>Pruebas Psicométricas.</li>
-                                <li>Documentación (IFE, Comprobante de domicilio y Datos Bancarios.).</li>
+                                <li>Documentación (IFE, Comprobante de domicilio y Datos Bancarios.</li>
                              </ul>
                         </p>
 
@@ -619,13 +619,13 @@
                             Ahora serás dirigido a hacia el paso 1, <strong>PRUEBAS DE CONOCIMIENTO VETERINARIO</strong>.
                         </p>
                         <p style="text-align: justify;">
-                            Guarda el siguiente link, ahi puedes continuar con las pruebas en caso de no terminarlas por algún imprevisto y/o para cargar documento
+                            Guarda el siguiente link, ahí puedes continuar con las pruebas en caso de no terminarlas por algún imprevisto y/o para cargar documento.
                         </p>
                         <p style="text-align: justify;">
                             <strong>Link para continuar es:</strong> http://kmimos.ilernus.com
                         </p>
                         <p style="text-align: justify; color: #f00;">
-                            <strong>INGRESA CON EL NOMBRE DE USUARIO Y CONTRASEÑA: .</strong>
+                            <strong>INGRESA CON EL NOMBRE DE USUARIO Y CONTRASEÑA:</strong>
                         </p>
                         <p style="text-align: justify;">
                             <ul style="text-align: justify;  text-align: left;">
@@ -634,7 +634,7 @@
                             </ul>
                         </p>
                         <p style="text-align: justify;">
-                            EXITO.
+                           ¡EXITO!
                         </p>
                         <p style="text-align: center;">
                             <a class="theme_button"
@@ -712,13 +712,13 @@
                         <h1>¡Gracias por unirte a nuestra familia Kmimos!</h1>
                         <p>Hola <strong>'.$nombres.' '.$apellidos.'</strong>,</p>
                         <p style="text-align: justify;">
-                           Estimado Kmiamigo, tu perfil ha sido creado con éxito. El mismo permanecerá INACTIVO en la página hasta que completes tu proceso de certificación que consta: "
+                           Estimado Kmiamigo, tu perfil ha sido creado con éxito. El mismo permanecerá INACTIVO en la página hasta que completes tu proceso de certificación que consta:
                         </p>
                         <p style="text-align: justify;  text-align: left;">
                             <ul style="text-align: justify;  text-align: left;">
-                                <li>Pruebas de conocimiento veterinario</li>
+                                <li>Pruebas de conocimiento veterinario.</li>
                                 <li>Pruebas Psicométricas.</li>
-                                <li>Documentación (IFE, Comprobante de domicilio y Datos Bancarios.).</li>
+                                <li>Documentación (IFE, Comprobante de domicilio y Datos Bancarios.</li>
                              </ul>
                         </p>
 
@@ -730,13 +730,13 @@
                             Ahora serás dirigido a hacia el paso 1, <strong>PRUEBAS DE CONOCIMIENTO VETERINARIO</strong>.
                         </p>
                         <p style="text-align: justify;">
-                            Guarda el siguiente link, ahi puedes continuar con las pruebas en caso de no terminarlas por algún imprevisto y/o para cargar documento
+                            Guarda el siguiente link, ahí puedes continuar con las pruebas en caso de no terminarlas por algún imprevisto y/o para cargar documento.
                         </p>
                         <p style="text-align: justify;">
                             <strong>Link para continuar es:</strong> http://kmimos.ilernus.com
                         </p>
                         <p style="text-align: justify; color: #f00;">
-                            <strong>INGRESA CON EL NOMBRE DE USUARIO Y CONTRASEÑA: .</strong>
+                            <strong>INGRESA CON EL NOMBRE DE USUARIO Y CONTRASEÑA:</strong>
                         </p>
                         <p style="text-align: justify;">
                             <ul style="text-align: justify;  text-align: left;">
@@ -745,7 +745,7 @@
                             </ul>
                         </p>
                         <p style="text-align: justify;">
-                            EXITO.
+                            ¡EXITO!
                         </p>
                         <p style="text-align: center;">
                             <a class="theme_button"
