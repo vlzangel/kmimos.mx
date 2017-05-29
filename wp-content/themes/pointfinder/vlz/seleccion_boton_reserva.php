@@ -80,7 +80,10 @@ if( count($url_servicio) > 1 ){
 }else{
 	if( count($url_servicio) == 1){
 		// Buscar url del servicio
-		echo '<a class="button reservar" href="'.$url_servicio[0]['url'].'">Reservar</a>';
+		foreach ($url_servicio as $item) {
+			echo '<a class="button reservar" href="'.$item['url'].'">Reservar</a>';
+			break;
+		}
 	}
 	else{				
 		echo '<a class="button reservar" href="'.get_home_url().'/producto/hospedaje-'.$slug.'/'.'">Reservar</a>';
