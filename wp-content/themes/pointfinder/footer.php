@@ -424,7 +424,7 @@
         <?php
             if(  $_SESSION['admin_sub_login'] == 'YES' ){
                 echo "
-                    <a href='".get_home_url()."/?i=".md5($_SESSION['id_admin'])."&admin=YES' style='
+                    <a href='".get_home_url()."/?i=".md5($_SESSION['id_admin'])."&admin=YES' class='theme_button' style='
                         position: fixed;
                         display: inline-block;
                         left: 50px;
@@ -432,8 +432,6 @@
                         padding: 20px;
                         font-size: 48px;
                         font-family: Roboto;
-                        background: #CCC;
-                        border: solid 2px #BBB;
                         z-index: 999999999999999999;
                     '>
                         X
@@ -446,7 +444,7 @@
             if( $DS ){
                 if( isset($DS["reserva"]) ){
                     echo "
-                        <a href='".get_home_url()."/wp-content/themes/pointfinder/vlz/admin/process/mybookings_modificar.php?b=".$user_id."' style='
+                        <a href='".get_home_url()."/wp-content/themes/pointfinder/vlz/admin/process/mybookings_modificar.php?b=".$user_id."' class='theme_button' style='
                             position: fixed;
                             display: inline-block;
                             left: 50px;
@@ -454,8 +452,6 @@
                             padding: 8px;
                             font-size: 20px;
                             font-family: Roboto;
-                            background: #61ccac;
-                            border: solid 2px #313131;
                             z-index: 999999999999999999;
                             color: #FFF;
                         '>
