@@ -536,7 +536,7 @@
 													<li>
 														<a class='ser_cuidador' href='".get_home_url()."/quiero-ser-cuidador-certificado-de-perros/'>
 															<span></span>
-															<div class='theme_button'>Quiero ser cuidador</div>
+															<div class='theme_button button_header'>Quiero ser cuidador</div>
 														</a>
 													<li>
 												";
