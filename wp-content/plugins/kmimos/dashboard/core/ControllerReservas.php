@@ -328,6 +328,9 @@ function get_ubicacion_cuidador( $user_id ){
 
 function getReservas($desde="", $hasta=""){
 
+	$desde = "2015-01-01";
+	$hasta = "2017-05-29";
+
 	$filtro_adicional = "";
 
 	if( !empty($desde) && !empty($hasta) ){

@@ -128,7 +128,11 @@
 
 	if( isset($b) ){
 		$home = $conn->query("SELECT option_value AS server FROM wp_options WHERE option_name = 'siteurl'"); $home = $home->fetch_assoc();
-		unset($_SESSION["MR_".$b]);
+		foreach ($_SESSION as $key => $value) {
+			if(	substr($key, 0, 3) == "MR_" ){
+				unset($_SESSION[$key]);
+			}
+		}
 		header("location: ".$home['server']."perfil-usuario/?ua=invoices&fm=_");
 	}
 
