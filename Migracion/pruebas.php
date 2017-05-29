@@ -1,15 +1,16 @@
 <?php
 
-	$c = new mysqli("localhost", "root", "", 'kmimos.reservas');
+	error_reporting(0);
 
+	include("../vlz_config.php");
+	$c = new mysqli($host, $user, $pass, $db);
 	include("./db.php");
-
 	$db = new db($c);
-
 	include("./funciones.php");
 
 	$sql = "
 		SELECT 
+
 			reserva.id 		AS id_reserva,
 
 			reserva.created_at 		AS creada,
@@ -20,15 +21,13 @@
 			wp_cliente.ID 			AS cliente_ID,
 			wp_cuidador.ID 			AS cuidador_ID,
 
-
-
-
 			reserva.provider_id 	AS cuidador,
 			reserva.user_id 		AS cliente,
 			cliente.email 			AS cliente_email,
 			cuidador.email 			AS cuidador_email
 
 		FROM 
+
 			bookings AS reserva
 
 		LEFT JOIN users AS cliente ON ( cliente.id = reserva.user_id )
@@ -43,43 +42,19 @@
 			reserva.total > 0
 
 		ORDER BY reserva.id ASC
-
-		LIMIT 40, 20
 	";
 
 	$reservas = $c->query($sql);
-
 	if( $reservas->num_rows > 0 ){
-
 		while ( $f = $reservas->fetch_assoc() ) {
-			// echo "<pre>";
+			$servicios = get_servicios($f['id_reserva']);
+			$tam = get_tamanos($f['id_reserva']);
+			$producto = get_producto( $f['cuidador_ID'], $servicios['slug'] );
 
-				// print_r( $f );
-
-				$servicios = get_servicios($f['id_reserva']);
-
-				// print_r( $servicios );
-
-				$tam = get_tamanos($f['id_reserva']);
-
-				// print_r( $tam );
-
-				// echo get_fecha( $f["creada"], "wp" )."<br>";
-				// echo get_fecha( $f["inicio"], "txt")."<br>";
-				// echo get_fecha( $f["inicio"], "wc" )."<br>";
-				// echo get_fecha( $f["fin"]   , "wc" )."<br>";
-
-				$producto = get_producto( $f['cuidador_ID'], $servicios['slug'] );
-
-				// echo "Servicio [{$servicios['slug']}]: ".$producto->ID."<br>";
-
-				$tam_2 = array();
-				foreach ($tam as $key => $value) {
-					$tam_2[ get_variantes($producto->ID, $key) ] = $value;
-				}
-				// print_r( $tam_2 );
-
-			// echo "</pre>";
+			$tam_2 = array();
+			foreach ($tam as $key => $value) {
+				$tam_2[ get_variantes($producto->ID, $key) ] = $value;
+			}
 
 			$creada = get_fecha( $f["inicio"], "wp" );
 

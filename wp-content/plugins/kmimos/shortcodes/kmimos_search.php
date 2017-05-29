@@ -243,17 +243,17 @@
 
                     <?php
                         $tamanos = array(
-                            "pequenos" => "Peque&ntilde;os 0.0 cm - 25.0cm",
-                            "medianos" => "Medianos 25.0 cm - 58.0 cm",
-                            "grandes"  => "Grandes 58.0 cm - 73.0 cm",
-                            "gigantes" => "Gigantes 73.0 cm - 200.0 cm",
+                            "pequenos" => "Peque&ntilde;os <br><sub>0.0 cm - 25.0cm</sub>",
+                            "medianos" => "Medianos <br><sub>25.0 cm - 58.0 cm</sub>",
+                            "grandes"  => "Grandes <br><sub>58.0 cm - 73.0 cm</sub>",
+                            "gigantes" => "Gigantes <br><sub>73.0 cm - 200.0 cm</sub>",
                         );
 
                         foreach($tamanos as $key=>$value){ ?>
                             <div class="jj_btn_tamanos" style="float: left; box-sizing: border-box; padding: 0px 1px; margin-bottom: 2px !important;">
                                 <div class="boton_portada boton_servicio" style="margin: 0px !important;">
                                     <input type="checkbox" name="tamanos[]" id="tamano_mascota_<?php echo $key;?>" value="<?php echo $key;?>" class="servicio_cuidador_<?php echo $key;?>" data-key="<?php echo $key;?>">
-                                    <label for="tamano_mascota_<?php echo $key;?>"><i class="icon-<?php echo $key;?>"></i>
+                                    <label for="tamano_mascota_<?php echo $key;?>" style="line-height: 12px; padding: 5px;"><i class="icon-<?php echo $key;?>"></i>
                                         <?php echo $value;?>
                                     </label>
                                 </div>

@@ -322,7 +322,7 @@
                     $detalles_mascotas = '
                         <table style="width:100%" cellspacing=0 cellpadding=0>
                             <tr>
-                                <th style="padding: 3px; text-align: left;"> <strong>Nombre id: '.$xcliente.'</strong> </th>
+                                <th style="padding: 3px; text-align: left;"> <strong>Nombre</strong> </th>
                                 <th style="padding: 3px; text-align: left;"> <strong>Detalles</strong> </th>
                             </tr>';
                 }
