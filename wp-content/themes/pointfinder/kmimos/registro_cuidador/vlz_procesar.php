@@ -628,7 +628,7 @@
                             <strong>INGRESA CON EL NOMBRE DE USUARIO Y CONTRASEÑA: .</strong>
                         </p>
                         <p style="text-align: justify;">
-                            <ul>
+                            <ul style="text-align: justify;  text-align: left;">
                                 <li><strong>Usuario: </strong> '.$username.'</li>
                                 <li><strong>Contraseña:</strong> '.$clave.'</li>
                             </ul>
@@ -637,7 +637,7 @@
                             EXITO.
                         </p>
                         <p style="text-align: center;">
-                            <a
+                            <a class="theme_button"
                                 href="http://kmimos.ilernus.com"
                                 style="
                                     padding: 10px;
@@ -701,6 +701,13 @@
                             a:hover{
                                 background: #038063;
                             }
+                            #vlz_cargando {
+                                max-height: 100% !important;
+                            }
+                            .vlz_modal_ventana {
+                                width:auto;
+                                max-width: 80%;
+                            }
                         </style>
                         <h1>¡Gracias por unirte a nuestra familia Kmimos!</h1>
                         <p>Hola <strong>'.$nombres.' '.$apellidos.'</strong>,</p>
@@ -732,7 +739,7 @@
                             <strong>INGRESA CON EL NOMBRE DE USUARIO Y CONTRASEÑA: .</strong>
                         </p>
                         <p style="text-align: justify;">
-                            <ul>
+                            <ul style="text-align: justify;  text-align: left;">
                                 <li><strong>Usuario: </strong> '.$username.'</li>
                                 <li><strong>Contraseña:</strong> '.$clave.'</li>
                             </ul>
@@ -741,7 +748,7 @@
                             EXITO.
                         </p>
                         <p style="text-align: center;">
-                            <a
+                            <a class="theme_button"
                                 href="http://kmimos.ilernus.com"
                                 style="
                                     padding: 10px;
