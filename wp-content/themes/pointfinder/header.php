@@ -76,10 +76,9 @@
 		}
 
 		if( isset($_GET['admin']) ){
-	   		header("location: ".get_home_url()."/wp-admin/admin.php?page=kmimos-setup");
-
 	        $_SESSION['id_admin'] 		 = "";
 	        $_SESSION['admin_sub_login'] = "";
+	   		header("location: ".get_home_url()."/wp-admin/admin.php?page=bp_clientes");
 		}else{
 	   		header("location: ".get_home_url()."/perfil-usuario/?ua=profile");
 		}
