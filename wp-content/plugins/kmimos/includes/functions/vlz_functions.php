@@ -139,6 +139,9 @@
                     ");
                 }else{
                     $sqls = array(
+                        "UPDATE wp_postmeta SET meta_value = '0' WHERE post_id = ".$id_cupon." AND meta_key = 'usage_limit'",
+                        "UPDATE wp_postmeta SET meta_value = '0' WHERE post_id = ".$id_cupon." AND meta_key = 'usage_limit_per_user'",
+
                         "UPDATE wp_postmeta SET meta_value = '".$monto_cupon."' WHERE post_id = ".$id_cupon." AND meta_key = 'coupon_amount'",
                         "UPDATE wp_postmeta SET meta_value = '".$servicio."'    WHERE post_id = ".$id_cupon." AND meta_key = 'product_ids'",
                         "UPDATE wp_postmeta SET meta_value = '".$manana."'      WHERE post_id = ".$id_cupon." AND meta_key = 'expiry_date'"
@@ -257,6 +260,10 @@
                         <tr>
                             <td valign="top"> <strong>Teléfono:</strong> </td>
                             <td valign="top">'.$telefono.'</td>
+                        </tr>
+                        <tr>
+                            <td valign="top"> <strong>Correo:</strong> </td>
+                            <td valign="top">'.$email_cuidador.'</td>
                         </tr>
                         '.$dir.'
                     </table>
