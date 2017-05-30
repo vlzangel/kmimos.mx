@@ -201,7 +201,22 @@ class WC_Deposits_Orders
             return $subtotal;
         }
 
-        return $subtotal;
+        if (is_array($deposit_meta) && isset($deposit_meta['enable']) && $deposit_meta['enable'] === 'yes') {
+            $tax = get_option('wc_deposits_tax_display', 'no') === 'yes' ? floatval($item['line_tax']) : 0;
+            $deposit = $deposit_meta['deposit'];
+            $remaining = $deposit_meta['remaining'];
+
+            // return  woocommerce_price($deposit, array('currency' => $order->get_order_currency())) . ' ' . __('Deposit', 'woocommerce-deposits') . '<br/>(' .
+            //         woocommerce_price($remaining, array('currency' => $order->get_order_currency())) . ' ' . __('Remaining', 'woocommerce-deposits') . ')';
+
+            if( !isset($_SESSION) ){ session_start(); }
+                 
+            return  woocommerce_price($_SESSION['deposito']) . ' ' . __('Pague Hoy', 'woocommerce-deposits') . '<br/>(' .
+                    woocommerce_price($_SESSION['remanente']) . ' ' . __('Monto Remanente', 'woocommerce-deposits') . ')';
+
+        } else {
+            return $subtotal;
+        }
     }
 
   public function get_formatted_order_total($total, $order)

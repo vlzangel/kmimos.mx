@@ -152,6 +152,29 @@
             }
         }
     }
+        
+    if(!function_exists('kmimos_aplicar_cupon')){
+        function kmimos_aplicar_cupon(){
+            $DS = kmimos_session();
+            if( $DS ){
+                if( $DS["monto_cupon"] > 0){
+
+                    $params = array(
+                        "monto_cupon" => $DS["monto_cupon"],
+                        "servicio" => $DS["servicio"],
+                        "manana" => date('Y-m-d', time()+84600)." 00:00:00"
+                    );
+
+                    $cupon = kmimos_cupon_saldo($params);
+
+                    if( !WC()->cart->has_discount( $cupon ) ){
+                        WC()->cart->add_discount( $cupon );
+                    }
+                
+                }
+            }
+        }
+    }
 
     if(!function_exists('kmimos_datos_generales_desglose')){
 

@@ -72,14 +72,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 				</th>
 				<td data-title="<?php wc_cart_totals_coupon_label( $coupon ); ?>">
 					<?php 
-
 						if( substr($coupon->code, 0, 5) == "saldo" ){
 							if ( $amount = WC()->cart->get_coupon_discount_amount( $coupon->code, WC()->cart->display_cart_ex_tax ) ) {
 								$discount_html = wc_price( $amount );
 							} else {
 								$discount_html = '';
 							}
-
 							echo "<span style='color: #59c9a8;'>- ".$discount_html."</span>";
 						}else{
 							wc_cart_totals_coupon_html( $coupon ); 
@@ -87,21 +85,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 					?>
 				</td>
 			</tr>
-			
-			<!-- <tr class="cart-discount coupon-<?php echo esc_attr( sanitize_title( $code ) ); ?>">
-				<th><?php wc_cart_totals_coupon_label( $coupon ); ?></th>
-				<td><?php wc_cart_totals_coupon_html( $coupon ); ?></td>
-			</tr> -->
 		<?php endforeach; ?>
 
 		<?php if ( WC()->cart->needs_shipping() && WC()->cart->show_shipping() ) : ?>
-
 			<?php do_action( 'woocommerce_review_order_before_shipping' ); ?>
-
 			<?php wc_cart_totals_shipping_html(); ?>
-
 			<?php do_action( 'woocommerce_review_order_after_shipping' ); ?>
-
 		<?php endif; ?>
 
 		<?php foreach ( WC()->cart->get_fees() as $fee ) : ?>

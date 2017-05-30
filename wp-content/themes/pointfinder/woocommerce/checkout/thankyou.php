@@ -128,3 +128,11 @@ if ( $order ) : ?>
 	<a href="<?php echo get_option('siteurl'); ?>" class="button pay">Inicio</a>
 	<a href="<?php echo get_option('siteurl')."/perfil-usuario/?ua=invoices"; ?>" class="button pay">Mis reservas</a>
 </div>
+
+<style type="text/css">
+	tbody .product-total,
+	tfoot td
+	{
+		text-align: right;
+	}
+</style>
