@@ -264,8 +264,8 @@ class WC_Deposits_Cart{
     public function cart_totals_after_order_total(){ 
 
         if( WC()->cart->total-WC()->cart->tax_total > 0 ){ ?>
-            <th style='color: #60cbac'><?php _e('Pague Hoy:', 'woocommerce-deposits'); ?></th>
-            <td style='color: #60cbac' data-title="<?php _e('Pague Hoy', 'woocommerce-deposits'); ?>"><?php $this->deposit_paid_html(); ?></td> <?php
+            <th class='texto_kmimos'><?php _e('Pague Hoy:', 'woocommerce-deposits'); ?></th>
+            <td class='texto_kmimos' data-title="<?php _e('Pague Hoy', 'woocommerce-deposits'); ?>"><?php $this->deposit_paid_html(); ?></td> <?php
         } ?>
             
         <tr class="order-remaining">

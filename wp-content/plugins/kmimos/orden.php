@@ -127,7 +127,7 @@
 			<p align="justify">Te notificamos que el cliente <strong>'.$nom_cliente.'</strong> ha cancelado la reserva N° <strong>'.$reserva_id.'</strong>.</p>'
 			.$detalles_cliente
 			.$detalles_mascotas
-			.$detalles_servicio;
+			.$detalles_servicio_cuidador;
 
 
    		$msg_cuidador = kmimos_get_email_html("Cancelación de Reserva", $msg_cuidador, "", true, true);
@@ -148,7 +148,7 @@
 			<p align="justify">Si tienes alguna duda o comentario de la cancelación con todo gusto puedes contactarnos.</p>'
 			.$detalles_cuidador
 			.$detalles_mascotas
-			.$detalles_servicio.'
+			.$detalles_servicio_cuidador.'
 			<p style="text-align: center;">
 	            <a 
 	            	href="'.get_home_url().'/perfil-usuario/?ua=invoices"

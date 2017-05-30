@@ -22,10 +22,10 @@
  	if( !isset($_SESSION) ){ session_start(); }		
  	global $current_user;		
  	$user_id = md5($current_user->ID);		
- 		
- 	if( isset( $_SESSION["MR_".$user_id] ) ){		
- 		$data = $_SESSION["MR_".$user_id];		
- 		$modificacion = 'Esta es una modificación de la reserva #: '.$data["reserva"];
+ 	
+ 	$DS = kmimos_session();
+ 	if( isset( $DS["reserva"] ) ){			
+ 		$modificacion = 'Esta es una modificación de la reserva #: '.$DS["reserva"];
  	}else{		
  		$modificacion = "";		
  	}

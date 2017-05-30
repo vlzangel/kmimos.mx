@@ -12,7 +12,7 @@
   			$detalles_cliente.
 	  		$detalles_cuidador.
 	  		$detalles_mascotas.
-	  		$detalles_servicio.
+	  		$detalles_servicio_cuidador.
 	  		"<br>".$aceptar_rechazar
 		;
 
@@ -123,7 +123,7 @@
 	  		$detalles_cuidador.
 	  		$detalles_cliente.
 	  		$detalles_mascotas.
-	  		$detalles_servicio.
+	  		$detalles_servicio_cuidador.
 	  		"<br>".$aceptar_rechazar.
 	  		$siguientes_pasos.
 	  		$dudas
