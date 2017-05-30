@@ -454,6 +454,7 @@
                             font-family: Roboto;
                             z-index: 999999999999999999;
                             color: #FFF;
+                            border: solid 1px #7b7b7b;
                         '>
                             Salir de modificar reserva
                         </a>

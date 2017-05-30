@@ -27,22 +27,34 @@ class WC_Deposits_Cart{
     }
 
     private function update_deposit_meta($product, $quantity, &$cart_item_data){
-        
+
         // Modificacion Ángel Veloz
         $kmisaldo = kmimos_get_kmisaldo();
         $DS = kmimos_session();
 
-        if( $kmisaldo > 0 ){
-            if( !$DS ){
+        if( !$DS ){
+            kmimos_set_session( array( 'saldo' => 0 ) );
+        }
+
+        if( $kmisaldo > 0 ){ // Si tiene saldo
+            if( !$DS ){      // Y no hay sesión creada
                 $DS = array(
                     'saldo' => $kmisaldo,
                     'saldo_temporal' => 0
                 );
                 kmimos_set_session($DS);
+            }else{
+                $DS['saldo'] += $kmisaldo;
             }
         }
 
-        unset($DS["monto_cupon"]);
+        global $post;
+        
+        if($post->post_name == 'carro'){
+            if( isset($DS["monto_cupon"]) ){
+                unset($DS["monto_cupon"]);
+            }
+        }
 
         $amount = $cart_item_data['booking']['_cost'];
         if ($product->wc_deposits_enable_deposit === 'yes' && isset($cart_item_data['deposit']) && $cart_item_data['deposit']['enable'] === 'yes') {
@@ -51,34 +63,34 @@ class WC_Deposits_Cart{
             if ($product->is_type('booking')) {
                 if ($product->wc_deposits_amount_type === 'percent') {
 
-                    if( $DS ){
-                        $deposit = $amount - ($amount / ( (100+$deposit_amount) / 100 ) );
+                    $deposit = $amount - ($amount / ( (100+$deposit_amount) / 100 ) );
 
-                        $saldo = $DS['saldo']+$DS['saldo_temporal'];
+                    if( !isset($_SESSION) ){ session_start(); }
 
-                        $DS["deposit"] = "YES";
-                        if(  $deposit > $saldo ){
-                            $deposit -= $saldo;
-                            // $DS['monto_cupon'] = $saldo;
-                            if( isset($DS["no_pagar"]) ){
-                                unset($DS["no_pagar"]);
-                            }
-                        }else{
-                            if( $saldo > $amount ){
-                                $DS['saldo_permanente'] = $saldo-$amount;
-                                $deposit = 0;
-                                $DS["deposit"] = "NO";
-                                $DS["no_pagar"] = "YES";
-                            }else{
-                                $deposit = 0;
-                                // $DS['monto_cupon'] = $saldo;
-                            }
+                    $_SESSION["deposito"] = $deposit;
+                    $_SESSION["remanente"] = $amount-$deposit;
+
+                    $saldo = $DS['saldo'];
+
+                    $DS["deposit"] = "YES";
+                    if(  $deposit > $saldo ){
+                        $deposit -= $saldo;
+                        $DS['monto_cupon'] = $saldo;
+                        if( isset($DS["no_pagar"]) ){
+                            unset($DS["no_pagar"]);
                         }
-                        kmimos_set_session($DS);
-
                     }else{
-                        $deposit = $amount - ($amount / ( (100+$deposit_amount) / 100 ) );
+                        if( $saldo > $amount ){
+                            $DS['saldo_permanente'] = $saldo-$amount;
+                            $deposit = 0;
+                            $DS["deposit"] = "NO";
+                            $DS["no_pagar"] = "YES";
+                        }else{
+                            $deposit = 0;
+                            $DS['monto_cupon'] = $saldo;
+                        }
                     }
+                    kmimos_set_session($DS);
                 }
             }
 
@@ -141,7 +153,27 @@ class WC_Deposits_Cart{
   * @return string
   */
     public function cart_item_subtotal($subtotal, $cart_item, $cart_item_key){
-        return $subtotal;
+        $product = $cart_item['data'];
+
+        if ($product->wc_deposits_enable_deposit === 'yes' && !empty($cart_item['deposit']) && $cart_item['deposit']['enable'] === 'yes'){
+            $tax = get_option('wc_deposits_tax_display', 'no') === 'yes' ?  $product->get_price_including_tax($cart_item['quantity']) -
+            $product->get_price_excluding_tax($cart_item['quantity']) : 0;
+            $deposit = $cart_item['deposit']['deposit'];
+            $remaining = $cart_item['deposit']['remaining'];
+
+             /* return woocommerce_price($deposit) . ' ' . __('Pague Hoy', 'woocommerce-deposits') . '<br/>(' .
+                 woocommerce_price($remaining) . ' ' . __('Monto Remanente', 'woocommerce-deposits') . ')';*/
+
+            /* return woocommerce_price($deposit + $tax) . ' ' . __('Deposit', 'woocommerce-deposits') . '<br/>(' .
+                 woocommerce_price($remaining) . ' ' . __('Remaining', 'woocommerce-deposits') . ')';*/
+
+            $DS = kmimos_session();
+                 
+            return  woocommerce_price($_SESSION['deposito']) . ' ' . __('Pague Hoy', 'woocommerce-deposits') . '<br/>(' .
+                    woocommerce_price($_SESSION['remanente']) . ' ' . __('Monto Remanente', 'woocommerce-deposits') . ')';
+        } else {
+          return $subtotal;
+        }
     }
 
 
