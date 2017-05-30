@@ -103,7 +103,7 @@ function WhiteLabel_add_rewrite_rules($wp_rewrite){
 
 add_filter('query_vars', 'WhiteLabel_query_vars');
 function WhiteLabel_query_vars($query_vars){
-    $query_vars[]="wlabel";
+    //$query_vars[]="wlabel";
     return $query_vars;
 }
 

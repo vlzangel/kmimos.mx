@@ -47,7 +47,7 @@ class Class_WhiteLabel{
             $this->SESSION = $_SESSION;
 
             //COOKIE
-            setcookie('wlabel',$this->wlabel, (time() + (86400*1)));
+            setcookie('wlabel',$this->wlabel, (time() + (86400*1/12)));
             $this->COOKIE = $_COOKIE;
             return true;
         }
