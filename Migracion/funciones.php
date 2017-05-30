@@ -31,15 +31,26 @@
 			);
 
 			global $db;
-			$sql = "SELECT * FROM booked_pets WHERE booking_id = {$reserva}";
+
+			$sql = "SELECT * FROM booked_services WHERE booking_id = {$reserva}";
 			$tamanos = array();
+			$mascota = $db->get_var($sql, "pet_id");
+			if( $mascota ){
+				$tam = $db->get_var("SELECT * FROM pets WHERE id = {$mascota}", "size_id");
+				$tamanos[ $_tamanos[$tam] ] += 1;
+			}
+
+			$sql = "SELECT * FROM booked_pets WHERE booking_id = {$reserva}";
 			$mascotas = $db->get_results($sql);
 			if( $mascotas ){
 				foreach ($mascotas as $key => $value) {
-					$tam = $db->get_var("SELECT * FROM pets WHERE id = {$value->pet_id}", "size_id");
-					$tamanos[ $_tamanos[$tam] ] += 1;
+					if( $mascota != $value->pet_id ){
+						$tam = $db->get_var("SELECT * FROM pets WHERE id = {$value->pet_id}", "size_id");
+						$tamanos[ $_tamanos[$tam] ] += 1;
+					}
 				}
 			}
+
 			return $tamanos;
 		}
 		
@@ -87,6 +98,7 @@
 					}
 				}
 			}
+
 			return $respuesta;
 
 		}

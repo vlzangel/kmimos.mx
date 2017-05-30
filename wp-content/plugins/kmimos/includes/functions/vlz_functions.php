@@ -415,7 +415,7 @@
                     "booking" => $ID_RESERVA,
                     "orden"   => $ID_ORDEN,
 
-                    "cliente"   => $cliente,
+                    "cliente_id"  => $cliente,
 
                     "nombre_cuidador" => $cuidador_post->post_title,
                     "nombre_cliente"  => $nom,
