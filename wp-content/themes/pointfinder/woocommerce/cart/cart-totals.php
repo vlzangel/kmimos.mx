@@ -40,7 +40,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						if( substr($coupon->code, 0, 5) != "saldo" ){
 							wc_cart_totals_coupon_label( $coupon ); 
 						}else{
-							echo "<span style='color: #59c9a8;'>Kmisaldo: </span>";
+							echo "<span class='texto_kmimos'>Kmisaldo: </span>";
 						}
 					?>
 				</th>
@@ -54,7 +54,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 								$discount_html = '';
 							}
 
-							echo "<span style='color: #59c9a8; font-weight: 800;'>- ".$discount_html."</span>";
+							echo "<span class='texto_kmimos' style='font-weight: 800;'>- ".$discount_html."</span>";
 						}else{
 							wc_cart_totals_coupon_html( $coupon ); 
 						}

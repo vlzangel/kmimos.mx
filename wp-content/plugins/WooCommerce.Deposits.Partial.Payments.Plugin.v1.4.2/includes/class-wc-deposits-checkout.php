@@ -26,8 +26,8 @@ class WC_Deposits_Checkout
     public function review_order_after_order_total(){
         if( WC()->cart->total-WC()->cart->tax_total > 0 ){ ?>
             <tr class="order-paid">
-                <th style='color: #60cbac'><?php _e('Pague Hoy', 'woocommerce-deposits'); ?></th>
-                <td style="color: #60cbac"><?php $this->wc_deposits->cart->deposit_paid_html(); ?></td>
+                <th class='texto_kmimos'><?php _e('Pague Hoy', 'woocommerce-deposits'); ?></th>
+                <td class='texto_kmimos'><?php $this->wc_deposits->cart->deposit_paid_html(); ?></td>
             </tr> <?php
         } ?>
         <tr class="order-remaining">

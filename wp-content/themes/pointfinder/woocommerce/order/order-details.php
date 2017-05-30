@@ -62,10 +62,13 @@ $show_customer_details = is_user_logged_in() && $order->get_user_id() === get_cu
 
 
 				if( $total['label'] != ""  ){
-					if( $total['label'] == "Descuento:" ){ ?>
+					if( 
+						$total['label'] == "Descuento:" ||
+						$total['label'] == "Pague hoy"
+					){ ?>
 						<tr>
-							<th scope="row" style='color: #59c9a8;'><?php echo $total['label']; ?></th>
-							<td style='color: #59c9a8;'><?php echo $total['value']; ?></td>
+							<th scope="row" class='texto_kmimos'><?php echo $total['label']; ?></th>
+							<td class='texto_kmimos'><?php echo $total['value']; ?></td>
 						</tr> <?php
 					}else{ ?>
 						<tr>
