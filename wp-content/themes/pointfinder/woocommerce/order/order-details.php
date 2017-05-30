@@ -56,7 +56,12 @@ $show_customer_details = is_user_logged_in() && $order->get_user_id() === get_cu
 
 				// echo $total['label']." == ".$total['value']."<br>";
 
-				if( $total['label'] == "Pague hoy" && $total['value'] == "0"  ){ }else{ 
+				if( $total['label'] == "Total:" ){ $total['label'] = ""; }
+				if( $total['label'] == "Pague hoy" && $total['value'] == "0"  ){ $total['label'] = ""; }
+				if( $total['label'] == "Subtotal:" ){ $total['label'] = "Total"; }
+
+
+				if( $total['label'] != ""  ){
 					if( $total['label'] == "Descuento:" ){ ?>
 						<tr>
 							<th scope="row" style='color: #59c9a8;'><?php echo $total['label']; ?></th>

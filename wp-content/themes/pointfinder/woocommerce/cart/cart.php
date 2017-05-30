@@ -188,7 +188,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 <!-- Modificacion Ángel Veloz -->
 <style>
-	.product-total,
+	tbody .product-subtotal,
 	.cart-subtotal td,
 	.cart-discount td,
 	.order-total td,

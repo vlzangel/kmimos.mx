@@ -44,7 +44,7 @@ class WC_Deposits_Cart{
                 );
                 kmimos_set_session($DS);
             }else{
-                $DS['saldo'] += $kmisaldo;
+                $DS['saldo'] = $DS['saldo_temporal']+$kmisaldo;
             }
         }
 
@@ -85,6 +85,8 @@ class WC_Deposits_Cart{
                             $deposit = 0;
                             $DS["deposit"] = "NO";
                             $DS["no_pagar"] = "YES";
+
+                            $DS['monto_cupon'] = $amount;
                         }else{
                             $deposit = 0;
                             $DS['monto_cupon'] = $saldo;
@@ -104,10 +106,11 @@ class WC_Deposits_Cart{
 
         }else{
             if( $DS ){
-                $saldo = $DS['saldo']+$DS['saldo_temporal'];
+                $saldo = $DS['saldo'];
                 if( $saldo > $amount ){
                     $DS['saldo_permanente'] = $saldo-$amount;
                     $DS["no_pagar"] = "YES";
+                    $DS['monto_cupon'] = $saldo;
                 }else{
                     $DS['monto_cupon'] = $saldo;
                 }
