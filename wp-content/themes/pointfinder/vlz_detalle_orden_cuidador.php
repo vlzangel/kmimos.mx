@@ -54,7 +54,7 @@
 
 								<div class="vlz_titulos_tablas">Detalles de facturación</div>
 								<div class="vlz_contenido_tablas">
-									<?php echo $detalles_factura; ?>
+									<?php echo $detalles["detalles_factura_cuidador"];; ?>
 								</div>
 
 							</div>

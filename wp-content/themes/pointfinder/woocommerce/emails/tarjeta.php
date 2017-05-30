@@ -6,13 +6,12 @@
 		
 		$mensaje_admin 	= 
 			$saludo.
-			$modificacion.
 			$msg_id_reserva.
 			"<br>".$aceptar_rechazar.
 			$detalles_cliente.
 			$detalles_cuidador.
 			$detalles_mascotas.
-			$detalles_servicio.
+			$detalles_servicio_cuidador.
 			"<br>".$aceptar_rechazar
 		;
 
@@ -49,7 +48,6 @@
 
 		$mensaje_cliente = 	
 			$saludo.
-			$modificacion.
 			$msg_id_reserva.
 			$detalles_cuidador.
 			$detalles_mascotas.
@@ -119,12 +117,11 @@
 
 		$mensaje_cuidador  	= 	
 			$saludo.
-			$modificacion.
 			$msg_id_reserva.
 	  		$detalles_cuidador.
 	  		$detalles_cliente.
 	  		$detalles_mascotas.
-	  		$detalles_servicio.
+	  		$detalles_servicio_cuidador.
 	  		"<br>".$aceptar_rechazar.
 	  		$siguientes_pasos.
 	  		$dudas
