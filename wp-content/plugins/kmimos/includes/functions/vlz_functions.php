@@ -261,6 +261,10 @@
                             <td valign="top"> <strong>Teléfono:</strong> </td>
                             <td valign="top">'.$telefono.'</td>
                         </tr>
+                        <tr>
+                            <td valign="top"> <strong>Correo:</strong> </td>
+                            <td valign="top">'.$email_cuidador.'</td>
+                        </tr>
                         '.$dir.'
                     </table>
                 ';
