@@ -1,5 +1,5 @@
 <div class="theme_button" style="padding: 10px; font-size: 14px;">
-	<strong>Kmisaldo:</strong> MXN $<?php echo kmimos_get_kmisaldo(); ?>
+	<strong><?php echo kmimos_saldo_titulo(); ?>:</strong> MXN $<?php echo kmimos_get_kmisaldo(); ?>
 </div>
 
 <?php
