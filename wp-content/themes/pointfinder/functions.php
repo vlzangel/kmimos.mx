@@ -23,6 +23,20 @@ function set_input_attrs( $fields ) {
    	return $fields;
 }*/
 
+add_filter( 'woocommerce_checkout_fields' , 'set_input_attrs' );
+function set_input_attrs( $fields ) {
+	$fields['billing']['billing_address_2']['maxlength'] = 50;
+
+	$fields['billing']['billing_postcode']['maxlength'] = 12;
+
+	$fields['billing']['billing_country']['class'][] = "hide";
+/*
+	echo "<pre>";
+		print_r($fields);
+	echo "</pre>";*/
+
+   	return $fields;
+}
 
 // function wpdm_filter_siteurl($content) {
 // 	$current_server = $_SERVER['SERVER_NAME'];

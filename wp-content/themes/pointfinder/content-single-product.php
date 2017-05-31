@@ -19,22 +19,23 @@
 	} 
 
 	$DS = kmimos_session();
-    if( $DS ){ ?>
-		<div class="theme_button" style="padding: 10px; margin-bottom: 20px;">
-			<?php if( $DS["saldo_temporal"] > 0 ){ ?>
-				<strong>Kmisaldo:</strong> MXN $<?php echo $DS["saldo"]; ?>
-			<?php }else{ ?>
-				<strong>Kmisaldo:</strong> MXN $<?php echo kmimos_get_kmisaldo(); ?><br>
-			<?php } ?>
-		</div>
+    if( $DS ){
+    	if( isset($DS["reserva"]) ){ ?>
+			<div class="theme_button" style="padding: 10px; margin-bottom: 20px;">
+				<?php if( $DS["saldo_temporal"] > 0 ){ ?>
+					<strong>Kmisaldo:</strong> MXN $<?php echo $DS["saldo"]; ?>
+				<?php }else{ ?>
+					<strong>Kmisaldo:</strong> MXN $<?php echo kmimos_get_kmisaldo(); ?><br>
+				<?php } ?>
+			</div>
 
-		<div class="theme_button" style="padding: 10px 10px 10px 40px; margin-bottom: 20px; position: relative;">
-			<img src="<?php echo get_template_directory_uri()."/images/advertencia.png"; ?>" style="position: absolute; top: 4px; left: 6px; width: 30px;" />
-			
-			<span style="font-weight: 600;">Importante:</span> Confirme previamente con el cuidador la disponibilidad del ajuste que usted desea realizar.
-		</div>
-		
-    <?php }
+			<div class="theme_button" style="padding: 10px 10px 10px 40px; margin-bottom: 20px; position: relative;">
+				<img src="<?php echo get_template_directory_uri()."/images/advertencia.png"; ?>" style="position: absolute; top: 4px; left: 6px; width: 30px;" />
+				
+				<span style="font-weight: 600;">Importante:</span> Confirme previamente con el cuidador la disponibilidad del ajuste que usted desea realizar.
+			</div> <?php 
+		}
+    }
 
 	// Modificacion Ángel Veloz
 	// echo "<pre>";
