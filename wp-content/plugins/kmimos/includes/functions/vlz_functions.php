@@ -865,7 +865,7 @@
                 </table>
             ';
 
-            $detalles_factura_cuidador .= '
+            $detalles_factura_cuidador = '
                 <table style="width:100%" cellspacing=0 cellpadding=0>
                     <tr>
                         <th style="'.$styles_celdas_left.'"> Tamaño </th>
@@ -902,9 +902,12 @@
             $titulo = '<h2>Detalles de la solicitud:</h2>';
 
             if( $is_mail ){
+                
+                $_detalles_servicio = $detalles_servicio;
+
                 $detalles_servicio = '
                     <p style="color:#557da1; font-size: 16px;font-weight: 600;">Detalles del Servicio Reservado</p>
-                    '.$detalles_servicio.'
+                    '.$_detalles_servicio.'
                     <br>
                     <table style="width:100%" cellspacing=0 cellpadding=0>
                         <tr>
@@ -923,7 +926,7 @@
 
                 $detalles_servicio_cuidador = '
                     <p style="color:#557da1; font-size: 16px;font-weight: 600;">Detalles del Servicio Reservado</p>
-                    '.$detalles_servicio.'
+                    '.$_detalles_servicio.'
                     <br>
                     <table style="width:100%" cellspacing=0 cellpadding=0>
                         <tr>
