@@ -59,33 +59,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<td><?php wc_cart_totals_subtotal_html(); ?></td>
 		</tr>
 
-		<?php foreach ( WC()->cart->get_coupons() as $code => $coupon ) : ?>
-			<tr class="cart-discount coupon-<?php echo esc_attr( sanitize_title( $code ) ); ?>">
-				<th>
-					<?php 
-						if( substr($coupon->code, 0, 5) != "saldo" ){
-							wc_cart_totals_coupon_label( $coupon ); 
-						}else{
-							echo "<span class='texto_kmimos'>Kmisaldo: </span>";
-						}
-					?>
-				</th>
-				<td data-title="<?php wc_cart_totals_coupon_label( $coupon ); ?>">
-					<?php 
-						if( substr($coupon->code, 0, 5) == "saldo" ){
-							if ( $amount = WC()->cart->get_coupon_discount_amount( $coupon->code, WC()->cart->display_cart_ex_tax ) ) {
-								$discount_html = wc_price( $amount );
-							} else {
-								$discount_html = '';
-							}
-							echo "<span class='texto_kmimos'>- ".$discount_html."</span>";
-						}else{
-							wc_cart_totals_coupon_html( $coupon ); 
-						}
-					?>
-				</td>
-			</tr>
-		<?php endforeach; ?>
+		<?php kmimos_vista_cupones(); ?>
 
 		<?php if ( WC()->cart->needs_shipping() && WC()->cart->show_shipping() ) : ?>
 			<?php do_action( 'woocommerce_review_order_before_shipping' ); ?>

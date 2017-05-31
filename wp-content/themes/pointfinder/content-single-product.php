@@ -23,9 +23,9 @@
     	if( isset($DS["reserva"]) ){ ?>
 			<div class="theme_button" style="padding: 10px; margin-bottom: 20px;">
 				<?php if( $DS["saldo_temporal"] > 0 ){ ?>
-					<strong>Kmisaldo:</strong> MXN $<?php echo $DS["saldo"]; ?>
+					<strong><?php echo kmimos_saldo_titulo(); ?>:</strong> MXN $<?php echo $DS["saldo"]; ?>
 				<?php }else{ ?>
-					<strong>Kmisaldo:</strong> MXN $<?php echo kmimos_get_kmisaldo(); ?><br>
+					<strong><?php echo kmimos_saldo_titulo(); ?>:</strong> MXN $<?php echo kmimos_get_kmisaldo(); ?><br>
 				<?php } ?>
 			</div>
 

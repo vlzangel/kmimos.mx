@@ -156,26 +156,71 @@
         }
     }
         
-    if(!function_exists('kmimos_aplicar_cupon')){
+    if( !function_exists('kmimos_aplicar_cupon') ){
         function kmimos_aplicar_cupon(){
             $DS = kmimos_session();
             if( $DS ){
-                if( $DS["monto_cupon"] > 0){
+                $cupones = array();
 
-                    $params = array(
-                        "monto_cupon" => $DS["monto_cupon"],
-                        "servicio" => $DS["servicio"],
-                        "manana" => date('Y-m-d', time()+84600)." 00:00:00"
-                    );
-
-                    $cupon = kmimos_cupon_saldo($params);
-
-                    if( !WC()->cart->has_discount( $cupon ) ){
-                        WC()->cart->add_discount( $cupon );
+                // Generador automatico de cupon de saldo
+                    if( $DS["monto_cupon"] > 0){ 
+                        $params = array(
+                            "monto_cupon" => $DS["monto_cupon"],
+                            "servicio" => $DS["servicio"],
+                            "manana" => date('Y-m-d', time()+84600)." 00:00:00"
+                        );
+                        $cupones[] = kmimos_cupon_saldo($params);
+                        
                     }
-                
+                // Fin Generador automatico de cupon de saldo
+
+                if( count($cupones) > 0 ){
+                    foreach ($cupones as $cupon) {
+                         if( !WC()->cart->has_discount( $cupon ) ){
+                            WC()->cart->add_discount( $cupon );
+                        }
+                    }
                 }
             }
+        }
+    }
+        
+    if( !function_exists('kmimos_vista_cupones') ){
+        function kmimos_vista_cupones(){
+            foreach ( WC()->cart->get_coupons() as $code => $coupon ) : ?>
+                <tr class="cart-discount coupon-<?php echo esc_attr( sanitize_title( $code ) ); ?>">
+                    <th>
+                        <?php 
+                            if( substr($coupon->code, 0, 5) != "saldo" ){
+                                wc_cart_totals_coupon_label( $coupon ); 
+                            }else{
+                                echo "<span class='texto_kmimos'>Descuento por saldo a favor: </span>";
+                            }
+                        ?>
+                    </th>
+                    <td data-title="<?php wc_cart_totals_coupon_label( $coupon ); ?>">
+                        <?php 
+
+                            if( substr($coupon->code, 0, 5) == "saldo" ){
+                                if ( $amount = WC()->cart->get_coupon_discount_amount( $coupon->code, WC()->cart->display_cart_ex_tax ) ) {
+                                    $discount_html = wc_price( $amount );
+                                    echo "<span class='texto_kmimos' style='font-weight: 800;'>".$discount_html."</span>";
+                                } else {
+                                    $discount_html = '';
+                                }
+                            }else{
+                                wc_cart_totals_coupon_html( $coupon ); 
+                            }
+                        ?>
+                    </td>
+                </tr>
+            <?php endforeach;
+        }
+    }
+        
+    if( !function_exists('kmimos_saldo_titulo') ){
+        function kmimos_saldo_titulo(){
+            return "Saldo a favor";
         }
     }
 
