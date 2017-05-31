@@ -2,6 +2,25 @@
 wp_enqueue_script( 'kmimos_bootstrap_js', get_home_url()."/panel/assets/vendor/bootstrap/dist/js/bootstrap.min.js",
 	array(), '1.0.0', true );
 
+$order = "10"; // Orden por defecto
+$order_service = [
+	'hospedaje' => [ 
+		"order" => 1, 
+		"icon" => "icon-hospedaje" 
+	],
+	'guarderia' => [ 
+		"order" => 2, 
+		"icon" => "icon-guarderia" 
+	],
+	'paseos' => [
+		"order" => 3, 
+		"icon" => "icon-paseos",
+	],
+	'entrenamiento' => [ 
+		"order"=> 4,
+		"icon" => "icon-adiestramiento",
+	]
+];
 $url_servicio = [];
 $ids = "";
 
@@ -27,11 +46,29 @@ if( isset($_SESSION['busqueda']) ){
 		foreach ($rows as $row) {
 			$separador = (!empty($ids))? ",": "";
 			$ids .= $separador.$row->ID;
+			// Cargar orden
+			$icon_service = "icon-sentado";
+			$temp_option = explode("-", $row->post_name);
+			if( count($temp_option) > 0 ){
+				$key = strtolower($temp_option[0]);
+				if( array_key_exists($key, $order_service) ){
+					$i = $order_service[$key];
+					$icon_service = $i['icon'];
+					$order = $i['order'];
+				}
+			}
 			// Cargar URL del producto
-			$url_servicio[$row->ID]['url'] =  get_home_url().'/producto/'.$row->post_name;
-			$url_servicio[$row->ID]['name'] = $row->post_title;
+			$url_servicio[ "{$order}-{$row->ID}" ] = [
+				'icon' => $icon_service, 
+				'url' =>  get_home_url().'/producto/'.$row->post_name,
+				'name' => $row->post_title,
+			];
 		}
-		
+		ksort($url_servicio);
+
+		// echo '<pre>';
+		// print_r( $url_servicio );
+		// echo '</pre>';
 }
 if( count($url_servicio) > 1 ){
 
@@ -60,8 +97,9 @@ if( count($url_servicio) > 1 ){
 			    foreach($url_servicio as $url){
 					$content_modal .= '
 					<a href="'.$url['url'].'">
-						<div class="theme_button button text-left modal-items">	
-								<h4>'.$url['name'].'</h4>
+						<div class="row text-left modal-items">	
+							<i class="'.$url['icon'].'"></i>
+							<span style="margin-left: 5px;">'.$url['name'].'</span>
 						</div>
 					</a>
 					';
@@ -123,12 +161,13 @@ if( count($url_servicio) > 1 ){
  	margin: 0 auto;padding:0px;
  }
  .modal-items{
- 	margin:5px;
- 	padding:5px; 
  	border-radius:10px; 
  	border:1px solid #ccc; 
- 	max-width: 400px;
 	font-weight: bold;
+ 	max-width: 400px;
+ 	margin:5px;
+ 	text-align: left!important;
+ 	padding-bottom:10px!important; 
  }
  .modal-items:hover{
 	background: #0ab7a1;

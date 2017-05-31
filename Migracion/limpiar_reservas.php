@@ -1,8 +1,9 @@
 <?php
 
-	//error_reporting(0);
 
-	$conn = new mysqli("localhost", "root", "", 'kmimos.reservas');
+	include("../vlz_config.php");
+
+	$conn = new mysqli($host, $user, $pass, $db);
 
     // Eliminando los POSTs
     	
@@ -37,6 +38,14 @@
 		    	$ids[] = $f['ID'];
 		    }
 	    }
+/*
+	    echo "<pre>";
+	    	print_r($ids);
+
+	    	echo "Items<br>";
+
+	    	print_r($items);
+	    echo "</pre>";*/
 
 	    $sql_1 = "DELETE FROM wp_posts WHERE ID IN (".implode(", ", $ids).")";
 	    $sql_2 = "DELETE FROM wp_postmeta WHERE post_id IN (".implode(", ", $ids).")";

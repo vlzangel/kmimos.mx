@@ -26,7 +26,7 @@
     $nom_cliente  = $datos_generales["nombre_cliente"];
     $nom_cuidador = $datos_generales["nombre_cuidador"];
 
-    $cliente_id = $datos_generales["cliente"];
+    $cliente_id = $datos_generales["cliente_id"];
 
 	/* Sugeridos */
 

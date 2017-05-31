@@ -23,59 +23,21 @@ wc_print_notices();
 
 do_action( 'woocommerce_before_cart' ); ?>
 
-<?php
-	// Modificacion Ángel Veloz
-	$DS = kmimos_session();
-    if( $DS ){
-    	if( $DS["monto_cupon"] > 0){
+<?php // Modificacion Ángel Veloz
 
-    		$params = array(
-	        	"monto_cupon" => $DS["monto_cupon"],
-	        	"servicio" => $DS["servicio"],
-	        	"manana" => date('Y-m-d', time()+84600)." 00:00:00"
-	        );
+kmimos_aplicar_cupon();
 
-	        $cupon = kmimos_cupon_saldo($params);
+$DS = kmimos_session();
 
-	        if( !WC()->cart->has_discount( $cupon ) ){
-				WC()->cart->add_discount( $cupon );
-			}
-		
-		}
-    }
-
-    $saldo = 0;
-    if( $DS["saldo"] > 0 ){
-		$saldo = $DS["saldo"];
-	}else{
-		$saldo = kmimos_get_kmisaldo();
-	}
-
-	if( $saldo > 0 ){ ?>
-		<div class="theme_button" style="padding: 10px; margin-bottom: 20px;">
-			<strong>Kmisaldo:</strong> MXN $<?php echo kmimos_get_kmisaldo(); ?><br>
-			<?php if( $DS["saldo"] > 0 ){ ?>
-				<strong>Kmisaldo:</strong> MXN $<?php echo $DS["saldo"]; ?>
-			<?php }else{ ?>
-				<strong>Kmisaldo:</strong> MXN $<?php echo kmimos_get_kmisaldo(); ?>
-			<?php } ?>
-		</div> <?php
-	}
-/**
- * Cart Page
- *
- * This template can be overridden by copying it to yourtheme/woocommerce/cart/cart.php.
- *
- * HOWEVER, on occasion WooCommerce will need to update template files and you (the theme developer).
- * will need to copy the new files to your theme to maintain compatibility. We try to do this.
- * as little as possible, but it does happen. When this occurs the version of the template file will.
- * be bumped and the readme will list any important changes.
- *
- * @see     http://docs.woothemes.com/document/template-structure/
- * @author  WooThemes
- * @package WooCommerce/Templates
- * @version 2.3.8
- */
+if( $DS["saldo"] > 0 ){ ?>
+	<div class="theme_button" style="padding: 10px; margin-bottom: 20px;">
+		<?php if( $DS["saldo"] > 0 ){ ?>
+			<strong><?php echo kmimos_saldo_titulo(); ?>:</strong> MXN $<?php echo $DS["saldo"]; ?>
+		<?php }else{ ?>
+			<strong><?php echo kmimos_saldo_titulo(); ?>:</strong> MXN $<?php echo kmimos_get_kmisaldo(); ?>
+		<?php } ?>
+	</div> <?php
+}
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
@@ -203,10 +165,6 @@ do_action( 'woocommerce_before_cart' ); ?>
 					</div>
 				<?php } ?>
 
-				<input type="submit" class="button" name="update_cart" value="<?php esc_attr_e( 'Update Cart', 'woocommerce' ); ?>" />
-
-				<?php do_action( 'woocommerce_cart_actions' ); ?>
-
 				<?php wp_nonce_field( 'woocommerce-cart' ); ?>
 			</td>
 		</tr>
@@ -230,7 +188,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 <!-- Modificacion Ángel Veloz -->
 <style>
-	.product-total,
+	tbody .product-subtotal,
 	.cart-subtotal td,
 	.cart-discount td,
 	.order-total td,

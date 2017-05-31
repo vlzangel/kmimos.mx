@@ -29,39 +29,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<table cellspacing="0" class="shop_table vlz_totales">
 
 		<tr class="cart-subtotal">
-			<th><?php _e( 'Subtotal', 'woocommerce' ); ?></th>
-			<td data-title="<?php _e( 'Subtotal', 'woocommerce' ); ?>"><?php wc_cart_totals_subtotal_html(); ?></td>
+			<th><?php _e( 'Total', 'woocommerce' ); ?></th>
+			<td data-title="<?php _e( 'Total', 'woocommerce' ); ?>"><?php wc_cart_totals_subtotal_html(); ?></td>
 		</tr>
 
-		<?php foreach ( WC()->cart->get_coupons() as $code => $coupon ) : ?>
-			<tr class="cart-discount coupon-<?php echo esc_attr( sanitize_title( $code ) ); ?>">
-				<th>
-					<?php 
-						if( substr($coupon->code, 0, 5) != "saldo" ){
-							wc_cart_totals_coupon_label( $coupon ); 
-						}else{
-							echo "<span style='color: #59c9a8;'>Kmisaldo: </span>";
-						}
-					?>
-				</th>
-				<td data-title="<?php wc_cart_totals_coupon_label( $coupon ); ?>">
-					<?php 
-
-						if( substr($coupon->code, 0, 5) == "saldo" ){
-							if ( $amount = WC()->cart->get_coupon_discount_amount( $coupon->code, WC()->cart->display_cart_ex_tax ) ) {
-								$discount_html = wc_price( $amount );
-							} else {
-								$discount_html = '';
-							}
-
-							echo "<span style='color: #59c9a8; font-weight: 800;'>- ".$discount_html."</span>";
-						}else{
-							wc_cart_totals_coupon_html( $coupon ); 
-						}
-					?>
-				</td>
-			</tr>
-		<?php endforeach; ?>
+		<?php kmimos_vista_cupones(); ?>
 
 		<?php if ( WC()->cart->needs_shipping() && WC()->cart->show_shipping() ) : ?>
 
@@ -109,11 +81,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php endif; ?>
 
 		<?php do_action( 'woocommerce_cart_totals_before_order_total' ); ?>
-
+<!-- 
 		<tr class="order-total">
 			<th><?php _e( 'Total', 'woocommerce' ); ?></th>
 			<td data-title="<?php _e( 'Total', 'woocommerce' ); ?>"><?php wc_cart_totals_order_total_html(); ?></td>
-		</tr>
+		</tr> -->
 
 		<?php do_action( 'woocommerce_cart_totals_after_order_total' ); ?>
 

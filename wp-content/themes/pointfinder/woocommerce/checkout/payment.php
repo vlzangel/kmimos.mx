@@ -37,7 +37,6 @@ if( !$DS ){
 			<?php
 				if ( ! empty( $available_gateways ) ) {
 					foreach ( $available_gateways as $gateway ) {
-						
 						if( $pagar == "NO"){
 							if( $gateway->method_title == "Contra reembolso" ){
 								wc_get_template( 'checkout/payment-method.php', array( 'gateway' => $gateway ) );
@@ -47,7 +46,6 @@ if( !$DS ){
 								wc_get_template( 'checkout/payment-method.php', array( 'gateway' => $gateway ) );
 							}
 						}
-						
 					}
 				} else {
 					echo '<li>' . apply_filters( 'woocommerce_no_available_payment_methods_message', WC()->customer->get_country() ? __( 'Sorry, it seems that there are no available payment methods for your state. Please contact us if you require assistance or wish to make alternate arrangements.', 'woocommerce' ) : __( 'Please fill in your details above to see available payment methods.', 'woocommerce' ) ) . '</li>';

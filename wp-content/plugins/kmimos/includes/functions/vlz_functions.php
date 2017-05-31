@@ -139,6 +139,9 @@
                     ");
                 }else{
                     $sqls = array(
+                        "UPDATE wp_postmeta SET meta_value = '0' WHERE post_id = ".$id_cupon." AND meta_key = 'usage_limit'",
+                        "UPDATE wp_postmeta SET meta_value = '0' WHERE post_id = ".$id_cupon." AND meta_key = 'usage_limit_per_user'",
+
                         "UPDATE wp_postmeta SET meta_value = '".$monto_cupon."' WHERE post_id = ".$id_cupon." AND meta_key = 'coupon_amount'",
                         "UPDATE wp_postmeta SET meta_value = '".$servicio."'    WHERE post_id = ".$id_cupon." AND meta_key = 'product_ids'",
                         "UPDATE wp_postmeta SET meta_value = '".$manana."'      WHERE post_id = ".$id_cupon." AND meta_key = 'expiry_date'"
@@ -150,6 +153,74 @@
 
                 return "saldo-".$current_user->ID;
             }
+        }
+    }
+        
+    if( !function_exists('kmimos_aplicar_cupon') ){
+        function kmimos_aplicar_cupon(){
+            $DS = kmimos_session();
+            if( $DS ){
+                $cupones = array();
+
+                // Generador automatico de cupon de saldo
+                    if( $DS["monto_cupon"] > 0){ 
+                        $params = array(
+                            "monto_cupon" => $DS["monto_cupon"],
+                            "servicio" => $DS["servicio"],
+                            "manana" => date('Y-m-d', time()+84600)." 00:00:00"
+                        );
+                        $cupones[] = kmimos_cupon_saldo($params);
+                        
+                    }
+                // Fin Generador automatico de cupon de saldo
+
+                if( count($cupones) > 0 ){
+                    foreach ($cupones as $cupon) {
+                         if( !WC()->cart->has_discount( $cupon ) ){
+                            WC()->cart->add_discount( $cupon );
+                        }
+                    }
+                }
+            }
+        }
+    }
+        
+    if( !function_exists('kmimos_vista_cupones') ){
+        function kmimos_vista_cupones(){
+            foreach ( WC()->cart->get_coupons() as $code => $coupon ) : ?>
+                <tr class="cart-discount coupon-<?php echo esc_attr( sanitize_title( $code ) ); ?>">
+                    <th>
+                        <?php 
+                            if( substr($coupon->code, 0, 5) != "saldo" ){
+                                wc_cart_totals_coupon_label( $coupon ); 
+                            }else{
+                                echo "<span class='texto_kmimos'>Descuento por saldo a favor: </span>";
+                            }
+                        ?>
+                    </th>
+                    <td data-title="<?php wc_cart_totals_coupon_label( $coupon ); ?>">
+                        <?php 
+
+                            if( substr($coupon->code, 0, 5) == "saldo" ){
+                                if ( $amount = WC()->cart->get_coupon_discount_amount( $coupon->code, WC()->cart->display_cart_ex_tax ) ) {
+                                    $discount_html = wc_price( $amount );
+                                    echo "<span class='texto_kmimos' style='font-weight: 800;'>".$discount_html."</span>";
+                                } else {
+                                    $discount_html = '';
+                                }
+                            }else{
+                                wc_cart_totals_coupon_html( $coupon ); 
+                            }
+                        ?>
+                    </td>
+                </tr>
+            <?php endforeach;
+        }
+    }
+        
+    if( !function_exists('kmimos_saldo_titulo') ){
+        function kmimos_saldo_titulo(){
+            return "Saldo a favor";
         }
     }
 
@@ -234,6 +305,10 @@
                         <tr>
                             <td valign="top"> <strong>Teléfono:</strong> </td>
                             <td valign="top">'.$telefono.'</td>
+                        </tr>
+                        <tr>
+                            <td valign="top"> <strong>Correo:</strong> </td>
+                            <td valign="top">'.$email_cuidador.'</td>
                         </tr>
                         '.$dir.'
                     </table>
@@ -415,7 +490,7 @@
                     "booking" => $ID_RESERVA,
                     "orden"   => $ID_ORDEN,
 
-                    "cliente"   => $cliente,
+                    "cliente_id"  => $cliente,
 
                     "nombre_cuidador" => $cuidador_post->post_title,
                     "nombre_cliente"  => $nom,
@@ -572,18 +647,21 @@
             $styles_celdas_right  = "padding: 3px; border-bottom: solid 1px #cccccc;";
             $styles_celdas_title  = "padding: 3px; border-bottom: solid 1px #cccccc;  font-weight: 600;";
 
+
             if( $is_mail ){
                 $styles_celdas_left   = "padding: 3px; border-bottom: solid 1px #00d2b7; border-left: solid 1px #00d2b7; text-align: left;";
                 $styles_celdas_center = "padding: 3px; border-bottom: solid 1px #00d2b7;";
                 $styles_celdas_right  = "padding: 3px; border-bottom: solid 1px #00d2b7; border-right: solid 1px #00d2b7;";
                 $styles_celdas_title  = "padding: 3px; background: #00d2b7; border-left: solid 1px #00d2b7; font-weight: 600;";
+
+                $nota_cuidador = "color: #60cbac;";
             }
 
             $info = kmimos_get_info_syte();
 
-            $detale_largo = true;
+            $detalle_largo = true;
             if( isset($metas_reserva['_booking_type']) ){
-                $detale_largo = false;
+                $detalle_largo = false;
             }
 
             $variaciones = ''; $grupo = 0;
@@ -595,7 +673,7 @@
 
                     $unitario = $metas_producto['_price'][0]+$metas_variacion['block_cost'][0];
 
-                    if( $detale_largo ){
+                    if( $detalle_largo ){
                         $precios_detalle = '
                             <td style="'.$styles_celdas_center.'" align="right"> '.$info["mon_izq"].' '.number_format( $unitario, 2, ',', '.').' '.$info["mon_der"].' </td>
                             <td style="'.$styles_celdas_right.'" align="right"> '.$info["mon_izq"].' '.number_format( ($unitario*$detalles_reserva[$value]*$dias), 2, ',', '.').' '.$info["mon_der"].' </td>';
@@ -624,7 +702,7 @@
                     $servicio = $value[0];
                     $costo = ($value[1]);
 
-                    if( $detale_largo ){
+                    if( $detalle_largo ){
                         $precios_detalle = '
                             <td style="'.$styles_celdas_center.'" align="right"> '.$info["mon_izq"].' '.number_format( $costo, 2, ',', '.').' '.$info["mon_der"].' </td>
                             <td style="'.$styles_celdas_right.'" align="right"> '.$info["mon_izq"].' '.number_format( ($costo*$grupo), 2, ',', '.').' '.$info["mon_der"].' </td>';
@@ -651,7 +729,7 @@
                     $servicio = $value[0];
                     $costo = ($value[1]);
 
-                    if( $detale_largo ){
+                    if( $detalle_largo ){
                         $precios_detalle = '
                             <td style="'.$styles_celdas_center.'" align="right"> '.$info["mon_izq"].' '.number_format( $costo, 2, ',', '.').' '.$info["mon_der"].' </td>
                             <td style="'.$styles_celdas_right.'" align="right"> '.$info["mon_izq"].' '.number_format( $costo, 2, ',', '.').' '.$info["mon_der"].' </td>';
@@ -673,12 +751,10 @@
             $pago = ($detalles_reserva['_line_subtotal']);
             $remanente = unserialize($detalles_reserva['_wc_deposit_meta']);
 
-            $descuento = "";
+            $reembolsar = "";
 
             if( $remanente['enable'] == "no" ){
-
                 $remanente['deposit'] = $pago;
-
                 if( $metas_orden["_cart_discount"][0]+0 > 0 ){
                     $descuento_total = '
                         <tr>
@@ -691,9 +767,7 @@
 
                     $remanente['deposit'] = $remanente['deposit']-$metas_orden["_cart_discount"][0];
                 }
-                
             }else{
-
                 if( $metas_orden["_cart_discount"][0]+0 > 0 ){
                     $descuento_parcial = '
                         <tr>
@@ -705,8 +779,21 @@
                     ';
 
                     $remanente['remaining'] = $remanente['remaining']-$metas_orden["_cart_discount"][0];
-                }
 
+                    $diferencia = ( ($pago/1.2) - $remanente['remaining'] );
+
+                    if( $diferencia > 0 ){
+                        $reembolsar = '
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <th colspan=2 class="texto_kmimos" style="'.$styles_celdas_left.' '.$nota_cuidador.'">Kmimos te reembolsará</th>
+                                <td class="texto_kmimos" style="'.$styles_celdas_right.' '.$nota_cuidador.' font-weight: 600;" align="right"> '.$info["mon_izq"].' '.number_format( $diferencia, 2, ',', '.').' '.$info["mon_der"].' </td>
+                            </tr>
+                        ';
+                    }
+                        
+                }
             }
 
             if( $metas_orden["_payment_method"][0] == "openpay_stores" ){
@@ -734,7 +821,7 @@
                 ';
             }else{
 
-                if( $detale_largo ){
+                if( $detalle_largo ){
                     $precios_detalle = '
                         <tr>
                             <td></td>
@@ -746,6 +833,16 @@
                     $precios_detalle = '';
                 }
 
+                if( $remanente['deposit']+0 > 0 ){
+                    $pagado = '
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <th colspan=2 style="'.$styles_celdas_left.'">Pagado</th>
+                        <td style="'.$styles_celdas_right.'" align="right"> '.$info["mon_izq"].' '.number_format( $remanente['deposit'], 2, ',', '.').' '.$info["mon_der"].' </td>
+                    </tr>';
+                }
+
                 $totales = '
                     <tr>
                         <td></td>
@@ -754,16 +851,10 @@
                         <td style="'.$styles_celdas_right.'" align="right"> '.$info["mon_izq"].' '.number_format( $pago, 2, ',', '.').' '.$info["mon_der"].' </td>
                     </tr>
                     '.$descuento_total.'
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <th colspan=2 style="'.$styles_celdas_left.'">Pagado</th>
-                        <td style="'.$styles_celdas_right.'" align="right"> '.$info["mon_izq"].' '.number_format( $remanente['deposit'], 2, ',', '.').' '.$info["mon_der"].' </td>
-                    </tr>
+                    '.$pagado.'
                     '.$descuento_parcial.'
                     '.$precios_detalle.'
                 ';
-
             }
 
             if( $metas_orden['_payment_method_title'][0] != "" ){
@@ -794,7 +885,7 @@
                 </table>
             ';
 
-            if( $detale_largo ){
+            if( $detalle_largo ){
                 $precios_detalle = '
                     <th style="'.$styles_celdas_center.' width: 150px;"> Precio Unitario </th>
                     <th style="'.$styles_celdas_right.'"> Precio Total </th>';
@@ -819,6 +910,22 @@
                 </table>
             ';
 
+            $detalles_factura_cuidador = '
+                <table style="width:100%" cellspacing=0 cellpadding=0>
+                    <tr>
+                        <th style="'.$styles_celdas_left.'"> Tamaño </th>
+                        <th style="'.$styles_celdas_center.'"> Num. Mascotas </th>
+                        <th style="'.$styles_celdas_center.'"> Tiempo </th>
+                        '.$precios_detalle.'
+                    </tr>
+                    '.$variaciones.'
+                    '.$transporte_str.'
+                    '.$adicionales.'
+                    '.$totales.'
+                    '.$reembolsar.'
+                </table>
+            ';
+
             $msg_id_reserva ='<p>Reserva #: <strong>'.$reserva->ID.'</strong> </p>';
 
             $aceptar_rechazar = '
@@ -840,9 +947,12 @@
             $titulo = '<h2>Detalles de la solicitud:</h2>';
 
             if( $is_mail ){
+                
+                $_detalles_servicio = $detalles_servicio;
+
                 $detalles_servicio = '
                     <p style="color:#557da1; font-size: 16px;font-weight: 600;">Detalles del Servicio Reservado</p>
-                    '.$detalles_servicio.'
+                    '.$_detalles_servicio.'
                     <br>
                     <table style="width:100%" cellspacing=0 cellpadding=0>
                         <tr>
@@ -858,6 +968,26 @@
                         '.$totales.'
                     </table>
                 ';
+
+                $detalles_servicio_cuidador = '
+                    <p style="color:#557da1; font-size: 16px;font-weight: 600;">Detalles del Servicio Reservado</p>
+                    '.$_detalles_servicio.'
+                    <br>
+                    <table style="width:100%" cellspacing=0 cellpadding=0>
+                        <tr>
+                            <th style="padding: 3px; background: #00d2b7; border-left: solid 1px #00d2b7;"> Tamaño </th>
+                            <th style="padding: 3px; background: #00d2b7;"> Num. Mascotas </th>
+                            <th style="padding: 3px; background: #00d2b7;"> Tiempo </th>
+                            <th style="padding: 3px; background: #00d2b7; width: 150px;"> Precio Unitario </th>
+                            <th style="padding: 3px; background: #00d2b7; border-right: solid 1px #00d2b7;"> Precio Total </th>
+                        </tr>
+                        '.$variaciones.'
+                        '.$transporte_str.'
+                        '.$adicionales.'
+                        '.$totales.'
+                        '.$reembolsar.'
+                    </table>
+                ';
             }
 
             return array(
@@ -865,7 +995,10 @@
                 "aceptar_rechazar" => $aceptar_rechazar,
                 "msg_id_reserva" => $msg_id_reserva,
                 "detalles_servicio" => $detalles_servicio,
-                "detalles_factura" => $detalles_factura
+                "detalles_factura" => $detalles_factura,
+
+                "detalles_servicio_cuidador" => $detalles_servicio_cuidador,
+                "detalles_factura_cuidador" => $detalles_factura_cuidador
             );
 
         }
