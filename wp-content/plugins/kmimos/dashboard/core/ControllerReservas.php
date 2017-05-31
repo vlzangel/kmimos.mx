@@ -332,7 +332,7 @@ function getReservas($desde="", $hasta=""){
 
 	if( !empty($desde) && !empty($hasta) ){
 		$filtro_adicional = " 
-			AND DATE_FORMAT(r.post_date, '%m-%d-%Y') between DATE_FORMAT('{$desde}','%m-%d-%Y') and DATE_FORMAT('{$hasta}','%m-%d-%Y')
+			AND ( r.post_date >= '{$desde} 00:00:00' and  r.post_date <= '{$hasta} 23:59:59' )
 		";
 	}else{
 		$filtro_adicional = " AND MONTH(r.post_date) = MONTH(NOW()) AND YEAR(r.post_date) = YEAR(NOW()) ";
