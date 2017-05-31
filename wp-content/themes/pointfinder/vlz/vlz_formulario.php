@@ -91,7 +91,7 @@
 
 	$estados = utf8_decode($estados);
 
-	if($_POST['municipios'] != ""){
+	if($_POST['estados'] != ""){
 		$municipios_array = $wpdb->get_results("SELECT * FROM locations WHERE state_id = {$_POST['estados']} ORDER BY name ASC");
 	    $muni = "<option value=''>Seleccione un municipio</option>"; $xxx = 0;
 	    foreach($municipios_array as $municipio) { 
