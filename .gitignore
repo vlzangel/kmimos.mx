@@ -11,6 +11,9 @@
 /wp-content/ngg_styles/
 /wp-content/upgrade/
 /wp-content/uploads/
+/wp-content/uploads2/
+/wp-content/uploads3/
+/wp-content/uploads original/
 
 Respaldo*
 
@@ -88,6 +91,8 @@ vlz_config.php
 /wp-content/plugins/woocommerce-gateway-stripe/
 
 /wp-content/plugins/wp-wolivestats/
+
+/wp-content/plugins/file-manager/
 
 /kmimos.la/
 
