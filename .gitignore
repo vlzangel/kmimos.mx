@@ -86,6 +86,7 @@ vlz_config.php
 /wp-content/plugins/zopim-live-chat/
 /wp-content/plugins/wp-wolivestats/
 /wp-content/plugins/file-manager/
+/wp-content/plugins/domain-mirror/
 /wp-content/plugins/domain-mirror2/
 /wp-content/plugins/wpmandrill/
 /wp-content/plugins/bwp-minify/
@@ -93,6 +94,8 @@ vlz_config.php
 /wp-content/plugins/WooCommerce.Deposits.Partial.Payments.Plugin.v1.4.2/Licensing/GPL.txt
 /wp-content/plugins/WooCommerce.Deposits.Partial.Payments.Plugin.v1.4.2/Licensing/README_License.txt
 /wp-content/plugins/woocommerce-bookings/.tx/
+
+/wp-content/plugins/woocommerce-gateway-stripe/
 
 /wp-content/w3tc-config/ 
 /wp-content/cache/
@@ -102,5 +105,8 @@ vlz_config.php
 .idea/misc.xml
 .idea/vcs.xml
 .idea/modules.xml
-wp-content/index.php
-imgs/Temp/
+
+/wp-content/index.php
+/imgs/Temp/
+
+.tmb/
