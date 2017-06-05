@@ -16,12 +16,28 @@
  */
 
 include_once('wlabel/wlabel.php');
+
+include_once('includes/functions/vlz_functions.php');
+include_once('includes/functions/kmimos_functions.php');
+
 include_once('includes/class/class_kmimos_booking.php');
 include_once('includes/class/class_kmimos_tables.php');
-include_once('includes/functions/kmimos_functions.php');
-include_once('includes/functions/vlz_functions.php');
 include_once('includes/class/class_kmimos_script.php');
-include_once('plugins/woocommerce.php');
+// include_once('plugins/woocommerce.php');
+
+
+add_action( 'send_headers', 'add_header_seguridad' );
+function add_header_seguridad() {
+    header( 'X-Content-Type-Options: nosniff' );
+    header( 'X-Frame-Options: SAMEORIGIN' );
+    header( 'X-XSS-Protection: 1' );
+    header( 'Cache-Control: no-cache, no-store, must-revalidate');
+
+    //Prevent Cache-control http
+    //header('Access-Control-Allow-Origin: *', false);
+}
+
+
 
 
 // add_action( 'send_headers', 'add_header_seguridad' );
@@ -36,7 +52,7 @@ if(!function_exists('kmimos_get_info_syte')){
         return array(
             "pais"      => "México",
             "titulo"    => "Kmimos México",
-            "email"     => "contactomx@kmimos.la",
+            "email"     => "contactomex@kmimos.la",
             "telefono"  => "+52 (55) 1791.4931/ +52 (55) 66319264",
             "twitter"   => "kmimosmx",
             "facebook"  => "Kmimosmx",
@@ -239,6 +255,8 @@ if(!function_exists('vlz_sql_busqueda')){
                     ) as DISTANCIA 
                 ";
 
+                $FILTRO_UBICACION = "HAVING DISTANCIA < ".($param['distancia']+0);
+
                 $ubicaciones_inner = "INNER JOIN ubicaciones AS ubi ON ( cuidadores.id = ubi.cuidador )";
                 $ubicaciones_filtro = "
                     AND (
@@ -265,7 +283,8 @@ if(!function_exists('vlz_sql_busqueda')){
                                         radians(latitud)
                                     )
                                 )
-                            ) <= 100
+                            ) <= ".($param['otra_distancia']+0)."
+
                         )
                     )";
 
@@ -307,7 +326,7 @@ if(!function_exists('vlz_sql_busqueda')){
                     ) as DISTANCIA 
                 ";
 
-                $FILTRO_UBICACION = "HAVING DISTANCIA < ".($param['distancia']+0);
+                $FILTRO_UBICACION = "HAVING DISTANCIA < 500";
 
                 if( $orderby == "" ){
                     $orderby = "DISTANCIA ASC";

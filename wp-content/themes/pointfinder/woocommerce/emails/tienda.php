@@ -24,12 +24,17 @@
 
 		$mensaje_cliente = 	
 			$saludo.
-			$modificacion.
 			$msg_id_reserva.
 	  		$dudas
 		;
 
-		$mensaje_cliente = kmimos_get_email_html('Solicitud de Reserva Recibida Exitosamente!', $mensaje_cliente, 'Solicitud de Reserva Recibida Exitosamente!', true, true);
+		if( $modificacion == "" ){
+			$titulo_mail = 'Solicitud de Reserva Recibida Exitosamente!';
+		}else{
+			$titulo_mail = $modificacion;
+		}
+		
+		$mensaje_cliente = kmimos_get_email_html($titulo_mail, $mensaje_cliente, 'Solicitud de Reserva Recibida Exitosamente!', true, true);
 
 		wp_mail( $cliente_email, "Solicitud de Reserva Recibida Exitosamente!", $mensaje_cliente, kmimos_mails_administradores());
 
@@ -40,7 +45,6 @@
 		
 		$mensaje_admin 	= 
 			$saludo.
-			$modificacion.
 			$msg_id_reserva.'
 			<p align="justify">
 				<a href="'.$pdf.'" style="padding: 10px; background: #59c9a8; color: #fff; font-weight: 400; font-size: 17px; font-family: Roboto; border-radius: 3px; border: solid 1px #1f906e; display: block; width: 250px; margin: 0px auto; text-align: center; text-decoration: none;">
@@ -50,9 +54,16 @@
 			$detalles_cliente.
 			$detalles_cuidador.
 			$detalles_mascotas.
-			$detalles_servicio
+			$detalles_servicio_cuidador
 		;
-		$mensaje_admin = kmimos_get_email_html('Nueva Reserva - '.$producto, $mensaje_admin, 'Nueva Reserva - '.$producto, true, true);
+
+		if( $modificacion == "" ){
+			$titulo_mail = 'Nueva Reserva - '.$producto;
+		}else{
+			$titulo_mail = $modificacion;
+		}
+		
+		$mensaje_admin = kmimos_get_email_html($titulo_mail, $mensaje_admin, 'Nueva Reserva - '.$producto, true, true);
 
 		wp_mail( $email_admin, "Solicitud de reserva #".$reserva_id, $mensaje_admin, kmimos_mails_administradores());
 

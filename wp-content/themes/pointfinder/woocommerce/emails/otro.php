@@ -12,11 +12,17 @@
   			$detalles_cliente.
 	  		$detalles_cuidador.
 	  		$detalles_mascotas.
-	  		$detalles_servicio.
+	  		$detalles_servicio_cuidador.
 	  		"<br>".$aceptar_rechazar
 		;
 
-		$mensaje_admin = kmimos_get_email_html('Nueva Reserva - '.$producto, $mensaje_admin, 'Nueva Reserva - '.$producto, true, true);
+		if( $modificacion == "" ){
+			$titulo_mail = 'Nueva Reserva - '.$producto;
+		}else{
+			$titulo_mail = $modificacion;
+		}
+
+		$mensaje_admin = kmimos_get_email_html($titulo_mail, $mensaje_admin, 'Nueva Reserva - '.$producto, true, true);
 
 		wp_mail( $email_admin, "Solicitud de reserva #".$reserva_id, $mensaje_admin, kmimos_mails_administradores() );
 
@@ -55,7 +61,13 @@
 	  		$dudas
 		;
 
-		$mensaje_cliente = kmimos_get_email_html('Solicitud de reserva', $mensaje_cliente, 'Solicitud de reserva', true, true);
+		if( $modificacion == "" ){
+			$titulo_mail = 'Solicitud de reserva';
+		}else{
+			$titulo_mail = $modificacion;
+		}
+		
+		$mensaje_cliente = kmimos_get_email_html($titulo_mail, $mensaje_cliente, 'Solicitud de reserva', true, true);
 
 		wp_mail( $cliente_email, "Solicitud de reserva", $mensaje_cliente);
 
@@ -111,13 +123,19 @@
 	  		$detalles_cuidador.
 	  		$detalles_cliente.
 	  		$detalles_mascotas.
-	  		$detalles_servicio.
+	  		$detalles_servicio_cuidador.
 	  		"<br>".$aceptar_rechazar.
 	  		$siguientes_pasos.
 	  		$dudas
 		;
 
-		$mensaje_cuidador = kmimos_get_email_html('Nueva Reserva - '.$tipo_servicio.' por: '.$nom_cliente, $mensaje_cuidador, 'Nueva Reserva - '.$tipo_servicio.' por: '.$nom_cliente, true, true);
+		if( $modificacion == "" ){
+			$titulo_mail = 'Nueva Reserva - '.$tipo_servicio.' por: '.$nom_cliente;
+		}else{
+			$titulo_mail = $modificacion;
+		}
+		
+		$mensaje_cuidador = kmimos_get_email_html($titulo_mail, $mensaje_cuidador, 'Nueva Reserva - '.$tipo_servicio.' por: '.$nom_cliente, true, true);
 
 		wp_mail( $cuidador_email, 'Nueva Reserva - '.$tipo_servicio.' por: '.$nom_cliente, $mensaje_cuidador, kmimos_mails_administradores());
 

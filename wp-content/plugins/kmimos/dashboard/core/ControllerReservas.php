@@ -254,7 +254,7 @@ function getMetaCuidador( $user_id ){
 }
 
 function getMetaReserva( $post_id ){
-	$condicion = " AND meta_key IN ( '_booking_start', '_booking_end', '_booking_cost' )";
+	$condicion = " AND meta_key IN ( '_booking_start', '_booking_end', '_booking_cost', 'modificacion_de' )";
 	$result = get_metaPost($post_id, $condicion);
 
 	$data = [
@@ -327,6 +327,9 @@ function get_ubicacion_cuidador( $user_id ){
 }
 
 function getReservas($desde="", $hasta=""){
+
+	$desde = "2015-01-01";
+	$hasta = "2017-05-29";
 
 	$filtro_adicional = "";
 

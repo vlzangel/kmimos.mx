@@ -158,7 +158,7 @@ $reservas = getReservas($desde, $hasta);
 								date_convert($meta_reserva['_booking_end'], 'd-m-Y'), 
 								date_convert($meta_reserva['_booking_start'], 'd-m-Y') 
 							);					
-						if( $nro_noches == 0 && strpos($meta_Pedido['post_name'], 'hospedaje') != false ){
+						if( $nro_noches == 0 && !in_array('hospedaje', explode("-", $meta_Pedido['post_name'])) ){
 							$nro_noches = 1;
 						}
 
@@ -175,7 +175,7 @@ $reservas = getReservas($desde, $hasta);
 					<th class="text-center"><?php echo $nro_noches; ?></th>
 					<th class="text-center"><?php echo $reserva->nro_mascotas; ?></th>
 					<th><?php echo $nro_noches * $reserva->nro_mascotas; ?></th>
-					<th><?php echo $cliente['first_name'].' '.$cliente['last_name']; ?></th>
+					<th><?php echo "<a href='".get_home_url()."/?i=".md5($reserva->cliente_id)."'>".$cliente['first_name'].' '.$cliente['last_name']; ?></a></th>
 					<th class="text-center"><?php echo $recompra; ?></th>
 					<th><?php echo (empty($cliente['user_referred']))? 'Otros' : $cliente['user_referred'] ; ?></th>
 					<th><?php echo $pets_nombre; ?></th>
@@ -191,8 +191,17 @@ $reservas = getReservas($desde, $hasta);
 					</th>
 					<th><?php echo utf8_decode( $ubicacion['estado'] ); ?></th>
 					<th><?php echo utf8_decode( $ubicacion['municipio'] ); ?></th>
-					<th><?php echo (!empty($meta_Pedido['_payment_method_title']))? 
-							$meta_Pedido['_payment_method_title'] : 'Manual' ; ?></th>
+					<th><?php
+						if( !empty($meta_Pedido['_payment_method_title']) ){
+							echo $meta_Pedido['_payment_method_title']; 
+						}else{
+							if( !empty($meta_reserva['modificacion_de']) ){
+								echo 'Saldo a favor' ; 
+							}else{
+								echo 'Manual'; 
+							}
+						} ?>
+					</th>
 					<th><?php echo currency_format($meta_reserva['_booking_cost']); ?></th>
 					<th><?php echo currency_format($meta_Pedido['_order_total']); ?></th>
 					<th><?php echo currency_format($meta_Pedido['_wc_deposits_remaining']); ?></th>

@@ -29,10 +29,10 @@ class Class_WhiteLabel{
         $table =  $this->wlabel_table;
         $table_user =  $this->wlabel_table_user;
 
-        $query="CREATE TABLE IF NOT EXISTS $table (id INT NULL AUTO_INCREMENT, title VARCHAR(50) NULL, wlabel VARCHAR(50) NULL, data LONGTEXT NULL, time VARCHAR(50) NULL, PRIMARY KEY(id));";
+        $query="CREATE TABLE IF NOT EXISTS $table (id INT   NOT NULL AUTO_INCREMENT, title VARCHAR(50) NULL, wlabel VARCHAR(50) NULL, data LONGTEXT NULL, time VARCHAR(50) NULL, PRIMARY KEY(id));";
         $this->wpdb->query($query);
 
-        $query="CREATE TABLE IF NOT EXISTS $table_user (id INT NULL AUTO_INCREMENT, name VARCHAR(50) NULL, wlabel VARCHAR(20) NULL, email VARCHAR(50) NULL, user VARCHAR(50) NULL, pass LONGTEXT NULL, time VARCHAR(50) NULL, PRIMARY KEY(id));";
+        $query="CREATE TABLE IF NOT EXISTS $table_user (id INT  NOT NULL AUTO_INCREMENT, name VARCHAR(50) NULL, wlabel VARCHAR(20) NULL, email VARCHAR(50) NULL, user VARCHAR(50) NULL, pass LONGTEXT NULL, time VARCHAR(50) NULL, PRIMARY KEY(id));";
         $this->wpdb->query($query);
         return;
     }
@@ -47,7 +47,7 @@ class Class_WhiteLabel{
             $this->SESSION = $_SESSION;
 
             //COOKIE
-            setcookie('wlabel',$this->wlabel, (time() + (86400*1)));
+            setcookie('wlabel',$this->wlabel, (time() + (86400*1/12)));
             $this->COOKIE = $_COOKIE;
             return true;
         }
@@ -62,10 +62,10 @@ class Class_WhiteLabel{
         if(array_key_exists('wlabel',$this->SESSION)){
             $this->wlabel=$this->SESSION['wlabel'];
             return true;
-        }
 
         //COOKIE
-        if(array_key_exists('wlabel',$this->COOKIE)){
+        }else if(array_key_exists('wlabel',$this->COOKIE)){
+            //setcookie('wlabel','', (time() + (86400*1)));
             $this->wlabel=$this->COOKIE['wlabel'];
             $_SESSION['wlabel']=$this->wlabel;
             $this->SESSION = $_SESSION;
@@ -107,9 +107,10 @@ class Class_WhiteLabel{
     }
 
     function Script(){
-        $script=$this->wlabel_data->script;
+        $script=$this->wlabel_data->js;
 
         if($script!=''){
+            $script=str_replace('""',"'",$script);
             $html='<script type="text/javascript">';
             $html.=$script;
             $html.='</script>';
@@ -122,12 +123,13 @@ class Class_WhiteLabel{
         $css=$this->wlabel_data->css;
 
         $html='<style type="text/css">';
-        if($color!=''){
-            $html.='.wpf-header{background-color:'.$color.' !important;}';
-            $html.='.wpf-header .pftopline{background-color:'.$color.' !important; border-bottom:1px solid #333;}';
-            $html.='.wpf-footer{background-color:'.$color.' !important; background-image:none !important;}';
-            $html.='.pfnavmenu li:hover{background-color:'.$color.' !important;}';
-            $html.='.pfnavmenu .pfnavsub-menu li:hover{background-color:'.$color.' !important;}';
+        if($color!='') {
+            $html .= '.wpf-header{background-color:' . $color . ' !important;}';
+            $html .= '.wpf-header .pftopline{background-color:' . $color . ' !important; border-bottom:1px solid #333;}';
+            $html .= '.wpf-header #pf-primary-nav .pfnavmenu .pfnavsub-menu li:hover { background-color: ' . $color . ' !important;}';
+            $html .= '.wpf-footer{background-color:' . $color . ' !important; background-image:none !important;}';
+            $html .= '.pfnavmenu li:hover{background-color:' . $color . ' !important;}';
+            $html .= '.pfnavmenu .pfnavsub-menu li:hover{background-color:' . $color . ' !important;}';
         }
         $html.=$css;
         $html.='</style>';
@@ -153,6 +155,11 @@ class Class_WhiteLabel{
 
     function Footer(){
         if($this->wlabel_active){
+            $footer=$this->Html('footer');
+            $html='';
+            //if(){}
+                $html.=$footer;
+
             $html=$this->Html('footer');
             echo $html;
         }

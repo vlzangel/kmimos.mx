@@ -87,24 +87,35 @@
 		$adicionales = array();
 
 		foreach ($items as $key => $value) {
-			$retorno = array_search($value, $trans);
+			$retorno = array_search(utf8_encode($value), $trans);
+
 			if( $retorno ){
 				$transporte[] = $retorno;
 			}
-			$retorno = array_search($value, $adic);
+			$retorno = array_search(utf8_encode($value), $adic);
 			if( $retorno ){
+			
+				echo utf8_encode($value)."<br>";
 				$adicionales[] = $retorno;
 			}
 		}
 
+		$sql = "SELECT meta_value FROM wp_usermeta WHERE md5(user_id) = '{$param[1]}' AND meta_key = 'kmisaldo'";
+		$kmisaldo = $conn->query($sql);
+		if( $kmisaldo->num_rows > 0 ){
+			$kmisaldo = $kmisaldo->fetch_assoc();
+			$kmisaldo = $kmisaldo["meta_value"];
+		}
+
 		$parametros = array( 
-			"reserva"      => $id_reserva,
-			"servicio"     => $data['ID'],
-			"saldo"	       => $saldo+$descuento,
-			"variaciones"  => $variaciones,
-			"fechas"       => $fechas,
-			"transporte"   => $transporte,
-			"adicionales"  => $adicionales
+			"reserva"         => $id_reserva,
+			"servicio"        => $data['ID'],
+			"saldo"	          => $saldo+$descuento+$kmisaldo,
+			"saldo_temporal"  => $saldo+$descuento,
+			"variaciones"     => $variaciones,
+			"fechas"          => $fechas,
+			"transporte"      => $transporte,
+			"adicionales"     => $adicionales
 		);
 
 		// echo "<pre>";
@@ -117,7 +128,11 @@
 
 	if( isset($b) ){
 		$home = $conn->query("SELECT option_value AS server FROM wp_options WHERE option_name = 'siteurl'"); $home = $home->fetch_assoc();
-		unset($_SESSION["MR_".$b]);
+		foreach ($_SESSION as $key => $value) {
+			if(	substr($key, 0, 3) == "MR_" ){
+				unset($_SESSION[$key]);
+			}
+		}
 		header("location: ".$home['server']."perfil-usuario/?ua=invoices&fm=_");
 	}
 

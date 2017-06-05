@@ -170,43 +170,54 @@ class WC_Deposits_Orders
       __('To Pay:', 'woocommerce-deposits') : __('Amount Paid:', 'woocommerce-deposits');
 
     $total_rows['order_total'] = array(
-      'label' => __('Order Total:', 'woocommerce'),
+      'label' => __('Total:', 'woocommerce'),
       'value' => woocommerce_price($order_total, array('currency' => $order->get_order_currency()))
     );
 
-    $total_rows['paid_today'] = array(
-      'label' => $paid_today_label,
-      'value' => woocommerce_price($paid_today, array('currency' => $order->get_order_currency()))
-    );
+    if( ($paid_today+0) > 0 ){
+      $total_rows['paid_today'] = array(
+        'label' => "Pague hoy",
+        'value' => woocommerce_price($paid_today, array('currency' => $order->get_order_currency()))
+      );
+    }else{
+      $total_rows['paid_today'] = array(
+        'label' => "Pague hoy",
+        'value' => 0
+      );
+    }
 
     $total_rows['remaining_amount'] = array(
-      'label' => __('Remaining Amount:', 'woocommerce-deposits'),
-      'value' => woocommerce_price($remaining, array('currency' => $order->get_order_currency()))
+      'label' => '<span style="color: #FF0000">Monto a pagar al cuidador:</span>',
+      'value' => '<span style="color: #FF0000">'.woocommerce_price($remaining, array('currency' => $order->get_order_currency())).'</span>'
     );
 
     return $total_rows;
   }
 
-  public function order_formatted_line_subtotal($subtotal, $item, $order)
-  {
-    if (isset($item['wc_deposit_meta'])) {
-      $deposit_meta = maybe_unserialize($item['wc_deposit_meta']);
-    } else {
-      return $subtotal;
-    }
+    public function order_formatted_line_subtotal($subtotal, $item, $order){
+        if (isset($item['wc_deposit_meta'])) {
+            $deposit_meta = maybe_unserialize($item['wc_deposit_meta']);
+        } else {
+            return $subtotal;
+        }
 
-    if (is_array($deposit_meta) && isset($deposit_meta['enable']) && $deposit_meta['enable'] === 'yes') {
-      $tax = get_option('wc_deposits_tax_display', 'no') === 'yes' ? floatval($item['line_tax']) : 0;
-/*      $deposit = $deposit_meta['deposit'] + $tax;*/
-      $deposit = $deposit_meta['deposit'];
-      $remaining = $deposit_meta['remaining'];
+        if (is_array($deposit_meta) && isset($deposit_meta['enable']) && $deposit_meta['enable'] === 'yes') {
+            $tax = get_option('wc_deposits_tax_display', 'no') === 'yes' ? floatval($item['line_tax']) : 0;
+            $deposit = $deposit_meta['deposit'];
+            $remaining = $deposit_meta['remaining'];
 
-      return woocommerce_price($deposit, array('currency' => $order->get_order_currency())) . ' ' . __('Deposit', 'woocommerce-deposits') . '<br/>(' .
-             woocommerce_price($remaining, array('currency' => $order->get_order_currency())) . ' ' . __('Remaining', 'woocommerce-deposits') . ')';
-    } else {
-      return $subtotal;
+            // return  woocommerce_price($deposit, array('currency' => $order->get_order_currency())) . ' ' . __('Deposit', 'woocommerce-deposits') . '<br/>(' .
+            //         woocommerce_price($remaining, array('currency' => $order->get_order_currency())) . ' ' . __('Remaining', 'woocommerce-deposits') . ')';
+
+            if( !isset($_SESSION) ){ session_start(); }
+                 
+            return  woocommerce_price($_SESSION['deposito']) . ' ' . __('Pague Hoy', 'woocommerce-deposits') . '<br/>(' .
+                    woocommerce_price($_SESSION['remanente']) . ' ' . __('Monto Remanente', 'woocommerce-deposits') . ')';
+
+        } else {
+            return $subtotal;
+        }
     }
-  }
 
   public function get_formatted_order_total($total, $order)
   {

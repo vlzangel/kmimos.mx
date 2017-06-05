@@ -9,7 +9,6 @@
 
 		<?php 
 			include("vlz/form/vlz_styles.php"); 
-			include("vlz/form/vlz_scripts.php"); 
 		?>
 
 		<style type="text/css">

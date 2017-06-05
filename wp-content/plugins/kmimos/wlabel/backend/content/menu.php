@@ -10,8 +10,8 @@
         }
 
     ?>
-    <div class="item">111</div>
-    <div class="item">222</div>
+    <div class="item">Montos</div>
+    <div class="item">Clientes</div>
     <div class="item">333</div>
     <div class="item">444</div>
     <div class="item">555</div>

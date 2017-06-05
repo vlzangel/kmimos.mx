@@ -21,46 +21,40 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Modificacion Ángel Veloz
 global $wpdb;
-
-if( !isset($_SESSION) ){ session_start(); }
-
 global $current_user;
-$user_id = md5($current_user->ID);
 
-if( isset( $_SESSION["MR_".$user_id] ) ){
-	$data_session = $_SESSION["MR_".$user_id];
+$data_session = kmimos_session();
+if( $data_session ){
 
-	$new_order   = $order->get_order_number();
-	$new_reserva = $wpdb->get_var("SELECT ID FROM wp_posts WHERE post_parent = '{$new_order}' AND post_type='wc_booking'");
+	if( isset($data_session["reserva"]) ){
 
-	$servicio = $wpdb->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = '{$new_reserva}' AND meta_key='_booking_product_id'");
+		$new_order   = $order->get_order_number();
+		$new_reserva = $wpdb->get_var("SELECT ID FROM wp_posts WHERE post_parent = '{$new_order}' AND post_type='wc_booking'");
 
-	if( $servicio == $data_session["servicio"] ){
-		$id_reserva = $data_session["reserva"];
+		$servicio = $wpdb->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = '{$new_reserva}' AND meta_key='_booking_product_id'");
 
-		$sql_SELECT = "SELECT * FROM wp_posts WHERE ID = '{$id_reserva}'";
-		$data = $wpdb->get_row($sql_SELECT);
-		$id_reserva = $data->ID;
-		$id_orden   = $data->post_parent;
+		if( $servicio == $data_session["servicio"] ){
+			$id_reserva = $data_session["reserva"];
 
-		$sql_UPDATE = "UPDATE wp_posts SET post_status = 'modified' WHERE ID IN ( '{$id_reserva}', '{$id_orden}' );";
+			$sql_SELECT = "SELECT * FROM wp_posts WHERE ID = '{$id_reserva}'";
+			$data = $wpdb->get_row($sql_SELECT);
+			$id_reserva = $data->ID;
+			$id_orden   = $data->post_parent;
 
-		$wpdb->query($sql_UPDATE);
+			$sql_UPDATE = "UPDATE wp_posts SET post_status = 'modified' WHERE ID IN ( '{$id_reserva}', '{$id_orden}' );";
 
-		update_post_meta($id_reserva,  'reserva_modificada', $new_reserva);
-		update_post_meta($new_reserva, 'modificacion_de',    $id_reserva );
+			$wpdb->query($sql_UPDATE);
 
-		$saldo_persistente = get_user_meta($current_user->ID, "kmisaldo", true)+0;
+			update_post_meta($id_reserva,  'reserva_modificada', $new_reserva);
+			update_post_meta($new_reserva, 'modificacion_de',    $id_reserva );
 
-		if( $saldo_persistente > 0 ){
-			$saldo_persistente += ($data_session["saldo_permanente"]+0);
+			update_user_meta($current_user->ID, "kmisaldo", ($data_session["saldo_permanente"]+0) );
 		}
-
-		update_user_meta($current_user->ID, "kmisaldo", $saldo_persistente);
-
-		// unset($_SESSION["MR_".$user_id]);
+	}else{
+		update_user_meta($current_user->ID, "kmisaldo", ($data_session["saldo_permanente"]+0) );
 	}
 
+	kmimos_quitar_session();
 }
 
 if ( $order ) : ?>
@@ -101,21 +95,25 @@ if ( $order ) : ?>
 			<?php endif; ?>
 		</ul>
         		
-        <?php if(WC()->session->__isset('pdf_url')): ?>
-            <a href="<?php echo WC()->session->get( 'pdf_url' ) ?>" style="padding: 5px; background: #59c9a8; color: #fff; font-weight: 400; font-size: 14px; font-family: Roboto; border-radius: 3px; border: solid 1px #1f906e; display: block; max-width: 450px; margin: 0px auto; text-align: center; text-decoration: none;" target="_blank">
-				Pícale para ver las instrucciones para<br> Pago en Tiendas por Conveniencia
-			</a>                  
-            <br>                    
-            <iframe id="pdf" src="<?php echo WC()->session->get( 'pdf_url' ) ?>" style="width:100%; height:950px;" frameborder="0"></iframe>
-        	<style type="text/css">
-				@media (max-width: 600px){
-					#pdf {
-						display: none;
-					}
+        <?php 
+        	if( $order->payment_method_title == "Pago en efectivo en tiendas de conveniencia" ){ 
+        		if(WC()->session->__isset('pdf_url')): ?>
+		            <a href="<?php echo WC()->session->get( 'pdf_url' ); ?>" class='fondo_kmimos'  style="padding: 5px; color: #fff; font-weight: 400; font-size: 14px; font-family: Roboto; border-radius: 3px; border: solid 1px #1f906e; display: block; max-width: 450px; margin: 0px auto; text-align: center; text-decoration: none;" target="_blank">
+						Pícale para ver las instrucciones para<br> Pago en Tiendas por Conveniencia
+					</a>                  
+		            <br>                    
+		            <iframe id="pdf" src="<?php echo WC()->session->get( 'pdf_url' ); ?>" style="width:100%; height:950px;" frameborder="0"></iframe>
+		        	<style type="text/css">
+						@media (max-width: 600px){
+							#pdf {
+								display: none;
+							}
 
-				}
-			</style>
-        <?php endif; ?>    
+						}
+					</style> <?php 
+				endif; 
+			} 
+		?>    
         
         <div class="clear"></div>
 
@@ -134,3 +132,11 @@ if ( $order ) : ?>
 	<a href="<?php echo get_option('siteurl'); ?>" class="button pay">Inicio</a>
 	<a href="<?php echo get_option('siteurl')."/perfil-usuario/?ua=invoices"; ?>" class="button pay">Mis reservas</a>
 </div>
+
+<style type="text/css">
+	tbody .product-total,
+	tfoot td
+	{
+		text-align: right;
+	}
+</style>

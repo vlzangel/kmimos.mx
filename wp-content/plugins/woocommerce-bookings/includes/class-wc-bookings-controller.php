@@ -24,15 +24,10 @@ class WC_Bookings_Controller {
 
 		// Modificacion Ángel Veloz
 		/*	Editado Angel Veloz, para ignorar los cupos reservados por la reserva que se esta modificando */
-		
-			if( !isset($_SESSION) ){ session_start(); }
-
-			global $current_user;
-			$user_id = md5($current_user->ID);
-			$data = $_SESSION["MR_".$user_id];
-
+			
+			$DS = kmimos_session();
 			foreach ( $booking_ids as $booking_id ) {
-				if( $booking_id != $data["reserva"] ){
+				if( $booking_id != $DS["reserva"] ){
 					$bookings[] = get_wc_booking( $booking_id );
 				}
 			}
@@ -294,15 +289,9 @@ class WC_Bookings_Controller {
 			// Modificacion Ángel Veloz
 			/*	Editado Angel Veloz, para ignorar los cupos reservados por la reserva que se esta modificando */
 
-				if( !isset($_SESSION) ){ session_start(); }
-
-				global $current_user;
-				$user_id = md5($current_user->ID);
-
-				$data = $_SESSION["MR_".$user_id];
-
+				$DS = kmimos_session();
 				foreach ( $booking_ids as $booking_id ) {
-					if( $booking_id != $data["reserva"] ){
+					if( $booking_id != $DS["reserva"] ){
 						$bookings[] = get_wc_booking( $booking_id );
 					}
 				}

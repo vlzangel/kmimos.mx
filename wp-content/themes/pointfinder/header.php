@@ -76,10 +76,9 @@
 		}
 
 		if( isset($_GET['admin']) ){
-	   		header("location: ".get_home_url()."/wp-admin/admin.php?page=kmimos-setup");
-
 	        $_SESSION['id_admin'] 		 = "";
 	        $_SESSION['admin_sub_login'] = "";
+	   		header("location: ".get_home_url()."/wp-admin/admin.php?page=bp_clientes");
 		}else{
 	   		header("location: ".get_home_url()."/perfil-usuario/?ua=profile");
 		}
@@ -227,7 +226,7 @@
 			}
 		/* End: Transparent Header Addon */
 
-		wp_enqueue_style( 'vlz', get_home_url()."/wp-content/themes/pointfinder"."/css/vlz.css" );
+		wp_enqueue_style( 'vlz', get_home_url()."/wp-content/themes/pointfinder/css/vlz.css?v=1.0.0" );
 
 		wp_head(); 
 
@@ -536,7 +535,7 @@
 													<li>
 														<a class='ser_cuidador' href='".get_home_url()."/quiero-ser-cuidador-certificado-de-perros/'>
 															<span></span>
-															<div class='theme_button'>Quiero ser cuidador</div>
+															<div class='theme_button button_header'>Quiero ser cuidador</div>
 														</a>
 													<li>
 												";

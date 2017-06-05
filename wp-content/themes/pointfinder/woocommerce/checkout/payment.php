@@ -22,22 +22,14 @@ if ( ! is_ajax() ) {
 	do_action( 'woocommerce_review_order_before_payment' );
 }
 // Modificacion Ángel Veloz
-
-if( !isset($_SESSION) ){ session_start(); }
-
-global $current_user;
-$user_id = md5($current_user->ID);
-
-$pagar = "YES";
-if( isset( $_SESSION["MR_".$user_id] ) ){
-    $DS = $_SESSION["MR_".$user_id];
+$DS = kmimos_session();
+if( !$DS ){
     $ocultar_metodos = "";
     if( isset($DS['no_pagar']) ){
     	$pagar = "NO";
     	$ocultar_metodos = " style='display: none;' ";
     }
 }
-
 ?>
 <div id="payment" class="woocommerce-checkout-payment">
 	<?php if ( WC()->cart->needs_payment() ) : ?>
@@ -45,13 +37,6 @@ if( isset( $_SESSION["MR_".$user_id] ) ){
 			<?php
 				if ( ! empty( $available_gateways ) ) {
 					foreach ( $available_gateways as $gateway ) {
-						
-						// echo "<pre>";
-						// 	print_r($gateway);
-						// echo "</pre>";
-
-						// wc_get_template( 'checkout/payment-method.php', array( 'gateway' => $gateway ) );
-
 						if( $pagar == "NO"){
 							if( $gateway->method_title == "Contra reembolso" ){
 								wc_get_template( 'checkout/payment-method.php', array( 'gateway' => $gateway ) );
@@ -61,7 +46,6 @@ if( isset( $_SESSION["MR_".$user_id] ) ){
 								wc_get_template( 'checkout/payment-method.php', array( 'gateway' => $gateway ) );
 							}
 						}
-						
 					}
 				} else {
 					echo '<li>' . apply_filters( 'woocommerce_no_available_payment_methods_message', WC()->customer->get_country() ? __( 'Sorry, it seems that there are no available payment methods for your state. Please contact us if you require assistance or wish to make alternate arrangements.', 'woocommerce' ) : __( 'Please fill in your details above to see available payment methods.', 'woocommerce' ) ) . '</li>';
