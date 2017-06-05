@@ -91,7 +91,7 @@
 
 	$estados = utf8_decode($estados);
 
-	if($_POST['municipios'] != ""){
+	if($_POST['estados'] != ""){
 		$municipios_array = $wpdb->get_results("SELECT * FROM locations WHERE state_id = {$_POST['estados']} ORDER BY name ASC");
 	    $muni = "<option value=''>Seleccione un municipio</option>"; $xxx = 0;
 	    foreach($municipios_array as $municipio) { 
@@ -131,7 +131,7 @@
 	<div id='filtros'></div>
 	<form action='".get_home_url()."/busqueda' method='POST' class='vlz_form' id='vlz_form_buscar' style='margin-top: 20px;'>
 
-		<input type='submit' value='Aplicar Filtros' class='vlz_boton'>
+		<input type='submit' value='Aplicar Filtros' class='theme_button vlz_boton'>
 
 		<div class='vlz_sub_seccion'>
 			<div class='vlz_sub_seccion_titulo'>Ordenar por:</div>
@@ -249,7 +249,7 @@
 			</div>
 		</div>
 
-		<input type='submit' value='Aplicar Filtros' class='vlz_boton'>
+		<input type='submit' value='Aplicar Filtros' class='theme_button vlz_boton'>
 	</form>";
 
 	/*

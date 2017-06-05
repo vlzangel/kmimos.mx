@@ -1,11 +1,7 @@
-<?php global $wpdb;
+<?php 
 // wlabel 
+require_once('function/db.php');
 require_once('controller/admin.php');
-
-if($_POST){
-	print_r($_POST);
-	return;
-}
 
 // Parametros: Filtro por fecha
 $date = getdate();
@@ -62,7 +58,7 @@ $wlabel = []; //Wlabel_FetchAll($desde, $hasta);
 			<div class="col-sm-12 col-md-12">
 				<div class="collapse" id="nuevo">
 					<div class="well">
-				    	<form id="frm-wlabel" class="form-inline" action="/wp-admin/admin.php?page=bp_wlabel" method="POST">
+				    	<form id="frm-wlabel" class="form-inline" action="/wp-content/plugins/kmimos/wlabel/admin/function/ajax.php?p=save" method="POST">
 				    		<div class="row">			    			
 					    		<div class="col-sm-8">
 						    		<div class="row">
@@ -78,29 +74,17 @@ $wlabel = []; //Wlabel_FetchAll($desde, $hasta);
 											<label for="vigencia">Vigencia</label>
 											<input type="text" class="form-control" id="vigencia" placeholder="Vigencia del WLabel">
 										</div>
-										<div class="form-group col-sm-1">
-											<label for="color">Color</label>
-											<input type="color" class="form-control" id="color" placeholder="Color base">
+										<div class="form-group col-sm-2">
+											<label for="color">Base</label>
+											<input type="text" class="form-control" id="color" placeholder="#000000">
 										</div>
-										<div class="form-group col-sm-1">
-											<label for="color">Color</label>
-											<input type="color" class="form-control" id="color" placeholder="Color base">
+										<div class="form-group col-sm-2">
+											<label for="color">Botones</label>
+											<input type="text" class="form-control" id="color_botones" placeholder="#000000">
 										</div>
-										<div class="form-group col-sm-1">
-											<label for="color">Color</label>
-											<input type="color" class="form-control" id="color" placeholder="Color base">
-										</div>
-										<div class="form-group col-sm-1">
-											<label for="color">Color</label>
-											<input type="color" class="form-control" id="color" placeholder="Color base">
-										</div>
-										<div class="form-group col-sm-1">
-											<label for="color">Color</label>
-											<input type="color" class="form-control" id="color" placeholder="Color base">
-										</div>
-										<div class="form-group col-sm-1">
-											<label for="color">Color</label>
-											<input type="color" class="form-control" id="color" placeholder="Color base">
+										<div class="form-group col-sm-2">
+											<label for="color">Fuente</label>
+											<input type="text" class="form-control" id="color_fuentes" placeholder="#000000">
 										</div>
 									</div>
 					    		</div>	
