@@ -11,9 +11,6 @@
 /wp-content/ngg_styles/
 /wp-content/upgrade/
 /wp-content/uploads/
-/wp-content/uploads2/
-/wp-content/uploads3/
-/wp-content/uploads original/
 
 Respaldo*
 
@@ -67,9 +64,9 @@ vlz_config.php
 /wp-content/plugins/wc-vendors/
 /wp-content/plugins/widget-shortcode/
 /wp-content/plugins/woocommerce/
-# /wp-content/plugins/WooCommerce.Deposits.Partial.Payments.Plugin.v1.4.2/
+/wp-content/plugins/WooCommerce.Deposits.Partial.Payments.Plugin.v1.4.2/
 /wp-content/plugins/woocommerce-accommodation-bookings/
-# /wp-content/plugins/woocommerce-bookings/
+/wp-content/plugins/woocommerce-bookings/
 /wp-content/plugins/woocommerce-menu-bar-cart/
 /wp-content/plugins/woocommerce-product-addons/
 /wp-content/plugins/woocommerce-product-csv-import-suite/
@@ -87,31 +84,23 @@ vlz_config.php
 /wp-content/plugins/yith-woocommerce-dynamic-pricing-and-discounts-premium/
 /wp-content/plugins/yith-woocommerce-product-slider-carousel-premium/
 /wp-content/plugins/zopim-live-chat/
-
-/wp-content/plugins/woocommerce-gateway-stripe/
-
 /wp-content/plugins/wp-wolivestats/
-
 /wp-content/plugins/file-manager/
-
-/kmimos.la/
-
 /wp-content/plugins/domain-mirror2/
-
 /wp-content/plugins/wpmandrill/
 /wp-content/plugins/bwp-minify/
+/wp-content/plugins/WooCommerce.Deposits.Partial.Payments.Plugin.v1.4.2/changelog.txt
+/wp-content/plugins/WooCommerce.Deposits.Partial.Payments.Plugin.v1.4.2/Licensing/GPL.txt
+/wp-content/plugins/WooCommerce.Deposits.Partial.Payments.Plugin.v1.4.2/Licensing/README_License.txt
+/wp-content/plugins/woocommerce-bookings/.tx/
+
 /wp-content/w3tc-config/ 
 /wp-content/cache/
 
-/wp-content/plugins/woocommerce-bookings/.tx/
 .idea/workspace.xml
 .idea/kmimos.mx.iml
 .idea/misc.xml
 .idea/vcs.xml
 .idea/modules.xml
 wp-content/index.php
-wp-content/plugins/WooCommerce.Deposits.Partial.Payments.Plugin.v1.4.2/changelog.txt
-wp-content/plugins/WooCommerce.Deposits.Partial.Payments.Plugin.v1.4.2/Licensing/GPL.txt
-wp-content/plugins/WooCommerce.Deposits.Partial.Payments.Plugin.v1.4.2/Licensing/README_License.txt
-imgs/Temp/1496075029.jpg
-*.jpg
+imgs/Temp/
