@@ -125,52 +125,54 @@
 
 
 
+
+            //TOTAL DE MONTO DE RESERVAS CANCELADAS
+            echo '<tr>';
+            echo '<th class="title">Monto Total de Reservas</th>';
+            $day_init=strtotime(date('m/d/Y',$WLresult->time));
+            $day_last=strtotime(date('m/d/Y',time()));
+            $day_more=(24*60*60);
+
+            $amount_day=0;
+            $amount_month=0;
+            $amount_year=0;
+
+            for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
+
+                foreach($BUILDbookings as $booking){
+                    if(strtotime(date('m/d/Y',$booking['date']))==strtotime(date('m/d/Y',$day))){
+                        $amount_booking=0;
+                        //if($booking['status']=='cancelled'){}
+                            $amount_booking=$booking['WCorder_line_total'];
+
+                        $amount_booking=(round($amount_booking*100)/100);
+                        $amount_day=$amount_day+$amount_booking;
+                        $amount_month=$amount_month+$amount_booking;
+                        $amount_year=$amount_year+$amount_booking;
+                    }
+                }
+
+
+                echo '<td class="number day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
+                $amount_day=0;
+
+                if(date('t',$day)==date('d',$day) || $day_last==$day){
+                    echo '<td class="number month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_month.'</td>';
+                    $amount_month=0;
+
+                    if(date('m',$day)=='12' || $day_last==$day){
+                        echo '<th class="number year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_year.'</th>';
+                        $amount_year=0;
+                    }
+                }
+            }
+            echo '</tr>';
+
+
+
             //TOTAL DE MONTO DE RESERVAS
-             echo '<tr>';
-                 echo '<th>Monto de Reservas</th>';
-                    $day_init=strtotime(date('m/d/Y',$WLresult->time));
-                    $day_last=strtotime(date('m/d/Y',time()));
-                    $day_more=(24*60*60);
-
-                    $amount_day=0;
-                    $amount_month=0;
-                    $amount_year=0;
-
-                    for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
-
-                        foreach($BUILDbookings as $booking){
-                            if(strtotime(date('m/d/Y',$booking['date']))==strtotime(date('m/d/Y',$day))){
-                                $amount_booking=0;
-                                if($booking['status']!='cancelled'){
-                                    $amount_booking=$booking['WCorder_line_total'];
-                                }
-                                $amount_booking=(round($amount_booking*100)/100);
-                                $amount_day=$amount_day+$amount_booking;
-                                $amount_month=$amount_month+$amount_booking;
-                                $amount_year=$amount_year+$amount_booking;
-                            }
-                        }
-
-
-                        echo '<td class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
-                        $amount_day=0;
-
-                        if(date('t',$day)==date('d',$day) || $day_last==$day){
-                            echo '<td class="month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_month.'</td>';
-                            $amount_month=0;
-
-                            if(date('m',$day)=='12' || $day_last==$day){
-                                echo '<th class="year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_year.'</th>';
-                                $amount_year=0;
-                            }
-                        }
-                    }
-             echo '</tr>';
-
-
-            //TOTAL DE MONTO DE COMISION
             echo '<tr>';
-            echo '<th>Comision</th>';
+            echo '<th class="title">Monto de Reservas</th>';
             $day_init=strtotime(date('m/d/Y',$WLresult->time));
             $day_last=strtotime(date('m/d/Y',time()));
             $day_more=(24*60*60);
@@ -185,7 +187,7 @@
                     if(strtotime(date('m/d/Y',$booking['date']))==strtotime(date('m/d/Y',$day))){
                         $amount_booking=0;
                         if($booking['status']!='cancelled'){
-                            $amount_booking=$booking['WCorder_line_total']*0.17;
+                            $amount_booking=$booking['WCorder_line_total'];
                         }
                         $amount_booking=(round($amount_booking*100)/100);
                         $amount_day=$amount_day+$amount_booking;
@@ -195,114 +197,27 @@
                 }
 
 
-                echo '<td class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
+                echo '<td class="number day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
                 $amount_day=0;
 
                 if(date('t',$day)==date('d',$day) || $day_last==$day){
-                    echo '<td class="month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_month.'</td>';
+                    echo '<td class="number month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_month.'</td>';
                     $amount_month=0;
 
                     if(date('m',$day)=='12' || $day_last==$day){
-                        echo '<th class="year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_year.'</th>';
+                        echo '<th class="number year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_year.'</th>';
                         $amount_year=0;
                     }
                 }
             }
             echo '</tr>';
-
-
-            //TOTAL DE MONTO DE COMISION DE KMIMOS
-            echo '<tr>';
-            echo '<th>Comision de  kmimos</th>';
-            $day_init=strtotime(date('m/d/Y',$WLresult->time));
-            $day_last=strtotime(date('m/d/Y',time()));
-            $day_more=(24*60*60);
-
-            $amount_day=0;
-            $amount_month=0;
-            $amount_year=0;
-
-            for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
-
-                foreach($BUILDbookings as $booking){
-                    if(strtotime(date('m/d/Y',$booking['date']))==strtotime(date('m/d/Y',$day))){
-                        $amount_booking=0;
-                        if($booking['status']!='cancelled'){
-                            $amount_booking=$booking['WCorder_line_total']*0.17*0.6;
-                        }
-                        $amount_booking=(round($amount_booking*100)/100);
-                        $amount_day=$amount_day+$amount_booking;
-                        $amount_month=$amount_month+$amount_booking;
-                        $amount_year=$amount_year+$amount_booking;
-                    }
-                }
-
-
-                echo '<td class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
-                $amount_day=0;
-
-                if(date('t',$day)==date('d',$day) || $day_last==$day){
-                    echo '<td class="month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_month.'</td>';
-                    $amount_month=0;
-
-                    if(date('m',$day)=='12' || $day_last==$day){
-                        echo '<th class="year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_year.'</th>';
-                        $amount_year=0;
-                    }
-                }
-            }
-            echo '</tr>';
-
-
-            //TOTAL DE MONTO DE COMISION DE VOLARIS
-            echo '<tr>';
-            echo '<th>Comision de '.$wlabel.'</th>';
-            $day_init=strtotime(date('m/d/Y',$WLresult->time));
-            $day_last=strtotime(date('m/d/Y',time()));
-            $day_more=(24*60*60);
-
-            $amount_day=0;
-            $amount_month=0;
-            $amount_year=0;
-
-            for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
-
-                foreach($BUILDbookings as $booking){
-                    if(strtotime(date('m/d/Y',$booking['date']))==strtotime(date('m/d/Y',$day))){
-                        $amount_booking=0;
-                        if($booking['status']!='cancelled'){
-                            $amount_booking=$booking['WCorder_line_total']*0.17*0.4;
-                        }
-                        $amount_booking=(round($amount_booking*100)/100);
-                        $amount_day=$amount_day+$amount_booking;
-                        $amount_month=$amount_month+$amount_booking;
-                        $amount_year=$amount_year+$amount_booking;
-                    }
-                }
-
-
-                echo '<td class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
-                $amount_day=0;
-
-                if(date('t',$day)==date('d',$day) || $day_last==$day){
-                    echo '<td class="month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_month.'</td>';
-                    $amount_month=0;
-
-                    if(date('m',$day)=='12' || $day_last==$day){
-                        echo '<th class="year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_year.'</th>';
-                        $amount_year=0;
-                    }
-                }
-            }
-            echo '</tr>';
-
 
 
 
 
             //TOTAL DE MONTO DE RESERVAS CANCELADAS
             echo '<tr>';
-            echo '<th>Monto de Reservas Canceladas</th>';
+            echo '<th class="title">Monto de Reservas Canceladas</th>';
             $day_init=strtotime(date('m/d/Y',$WLresult->time));
             $day_last=strtotime(date('m/d/Y',time()));
             $day_more=(24*60*60);
@@ -327,15 +242,15 @@
                 }
 
 
-                echo '<td class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
+                echo '<td class="number day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
                 $amount_day=0;
 
                 if(date('t',$day)==date('d',$day) || $day_last==$day){
-                    echo '<td class="month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_month.'</td>';
+                    echo '<td class="number month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_month.'</td>';
                     $amount_month=0;
 
                     if(date('m',$day)=='12' || $day_last==$day){
-                        echo '<th class="year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_year.'</th>';
+                        echo '<th class="number year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_year.'</th>';
                         $amount_year=0;
                     }
                 }
@@ -348,7 +263,7 @@
 
             //TOTAL DE MONTO POR PAGAR
             echo '<tr>';
-            echo '<th>Monto de Reservas Por Pagar</th>';
+            echo '<th class="title">Monto de Reservas Por Pagar</th>';
             $day_init=strtotime(date('m/d/Y',$WLresult->time));
             $day_last=strtotime(date('m/d/Y',time()));
             $day_more=(24*60*60);
@@ -373,15 +288,144 @@
                 }
 
 
-                echo '<td class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
+                echo '<td class="number day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
                 $amount_day=0;
 
                 if(date('t',$day)==date('d',$day) || $day_last==$day){
-                    echo '<td class="month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_month.'</td>';
+                    echo '<td class="number month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_month.'</td>';
                     $amount_month=0;
 
                     if(date('m',$day)=='12' || $day_last==$day){
-                        echo '<th class="year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_year.'</th>';
+                        echo '<th class="number year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_year.'</th>';
+                        $amount_year=0;
+                    }
+                }
+            }
+            echo '</tr>';
+
+
+            //TOTAL DE MONTO DE COMISION
+            echo '<tr>';
+            echo '<th class="title">Comision (17%)</th>';
+            $day_init=strtotime(date('m/d/Y',$WLresult->time));
+            $day_last=strtotime(date('m/d/Y',time()));
+            $day_more=(24*60*60);
+
+            $amount_day=0;
+            $amount_month=0;
+            $amount_year=0;
+
+            for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
+
+                foreach($BUILDbookings as $booking){
+                    if(strtotime(date('m/d/Y',$booking['date']))==strtotime(date('m/d/Y',$day))){
+                        $amount_booking=0;
+                        if($booking['status']!='cancelled'){
+                            $amount_booking=$booking['WCorder_line_total']*0.17;
+                        }
+                        $amount_booking=(round($amount_booking*100)/100);
+                        $amount_day=$amount_day+$amount_booking;
+                        $amount_month=$amount_month+$amount_booking;
+                        $amount_year=$amount_year+$amount_booking;
+                    }
+                }
+
+
+                echo '<td class="number day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
+                $amount_day=0;
+
+                if(date('t',$day)==date('d',$day) || $day_last==$day){
+                    echo '<td class="number month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_month.'</td>';
+                    $amount_month=0;
+
+                    if(date('m',$day)=='12' || $day_last==$day){
+                        echo '<th class="number year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_year.'</th>';
+                        $amount_year=0;
+                    }
+                }
+            }
+            echo '</tr>';
+
+
+            //TOTAL DE MONTO DE COMISION DE KMIMOS
+            echo '<tr>';
+            echo '<th class="title">Comision de  kmimos (17%/60%)</th>';
+            $day_init=strtotime(date('m/d/Y',$WLresult->time));
+            $day_last=strtotime(date('m/d/Y',time()));
+            $day_more=(24*60*60);
+
+            $amount_day=0;
+            $amount_month=0;
+            $amount_year=0;
+
+            for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
+
+                foreach($BUILDbookings as $booking){
+                    if(strtotime(date('m/d/Y',$booking['date']))==strtotime(date('m/d/Y',$day))){
+                        $amount_booking=0;
+                        if($booking['status']!='cancelled'){
+                            $amount_booking=$booking['WCorder_line_total']*0.17*0.6;
+                        }
+                        $amount_booking=(round($amount_booking*100)/100);
+                        $amount_day=$amount_day+$amount_booking;
+                        $amount_month=$amount_month+$amount_booking;
+                        $amount_year=$amount_year+$amount_booking;
+                    }
+                }
+
+
+                echo '<td class="number day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
+                $amount_day=0;
+
+                if(date('t',$day)==date('d',$day) || $day_last==$day){
+                    echo '<td class="number month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_month.'</td>';
+                    $amount_month=0;
+
+                    if(date('m',$day)=='12' || $day_last==$day){
+                        echo '<th class="number year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_year.'</th>';
+                        $amount_year=0;
+                    }
+                }
+            }
+            echo '</tr>';
+
+
+            //TOTAL DE MONTO DE COMISION DE VOLARIS
+            echo '<tr>';
+            echo '<th class="title">Comision de '.$wlabel.' (17%/40%)</th>';
+            $day_init=strtotime(date('m/d/Y',$WLresult->time));
+            $day_last=strtotime(date('m/d/Y',time()));
+            $day_more=(24*60*60);
+
+            $amount_day=0;
+            $amount_month=0;
+            $amount_year=0;
+
+            for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
+
+                foreach($BUILDbookings as $booking){
+                    if(strtotime(date('m/d/Y',$booking['date']))==strtotime(date('m/d/Y',$day))){
+                        $amount_booking=0;
+                        if($booking['status']!='cancelled'){
+                            $amount_booking=$booking['WCorder_line_total']*0.17*0.4;
+                        }
+                        $amount_booking=(round($amount_booking*100)/100);
+                        $amount_day=$amount_day+$amount_booking;
+                        $amount_month=$amount_month+$amount_booking;
+                        $amount_year=$amount_year+$amount_booking;
+                    }
+                }
+
+
+                echo '<td class="number day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
+                $amount_day=0;
+
+                if(date('t',$day)==date('d',$day) || $day_last==$day){
+                    echo '<td class="number month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_month.'</td>';
+                    $amount_month=0;
+
+                    if(date('m',$day)=='12' || $day_last==$day){
+                        echo '<th class="number year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_year.'</th>';
                         $amount_year=0;
                     }
                 }
