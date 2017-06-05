@@ -77,8 +77,8 @@
 
 <?php
 //include_once(dirname(__FILE__).'/modules/booking.php');
-//include_once(dirname(__FILE__).'/modules/detail.php');
-include_once(dirname(__FILE__).'/modules/client.php');
+include_once(dirname(__FILE__).'/modules/detail.php');
+//include_once(dirname(__FILE__).'/modules/client.php');
 ?>
 
 </div>
