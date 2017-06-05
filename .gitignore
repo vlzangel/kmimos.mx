@@ -10,7 +10,9 @@
 /wp-content/ngg/
 /wp-content/ngg_styles/
 /wp-content/upgrade/
-/wp-content/uploads/
+/wp-content/uploads*
+/git/
+/kmimos.la/
 
 Respaldo*
 
