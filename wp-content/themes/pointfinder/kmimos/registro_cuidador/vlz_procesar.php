@@ -159,6 +159,20 @@
 
         $adicionales = serialize($adicionales);
 
+        $coordenadas = unserialize( $wpdb->get_var("SELECT valor FROM kmimos_opciones WHERE clave = 'municipio_{$param['municipios']}' ") );
+
+        $latitud  = "";
+        $longitud = "";
+
+        $respuesta = $conn->query( "SELECT valor FROM kmimos_opciones WHERE clave = 'municipio_{$municipio}' " );
+        if( $respuesta->num_rows > 0 ){
+            while($valor = $respuesta->fetch_assoc()){
+                $coordenadas = unserialize($valor["valor"]);
+                $latitud  = $coordenadas["referencia"]->lat;
+                $longitud = $coordenadas["referencia"]->lng;
+            }
+        }
+
         $sql = "
         	INSERT INTO cuidadores VALUES (
         		NULL,
