@@ -36,6 +36,8 @@ function WhiteLabel_registration_save($user_id){
 }
 
 //ORDER PROSSESING
+add_action('woocommerce_thankyou', 'WhiteLabel_custom_thankyou');
+add_action('woocommerce_order_status_completed', 'WhiteLabel_custom_processing');
 add_action('woocommerce_order_status_processing', 'WhiteLabel_custom_processing');
 function WhiteLabel_custom_processing($order_id){
     global $_wlabel;
@@ -43,16 +45,6 @@ function WhiteLabel_custom_processing($order_id){
         update_post_meta($order_id, '_wlabel', $_wlabel->wlabel);
     }
 }
-
-//ORDER TANK
-//add_action('woocommerce_thankyou', 'WhiteLabel_custom_thankyou');
-function WhiteLabel_custom_thankyou($order_id){
-    global $_wlabel;
-    if ($_wlabel->wlabel_active){
-        update_post_meta($order_id, '_wlabel', $_wlabel->wlabel);
-    }
-}
-
 
 
 
