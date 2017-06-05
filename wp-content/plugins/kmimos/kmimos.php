@@ -27,13 +27,7 @@
             angel_include_script();
             carlos_include_script();
             italo_include_script();
-            wp_enqueue_script( 'kmimos_jqueryui_script', '//code.jquery.com/ui/1.11.4/jquery-ui.js', array(), '1.11.1', true  );
-            wp_enqueue_script( 'kmimos_filters_script',     get_home_url()."/wp-content/plugins/kmimos/".'javascript/kmimos-filters.js', array(), '1.0.0', true );
-            wp_enqueue_script( 'kmimos_script',             get_home_url()."/wp-content/plugins/kmimos/".'javascript/kmimos.js', array(), '1.0.0', true );
-            wp_enqueue_script( 'kmimos_fancy',              get_home_url()."/wp-content/plugins/kmimos/".'javascript/jquery.fancybox.pack.js', array(), '2.1.5', true );
-            wp_enqueue_style( 'kmimos_style',               get_home_url()."/wp-content/plugins/kmimos/".'css/kmimos.css' );
-            wp_enqueue_style( 'kmimos_filters_style',       get_home_url()."/wp-content/plugins/kmimos/".'css/kmimos-filters.css' );
-            wp_enqueue_style( 'kmimos_fancy_style',         get_home_url()."/wp-content/plugins/kmimos/".'css/jquery.fancybox.css?v=2.1.5' );
+            viejos_include_script();
         }
     }
 
@@ -42,8 +36,7 @@
             angel_include_admin_script();
             carlos_include_admin_script();
             italo_include_admin_script();
-            wp_enqueue_script( 'kmimos_script', get_home_url().'/wp-content/plugins/kmimos/javascript/kmimos-admin.js', array(), '1.0.0', true );
-            wp_enqueue_style( 'kmimos_style', get_home_url().'/wp-content/plugins/kmimos/css/kmimos-admin.css' );
+            viejos_include_admin_script();
         }
     }
 
