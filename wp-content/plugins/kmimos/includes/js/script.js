@@ -1,20 +1,26 @@
 jQuery(document).ready(function(e){
-    filejs_import('scroll/scroll_visible/scroll-visible.js');
-    //filejs_import('../includes/js/scroll/scroll-paralax/scroll-paralax.js');
-    //filejs_import('../includes/js/scroll/scroll-carousel/scroll-carousel.js');
-    //filejs_import('../includes/js/scroll/scroll-suavizar/scroll-suavizar.js');
-    filejs_import('scroll/scroll_efecto/scroll-efecto.js');
-    filejs_import('image/image-load.js');
-    filejs_import('image/image-easyload.js');
-    filejs_import('image/image-easyload.css');
-    //filjse_import('../');
 
-    filecss_import('scroll/scroll_efecto/scroll-efecto.css');
-    filecss_import('image/image-easyload.css');
+    var filejs=[];
+    filejs.push('scroll/scroll_visible/scroll-visible.js');
+    //filejs.push('scroll/scroll-paralax/scroll-paralax.js');
+    //filejs.push('scroll/scroll-carousel/scroll-carousel.js');
+    //filejs.push('scroll/scroll-suavizar/scroll-suavizar.js');
+    filejs.push('scroll/scroll_efecto/scroll-efecto.js');
+    filejs.push('image/image-load.js');
+    filejs.push('image/image-easyload.js');
+    //filejs.push();
+    filejs_import(filejs,0);
+
+
+    var filecss=[];
+    filecss.push('scroll/scroll_efecto/scroll-efecto.css');
+    filecss.push('image/image-easyload.css');
+    filecss_import(filecss,0);
+
 });
 
 function files_path(file){
-    var scripts= document.getElementsByTagName('script'); //console.log(scripts);
+    var scripts= document.getElementsByTagName('script');
 
     var iscript = 0;
     for(var index in scripts){
@@ -30,14 +36,20 @@ function files_path(file){
     return dir+file;
 }
 
-function filejs_import(file){
-    var dirfile = files_path(file);
-    jQuery.getScript(dirfile, function(){
-        //console.log('Loaded: '+file);
-    });
+function filejs_import(file,count){
+    if(file.length>count){
+        var dirfile = files_path(file[count]);
+        jQuery.getScript(dirfile, function(){
+            //console.log('Loaded: '+file[count]);
+            filejs_import(file,(count+1));
+        });
+    }
 }
 
-function filecss_import(file){
-    var dirfile = files_path(file);
-    jQuery('head').append(jQuery('<link rel="stylesheet" type="text/css" />').attr('href',dirfile));
+function filecss_import(file,count){
+    if(file.length>count){
+        var dirfile = files_path(file[count]);
+        jQuery('head').append(jQuery('<link rel="stylesheet" type="text/css" />').attr('href',dirfile));
+        filecss_import(file,(count+1));
+    }
 }

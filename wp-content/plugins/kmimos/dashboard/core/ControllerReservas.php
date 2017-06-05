@@ -63,7 +63,7 @@ function getCountReservas( $author_id=0, $interval=12, $desde="", $hasta=""){
 	return $result;
 }
 
-function get_status($sts_reserva, $sts_pedido, $forma_pago=""){
+function get_status($sts_reserva, $sts_pedido, $forma_pago="", $id_reserva){
 	
 	// Cargar a totales
 	$addTotal = 0;
@@ -99,31 +99,27 @@ function get_status($sts_reserva, $sts_pedido, $forma_pago=""){
 			}
 			if( $sts_pedido == 'wc-pending'){
 				$sts_largo = 'Pendiente de pago';
-/*
-				$sts_corto = "Fallida";
-				if( in_array($forma_pago, $payment_method_cards) ){
-					$sts_largo = "Pendiente por confirmar el cuidador"; // metodo de pago es por TDC / TDD ( parcial )
-				}elseif( in_array($forma_pago, $payment_method_store) ){
-					$sts_largo = "Pendiente de pago en tienda"; // Tienda por conv
-				}else{
-					$sts_largo = "Estatus Pedido: {$sts_pedido}"; 
-				}
-*/
 			}
-			break;
+		break;
 		case 'confirmed':
 			$sts_corto = 'Confirmado';
 			$sts_largo = 'Confirmado';
 			$addTotal  = 1;
-			break;
+		break;
 		case 'paid':
 			$sts_corto = 'Pagado';
 			$sts_largo = 'Pagado';
-			break;
+		break;
 		case 'cancelled':
 			$sts_corto = 'Cancelado';
 			$sts_largo = 'Cancelado';
-			break;
+		break;
+		// Modificacion Ángel Veloz
+		case 'modified':
+			$por = get_post_meta( $id_reserva, 'reserva_modificada', true );
+			$sts_corto = 'Modificado';
+			$sts_largo = 'Modificado por la reserva: '.$por;
+		break;
 	}
 
 	return 	$result = [ 
@@ -258,7 +254,7 @@ function getMetaCuidador( $user_id ){
 }
 
 function getMetaReserva( $post_id ){
-	$condicion = " AND meta_key IN ( '_booking_start', '_booking_end', '_booking_cost' )";
+	$condicion = " AND meta_key IN ( '_booking_start', '_booking_end', '_booking_cost', 'modificacion_de' )";
 	$result = get_metaPost($post_id, $condicion);
 
 	$data = [
@@ -332,11 +328,14 @@ function get_ubicacion_cuidador( $user_id ){
 
 function getReservas($desde="", $hasta=""){
 
+	$desde = "2015-01-01";
+	$hasta = "2017-05-29";
+
 	$filtro_adicional = "";
 
 	if( !empty($desde) && !empty($hasta) ){
 		$filtro_adicional = " 
-			AND DATE_FORMAT(r.post_date, '%m-%d-%Y') between DATE_FORMAT('{$desde}','%m-%d-%Y') and DATE_FORMAT('{$hasta}','%m-%d-%Y')
+			AND ( r.post_date >= '{$desde} 00:00:00' and  r.post_date <= '{$hasta} 23:59:59' )
 		";
 	}else{
 		$filtro_adicional = " AND MONTH(r.post_date) = MONTH(NOW()) AND YEAR(r.post_date) = YEAR(NOW()) ";

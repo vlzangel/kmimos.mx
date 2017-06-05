@@ -36,8 +36,8 @@ if(array_key_exists('auth', $_SESSION)){
 
 $rutas = [
 	'logout' => 'salir',
-	'suscriptores' => 'subscribe',
-	'referidos' => 'referidos',
+	'suscriptores' => 'backpanel_ctr_participantes',
+	'referidos' => 'backpanel_ctr_referidos',
 ];
 $view = ( array_key_exists($p, $rutas) )? $rutas[$p] : 'login' ;
 

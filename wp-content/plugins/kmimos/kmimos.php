@@ -16,22 +16,38 @@
  */
 
 include_once('wlabel/wlabel.php');
-include_once('includes/class/class_kmimos_map.php');
 include_once('includes/class/class_kmimos_booking.php');
 include_once('includes/class/class_kmimos_tables.php');
-include_once('includes/class/class_kmimos_script.php');
 include_once('includes/functions/kmimos_functions.php');
+include_once('includes/functions/vlz_functions.php');
+include_once('includes/class/class_kmimos_script.php');
 include_once('plugins/woocommerce.php');
+
+if(!function_exists('kmimos_get_info_syte')){
+    function kmimos_get_info_syte(){
+        return array(
+            "pais"      => "México",
+            "titulo"    => "Kmimos México",
+            "email"     => "contactomex@kmimos.la",
+            "telefono"  => "+52 (55) 1791.4931/ +52 (55) 66319264",
+            "twitter"   => "kmimosmx",
+            "facebook"  => "Kmimosmx",
+            "instagram" => "kmimosmx",
+            "mon_izq" => "",
+            "mon_der" => "$"
+        );
+    }
+}
 
 if(!function_exists('kmimos_mails_administradores')){
     function kmimos_mails_administradores(){
 
-        $headers[] = 'BCC: e.celli@kmimos.la';
-        $headers[] = 'BCC: r.cuevas@kmimos.la';
-        $headers[] = 'BCC: r.gonzalez@kmimos.la';
-        $headers[] = 'BCC: m.castellon@kmimos.la';
-        $headers[] = 'BCC: a.veloz@kmimos.la';
-        $headers[] = 'BCC: a.pedroza@kmimos.la';
+        // $headers[] = 'BCC: e.celli@kmimos.la';
+        // $headers[] = 'BCC: r.cuevas@kmimos.la';
+        // $headers[] = 'BCC: r.gonzalez@kmimos.la';
+        // $headers[] = 'BCC: m.castellon@kmimos.la';
+        // $headers[] = 'BCC: a.veloz@kmimos.la';
+        // $headers[] = 'BCC: a.pedroza@kmimos.la';
 
         /*        
         $headers[] = 'BCC: vlzangel91@gmail.com';
@@ -802,6 +818,26 @@ if(!function_exists('kmimos_admin_menu')){
                 'icon'=>plugins_url('/assets/images/icon.png', __FILE__),
             ),
 
+            array(
+                'title'=>'Club Patitas Felices (Participantes)',
+                'short-title'=>'Club Patitas Felices (Participantes)',
+                'parent'=>'kmimos',
+                'slug'=>'bp_participantes_club_patitas_felices',
+                'access'=>'manage_options',
+                'page'=>'backpanel_ctr_participantes',
+                'icon'=>plugins_url('/assets/images/icon.png', __FILE__),
+            ),
+            array(
+                'title'=>'Control de Referidos (Club Patitas Felices)',
+                'short-title'=>'Control de Referidos Club Patitas Felices',
+                'parent'=>'kmimos',
+                'slug'=>'bp_referidos_club_patitas_felices',
+                'access'=>'manage_options',
+                'page'=>'backpanel_ctr_referidos',
+                'icon'=>plugins_url('/assets/images/icon.png', __FILE__),
+            ),
+
+
             // array(
             //     'title'=>'Estados por Cuidador',
             //     'short-title'=>'Estados por Cuidador',
@@ -865,6 +901,18 @@ if(!function_exists('kmimos_panel')){
         include_once('dashboard/kmimos_panel.php');
     }
 
+}
+
+if(!function_exists('backpanel_ctr_participantes')){
+    function backpanel_ctr_participantes(){
+        include_once('dashboard/backpanel_ctr_participantes.php');
+    }
+}
+
+if(!function_exists('backpanel_ctr_referidos')){
+    function backpanel_ctr_referidos(){
+        include_once('dashboard/backpanel_ctr_referidos.php');
+    }
 }
 
 if(!function_exists('backpanel_conocer_cuidador')){

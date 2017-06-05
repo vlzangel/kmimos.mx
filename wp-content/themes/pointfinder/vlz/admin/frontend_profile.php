@@ -235,5 +235,6 @@
                                     document.getElementById("portada").addEventListener("change", vista_previa, false);
                                 </script>
                             ';
-
 ?>
+
+

@@ -10,6 +10,9 @@ $array_backpanel = [
 	'bp_suscriptores',
 	'bp_estados_cuidadores',
 	'bp_wlabel',
+	'bp_referidos_club_patitas_felices',
+	'bp_participantes_club_patitas_felices',
+
 ];
 if( in_array($_GET['page'], $array_backpanel) ){ 
 
@@ -57,6 +60,8 @@ wp_enqueue_script( 'kmimos_script12', get_home_url()."/panel/assets/vendor/datat
 wp_enqueue_script( 'kmimos_script13', get_home_url()."/panel/assets/vendor/datatables.net-keytable/js/dataTables.keyTable.min.js",
 	array(), '1.0.0', true );
 wp_enqueue_script( 'kmimos_script14', get_home_url()."/panel/assets/js/custom.js",
+	array(), '1.0.0', true );
+wp_enqueue_script( 'kmimos_script15', get_home_url()."/panel/assets/js/script.js",
 	array(), '1.0.0', true );
 
 }

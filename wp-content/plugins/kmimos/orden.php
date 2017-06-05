@@ -1,20 +1,16 @@
 <?php
+    require('../../../wp-load.php');
 
-    define('WP_USE_THEMES', false);
-    require('../../../wp-blog-header.php');
+    $info = kmimos_get_info_syte();
 
     add_filter( 'wp_mail_from_name', function( $name ) {
-		return 'Kmimos México';
-	});
-	add_filter( 'wp_mail_from', function( $email ) {
-		return 'kmimos@kmimos.la';
-	});
-
-    include("vlz_data_orden.php");
-    include("vlz_order_funciones.php");
-
-	//CLASS BOOKING
-	$_kmimos_booking->Booking_Details($orden_id);
+        global $info;
+        return $info["titulo"];
+    });
+    add_filter( 'wp_mail_from', function( $email ) {
+        global $info;
+        return $info["email"]; 
+    });
 
 	echo "
 		<style>
@@ -24,10 +20,21 @@
     	</style>
 	";
 
+	if($s == "0"){
+		$mostrar_direccion = false;
+	}else{
+		$mostrar_direccion = true;
+	}
+	
+	$mostrar_direccion = true;
+
+	include("vlz_data_orden.php");
+	include("vlz_order_funciones.php");
+
 	if($booking->get_status() == "cancelled" ){
 
 		$msg_a_mostrar = $styles.'
-			<p>Hola <strong>'.$nom.',</strong></p>
+			<p>Hola <strong>'.$nom_cliente.',</strong></p>
 			<p align="justify">La reserva N° <strong>'.$reserva_id.'</strong> ya ha sido cancelada previamente.</p>
 			<p style="text-align: center;">
 	            <a 
@@ -67,14 +74,15 @@
 		$order->update_status('wc-cancelled');
 		$booking->update_status('cancelled');
 
+		kmimos_set_kmisaldo($cliente_id, $orden_id, $reserva_id);
+
 		$msg_cliente = $styles.'
 	    	<p><strong>Cancelación de Reserva (N°. '.$reserva_id.')</strong></p>
-			<p>Hola <strong>'.$nom.',</strong></p>
+			<p>Hola <strong>'.$nom_cliente.',</strong></p>
 			<p align="justify">Te notificamos que la reserva N° <strong>'.$reserva_id.'</strong> ha sido cancelada exitosamente de acuerdo a tu petición.</p>
 			<p align="justify">Si tienes alguna duda o comentario de la cancelación con todo gusto puedes contactarnos.</p>'
-			.$_kmimos_tables->Create_Table_Caregiver($_kmimos_booking->user_caregiver,$_kmimos_booking->user_meta_caregiver)
-			.$_kmimos_tables->Create_Table_Pets($_kmimos_booking->user_client)
-			//.$_kmimos_tables->Create_Table_Service($orden_id)
+			.$detalles_cuidador
+			.$detalles_mascotas
 			.$detalles_servicio.'
 			<p style="text-align: center;">
 	            <a 
@@ -104,24 +112,22 @@
 		$msg = $styles.'
 	    	<p><strong>Cancelación de Reserva (N°. '.$reserva_id.')</strong></p>
 			<p>Hola <strong>Administrador</strong>,</p>
-			<p align="justify">Te notificamos que el cliente <strong>'.$nom.'</strong> ha cancelado la reserva N° <strong>'.$reserva_id.'</strong>.</p>'
-			.$_kmimos_tables->Create_Table_Client($_kmimos_booking->user_client,$_kmimos_booking->user_meta_client)
-			.$_kmimos_tables->Create_Table_Caregiver($_kmimos_booking->user_caregiver,$_kmimos_booking->user_meta_caregiver)
-			.$_kmimos_tables->Create_Table_Pets($_kmimos_booking->user_client)
-			//.$_kmimos_tables->Create_Table_Service($orden_id)
+			<p align="justify">Te notificamos que el cliente <strong>'.$nom_cliente.'</strong> ha cancelado la reserva N° <strong>'.$reserva_id.'</strong>.</p>'
+			.$detalles_cliente
+			.$detalles_cuidador
+			.$detalles_mascotas
 			.$detalles_servicio;
 	    
-   		$msg_admin = kmimos_get_email_html("Reserva Cancelada por Cliente - ".$cuidador_post->post_title, $msg, "", true, true);
+   		$msg_admin = kmimos_get_email_html("Reserva Cancelada por Cliente - ".$nom_cliente_cuidador, $msg, "", true, true);
 		wp_mail( $email_admin, "Cancelación de Reserva", $msg_admin, kmimos_mails_administradores());
 
    		$msg_cuidador = $styles.'
 	    	<p><strong>Cancelación de Reserva (N°. '.$reserva_id.')</strong></p>
-			<p>Hola <strong>'.$cuidador_post->post_title.'</strong>,</p>
-			<p align="justify">Te notificamos que el cliente <strong>'.$nom.'</strong> ha cancelado la reserva N° <strong>'.$reserva_id.'</strong>.</p>'
-			.$_kmimos_tables->Create_Table_Client($_kmimos_booking->user_client,$_kmimos_booking->user_meta_client)
-			.$_kmimos_tables->Create_Table_Pets($_kmimos_booking->user_client)
-			//.$_kmimos_tables->Create_Table_Service($orden_id)
-			.$detalles_servicio;
+			<p>Hola <strong>'.$nom_cliente_cuidador.'</strong>,</p>
+			<p align="justify">Te notificamos que el cliente <strong>'.$nom_cliente.'</strong> ha cancelado la reserva N° <strong>'.$reserva_id.'</strong>.</p>'
+			.$detalles_cliente
+			.$detalles_mascotas
+			.$detalles_servicio_cuidador;
 
 
    		$msg_cuidador = kmimos_get_email_html("Cancelación de Reserva", $msg_cuidador, "", true, true);
@@ -137,13 +143,12 @@
 
 	    $msg_a_mostrar = $styles.'
 	    	<p><strong>Cancelación de Reserva (N°. '.$reserva_id.')</strong></p>
-			<p>Hola <strong>'.$nom.',</strong></p>
+			<p>Hola <strong>'.$nom_cliente.',</strong></p>
 			<p align="justify">Te notificamos que la reserva N° <strong>'.$reserva_id.'</strong> ha sido cancelada exitosamente de acuerdo a tu petición.</p>
 			<p align="justify">Si tienes alguna duda o comentario de la cancelación con todo gusto puedes contactarnos.</p>'
-			.$_kmimos_tables->Create_Table_Caregiver($_kmimos_booking->user_caregiver,$_kmimos_booking->user_meta_caregiver)
-			.$_kmimos_tables->Create_Table_Pets($_kmimos_booking->user_client)
-			//.$_kmimos_tables->Create_Table_Service($orden_id)
-			.$detalles_servicio.'
+			.$detalles_cuidador
+			.$detalles_mascotas
+			.$detalles_servicio_cuidador.'
 			<p style="text-align: center;">
 	            <a 
 	            	href="'.get_home_url().'/perfil-usuario/?ua=invoices"

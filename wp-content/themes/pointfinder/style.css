@@ -24,9 +24,17 @@
 
 
 @import url('https://fonts.googleapis.com/css?family=Lato:300i,400,400i');
+@import url('css/font-awesome.min.css');
 
 
-
+/*THEME*/
+.theme_title{}
+.theme_content{}
+.theme_button{
+	color: #FFF;
+	background-color: #00d2b7;
+	border-color: #00d2b7;
+}
 
 
 
