@@ -127,6 +127,7 @@ class Class_WhiteLabel{
             $html .= '.wpf-header{background-color:' . $color . ' !important;}';
             $html .= '.wpf-header .pftopline{background-color:' . $color . ' !important; border-bottom:1px solid #333;}';
             $html .= '.wpf-header #pf-primary-nav .pfnavmenu .pfnavsub-menu li:hover { background-color: ' . $color . ' !important;}';
+            $html .= '.wpf-header #pf-topprimary-navmobi ul { background:  ' . $color . ' !important;}';
             $html .= '.wpf-footer{background-color:' . $color . ' !important; background-image:none !important;}';
             $html .= '.pfnavmenu li:hover{background-color:' . $color . ' !important;}';
             $html .= '.pfnavmenu .pfnavsub-menu li:hover{background-color:' . $color . ' !important;}';
