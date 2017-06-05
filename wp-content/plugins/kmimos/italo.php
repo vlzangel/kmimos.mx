@@ -159,4 +159,10 @@
         }
     }
 
+	if(!function_exists('backpanel_wlabel')){
+        function backpanel_wlabel(){
+            include_once('wlabel/admin/backpanel.php');
+        }
+    }
+
 ?>
