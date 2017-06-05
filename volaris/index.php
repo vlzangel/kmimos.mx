@@ -7,6 +7,6 @@
         </style>
     </head>
     <body>
-        <iframe src="https://www.kmimos.com.mx/?wlabel=volaris"/>
+        <iframe src="https://kmimos16-pc/kmimos.mx/?wlabel=volaris"/>
     </body>
 </html>
