@@ -576,6 +576,11 @@ if(isset($ua_action)){
 										);
 										$atributos = serialize($atributos);
 
+										$coordenadas = unserialize( $wpdb->get_var("SELECT valor FROM kmimos_opciones WHERE clave = 'municipio_{$delegacion}' ") );
+
+						                $latitud  = $coordenadas["referencia"]->lat;
+						                $longitud = $coordenadas["referencia"]->lng;
+
 										$sql = "
                                                 UPDATE
                                                     cuidadores
@@ -587,8 +592,8 @@ if(isset($ua_action)){
                                                     check_out 			= '{$salida}',
                                                     num_mascotas 		= '{$num_mascotas_casa}',
                                                     mascotas_permitidas = '{$acepto_hasta}',
-                                                    latitud		 		= '{$latitude_petsitter}',
-                                                    longitud		 	= '{$longitude_petsitter}',
+                                                    latitud		 		= '{$latitud}',
+                                                    longitud		 	= '{$longitud}',
                                                     mascotas_cuidador	= '{$mascotas_cuidador}',
                                                     tamanos_aceptados	= '{$tamanos_aceptados}',
                                                     edades_aceptadas	= '{$edades_aceptadas}',
