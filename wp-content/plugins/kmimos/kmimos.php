@@ -23,8 +23,21 @@ include_once('includes/functions/kmimos_functions.php');
 include_once('includes/class/class_kmimos_booking.php');
 include_once('includes/class/class_kmimos_tables.php');
 include_once('includes/class/class_kmimos_script.php');
-
 // include_once('plugins/woocommerce.php');
+
+
+add_action( 'send_headers', 'add_header_seguridad' );
+function add_header_seguridad() {
+    header( 'X-Content-Type-Options: nosniff' );
+    header( 'X-Frame-Options: SAMEORIGIN' );
+    header( 'X-XSS-Protection: 1' );
+    header( 'Cache-Control: no-cache, no-store, must-revalidate');
+
+    //Prevent Cache-control http
+    //header('Access-Control-Allow-Origin: *', false);
+}
+
+
 
 if(!function_exists('kmimos_get_info_syte')){
     function kmimos_get_info_syte(){
