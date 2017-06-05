@@ -23,6 +23,14 @@ include_once('includes/functions/vlz_functions.php');
 include_once('includes/class/class_kmimos_script.php');
 include_once('plugins/woocommerce.php');
 
+
+// add_action( 'send_headers', 'add_header_seguridad' );
+function add_header_seguridad() {
+    header( 'X-Content-Type-Options: nosniff' );
+    header( 'X-Frame-Options: SAMEORIGIN' );
+    header( 'X-XSS-Protection: 1' );
+}
+
 if(!function_exists('kmimos_get_info_syte')){
     function kmimos_get_info_syte(){
         return array(
@@ -838,15 +846,15 @@ if(!function_exists('kmimos_admin_menu')){
             ),
 
 
-            // array(
-            //     'title'=>'Estados por Cuidador',
-            //     'short-title'=>'Estados por Cuidador',
-            //     'parent'=>'kmimos',
-            //     'slug'=>'bp_estados_cuidadores',
-            //     'access'=>'manage_options',
-            //     'page'=>'backpanel_estados_cuidadores',
-            //     'icon'=>plugins_url('/assets/images/icon.png', __FILE__),
-            // ),
+            array(
+                'title'=>'Estados por Cuidador',
+                'short-title'=>'Estados por Cuidador',
+                'parent'=>'kmimos',
+                'slug'=>'bp_estados_cuidadores',
+                'access'=>'manage_options',
+                'page'=>'backpanel_estados_cuidadores',
+                'icon'=>plugins_url('/assets/images/icon.png', __FILE__),
+            ),
 
             array(
                 'title'=> __('Settings'),
