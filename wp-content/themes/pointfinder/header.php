@@ -226,7 +226,7 @@
 			}
 		/* End: Transparent Header Addon */
 
-		wp_enqueue_style( 'vlz', get_home_url()."/wp-content/themes/pointfinder"."/css/vlz.css" );
+		wp_enqueue_style( 'vlz', get_home_url()."/wp-content/themes/pointfinder/css/vlz.css?v=1.0.0" );
 
 		wp_head(); 
 

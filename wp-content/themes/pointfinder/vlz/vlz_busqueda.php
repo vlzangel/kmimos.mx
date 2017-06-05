@@ -22,9 +22,10 @@
 		$_POST = unserialize($_SESSION['busqueda']);
 	}
 
-	//MAP
- 	//echo $kmimos_map->Search_Map($_POST);
-	// $Kmap=$kmimos_map->Search_Map($_POST);
+	get_header();
+
+	$valores = explode("/", $_SERVER['REDIRECT_URL']);
+	$page = $valores[ count($valores)-2 ];
 
 	$pagina = $page+0; // Pagina actual
 	$item_by_page = 15; // Numero de Items por pagina
@@ -37,7 +38,7 @@
 	include("vlz_style.php");
 	include("vlz_funciones.php");
 
-	get_header();
+	echo "<style> .pflist-item .pfHoverButtonStyle > a{line-height: 1px;} </style>";
 	
 	if(function_exists('PFGetHeaderBar')){PFGetHeaderBar();} ?>
 
