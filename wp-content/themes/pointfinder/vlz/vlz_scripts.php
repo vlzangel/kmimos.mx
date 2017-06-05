@@ -4,6 +4,7 @@
 	$N = geo("N");
 	$S = geo("S");
 
+	echo "<!-- Hola -->";
 	echo get_estados_municipios();
 ?>
 <script type="text/javascript">
@@ -135,7 +136,7 @@
 
 	        jQuery("#municipios").html(html);
 
-	        var location    = estados_municipios[estado_id]['coordenadas']['referencia'];
+	        /*var location    = estados_municipios[estado_id]['coordenadas']['referencia'];
 	        var norte       = estados_municipios[estado_id]['coordenadas']['norte'];
 	        var sur         = estados_municipios[estado_id]['coordenadas']['sur'];
 
@@ -143,7 +144,7 @@
 
 	        jQuery("#otra_latitud").attr("value", location.lat);
 	        jQuery("#otra_longitud").attr("value", location.lng);
-	        jQuery("#otra_distancia").attr("value", distancia);
+	        jQuery("#otra_distancia").attr("value", distancia);*/
 
 	    }
 
@@ -158,7 +159,7 @@
 		var estado_id = jQuery("#estados").val();            
         var municipio_id = jQuery('#municipios > option[value="'+jQuery("#municipios").val()+'"]').attr('data-id');   
 
-        if( estado_id != "" ){
+        /*if( estado_id != "" ){
 
             var location    = estados_municipios[estado_id]['municipios'][municipio_id]['coordenadas']['referencia'];
             var norte       = estados_municipios[estado_id]['municipios'][municipio_id]['coordenadas']['norte'];
@@ -170,7 +171,7 @@
             jQuery("#otra_longitud").attr("value", location.lng);
             jQuery("#otra_distancia").attr("value", distancia);
 
-        }
+        }*/
 
 	}
 

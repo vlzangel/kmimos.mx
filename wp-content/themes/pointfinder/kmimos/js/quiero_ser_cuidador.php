@@ -491,11 +491,11 @@
 		            html += "<option value="+val.id+" data-id='"+i+"'>"+val.nombre+"</option>";
 		        });
 		        jQuery("#municipio").html(html);
-		        var location    = estados_municipios[estado_id]['coordenadas']['referencia'];
+		        /*var location    = estados_municipios[estado_id]['coordenadas']['referencia'];
 		        var norte       = estados_municipios[estado_id]['coordenadas']['norte'];
 		        var sur         = estados_municipios[estado_id]['coordenadas']['sur'];
 		        jQuery("#latitud").attr("value", location.lat);
-		        jQuery("#longitud").attr("value", location.lng);
+		        jQuery("#longitud").attr("value", location.lng);*/
 		    }
 		});
 
@@ -506,13 +506,13 @@
 		function vlz_coordenadas(){
 			var estado_id = jQuery("#estado").val();            
 		    var municipio_id = jQuery('#municipio > option[value="'+jQuery("#municipio").val()+'"]').attr('data-id');   
-		    if( estado_id != "" ){
+		    /*if( estado_id != "" ){
 		        var location    = estados_municipios[estado_id]['municipios'][municipio_id]['coordenadas']['referencia'];
 		        var norte       = estados_municipios[estado_id]['municipios'][municipio_id]['coordenadas']['norte'];
 		        var sur         = estados_municipios[estado_id]['municipios'][municipio_id]['coordenadas']['sur'];
 		        jQuery("#latitud").attr("value", location.lat);
 		        jQuery("#longitud").attr("value", location.lng);
-		    }
+		    }*/
 		}
 
 	// Generales
