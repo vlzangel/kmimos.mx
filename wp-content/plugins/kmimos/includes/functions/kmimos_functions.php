@@ -12,11 +12,9 @@
 		$result = $conn_my->query("
 			SELECT 
 				s.id AS id,
-				s.name AS esta,
-				ko.valor AS coord
+				s.name AS esta
 			FROM 
 				states AS s
-			INNER JOIN kmimos_opciones AS ko ON  ( ko.clave = CONCAT('estado_', s.id) )
 			WHERE 
 				country_id = 1
 			ORDER BY 
@@ -31,11 +29,9 @@
 				$result2 = $conn_my->query("
 					SELECT 
 						l.id AS id,
-						l.name AS muni,
-						ko.valor AS coord
+						l.name AS muni
 					FROM 
 						locations AS l
-					INNER JOIN kmimos_opciones AS ko ON  ( ko.clave = CONCAT('municipio_', l.id) )
 					WHERE 
 						state_id = {$id}
 					ORDER BY 
@@ -46,15 +42,13 @@
 					while ($row2 = $result2->fetch_assoc()){
 						$municipios[] = array(
 							"id" => $row2['id'],
-							"nombre" => $row2['muni'],
-							"coordenadas" => unserialize($row2['coord'])
+							"nombre" => $row2['muni']
 						);
 					}
 				}
 
 				$datos[$id] = array(
 					"nombre" => $esta,
-					"coordenadas" => unserialize($coord),
 					"municipios" => $municipios
 				);
 
