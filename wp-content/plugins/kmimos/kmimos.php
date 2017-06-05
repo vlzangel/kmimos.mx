@@ -27,24 +27,16 @@ include_once('includes/class/class_kmimos_script.php');
 
 
 add_action( 'send_headers', 'add_header_seguridad' );
-function add_header_seguridad() {
-    header( 'X-Content-Type-Options: nosniff' );
-    header( 'X-Frame-Options: SAMEORIGIN' );
-    header( 'X-XSS-Protection: 1' );
-    header( 'Cache-Control: no-cache, no-store, must-revalidate');
+if(!function_exists('add_header_seguridad')){
+    function add_header_seguridad() {
+        header( 'X-Content-Type-Options: nosniff' );
+        header( 'X-Frame-Options: SAMEORIGIN' );
+        header( 'X-XSS-Protection: 1' );
+        header( 'Cache-Control: no-cache, no-store, must-revalidate');
 
-    //Prevent Cache-control http
-    //header('Access-Control-Allow-Origin: *', false);
-}
-
-
-
-
-// add_action( 'send_headers', 'add_header_seguridad' );
-function add_header_seguridad() {
-    header( 'X-Content-Type-Options: nosniff' );
-    header( 'X-Frame-Options: SAMEORIGIN' );
-    header( 'X-XSS-Protection: 1' );
+        //Prevent Cache-control http
+        //header('Access-Control-Allow-Origin: *', false);
+    }
 }
 
 if(!function_exists('kmimos_get_info_syte')){
