@@ -17,7 +17,7 @@ $reservas = getReservas($desde, $hasta);
 ?>
 
 <div class="col-md-12 col-sm-12 col-xs-12">
-<div class="x_panel">
+<div class="row">
 	<div class="col-md-12 col-sm-12 col-xs-12">
 		<div class="x_title">
 		<h2>Panel de Control <small>Reservas</small></h2>
@@ -44,14 +44,22 @@ $reservas = getReservas($desde, $hasta);
 					<button type="submit" class="btn btn-success"><i class="fa fa-search"></i> Buscar</button>			  
 			    </form>
 				<hr>  
+		  		<div class="clearfix"></div>
 			</div>
 		</div>
-	</div>
+  	</div>
+	<div class="clearfix"></div>
   	<div class="col-sm-12">  	
 
   	<?php if( empty($reservas) ){ ?>
   		<!-- Mensaje Sin Datos -->
-	    <div class="row alert alert-info"> No existen registros </div>
+	    <div class="row">
+	    	<div class="col-sm-12">
+	    		<div class="alert alert-info">
+		    		No existen registros
+	    		</div>
+		    </div>
+	    </div> 
   	<?php }else{ ?>  		
 	    <div class="row"> 
 	    	<div class="col-sm-12" id="table-container" 
