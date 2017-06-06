@@ -27,16 +27,22 @@
 	$valores = explode("/", $_SERVER['REDIRECT_URL']);
 	$page = $valores[ count($valores)-2 ];
 
-	$pagina = $page+0; // Pagina actual
+/*	$pagina = $page+0; // Pagina actual
 	$item_by_page = 15; // Numero de Items por pagina
 	// Items by page
 	$pagina_row_fin = ( $pagina > 1 ) ? $pagina * $item_by_page : 0;
 	$pagina_row_ini = $pagina_row_fin - $item_by_page; 
 
-	$xpagina = $pagina_row_fin; // Old var - last items
+	$xpagina = $pagina_row_fin; // Old var - last items*/
+
+
+	$pagina = $page+0;
+	$item_by_page = 15;
+	if( $pagina < 0 ){ $pagina = 0; }
+	$xpagina = $pagina*$item_by_page;
+	$pagina_row_fin = $xpagina;
 
 	include("vlz_style.php");
-	include("vlz_funciones.php");
 
 	echo "<style> .pflist-item .pfHoverButtonStyle > a{line-height: 1px;} </style>";
 	
