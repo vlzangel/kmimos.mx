@@ -328,8 +328,8 @@
 										if($t > $h){
 											$ps = ceil($t/$h);
 											for( $i=0; $i<$ps; $i++){
-												$active = ( $pagina == $i || ($pagina == 0 && $i == 1)  ) ? "class='vlz_activa'": "";
-												echo "<a href='".get_home_url()."/busqueda/{$i}' ".$active.">".$i."</a>";
+												$active = ( $xpagina == $i || ($xpagina == 0 && $i == 1)  ) ? "class='vlz_activa'": "";
+												echo "<a href='".get_home_url()."/busqueda/".($i+1)."' ".$active.">".($i+1)."</a>";
 											}
 										}
 										$w = 40*$ps;
