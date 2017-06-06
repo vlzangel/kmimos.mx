@@ -303,17 +303,33 @@
 
 								<div class="vlz_nav_cont_interno">
 
-					 				<?php
+					 				<!-- <?php
+										$t = $total_registros+0;
+										if($t > $item_by_page){
+											$ps = ceil($t/$item_by_page);
+											for( $i=1; $i<$ps; $i++){
+												$active = ( $pagina == $i || ($pagina == 0 && $i == 1)  )? "class='vlz_activa'": "";
+												echo "<a href='".get_home_url()."/busqueda/{$i}' ".$active.">".$i."</a>";
+											}
+										}
+										$w = 40*$ps;
+										echo "
+											<style>
+												.vlz_nav_cont_interno{
+													width: {$w}px;
+												}
+											</style>
+										";
+									?> -->
+				 					
+				 					<?php
 										$t = $total_registros+0;
 										$h = 15;
 										if($t > $h){
 											$ps = ceil($t/$h);
 											for( $i=0; $i<$ps; $i++){
-												if( $pagina == $i ){
-													echo "<a href='?pagina={$i}' class='vlz_activa'>".($i+1)."</a>";
-												}else{
-													echo "<a href='?pagina={$i}'>".($i+1)."</a>";
-												}
+												$active = ( $pagina == $i || ($pagina == 0 && $i == 1)  ) ? "class='vlz_activa'": "";
+												echo "<a href='".get_home_url()."/busqueda/{$i}' ".$active.">".$i."</a>";
 											}
 										}
 										$w = 40*$ps;
@@ -325,7 +341,7 @@
 											</style>
 										";
 									?>
-				 		
+
 								</div>
 
 							</div> <?php
