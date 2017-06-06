@@ -72,7 +72,7 @@
 			</style>
 		";
 
-		if($order->get_status() == 'wc-on-hold' && $metodo_pago == 'openpay_stores'){ }else{
+		if($order->get_status() == 'on-hold' && $metodo_pago == 'openpay_stores'){ }else{
 			kmimos_set_kmisaldo($cliente_id, $orden_id, $reserva_id);
 		}
 
