@@ -27,20 +27,11 @@
 	$valores = explode("/", $_SERVER['REDIRECT_URL']);
 	$page = $valores[ count($valores)-2 ];
 
-/*	$pagina = $page+0; // Pagina actual
-	$item_by_page = 15; // Numero de Items por pagina
-	// Items by page
-	$pagina_row_fin = ( $pagina > 1 ) ? $pagina * $item_by_page : 0;
-	$pagina_row_ini = $pagina_row_fin - $item_by_page; 
-
-	$xpagina = $pagina_row_fin; // Old var - last items*/
-
-
+	$xpagina = $page+0;
 	$pagina = $page+0;
 	$item_by_page = 15;
 	if( $pagina < 0 ){ $pagina = 0; }
-	$xpagina = $pagina*$item_by_page;
-	$pagina_row_fin = $xpagina;
+	$pagina_row_fin = $pagina*$item_by_page;
 
 	include("vlz_style.php");
 
@@ -303,32 +294,13 @@
 
 								<div class="vlz_nav_cont_interno">
 
-					 				<!-- <?php
-										$t = $total_registros+0;
-										if($t > $item_by_page){
-											$ps = ceil($t/$item_by_page);
-											for( $i=1; $i<$ps; $i++){
-												$active = ( $pagina == $i || ($pagina == 0 && $i == 1)  )? "class='vlz_activa'": "";
-												echo "<a href='".get_home_url()."/busqueda/{$i}' ".$active.">".$i."</a>";
-											}
-										}
-										$w = 40*$ps;
-										echo "
-											<style>
-												.vlz_nav_cont_interno{
-													width: {$w}px;
-												}
-											</style>
-										";
-									?> -->
-				 					
 				 					<?php
 										$t = $total_registros+0;
 										$h = 15;
 										if($t > $h){
 											$ps = ceil($t/$h);
 											for( $i=0; $i<$ps; $i++){
-												$active = ( $xpagina == $i ) ? "class='vlz_activa'": "";
+												$active = ( $xpagina == $i ) ? "class='vlz_activa'" : "";
 												echo "<a href='".get_home_url()."/busqueda/".($i)."' ".$active.">".($i+1)."</a>";
 											}
 										}
