@@ -96,6 +96,7 @@
 
 										<div class="vlz_sub_seccion">
 											<div class="vlz_cell100">
+												<div class='vlz_titulo_interno vlz_sub_seccion_mensaje'>Ajusta y completa tu descripcion, te sugerimos:</div>
 												<textarea 
 													data-title="Ingresa una descripción de al menos 50 caracteres incluyendo los espacios." 
 													data-help='"Cuentanos sobre ti, tus cualidades y porque deberían permitirte cuidar sus perritos"'
