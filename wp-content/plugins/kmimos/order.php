@@ -85,7 +85,7 @@
 	        </p>
 	    ';
 	    
-   		$msg_cuidador = kmimos_get_email_html("Reserva Cancelada Exitosamente!", $msg, "", true, true);
+   		echo $msg_cuidador = kmimos_get_email_html("Reserva Cancelada Exitosamente!", $msg, "", true, true);
    		wp_mail( $cuidador_email, "Cancelación de Reserva", $msg_cuidador);
 
 		$msg = $styles.'
