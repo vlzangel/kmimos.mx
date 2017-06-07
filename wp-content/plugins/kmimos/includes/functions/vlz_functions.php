@@ -998,7 +998,9 @@
                 "detalles_factura" => $detalles_factura,
 
                 "detalles_servicio_cuidador" => $detalles_servicio_cuidador,
-                "detalles_factura_cuidador" => $detalles_factura_cuidador
+                "detalles_factura_cuidador" => $detalles_factura_cuidador,
+
+                "metodo_pago" => $metas_orden['_payment_method'][0]
             );
 
         }
