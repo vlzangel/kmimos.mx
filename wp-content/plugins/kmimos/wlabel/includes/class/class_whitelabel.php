@@ -100,7 +100,7 @@ class Class_WhiteLabel{
 
         if($image!=''){
             $html='<style type="text/css">';
-            $html.='.pf-logo-container{background-image: url('.$image.') !important;}';
+            $html.='.pf-logo-container{background-image: url('.$image.') !important; background-size: contain !important; background-position: center left !important;}';
             $html.='</style>';
             return $html;
         }

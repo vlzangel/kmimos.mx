@@ -34,26 +34,29 @@
 <?php
 
    $sql = "
-         SELECT
-             posts.*,
-             posts.ID AS ID,
-             posts.post_type AS ptype,
-             posts.post_status AS status,
-             posts.post_parent AS porder,
-             posts.post_author AS customer
-         FROM
-             wp_posts AS posts
-             LEFT JOIN wp_postmeta AS postmeta ON (postmeta.post_id=posts.ID AND postmeta.meta_key='_wlabel')
-             LEFT JOIN wp_usermeta AS usermeta ON (usermeta.user_id=posts.post_author AND usermeta.meta_key='_wlabel')
-         WHERE
-             posts.post_type = 'wc_booking' AND
-             (
-                usermeta.meta_value = '{$wlabel}' OR
-                postmeta.meta_value = '{$wlabel}'
-             )
-          ORDER BY
-            posts.ID DESC
+        SELECT
+          posts.*
+        FROM
+          wp_posts AS posts
+          LEFT JOIN wp_postmeta AS postmeta ON (postmeta.post_id=posts.post_parent AND postmeta.meta_key='_wlabel')
+          LEFT JOIN wp_usermeta AS usermeta ON (usermeta.user_id=posts.post_author AND usermeta.meta_key='_wlabel')
+        WHERE
+          (
+          (posts.post_type = 'wc_booking' AND usermeta.meta_value = '{$wlabel}')
+          OR
+          (posts.post_type = 'wc_booking' AND postmeta.meta_value = '{$wlabel}')
+          )
+          AND NOT
+          posts.post_status LIKE '%cart%'
+        ORDER BY
+          posts.ID DESC
      ";
+
+
+/*
+
+
+*/
 
    //var_dump($sql);
    //var_dump($wpdb);
