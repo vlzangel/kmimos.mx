@@ -2,10 +2,6 @@
 
 	get_header();
 
-	echo "<pre>";
-		print_r($_SERVER);
-	echo "</pre>";
-
 	$post_id = get_the_id();
 	$meta = get_post_meta( $post_id );
 
