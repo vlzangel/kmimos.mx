@@ -33,56 +33,41 @@
 
 <?php
 
-   $sql = "
-        SELECT
-             posts.*
-         FROM
-             wp_users AS users
-             LEFT JOIN wp_usermeta AS usermeta ON (usermeta.user_id=users.ID AND usermeta.meta_key='_wlabel')
-             LEFT JOIN wp_posts AS posts ON (posts.post_author=users.ID)
-          WHERE
-             usermeta.meta_value = 'volaris' AND
-             posts.post_type = 'wc_booking' AND NOT
-             posts.post_status LIKE '%cart%'
-          ORDER BY
-            users.ID DESC
-     ";
+    $sql = "
+        SELECT DISTINCT
+          users.user_login
 
+        FROM
+          wp_users AS users
+          LEFT JOIN wp_usermeta AS usermeta ON (usermeta.user_id=users.ID AND usermeta.meta_key='_wlabel')
+          LEFT JOIN wp_posts AS posts ON (posts.post_author=users.ID)
+          LEFT JOIN wp_postmeta AS postmeta ON (postmeta.post_id=posts.post_parent AND postmeta.meta_key='_wlabel')
+
+        WHERE
+          (
+            usermeta.meta_value = 'volaris'
+            OR
+            (postmeta.meta_value = 'volaris'  AND posts.post_type = 'wc_booking')
+          )
+          AND NOT
+          posts.post_status LIKE '%cart%'
+
+        ORDER BY
+          users.ID DESC
+    ";
 /*
-         SELECT
-             users.*
-         FROM
-             wp_users AS users
-             LEFT JOIN wp_usermeta AS usermeta ON (usermeta.user_id=users.ID AND usermeta.meta_key='_wlabel')
-             LEFT JOIN wp_posts AS posts ON (posts.post_author=users.ID),
+ */
 
-             wp_posts AS posts ON (posts.post_author=users.ID)
-             LEFT JOIN wp_postmeta AS postmeta ON (postmeta.post_id=posts.ID AND postmeta.meta_key='_wlabel')
-          WHERE
-             usermeta.meta_value = '{$wlabel}' OR
-             postmeta.meta_value = '{$wlabel}' OR
-             postmeta.meta_value = '{$wlabel}'
-          ORDER BY
-            users.ID DESC
+    //var_dump($sql);
+    //var_dump($wpdb);
+    $users = $wpdb->get_results($sql);
+    var_dump(count($users));
+    var_dump($users);
+    //var_dump($users[0]);
 
-
-
-LEFT JOIN wp_posts AS posts ON (posts.post_author=users.ID),
-
-             wp_posts AS posts ON (posts.post_author=users.ID)
-             LEFT JOIN wp_postmeta AS postmeta ON (postmeta.post_id=posts.ID AND postmeta.meta_key='_wlabel')
-          WHERE
-             usermeta.meta_value = '{$wlabel}' OR
-             postmeta.meta_value = '{$wlabel}'
-
-*/
-   //var_dump($sql);
-   //var_dump($wpdb);
-   $users = $wpdb->get_results($sql);
-   var_dump($users);
 
     $BUILDusers = array();
-   foreach($users as $key => $user){
+    foreach($users as $key => $user){
         //var_dump($user);
         $ID=$user->ID;
         $date=strtotime($user->post_date);
@@ -111,23 +96,6 @@ LEFT JOIN wp_posts AS posts ON (posts.post_author=users.ID),
         $product = $wpdb->get_row("SELECT * FROM $wpdb->posts WHERE ID ='$IDproduct'");
         //var_dump($product);
 
-        $html='
-        <tr data-day="'.date('d',$date).'" data-month="'.date('n',$date).'" data-year="'.date('Y',$date).'" data-status="'.$status.'">
-            <td>'.$user->ID.'</td>
-            <td>'.date('d/m/Y',$date).'</td>
-            <td>'.$_customer_name.'</td>
-            <td>'.$status_name.'</td>
-            <td>'.$_meta_WCorder_line_total.'</td>
-            <td>'.$_meta_WCorder_line_total*0.17.'</td>
-            <td>'.$_meta_WCorder_line_total*0.17*0.4.'</td>
-            <td>'.$_meta_WCorder_line_total*0.17*0.6.'</td>
-            <td>'.$customer.'</td>
-            <td>'.$customer.'</td>
-        </tr>
-        ';
-        //echo $html;
-
-
        $BUILDusers[$ID] = array();
        $BUILDusers[$ID]['user'] = $ID;
        $BUILDusers[$ID]['order'] = $order;
@@ -146,52 +114,9 @@ LEFT JOIN wp_posts AS posts ON (posts.post_author=users.ID),
 
 
 
-            //TOTAL DE MONTO DE RESERVAS
-             echo '<tr>';
-                 echo '<th>Monto de Reservas</th>';
-                    $day_init=strtotime(date('m/d/Y',$WLresult->time));
-                    $day_last=strtotime(date('m/d/Y',time()));
-                    $day_more=(24*60*60);
-
-                    $amount_day=0;
-                    $amount_month=0;
-                    $amount_year=0;
-
-                    for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
-
-                        foreach($BUILDusers as $user){
-                            if(strtotime(date('m/d/Y',$user['date']))==strtotime(date('m/d/Y',$day))){
-                                $amount_user=0;
-                                if($user['status']!='cancelled'){
-                                    $amount_user=$user['WCorder_line_total'];
-                                }
-                                $amount_user=(round($amount_user*100)/100);
-                                $amount_day=$amount_day+$amount_user;
-                                $amount_month=$amount_month+$amount_user;
-                                $amount_year=$amount_year+$amount_user;
-                            }
-                        }
-
-
-                        echo '<td class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
-                        $amount_day=0;
-
-                        if(date('t',$day)==date('d',$day) || $day_last==$day){
-                            echo '<td class="month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_month.'</td>';
-                            $amount_month=0;
-
-                            if(date('m',$day)=='12' || $day_last==$day){
-                                echo '<th class="year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_year.'</th>';
-                                $amount_year=0;
-                            }
-                        }
-                    }
-             echo '</tr>';
-
-
-            //TOTAL DE MONTO DE COMISION
-            echo '<tr>';
-            echo '<th>Comision</th>';
+     //CANTIDAD DE USUARIOS
+     echo '<tr>';
+         echo '<th>Cantidad de Usuarios</th>';
             $day_init=strtotime(date('m/d/Y',$WLresult->time));
             $day_last=strtotime(date('m/d/Y',time()));
             $day_more=(24*60*60);
@@ -206,138 +131,6 @@ LEFT JOIN wp_posts AS posts ON (posts.post_author=users.ID),
                     if(strtotime(date('m/d/Y',$user['date']))==strtotime(date('m/d/Y',$day))){
                         $amount_user=0;
                         if($user['status']!='cancelled'){
-                            $amount_user=$user['WCorder_line_total']*0.17;
-                        }
-                        $amount_user=(round($amount_user*100)/100);
-                        $amount_day=$amount_day+$amount_user;
-                        $amount_month=$amount_month+$amount_user;
-                        $amount_year=$amount_year+$amount_user;
-                    }
-                }
-
-
-                echo '<td class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
-                $amount_day=0;
-
-                if(date('t',$day)==date('d',$day) || $day_last==$day){
-                    echo '<td class="month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_month.'</td>';
-                    $amount_month=0;
-
-                    if(date('m',$day)=='12' || $day_last==$day){
-                        echo '<th class="year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_year.'</th>';
-                        $amount_year=0;
-                    }
-                }
-            }
-            echo '</tr>';
-
-
-            //TOTAL DE MONTO DE COMISION DE KMIMOS
-            echo '<tr>';
-            echo '<th>Comision de  kmimos</th>';
-            $day_init=strtotime(date('m/d/Y',$WLresult->time));
-            $day_last=strtotime(date('m/d/Y',time()));
-            $day_more=(24*60*60);
-
-            $amount_day=0;
-            $amount_month=0;
-            $amount_year=0;
-
-            for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
-
-                foreach($BUILDusers as $user){
-                    if(strtotime(date('m/d/Y',$user['date']))==strtotime(date('m/d/Y',$day))){
-                        $amount_user=0;
-                        if($user['status']!='cancelled'){
-                            $amount_user=$user['WCorder_line_total']*0.17*0.6;
-                        }
-                        $amount_user=(round($amount_user*100)/100);
-                        $amount_day=$amount_day+$amount_user;
-                        $amount_month=$amount_month+$amount_user;
-                        $amount_year=$amount_year+$amount_user;
-                    }
-                }
-
-
-                echo '<td class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
-                $amount_day=0;
-
-                if(date('t',$day)==date('d',$day) || $day_last==$day){
-                    echo '<td class="month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_month.'</td>';
-                    $amount_month=0;
-
-                    if(date('m',$day)=='12' || $day_last==$day){
-                        echo '<th class="year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_year.'</th>';
-                        $amount_year=0;
-                    }
-                }
-            }
-            echo '</tr>';
-
-
-            //TOTAL DE MONTO DE COMISION DE VOLARIS
-            echo '<tr>';
-            echo '<th>Comision de '.$wlabel.'</th>';
-            $day_init=strtotime(date('m/d/Y',$WLresult->time));
-            $day_last=strtotime(date('m/d/Y',time()));
-            $day_more=(24*60*60);
-
-            $amount_day=0;
-            $amount_month=0;
-            $amount_year=0;
-
-            for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
-
-                foreach($BUILDusers as $user){
-                    if(strtotime(date('m/d/Y',$user['date']))==strtotime(date('m/d/Y',$day))){
-                        $amount_user=0;
-                        if($user['status']!='cancelled'){
-                            $amount_user=$user['WCorder_line_total']*0.17*0.4;
-                        }
-                        $amount_user=(round($amount_user*100)/100);
-                        $amount_day=$amount_day+$amount_user;
-                        $amount_month=$amount_month+$amount_user;
-                        $amount_year=$amount_year+$amount_user;
-                    }
-                }
-
-
-                echo '<td class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
-                $amount_day=0;
-
-                if(date('t',$day)==date('d',$day) || $day_last==$day){
-                    echo '<td class="month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_month.'</td>';
-                    $amount_month=0;
-
-                    if(date('m',$day)=='12' || $day_last==$day){
-                        echo '<th class="year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_year.'</th>';
-                        $amount_year=0;
-                    }
-                }
-            }
-            echo '</tr>';
-
-
-
-
-
-            //TOTAL DE MONTO DE RESERVAS CANCELADAS
-            echo '<tr>';
-            echo '<th>Monto de Reservas Canceladas</th>';
-            $day_init=strtotime(date('m/d/Y',$WLresult->time));
-            $day_last=strtotime(date('m/d/Y',time()));
-            $day_more=(24*60*60);
-
-            $amount_day=0;
-            $amount_month=0;
-            $amount_year=0;
-
-            for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
-
-                foreach($BUILDusers as $user){
-                    if(strtotime(date('m/d/Y',$user['date']))==strtotime(date('m/d/Y',$day))){
-                        $amount_user=0;
-                        if($user['status']=='cancelled'){
                             $amount_user=$user['WCorder_line_total'];
                         }
                         $amount_user=(round($amount_user*100)/100);
@@ -361,53 +154,95 @@ LEFT JOIN wp_posts AS posts ON (posts.post_author=users.ID),
                     }
                 }
             }
-            echo '</tr>';
+     echo '</tr>';
 
 
+//CANTIDAD DE USUARIOS REGISTRADOS
+echo '<tr>';
+echo '<th>Cantidad de Usuarios Registrados</th>';
+$day_init=strtotime(date('m/d/Y',$WLresult->time));
+$day_last=strtotime(date('m/d/Y',time()));
+$day_more=(24*60*60);
 
+$amount_day=0;
+$amount_month=0;
+$amount_year=0;
 
+for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
 
-            //TOTAL DE MONTO POR PAGAR
-            echo '<tr>';
-            echo '<th>Monto de Reservas Por Pagar</th>';
-            $day_init=strtotime(date('m/d/Y',$WLresult->time));
-            $day_last=strtotime(date('m/d/Y',time()));
-            $day_more=(24*60*60);
-
-            $amount_day=0;
-            $amount_month=0;
-            $amount_year=0;
-
-            for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
-
-                foreach($BUILDusers as $user){
-                    if(strtotime(date('m/d/Y',$user['date']))==strtotime(date('m/d/Y',$day))){
-                        $amount_user=0;
-                        if($user['status']=='unpaid' && $user['metas_order']['_payment_method'][0] == 'openpay_stores'){
-                            $amount_user=$user['WCorder_line_total'];
-                        }
-                        $amount_user=(round($amount_user*100)/100);
-                        $amount_day=$amount_day+$amount_user;
-                        $amount_month=$amount_month+$amount_user;
-                        $amount_year=$amount_year+$amount_user;
-                    }
-                }
-
-
-                echo '<td class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
-                $amount_day=0;
-
-                if(date('t',$day)==date('d',$day) || $day_last==$day){
-                    echo '<td class="month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_month.'</td>';
-                    $amount_month=0;
-
-                    if(date('m',$day)=='12' || $day_last==$day){
-                        echo '<th class="year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_year.'</th>';
-                        $amount_year=0;
-                    }
-                }
+    foreach($BUILDusers as $user){
+        if(strtotime(date('m/d/Y',$user['date']))==strtotime(date('m/d/Y',$day))){
+            $amount_user=0;
+            if($user['status']!='cancelled'){
+                $amount_user=$user['WCorder_line_total'];
             }
-            echo '</tr>';
+            $amount_user=(round($amount_user*100)/100);
+            $amount_day=$amount_day+$amount_user;
+            $amount_month=$amount_month+$amount_user;
+            $amount_year=$amount_year+$amount_user;
+        }
+    }
+
+
+    echo '<td class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
+    $amount_day=0;
+
+    if(date('t',$day)==date('d',$day) || $day_last==$day){
+        echo '<td class="month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_month.'</td>';
+        $amount_month=0;
+
+        if(date('m',$day)=='12' || $day_last==$day){
+            echo '<th class="year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_year.'</th>';
+            $amount_year=0;
+        }
+    }
+}
+echo '</tr>';
+
+
+
+
+//CANTIDAD DE USUARIOS RESERVANDO
+echo '<tr>';
+echo '<th>Cantidad de Usuarios de Reservas</th>';
+$day_init=strtotime(date('m/d/Y',$WLresult->time));
+$day_last=strtotime(date('m/d/Y',time()));
+$day_more=(24*60*60);
+
+$amount_day=0;
+$amount_month=0;
+$amount_year=0;
+
+for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
+
+    foreach($BUILDusers as $user){
+        if(strtotime(date('m/d/Y',$user['date']))==strtotime(date('m/d/Y',$day))){
+            $amount_user=0;
+            if($user['status']!='cancelled'){
+                $amount_user=$user['WCorder_line_total'];
+            }
+            $amount_user=(round($amount_user*100)/100);
+            $amount_day=$amount_day+$amount_user;
+            $amount_month=$amount_month+$amount_user;
+            $amount_year=$amount_year+$amount_user;
+        }
+    }
+
+
+    echo '<td class="day tdshow" data-check="day" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_day.'</td>';
+    $amount_day=0;
+
+    if(date('t',$day)==date('d',$day) || $day_last==$day){
+        echo '<td class="month tdshow" data-check="month" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_month.'</td>';
+        $amount_month=0;
+
+        if(date('m',$day)=='12' || $day_last==$day){
+            echo '<th class="year tdshow" data-check="year" data-month="'.date('n',$day).'" data-year="'.date('Y',$day).'">'.$amount_year.'</th>';
+            $amount_year=0;
+        }
+    }
+}
+echo '</tr>';
 
 
 

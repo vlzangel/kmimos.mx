@@ -71,10 +71,13 @@
 				}
 			</style>
 		";
+
+		if($order->get_status() == 'on-hold' && $metodo_pago == 'openpay_stores'){ }else{
+			kmimos_set_kmisaldo($cliente_id, $orden_id, $reserva_id);
+		}
+
 		$order->update_status('wc-cancelled');
 		$booking->update_status('cancelled');
-
-		kmimos_set_kmisaldo($cliente_id, $orden_id, $reserva_id);
 
 		$msg_cliente = $styles.'
 	    	<p><strong>Cancelación de Reserva (N°. '.$reserva_id.')</strong></p>
