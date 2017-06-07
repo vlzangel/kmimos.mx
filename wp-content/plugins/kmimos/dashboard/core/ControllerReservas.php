@@ -350,6 +350,7 @@ function getReservas($desde="", $hasta=""){
  			p.ID as 'nro_pedido',
  			p.post_status as 'estatus_pago', 			
 			pr.post_title as 'producto_title',
+			pr.post_name as 'producto_name',			
  			(du.meta_value -1) as  'nro_noches',
  			(IFNULL(mpe.meta_value,0) + IFNULL(mme.meta_value,0) + IFNULL(mgr.meta_value,0) + IFNULL(mgi.meta_value,0)) as nro_mascotas,
  			((du.meta_value -1) * ( IFNULL(mpe.meta_value,0) + IFNULL(mme.meta_value,0) + IFNULL(mgr.meta_value,0) + IFNULL(mgi.meta_value,0) )) as 'total_noches',
