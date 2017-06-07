@@ -97,7 +97,7 @@ if ( $order ) : ?>
         		
         <?php 
         	if( $order->payment_method_title == "Pago en efectivo en tiendas de conveniencia" ){ 
-        		if(WC()->session->__isset('pdf_url')): ?>
+        		if( WC()->session->get( 'pdf_url' ) != "" ): ?>
 		            <a href="<?php echo WC()->session->get( 'pdf_url' ); ?>" class='fondo_kmimos'  style="padding: 5px; color: #fff; font-weight: 400; font-size: 14px; font-family: Roboto; border-radius: 3px; border: solid 1px #1f906e; display: block; max-width: 450px; margin: 0px auto; text-align: center; text-decoration: none;" target="_blank">
 						Pícale para ver las instrucciones para<br> Pago en Tiendas por Conveniencia
 					</a>                  
@@ -105,10 +105,7 @@ if ( $order ) : ?>
 		            <iframe id="pdf" src="<?php echo WC()->session->get( 'pdf_url' ); ?>" style="width:100%; height:950px;" frameborder="0"></iframe>
 		        	<style type="text/css">
 						@media (max-width: 600px){
-							#pdf {
-								display: none;
-							}
-
+							#pdf { display: none; }
 						}
 					</style> <?php 
 				endif; 
