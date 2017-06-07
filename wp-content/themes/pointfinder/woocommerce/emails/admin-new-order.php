@@ -50,6 +50,10 @@
 
 	$dudas = '<p align="justify">Para cualquier duda y/o comentario puedes contactar al Staff Kmimos a los teléfonos '.$info["telefono"].', o al correo '.$info["email"].'</p>';
 
-	include("otro.php");
+	if( $metodo_pago == "openpay_stores" ){
+		include("tienda.php");
+	}else{
+		include("otro.php");
+	}
 
 ?>
