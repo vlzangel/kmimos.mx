@@ -3,7 +3,7 @@
     $noncefield = wp_create_nonce($formaction);
     $buttonid = 'pf-ajax-update-pet-button';
     $buttontext = esc_html__('ACTUALIZAR MASCOTA','pointfindert2d');
-    $pet_id = $params['pet_id'];
+    $pet_id = $params['pet_id']+0;
     $current_pet = kmimos_get_pet_info($pet_id);
 
     $photo_pet = (!empty($current_pet['photo']))? "/".$current_pet['photo']: "/wp-content/themes/pointfinder/images/noimg.png";
@@ -69,6 +69,15 @@
         $aggresive_pets_str .= '<option value="'.$i.'"';
         if($i == (int)$current_pet['aggresive_pets']) $aggresive_pets_str .= ' selected';
         $aggresive_pets_str .= '>'.$si_no[$i].'</option>';
+    }
+
+    if( $pet_id > 0 ){
+        $eliminar = '
+            <label for="delete_pet" class="lbl-text" style="float: right; padding: 10px 0px;">
+                <input type="checkbox" name="delete_pet" value="1">
+                <strong>'.esc_html__('Eliminar esta mascota','pointfindert2d').'</strong>.
+            </label>
+        ';
     }
 
     $this->FieldOutput .= '
@@ -222,9 +231,7 @@
                                         <label class="lbl-ui">
                                             <textarea name="pet_observations" class="textarea">'. $current_pet['observations'].'</textarea>
                                         </label>
-                                        <label for="delete_pet" class="lbl-text" style="float: right; padding: 10px 0px;">
-                                        <input type="checkbox" name="delete_pet" value="1">
-                                        <strong>'.esc_html__('Eliminar esta mascota','pointfindert2d').'</strong>.</label>
+                                        '.$eliminar.'
                                    </section>
                                     <script>
                                         function vlz_cambio_tipo(){
