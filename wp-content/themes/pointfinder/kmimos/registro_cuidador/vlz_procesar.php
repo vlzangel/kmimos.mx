@@ -232,7 +232,7 @@
 
             $temp = array( "token" => $token );
 
-            include('Requests.php');
+            /*include('Requests.php');
 
             Requests::register_autoloader();
 
@@ -263,7 +263,7 @@
                 )
             );
 
-            $request = Requests::post('http://kmimos.ilernus.com/webservice/rest/server.php', array(), $options );
+            $request = Requests::post('http://kmimos.ilernus.com/webservice/rest/server.php', array(), $options );*/
 
             if( $conn->query( utf8_decode( $sql ) ) ){
 
@@ -541,7 +541,6 @@
                     $user_signon = wp_signon( $info, true );
                     wp_set_auth_cookie($user_signon->ID);
 
-                /*
                     $mensaje_mail = '
                         <style>
                             p{
@@ -602,8 +601,8 @@
                             >Iniciar Sesión</a>
                         </p>
                     ';
-                */
-                $mensaje_mail = '
+
+/*                $mensaje_mail = '
                         <style>
                             p{
                                 text-align: justify;
@@ -670,8 +669,8 @@
                                 "
                             >Continuar</a>
                         </p>
-                    ';
-                /*
+                    ';*/
+
                     $mensaje_web = '
                         <style>
                             p{
@@ -704,10 +703,8 @@
                             </ul>
                         </p>
                     ';
-*/
 
-
-                $mensaje_web = '
+/*                $mensaje_web = '
                         <style>
                             p{
                                 text-align: justify;
@@ -781,7 +778,7 @@
                                 "
                             >Continuar</a>
                         </p>
-                    ';
+                    ';*/
 
 
                     $mail_msg = kmimos_get_email_html("Gracias por registrarte como cuidador.", $mensaje_mail, 'Registro de Nuevo Cuidador.', true, true);

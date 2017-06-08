@@ -15,7 +15,7 @@
 	if( isset($a) ){
 		$param = explode("_", $a);
 
-		$r = $conn->query("SELECT * FROM wp_posts WHERE md5(ID) = '{$param[2]}'"); $data = $r->fetch_assoc();		
+		$r = $conn->query("SELECT * FROM wp_posts WHERE md5(ID) = '{$param[2]}'"); $data = $r->fetch_assoc();	
 		$home = $conn->query("SELECT option_value AS server FROM wp_options WHERE option_name = 'siteurl'"); $home = $home->fetch_assoc();
 
 		$r2 = $conn->query("SELECT * FROM wp_postmeta WHERE md5(post_id) = '{$param[0]}'"); 
@@ -30,6 +30,8 @@
 		$orden = $conn->query("SELECT * FROM wp_posts WHERE ID = '{$id_reserva}'"); 
 		$orden = $orden->fetch_assoc();
 		$orden_id = $orden['post_parent'];
+
+		$order = $conn->query("SELECT * FROM wp_posts WHERE ID = '{$orden_id}'"); $order = $order->fetch_assoc();
 
 		$meta_orden = $conn->query("SELECT * FROM wp_postmeta WHERE post_id = '{$orden_id}'"); 
 		$metas_orden = array();
@@ -49,14 +51,14 @@
 			$items[ $f['meta_key'] ] = $f['meta_value'];
 		}
 
-		$deposito = unserialize( $items['_wc_deposit_meta'] );
-
-		$saldo = 0;
-
-		if( $deposito['enable'] == 'yes' ){
-			$saldo = $deposito['deposit'];
-		}else{
-			$saldo = $items['_line_total'];
+		if( $order['post_status'] == 'wc-on-hold' && $metas_orden['_payment_method'] == 'openpay_stores'){ }else{
+			$deposito = unserialize( $items['_wc_deposit_meta'] );
+			$saldo = 0;
+			if( $deposito['enable'] == 'yes' ){
+				$saldo = $deposito['deposit'];
+			}else{
+				$saldo = $items['_line_total'];
+			}
 		}
 
 		$variaciones = unserialize( $metas_reserva['_booking_persons'] );
@@ -117,10 +119,6 @@
 			"transporte"      => $transporte,
 			"adicionales"     => $adicionales
 		);
-
-		// echo "<pre>";
-		// 	print_r($parametros);
-		// echo "</pre>";
 
 		$_SESSION["MR_".$param[1]] = $parametros;
 		header("location: ".$home['server']."producto/".$data['post_name']."/");
