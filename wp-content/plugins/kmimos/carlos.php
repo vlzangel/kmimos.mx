@@ -5,7 +5,6 @@
 	include_once('includes/class/class_kmimos_booking.php');
 	include_once('includes/class/class_kmimos_tables.php');
 	include_once('includes/class/class_kmimos_script.php');
-
 	// include_once('plugins/woocommerce.php');
 
 	if(!function_exists('carlos_include_script')){
