@@ -44,6 +44,47 @@
 	// 	print_r($_SESSION);
 	// echo "</pre>";
 
+	$start_date = date( 'YmdHis', strtotime("01-01-2017") );
+	$end_date   = date( 'YmdHis', strtotime("30-01-2017") );
+
+
+
+	echo $sql = "
+		SELECT reserva.post_author FROM {$wpdb->posts} AS reserva
+
+		LEFT JOIN {$wpdb->postmeta} as startmeta ON ( reserva.ID = startmeta.post_id 			)
+		LEFT JOIN {$wpdb->postmeta} as endmeta   ON ( reserva.ID = endmeta.post_id 				)
+		LEFT JOIN {$wpdb->postmeta} as producto  ON ( reserva.ID = endmeta.post_id 				)
+		LEFT JOIN {$wpdb->postmeta} as aceptados ON ( producto.meta_value = aceptados.post_id 	)
+
+		WHERE 
+			reserva.post_type  = 'wc_booking' 			AND 
+			startmeta.meta_key = '_booking_start' 		AND 
+			endmeta.meta_key   = '_booking_end' 		AND 
+			producto.meta_key  = '_booking_product_id' 	AND 
+			aceptados.meta_key = '_wc_booking_qty' 		AND
+			(
+				aceptados.meta_value <
+			) AND ( 
+				reserva.post_status NOT LIKE '%cancelled%' OR 
+				reserva.post_status != 'was-in-cart' 
+			) AND ( 
+				reserva.post_status NOT LIKE '%cancelled%' OR 
+				reserva.post_status != 'was-in-cart' 
+			) AND  (
+				(
+					startmeta.meta_value < '{$start_date}' AND 
+					endmeta.meta_value > '{$end_date}'
+				) OR (
+					startmeta.meta_value <= '{$end_date}' AND 
+					endmeta.meta_value >= '{$start_date}'
+				)
+			)
+	";
+
+	$cant = $wpdb->get_var($sql);
+	echo "<br><br><b>Cuidadores con reservas: ".$cant."</b><br><br>";
+
 	echo "
 	<style>
 		.vlz_modal{ position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; display: table; z-index: 10000; background: rgba(0, 0, 0, 0.8); vertical-align: middle !important; display: none; }
