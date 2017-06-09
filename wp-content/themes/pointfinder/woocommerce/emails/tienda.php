@@ -4,8 +4,6 @@
 
 		$msg_id_reserva ='<p>Solicitud de reserva de servicio <strong>(N° '.$reserva_id.')</strong> </p>';
 
-		$pdf = $metas_orden['_openpay_pdf'][0];
-
 		$saludo = $sql.'
 			<center style="font-size: 16px; font-weight: 600;">¡Gracias '.$nom_cliente.'!</center>
 			<p>Recibimos tu solicitud de reserva de <strong>'.trim($tipo_servicio).'</strong>, para que <strong>'.$nom_cuidador.'</strong> atienda a tu(s) peludo(s).</p>

@@ -45,6 +45,8 @@
         function kmimos_set_kmisaldo($id_cliente, $id_orden, $id_reserva){
             global $wpdb;
 
+            $status = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = {$id_orden}");
+
             $metas_orden = get_post_meta($id_orden);
             $metas_reserva  = get_post_meta( $id_reserva );
 
@@ -68,9 +70,14 @@
             $descuento = 0;
             if( $metas_orden[ "_cart_discount" ][0] != "" ){
                 $descuento = $metas_orden[ "_cart_discount" ][0]+0;
-                $saldo += $descuento;
             }
-            
+
+            if($status == 'wc-on-hold' && $metas_orden['_payment_method'][0] == 'openpay_stores'){ 
+                $saldo = $descuento;  
+            }else{
+                $saldo += $descuento;                
+            }
+
             $saldo_persistente = get_user_meta($id_cliente, "kmisaldo", true)+0;
             update_user_meta($id_cliente, "kmisaldo", $saldo_persistente+$saldo);
             
@@ -1000,7 +1007,8 @@
                 "detalles_servicio_cuidador" => $detalles_servicio_cuidador,
                 "detalles_factura_cuidador" => $detalles_factura_cuidador,
 
-                "metodo_pago" => $metas_orden['_payment_method'][0]
+                "metodo_pago" => $metas_orden['_payment_method'][0],
+                "pdf" => $metas_orden['_openpay_pdf'][0]
             );
 
         }

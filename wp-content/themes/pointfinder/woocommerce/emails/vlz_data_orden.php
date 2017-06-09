@@ -33,4 +33,8 @@
 	$detalles_servicio = $detalles["detalles_servicio"];
 	$detalles_servicio_cuidador = $detalles["detalles_servicio_cuidador"];
 
+	$metodo_pago = $detalles["metodo_pago"];
+
+	$pdf = $detalles["pdf"];
+
 ?>
