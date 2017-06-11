@@ -22,22 +22,6 @@
                 if (!is_dir($path_galeria.$file) && $file!="." && $file!=".."){
                     $exist_file = true;
                     $count_picture++;
-                    /*$this->FieldOutput .= '
-                    <li class="col-lg-4 col-md-6 col-sm-6 col-xs-12 wpfitemlistdata isotope-item">
-                        <div class="pflist-item" style="background-color:#ffffff;">
-                            <div class="pflist-item-inners">
-                                <div class="pflist-imagecontainer pflist-subitem" style="
-                                    background-image: url('.get_option('siteurl').'/'.$path_galeria.$file.')!important;
-                                    background-size:contain;
-                                    background-repeat:no-repeat;
-                                    background-position:center;
-                                ">
-                                    <div class="vlz_postada_cuidador" style="height:160px;width:100%;background-color:transparent;"></div>
-                                </div>
-                                <a href="'.get_option('siteurl').'/perfil-usuario/?ua=mypicturesdel&p='.$file.'" style="color:red;">Eliminar</a>
-                            </div>
-                        </div>
-                    </li>';*/
                     $this->FieldOutput .= '
                     <li class="col-lg-4 col-md-6 col-sm-6 col-xs-12 wpfitemlistdata isotope-item">
                         <div class="pflist-item" style="background-color:#ffffff;">  
