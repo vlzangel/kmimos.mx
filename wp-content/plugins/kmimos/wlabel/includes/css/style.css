@@ -9,8 +9,9 @@ img{max-width:100%;}
 
 #panel .section{position:relative; height:calc(100% - 60px);}
 #panel .modules{position:relative; width:calc(100% - 245px); height:calc(100% - 40px); padding:20px; overflow:hidden; overflow-y:auto; vertical-align:top; display:inline-block;}
+#panel .modules .module_title{margin:20px 0;  font-size:30px;  text-align:center;}
 #panel .menu{position:relative; width:200px; height:100%; background:#555; overflow:hidden; overflow-y:auto; vertical-align:top; display:inline-block;}
-#panel .menu .item{position:relative; padding:10px; color:#FFF;}
+#panel .menu .item{position:relative; padding:20px 10px; color:#FFF; border-bottom:1px solid rgba(200,200,200,0.5); cursor:pointer;}
 
 
 form{position:relative;}
