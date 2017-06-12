@@ -5,19 +5,21 @@ require_once('core/ControllerReservas.php');
 $date = getdate(); 
 $desde = date("Y-m-01", $date[0] );
 $hasta = date("Y-m-d", $date[0]);
+$_desde = "";
+$_hasta = "";
 if(	!empty($_POST['desde']) && !empty($_POST['hasta']) ){
-	$desde = (!empty($_POST['desde']))? $_POST['desde']: "";
-	$hasta = (!empty($_POST['hasta']))? $_POST['hasta']: "";
+	$_desde = (!empty($_POST['desde']))? $_POST['desde']: "";
+	$_hasta = (!empty($_POST['hasta']))? $_POST['hasta']: "";
 }
 $razas = get_razas();
 // Buscar Reservas
-$reservas = getReservas($desde, $hasta);
+$reservas = getReservas($_desde, $_hasta);
 
 
 ?>
 
 <div class="col-md-12 col-sm-12 col-xs-12">
-<div class="x_panel">
+<div class="row">
 	<div class="col-md-12 col-sm-12 col-xs-12">
 		<div class="x_title">
 		<h2>Panel de Control <small>Reservas</small></h2>
@@ -44,14 +46,22 @@ $reservas = getReservas($desde, $hasta);
 					<button type="submit" class="btn btn-success"><i class="fa fa-search"></i> Buscar</button>			  
 			    </form>
 				<hr>  
+		  		<div class="clearfix"></div>
 			</div>
 		</div>
-	</div>
+  	</div>
+	<div class="clearfix"></div>
   	<div class="col-sm-12">  	
 
   	<?php if( empty($reservas) ){ ?>
   		<!-- Mensaje Sin Datos -->
-	    <div class="row alert alert-info"> No existen registros </div>
+	    <div class="row">
+	    	<div class="col-sm-12">
+	    		<div class="alert alert-info">
+		    		No existen registros
+	    		</div>
+		    </div>
+	    </div> 
   	<?php }else{ ?>  		
 	    <div class="row"> 
 	    	<div class="col-sm-12" id="table-container" 
@@ -162,6 +172,18 @@ $reservas = getReservas($desde, $hasta);
 							$nro_noches = 1;
 						}
 
+
+						$Day = "";
+						$list_service = [ 'hospedaje' ]; // Excluir los servicios del Signo "D"
+						$temp_option = explode("-", $reserva->producto_name);
+						if( count($temp_option) > 0 ){
+							$key = strtolower($temp_option[0]);
+							if( !in_array($key, $list_service) ){
+								$Day = "-D";
+							}
+						}
+
+
 				  	?>
 				    <tr>
 			    	<th class="text-center"><?php echo ++$count; ?></th>
@@ -172,7 +194,7 @@ $reservas = getReservas($desde, $hasta);
 					<th><?php echo date_convert($meta_reserva['_booking_start'], 'd-m-Y', true); ?></th>
 					<th><?php echo date_convert($meta_reserva['_booking_end'], 'd-m-Y', true); ?></th>
 
-					<th class="text-center"><?php echo $nro_noches; ?></th>
+					<th class="text-center"><?php echo $nro_noches . $Day; ?></th>
 					<th class="text-center"><?php echo $reserva->nro_mascotas; ?></th>
 					<th><?php echo $nro_noches * $reserva->nro_mascotas; ?></th>
 					<th><?php echo "<a href='".get_home_url()."/?i=".md5($reserva->cliente_id)."'>".$cliente['first_name'].' '.$cliente['last_name']; ?></a></th>

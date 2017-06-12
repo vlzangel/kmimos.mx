@@ -32,23 +32,18 @@
 
 		$saludo = '
 			<center style="font-size: 16px; font-weight: 600;">¡Gracias '.$nom_cliente.'!</center>
-
 			<p>Recibimos tu solicitud de reserva de <strong>'.$tipo_servicio.'</strong>, para que <strong>'.$nom_cuidador.'</strong> atienda a tu(s) peludo(s).</p>
-
 			<p align="justify">
 				Dentro de las próximas 12 horas el cuidador confirmará la disponibilidad para tu solicitud. 
 				Posterior a que el cuidador confirme, te llegará un correo indicando que está <u>confirmada</u> tu reserva (el período de 12 horas es referencial, 
 				normalmente los cuidadores contactan al clientes con mucha anterioridad).
 			</p>
-
 			<p align="justify">
 				Si no puedes o decides no esperar las 12 horas no te preocupes, puedes contactar directamente al cuidador a través del teléfono o correo mostrados más abajo.
 			</p>
-
 			<p align="justify">
 				En caso de que el cuidador no esté disponible, recibirás un correo de notificación con instrucciones para que puedas solicitar el reembolso del importe realizado.
 			</p>
-
 			<h2>Detalles de tu reservación pendiente a confirmar:</h2>
 		';
 

@@ -63,14 +63,24 @@
                 session_start();
             }
 
-            if(array_key_exists('wlabel',$_SESSION)){
-                $wlabel=$_SESSION['wlabel'];
+            if(array_key_exists('wlabel',$_SESSION) || $referido=='Volaris' || $referido=='Vintermex'){
+                $wlabel='';
+
+                if(array_key_exists('wlabel',$_SESSION)){
+                    $wlabel=$_SESSION['wlabel'];
+
+                }else if($referido=='Volaris'){
+                    $wlabel='volaris';
+
+                }else if($referido=='Vintermex'){
+                    $wlabel='viajesintermex';
+                }
+
                 if ($wlabel!=''){
                     $query_wlabel = "INSERT INTO wp_usermeta VALUES (NULL, '".$user_id."', '_wlabel', '".$wlabel."');";
                     $conn->query( utf8_decode( $query_wlabel ) );
                 }
             }
-
 
 
             $name_photo = "";

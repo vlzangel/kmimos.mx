@@ -10,7 +10,9 @@
 /wp-content/ngg/
 /wp-content/ngg_styles/
 /wp-content/upgrade/
-/wp-content/uploads/
+/wp-content/uploads*
+/git/
+/kmimos.la/
 
 Respaldo*
 
@@ -86,25 +88,30 @@ vlz_config.php
 /wp-content/plugins/woocommerce-gateway-stripe/
 /wp-content/plugins/zopim-live-chat/
 /wp-content/plugins/wp-wolivestats/
-
-/kmimos.la/
-
+/wp-content/plugins/file-manager/
+/wp-content/plugins/domain-mirror/
 /wp-content/plugins/domain-mirror2/
-
 /wp-content/plugins/wpmandrill/
 /wp-content/plugins/bwp-minify/
-/wp-content/w3tc-config/
+/wp-content/plugins/WooCommerce.Deposits.Partial.Payments.Plugin.v1.4.2/changelog.txt
+/wp-content/plugins/WooCommerce.Deposits.Partial.Payments.Plugin.v1.4.2/Licensing/GPL.txt
+/wp-content/plugins/WooCommerce.Deposits.Partial.Payments.Plugin.v1.4.2/Licensing/README_License.txt
+/wp-content/plugins/woocommerce-bookings/.tx/
+
+/wp-content/plugins/woocommerce-gateway-stripe/
+
+/wp-content/w3tc-config/ 
 /wp-content/cache/
 
-/wp-content/plugins/woocommerce-bookings/.tx/
 .idea/workspace.xml
 .idea/kmimos.mx.iml
 .idea/misc.xml
 .idea/vcs.xml
 .idea/modules.xml
-wp-content/index.php
-wp-content/plugins/WooCommerce.Deposits.Partial.Payments.Plugin.v1.4.2/changelog.txt
-wp-content/plugins/WooCommerce.Deposits.Partial.Payments.Plugin.v1.4.2/Licensing/GPL.txt
-wp-content/plugins/WooCommerce.Deposits.Partial.Payments.Plugin.v1.4.2/Licensing/README_License.txt
-imgs/Temp/1496075029.jpg
-*.jpg
+
+/wp-content/index.php
+/imgs/Temp/
+
+.tmb/
+
+/QA/

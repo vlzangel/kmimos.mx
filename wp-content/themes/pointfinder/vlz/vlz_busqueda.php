@@ -22,22 +22,20 @@
 		$_POST = unserialize($_SESSION['busqueda']);
 	}
 
-	//MAP
- 	//echo $kmimos_map->Search_Map($_POST);
-	// $Kmap=$kmimos_map->Search_Map($_POST);
+	get_header();
 
-	$pagina = $page+0; // Pagina actual
-	$item_by_page = 15; // Numero de Items por pagina
-	// Items by page
-	$pagina_row_fin = ( $pagina > 1 ) ? $pagina * $item_by_page : 0;
-	$pagina_row_ini = $pagina_row_fin - $item_by_page; 
+	$valores = explode("/", $_SERVER['REDIRECT_URL']);
+	$page = $valores[ count($valores)-2 ];
 
-	$xpagina = $pagina_row_fin; // Old var - last items
+	$xpagina = $page+0;
+	$pagina = $page+0;
+	$item_by_page = 15;
+	if( $pagina < 0 ){ $pagina = 0; }
+	$pagina_row_fin = $pagina*$item_by_page;
 
 	include("vlz_style.php");
-	include("vlz_funciones.php");
 
-	get_header();
+	echo "<style> .pflist-item .pfHoverButtonStyle > a{line-height: 1px;} </style>";
 	
 	if(function_exists('PFGetHeaderBar')){PFGetHeaderBar();} ?>
 
@@ -296,13 +294,14 @@
 
 								<div class="vlz_nav_cont_interno">
 
-					 				<?php
+				 					<?php
 										$t = $total_registros+0;
-										if($t > $item_by_page){
-											$ps = ceil($t/$item_by_page);
-											for( $i=1; $i<$ps; $i++){
-												$active = ( $pagina == $i || ($pagina == 0 && $i == 1)  )? "class='vlz_activa'": "";
-												echo "<a href='".get_home_url()."/busqueda/{$i}' ".$active.">".$i."</a>";
+										$h = 15;
+										if($t > $h){
+											$ps = ceil($t/$h);
+											for( $i=0; $i<$ps; $i++){
+												$active = ( $xpagina == $i ) ? "class='vlz_activa'" : "";
+												echo "<a href='".get_home_url()."/busqueda/".($i)."' ".$active.">".($i+1)."</a>";
 											}
 										}
 										$w = 40*$ps;
@@ -314,7 +313,7 @@
 											</style>
 										";
 									?>
-				 		
+
 								</div>
 
 							</div> <?php

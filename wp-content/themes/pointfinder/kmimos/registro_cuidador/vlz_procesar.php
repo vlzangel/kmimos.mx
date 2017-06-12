@@ -159,6 +159,20 @@
 
         $adicionales = serialize($adicionales);
 
+        $coordenadas = unserialize( $wpdb->get_var("SELECT valor FROM kmimos_opciones WHERE clave = 'municipio_{$param['municipios']}' ") );
+
+        $latitud  = "";
+        $longitud = "";
+
+        $respuesta = $conn->query( "SELECT valor FROM kmimos_opciones WHERE clave = 'municipio_{$municipio}' " );
+        if( $respuesta->num_rows > 0 ){
+            while($valor = $respuesta->fetch_assoc()){
+                $coordenadas = unserialize($valor["valor"]);
+                $latitud  = $coordenadas["referencia"]->lat;
+                $longitud = $coordenadas["referencia"]->lng;
+            }
+        }
+
         $sql = "
         	INSERT INTO cuidadores VALUES (
         		NULL,
@@ -218,7 +232,7 @@
 
             $temp = array( "token" => $token );
 
-            include('Requests.php');
+            /*include('Requests.php');
 
             Requests::register_autoloader();
 
@@ -249,7 +263,7 @@
                 )
             );
 
-            $request = Requests::post('http://kmimos.ilernus.com/webservice/rest/server.php', array(), $options );
+            $request = Requests::post('http://kmimos.ilernus.com/webservice/rest/server.php', array(), $options );*/
 
             if( $conn->query( utf8_decode( $sql ) ) ){
 
@@ -285,8 +299,19 @@
                     session_start();
                 }
 
-                if(array_key_exists('wlabel',$_SESSION)){
-                    $wlabel=$_SESSION['wlabel'];
+                if(array_key_exists('wlabel',$_SESSION) || $referido=='Volaris' || $referido=='Vintermex'){
+                    $wlabel='';
+
+                    if(array_key_exists('wlabel',$_SESSION)){
+                        $wlabel=$_SESSION['wlabel'];
+
+                    }else if($referido=='Volaris'){
+                        $wlabel='volaris';
+
+                    }else if($referido=='Vintermex'){
+                        $wlabel='viajesintermex';
+                    }
+
                     if ($wlabel!=''){
                         $query_wlabel = "INSERT INTO wp_usermeta VALUES (NULL, '".$user_id."', '_wlabel', '".$wlabel."');";
                         $conn->query( utf8_decode( $query_wlabel ) );
@@ -527,7 +552,6 @@
                     $user_signon = wp_signon( $info, true );
                     wp_set_auth_cookie($user_signon->ID);
 
-                /*
                     $mensaje_mail = '
                         <style>
                             p{
@@ -588,8 +612,8 @@
                             >Iniciar Sesión</a>
                         </p>
                     ';
-                */
-                $mensaje_mail = '
+
+/*                $mensaje_mail = '
                         <style>
                             p{
                                 text-align: justify;
@@ -656,8 +680,8 @@
                                 "
                             >Continuar</a>
                         </p>
-                    ';
-                /*
+                    ';*/
+
                     $mensaje_web = '
                         <style>
                             p{
@@ -690,10 +714,8 @@
                             </ul>
                         </p>
                     ';
-*/
 
-
-                $mensaje_web = '
+/*                $mensaje_web = '
                         <style>
                             p{
                                 text-align: justify;
@@ -767,7 +789,7 @@
                                 "
                             >Continuar</a>
                         </p>
-                    ';
+                    ';*/
 
 
                     $mail_msg = kmimos_get_email_html("Gracias por registrarte como cuidador.", $mensaje_mail, 'Registro de Nuevo Cuidador.', true, true);
