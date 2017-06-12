@@ -49,7 +49,9 @@ $styles = "
 	</style>
 ";
 
-echo comprimir_styles($styles);
+$styles = str_replace("\t", "", $styles);
+$styles = str_replace("  ", " ", $styles);
+$styles = str_replace("\n", " ", $styles);
 
 echo $styles;
 

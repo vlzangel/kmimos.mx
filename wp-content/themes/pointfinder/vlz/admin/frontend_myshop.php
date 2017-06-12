@@ -145,7 +145,7 @@
 
 <?php
   
-  $styles = '
+  $this->FieldOutput .= '
     <style>
         div{
             vertical-align: top;
@@ -237,8 +237,6 @@
 
     </style>
   ';
-
-  $this->FieldOutput .= comprimir_styles($styles);
 ?>
 
 <?php
