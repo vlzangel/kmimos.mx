@@ -390,7 +390,7 @@
 
             /*  Mascotas    */
 
-                $mascotas = $wpdb->get_results("SELECT * FROM $wpdb->posts WHERE post_author = '".$cliente."' AND post_type='pets'");
+                $mascotas = $wpdb->get_results("SELECT * FROM $wpdb->posts WHERE post_author = '{$cliente}' AND post_type='pets' AND post_status = 'publish'");
                 $detalles_mascotas = "";
 
                 if( $is_mail ){
