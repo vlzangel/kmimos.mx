@@ -519,5 +519,9 @@ textarea.vlz_input{
     display: none;
 }";
 
-echo "<style type='text/css'>".comprimir_styles($styles);."</style>";
+$styles = str_replace("\t", "", $styles);
+$styles = str_replace("  ", " ", $styles);
+$styles = str_replace("\n", " ", $styles);
+
+echo "<style type='text/css'>".$styles."</style>";
 ?>
