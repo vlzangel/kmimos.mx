@@ -56,9 +56,7 @@
 
 	include("vlz_config.php");
 
-	$conn = new mysqli($host, $user, $pass, $db);
-
-	$db = new db($conn);
+	$db = new db( new mysqli($host, $user, $pass, $db) );
 
 	$actual = date( 'YmdHis', time() );
 
@@ -66,6 +64,7 @@
 		SELECT 
 			reserva.ID 				 AS id, 
 			producto.post_author 	 AS autor, 
+			producto.ID 		 	 AS producto_id, 
 			producto.post_name 		 AS producto, 
 			startmeta.meta_value 	 AS inicio, 
 			endmeta.meta_value		 AS fin,
@@ -89,8 +88,8 @@
 			acepta.meta_key   		= '_wc_booking_qty' 		AND 
 			order_item_id.meta_key  = '_booking_order_item_id' 	AND 
 			(
-				reserva.post_status NOT LIKE '%cancelled%' OR 
-				reserva.post_status != 'was-in-cart' 
+				reserva.post_status NOT LIKE '%cancelled%' AND
+				reserva.post_status     != 	 'was-in-cart' 
 			) AND  (
 				endmeta.meta_value >= '{$actual}'
 			)
@@ -100,10 +99,11 @@
 
 	$resultados = $db->get_results($sql);
 
-	echo "<pre>";
-		echo $sql."<br><br>";
-		print_r($resultados);
-	echo "</pre>";
+	/*	echo "<pre>";
+			echo $sql."<br><br>";
+			print_r($resultados);
+		echo "</pre>";
+	*/
 
 	foreach ($resultados as $reserva) {
 		update_cupos($reserva);
@@ -113,7 +113,57 @@
 		$inicio = strtotime($reserva->inicio);
 		$fin 	= strtotime($reserva->fin);
 		for ($i=$inicio; $i < $fin; $i+=86400) { 
-			echo date("Y-m-d H:i:s", $i)." - ".$reserva->mascotas."<br>";
+			$fecha = date("Y-m-d H:i:s", $i);
+
+			$cupos = get_cupos($reserva->autor, $reserva->producto_id, $fecha);
+
+			$full = 0; $total = $reserva->mascotas;
+			if( $cupos !== false ){
+				$total += $cupos;
+				if( $total >= $reserva->acepta ){
+					$full = 1;
+				}
+				
+			}else{
+				$sql = "
+					INSERT INTO cupos VALUES (
+						NULL,
+						{$reserva->autor},
+						{$reserva->producto_id},
+						'{$fecha}',
+						{$total},
+						{$reserva->acepta},
+						0				
+					);
+				";
+			}
+			
+			echo $sql."<br>";
 		}
+	}
+
+	function get_cupos($cuidador, $servicio, $fecha){
+		global $db;
+
+		$sql = "
+			SELECT 
+				cupos,
+				acepta 
+			FROM 
+				cupos 
+			WHERE 
+				cuidador = {$cuidador},
+				servicio = {$servicio},
+				fecha    = '{$fecha}'
+		";
+
+		$cupos = $db->get_var( $sql );
+
+		if( $cupos !== false ){
+			return $cupos->cupos;
+		}else{
+			return false;
+		}
+
 	}
 ?>
