@@ -12,7 +12,7 @@ $_wlabel_user->wLabel_Filter(array('trdate'));
 </div>
 
 <div class="section">
-
+    <div class="tables">
     <table cellspacing="0" cellpadding="0">
         <thead>
         <tr>
@@ -147,6 +147,7 @@ $_wlabel_user->wLabel_Filter(array('trdate'));
  ?>
         </tbody>
     </table>
+    </div>
 </div>
 
 
