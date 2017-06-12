@@ -18,7 +18,7 @@
         });
     ";
 
-    echo "
+    $styles = "
 		<style>
 			h1{ 
 				margin-top: 5px; 
@@ -146,6 +146,8 @@
 			}
     	</style>
     ";
+
+	echo comprimir_styles($styles);
 
     $adicionales_principales = array(
         "guarderia"                 => "Guarder&iacute;a",

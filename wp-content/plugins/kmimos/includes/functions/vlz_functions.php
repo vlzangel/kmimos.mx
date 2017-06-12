@@ -379,7 +379,7 @@
                         </tr>
                         <tr>
                             <td valign="top"> <strong>Correo:</strong> </td>
-                            <td valign="top">'.$user->data->user_email.'</td>
+                            <td valign="top">'.$email_cliente.'</td>
                         </tr>
                         <tr>
                             <td valign="top"> <strong>Dirección: </strong> </td>

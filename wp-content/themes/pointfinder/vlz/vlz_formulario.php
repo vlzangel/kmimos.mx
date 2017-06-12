@@ -129,7 +129,7 @@
 	$token = md5(rand());
 	echo "
 	<div id='filtros'></div>
-	<form action='".get_home_url()."/busqueda' method='POST' class='vlz_form' id='vlz_form_buscar' style='margin-top: 20px;'>
+	<form action='".get_home_url()."/wp-content/themes/pointfinder/vlz/buscar.php' method='POST' class='vlz_form' id='vlz_form_buscar' style='margin-top: 20px;'>
 
 		<input type='submit' value='Aplicar Filtros' class='theme_button vlz_boton'>
 
