@@ -213,12 +213,6 @@
 
         </div>
 
-        <div class="jj_dash2_cel50">
-            <section onclick="jQuery(\'#portada\').val(\'\');">
-                Limpiar
-            </section>
-        </div>
-
         <script>
             function vista_previa(evt) {
                 var files = evt.target.files;

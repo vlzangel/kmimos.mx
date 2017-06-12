@@ -23,6 +23,8 @@ function set_input_attrs( $fields ) {
    	return $fields;
 }*/
 
+// add_filter( 'show_admin_bar', '__return_false' );
+
 add_filter( 'woocommerce_checkout_fields' , 'set_input_attrs' );
 function set_input_attrs( $fields ) {
 	$fields['billing']['billing_address_2']['maxlength'] = 50;

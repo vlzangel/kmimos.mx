@@ -379,7 +379,7 @@
                         </tr>
                         <tr>
                             <td valign="top"> <strong>Correo:</strong> </td>
-                            <td valign="top">'.$user->data->user_email.'</td>
+                            <td valign="top">'.$email_cliente.'</td>
                         </tr>
                         <tr>
                             <td valign="top"> <strong>Dirección: </strong> </td>
@@ -390,7 +390,7 @@
 
             /*  Mascotas    */
 
-                $mascotas = $wpdb->get_results("SELECT * FROM $wpdb->posts WHERE post_author = '".$cliente."' AND post_type='pets'");
+                $mascotas = $wpdb->get_results("SELECT * FROM $wpdb->posts WHERE post_author = '{$cliente}' AND post_type='pets' AND post_status = 'publish'");
                 $detalles_mascotas = "";
 
                 if( $is_mail ){
