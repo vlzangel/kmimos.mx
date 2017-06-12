@@ -6,6 +6,10 @@
     $pet_id = $params['pet_id']+0;
     $current_pet = kmimos_get_pet_info($pet_id);
 
+    echo "<pre>";
+        print_r($current_pet);
+    echo "</pre>";
+
     $photo_pet = (!empty($current_pet['photo']))? "/".$current_pet['photo']: "/wp-content/themes/pointfinder/images/noimg.png";
 
     $tipos = kmimos_get_types_of_pets();
@@ -46,7 +50,12 @@
     $esterilizado_str = "";
     for ( $i=0; $i<2; $i++ ) {
         $esterilizado_str .= '<option value="'.$i.'"';
-        if($i == (int)$current_pet['sterilized']) $esterilizado_str .= ' selected';
+        if( isset($current_pet['strerilized']) ){
+            if($i == (int)$current_pet['strerilized']) $esterilizado_str .= ' selected';
+        }else{
+            if($i == (int)$current_pet['sterilized']) $esterilizado_str .= ' selected';
+        }
+        
         $esterilizado_str .= '>'.$si_no[$i].'</option>';
     }
 
