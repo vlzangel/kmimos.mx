@@ -245,7 +245,6 @@
                 jQuery("#pet_breed").html(opciones);
             }
         }
-
         function vista_previa_pet(evt) {
             var files = evt.target.files;
             for (var i = 0, f; f = files[i]; i++) {
@@ -264,7 +263,10 @@
                reader.readAsDataURL(f);
             }
         }
-
         document.getElementById("portada_pet").addEventListener("change", vista_previa_pet, false);
+
+        jQuery("#pfuaprofileform").submit(function(e){
+            jQuery(".vlz_repeat_action").attr("disabled","disabled");
+        });
     </script>';
 ?>
