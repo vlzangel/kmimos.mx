@@ -13,7 +13,7 @@
             'list' => $pets['list']
         )
     );
-    
+    echo $output->FieldOutput;
     echo '<script type="text/javascript">
                                 (function($) {
                                     "use strict";
