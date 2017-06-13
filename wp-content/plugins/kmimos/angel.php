@@ -11,6 +11,73 @@
         }
     }
 
+    if(!function_exists('get_data_booking')){
+        function get_data_booking($id){
+            global $wpdb;
+            $metas = get_post_meta($id);
+            $servicio = strtotime($metas['_booking_product_id'][0]);
+            $cantidad_mascotas = 0;
+            $mascotas = unserialize($metas['_booking_persons'][0]);
+            foreach ($mascotas as $key => $value) {
+                $cantidad_mascotas += $value;
+            }
+            return array(
+                "inicio" => strtotime($metas['_booking_start'][0]),
+                "fin" => strtotime($metas['_booking_end'][0]),
+                "servicio" => $servicio,
+                "mascotas" => $cantidad_mascotas,
+                "acepta" => get_post_meta($servicio, "_wc_booking_qty", true),
+                "autor" => $wpdb->get_var("SELECT post_author FROM ID = {$servicio}")
+            );
+        }
+    }
+
+    if(!function_exists('update_cupos')){
+        function update_cupos($id, $accion){
+            global $wpdb;
+            $data = get_data_booking($id);
+            extract($data);
+            $cupos = $wpdb->get_row("SELECT * FROM cupos WHERE servicio = '{$servicio}' AND fecha = '{$fecha}'");
+            if( isset($cupos->cupos) ){
+                $wpdb->query("UPDATE cupos SET cupos = cupos {$accion} {$mascotas} WHERE servicio = '{$servicio}' AND ( fecha >= '{$inicio}' AND fecha <= '{$fin}' )");
+                $wpdb->query("UPDATE cupos SET full = 1 WHERE servicio = '{$servicio}' AND ( fecha >= '{$inicio}' AND fecha <= '{$fin}' AND cupos >= acepta )");
+                $wpdb->query("UPDATE cupos SET full = 0 WHERE servicio = '{$servicio}' AND ( fecha >= '{$inicio}' AND fecha <= '{$fin}' AND cupos < acepta )");
+            }else{
+                for ($i=$inicio; $i < $fin; $i+=86400) { 
+                    $fecha = date("Y-m-d H:i:s", $i);
+                    $full = 0;
+                    if( $mascotas >= $acepta ){ $full = 1; }
+                    $sql = "
+                        INSERT INTO cupos VALUES (
+                            NULL,
+                            '{$autor}',
+                            '{$servicio}',
+                            '{$fecha}',
+                            '{$mascotas}',
+                            '{$acepta}',
+                            '{$full} '        
+                        );
+                    ";
+                    $wpdb->query($sql);
+                }
+            }
+        }
+    }
+
+/*    // define the woocommerce_cart_loaded_from_session callback 
+    function action_woocommerce_cart_loaded_from_session( $array ) { 
+        if ( isset( $cart_item['booking'] ) ) {
+            // If the booking is gone, remove from cart!
+            $booking_id = $cart_item['booking']['_booking_id'];
+            $booking    = get_wc_booking( $booking_id );
+
+            if ( ! $booking || ! $booking->has_status( array( 'was-in-cart', 'in-cart', 'unpaid', 'paid' ) ) ) {
+                echo "<br><br><br><br><br>Borrado por inactividad";
+            }
+        }
+    }; 
+    add_action( 'woocommerce_cart_loaded_from_session', 'action_woocommerce_cart_loaded_from_session', 10, 1 ); */
+
     if(!function_exists('vlz_get_paginacion')){
         function vlz_get_paginacion($t, $pagina){
             $paginacion = ""; $h = 15; $inicio = $pagina*$h; 

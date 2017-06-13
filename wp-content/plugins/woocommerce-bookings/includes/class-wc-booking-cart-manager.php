@@ -213,6 +213,8 @@ class WC_Booking_Cart_Manager {
 
 					WC()->cart->calculate_totals();
 
+					update_cupos($booking_id, "-");
+
 					wc_add_notice( sprintf( __( 'A booking for %s has been removed from your cart due to inactivity.', 'woocommerce-bookings' ), '<a href="' . get_permalink( $cart_item['product_id'] ) . '">' . get_the_title( $cart_item['product_id'] ) . '</a>' ), 'notice' );
 				} elseif ( $booking->has_status( 'in-cart' ) ) {
 					$this->schedule_cart_removal( $cart_item['booking']['_booking_id'] );

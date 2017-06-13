@@ -64,6 +64,12 @@
 		}
 	}
 
+	global $post;
+	if( $post->post_name == "carro" && isset($_GET['remove_item']) ){
+		$carro = WC()->cart->get_cart_item($_GET['remove_item']);
+		$data = update_cupos($carro['booking']['_booking_id'], "-");
+	}
+
 ?><!doctype html>
 <html <?php language_attributes(); ?> class="no-js">
 	<head>

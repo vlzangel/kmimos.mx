@@ -63,30 +63,29 @@
 	$sql = "
 		SELECT 
 			reserva.ID 				 AS id, 
-			producto.post_author 	 AS autor, 
-			producto.ID 		 	 AS producto_id, 
-			producto.post_name 		 AS producto, 
+			servicio.post_author 	 AS autor, 
+			servicio.ID 		 	 AS servicio_id, 
+			servicio.post_name 		 AS servicio, 
 			startmeta.meta_value 	 AS inicio, 
 			endmeta.meta_value		 AS fin,
 			acepta.meta_value		 AS acepta,
-			order_item_id.meta_value AS item_id,
-			(SELECT count(*) FROM wp_woocommerce_order_itemmeta WHERE order_item_id = item_id AND meta_key LIKE '%Mascotas%') AS mascotas
+			mascotas.meta_value 	 AS mascotas
 
 		FROM wp_posts AS reserva
 
 		LEFT JOIN wp_postmeta as startmeta     ON ( reserva.ID 		= startmeta.post_id 		)
 		LEFT JOIN wp_postmeta as endmeta   	   ON ( reserva.ID 		= endmeta.post_id 			)
-		LEFT JOIN wp_postmeta as order_item_id ON ( reserva.ID 		= order_item_id.post_id 	)
-		LEFT JOIN wp_postmeta as producto_id   ON ( reserva.ID 		= producto_id.post_id 		)
-		LEFT JOIN wp_posts    as producto  	   ON ( producto.ID 	= producto_id.meta_value 	)
-		LEFT JOIN wp_postmeta as acepta  	   ON ( acepta.post_id 	= producto.ID 				)
+		LEFT JOIN wp_postmeta as mascotas  	   ON ( reserva.ID 		= mascotas.post_id 			)
+		LEFT JOIN wp_postmeta as servicio_id   ON ( reserva.ID 		= servicio_id.post_id 		)
+		LEFT JOIN wp_posts    as servicio  	   ON ( servicio.ID 	= servicio_id.meta_value 	)
+		LEFT JOIN wp_postmeta as acepta  	   ON ( acepta.post_id 	= servicio.ID 				)
 		WHERE 
 			reserva.post_type  		= 'wc_booking' 				AND 
 			startmeta.meta_key   	= '_booking_start' 			AND 
 			endmeta.meta_key   		= '_booking_end' 			AND 
-			producto_id.meta_key   	= '_booking_product_id' 	AND 
+			servicio_id.meta_key   	= '_booking_product_id' 	AND 
 			acepta.meta_key   		= '_wc_booking_qty' 		AND 
-			order_item_id.meta_key  = '_booking_order_item_id' 	AND 
+			mascotas.meta_key  		= '_booking_persons' 		AND 
 			(
 				reserva.post_status NOT LIKE '%cancelled%' AND
 				reserva.post_status     != 	 'was-in-cart' 
@@ -94,76 +93,85 @@
 				endmeta.meta_value >= '{$actual}'
 			)
 		GROUP BY reserva.ID
-		LIMIT 0, 1
 	";
 
 	$resultados = $db->get_results($sql);
 
-	/*	echo "<pre>";
+/*		echo "<pre>";
 			echo $sql."<br><br>";
 			print_r($resultados);
-		echo "</pre>";
-	*/
+		echo "</pre>";*/
+	
 
 	foreach ($resultados as $reserva) {
 		update_cupos($reserva);
 	}
 
 	function update_cupos($reserva){
+		global $db;
 		$inicio = strtotime($reserva->inicio);
 		$fin 	= strtotime($reserva->fin);
 		for ($i=$inicio; $i < $fin; $i+=86400) { 
 			$fecha = date("Y-m-d H:i:s", $i);
 
-			$cupos = get_cupos($reserva->autor, $reserva->producto_id, $fecha);
+			$sql = "
+			SELECT 
+				*
+			FROM 
+				cupos 
+			WHERE 
+				cuidador = '{$reserva->autor}' AND
+				servicio = '{$reserva->servicio_id}' AND
+				fecha    = '{$fecha}'";
 
-			$full = 0; $total = $reserva->mascotas;
-			if( $cupos !== false ){
-				$total += $cupos;
-				if( $total >= $reserva->acepta ){
+			$cupos = $db->get_row($sql);
+
+			$total = 0;
+			$mascotas = unserialize($reserva->mascotas);
+			foreach ($mascotas as $key => $value) {
+				$total += $value;
+			}
+
+			$full = 0;
+			if( !isset($cupos->cupos) ){
+				$full = 0;
+				if($total >= $reserva->acepta){
 					$full = 1;
 				}
-				
-			}else{
 				$sql = "
 					INSERT INTO cupos VALUES (
 						NULL,
 						{$reserva->autor},
-						{$reserva->producto_id},
+						{$reserva->servicio_id},
 						'{$fecha}',
 						{$total},
 						{$reserva->acepta},
-						0				
+						{$full}			
 					);
 				";
+
+			 	$db->query($sql);
+			}else{
+				$total += $cupos->cupos;
+				if( $total >= $reserva->acepta ){
+					$full = 1;
+				}
+				
+				$sql = "
+					UPDATE 
+						cupos 
+					SET 
+						cupos = {$total},
+						full  = {$full} 
+					WHERE 
+						id = {$cupos->id};
+				";
+
+				$db->query($sql);
+
+				echo $sql."<br>";
 			}
 			
-			echo $sql."<br>";
 		}
-	}
-
-	function get_cupos($cuidador, $servicio, $fecha){
-		global $db;
-
-		$sql = "
-			SELECT 
-				cupos,
-				acepta 
-			FROM 
-				cupos 
-			WHERE 
-				cuidador = {$cuidador},
-				servicio = {$servicio},
-				fecha    = '{$fecha}'
-		";
-
-		$cupos = $db->get_var( $sql );
-
-		if( $cupos !== false ){
-			return $cupos->cupos;
-		}else{
-			return false;
-		}
-
 	}
 ?>
