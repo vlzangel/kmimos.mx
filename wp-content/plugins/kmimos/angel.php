@@ -11,23 +11,35 @@
         }
     }
 
+    if(!function_exists('angel_log')){
+        function angel_log($salida){
+            global $wpdb;
+            $wpdb->query("INSERT INTO log VALUES(NULL, \"".$salida."\")");
+        }
+    }
+
     if(!function_exists('get_data_booking')){
         function get_data_booking($id){
             global $wpdb;
-            $metas = get_post_meta($id);
-            $servicio = strtotime($metas['_booking_product_id'][0]);
+
+            $metas      = get_post_meta($id);
+            $servicio   = $metas['_booking_product_id'][0];
+            $mascotas   = unserialize($metas['_booking_persons'][0]);
+
             $cantidad_mascotas = 0;
-            $mascotas = unserialize($metas['_booking_persons'][0]);
-            foreach ($mascotas as $key => $value) {
-                $cantidad_mascotas += $value;
+            if( $mascotas != "" && count($mascotas) > 0 ){
+                foreach ($mascotas as $key => $value) {
+                    $cantidad_mascotas += $value;
+                }
             }
+
             return array(
-                "inicio" => strtotime($metas['_booking_start'][0]),
-                "fin" => strtotime($metas['_booking_end'][0]),
+                "inicio"   => strtotime($metas['_booking_start'][0]),
+                "fin"      => strtotime($metas['_booking_end'][0]),
                 "servicio" => $servicio,
                 "mascotas" => $cantidad_mascotas,
-                "acepta" => get_post_meta($servicio, "_wc_booking_qty", true),
-                "autor" => $wpdb->get_var("SELECT post_author FROM ID = {$servicio}")
+                "acepta"   => get_post_meta($servicio, "_wc_booking_qty", true),
+                "autor"    => $wpdb->get_var("SELECT post_author FROM wp_posts WHERE ID = {$servicio}")
             );
         }
     }
@@ -37,11 +49,20 @@
             global $wpdb;
             $data = get_data_booking($id);
             extract($data);
-            $cupos = $wpdb->get_row("SELECT * FROM cupos WHERE servicio = '{$servicio}' AND fecha = '{$fecha}'");
-            if( isset($cupos->cupos) ){
-                $wpdb->query("UPDATE cupos SET cupos = cupos {$accion} {$mascotas} WHERE servicio = '{$servicio}' AND ( fecha >= '{$inicio}' AND fecha <= '{$fin}' )");
-                $wpdb->query("UPDATE cupos SET full = 1 WHERE servicio = '{$servicio}' AND ( fecha >= '{$inicio}' AND fecha <= '{$fin}' AND cupos >= acepta )");
-                $wpdb->query("UPDATE cupos SET full = 0 WHERE servicio = '{$servicio}' AND ( fecha >= '{$inicio}' AND fecha <= '{$fin}' AND cupos < acepta )");
+
+            $xinicio = date("Y-m-d", strtotime($inicio) );
+            $xfin    = date("Y-m-d", strtotime($fin) );
+
+            $cupos = $wpdb->get_results("SELECT * FROM cupos WHERE servicio = '{$servicio}' AND ( fecha >= '{$xinicio}' AND fecha <= '{$xfin}' )");
+
+            angel_log("SELECT * FROM cupos WHERE servicio = {$servicio} AND ( fecha >= {$xinicio} AND fecha <= {$xfin} )");
+
+            $dias = (( $fin-$inicio) / 86400);
+
+            if( count($cupos) == $dias ){
+                $wpdb->query("UPDATE cupos SET cupos = cupos {$accion} {$mascotas} WHERE servicio = '{$servicio}' AND ( fecha >= '{$xinicio}' AND fecha <= '{$xfin}' )");
+                $wpdb->query("UPDATE cupos SET full = 1 WHERE servicio = '{$servicio}' AND ( fecha >= '{$xinicio}' AND fecha <= '{$xfin}' AND cupos >= acepta )");
+                $wpdb->query("UPDATE cupos SET full = 0 WHERE servicio = '{$servicio}' AND ( fecha >= '{$xinicio}' AND fecha <= '{$xfin}' AND cupos < acepta )");
             }else{
                 for ($i=$inicio; $i < $fin; $i+=86400) { 
                     $fecha = date("Y-m-d H:i:s", $i);

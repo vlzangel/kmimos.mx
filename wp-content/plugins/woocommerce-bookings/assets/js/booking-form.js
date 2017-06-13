@@ -1,30 +1,16 @@
 // Modificacion Ángel Veloz
 jQuery(document).ready(function($) {
 
-	if ( ! window.console ) {
-		window.console = {
-			log : function(str) {
-				// alert(str);
-			}
-		};
-	}
-
-	jQuery("#form_servicio")
-		.on('change', 'input, select', function() {
-
-			var id = jQuery(this).attr("id");
-			if( id != "pay-deposit" && id != "pay-full-amount" ){
-				jQuery('.single_add_to_cart_button').addClass('xdisabled');
-				jQuery('.single_add_to_cart_button').html('Calcular Costo');
-
-				//console.log(id);
-			}
-
-		})
-		.each(function(){
-			/*var button = $(this).closest('form').find('.single_add_to_cart_button');
-			button.addClass('disabled');*/
-		});
+	jQuery("#form_servicio").on('change', 'input, select', function() {
+		var id = jQuery(this).attr("id");
+		if( id != "pay-deposit" && id != "pay-full-amount" ){
+			jQuery('.single_add_to_cart_button').addClass('xdisabled');
+			jQuery('.single_add_to_cart_button').html('Calcular Costo');
+		}
+	}).each(function(){
+		/*var button = $(this).closest('form').find('.single_add_to_cart_button');
+		button.addClass('disabled');*/
+	});
 
 	$( '.single_add_to_cart_button' ).on( 'click', function( event ) {
 		if ( $(this).hasClass('xdisabled') ) {
@@ -33,7 +19,7 @@ jQuery(document).ready(function($) {
 			event.preventDefault();
 			return false;
 		}
-	})
+	});
 
 	$('.wc-bookings-booking-form, .wc-bookings-booking-form-button').show().removeAttr( 'disabled' );
 

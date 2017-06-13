@@ -147,6 +147,8 @@ class WC_Booking_Cart_Manager {
 
 			if ( $booking->has_status( 'in-cart' ) ) {
 
+				update_cupos($booking_id, "-");
+
 				$booking->update_status( 'was-in-cart' );
 				WC_Cache_Helper::get_transient_version( 'bookings', true );
 				wp_clear_scheduled_hook( 'wc-booking-remove-inactive-cart', array( $booking_id ) );
@@ -213,8 +215,6 @@ class WC_Booking_Cart_Manager {
 
 					WC()->cart->calculate_totals();
 
-					update_cupos($booking_id, "-");
-
 					wc_add_notice( sprintf( __( 'A booking for %s has been removed from your cart due to inactivity.', 'woocommerce-bookings' ), '<a href="' . get_permalink( $cart_item['product_id'] ) . '">' . get_the_title( $cart_item['product_id'] ) . '</a>' ), 'notice' );
 				} elseif ( $booking->has_status( 'in-cart' ) ) {
 					$this->schedule_cart_removal( $cart_item['booking']['_booking_id'] );
@@ -246,6 +246,12 @@ class WC_Booking_Cart_Manager {
 
 		// Store in cart
 		$cart_item_meta['booking']['_booking_id'] = $new_booking->id;
+
+		echo "<pre>";
+			print_r( $new_booking->id );
+		echo "</pre>";
+
+		update_cupos($new_booking->id, "+");
 
 		// Schedule this item to be removed from the cart if the user is inactive
 		$this->schedule_cart_removal( $new_booking->id );

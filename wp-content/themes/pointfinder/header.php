@@ -63,12 +63,19 @@
 	   		header("location: ".get_home_url()."/perfil-usuario/?ua=profile");
 		}
 	}
-
+/*
 	global $post;
 	if( $post->post_name == "carro" && isset($_GET['remove_item']) ){
 		$carro = WC()->cart->get_cart_item($_GET['remove_item']);
-		$data = update_cupos($carro['booking']['_booking_id'], "-");
-	}
+
+		echo "<pre>";
+			print_r($carro);
+		echo "</pre>";
+
+		update_cupos($carro['booking']['_booking_id'], "-");
+
+		exit;
+	}*/
 
 ?><!doctype html>
 <html <?php language_attributes(); ?> class="no-js">
