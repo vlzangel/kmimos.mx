@@ -1,7 +1,7 @@
 <div class="filter">
     <div class="type tdshow" data-type="tdcheck">
         <div class="day line">
-            <label>Dias</label>
+            <label>Días</label>
             <input type="checkbox" name="day" value="yes"/>
         </div>
 
@@ -11,7 +11,7 @@
         </div>
 
         <div class="year line">
-            <label>Ano</label>
+            <label>Año</label>
             <input type="checkbox" name="year" value="yes" checked/>
         </div>
 

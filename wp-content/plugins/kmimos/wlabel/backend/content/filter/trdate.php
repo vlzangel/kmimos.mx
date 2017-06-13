@@ -13,7 +13,7 @@
         </div>
 
         <div class="year line">
-            <label>Ano</label>
+            <label>Año</label>
             <select name="year">
                 <option value="">Seleccionar ...</option>
                 <?php
