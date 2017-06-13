@@ -120,6 +120,9 @@ function mycode_more_info_button() {
 add_filter( 'woocommerce_add_cart_item_data', '_empty_cart' );
 function _empty_cart( $cart_item_data ){
 	WC()->cart->empty_cart();
+	echo "<pre>";
+		print_r($cart_item_data);
+	echo "</pre>";
 	return $cart_item_data;
 }
 
