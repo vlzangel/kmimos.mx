@@ -118,7 +118,7 @@
 					
 		}
 
-		echo "map.fitBounds(bounds);";
+			if( count($coordenadas_all_2) > 0 ){ echo "map.fitBounds(bounds);"; }
 
 		?>
 	}

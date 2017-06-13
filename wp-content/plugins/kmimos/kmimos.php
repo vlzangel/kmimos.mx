@@ -15,6 +15,18 @@
      * License:     GPL2
      */
 
+    if(!function_exists('comprimir_styles')){
+        function comprimir_styles($styles){
+            $styles = str_replace("\t", "", $styles);
+            $styles = str_replace("      ", " ", $styles);
+            $styles = str_replace("     ", " ", $styles);
+            $styles = str_replace("    ", " ", $styles);
+            $styles = str_replace("   ", " ", $styles);
+            $styles = str_replace("  ", " ", $styles);
+            return $styles = str_replace("\n", " ", $styles);
+        }
+    }
+
     include_once('angel.php');
     include_once('carlos.php');
     include_once('italo.php');

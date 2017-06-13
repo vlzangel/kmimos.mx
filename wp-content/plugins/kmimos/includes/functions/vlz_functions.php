@@ -45,6 +45,8 @@
         function kmimos_set_kmisaldo($id_cliente, $id_orden, $id_reserva){
             global $wpdb;
 
+            $status = $wpdb->get_var("SELECT post_status FROM wp_posts WHERE ID = {$id_orden}");
+
             $metas_orden = get_post_meta($id_orden);
             $metas_reserva  = get_post_meta( $id_reserva );
 
@@ -68,9 +70,14 @@
             $descuento = 0;
             if( $metas_orden[ "_cart_discount" ][0] != "" ){
                 $descuento = $metas_orden[ "_cart_discount" ][0]+0;
-                $saldo += $descuento;
             }
-            
+
+            if($status == 'wc-on-hold' && $metas_orden['_payment_method'][0] == 'openpay_stores'){ 
+                $saldo = $descuento;  
+            }else{
+                $saldo += $descuento;                
+            }
+
             $saldo_persistente = get_user_meta($id_cliente, "kmisaldo", true)+0;
             update_user_meta($id_cliente, "kmisaldo", $saldo_persistente+$saldo);
             
@@ -372,7 +379,7 @@
                         </tr>
                         <tr>
                             <td valign="top"> <strong>Correo:</strong> </td>
-                            <td valign="top">'.$user->data->user_email.'</td>
+                            <td valign="top">'.$email_cliente.'</td>
                         </tr>
                         <tr>
                             <td valign="top"> <strong>Dirección: </strong> </td>
@@ -383,7 +390,7 @@
 
             /*  Mascotas    */
 
-                $mascotas = $wpdb->get_results("SELECT * FROM $wpdb->posts WHERE post_author = '".$cliente."' AND post_type='pets'");
+                $mascotas = $wpdb->get_results("SELECT * FROM $wpdb->posts WHERE post_author = '{$cliente}' AND post_type='pets' AND post_status = 'publish'");
                 $detalles_mascotas = "";
 
                 if( $is_mail ){

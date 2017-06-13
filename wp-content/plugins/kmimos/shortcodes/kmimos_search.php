@@ -274,8 +274,6 @@
 
         </form>
     </div>
-
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <?php echo get_estados_municipios(); ?>
 <script type="text/javascript">
     var hasGPS=false;

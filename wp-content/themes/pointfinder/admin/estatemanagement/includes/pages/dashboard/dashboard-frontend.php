@@ -198,7 +198,7 @@ if ( ! class_exists( 'PF_Frontend_Fields' ) ){
 		                   ';
 		                if (!$hide_button) {
 		                	$this->FieldOutput .= '
-			                   <input type="submit" value="'.$buttontext.'" id="'.$buttonid.'" class="button blue pfmyitempagebuttonsex" data-edit="'.$params['post_id'].'"  />
+			                   <input type="submit" value="'.$buttontext.'" id="'.$buttonid.'" class="button blue pfmyitempagebuttonsex vlz_repeat_action" data-edit="'.$params['post_id'].'" />
 		                   ';
 		                }
 
