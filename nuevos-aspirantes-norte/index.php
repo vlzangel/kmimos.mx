@@ -66,6 +66,7 @@
 		<aside class="row" id="section-2-1">
 			<div class="container">
 				<article class="col-md-12">
+					<div class="col-sm-12 text-center" style="color:#ccc; font-size: 20px;">Nos viste en:</div>
 					<div class="col-sm-offset-2 col-sm-4 col-xs-6 col-md-4">
 						<img src="/wp-content/uploads/2017/02/el-norte-360x150-360x150.png" class="img-responsive"></div>
 					<div class="col-sm-4 col-xs-6 col-md-4">
@@ -150,6 +151,7 @@
 			       	 		<h2>Trabaja desde casa</h2>
 			       	 	</div>
 		       	 	</article>
+		       	 	<hr>
 		       	 	<article class="container">
 		       	 		<div class="col-sm-1 col-xs-offset-3 col-sm-offset-0 col-md-offset-0 col-lg-offset-0">
 		       	 			<img src="img/icon 10.png">
