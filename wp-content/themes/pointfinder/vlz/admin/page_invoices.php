@@ -212,7 +212,7 @@ if( count($reservas) > 0 ){
 			//var_dump($pedido);
 
 			//RESERVAS PENDIENTES POR ERROR DE PAGOS DE TARJETAS
-			if($orden_status=='wc_pending') {
+			if($orden_status=='wc-pending') {
 
 			}else if($orden_status == 'wc-on-hold' && $_metas['_payment_method'][0] == 'openpay_stores'){
 
