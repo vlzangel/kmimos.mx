@@ -46,7 +46,12 @@
     $esterilizado_str = "";
     for ( $i=0; $i<2; $i++ ) {
         $esterilizado_str .= '<option value="'.$i.'"';
-        if($i == (int)$current_pet['sterilized']) $esterilizado_str .= ' selected';
+        if( isset($current_pet['strerilized']) ){
+            if($i == (int)$current_pet['strerilized']) $esterilizado_str .= ' selected';
+        }else{
+            if($i == (int)$current_pet['sterilized']) $esterilizado_str .= ' selected';
+        }
+        
         $esterilizado_str .= '>'.$si_no[$i].'</option>';
     }
 
@@ -245,7 +250,6 @@
                 jQuery("#pet_breed").html(opciones);
             }
         }
-
         function vista_previa_pet(evt) {
             var files = evt.target.files;
             for (var i = 0, f; f = files[i]; i++) {
@@ -264,7 +268,10 @@
                reader.readAsDataURL(f);
             }
         }
-
         document.getElementById("portada_pet").addEventListener("change", vista_previa_pet, false);
+
+        jQuery("#pfuaprofileform").submit(function(e){
+            jQuery(".vlz_repeat_action").attr("disabled","disabled");
+        });
     </script>';
 ?>
