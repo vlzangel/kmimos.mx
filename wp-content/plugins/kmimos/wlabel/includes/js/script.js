@@ -28,6 +28,8 @@ function WhiteLabel_panel_menu(module){
     var url=path+'content/modules/'+module+'.php'; console.log(url);
     jQuery.get(url, function(data){
         jQuery('.section .modules').html(data);
+        modules_filter(jQuery('.filter select'));
+        modules_filter(jQuery('.filter input'));
     });
 }
 
