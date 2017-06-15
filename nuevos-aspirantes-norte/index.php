@@ -66,6 +66,7 @@
 		<aside class="row" id="section-2-1">
 			<div class="container">
 				<article class="col-md-12">
+					<div class="col-sm-12 text-center" style="color:#ccc; font-size: 20px;">Nos viste en:</div>
 					<div class="col-sm-offset-2 col-sm-4 col-xs-6 col-md-4">
 						<img src="/wp-content/uploads/2017/02/el-norte-360x150-360x150.png" class="img-responsive"></div>
 					<div class="col-sm-4 col-xs-6 col-md-4">
