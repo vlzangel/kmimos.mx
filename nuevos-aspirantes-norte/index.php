@@ -151,6 +151,7 @@
 			       	 		<h2>Trabaja desde casa</h2>
 			       	 	</div>
 		       	 	</article>
+		       	 	<hr>
 		       	 	<article class="container">
 		       	 		<div class="col-sm-1 col-xs-offset-3 col-sm-offset-0 col-md-offset-0 col-lg-offset-0">
 		       	 			<img src="img/icon 10.png">
