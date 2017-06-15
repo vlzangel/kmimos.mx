@@ -121,7 +121,7 @@
 	    ';
 	    
    		$msg_cliente = kmimos_get_email_html("Cancelación de Reserva", $msg, "", true, true);
-   		wp_mail( $cliente_email, "Cancelación de Reserva", $msg_cliente, kmimos_mails_administradores());
+   		wp_mail( $cliente_email, "Cancelación de Reserva", $msg_cliente);
 
     } else {
 		$order->update_status('wc-on-hold');
