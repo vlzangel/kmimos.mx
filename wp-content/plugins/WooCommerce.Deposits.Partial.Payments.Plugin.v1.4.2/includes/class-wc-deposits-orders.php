@@ -187,7 +187,7 @@ class WC_Deposits_Orders
     }
 
     $total_rows['remaining_amount'] = array(
-      'label' => '<span style="color: #FF0000">Monto a pagar al cuidador:</span>',
+      'label' => '<span style="color: #FF0000">Monto a pagar al cuidador en efectivo al entregar el perrito:</span>',
       'value' => '<span style="color: #FF0000">'.woocommerce_price($remaining, array('currency' => $order->get_order_currency())).'</span>'
     );
 

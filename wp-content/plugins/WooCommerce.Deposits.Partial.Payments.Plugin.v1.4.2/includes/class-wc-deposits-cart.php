@@ -269,7 +269,7 @@ class WC_Deposits_Cart{
         } ?>
             
         <tr class="order-remaining">
-            <th style="color: #FF0000"><?php _e('Monto a pagar al cuidador:', 'woocommerce-deposits'); ?></th>
+            <th style="color: #FF0000"><?php _e('Monto a pagar al cuidador en efectivo al entregar el perrito:', 'woocommerce-deposits'); ?></th>
             <td style="color: #FF0000"><?php $this->deposit_remaining_html(); ?></td>
         </tr> <?php
     }
