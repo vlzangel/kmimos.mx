@@ -151,9 +151,9 @@ for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
     foreach($BUILDbookings as $booking){
         if(strtotime(date('m/d/Y',$booking['date']))==strtotime(date('m/d/Y',$day))){
             $amount_booking=0;
-            //if($booking['status']=='cancelled'){}
+            if($booking['status']!='modified'){ //$booking['status']=='cancelled'
                 $amount_booking=$booking['WCorder_line_total'];
-
+            }
             $amount_booking=(round($amount_booking*100)/100);
             $amount_day=$amount_day+$amount_booking;
             $amount_month=$amount_month+$amount_booking;
@@ -198,7 +198,7 @@ for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
     foreach($BUILDbookings as $booking){
         if(strtotime(date('m/d/Y',$booking['date']))==strtotime(date('m/d/Y',$day))){
             $amount_booking=0;
-            if($booking['status']!='cancelled'){
+            if($booking['status']!='cancelled' && $booking['status']!='modified'){
                 $amount_booking=$booking['WCorder_line_total'];
             }
             $amount_booking=(round($amount_booking*100)/100);
@@ -341,7 +341,7 @@ for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
     foreach($BUILDbookings as $booking){
         if(strtotime(date('m/d/Y',$booking['date']))==strtotime(date('m/d/Y',$day))){
             $amount_booking=0;
-            if($booking['status']!='cancelled'){
+            if($booking['status']!='cancelled' && $booking['status']!='modified'){
                 $amount_booking=$booking['WCorder_line_total']*0.17;
             }
             $amount_booking=(round($amount_booking*100)/100);
@@ -387,7 +387,7 @@ for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
     foreach($BUILDbookings as $booking){
         if(strtotime(date('m/d/Y',$booking['date']))==strtotime(date('m/d/Y',$day))){
             $amount_booking=0;
-            if($booking['status']!='cancelled'){
+            if($booking['status']!='cancelled' && $booking['status']!='modified'){
                 $amount_booking=$booking['WCorder_line_total']*0.17*0.6;
             }
             $amount_booking=(round($amount_booking*100)/100);
@@ -433,7 +433,7 @@ for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
     foreach($BUILDbookings as $booking){
         if(strtotime(date('m/d/Y',$booking['date']))==strtotime(date('m/d/Y',$day))){
             $amount_booking=0;
-            if($booking['status']!='cancelled'){
+            if($booking['status']!='cancelled' && $booking['status']!='modified'){
                 $amount_booking=$booking['WCorder_line_total']*0.17*0.4;
             }
             $amount_booking=(round($amount_booking*100)/100);
