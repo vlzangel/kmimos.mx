@@ -12,5 +12,6 @@
     ?>
     <div class="item" onclick="WhiteLabel_panel_menu('detail');">Montos</div>
     <div class="item" onclick="WhiteLabel_panel_menu('client');">Clientes</div>
+    <div class="item" onclick="WhiteLabel_panel_menu('client-booking');">Reservas por Clientes</div>
     <div class="item" onclick="WhiteLabel_panel_menu('booking');">Reservas</div>
 </div>
