@@ -26,18 +26,6 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:300i,400,400i');
 @import url('css/font-awesome.min.css');
 
-
-/*THEME*/
-.theme_title{}
-.theme_content{}
-.theme_button{
-	color: #FFF;
-	background-color: #00d2b7;
-	border-color: #00d2b7;
-}
-
-
-
 /*------------------------------------*\
 
     MAIN
@@ -3132,7 +3120,7 @@ input#place_order{
 
 	.pflist-imagecontainer .RibbonCTR {-webkit-transition: all 0.3s ease 0s;-moz-transition: all 0.3s ease 0s;-ms-transition: all 0.3s ease 0s;-o-transition: all 0.3s ease 0s;transition: all 0.3s ease 0s;}
 
-	.pflist-imagecontainer .RibbonCTR .Sign i {font-size: 16px;-webkit-transition:all 0.3s ease-in-out; -moz-transition:all 0.3s ease-in-out; -ms-transition:all 0.3s ease-in-out; -o-transition:all 0.3s ease-in-out; transition:all 0.3s ease-in-out;}
+	.pflist-imagecontainer .RibbonCTR .Sign i { color:#aaa; font-size: 16px;-webkit-transition:all 0.3s ease-in-out; -moz-transition:all 0.3s ease-in-out; -ms-transition:all 0.3s ease-in-out; -o-transition:all 0.3s ease-in-out; transition:all 0.3s ease-in-out;}
 
 	.pflist-imagecontainer .RibbonCTR .Sign i:hover {-webkit-transition:all 0.3s ease-in-out; -moz-transition:all 0.3s ease-in-out; -ms-transition:all 0.3s ease-in-out; -o-transition:all 0.3s ease-in-out; transition:all 0.3s ease-in-out;}
 

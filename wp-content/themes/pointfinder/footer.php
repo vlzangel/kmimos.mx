@@ -42,7 +42,15 @@
 
         <div class="jj-xs-offiset-2 col-md-offset-1 col-md-offset-3 jj-offset-2 inline" >
             <span id="siteseal">
-                <script async type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=c5u9pjdoyKXQ6dRtmwnDmY0bV6KVBrdZGPEAnPkeSt7ZRCetPjIUzVK0bnHa"></script>
+                <script async type="text/javascript">
+                    function verifySeal() {
+                        var bgHeight = "460";
+                        var bgWidth = "593";
+                        var url = "https://seal.godaddy.com/verifySeal?sealID=c5u9pjdoyKXQ6dRtmwnDmY0bV6KVBrdZGPEAnPkeSt7ZRCetPjIUzVK0bnHa";
+                        window.open(url,'SealVerfication','menubar=no,toolbar=no,personalbar=no,location=yes,status=no,resizable=yes,fullscreen=no,scrollbars=no,width=' + bgWidth + ',height=' + bgHeight);
+                    }
+                </script>
+                <img src="https://seal.godaddy.com/images/3/en/siteseal_gd_3_h_l_m.gif" onclick="verifySeal();" />
             </span>  
             <?php if($post_type=='post'){ ?>
                 <a class="inline" href="http://es.paperblog.com/" rel="paperblog kmimos" title="Paperblog : Los mejores artículos de los blogs" ><img src="/wp-content/uploads/iconos/paperblog.gif" border="0" alt="Paperblog : Los mejores artículos de los blogs" width="131" height="32"/></a>
@@ -50,116 +58,109 @@
             <?php } ?>
         </div>
     </footer>
-        <?php wp_footer(); ?>
+        <?php 
+            wp_footer(); 
 
-        <style type="text/css">
-            .wcvendors_sold_by_in_loop{
-                display: none !important;
-            }
-            .wc-bookings-booking-form .wc-bookings-booking-cost{
-                margin: 0px 0px 10px !important;
-            }
-            .wc-bookings-booking-cost{
-                position: relative !important;
-                left: initial;
-                margin-left: 0px !important;
-                top: 0px !important;
-            }
+            $styles = "
+                <style type='text/css'>
+                    .wcvendors_sold_by_in_loop{
+                        display: none !important;
+                    }
+                    .wc-bookings-booking-form .wc-bookings-booking-cost{
+                        margin: 0px 0px 10px !important;
+                    }
+                    .wc-bookings-booking-cost{
+                        position: relative !important;
+                        left: initial;
+                        margin-left: 0px !important;
+                        top: 0px !important;
+                    }
+                    .product .related{
+                        clear: both !important;
+                    }
+                    .switch-candy span {
+                        color: #000000 !important;
+                    }
+                    .woocommerce .cart .button, .woocommerce .cart input.button {
+                        float: none;
+                        color: #000 !important;
+                    }
+                    .vc-image-carousel .vc-carousel-slideline-inner .vc-inner img {
+                        -webkit-filter: grayscale(0%) !important;
+                        filter: grayscale(0%) !important;
+                        opacity: 1 !important;
+                    }
+                    .wpmenucartli {
+                        display: none !important;
+                    }
+                    .kmi_link{
+                        font-size: initial; 
+                        color: #54c8a7;
+                        text-transform: capitalize;
+                        font-weight: bold;
+                    }
+                    a.kmi_link:hover{
+                        color:#138675!important;
+                    }
+                    .kmi_link:hover{
+                        color:#138675!important;
+                    }
+                    .wpmenucartli{
+                        display: none !important;
+                    }
+                    @media (min-width: 1200px){
+                        .jj-offset-2 {
+                            margin-left: 16.66666667%!important;
+                        }
+                    }
+                    @media (min-width: 994px){
+                        .jj-patica-menu{
+                            display: none;
+                        }
+                        .inline{
+                            display: inline;
+                            margin-bottom:3px;
+                        }
 
-            .product .related{
-                clear: both !important;
-            }
-            
-            .switch-candy span {
-                color: #000000 !important;
-            }
+                    }
+                    @media (max-width: 120px) and (min-width: 962px){
+                        .socialBtns{
+                             padding-left: 6px!important;
+                        }
+                    }
+                    @media (max-width: 962px){
+                        .socialBtns{
+                            padding-left: 0px;
+                        }
+                    }
+                    @media screen and (max-width: 750px){
+                        .vlz_modal_ventana{
+                            width: 90% !important;
+                        }
+                        .jj-xs-offiset-2{
+                            margin-left: 20%;
+                        }
 
-            .woocommerce .cart .button, .woocommerce .cart input.button {
-                float: none;
-                color: #000 !important;
-            }
-            .vc-image-carousel .vc-carousel-slideline-inner .vc-inner img {
-                -webkit-filter: grayscale(0%) !important;
-                filter: grayscale(0%) !important;
-                opacity: 1 !important;
-            }
+                        .inline{
+                            display: block;
+                        }
+                    }
+                    @media (max-width: 520px){
+                        .vlz_modal_contenido{
+                            height: 300px;
+                        }
+                    }   
+                </style>
+            ";
 
-            .wpmenucartli {
-                display: none !important;
-            }
-        </style>
+            $scrits = "
+            <script>
+                function ocultarModal(){
+                    jQuery('#jj_modal_finalizar_compra').fadeOut();
+                    jQuery('#jj_modal_finalizar_compra').css('display', 'none');
+                }"; ?>
 
-        <style>
-            .kmi_link{
-                font-size: initial; 
-                color: #54c8a7;
-                text-transform: capitalize;
-                font-weight: bold;
-            }
-
-            a.kmi_link:hover{
-                color:#138675!important;
-            }
-            .kmi_link:hover{
-                color:#138675!important;
-            }
-            .wpmenucartli{
-                display: none !important;
-            }
-
-            @media (min-width: 1200px){
-                .jj-offset-2 {
-                    margin-left: 16.66666667%!important;
-                }
-            }
-            @media (min-width: 994px){
-                .jj-patica-menu{
-                    display: none;
-                }
-                .inline{
-                    display: inline;
-                    margin-bottom:3px;
-                }
-
-            }
-            @media (max-width: 120px) and (min-width: 962px){
-                .socialBtns{
-                     padding-left: 6px!important;
-                }
-            }
-    
-            @media (max-width: 962px){
-                .socialBtns{
-                    padding-left: 0px;
-                }
-            }
-            @media screen and (max-width: 750px){
-                .vlz_modal_ventana{
-                    width: 90% !important;
-                }
-                .jj-xs-offiset-2{
-                    margin-left: 20%;
-                }
-
-                .inline{
-                    display: block;
-                }
-            }
-
-            @media (max-width: 520px){
-                .vlz_modal_contenido{
-                    height: 300px;
-                }
-            }           
-
-        </style>
-
-        <script>
-            function ocultarModal(){
-                jQuery('#jj_modal_finalizar_compra').fadeOut();
-                jQuery('#jj_modal_finalizar_compra').css('display', 'none');
-            }
-        </script>
+        
 
         <?php
             global $wpdb;
@@ -168,28 +169,30 @@
             }else{
             
                 if( isset( $_GET['a'] ) ){
-                    echo "
-                        <script>
-                            (function($) {
-                                'use strict';
-                                $(function(){
-                                    $.pfOpenLogin('open','login');
-                                })
-                               })(jQuery);
-                        </script>
+                    $scrits .= "
+                        (function($) {
+                            'use strict';
+                            $(function(){
+                                $.pfOpenLogin('open','login');
+                            })
+                        })(jQuery);
                     ";
                 }
             }
 
             if( $post->post_name == "carro" ){
 
-                echo "
-                    <script>
-                        jQuery('.woocommerce-message>a.button.wc-forward').css('display', 'none');
-                        jQuery('.variation-Duracin').css('display', 'none');
-                        jQuery('.variation-Ofrecidopor').css('display', 'none');
-                    </script>
+                $scrits .= "
+                    jQuery('.woocommerce-message>a.button.wc-forward').css('display', 'none');
+                    jQuery('.variation-Duracin').css('display', 'none');
+                    jQuery('.variation-Ofrecidopor').css('display', 'none');
 
+                    jQuery( document ).ready(function() {
+                        jQuery('.woocommerce-message>a.button.wc-forward').css('display', 'none');
+                    });
+                ";
+
+                $styles .= "
                     <style>
                         .woocommerce-message>a.button.wc-forward{
                             display; none;
@@ -197,35 +200,31 @@
                         input[name=coupon_code]{color: #000!important;}
                         input[name=update_cart]{display: none!important;}
                     </style>
-                    <script>
-                        jQuery( document ).ready(function() {
-                            jQuery('.woocommerce-message>a.button.wc-forward').css('display', 'none');
-                        });
-                    </script>
                 ";
             }
             if( $post->post_name == "perfil-usuario" ){
-                echo "
-                    <script>
-                        var es_firefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;  
-                        if(es_firefox){
-                            jQuery('input[name=pet_birthdate]').datepicker('destroy');
-                            jQuery('input[name=pet_birthdate]').removeAttr('min');  
-                            jQuery('input[name=pet_birthdate]').removeAttr('max');
-                            jQuery('input[name=pet_birthdate]').prop('readonly', true); 
+                $scrits .= "
+                    var es_firefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;  
+                    if(es_firefox){
+                        jQuery('input[name=pet_birthdate]').datepicker('destroy');
+                        jQuery('input[name=pet_birthdate]').removeAttr('min');  
+                        jQuery('input[name=pet_birthdate]').removeAttr('max');
+                        jQuery('input[name=pet_birthdate]').prop('readonly', true); 
 
-                            if (jQuery(window).width() > 550) {
-                                jQuery( 'input[name=pet_birthdate]' ).datepicker({ 
-                                    option: 'dd/mm/yy',
-                                    changeMonth: true,
-                                    changeYear: true,
-                                    minDate: '-30y',
-                                    maxDate: '-1d',
-                                    dataFormat: 'dd/mm/yy',
-                                });
-                            }
+                        if (jQuery(window).width() > 550) {
+                            jQuery( 'input[name=pet_birthdate]' ).datepicker({ 
+                                option: 'dd/mm/yy',
+                                changeMonth: true,
+                                changeYear: true,
+                                minDate: '-30y',
+                                maxDate: '-1d',
+                                dataFormat: 'dd/mm/yy',
+                            });
                         }
-                    </script>
+                    }
+                ";
+
+                $styles .= "
                     <style>
                         @media (max-width: 568px){ 
                             .cell50{width:100%!important;}
@@ -235,75 +234,71 @@
                 ";
             }
             if( $post->post_name == "conocer-al-cuidador" ){
+                $scrits .= "
+                var es_firefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;  
+                var mdate = '0d';
+                if(es_firefox){
+                    if (jQuery(window).width() > 550) {
 
-                echo "
-                    <script>
-                        var es_firefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;  
-                        var mdate = '0d';
-                        if(es_firefox){
-                            if (jQuery(window).width() > 550) {
+                        jQuery('input[name=meeting_when],input[name=service_start],input[name=service_end]').datepicker('destroy');
+                        jQuery('input[name=meeting_when]').removeAttr('min');
+                        jQuery('#service_start').prop('disabled', true);
+                        jQuery('#service_end').prop('disabled', true);
 
-                                jQuery('input[name=meeting_when],input[name=service_start],input[name=service_end]').datepicker('destroy');
-                                jQuery('input[name=meeting_when]').removeAttr('min');
-                                jQuery('#service_start').prop('disabled', true);
-                                jQuery('#service_end').prop('disabled', true);
+                         jQuery( function() {
+                            var dateFormat = 'mm/dd/yy',
+                              from = jQuery( '#meeting_when' )
+                                .datepicker({
+                                    option: 'dd/mm/yy',
+                                    changeMonth: true,
+                                    changeYear: true,
+                                    minDate: '0d',
+                                    maxDate: '1y',
+                                    dataFormat: 'dd/mm/yy',
+                                })
+                                .on( 'change', function() {
+                                  to.datepicker( 'option', 'minDate', getDate( this ) );
+                                  jQuery('#service_start').prop('disabled', false);
 
-                                 jQuery( function() {
-                                    var dateFormat = 'mm/dd/yy',
-                                      from = jQuery( '#meeting_when' )
-                                        .datepicker({
-                                            option: 'dd/mm/yy',
-                                            changeMonth: true,
-                                            changeYear: true,
-                                            minDate: '0d',
-                                            maxDate: '1y',
-                                            dataFormat: 'dd/mm/yy',
-                                        })
-                                        .on( 'change', function() {
-                                          to.datepicker( 'option', 'minDate', getDate( this ) );
-                                          jQuery('#service_start').prop('disabled', false);
-
-                                        }),
-                                      to = jQuery( '#service_start' ).datepicker({
-                                        option: 'dd/mm/yy',
-                                        changeMonth: true,
-                                        changeYear: true,
-                                        maxDate: '1y',
-                                        dataFormat: 'dd/mm/yy',
-                                      })
-                                      .on( 'change', function() {
-                                        toto.datepicker( 'option', 'minDate', getDate( this ) );
-                                        jQuery('#service_end').prop('disabled', false);
-                                      }),
-                                      toto = jQuery( '#service_end' ).datepicker({
-                                        option: 'dd/mm/yy',
-                                        changeMonth: true,
-                                        changeYear: true,
-                                        maxDate: '1y',
-                                        dataFormat: 'dd/mm/yy',
-                                      });
-                                 
-                                    function getDate( element ) {
-                                      var date;
-                                      try {
-                                        date = jQuery.datepicker.parseDate( dateFormat, element.value );
-                                      } catch( error ) {
-                                        date = null;
-                                      }
-                                 
-                                      return date;
-                                    }
-                                } );
-                                jQuery('input[name=meeting_when],input[name=service_start],input[name=service_end]').prop('readonly', true);
+                                }),
+                              to = jQuery( '#service_start' ).datepicker({
+                                option: 'dd/mm/yy',
+                                changeMonth: true,
+                                changeYear: true,
+                                maxDate: '1y',
+                                dataFormat: 'dd/mm/yy',
+                              })
+                              .on( 'change', function() {
+                                toto.datepicker( 'option', 'minDate', getDate( this ) );
+                                jQuery('#service_end').prop('disabled', false);
+                              }),
+                              toto = jQuery( '#service_end' ).datepicker({
+                                option: 'dd/mm/yy',
+                                changeMonth: true,
+                                changeYear: true,
+                                maxDate: '1y',
+                                dataFormat: 'dd/mm/yy',
+                              });
+                         
+                            function getDate( element ) {
+                              var date;
+                              try {
+                                date = jQuery.datepicker.parseDate( dateFormat, element.value );
+                              } catch( error ) {
+                                date = null;
+                              }
+                         
+                              return date;
                             }
-                        }
-                    </script>
-                ";
+                        } );
+                        jQuery('input[name=meeting_when],input[name=service_start],input[name=service_end]').prop('readonly', true);
+                    }
+                }";
             }
 
             if( $post->post_name == "finalizar-comprar" && $_GET['key'] == "" ){
 
-            echo "
+            $styles .= "
                 <style>
                     .jj_modal{
                         position: fixed;
@@ -396,32 +391,32 @@
                     </div>
                 </div>";
             }
-        ?>
 
-        <script type="text/javascript">
-            jQuery( document ).ready(function() {
-                jQuery( ".reservar" ).unbind();
-                jQuery( ".reservar" ).off();
-                jQuery( ".conocer-cuidador" ).unbind();
-                jQuery( ".conocer-cuidador" ).off();
-                <?php
-                    if( $post->post_name == "finalizar-comprar" ){
-                        echo '
-                            jQuery(".payment_method_wc-booking-gateway").css("display", "none");
-                        ';
+            $scrits .= "
+                jQuery( document ).ready(function() {
+                    jQuery( '.reservar' ).unbind();
+                    jQuery( '.reservar' ).off();
+                    jQuery( '.conocer-cuidador' ).unbind(); 
+                    jQuery( '.conocer-cuidador' ).off(); ";
+                    
+                    if( $post->post_name == 'finalizar-comprar' ){
+                        $scrits .= " jQuery('.payment_method_wc-booking-gateway').css('display', 'none'); ";
                     }
-                ?>
-            });
-            <?php if( $post->post_name == "finalizar-comprar" && $_GET['key'] == "" ){ ?>
-                var abrir = true;
-                jQuery(window).scroll(function() {
-                    if (jQuery(document).scrollTop() > 10) {
-                        jQuery('#vlz_modal_popup').fadeOut();
+                    if( $post->post_name == 'finalizar-comprar' ){
+                        $scrits .= " jQuery('.payment_method_wc-booking-gateway').css('display', 'none'); ";
                     }
-                });
-            <?php } ?>
-        </script>
-        <?php
+                    if( $post->post_name == 'finalizar-comprar' && $_GET['key'] == '' ){ 
+                        $scrits .= " var abrir = true;
+                        jQuery(window).scroll(function() {
+                                if (jQuery(document).scrollTop() > 10) {
+                                    jQuery('#vlz_modal_popup').fadeOut();
+                                }
+                            });
+                        ";
+                    }
+
+            $scrits .= "}); </script>";
+
             if(  $_SESSION['admin_sub_login'] == 'YES' ){
                 echo "
                     <a href='".get_home_url()."/?i=".md5($_SESSION['id_admin'])."&admin=YES' class='theme_button' style='
@@ -442,7 +437,7 @@
             // Modificacion Ángel Veloz
             $DS = kmimos_session();
             if( $DS ){
-                if( isset($DS["reserva"]) ){
+                if( isset($DS['reserva']) ){
                     echo "
                         <a href='".get_home_url()."/wp-content/themes/pointfinder/vlz/admin/process/mybookings_modificar.php?b=".$user_id."' class='theme_button' style='
                             position: fixed;
@@ -463,104 +458,79 @@
             }
         ?>
 
-        <?php 
-        # Scritp Mixpanel Javascript Solo para "Home"
+        <?php # Scritp Mixpanel Javascript Solo para "Home"
         if( is_front_page() ){ ?> 
             <script>      
                 mixpanel.identify();
                 var distinct_ID = mixpanel.get_distinct_id();
                 document.getElementById('pf-search-button-manual').addEventListener("click", ClickBuscar);
-
                 function ClickBuscar() {
-
-                p=document.getElementsByClassName('boton_portada boton_servicio activo');
-
-                for (i = 0; i< p.length; i++) {
-                var tt = p[i].getElementsByTagName('input');
-                var id = "#" + jQuery (tt).attr('id');
-                console.log(id);
-                if( jQuery (id).prop('checked'))    {
-
-                  console.log('chequiao')
-                  var nombre = jQuery (tt).attr('value')
-                  mixpanel.people.set({ nombre: "si" });
-                                                    }
-                                              }
-                  var estadoss = document.getElementById("estado_cuidador");
-                  var municipioss = document.getElementById("municipio_cache");
-                  mixpanel.people.set({ 'estadoBuscado' : estadoss });
-                  mixpanel.people.set({ 'municipioBuscado' : municipioss });
-                  var FechadeBusqueda = new Date();
-                  mixpanel.people.set({ 'UltimaFechaDeBusqueda' : FechadeBusqueda });
-
+                    p=document.getElementsByClassName('boton_portada boton_servicio activo');
+                    for (i = 0; i< p.length; i++) {
+                        var tt = p[i].getElementsByTagName('input');
+                        var id = "#" + jQuery (tt).attr('id');
+                        if( jQuery (id).prop('checked')){
+                            var nombre = jQuery (tt).attr('value')
+                            mixpanel.people.set({ nombre: "si" });
+                        }
+                    }
+                    var estadoss = document.getElementById("estado_cuidador");
+                    var municipioss = document.getElementById("municipio_cache");
+                    mixpanel.people.set({ 'estadoBuscado' : estadoss });
+                    mixpanel.people.set({ 'municipioBuscado' : municipioss });
+                    var FechadeBusqueda = new Date();
+                    mixpanel.people.set({ 'UltimaFechaDeBusqueda' : FechadeBusqueda });
                 }
-            </script>
-        <?php } ?>
-        
-
-        <?php if(isset($_GET['ua'])){ ?>
-            <?php if($_GET['ua'] == 'profile'){ ?>
-            <script>
-mixpanel.identify();
-var distinct_ID = mixpanel.get_distinct_id();
-sidebarList= document.getElementsByTagName("ul")[7];
-verificarCuidador= sidebarList.getElementsByTagName("li")[5];
-
-if (verificarCuidador.innerText == 'CUIDADOR') {
-  mixpanel.people.set({ 'TipoDeUsuario': 'Cuidador' });
-} else {
-    mixpanel.people.set({ 'TipoDeUsuario': 'Cliente' });
-}
-
-
-
-perfil=document.getElementsByClassName('input');
-
-for (i = 0; i<perfil.length; i++){
-
-if (i == 7){
-var perfilvalue = perfil[i].value
-
-mixpanel.people.set({ $email: perfilvalue });
-
-}
-else {
-var perfilname = perfil[i].name
-var perfilvalue = perfil[i].value
-mixpanel.people.set({ perfilname: perfilvalue });
-//mixpanel.people.set({ 'UltimaFechaDeBusqueda' : FechadeBusqueda });
-}
-}
-//document.getElementById('pf-search-button-manual').addEventListener("click", ClickBuscar);
-document.getElementById('pf-ajax-profileupdate-button').addEventListener("click", ActualizarPerfil);
-function ActualizarPerfil() {
-
-  perfil=document.getElementsByClassName('input');
-
-  for (i = 0; i<perfil.length; i++){
-
-    if (i == 7){
-
-      var perfilvalue = perfil[i].value
-    mixpanel.people.set({ $email: perfilvalue });
-
-  } else {
-    var perfilname = perfil[i].name
-    var perfilvalue = perfil[i].value
-  mixpanel.people.set({ perfilname: perfilvalue });
+            </script><?php 
         }
-  }
 
+        if(isset($_GET['ua'])){
+            if($_GET['ua'] == 'profile'){ ?>
+                <script>
+                    mixpanel.identify();
+                    var distinct_ID = mixpanel.get_distinct_id();
+                    sidebarList= document.getElementsByTagName('ul')[7];
+                    verificarCuidador= sidebarList.getElementsByTagName('li')[5];
 
-}
+                    if (verificarCuidador.innerText == 'CUIDADOR') {
+                        mixpanel.people.set({ 'TipoDeUsuario': 'Cuidador' });
+                    } else {
+                        mixpanel.people.set({ 'TipoDeUsuario': 'Cliente' });
+                    }
+                    perfil=document.getElementsByClassName('input');
+                    for (i = 0; i<perfil.length; i++){
+                        if (i == 7){
+                            var perfilvalue = perfil[i].value
+                            mixpanel.people.set({ $email: perfilvalue });
+                        }else{
+                            var perfilname = perfil[i].name
+                            var perfilvalue = perfil[i].value
+                            mixpanel.people.set({ perfilname: perfilvalue });
+                        }
+                    }
 
+                    document.getElementById('pf-ajax-profileupdate-button').addEventListener('click', ActualizarPerfil);
+                    function ActualizarPerfil() {
+                        perfil=document.getElementsByClassName('input');
+                        for (i = 0; i<perfil.length; i++){
+                            if (i == 7){
+                                var perfilvalue = perfil[i].value
+                                mixpanel.people.set({ $email: perfilvalue });
+                            } else {
+                                var perfilname = perfil[i].name
+                                var perfilvalue = perfil[i].value
+                                mixpanel.people.set({ perfilname: perfilvalue });
+                            }
+                        }
 
+                    }   
+                </script> <?php 
+            }
+        } 
 
-</script>
-            <?php } ?>
-        <?php } ?>
+            echo comprimir_styles($scrits);
+            echo comprimir_styles($styles);
+        ?>
         
-
-
     </body>
 </html>

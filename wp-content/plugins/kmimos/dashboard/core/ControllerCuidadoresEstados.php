@@ -35,11 +35,12 @@ function getEstadoMunicipio($estados, $municipios){
 }
 
 function getmetaUser($user_id=0){
-	$condicion = " AND m.meta_key IN ('first_name', 'last_name')";
+	$condicion = " AND m.meta_key IN ('first_name', 'last_name', 'user_phone')";
 	$result = get_metaUser($user_id, $condicion);
 	$data = [
 		'first_name' =>'', 
 		'last_name' =>'', 
+		'user_phone' =>'', 
 	];
 	if( !empty($result) ){
 		foreach ( $result['rows'] as $row ) {

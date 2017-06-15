@@ -123,4 +123,16 @@ class Class_WhiteLabel_User{
     }
 
 
+
+
+    function wLabel_Filter($filters=array()){
+        if(count($filters)>0){
+            echo '<div class="filters">';
+            foreach($filters as $filter){
+                include_once(dirname(dirname(__DIR__)).'/backend/content/filter/'.$filter.'.php');
+            }
+            echo ' </div>';
+        }
+    }
+
 }

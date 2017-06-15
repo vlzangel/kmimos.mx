@@ -274,8 +274,6 @@
 
         </form>
     </div>
-
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <?php echo get_estados_municipios(); ?>
 <script type="text/javascript">
     var hasGPS=false;
@@ -335,7 +333,7 @@
 
                     jQuery("#municipio_cuidador").html(html);
 
-                    var location    = estados_municipios[estado_id]['coordenadas']['referencia'];
+                    /*var location    = estados_municipios[estado_id]['coordenadas']['referencia'];
                     var norte       = estados_municipios[estado_id]['coordenadas']['norte'];
                     var sur         = estados_municipios[estado_id]['coordenadas']['sur'];
 
@@ -344,7 +342,7 @@
                     jQuery("#otra_latitud").attr("value", location.lat);
                     jQuery("#otra_longitud").attr("value", location.lng);
                     jQuery("#otra_distancia").attr("value", distancia);
-
+*/
                     if( CB != undefined) {
                         CB();
                     }
@@ -368,7 +366,7 @@
                 var estado_id = jQuery("#estado_cuidador").val();
                 var municipio_id = jQuery('#municipio_cuidador > option[value="'+jQuery("#municipio_cache").val()+'"]').attr('data-id');
                 
-                console.log(jQuery("#municipio_cache").val());
+                /*console.log(jQuery("#municipio_cache").val());
                 
                 if( estado_id != "" ){
 
@@ -382,7 +380,7 @@
                     jQuery("#otra_longitud").attr("value", location.lng);
                     jQuery("#otra_distancia").attr("value", distancia);
 
-                }
+                }*/
             }
 
             function calcular_rango_de_busqueda(norte, sur){

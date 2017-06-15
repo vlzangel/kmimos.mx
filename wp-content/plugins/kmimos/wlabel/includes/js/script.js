@@ -22,6 +22,17 @@ function WhiteLabel_panel_logout(element){
 
 
 
+//MENU
+function WhiteLabel_panel_menu(module){
+    var path=jQuery('.section .menu').data('url');
+    var url=path+'content/modules/'+module+'.php'; console.log(url);
+    jQuery.get(url, function(data){
+        jQuery('.section .modules').html(data);
+        modules_filter(jQuery('.filter select'));
+        modules_filter(jQuery('.filter input'));
+    });
+}
+
 
 //MODULES
 jQuery(document).on('change click','.filter select, .filter input',function(e){
