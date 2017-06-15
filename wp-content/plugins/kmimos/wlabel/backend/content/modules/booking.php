@@ -5,12 +5,12 @@ if(file_exists($kmimos_load)){
 }
 
 $_wlabel_user->wLabel_Filter(array('trdate'));
+$_wlabel_user->wlabel_Export('RESERVAS','title','table');
 ?>
 
 <div class="module_title">
     RESERVAS
 </div>
-
 
 <div class="module_data">
     <div class="item" id="user_filter">Personas reservando en el periodo seleccionado: <span></span></div>
@@ -110,15 +110,14 @@ $_wlabel_user->wLabel_Filter(array('trdate'));
         $IDcustomer=$_metas_booking['_booking_customer_id'][0];
         $IDorder_item=$_metas_booking['_booking_order_item_id'][0];
 
-
-
        //var_dump($order);
        //var_dump($IDorder_item);
 
         $_meta_WCorder = wc_get_order_item_meta($IDorder_item,'');
-        $_meta_WCorder_line_total = wc_get_order_item_meta($IDorder_item,'_line_total');
+       // $_meta_WCorder_line_total = wc_get_order_item_meta($IDorder_item,'_line_total');
+        $_meta_WCorder_line_total = wc_get_order_item_meta($IDorder_item,'_line_subtotal');
         $_meta_WCorder_duration = wc_get_order_item_meta($IDorder_item,'Duración');
-        $_meta_WCorder_caregiver = wc_get_order_item_meta($IDorder_item,'Ofrecido por');
+       $_meta_WCorder_caregiver = wc_get_order_item_meta($IDorder_item,'Ofrecido por');
 
        //SERVICES
        $post = get_post($IDproduct);
@@ -131,7 +130,8 @@ $_wlabel_user->wLabel_Filter(array('trdate'));
        }
 
        //DURATION
-       $duration=str_replace(' Dias','',$_meta_WCorder_duration);
+       $duration=strtolower($_meta_WCorder_duration);
+       $duration=str_replace(array(' dias',' dia',' day'),'',$duration);
        $duration_text=$duration.' Dia(s)';
 
        if($services=='hospedaje'){
@@ -153,6 +153,11 @@ $_wlabel_user->wLabel_Filter(array('trdate'));
         $_metas_customer = get_user_meta($customer);
         $_customer_name = $_metas_customer['first_name'][0] . " " . $_metas_customer['last_name'][0];
 
+       //CAREGIVER
+        $caregiver = $post->post_author;
+        $_metas_caregiver = get_user_meta($caregiver);
+        $_caregiver_name = $_metas_caregiver['first_name'][0] . " " . $_metas_caregiver['last_name'][0];
+
         $product = $wpdb->get_row("SELECT * FROM $wpdb->posts WHERE ID ='$IDproduct'");
         //var_dump($product);
 
@@ -161,7 +166,7 @@ $_wlabel_user->wLabel_Filter(array('trdate'));
             <td>'.$booking->ID.'</td>
             <td>'.date('d/m/Y',$date).'</td>
             <td class="user" data-user="'.$customer.'">'.$_customer_name.'</td>
-            <td>'.$_meta_WCorder_caregiver.'</td>
+            <td>'.$_caregiver_name.'</td>
             <td>'.$services.'</td>
             <td>'.$status_name.'</td>
             <td class="duration" data-user="'.$customer.'" data-count="'.$duration.'">'.$duration_text.'</td>
