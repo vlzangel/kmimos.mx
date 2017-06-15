@@ -8,6 +8,7 @@ global $wpdb;
 $wlabel=$_wlabel_user->wlabel;
 $WLresult=$_wlabel_user->wlabel_result;
 $_wlabel_user->wLabel_Filter(array('tddate','tdcheck'));
+$_wlabel_user->wlabel_Export('DETALLE','title','table');
 ?>
 <div class="module_title">
     RESERVAS POR DIA
@@ -86,7 +87,8 @@ foreach($bookings as $key => $booking){
     $IDorder_item=$_metas_booking['_booking_order_item_id'][0];
 
     //$_meta_WCorder = wc_get_order_item_meta($IDorder_item,'_line_total');
-    $_meta_WCorder_line_total = wc_get_order_item_meta($IDorder_item,'_line_total');
+    //$_meta_WCorder_line_total = wc_get_order_item_meta($IDorder_item,'_line_total');
+    $_meta_WCorder_line_total = wc_get_order_item_meta($IDorder_item,'_line_subtotal');
     //var_dump($WCorder_items);
 
     //CUSTOMER
