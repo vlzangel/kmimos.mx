@@ -123,6 +123,13 @@ class Class_WhiteLabel_User{
     }
 
 
+    function wlabel_Export($module='',$title='',$type=''){
+        $html='<div class="export" data-module="'.$module.'" data-title="'.$title.'" data-type="'.$type.'" data-urlbase="'.plugin_dir_url(dirname(dirname(__FILE__))).'backend/content/export/" data-file="export.php">';
+        $html.='<div class="action" onclick="WhiteLabel_panel_export(this)">Exportar</div>';
+        $html.='<div class="file"></div>';
+        $html.='</div>';
+        echo $html;
+    }
 
 
     function wLabel_Filter($filters=array()){

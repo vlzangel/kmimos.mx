@@ -21,6 +21,38 @@ function WhiteLabel_panel_logout(element){
 }
 
 
+function WhiteLabel_panel_export(element){
+    var dexport=jQuery(element).closest('.export');
+    var urlbase=dexport.data('urlbase');
+    var module=dexport.data('module');
+    var title=dexport.data('title');
+    var type=dexport.data('type');
+    var file=dexport.data('file');
+    var url=urlbase+file;
+
+    var data="";
+    if(type=='table'){
+        jQuery('table').each(function(e){
+            jQuery(this).find('tr:not(.noshow)').each(function(e){
+                jQuery(this).find('th:not(.noshow),td:not(.noshow)').each(function(e){
+                    data+=jQuery(this).html()+';';
+                });
+                data+="\n";
+            });
+            data+="\n\n\n";
+        });
+    }
+
+    jQuery(element).html('Espere ...');
+    jQuery.get(url, { module: module, title: title, data: data, urlbase: urlbase }, function(data){
+        //console.log(data);
+        data=jQuery.parseJSON(data);
+        dexport.find('.action').html(data['message']);
+        dexport.find('.file').html(data['file']);
+    });
+}
+
+
 
 //MENU
 function WhiteLabel_panel_menu(module){
