@@ -33,7 +33,7 @@ $_wlabel_user->wlabel_Export('RESERVAS','title','table');
             <th>Monto de reserva</th>
             <th>Monto Kmimos</th>
             <th>Monto Partición Kmimos</th>
-            <th>Monto Partición Volaris</th>
+            <th>Monto Partición <?php echo $wlabel;?>/th>
         </tr>
         </thead>
 
