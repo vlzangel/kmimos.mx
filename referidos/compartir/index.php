@@ -152,7 +152,7 @@ if(isset($_GET['e'])){
 							<span><strong>Paso 3: GANA.</strong> Cuando alguno de tus referidos haga su primera reserva con Kmimos, te avisaremos con un email. Este es el momento en el que puedes hacer válida tu recompensa.</span><br>
 						</div>
 						<br>
-						<strong><?php echo $url;?></strong>
+						<strong class="shared-link-email"><?php echo $url;?></strong>
 					</div>
 				</div>
 			</section>
