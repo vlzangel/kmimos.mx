@@ -9,7 +9,7 @@
 	}elseif( file_exists("wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg") ){
 		$img = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg";
 	}else{
-		$img = get_template_directory_uri().'/images/noimg.png';
+		$img = get_home_url()."/wp-content/themes/pointfinder".'/images/noimg.png';
 	}
 
 	$anios_exp = $cuidador->experiencia;
@@ -57,7 +57,7 @@
 	// }
 
 	if( $_POST['tipo_busqueda'] == "otra-localidad" ){
-		if( $_POST['estados'] == "" ){
+		if( $_POST['municipios'] == "" ){
 			$distancia = "";
 		}else{
 			if( $_POST['orderby'] != "" && $_POST['orderby'] != "distance_asc" && $_POST['orderby'] != "distance_desc" ){
@@ -92,8 +92,8 @@ if (is_user_logged_in() && count($user_favorites_arr)>0) {
 				<div class="pflist-item-inner">
 					<div class="pflist-imagecontainer pflist-subitem" >
 						<div class="vlz_postada_cuidador">
-							<a class="vlz_img_cuidador" href="'.$url.'" style="background-image: url('.$img.');"></a>
-							<span class="vlz_img_cuidador_interno" data-href="'.$url.'" style="background-image: url('.$img.');"></span>
+							<a class="vlz_img_cuidador easyload" data-original="'.$img.'" href="'.$url.'" style="background-image: url(); filter:blur(2px);"></a>
+							<span class="vlz_img_cuidador_interno easyload" data-original="'.$img.'" data-href="'.$url.'" style="background-image: url();"></span>
 						</div>
 						<div class="RibbonCTR">
 					        <span class="Sign">

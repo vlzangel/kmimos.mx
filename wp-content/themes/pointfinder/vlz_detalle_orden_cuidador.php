@@ -7,7 +7,7 @@
 	get_header();
 
 		$valores = explode("/", $_SERVER['REDIRECT_URL']);
-		$orden = $valores[ count($valores)-2 ] ?>
+		$orden = $valores[ count($valores)-2 ]; ?>
 
 		<section role="main">
 			<div class="pf-container clearfix">
@@ -28,7 +28,7 @@
 
 						<section>
 							<div class="vlz_titulos_superior">
-								<a href="<?php echo get_home_url()."/perfil-usuario/?ua=mybookings"; ?>" style="color: #00d2b7; border: solid 1px; padding: 3px 10px; margin: 0px; display: inline-block;">
+								<a href="<?php echo get_home_url()."/perfil-usuario/?ua=mybookings"; ?>" style="color: #00d2b7; border: solid 1px; padding: 3px 10px; margin: 0px; display: inline-block; border-radius: 3px;">
 									Volver
 								</a> - Detalles de la reserva - <?php echo $orden; ?>
 							</div>
@@ -54,7 +54,7 @@
 
 								<div class="vlz_titulos_tablas">Detalles de facturación</div>
 								<div class="vlz_contenido_tablas">
-									<?php echo $detalles_factura; ?>
+									<?php echo $detalles["detalles_factura_cuidador"];; ?>
 								</div>
 
 							</div>

@@ -3,7 +3,7 @@
 	/* Administrador */
 
 		$saludo = "<p>Hola <strong>Administrador</strong>,</p>";
-		$msg_id_reserva ='<p>Se ha pagado la Reserva <strong># '.$reserva->ID.'</strong> </p>';
+		$msg_id_reserva ='<p>Se ha pagado la Reserva <strong># '.$reserva_id.'</strong> </p>';
 		
 		$mensaje_admin 	= 
 			$saludo.
@@ -12,37 +12,38 @@
   			$detalles_cliente.
 	  		$detalles_cuidador.
 	  		$detalles_mascotas.
-	  		$detalles_servicio.
+	  		$detalles_servicio_cuidador.
 	  		"<br>".$aceptar_rechazar
 		;
 
-		$mensaje_admin = kmimos_get_email_html('Nueva Reserva - '.$producto->post_title, $mensaje_admin, 'Nueva Reserva - '.$producto->post_title, true, true);
+		if( $modificacion == "" ){
+			$titulo_mail = 'Nueva Reserva - '.$producto;
+		}else{
+			$titulo_mail = $modificacion;
+		}
 
-		wp_mail( $email_admin, "Solicitud de reserva #".$reserva->ID, $mensaje_admin, kmimos_mails_administradores() );
+		$mensaje_admin = kmimos_get_email_html($titulo_mail, $mensaje_admin, 'Nueva Reserva - '.$producto, true, true);
+
+		wp_mail( $email_admin, "Solicitud de reserva #".$reserva_id, $mensaje_admin, kmimos_mails_administradores() );
 
 	/* Correo Cliente */
 
-		$msg_id_reserva ='<p>Solicitud de reserva de servicio <strong>(N° '.$reserva->ID.')</strong> </p>';
+		$msg_id_reserva ='<p>Solicitud de reserva de servicio <strong>(N° '.$reserva_id.')</strong> </p>';
 
 		$saludo = '
-			<center style="font-size: 16px; font-weight: 600;">¡Gracias '.$nombre.' '.$apellido.'!</center>
-
-			<p>Recibimos tu solicitud de reserva de <strong>'.$tipo_servicio.'</strong>, para que <strong>'.$cuidador_post->post_title.'</strong> atienda a tu(s) peludo(s).</p>
-
+			<center style="font-size: 16px; font-weight: 600;">¡Gracias '.$nom_cliente.'!</center>
+			<p>Recibimos tu solicitud de reserva de <strong>'.$tipo_servicio.'</strong>, para que <strong>'.$nom_cuidador.'</strong> atienda a tu(s) peludo(s).</p>
 			<p align="justify">
 				Dentro de las próximas 12 horas el cuidador confirmará la disponibilidad para tu solicitud. 
 				Posterior a que el cuidador confirme, te llegará un correo indicando que está <u>confirmada</u> tu reserva (el período de 12 horas es referencial, 
 				normalmente los cuidadores contactan al clientes con mucha anterioridad).
 			</p>
-
 			<p align="justify">
 				Si no puedes o decides no esperar las 12 horas no te preocupes, puedes contactar directamente al cuidador a través del teléfono o correo mostrados más abajo.
 			</p>
-
 			<p align="justify">
 				En caso de que el cuidador no esté disponible, recibirás un correo de notificación con instrucciones para que puedas solicitar el reembolso del importe realizado.
 			</p>
-
 			<h2>Detalles de tu reservación pendiente a confirmar:</h2>
 		';
 
@@ -55,7 +56,13 @@
 	  		$dudas
 		;
 
-		$mensaje_cliente = kmimos_get_email_html('Solicitud de reserva', $mensaje_cliente, 'Solicitud de reserva', true, true);
+		if( $modificacion == "" ){
+			$titulo_mail = 'Solicitud de reserva';
+		}else{
+			$titulo_mail = $modificacion;
+		}
+		
+		$mensaje_cliente = kmimos_get_email_html($titulo_mail, $mensaje_cliente, 'Solicitud de reserva', true, true);
 
 		wp_mail( $cliente_email, "Solicitud de reserva", $mensaje_cliente);
 
@@ -63,11 +70,11 @@
 		Correo Cuidador
 	*/
 
-		$msg_id_reserva ='<p>Reserva #: <strong>'.$reserva->ID.'</strong> </p>';
+		$msg_id_reserva ='<p>Reserva #: <strong>'.$reserva_id.'</strong> </p>';
 
 		$saludo = '
-			<p>Hola <strong>'.$cuidador_post->post_title.'</strong>,</p>
-			<p>El cliente <strong>'.$nombre.' '.$apellido.'</strong> te ha enviado una solicitud de Reserva.</p>
+			<p>Hola <strong>'.$nom_cuidador.'</strong>,</p>
+			<p>El cliente <strong>'.$nom_cliente.'</strong> te ha enviado una solicitud de Reserva.</p>
 			'.$aceptar_rechazar.'
 			<h2>Detalles de la solicitud:</h2>
 		';
@@ -111,14 +118,20 @@
 	  		$detalles_cuidador.
 	  		$detalles_cliente.
 	  		$detalles_mascotas.
-	  		$detalles_servicio.
+	  		$detalles_servicio_cuidador.
 	  		"<br>".$aceptar_rechazar.
 	  		$siguientes_pasos.
 	  		$dudas
 		;
 
-		$mensaje_cuidador = kmimos_get_email_html('Nueva Reserva - '.$tipo_servicio.' por: '.$nombre.' '.$apellido, $mensaje_cuidador, 'Nueva Reserva - '.$tipo_servicio.' por: '.$nombre.' '.$apellido, true, true);
+		if( $modificacion == "" ){
+			$titulo_mail = 'Nueva Reserva - '.$tipo_servicio.' por: '.$nom_cliente;
+		}else{
+			$titulo_mail = $modificacion;
+		}
+		
+		$mensaje_cuidador = kmimos_get_email_html($titulo_mail, $mensaje_cuidador, 'Nueva Reserva - '.$tipo_servicio.' por: '.$nom_cliente, true, true);
 
-		wp_mail( $cuidador->email, 'Nueva Reserva - '.$tipo_servicio.' por: '.$nombre.' '.$apellido, $mensaje_cuidador, kmimos_mails_administradores());
+		wp_mail( $cuidador_email, 'Nueva Reserva - '.$tipo_servicio.' por: '.$nom_cliente, $mensaje_cuidador, kmimos_mails_administradores());
 
 ?>

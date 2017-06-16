@@ -3,8 +3,10 @@
 	$L = geo("L");
 	$N = geo("N");
 	$S = geo("S");
-?>
 
+	echo "<!-- Hola -->";
+	echo get_estados_municipios();
+?>
 <script type="text/javascript">
 
 	function vlz_select(id){
@@ -62,7 +64,7 @@
 		}
 	?>
 
-	function initMap() { <?php 
+	function  initMap() {<?php
 	
 		echo "
 			var lat = '".$L['lat']."';
@@ -89,7 +91,7 @@
 			}elseif( file_exists("wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg") ){
 				$img = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg";
 			}else{
-				$img = get_template_directory_uri().'/images/noimg.png';
+				$img = get_home_url()."/wp-content/themes/pointfinder".'/images/noimg.png';
 			}
 
 			$url = $value['url'];
@@ -97,12 +99,16 @@
 			$c = $value['ID'];
 
 			echo "
+
+				var point = new google.maps.LatLng('{$value['lat']}', '{$value['lng']}');
+				bounds.extend(point);
+
 				marker_{$c} = new google.maps.Marker({
 					map: map,
 					draggable: false,
 					animation: google.maps.Animation.DROP,
 					position: new google.maps.LatLng('{$value['lat']}', '{$value['lng']}'),
-					icon: '".get_template_directory_uri()."/vlz/img/pin.png'
+					icon: '".get_home_url()."/wp-content/themes/pointfinder"."/vlz/img/pin.png'
 				});
 
 				infowindow_{$c} = new google.maps.InfoWindow({ content: '<a class=\"mini_map\" href=\"{$url}\" target=\"_blank\"> <img src=\"{$img}\" style=\"max-width: 200px; max-height: 230px;\"> <div>{$nombre}</div> </a>' });
@@ -112,94 +118,62 @@
 					
 		}
 
-		echo "
-			bounds.extend(
-				new google.maps.LatLng(
-			        parseFloat( {$N['lat']} ),
-			        parseFloat( {$N['lng']} )
-		        )
-		    );
+			if( count($coordenadas_all_2) > 0 ){ echo "map.fitBounds(bounds);"; }
 
-			bounds.extend(
-				new google.maps.LatLng(
-			        parseFloat( {$S['lat']} ),
-			        parseFloat( {$S['lng']} )
-		        )
-		    );
-
-			map.fitBounds(bounds);"; ?>
+		?>
 	}
 
-	function cargar_municipio_reload(){
+	jQuery("#estados").on("change", function(e){
+
+		var estado_id = jQuery("#estados").val();            
+	    
+	    if( estado_id != "" ){
+
+	        var html = "<option value=''>Seleccione un municipio</option>";
+	        jQuery.each(estados_municipios[estado_id]['municipios'], function(i, val) {
+	            html += "<option value="+val.id+" data-id='"+i+"'>"+val.nombre+"</option>";
+	        });
+
+	        jQuery("#municipios").html(html);
+
+	        /*var location    = estados_municipios[estado_id]['coordenadas']['referencia'];
+	        var norte       = estados_municipios[estado_id]['coordenadas']['norte'];
+	        var sur         = estados_municipios[estado_id]['coordenadas']['sur'];
+
+	        var distancia = calcular_rango_de_busqueda(norte, sur);
+
+	        jQuery("#otra_latitud").attr("value", location.lat);
+	        jQuery("#otra_longitud").attr("value", location.lng);
+	        jQuery("#otra_distancia").attr("value", distancia);*/
+
+	    }
+
+	});
+
+	jQuery("#municipios").on("change", function(e){
+		vlz_coordenadas();
+	});
+
+	function vlz_coordenadas(){
 		
-			var id =  jQuery("#estados").val();
-			var txt = jQuery("#estados option:selected").text();
+		var estado_id = jQuery("#estados").val();            
+        var municipio_id = jQuery('#municipios > option[value="'+jQuery("#municipios").val()+'"]').attr('data-id');   
 
-			jQuery.ajax( {
-				method: "POST",
-		 			data: { estado: id },
-				url: "<?php echo get_template_directory_uri(); ?>/vlz/vlz_estados_municipios.php",
-			  	beforeSend: function( xhr ) {
-			    	jQuery("#municipios").html("<option value=''>Cargando Municipios</option>");
-			  	}
-			}).done(function(data){
-				jQuery("#municipios").html("<option value=''>Seleccione un Municipio</option>"+data);				
-			});
-		
-	}
-	//cargar_municipio_reload();
-	
-	function vlz_ver_municipios(CB){
+        /*if( estado_id != "" ){
 
-		var id =  jQuery("#estados").val();
-		var txt = jQuery("#estados option:selected").text();
+            var location    = estados_municipios[estado_id]['municipios'][municipio_id]['coordenadas']['referencia'];
+            var norte       = estados_municipios[estado_id]['municipios'][municipio_id]['coordenadas']['norte'];
+            var sur         = estados_municipios[estado_id]['municipios'][municipio_id]['coordenadas']['sur'];
 
-//		url: "<?php #echo get_template_directory_uri(); ?>/vlz/ajax_municipios_2.php",
-		jQuery.ajax( {
-			method: "POST",
-	 			data: { estado: id },
-			url: "<?php echo get_template_directory_uri(); ?>/vlz/vlz_estados_municipios.php",
-		  	beforeSend: function( xhr ) {
-		    	jQuery("#municipios").html("<option value=''>Cargando Municipios</option>");
-		  	}
-		}).done(function(data){
-			jQuery("#municipios").html("<option value=''>Seleccione un Municipio</option>"+data);
-			vlz_coordenadas(CB);
-		});
+            var distancia = calcular_rango_de_busqueda(norte, sur);
+
+            jQuery("#otra_latitud").attr("value", location.lat);
+            jQuery("#otra_longitud").attr("value", location.lng);
+            jQuery("#otra_distancia").attr("value", distancia);
+
+        }*/
 
 	}
-
-	function vlz_coordenadas(CB){
-		var estado = jQuery("#estados option:selected").text();
-		var municipio_val = jQuery("#municipios option:selected").val();
-		var municipio = jQuery("#municipios option:selected").text();
-
-		var adress = "mexico+"+estado;
-		if( municipio_val != "" ){ 
-			adress+="+"+municipio; 
-		}
-
-		jQuery.ajax({ 
-			url: 'https://maps.googleapis.com/maps/api/geocode/json?address='+adress+'&key=AIzaSyD-xrN3-wUMmJ6u2pY_QEQtpMYquGc70F8'
-		}).done(function(data){
-
-			var location = data.results[0].geometry.location;
-
-			var norte = data.results[0].geometry.viewport.northeast;
-			var sur   = data.results[0].geometry.viewport.southwest;
-
-			var distancia = calcular_rango_de_busqueda(norte, sur);
-
-			jQuery("#otra_latitud").attr("value", location.lat);
-			jQuery("#otra_longitud").attr("value", location.lng);
-			jQuery("#otra_distancia").attr("value", distancia);
-
-			if( CB != undefined) {
-				CB();
-			}
-
-		});
-	} 
 
 	function getLocation() {
 	    if (navigator.geolocation) {
@@ -232,15 +206,14 @@
 				vlz_ver_municipios(function(){ <?php 
 					if( $_POST['municipio'] != "" ){ ?>
 						jQuery('#municipios > option[value="<?php echo $_POST['municipio']; ?>"]').attr('selected', 'selected');
-						vlz_coordenadas(); <?php 
+						<?php 
 					} ?>
 				}); <?php 	
 			}
 
 			?>  <?php
-		}else{ ?>
-			/*getLocation(); */ <?php
 		}
+
 	?>
 
 	jQuery('#orderby > option[value="<?php echo $_POST['orderby']; ?>"]').attr('selected', 'selected'); 
@@ -294,4 +267,9 @@
 	});
 </script>
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyD-xrN3-wUMmJ6u2pY_QEQtpMYquGc70F8&callback=initMap"> </script> 
+<script async defer src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyD-xrN3-wUMmJ6u2pY_QEQtpMYquGc70F8&callback=initMap">
+
+jQuery.getScript(URLmap, function(data, textStatus, jqxhr){
+	kmimos_save_map_run('#mapa');
+}).done(function(){ }).fail(function(){ });
+</script>

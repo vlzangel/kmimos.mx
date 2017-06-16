@@ -666,14 +666,10 @@ jQuery.validator.addMethod("pattern", function(value, element, param) {
 				  onkeyup: true,
 				  rules:{
 				  	firstname:{
-				  	  required: true,
-				  	  rangelength: [2, 15],
-				  	  pattern:"[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,15}",
+				  	  required: true
 				  	},
 				  	lastname:{
-				  	  required: true,
-				  	  rangelength: [2, 15],
-				  	  pattern:"[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,15}",
+				  	  required: true
 				  	},
 				    phone:{
 				      required:true,
@@ -692,22 +688,12 @@ jQuery.validator.addMethod("pattern", function(value, element, param) {
 				   //    minlength: 3
 				   //  },
 				    nickname:{
-				      required: true,
-				      minlength: 2,
-				      maxlength: 20,
-				      //pattern:"^([a-z]+[0-9]{0,4}){4,12}$"
-				      // Vamos a solicitar para el usuario de acceso al servicio una cadena de letras minúsculas,
-				      // con un número opcionalmente de hasta cuatro dígitos al final. La cadena completa tendrá entre 4 y 12 caracteres.
+				      required: true
 				    },
 				    password: {
-				    	//minlength: 7,
-						//maxlength: 16,
-						//pattern:(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{6,15}/)
-						//pattern:"(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$^&*!~]).{6,}$/)"
-						//pattern:"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-#\*]).{6,}$"
+				    	
 					},
 					password2: {
-						//minlength: 6,
 						equalTo: "#password"
 					},
 				  	email:{
@@ -717,14 +703,9 @@ jQuery.validator.addMethod("pattern", function(value, element, param) {
 				  },
 				  messages:{
 				  	firstname:{
-				  		pattern:"Por favor ingrese un nombre válido", 
-				  		rangelength:"El nombre debe ser entre {0} y {1} caracteres",
-						// digits:"El Nombre no debe tener numeros",
 						required:"Debe colocar al menos un nombre"
 				  	},
 				  	lastname:{
-				  		pattern:"Por favor ingrese un apellido válido",
-				  		rangelength:"El apellido debe ser entre {0} y {1} caracteres",
 						required:"Debe colocar al menos un Apellido"
 				  	},
 				  	phone:{
@@ -766,24 +747,13 @@ jQuery.validator.addMethod("pattern", function(value, element, param) {
 
 				  	/*-----------------------------*/
 				  	nickname:{
-				  		pattern:"Nombre de usuario no es Valido",
-					  	required:$.pfAjaxUserSystemVars4.nickname_err,
-					  	minlength:"Por favor, introduzca mínimo 2 caracteres por el apodo.",
-					  	maxlength:"Por favor, introduzca máximo 20 caracteres por el apodo."
+					  	required:$.pfAjaxUserSystemVars4.nickname_err
 				  	},
 				  	password: {
-						pattern:"Contraseña Invalida",
-						//minlength: "La contraseña debe tener un mínimo de 6 caracteres",
-						//maxlength: "La Contraseña debe tener Maxímo {0} caracteres"
-						/*pattern:"Contraseñas que contengan al menos una letra mayúscula.",
-						pattern:"Contraseñas que contengan al menos una letra minúscula.",
-						pattern:"Contraseñas que contengan al menos un número o caracter especial.",
-						pattern:"Contraseñas  debe tener  entre 6 y 15 caracteres."*/
+						pattern:"Contraseña Invalida"
 					},
 					password2: {
-						/*minlength: $.pfAjaxUserSystemVars4.passwd_err,*/
-						equalTo: "Las Contraseñas deben ser iguales",
-						//minlength: "La contraseña debe tener un mínimo de 6 caracteres"
+						equalTo: "Las Contraseñas deben ser iguales"
 					},
 				  	email: {
 					    required: $.pfAjaxUserSystemVars4.email_err,
@@ -817,38 +787,6 @@ jQuery.validator.addMethod("pattern", function(value, element, param) {
 				return false;
 			};
 		});
-
-		/*Jauregui*/
-		// var a1 = $("#pfuaprofileform  input[name='firstname']"); //Formulario "Mi Perfil"
-		// var a2 = $("#pfuaprofileform  input[name='lastname']"); //Formulario "Mi Perfil"
-
-		// $("#pfuaprofileform  input[name='firstname'], input[name='lastname']").keypress(function (key){
-		// 	console.log(key.charCode)
-		// 	if ((key.charCode<97 || key.charCode>122)
-		// 		&&(key.charCode<67 || key.charCode>90)
-		// 		&&(key.charCode !=45)
-		// 		&&(key.charCode !=241)
-		// 		&&(key.charCode !=209)
-		// 		&&(key.charCode !=32)
-		// 		&&(key.charCode !=255)
-		// 		&&(key.charCode !=233)
-		// 		&&(key.charCode !=237)
-		// 		&&(key.charCode !=243)
-		// 		&&(key.charCode !=250)
-		// 		&&(key.charCode !=193)
-		// 		&&(key.charCode !=201)
-		// 		&&(key.charCode !=205)
-		// 		&&(key.charCode !=211)
-		// 		&&(key.charCode !=218)
-		// 		)
-		// 		return false;
-
-		// })
-	/* PROFILE UPDATE FUNCTION END */
-
-
-
-
 
 	/* PET UPDATE FUNCTION STARTED */
 	/*Jauregui*/
