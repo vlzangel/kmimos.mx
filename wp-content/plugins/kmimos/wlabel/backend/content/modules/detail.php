@@ -425,7 +425,7 @@ $day_more=(24*60*60);
 
 $amount_day=0;
 $amount_month=0;
-$amount_year=0;
+$amount_year=0; 
 $amount_total=0;
 
 for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
