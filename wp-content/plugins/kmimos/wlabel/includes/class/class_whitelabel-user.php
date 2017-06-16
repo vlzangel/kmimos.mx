@@ -31,6 +31,7 @@ class Class_WhiteLabel_User{
         $this->wlabel_table_user = $_wlabel->wlabel_table_user;
 
         $this->wlabel = '';
+        $this->wlabel_commission = '';
         $this->wlabel_result = '';
         $this->wlabel_data=array();
         if(array_key_exists('label',$this->SESSION)){
@@ -120,6 +121,17 @@ class Class_WhiteLabel_User{
             }
         }
         return array();
+    }
+
+
+    function wlabel_Commission(){
+        $data = $this->wlabel_data;
+        $commission = 0;
+        if(array_key_exists('commission',$data)){
+            $commission = $data->commission;
+        }
+        $this->wlabel_commission = $commission;
+        return $commission;
     }
 
 

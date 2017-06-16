@@ -1,8 +1,12 @@
 <?php
+global $wpdb;
 $kmimos_load=dirname(dirname(dirname(dirname(dirname(dirname(dirname(dirname(__FILE__)))))))).'/wp-load.php';
 if(file_exists($kmimos_load)){
     include_once($kmimos_load);
 }
+
+$wlabel=$_wlabel_user->wlabel;
+$WLcommission=$_wlabel_user->wlabel_Commission();
 
 $_wlabel_user->wLabel_Filter(array('trdate'));
 $_wlabel_user->wlabel_Export('RESERVAS','title','table');
@@ -33,7 +37,7 @@ $_wlabel_user->wlabel_Export('RESERVAS','title','table');
             <th>Monto de reserva</th>
             <th>Monto Kmimos</th>
             <th>Monto Partición Kmimos</th>
-            <th>Monto Partición Volaris</th>
+            <th>Monto Partición <?php echo $wlabel;?></th>
         </tr>
         </thead>
 
@@ -59,10 +63,6 @@ $_wlabel_user->wlabel_Export('RESERVAS','title','table');
 
 
 <?php
-   global $wpdb;
-   //var_dump($_wlabel_user->GETuser());
-   $wlabel=$_wlabel_user->wlabel;
-   //var_dump($wlabel);
 
    $sql = "
             SELECT
@@ -131,7 +131,7 @@ $_wlabel_user->wlabel_Export('RESERVAS','title','table');
 
        //DURATION
        $duration=strtolower($_meta_WCorder_duration);
-       $duration=str_replace(array(' dias',' dia',' day'),'',$duration);
+       $duration=str_replace(array('días','día','dias','dia','day'),'',$duration);
        $duration_text=$duration.' Dia(s)';
 
        if($services=='hospedaje'){
@@ -174,8 +174,8 @@ $_wlabel_user->wlabel_Export('RESERVAS','title','table');
             <td>'.$_meta_WCorder_services_additional.'</td>
             <td>'.$_meta_WCorder_line_total.'</td>
             <td>'.$_meta_WCorder_line_total*0.17.'</td>
-            <td>'.$_meta_WCorder_line_total*0.17*0.4.'</td>
-            <td>'.$_meta_WCorder_line_total*0.17*0.6.'</td>
+            <td>'.$_meta_WCorder_line_total*0.17*($WLcommission/100).'</td>
+            <td>'.$_meta_WCorder_line_total*0.17*(1-($WLcommission/100)).'</td>
         </tr>
         ';
         echo $html;

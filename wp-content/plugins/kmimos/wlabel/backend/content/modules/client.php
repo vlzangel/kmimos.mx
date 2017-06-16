@@ -183,7 +183,7 @@ foreach($posts as $key => $post){
 
 //CANTIDAD DE USUARIOS
 echo '<tr>';
- echo '<th class="title">Cantidad de Usuarios</th>';
+ echo '<th class="title">Cantidad de usuarios totales utilizando el Wlabel(registrados con wlabel '.$wlabel.' y reservando con wlabel)</th>';
     $day_init=strtotime(date('m/d/Y',$WLresult->time));
     $day_last=strtotime(date('m/d/Y',time()));
     $day_more=(24*60*60);
@@ -229,7 +229,7 @@ echo '</tr>';
 
 //CANTIDAD DE USUARIOS REGISTRADOS
 echo '<tr>';
-echo '<th class="title">Usuarios solo Registrados</th>';
+echo '<th class="title">Usuarios registrados con el Wlabel</th>';
 $day_init=strtotime(date('m/d/Y',$WLresult->time));
 $day_last=strtotime(date('m/d/Y',time()));
 $day_more=(24*60*60);
@@ -277,7 +277,7 @@ echo '</tr>';
 
 //CANTIDAD DE USUARIOS RESERVANDO
 echo '<tr>';
-echo '<th class="title">Usuarios solo Reservando</th>';
+echo '<th class="title">Usuarios reservando con el Wlabel</th>';
 $day_init=strtotime(date('m/d/Y',$WLresult->time));
 $day_last=strtotime(date('m/d/Y',time()));
 $day_more=(24*60*60);
@@ -324,7 +324,7 @@ echo '</tr>';
 
 //CANTIDAD DE USUARIOS REGISTRADOS
 echo '<tr>';
-echo '<th class="title">Usuarios Registrados Reservando</th>';
+echo '<th class="title">Usuarios registrados con el wlabel '.$wlabel.' Reservando</th>';
 $day_init=strtotime(date('m/d/Y',$WLresult->time));
 $day_last=strtotime(date('m/d/Y',time()));
 $day_more=(24*60*60);
