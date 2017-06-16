@@ -10,8 +10,6 @@ $WLresult=$_wlabel_user->wlabel_result;
 $WLcommission=$_wlabel_user->wlabel_Commission();
 $_wlabel_user->wLabel_Filter(array('tddate','tdcheck'));
 $_wlabel_user->wlabel_Export('DETALLE','title','table');
-
-var_dump($WLcommission) ;
 ?>
 <div class="module_title">
     RESERVAS POR DIA

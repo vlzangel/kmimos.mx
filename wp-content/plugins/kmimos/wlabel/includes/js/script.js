@@ -57,7 +57,7 @@ function WhiteLabel_panel_export(element){
 //MENU
 function WhiteLabel_panel_menu(module){
     var path=jQuery('.section .menu').data('url');
-    var url=path+'content/modules/'+module+'.php'; console.log(url);
+    var url=path+'content/modules/'+module+'.php';
     jQuery.get(url, function(data){
         jQuery('.section .modules').html(data);
         modules_filter(jQuery('.filter select'));
