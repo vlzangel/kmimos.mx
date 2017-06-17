@@ -73,8 +73,7 @@
 
 	if(!function_exists('kmimos_mails_administradores')){
 	    function kmimos_mails_administradores(){
-
-            $headers[] = 'BCC: a.lazaro@kmimos.la';
+          $headers[] = 'BCC: a.lazaro@kmimos.la';
 	        $headers[] = 'BCC: e.celli@kmimos.la';
 	        $headers[] = 'BCC: r.cuevas@kmimos.la';
 	        $headers[] = 'BCC: r.gonzalez@kmimos.la';
