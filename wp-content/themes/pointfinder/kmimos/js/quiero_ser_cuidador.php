@@ -139,9 +139,7 @@
 			        			jQuery("#vlz_img_perfil").attr("value", url);
 			        			jQuery("#error_vlz_img_perfil").css("display", "none");
 			           			jQuery(".kmimos_cargando").css("display", "none");
-
 			           			set_cookie("vlz_img_perfil", jQuery("#vlz_img_perfil").attr("value") );
-
 			           			jQuery("#portada").val("");
 					      	});
 		    			});
@@ -523,13 +521,10 @@
 	// Envio de formulario
 
 		jQuery("#vlz_form_nuevo_cuidador").submit(function(e){
-
 			jQuery("#vlz_modal_cerrar_registrar").attr("onclick", "");
-
 			if( form.checkValidity() ){
 		    	var terminos = jQuery("#terminos").attr("value");
 				if( terminos == 1){
-
 					var a = "<?php echo get_home_url()."/wp-content/themes/pointfinder/kmimos/registro_cuidador/vlz_procesar.php"; ?>";
 			  		jQuery("#vlz_contenedor_botones").css("display", "none");
 			  		jQuery(".vlz_modal_contenido").css("display", "none");
@@ -573,14 +568,11 @@
 			  				});
 			      		}
 			      	});
-
-					}else{
+				}else{
 			  		alert("Debe aceptar los términos y condiciones.");
 					vlz_modal('terminos', 'Términos y Condiciones');
 				}
-
 			}
-
 			e.preventDefault();
 		});
 
