@@ -547,7 +547,7 @@
                     }
 
                     $info = array();
-                    $info['user_login']     = sanitize_user($email, true);
+                    $info['user_login']     = sanitize_user($username, true);
                     $info['user_password']  = sanitize_text_field($clave);
 
                     $user_signon = wp_signon( $info, true );
@@ -797,15 +797,15 @@
                     wp_mail( $email, "Kmimos México – Gracias por registrarte como cuidador! Kmimos la NUEVA forma de cuidar a tu perro!", $mail_msg);
 
                     $error = array(
-                        "error" => "NO",
-                        "msg" => $mensaje_web
+                        "error"         => "NO",
+                        "msg"           => $mensaje_web
                     );
                     echo "(".json_encode( $error ).")";
 
             }else{
                 $error = array(
                     "error" => "SI",
-                    "msg" => "No se ha podido completar el registro."
+                    "msg"   => "No se ha podido completar el registro."
                 );
                 echo "(".json_encode( $error ).")";
             }
