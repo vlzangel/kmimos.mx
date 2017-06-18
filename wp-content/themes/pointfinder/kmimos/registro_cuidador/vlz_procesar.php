@@ -697,7 +697,7 @@
                         <p><strong>Usuario: </strong>'.$username.'</p>
                         <p><strong>Contraseña: </strong>'.$clave.'</p>
                         <p style="text-align: justify;">
-                            Estimado Kmiamigo, tu perfil ha sido creado con éxito.  El mismo permanecerá inactivo en la página hasta que completes los siguientes pasos listados abajo"
+                            Estimado Kmiamigo, tu perfil ha sido creado con éxito.  El mismo permanecerá inactivo en la página hasta que completes los siguientes pasos listados abajo
                         </p>
                         <p style="text-align: justify;">
                             "Dichos pasos han sido diseñados para cumplir con un estricto perfil de seguridad, que garantice que cualquier persona que se convierta en Cuidador asociado Kmimos presente un perfil apto para cuidar y apapachar a nuestros peludos amigos"
