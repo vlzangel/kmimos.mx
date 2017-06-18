@@ -1,4 +1,5 @@
 <?php
+    error_reporting(0);
 
     include("../../../../../wp-load.php");
     include("../../../../../vlz_config.php");
@@ -149,10 +150,10 @@
             "medio",
             "largo"
         );
-        foreach ($transporte as $pre => $slug) {
+        foreach ($transporte as $pre => $slug_tranportacion) {
             foreach ($rutas as $ruta) {
                 if( $_POST[$pre.$ruta]+0 > 0 ){
-                    $adicionales[ $slug ][$ruta] = $_POST[$pre.$ruta]+0;
+                    $adicionales[ $slug_tranportacion ][$ruta] = $_POST[$pre.$ruta]+0;
                 }
             }
         }
@@ -411,14 +412,14 @@
                         'open', 
                         'closed', 
                         '', 
-                        '".$slug."', 
+                        '".$user_id."', 
                         '', 
                         '', 
                         '".$hoy."', 
                         '".$hoy."', 
                         '', 
                         0, 
-                        'http://qa.kmimos.la/kmimos/petsitters/".$slug."/', 
+                        'http://www.kmimos.com.mx/petsitters/".$user_id."/', 
                         0, 
                         'petsitters', 
                         '', 
