@@ -208,7 +208,9 @@ do_action( 'woocommerce_before_cart' ); ?>
 	.woocommerce-cart .cart-collaterals .cart_totals table th {
 	    width: auto;
 	}
-	.woocommerce .cart .button {
+	.woocommerce .cart .button,
+	.woocommerce .cart .button:hover
+	{
 	    background-color: #59c9a8;
 	}
 </style>
