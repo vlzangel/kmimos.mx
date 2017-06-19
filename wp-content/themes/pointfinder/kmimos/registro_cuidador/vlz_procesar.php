@@ -1,4 +1,5 @@
 <?php
+    error_reporting(0);
 
     include("../../../../../wp-load.php");
     include("../../../../../vlz_config.php");
@@ -149,10 +150,10 @@
             "medio",
             "largo"
         );
-        foreach ($transporte as $pre => $slug) {
+        foreach ($transporte as $pre => $slug_tranportacion) {
             foreach ($rutas as $ruta) {
                 if( $_POST[$pre.$ruta]+0 > 0 ){
-                    $adicionales[ $slug ][$ruta] = $_POST[$pre.$ruta]+0;
+                    $adicionales[ $slug_tranportacion ][$ruta] = $_POST[$pre.$ruta]+0;
                 }
             }
         }
@@ -411,14 +412,14 @@
                         'open', 
                         'closed', 
                         '', 
-                        '".$slug."', 
+                        '".$user_id."', 
                         '', 
                         '', 
                         '".$hoy."', 
                         '".$hoy."', 
                         '', 
                         0, 
-                        'http://qa.kmimos.la/kmimos/petsitters/".$slug."/', 
+                        'http://www.kmimos.com.mx/petsitters/".$user_id."/', 
                         0, 
                         'petsitters', 
                         '', 
@@ -546,7 +547,7 @@
                     }
 
                     $info = array();
-                    $info['user_login']     = sanitize_user($email, true);
+                    $info['user_login']     = sanitize_user($username, true);
                     $info['user_password']  = sanitize_text_field($clave);
 
                     $user_signon = wp_signon( $info, true );
@@ -696,7 +697,7 @@
                         <p><strong>Usuario: </strong>'.$username.'</p>
                         <p><strong>Contraseña: </strong>'.$clave.'</p>
                         <p style="text-align: justify;">
-                            Estimado Kmiamigo, tu perfil ha sido creado con éxito.  El mismo permanecerá inactivo en la página hasta que completes los siguientes pasos listados abajo"
+                            Estimado Kmiamigo, tu perfil ha sido creado con éxito.  El mismo permanecerá inactivo en la página hasta que completes los siguientes pasos listados abajo
                         </p>
                         <p style="text-align: justify;">
                             "Dichos pasos han sido diseñados para cumplir con un estricto perfil de seguridad, que garantice que cualquier persona que se convierta en Cuidador asociado Kmimos presente un perfil apto para cuidar y apapachar a nuestros peludos amigos"
@@ -796,15 +797,15 @@
                     wp_mail( $email, "Kmimos México – Gracias por registrarte como cuidador! Kmimos la NUEVA forma de cuidar a tu perro!", $mail_msg);
 
                     $error = array(
-                        "error" => "NO",
-                        "msg" => $mensaje_web
+                        "error"         => "NO",
+                        "msg"           => $mensaje_web
                     );
                     echo "(".json_encode( $error ).")";
 
             }else{
                 $error = array(
                     "error" => "SI",
-                    "msg" => "No se ha podido completar el registro."
+                    "msg"   => "No se ha podido completar el registro."
                 );
                 echo "(".json_encode( $error ).")";
             }

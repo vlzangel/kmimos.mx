@@ -39,10 +39,21 @@ function WhiteLabel_registration_save($user_id){
 add_action('woocommerce_thankyou', 'WhiteLabel_custom_processing');
 add_action('woocommerce_order_status_completed', 'WhiteLabel_custom_processing');
 add_action('woocommerce_order_status_processing', 'WhiteLabel_custom_processing');
-function WhiteLabel_custom_processing($order_id){
+function WhiteLabel_custom_processing($order){
     global $_wlabel;
+    $wlabel=$_wlabel->wlabel;
+
     if ($_wlabel->wlabel_active){
-        update_post_meta($order_id, '_wlabel', $_wlabel->wlabel);
+        update_post_meta($order, '_wlabel', $wlabel);
+    }
+
+    //kmimos modified
+    $modified_order = get_post_meta($order,'reserva_modificada', true);
+    if(!empty($modified)){
+        $modified_walbel = get_post_meta($modified_order,'_wlabel', true);
+        if(!empty($modified_walbel)){
+            update_post_meta($order, '_wlabel', $modified_walbel);
+        }
     }
 }
 

@@ -31,6 +31,7 @@ class Class_WhiteLabel_User{
         $this->wlabel_table_user = $_wlabel->wlabel_table_user;
 
         $this->wlabel = '';
+        $this->wlabel_commission = '';
         $this->wlabel_result = '';
         $this->wlabel_data=array();
         if(array_key_exists('label',$this->SESSION)){
@@ -123,6 +124,24 @@ class Class_WhiteLabel_User{
     }
 
 
+    function wlabel_Commission(){
+        $data = $this->wlabel_data;
+        $commission = 0;
+        if(array_key_exists('commission',$data)){
+            $commission = $data->commission;
+        }
+        $this->wlabel_commission = $commission;
+        return $commission;
+    }
+
+
+    function wlabel_Export($module='',$title='',$type=''){
+        $html='<div class="export" data-module="'.$module.'" data-title="'.$title.'" data-type="'.$type.'" data-urlbase="'.plugin_dir_url(dirname(dirname(__FILE__))).'backend/content/export/" data-file="export.php">';
+        $html.='<div class="action" onclick="WhiteLabel_panel_export(this)">Exportar</div>';
+        $html.='<div class="file"></div>';
+        $html.='</div>';
+        echo $html;
+    }
 
 
     function wLabel_Filter($filters=array()){
