@@ -1,63 +1,54 @@
-<?php $post_type = get_post_type(); ?>
-     </div>
- </div> 
+        </div>
+    </div>
 
-<div id="pf-membersystem-dialog"></div>
+    <div id="pf-membersystem-dialog"></div>
     <a title="<?php esc_html__('Back to Top','pointfindert2d'); ?>" class="pf-up-but"><i class="pfadmicon-glyph-859"></i></a>
+</div>
 
-    <footer class="wpf-footer">            
-        <div class="container" style="overflow: hidden;">
-            <div class="row">
+<?php $datos = kmimos_get_info_syte(); ?>
+<footer class="wpf-footer">            
+    <div class="container" style="overflow: hidden;">
+        <div class="row">
 
-                <div class="col-xs-12 jj-xs-offiset-2 col-sm-4 col-md-3 col-lg-3 col-lg-offset-2 left">
-                  <h2>Contáctanos</h2>
-                    <strong>Tlf:</strong> +52 (55) 1791.4931/  +52 (55) 66319264 <br>
-                    <strong>Email:</strong>  contactomex@kmimos.la
-                </div>
-                <div class="col-sm-4 jj-xs-offiset-2 col-md-3 center col-lg-3 center">
-                    <h2>Navega</h2>
-                    <ul>
-                        <li><a href="#">Nosotros</a></li>
-                        <li><a href="https://www.kmimos.com.mx/tips-e-informacion-sobre-perros/">Blog</a></li>
-                        <li><a href="#">Preguntas y Respuestas</a></li>
-                        <li><a href="#">Cobertura Veterinaria</a></li>
-                        <li><a href="#">Comunicados de prensa</a></li>
-                        <li><a href="#">Términos y Condiciones</a></li>
-                        <li><a href="#">Nuestros Aliados</a></li>
-                        <li><a href="https://www.kmimos.com.mx/contacto/">Contáctanos</a></li>
-                    </ul>
-                </div>
-            
-                <div class="hidden-xs col-sm-4  col-md-3 col-lg-3 right">
-                    <h2>¡B&uacute;scanos en nuestra redes sociales!</h2>
-                    <div class="socialBtns">
-                        <a href="https://www.facebook.com/Kmimosmx" target="_blank" class="facebookBtn socialBtn" title="@kmimosmx"></a>
-                        <a href="https://www.twitter.com/Kmimosmx"  target="_blank"class="twitterBtn socialBtn" title="@kmimosmx"></a>
-                        <a href="https://www.instagram.com/kmimosmx/" target="_blank" class="instagramBtn socialBtn" title="@kmimosmx"></a>
-                        <img class=" easyload" data-original="<?php bloginfo( 'template_directory' ); ?>/images/dog.png" src="" alt="">
-                    </div>
-                </div>
-            </div> 
-        </div>
+            <div class="col-xs-12 jj-xs-offiset-2 col-sm-4 col-md-3 col-lg-3 col-lg-offset-2 left">
+                <h2>Contáctanos</h2>
+                <p>
+                    <strong>Tlf: </strong> <?php echo $datos["telefono"]; ?><br>
+                    <strong>Email: </strong>  <?php echo $datos["email"]; ?>
+                </p>
+            </div>
 
-        <div class="jj-xs-offiset-2 col-md-offset-1 col-md-offset-3 jj-offset-2 inline" >
-            <span id="siteseal">
-                <script async type="text/javascript">
-                    function verifySeal() {
-                        var bgHeight = "460";
-                        var bgWidth = "593";
-                        var url = "https://seal.godaddy.com/verifySeal?sealID=c5u9pjdoyKXQ6dRtmwnDmY0bV6KVBrdZGPEAnPkeSt7ZRCetPjIUzVK0bnHa";
-                        window.open(url,'SealVerfication','menubar=no,toolbar=no,personalbar=no,location=yes,status=no,resizable=yes,fullscreen=no,scrollbars=no,width=' + bgWidth + ',height=' + bgHeight);
-                    }
-                </script>
-                <img src="https://seal.godaddy.com/images/3/en/siteseal_gd_3_h_l_m.gif" onclick="verifySeal();" />
-            </span>  
-            <?php if($post_type=='post'){ ?>
-                <a class="inline" href="http://es.paperblog.com/" rel="paperblog kmimos" title="Paperblog : Los mejores artículos de los blogs" ><img src="/wp-content/uploads/iconos/paperblog.gif" border="0" alt="Paperblog : Los mejores artículos de los blogs" width="131" height="32"/></a>
-                <a class="inline" href="http://www.boosterblog.es" target="_blank"><img src="/wp-content/uploads/iconos/boosterblog-es-logo.png" width="131" height="32" alt="Publicidad por tu blog con Boosterblog" /></a>
-            <?php } ?>
-        </div>
-    </footer>
+            <div class="col-sm-4 jj-xs-offiset-2 col-md-3 center col-lg-3 center">
+                <h2>Navega</h2>
+                <ul>
+                    <li><a href="#">Nosotros</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Preguntas y Respuestas</a></li>
+                    <li><a href="#">Cobertura Veterinaria</a></li>
+                    <li><a href="#">Comunicados de prensa</a></li>
+                    <li><a href="<?php echo get_home_url();?>/terminos-y-condiciones/">Términos y Condiciones</a></li>
+                    <li><a href="#">Nuestros Aliados</a></li>
+                    <li><a href="<?php echo get_home_url();?>/contacto/">Contáctanos</a></li>
+                </ul>
+            </div>
+
+            <div class="hidden-xs col-sm-4  col-md-3 col-lg-3 right">
+                <h2>¡B&uacute;scanos en nuestra redes sociales!</h2>
+                <div class="socialBtns">
+                    <a href="https://www.facebook.com/<?php echo $datos["facebook"]; ?>/" target="_blank" class="facebookBtn socialBtn" title="<?php echo $datos["facebook"]; ?>"></a>
+                    <a href="https://twitter.com/<?php echo $datos["twitter"]; ?>" target="_blank" class="twitterBtn socialBtn" title="@<?php echo $datos["twitter"]; ?>"></a>
+                    <a href="#" target="_blank" class="instagramBtn socialBtn" title="@<?php echo $datos["instagram"]; ?>"></a>
+                    <img src="<?php bloginfo( 'template_directory' ); ?>/images/dog.png" alt="">
+                </div>
+            </div>
+
+        </div> 
+
+    </div>
+    <div class="jj-xs-offiset-2 col-md-offset-1 col-md-offset-3 jj-offset-2">
+        <span id="siteseal"><script async type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=c5u9pjdoyKXQ6dRtmwnDmY0bV6KVBrdZGPEAnPkeSt7ZRCetPjIUzVK0bnHa"></script></span>   
+    </div>
+</footer>
         <?php 
             wp_footer(); 
 
