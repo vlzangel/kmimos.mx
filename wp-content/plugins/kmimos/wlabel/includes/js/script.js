@@ -21,13 +21,49 @@ function WhiteLabel_panel_logout(element){
 }
 
 
+function WhiteLabel_panel_export(element){
+    var dexport=jQuery(element).closest('.export');
+    var urlbase=dexport.data('urlbase');
+    var module=dexport.data('module');
+    var title=dexport.data('title');
+    var type=dexport.data('type');
+    var file=dexport.data('file');
+    var url=urlbase+file;
+
+    var data="";
+    if(type=='table'){
+        jQuery('table').each(function(e){
+            jQuery(this).find('tr:not(.noshow)').each(function(e){
+                jQuery(this).find('th, td').each(function(e){
+                    if(!jQuery(this).hasClass('noshow') && !jQuery(this).hasClass('noshow_check') && !jQuery(this).hasClass('noshow_select')){
+                        data+=jQuery(this).html()+';';
+                    }
+                });
+                data+="\n";
+            });
+            data+="\n\n\n";
+        });
+    }
+
+    jQuery(element).html('Espere ...');
+    jQuery.post(url, { module: module, title: title, data: data, urlbase: urlbase }, function(data){
+        //console.log(data);
+        data=jQuery.parseJSON(data);
+        dexport.find('.action').html(data['message']);
+        dexport.find('.file').html(data['file']);
+    });
+}
+
+
 
 //MENU
 function WhiteLabel_panel_menu(module){
     var path=jQuery('.section .menu').data('url');
-    var url=path+'content/modules/'+module+'.php'; console.log(url);
+    var url=path+'content/modules/'+module+'.php';
     jQuery.get(url, function(data){
         jQuery('.section .modules').html(data);
+        modules_filter(jQuery('.filter select'));
+        modules_filter(jQuery('.filter input'));
     });
 }
 
@@ -118,9 +154,9 @@ function modules_table_count(element){
 
             jQuery(body_tr).each(function(index){
                 if(!jQuery(this).hasClass('noshow')){
-                    if(jQuery(this).data('status')!='cancelled'){
+                    //if(jQuery(this).data('status')!='cancelled' && jQuery(this).data('status')!='modified'){}
                         count=count-(jQuery(this).find('td').eq(indexftd).html()*(-1));
-                    }
+
                 }
             });
         }

@@ -87,7 +87,18 @@
 													<?php
 														$referidos = get_referred_list_options();
 														foreach ($referidos as $key => $value) {
-															echo "<option value='{$key}'>{$value}</option>";
+															$selected='';
+															if(array_key_exists('wlabel',$_SESSION)){
+																$wlabel=$_SESSION['wlabel'];
+
+																if($key=='Volaris' && $wlabel=='volaris'){
+																	$selected='selected';
+
+																}else if($key=='Vintermex' && $wlabel=='viajesintermex'){
+																	$selected='selected';
+																}
+															}
+															echo "<option value='{$key}' $selected>{$value}</option>";
 														}
 													?>
                                                 </select>
@@ -96,7 +107,7 @@
 
 										<div class="vlz_sub_seccion">
 											<div class="vlz_cell100">
-												<div class="vlz_titulo_interno vlz_sub_seccion_mensaje">Aquí puedes completar la descripción sugerida,<spam style="color: red;">"sin embargo tu descripción personalizada es valiosa para el cliente y para atraer mas clientes"</spam></div>
+												<div class="vlz_titulo_interno vlz_sub_seccion_mensaje">Aquí puedes completar la descripción sugerida,<spam style="color: red;">"sin embargo tu descripción personalizada es valiosa para atraer más clientes"</spam></div>
 												<textarea 
 													data-title="Ingresa una descripción de al menos 50 caracteres incluyendo los espacios." 
 													data-help='"Cuentanos sobre ti, tus cualidades y porque deberían permitirte cuidar sus perritos"'

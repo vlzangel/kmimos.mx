@@ -81,10 +81,6 @@
                     .switch-candy span {
                         color: #000000 !important;
                     }
-                    .woocommerce .cart .button, .woocommerce .cart input.button {
-                        float: none;
-                        color: #000 !important;
-                    }
                     .vc-image-carousel .vc-carousel-slideline-inner .vc-inner img {
                         -webkit-filter: grayscale(0%) !important;
                         filter: grayscale(0%) !important;

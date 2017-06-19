@@ -3,7 +3,9 @@
 
 	function get_estados_municipios(){
 		require_once('vlz_config.php');
-		global $host, $user, $pass, $db;
+		if( $host == "" ){
+			global $host, $user, $pass, $db;
+		}
 		$conn_my = new mysqli($host, $user, $pass, $db);
 		if (!$conn_my) {
 		  	exit;
