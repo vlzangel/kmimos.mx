@@ -8,10 +8,10 @@
 	global $wpdb;
 	global $post;
 
-	$slug 		= $post->post_name;
-
 	$cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id_post = ".$post->ID);
 	$descripcion = $wpdb->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$cuidador->user_id} AND meta_key = 'description'");
+
+	$slug = $wpdb->get_var("SELECT post_name FROM wp_posts WHERE post_type = 'product' AND post_author = '{$cuidador->user_id}' AND post_name LIKE '%hospedaje%' ");
 
 	$latitud 	= $cuidador->latitud;
 	$longitud 	= $cuidador->longitud;
