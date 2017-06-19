@@ -51,7 +51,7 @@
         function viejos_include_script(){
             wp_enqueue_script( 'kmimos_jqueryui_script',    get_home_url().'/wp-content/plugins/kmimos/javascript/jquery-ui.min.js', array(), '1.11.1', true  );
             wp_enqueue_script( 'kmimos_filters_script',     get_home_url().'/wp-content/plugins/kmimos/javascript/kmimos-filters.js', array(), '1.0.0', true );
-            wp_enqueue_script( 'kmimos_script',             get_home_url().'/wp-content/plugins/kmimos/javascript/kmimos.js', array(), '1.0.0', true );
+            // wp_enqueue_script( 'kmimos_script',             get_home_url().'/wp-content/plugins/kmimos/javascript/kmimos.js', array(), '1.0.0', true );
             wp_enqueue_script( 'kmimos_fancy',              get_home_url().'/wp-content/plugins/kmimos/javascript/jquery.fancybox.pack.js', array(), '2.1.5', true );
             wp_enqueue_style( 'kmimos_style',               get_home_url().'/wp-content/plugins/kmimos/css/kmimos.css' );
             wp_enqueue_style( 'kmimos_filters_style',       get_home_url().'/wp-content/plugins/kmimos/css/kmimos-filters.css' );
