@@ -652,14 +652,14 @@ class WC_Booking_Form {
 			return $validate;
 		}
 
-		$tipo_servicio = explode("-", $this->product->post->post_name);
-		$tipo_servicio = $tipo_servicio[0];
 
 		$base_block_cost    = max( 0, $this->product->wc_booking_base_cost );
 		$total_block_cost   = 0;
 
 		// Modificacion Ángel Veloz
-		if( $tipo_servicio == "hospedaje" ){
+
+		$tipo_servicio = explode("-", $this->product->post->post_name);
+		if( in_array("hospedaje", $tipo_servicio) ){
     		$total_duration = (($data['_duration']) > 1 ? ($data['_duration']-1) : ($data['_duration']));
 		}else{
     		$total_duration = (($data['_duration']) > 1 ? ($data['_duration']) : ($data['_duration']));
