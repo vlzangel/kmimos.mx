@@ -96,7 +96,7 @@
 
    		$msg_cliente = kmimos_get_email_html("Reserva Cancelada Exitosamente!", $msg_cliente, "", true, true);
 
-   		wp_mail( $email_cliente, "Cancelación de Reserva", $msg_cliente);
+   		wp_mail( $cliente_email, "Cancelación de Reserva", $msg_cliente);
 
 		$msg = $styles.'
 	    	<p><strong>Cancelación de Reserva (N°. '.$reserva_id.')</strong></p>

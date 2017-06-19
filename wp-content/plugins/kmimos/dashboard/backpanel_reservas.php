@@ -81,6 +81,9 @@ $reservas = getReservas($_desde, $_hasta);
 			      <th># Mascotas</th>
 			      <th># Noches Totales</th>
 			      <th>Cliente</th>
+			      <th>Recompra (1Mes)</th>
+			      <th>Recompra (3Meses)</th>
+			      <th>Recompra (6Meses)</th>
 			      <th>Recompra (12Meses)</th>
 			      <th>Donde nos conocio?</th>
 			      <th>Mascotas</th>
@@ -116,13 +119,36 @@ $reservas = getReservas($_desde, $_hasta);
 				  		$meta_cuidador = getMetaCuidador($reserva->cuidador_id);
 				  		# MetaDatos del Cliente
 				  		$cliente = getMetaCliente($reserva->cliente_id);
-				  		# Recompra
-				  		$cliente_n_reserva = getCountReservas($reserva->cliente_id);
+
+				  		# Recompra 12 Meses
+				  		$cliente_n_reserva = getCountReservas($reserva->cliente_id, "12");
 				  		if(array_key_exists('rows', $cliente_n_reserva)){
 					  		foreach ($cliente_n_reserva["rows"] as $value) {
-				  				$recompra = ($value['cant']>1)? "SI" : "NO" ;
+				  				$recompra_12M = ($value['cant']>1)? "SI" : "NO" ;
 					  		}
 					  	}
+				  		# Recompra 1 Meses
+				  		$cliente_n_reserva = getCountReservas($reserva->cliente_id, "1");
+				  		if(array_key_exists('rows', $cliente_n_reserva)){
+					  		foreach ($cliente_n_reserva["rows"] as $value) {
+				  				$recompra_1M = ($value['cant']>1)? "SI" : "NO" ;
+					  		}
+					  	}
+				  		# Recompra 3 Meses
+				  		$cliente_n_reserva = getCountReservas($reserva->cliente_id, "3");
+				  		if(array_key_exists('rows', $cliente_n_reserva)){
+					  		foreach ($cliente_n_reserva["rows"] as $value) {
+				  				$recompra_3M = ($value['cant']>1)? "SI" : "NO" ;
+					  		}
+					  	}
+				  		# Recompra 6 Meses
+				  		$cliente_n_reserva = getCountReservas($reserva->cliente_id, "6");
+				  		if(array_key_exists('rows', $cliente_n_reserva)){
+					  		foreach ($cliente_n_reserva["rows"] as $value) {
+				  				$recompra_6M = ($value['cant']>1)? "SI" : "NO" ;
+					  		}
+					  	}
+
 				  		# MetaDatos del Reserva
 				  		$meta_reserva = getMetaReserva($reserva->nro_reserva);
 				  		# MetaDatos del Pedido
@@ -198,7 +224,10 @@ $reservas = getReservas($_desde, $_hasta);
 					<th class="text-center"><?php echo $reserva->nro_mascotas; ?></th>
 					<th><?php echo $nro_noches * $reserva->nro_mascotas; ?></th>
 					<th><?php echo "<a href='".get_home_url()."/?i=".md5($reserva->cliente_id)."'>".$cliente['first_name'].' '.$cliente['last_name']; ?></a></th>
-					<th class="text-center"><?php echo $recompra; ?></th>
+					<th class="text-center"><?php echo $recompra_1M; ?></th>
+					<th class="text-center"><?php echo $recompra_3M; ?></th>
+					<th class="text-center"><?php echo $recompra_6M; ?></th>
+					<th class="text-center"><?php echo $recompra_12M; ?></th>
 					<th><?php echo (empty($cliente['user_referred']))? 'Otros' : $cliente['user_referred'] ; ?></th>
 					<th><?php echo $pets_nombre; ?></th>
 					<th><?php echo $pets_razas; ?></th>

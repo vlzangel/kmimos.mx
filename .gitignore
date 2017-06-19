@@ -12,7 +12,6 @@
 /wp-content/upgrade/
 /wp-content/uploads*
 /git/
-/kmimos.la/
 
 Respaldo*
 
@@ -23,7 +22,7 @@ favicon.ico
 /index.php
 wp-activate.php
 wp-blog-header.php
-wp-comments-post.php
+#wp-comments-post.php
 wp-config.php
 wp-cron.php
 wp-links-opml.php
@@ -99,6 +98,8 @@ vlz_config.php
 /wp-content/plugins/woocommerce-bookings/.tx/
 
 /wp-content/plugins/woocommerce-gateway-stripe/
+
+/wp-content/plugins/kmimos/wlabel/backend/content/export/csv/
 
 /wp-content/w3tc-config/ 
 /wp-content/cache/

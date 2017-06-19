@@ -6,10 +6,6 @@
     $pet_id = $params['pet_id']+0;
     $current_pet = kmimos_get_pet_info($pet_id);
 
-    echo "<pre>";
-        print_r($current_pet);
-    echo "</pre>";
-
     $photo_pet = (!empty($current_pet['photo']))? "/".$current_pet['photo']: "/wp-content/themes/pointfinder/images/noimg.png";
 
     $tipos = kmimos_get_types_of_pets();
