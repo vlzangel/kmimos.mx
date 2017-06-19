@@ -29,17 +29,13 @@ form input[type="submit"]{width:100%; color:#FFF; background:#59c9a8;}
 .filter select{padding:10px;  background:#ddd;}
 .filter input[type="checkbox"]{width:20px; height:20px;}
 
-.export{position:relative; margin:5px; padding:10px;  font-size:12px;  border:1px solid #eee;}
-.export .action{padding:5px 10px;  border-radius:5px; cursor:pointer;  box-shadow:0 0 5px #CCC;  background:#EEE;  display:inline-block;}
-.export .file{padding:10px 0;}
-
 table{position:relative; border-radius:5px; background:#FFF;}
 table thead{color:#FFF; background:#555;}
 table thead th{padding:15px !important;}
 table .title{text-align:left; min-width: 250px;}
 table .number{text-align:right;}
 table th,
-table td{font-size:12px; padding:5px; border:1px solid #555;}
+table td{padding:5px; border:1px solid #555;}
 table .noshow,
 table .noshow_select,
 table .noshow_check{ display: none;}
