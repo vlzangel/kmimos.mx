@@ -124,7 +124,7 @@ if( count($url_servicio) > 1 ){
 		}
 	}
 	else{				
-		echo '<a class="button reservar" href="'.get_home_url().'/producto/hospedaje-'.$slug.'/'.'">Reservar</a>';
+		echo '<a class="button reservar" href="'.get_home_url().'/producto/'.$slug.'/'.'">Reservar</a>';
 	}
 }
 
