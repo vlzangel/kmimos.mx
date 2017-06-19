@@ -194,8 +194,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 	.order-total td,
 	.order-paid td,
 	.vlz_totales td,
-	.order-remaining td
-	{
+	.order-remaining td {
 		text-align: right !important;
 	}
 	.woocommerce .cart-collaterals .cross-sells, .woocommerce-page .cart-collaterals .cross-sells, .woocommerce .cart-collaterals .cart_totals, .woocommerce-page .cart-collaterals .cart_totals {
@@ -208,5 +207,8 @@ do_action( 'woocommerce_before_cart' ); ?>
 	}
 	.woocommerce-cart .cart-collaterals .cart_totals table th {
 	    width: auto;
+	}
+	.woocommerce .cart .button {
+	    background-color: #59c9a8;
 	}
 </style>
