@@ -5398,7 +5398,7 @@ input#place_order{
 
 		.wpf-container .wpf-noheader-container{height:0;}
 
-		#pfheadernav{position:relative;}
+		#pfheadernav{/*position:relative;*/}
 
 		#pfheadernav .wpf-navwrapper{height:auto;}
 
