@@ -34,8 +34,10 @@ function WhiteLabel_panel_export(element){
     if(type=='table'){
         jQuery('table').each(function(e){
             jQuery(this).find('tr:not(.noshow)').each(function(e){
-                jQuery(this).find('th:not(.noshow),td:not(.noshow)').each(function(e){
-                    data+=jQuery(this).html()+';';
+                jQuery(this).find('th, td').each(function(e){
+                    if(!jQuery(this).hasClass('noshow') && !jQuery(this).hasClass('noshow_check') && !jQuery(this).hasClass('noshow_select')){
+                        data+=jQuery(this).html()+';';
+                    }
                 });
                 data+="\n";
             });
@@ -44,7 +46,7 @@ function WhiteLabel_panel_export(element){
     }
 
     jQuery(element).html('Espere ...');
-    jQuery.get(url, { module: module, title: title, data: data, urlbase: urlbase }, function(data){
+    jQuery.post(url, { module: module, title: title, data: data, urlbase: urlbase }, function(data){
         //console.log(data);
         data=jQuery.parseJSON(data);
         dexport.find('.action').html(data['message']);
@@ -152,9 +154,9 @@ function modules_table_count(element){
 
             jQuery(body_tr).each(function(index){
                 if(!jQuery(this).hasClass('noshow')){
-                    if(jQuery(this).data('status')!='cancelled'){
+                    //if(jQuery(this).data('status')!='cancelled' && jQuery(this).data('status')!='modified'){}
                         count=count-(jQuery(this).find('td').eq(indexftd).html()*(-1));
-                    }
+
                 }
             });
         }
