@@ -238,7 +238,7 @@
             Requests::register_autoloader();
 
             $options = array(
-                'wstoken'               =>  "61331bc52bfb74f944fd84b8b6458c14",
+                'wstoken'               =>  "e8738b6e6fad761768364d25c916f5e5",
                 'wsfunction'            =>  "kmimos_user_create_users",
                 'moodlewsrestformat'    =>  "json",
                 'users' => array(
