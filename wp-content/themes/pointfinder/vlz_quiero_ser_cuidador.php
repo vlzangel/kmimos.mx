@@ -87,7 +87,18 @@
 													<?php
 														$referidos = get_referred_list_options();
 														foreach ($referidos as $key => $value) {
-															echo "<option value='{$key}'>{$value}</option>";
+															$selected='';
+															if(array_key_exists('wlabel',$_SESSION)){
+																$wlabel=$_SESSION['wlabel'];
+
+																if($key=='Volaris' && $wlabel=='volaris'){
+																	$selected='selected';
+
+																}else if($key=='Vintermex' && $wlabel=='viajesintermex'){
+																	$selected='selected';
+																}
+															}
+															echo "<option value='{$key}' $selected>{$value}</option>";
 														}
 													?>
                                                 </select>
