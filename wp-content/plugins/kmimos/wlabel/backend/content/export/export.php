@@ -4,16 +4,16 @@
 //$return['message']=$_wlabel_user->LogOut();
 
 //FILE
-$module=$_GET['module'];
-$urlbase=$_GET['urlbase'];
+$module=$_POST['module'];
+$urlbase=$_POST['urlbase'];
 $file='/csv/detalle_'.$module.'_'.date('Ymd',time()).'.csv';
 $file_path=dirname(__FILE__).$file;
 $file_url=$urlbase.$file;
 
 
 $text="";
-$text.=$_GET['title']."\n\n";
-$text.=$_GET['data'];
+$text.=$_POST['title']."\n\n";
+$text.=$_POST['data'];
 
 
 ////// CREATE CSV
