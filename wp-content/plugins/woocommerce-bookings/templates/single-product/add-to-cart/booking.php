@@ -32,7 +32,7 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 
 	<input type="hidden" name="add-to-cart" value="<?php echo esc_attr( $product->id ); ?>" />
 
-	<button type="submit" class="wc-bookings-booking-form-button single_add_to_cart_button button xdisabled" style="display:none; float: right; color: #FFF;"><?php echo $product->single_add_to_cart_text(); ?></button>
+	<button type="submit" class="wc-bookings-booking-form-button single_add_to_cart_button button xdisabled" style="display:none; float: right; color: #FFF;">Continuar</button>
 
 <?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
 
@@ -109,11 +109,11 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 				echo '<script type="text/javascript"> var solo_fecha_fin = "NO"; </script>';
 			}
 		}else{
-			echo '<script type="text/javascript"> var solo_fecha_fin = "NO"; activar_continuar(); </script>';
+			echo '<script type="text/javascript"> var solo_fecha_fin = "NO"; jQuery(document).ready(function() { activar_continuar(); }); </script>';
 		}
 
 	}else{
-		echo '<script type="text/javascript"> var solo_fecha_fin = "NO"; activar_continuar(); </script>';
+		echo '<script type="text/javascript"> var solo_fecha_fin = "NO"; jQuery(document).ready(function() { activar_continuar(); }); </script>';
 	}
 ?>
 
