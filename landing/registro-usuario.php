@@ -51,43 +51,69 @@
 	    // Buscar clientes referidos
 	    if( !empty($referencia) ){
 			update_user_meta( $user_id, 'landing-referencia', $referencia );
-			// enviar correo al participante
-
+			
+			// Enviar correo al participante
 			$sql2 = "select ID, user_email from wp_users where md5(user_email) = '{$referencia}'";
 			$user_participante = get_fetch_assoc($sql2);
-			// Envio de email cuando se registra un referido
-			require_once('email_template/notificacion_registro_referido.php');
-			$message_participante = kmimos_get_email_html(
-				"Club de las patitas felices",
-				$mensaje_mail_partitipante,
-				'', true, true);
 
-			if(wp_mail( 
+			// Envio de email cuando se registra un referido
+			require_once('email_template/club-participante-referido.php');
+			add_filter( 'wp_mail_from_name', function( $name ) { return 'Club Patitas Felices'; });
+			add_filter( 'wp_mail_from', function( $email ) { return 'clubpatitasfelices@kmimos.la'; });
+			wp_mail(
 				$user_participante['rows'][0]['user_email'], 
 				"¡Felicidades, has hecho a la manada más grande!", 
 				$message_participante
-			)){
-			}
+			);
 		}
 
 	    $user = new WP_User( $user_id );
 	    $user->set_role( 'subscriber' );
 
+	    # ********************************************
+	    # Email de Nuevo registro   
+	    # ********************************************
 		add_filter( 'wp_mail_from_name', function( $name ) { return 'Kmimos Mexico'; });
 	    add_filter( 'wp_mail_from', function( $email ) { return 'kmimos@kmimos.la'; });
 		require_once('email_template/user-registro.php');
-	    $message = kmimos_get_email_html("Registro de Nuevo Usuario.", $mensaje_mail, '', true, true);
-	    if(wp_mail( $email, "Kmimos Mexico – Gracias por registrarte! Kmimos la NUEVA forma de cuidar a tu perro!", $message)){
-	    	#echo 'enviado';
-	    }else{
-	    	#echo 'no enviado';
-	    }
+	    //$message = kmimos_get_email_html("Registro de Nuevo Usuario.", $mensaje_mail, '', true, true);
+	    wp_mail( 
+	    	$email, 
+	    	"Kmimos Mexico – Gracias por registrarte! Kmimos la NUEVA forma de cuidar a tu perro!", 
+	    	$mensaje_mail
+	    );
+
+	    # ********************************************
+	    # Email de Nuevo registro participantes 
+	    # ********************************************
+		add_filter( 'wp_mail_from_name', function( $name ) { return 'Club Patitas Felices'; });
+	    add_filter( 'wp_mail_from', function( $email ) { return 'italococchini@gmail.com'; });
+		require_once('email_template/club-registro-participante.php');
+    	wp_mail(
+    		$email,
+    		"Club de la Patitas Felices",
+    		$html
+    	);
+	    # ********************************************
 
 	    $estatus_registro = 1;
 	    $notificaciones = "Nuevo Usuario Registrado.";
-
-		
-
+	
+	}else{
+		if(!empty($referencia)){
+		    # ********************************************
+		    # El usuario ya existe 
+		    # Club Patitas Felices 
+		    # ********************************************
+			require_once('email_template/club-referido-existe.php');
+			add_filter( 'wp_mail_from_name', function( $name ) { return 'Club Patitas Felices'; });
+		    add_filter( 'wp_mail_from', function( $email ) { return 'clubpatitasfelices@kmimos.la'; });
+	    	wp_mail(
+	    		$email,
+	    		"Club de la Patitas Felices",
+	    		$html
+	    	);
+		}
 	}
 
 
