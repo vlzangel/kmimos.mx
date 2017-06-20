@@ -1,6 +1,7 @@
 <?php
 
 	include_once('wlabel/wlabel.php');
+	include_once('subscribe/subscribe.php');
 
 	include_once('includes/class/class_kmimos_booking.php');
 	include_once('includes/class/class_kmimos_tables.php');
