@@ -20,7 +20,7 @@ $_wlabel_user->wlabel_Export('DETALLE','title','table');
     <table cellspacing="0" cellpadding="0">
         <thead>
         <tr>
-            <th>Titulo</th>
+            <th class="title">Titulo</th>
             <?php
                 $day_init=strtotime(date('m/d/Y',$WLresult->time));
                 $day_last=strtotime(date('m/d/Y',time()));
@@ -281,7 +281,7 @@ echo '</tr>';
 
 //TOTAL DE MONTO POR PAGAR
 echo '<tr>';
-echo '<th class="title">Monto de Reservas Por Pagar</th>';
+echo '<th class="title">Monto de reservas por pagar en tienda por conveniencia</th>';
 $day_init=strtotime(date('m/d/Y',$WLresult->time));
 $day_last=strtotime(date('m/d/Y',time()));
 $day_more=(24*60*60);
