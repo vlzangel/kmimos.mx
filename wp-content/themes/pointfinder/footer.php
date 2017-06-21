@@ -46,7 +46,17 @@
 
     </div>
     <div class="jj-xs-offiset-2 col-md-offset-1 col-md-offset-3 jj-offset-2">
-        <span id="siteseal"><script async type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=c5u9pjdoyKXQ6dRtmwnDmY0bV6KVBrdZGPEAnPkeSt7ZRCetPjIUzVK0bnHa"></script></span>   
+        <span id="siteseal">
+            <script async type="text/javascript">
+                function verifySeal() {
+                    var bgHeight = "460";
+                    var bgWidth = "593";
+                    var url = "https://seal.godaddy.com/verifySeal?sealID=c5u9pjdoyKXQ6dRtmwnDmY0bV6KVBrdZGPEAnPkeSt7ZRCetPjIUzVK0bnHa";
+                    window.open(url,'SealVerfication','menubar=no,toolbar=no,personalbar=no,location=yes,status=no,resizable=yes,fullscreen=no,scrollbars=no,width=' + bgWidth + ',height=' + bgHeight);
+                }
+            </script>
+            <img src="https://seal.godaddy.com/images/3/en/siteseal_gd_3_h_l_m.gif" onclick="verifySeal();" />
+        </span>  
     </div>
 </footer>
         <?php 

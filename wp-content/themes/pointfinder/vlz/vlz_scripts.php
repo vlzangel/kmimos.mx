@@ -268,8 +268,3 @@
 </script>
 
 <script async defer src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyD-xrN3-wUMmJ6u2pY_QEQtpMYquGc70F8&callback=initMap">
-
-jQuery.getScript(URLmap, function(data, textStatus, jqxhr){
-	kmimos_save_map_run('#mapa');
-}).done(function(){ }).fail(function(){ });
-</script>
