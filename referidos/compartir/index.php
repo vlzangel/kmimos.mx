@@ -35,7 +35,7 @@ if(isset($_GET['e'])){
 		</script>
 
 	</head>
-	<body>
+	<body onBeforeUnload="cerrarventana()">
 		<!-- Load Facebook SDK for JavaScript -->
 		<div id="fb-root"></div>
 		<script>(function(d, s, id) {
@@ -162,6 +162,9 @@ if(isset($_GET['e'])){
 				<img src="img/opciones_mobile.png" class="img-responsive hidden-md hidden-lg" >
 			</aside>
 
+
+			<p id="shared" class="hidden">Debes compartir el enlace</p>
+
 		</div>
 	
 		<script
@@ -169,9 +172,11 @@ if(isset($_GET['e'])){
 		  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
 		  crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-		  
+
 		<script>
+		var click_action = 0;
 		$(document).ready(function(){
+
 			$("#mail_publicar").click(function(){
 		        if(!$("#twitter").hasClass('hidden')){ $("#twitter").addClass('hidden'); }
 		        if(!$("#facebook").hasClass('hidden')){ $("#facebook").addClass('hidden'); }
@@ -181,6 +186,7 @@ if(isset($_GET['e'])){
 				}else{
 		        	$("#info").addClass('hidden');
 				}
+				click_action = 1;
 		    });
 
 			$("#facebook_shared").click(function(){
@@ -192,6 +198,7 @@ if(isset($_GET['e'])){
 				}else{
 		        	$("#facebook").addClass('hidden');
 				}
+				click_action = 1;
 		    });
 
 			$("#twitter_shared").click(function(){
@@ -203,15 +210,15 @@ if(isset($_GET['e'])){
 				}else{
 		        	$("#twitter").addClass('hidden');
 				}
+				click_action = 1;
 		    });
-
-
+			
 		});
+
+		function cerrarventana() {
+			event.returnValue = ""; 
+		}
 		</script>
-
-		
-
-
 
 	</body>
 </html>
