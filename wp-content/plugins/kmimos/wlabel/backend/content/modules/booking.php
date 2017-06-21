@@ -110,35 +110,52 @@ $_wlabel_user->wlabel_Export('RESERVAS','title','table');
         $IDcustomer=$_metas_booking['_booking_customer_id'][0];
         $IDorder_item=$_metas_booking['_booking_order_item_id'][0];
 
-       //var_dump($order);
-       //var_dump($IDorder_item);
+        $_metas_booking_start=strtotime($_metas_booking['_booking_start'][0]);
+        $_metas_booking_end=strtotime($_metas_booking['_booking_end'][0]);
+        $duration = floor(($_metas_booking_end-$_metas_booking_start) / (60 * 60 * 24));
 
         $_meta_WCorder = wc_get_order_item_meta($IDorder_item,'');
        // $_meta_WCorder_line_total = wc_get_order_item_meta($IDorder_item,'_line_total');
         $_meta_WCorder_line_total = wc_get_order_item_meta($IDorder_item,'_line_subtotal');
         $_meta_WCorder_duration = wc_get_order_item_meta($IDorder_item,'Duración');
-       $_meta_WCorder_caregiver = wc_get_order_item_meta($IDorder_item,'Ofrecido por');
+        $_meta_WCorder_caregiver = wc_get_order_item_meta($IDorder_item,'Ofrecido por');
 
-       //SERVICES
-       $post = get_post($IDproduct);
-       $services = $post->post_name;
-       $services=explode('-',$services);
-       if(count($services)>0){
+        //SERVICES
+        $post = get_post($IDproduct);
+        $services = $post->post_name;
+        $services=explode('-',$services);
+        if(count($services)>0){
            $services=trim($services[0]);
-       }else{
+        }else{
            $services='';
-       }
+        }
 
        //DURATION
-       $duration=strtolower($_meta_WCorder_duration);
-       $duration=str_replace(array('días','día','dias','dia','day'),'',$duration);
-       $duration_text=$duration.' Dia(s)';
+       //$duration=strtolower($_meta_WCorder_duration);
+
+       $period = 1;
+       if(strpos($duration, 'semana') !== false){
+           $period = 7;
+       }else if(strpos($duration, 'mes') !== false){
+           $period = 30;
+       }
+
+       $duration=str_replace(array('días','día','dias','dia','day', 'semana', 'semanas', 'mes'),'',$duration);
+       $duration=trim($duration);
+       $duration_text=' Dia(s)';
 
        if($services=='hospedaje'){
            $duration=(int)$duration-1;
-           $duration_text=$duration.' Noche(s)';
+           $duration_text=' Noche(s)';
        }
 
+       if($duration<=0){
+           $duration=(int)$duration+1;
+       }
+
+       $duration_text= $duration.$duration_text;
+       //$duration_text.='<br>'.date('d/m/Y',(int) strtolower($_metas_booking_start));
+       //$duration_text.='<br>'.date('d/m/Y',(int) strtolower($_metas_booking_end));
 
        //var_dump($_meta_WCorder);
        $_meta_WCorder_services_additional=array();

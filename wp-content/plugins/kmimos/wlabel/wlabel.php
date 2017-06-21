@@ -48,16 +48,31 @@ function WhiteLabel_custom_processing($order){
     }
 
     //kmimos modified
-    $modified_order = get_post_meta($order,'modificacion_de', true);//reserva_modificada
-    if(!empty($modified)){
+    //$order_post = get_post($order);
+    //$order_post_parent = $order_post->post_parent;//alrevves
+    //$order_post_parent = get_post_ancestors($order);
 
-        $modified_post = get_post($modified_order);
-        $modified_post_parent = $modified_post->post_parent;
-        $modified_wlabel = get_post_meta($modified_post_parent,'_wlabel', true);
-        if(!empty($modified_wlabel)){
-            update_post_meta($order, '_wlabel', $modified_wlabel);
+    $order_post = new WP_Query(array('post_parent' => $order));
+    if ( $order_post->have_posts()){
+        while($order_post->have_posts()){
+            $order_post->the_post();
+            $order_post_parent=$order_post->ID;
+
+            $modified_order = get_post_meta($order_post_parent,'modificacion_de', true);//reserva_modificada
+            if(!empty($modified_order)){
+                $modified_post = get_post($modified_order);
+                $modified_post_parent = $modified_post->post_parent;
+                $modified_wlabel = get_post_meta($modified_post_parent,'_wlabel', true);
+                if(!empty($modified_wlabel)){
+                    update_post_meta($order, '_wlabel', $modified_wlabel);
+                }
+            }
+
+            break;
+
         }
     }
+
 }
 
 
