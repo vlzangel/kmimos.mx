@@ -7,7 +7,9 @@ if(file_exists($kmimos_load)){
 global $wpdb;
 $wlabel=$_wlabel_user->wlabel;
 $WLresult=$_wlabel_user->wlabel_result;
+$WLcommission=$_wlabel_user->wlabel_Commission();
 $_wlabel_user->wLabel_Filter(array('tddate','tdcheck'));
+$_wlabel_user->wlabel_Export('DETALLE','title','table');
 ?>
 <div class="module_title">
     RESERVAS POR DIA
@@ -18,7 +20,7 @@ $_wlabel_user->wLabel_Filter(array('tddate','tdcheck'));
     <table cellspacing="0" cellpadding="0">
         <thead>
         <tr>
-            <th>Titulo</th>
+            <th class="title">Titulo</th>
             <?php
                 $day_init=strtotime(date('m/d/Y',$WLresult->time));
                 $day_last=strtotime(date('m/d/Y',time()));
@@ -86,7 +88,8 @@ foreach($bookings as $key => $booking){
     $IDorder_item=$_metas_booking['_booking_order_item_id'][0];
 
     //$_meta_WCorder = wc_get_order_item_meta($IDorder_item,'_line_total');
-    $_meta_WCorder_line_total = wc_get_order_item_meta($IDorder_item,'_line_total');
+    //$_meta_WCorder_line_total = wc_get_order_item_meta($IDorder_item,'_line_total');
+    $_meta_WCorder_line_total = wc_get_order_item_meta($IDorder_item,'_line_subtotal');
     //var_dump($WCorder_items);
 
     //CUSTOMER
@@ -149,7 +152,7 @@ for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
     foreach($BUILDbookings as $booking){
         if(strtotime(date('m/d/Y',$booking['date']))==strtotime(date('m/d/Y',$day))){
             $amount_booking=0;
-            //if($booking['status']=='cancelled'){}
+            //if($booking['status']!='modified'){} //$booking['status']=='cancelled'
                 $amount_booking=$booking['WCorder_line_total'];
 
             $amount_booking=(round($amount_booking*100)/100);
@@ -196,7 +199,7 @@ for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
     foreach($BUILDbookings as $booking){
         if(strtotime(date('m/d/Y',$booking['date']))==strtotime(date('m/d/Y',$day))){
             $amount_booking=0;
-            if($booking['status']!='cancelled'){
+            if($booking['status']!='cancelled' && $booking['status']!='modified'){
                 $amount_booking=$booking['WCorder_line_total'];
             }
             $amount_booking=(round($amount_booking*100)/100);
@@ -244,7 +247,7 @@ for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
     foreach($BUILDbookings as $booking){
         if(strtotime(date('m/d/Y',$booking['date']))==strtotime(date('m/d/Y',$day))){
             $amount_booking=0;
-            if($booking['status']=='cancelled'){
+            if($booking['status']=='cancelled' || $booking['status']=='modified'){
                 $amount_booking=$booking['WCorder_line_total'];
             }
             $amount_booking=(round($amount_booking*100)/100);
@@ -278,7 +281,7 @@ echo '</tr>';
 
 //TOTAL DE MONTO POR PAGAR
 echo '<tr>';
-echo '<th class="title">Monto de Reservas Por Pagar</th>';
+echo '<th class="title">Monto de reservas por pagar en tienda por conveniencia</th>';
 $day_init=strtotime(date('m/d/Y',$WLresult->time));
 $day_last=strtotime(date('m/d/Y',time()));
 $day_more=(24*60*60);
@@ -287,7 +290,7 @@ $amount_day=0;
 $amount_month=0;
 $amount_year=0;
 $amount_total=0;
-
+//
 for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
 
     foreach($BUILDbookings as $booking){
@@ -339,7 +342,7 @@ for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
     foreach($BUILDbookings as $booking){
         if(strtotime(date('m/d/Y',$booking['date']))==strtotime(date('m/d/Y',$day))){
             $amount_booking=0;
-            if($booking['status']!='cancelled'){
+            if($booking['status']!='cancelled' && $booking['status']!='modified'){
                 $amount_booking=$booking['WCorder_line_total']*0.17;
             }
             $amount_booking=(round($amount_booking*100)/100);
@@ -370,7 +373,7 @@ echo '</tr>';
 
 //TOTAL DE MONTO DE COMISION DE KMIMOS
 echo '<tr>';
-echo '<th class="title">Comision de  kmimos (17%/60%)</th>';
+echo '<th class="title">Comision de  kmimos (17%/'.(100-$WLcommission).'%)</th>';
 $day_init=strtotime(date('m/d/Y',$WLresult->time));
 $day_last=strtotime(date('m/d/Y',time()));
 $day_more=(24*60*60);
@@ -385,8 +388,8 @@ for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
     foreach($BUILDbookings as $booking){
         if(strtotime(date('m/d/Y',$booking['date']))==strtotime(date('m/d/Y',$day))){
             $amount_booking=0;
-            if($booking['status']!='cancelled'){
-                $amount_booking=$booking['WCorder_line_total']*0.17*0.6;
+            if($booking['status']!='cancelled' && $booking['status']!='modified'){
+                $amount_booking=$booking['WCorder_line_total']*0.17*(1-($WLcommission/100));
             }
             $amount_booking=(round($amount_booking*100)/100);
             $amount_day=$amount_day+$amount_booking;
@@ -414,9 +417,9 @@ echo '<th class="total tdshow" data-check="total">'.$amount_total.'</th>';
 echo '</tr>';
 
 
-//TOTAL DE MONTO DE COMISION DE VOLARIS
+//TOTAL DE MONTO DE COMISION wlabel
 echo '<tr>';
-echo '<th class="title">Comision de '.$wlabel.' (17%/40%)</th>';
+echo '<th class="title">Comision de '.$wlabel.' (17%/'.$WLcommission.'%)</th>';
 $day_init=strtotime(date('m/d/Y',$WLresult->time));
 $day_last=strtotime(date('m/d/Y',time()));
 $day_more=(24*60*60);
@@ -431,8 +434,8 @@ for($day=$day_init; $day<=$day_last ; $day=$day+$day_more){
     foreach($BUILDbookings as $booking){
         if(strtotime(date('m/d/Y',$booking['date']))==strtotime(date('m/d/Y',$day))){
             $amount_booking=0;
-            if($booking['status']!='cancelled'){
-                $amount_booking=$booking['WCorder_line_total']*0.17*0.4;
+            if($booking['status']!='cancelled' && $booking['status']!='modified'){
+                $amount_booking=$booking['WCorder_line_total']*0.17*($WLcommission/100);
             }
             $amount_booking=(round($amount_booking*100)/100);
             $amount_day=$amount_day+$amount_booking;
