@@ -48,11 +48,14 @@ function WhiteLabel_custom_processing($order){
     }
 
     //kmimos modified
-    $modified_order = get_post_meta($order,'reserva_modificada', true);
+    $modified_order = get_post_meta($order,'modificacion_de', true);//reserva_modificada
     if(!empty($modified)){
-        $modified_walbel = get_post_meta($modified_order,'_wlabel', true);
-        if(!empty($modified_walbel)){
-            update_post_meta($order, '_wlabel', $modified_walbel);
+
+        $modified_post = get_post($modified_order);
+        $modified_post_parent = $modified_post->post_parent;
+        $modified_wlabel = get_post_meta($modified_post_parent,'_wlabel', true);
+        if(!empty($modified_wlabel)){
+            update_post_meta($order, '_wlabel', $modified_wlabel);
         }
     }
 }

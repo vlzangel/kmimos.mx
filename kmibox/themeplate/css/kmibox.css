@@ -1,0 +1,180 @@
+h2{
+	color:#0ab7a1;
+	font-weight: bold;
+	font-size: 35px;
+	padding: 20px 0px 20px 0px; 
+}
+
+section{
+	padding-bottom:50px;
+}
+img{
+	margin:auto;
+}
+p{
+	color:#bbb;
+	font-size: 25px;
+	font-weight:  bold; 
+	margin: auto;
+	width: 70%;
+}
+p span{
+	color:#f7f4a3;
+}
+
+.btn-kmibox:hover{
+	background: #00b190;
+}
+
+.btn-kmibox{
+	background: #00d8b5;
+	border-radius: 40px;
+	border:0px;
+	color:#fff;
+	font-size: 20px;
+	font-weight: bold;
+	padding:20px 60px 20px 60px;
+	margin-top: 20px;
+}
+
+#top{
+	background: #00b190;
+	height: 10vh;
+}
+
+#top div img{
+	text-align: center; 
+	max-width: 19%;
+}
+
+#banner{
+	margin-top: 7vh;
+	color: #979696;
+	height: 60vh;
+}
+#banner-text img{
+	text-align: right!important;
+	margin-right: 0px;
+}
+#banner-text{
+	text-align: right;
+}
+
+#section-comment{
+	color:#fff;
+	background: #00d8b5 url(../img/linea-background.png) repeat-x center center;
+	background-size: contain;
+	padding: 5px 0px 5px 0px;
+}
+#section-comment h2{
+	color:#fff;
+	font-size: 35px;
+}
+
+#section-comofunciona{
+	background: #eaeaea;
+}
+
+.back-picture{
+	background: #fff url(../img/Fotografias.png) repeat-x center center;
+	background-size: contain;
+	height: 200px;
+}
+
+.back-kmibox{
+	background-color: #0ab7a1;
+}
+
+.back-kmibox h2,
+.back-kmibox p
+{
+	color:#fff;
+}
+
+.section-red,
+.section-red h2
+{
+	background-color: #f7f4a3;
+	color: #f42424; 
+}
+.h-3x{
+	font-size: 70px; 
+}
+
+.subtitle{
+	margin:0px;
+}
+
+footer{
+	background: transparent url(../img/footer.png) no-repeat center center;
+	background-size: cover; 
+	height: 500px;
+}
+
+footer,
+footer article,
+footer h2,
+footer article h3
+{
+	color:#fff!important;
+}
+footer article h2,
+footer article h3{
+	font-weight: bold;
+}
+
+footer ul li{
+	font-size: 17px;
+}
+
+
+/*
+@media only screen and (max-width:598px) {
+}
+@media only screen and (max-width:599px) {
+}
+@media only screen and (max-device-width:780px) and (orientation:landscape) {
+}
+@media all and (min-width:959px) {
+}
+@media all and (max-width:959px) and (min-width:600px) {
+	#banner{
+		text-align: center!important;
+	}
+}
+@media all and (max-width:599px) and (min-width:359px) {
+	#banner{
+		text-align: center!important;
+	}
+}
+*/
+@media (max-width:360px) and (min-width:200px) {
+	#top .container{
+		margin-top: 0px;
+	}
+	#top div img{
+		max-width: 50%;
+	}
+	#top div,
+	#banner{
+		text-align: center; 
+		margin-top: 2vh;
+	}
+	#banner-text {
+    	text-align: center;
+	}
+	#banner-text h2{
+		font-size: 20px;
+		margin-top: 5px;
+	}
+	.btn-kmibox{
+		padding: 20px;
+	}
+	#section-comment{
+		background-size: cover;
+	}
+	#section-comment h2{
+		font-size: 20px;
+		margin:0px;
+	}
+}
