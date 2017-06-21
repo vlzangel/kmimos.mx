@@ -190,7 +190,7 @@ $_wlabel_user->wlabel_Export('RESERVAS','title','table');
             <td class="user" data-user="'.$customer.'">'.$_customer_name.'</td>
             <td>'.$_caregiver_name.'</td>
             <td>'.$services.'</td>
-            <td>'.$status_name.'</td>
+            <td class="status">'.$status_name.'</td>
             <td class="duration" data-user="'.$customer.'" data-count="'.$duration.'">'.$duration_text.'</td>
             <td class="duration_total" data-user="'.$customer.'"></td>
             <td>'.$_meta_WCorder_services_additional.'</td>
@@ -238,12 +238,16 @@ $_wlabel_user->wlabel_Export('RESERVAS','title','table');
         jQuery('table tbody tr:not(.noshow)').each(function(e){
             var user=jQuery(this).find('.duration').data('user');
             var duration=jQuery(this).find('.duration').data('count');
+            var status=jQuery(this).data('status');
+
             //times.push({'user':user,'duration':duration});
             //if(jQuery.inArray(user,times)<0){
-            if(times[user] == undefined){
-                times[user]=duration;
-            }else{
-                times[user]=times[user]-(-duration);
+            if(status!='cancelled' && status!='modified' && status!='unpaid'){
+                if(times[user] == undefined){
+                    times[user]=duration;
+                }else{
+                    times[user]=times[user]-(-duration);
+                }
             }
 
         });
