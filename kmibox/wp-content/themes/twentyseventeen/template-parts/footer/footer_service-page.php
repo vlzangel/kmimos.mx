@@ -15,7 +15,6 @@
 			inner join wp_postmeta as mt ON mt.post_id = p.ID and mt.meta_key = 'attribute_tamano'
 			inner join wp_postmeta as pr ON pr.post_id = p.ID and pr.meta_key = '_price'
 			inner join wp_posts as pa ON pa.ID = p.post_parent
-
 			inner join wp_term_relationships as tr ON tr.object_id = p.post_parent
 			inner join wp_term_taxonomy as tt ON tt.term_taxonomy_id = tr.term_taxonomy_id
 			inner join wp_terms as t ON t.term_id = tt.term_id
@@ -44,8 +43,8 @@
 		}
 
 		$service[ $row['category'] ][ $row['size'] ][ $row['product_name'] ]['plan'][ $row['plan'] ] = $row;
-		$service[ $row['category'] ][ $row['size'] ][ $row['product_name'] ][ 'content' ] = $post;
-		$service[ $row['category'] ][ $row['size'] ][ $row['product_name'] ][ 'gallery' ] = $gallery;
+		$service[ $row['category'] ][ $row['size'] ][ $row['product_name'] ]['content'] = $post;
+		$service[ $row['category'] ][ $row['size'] ][ $row['product_name'] ]['gallery'] = $gallery;
 	}
 
 	$s = json_encode( $service, JSON_UNESCAPED_UNICODE );
@@ -89,6 +88,18 @@
 		});
 		// Action - Fase #2		
 		$('[data-action="next"]').on('click', function(){
+			$('[data-fase="2"]')
+				.addClass('bounceInRight animated')
+				.removeClass('hidden')
+				;
+				
+			$('[data-fase="1"]')
+				.addClass('bounceOutLeft animated')
+				.addClass('hidden')
+				;
+			$('li').removeClass('active');
+			$("[data-target='title']").text('Elige el tipo de kmiBOX');
+
 			console.log( service[ $(this).attr('data-type') ] );
 			console.log( $(this).attr('data-type') );
 		});

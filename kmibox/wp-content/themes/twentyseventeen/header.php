@@ -26,6 +26,7 @@
 	<?php #wp_head(); ?>
 
 	<!-- BEGIN Style -->
+	<link rel="stylesheet" href="/css/animate.css">
 	<link rel="stylesheet" href="/css/kmibox.css">
 	<!-- END Style -->
 

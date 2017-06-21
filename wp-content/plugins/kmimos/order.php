@@ -208,7 +208,7 @@
 
 		   		if(!empty($user_referido)){
 					$username = $nom_cliente;
-					require_once('../../../landing/email_template/notificacion_reserva_referido.php');
+					require_once('../../../landing/email_template/club-referido-primera-reserva.php');
 					$user_participante = $wpdb->get_results( "
 						select ID, user_email 
 						from wp_users 

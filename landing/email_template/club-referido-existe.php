@@ -31,18 +31,9 @@ $html = '
 		<div style="color:#fff;width: 70%; text-align: justify; padding:15px 60px 15px 60px; background:#881C9B; margin:auto;">
 			<p>Recuerda que por cada uno de tus referidos que reserve una noche con kmimos, recibir&aacute;s $150 de regalo en reservaciones.</p>
 		</div>
-		<div style="background: orange; font-size: 30px; color:#fff; font-weight: bold;padding:20px;">
-			<div style="text-align: left; padding-bottom:30px;">
-				<span>Cuando sales de viajes, &iquest;En donde dejas a tu perro?</span>
-			</div>
-			<div style="text-align: right; font-size: 22px;">
-				<img src="/landing/img/logo-kmimos-blanco.png" alt="" width="120px"><br>
-				<span>LIBRES DE JAULAS Y ENCIERROS</span>
-			</div>
-		</div>
-		<div style="padding:30px;text-align:center;">
-			imagen de casa
-		</div>
+		<img style="padding:0px; margin-bottom: -4px;" src="../img/pendiente-01.jpg" width="100%">
+		<img style="padding:0px; margin-bottom: -4px;" src="../img/fondo-paisaje.jpg" width="100%">
+
 		<div style="padding:20px;font-size: 22px; text-align: center;color:#fff; background: #00b190; ">
 			<span>La mascota se hospeda en la propia casa de cuidadores certificados</span>
 		</div>

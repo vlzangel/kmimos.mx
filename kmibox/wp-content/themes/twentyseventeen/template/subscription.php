@@ -14,45 +14,54 @@
 </header>
 
 
-
-<!-- Fase #1 Tamaño -->
-<section data-fase="1" class="container">
-	<article class="text-center hidden">
-		<h2></h2> 
-		<img src="#" class="img-responsive" width="300px">
-		<button data-action="next" data-type="grande" class="btn btn-sm-kmibox">Seleccionar</button>
-	</article>
-</section>
-<!-- Fase #2 Producto -->
-<section data-fase="2" class="container hidden">
-	<article class="col-sm-6 text-center ">
-		<h2></h2>
-		<img  src="/img/pequeno.png"  class="img-responsive" width="300px">
-		<div>
-			<i class="fa fa-circle"></i>
-		</div>	
-		<button data-action="next" data-type="" class="btn btn-sm-kmibox">Seleccionar</button>
-		<p>asdasdasdasd</p>
-	</article>
-</section>
-<!-- Fase #3 Plan -->
-<section data-fase="3" class="container hidden">
-	<article class="col-sm-6 text-center">
-		<h2></h2>
-		<img  src="/img/pequeno.png" class="img-responsive" width="300px">
-		<button data-action="next" data-type="grande" class="btn btn-sm-kmibox">Seleccionar</button>
-	</article>
-</section>
-<!-- Fase #4 Extras -->
-<section data-fase="4" class="container hidden">
-	<article class="col-sm-6 text-center ">
-		<h2></h2>
-		<img src="/img/pequeno.png"  class="img-responsive" width="300px">
-		<button data-action="next" data-type="" class="btn btn-sm-kmibox">Seleccionar</button>
-	</article>
-</section>
-
-
+<div id="group-section" class="row">
+	<ul class="list-inline">
+		<li>
+			<!-- Fase #1 Tamaño -->
+			<section data-fase="1" class="container" >
+				<article class="text-center hidden">
+					<h2></h2> 
+					<img src="#" class="img-responsive" width="300px">
+					<button data-action="next" data-type="grande" class="btn btn-sm-kmibox">Seleccionar</button>
+				</article>
+			</section>
+		</li>
+		<li>
+			<!-- Fase #2 Producto -->
+			<section data-fase="2" class="container hidden">
+				<article class="col-sm-6 text-center ">
+					<h2></h2>
+					<img  src="/img/pequeno.png"  class="img-responsive" width="300px">
+					<div>
+						<i class="fa fa-circle"></i>
+					</div>	
+					<button data-action="next" data-type="" class="btn btn-sm-kmibox">Seleccionar</button>
+					<p>asdasdasdasd</p>
+				</article>
+			</section>
+		</li>
+		<li>
+			<!-- Fase #3 Plan -->
+			<section data-fase="3" class="container hidden">
+				<article class="col-sm-6 text-center">
+					<h2></h2>
+					<img  src="/img/pequeno.png" class="img-responsive" width="300px">
+					<button data-action="next" data-type="grande" class="btn btn-sm-kmibox">Seleccionar</button>
+				</article>
+			</section>
+		</li>
+		<li>
+			<!-- Fase #4 Extras -->
+			<section data-fase="4" class="container hidden">
+				<article class="col-sm-6 text-center ">
+					<h2></h2>
+					<img src="/img/pequeno.png"  class="img-responsive" width="300px">
+					<button data-action="next" data-type="" class="btn btn-sm-kmibox">Seleccionar</button>
+				</article>
+			</section>
+		</li>
+	</ul>
+</div>
 
 <div class="container text-center">
 	<h2>Todos los articulos de la kmibox son suministrados por:</h2>
