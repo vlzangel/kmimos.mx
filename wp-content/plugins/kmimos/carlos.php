@@ -40,4 +40,25 @@
 	    //header('Access-Control-Allow-Origin: *', false);
 	}
 
+
+
+//add_action( 'plugins_loaded', 'carlosloadhhtp' );
+function carlosloadhhtp(){
+
+	//var_dump($_COOKIE);
+	foreach($_COOKIE as $key=>$value){
+		setcookie($key, $value , 0, "" , "" , true, true);
+		//setcookie($key, $value, null, '/;HttpOnly');
+		//setcookie($key, $value, null, '/;Secure;HttpOnly');
+		//setcookie($key, '' );
+	}
+}
+
+
+
+
+
+
+
+
 ?>
