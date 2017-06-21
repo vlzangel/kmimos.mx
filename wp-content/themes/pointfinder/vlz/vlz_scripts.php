@@ -4,7 +4,6 @@
 	$N = geo("N");
 	$S = geo("S");
 
-	echo "<!-- Hola -->";
 	echo get_estados_municipios();
 ?>
 <script type="text/javascript">
@@ -124,30 +123,14 @@
 	}
 
 	jQuery("#estados").on("change", function(e){
-
-		var estado_id = jQuery("#estados").val();            
-	    
+		var estado_id = jQuery("#estados").val();    
 	    if( estado_id != "" ){
-
-	        var html = "<option value=''>Seleccione un municipio</option>";
+	        var html = "<option value=\"\">Seleccione un municipio</option>";
 	        jQuery.each(estados_municipios[estado_id]['municipios'], function(i, val) {
-	            html += "<option value="+val.id+" data-id='"+i+"'>"+val.nombre+"</option>";
+	            html += "<option value="+val.id+" data-id=\""+i+"\">"+val.nombre+"</option>";
 	        });
-
 	        jQuery("#municipios").html(html);
-
-	        /*var location    = estados_municipios[estado_id]['coordenadas']['referencia'];
-	        var norte       = estados_municipios[estado_id]['coordenadas']['norte'];
-	        var sur         = estados_municipios[estado_id]['coordenadas']['sur'];
-
-	        var distancia = calcular_rango_de_busqueda(norte, sur);
-
-	        jQuery("#otra_latitud").attr("value", location.lat);
-	        jQuery("#otra_longitud").attr("value", location.lng);
-	        jQuery("#otra_distancia").attr("value", distancia);*/
-
 	    }
-
 	});
 
 	jQuery("#municipios").on("change", function(e){
@@ -155,24 +138,8 @@
 	});
 
 	function vlz_coordenadas(){
-		
 		var estado_id = jQuery("#estados").val();            
         var municipio_id = jQuery('#municipios > option[value="'+jQuery("#municipios").val()+'"]').attr('data-id');   
-
-        /*if( estado_id != "" ){
-
-            var location    = estados_municipios[estado_id]['municipios'][municipio_id]['coordenadas']['referencia'];
-            var norte       = estados_municipios[estado_id]['municipios'][municipio_id]['coordenadas']['norte'];
-            var sur         = estados_municipios[estado_id]['municipios'][municipio_id]['coordenadas']['sur'];
-
-            var distancia = calcular_rango_de_busqueda(norte, sur);
-
-            jQuery("#otra_latitud").attr("value", location.lat);
-            jQuery("#otra_longitud").attr("value", location.lng);
-            jQuery("#otra_distancia").attr("value", distancia);
-
-        }*/
-
 	}
 
 	function getLocation() {

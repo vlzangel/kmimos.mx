@@ -107,9 +107,34 @@
             "acupuntura"                => "Acupuntura"
         );
 
+        $horario = array(
+            'name'          => 'Horario',
+            'description'   => '',
+            'type'          => 'custom',
+            'position'      => 2,
+            'options'       => array (
+                '0' => array (
+                    'label' => 'Check In',
+                    'price' => '',
+                    'min'   => '',
+                    'max'   => ''
+                ),
+                '1' => array (
+                    'label' => 'Check Out',
+                    'price' => '',
+                    'min'   => '',
+                    'max'   => ''
+                )
+            ),
+            'required' => 1,
+            'wc_booking_person_qty_multiplier' => 0,
+            'wc_booking_block_qty_multiplier' => 0
+        );
+
         $addons = array(
-            '0'=>$transporte,
-            '1'=>$adicionales
+            '0' => $transporte,
+            '1' => $adicionales,
+            '2' => $horario
         );
 
         $comision = $data["comision"];

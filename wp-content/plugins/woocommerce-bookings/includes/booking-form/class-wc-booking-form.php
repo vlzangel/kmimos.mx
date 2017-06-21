@@ -430,7 +430,7 @@ class WC_Booking_Form {
 			$total_duration = $booking_duration * $this->product->wc_booking_duration;
 
 			// Nice formatted version
-			switch ( $booking_duration_unit ) {
+			/*switch ( $booking_duration_unit ) {
 				case 'month' :
 					$data['duration'] = $total_duration . ' ' . _n( 'month', 'months', $total_duration, 'woocommerce-bookings' );
 				break;
@@ -453,7 +453,17 @@ class WC_Booking_Form {
 				default :
 					$data['duration'] = $total_duration;
 				break;
+			}*/
+
+
+			$tipo_servicio = explode("-", $this->product->post->post_name);
+			if( in_array("hospedaje", $tipo_servicio) ){
+	    		$data['duration'] = ($booking_duration-1) . " Noche(s)";
+			}else{
+	    		$data['duration'] = $booking_duration. " Día(s)";
 			}
+
+			
 		} else {
 			// Fixed duration
 			$booking_duration      = $this->product->get_duration();

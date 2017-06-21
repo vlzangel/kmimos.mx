@@ -181,7 +181,6 @@
 
                 $scrits .= "
                     jQuery('.woocommerce-message>a.button.wc-forward').css('display', 'none');
-                    jQuery('.variation-Duracin').css('display', 'none');
                     jQuery('.variation-Ofrecidopor').css('display', 'none');
 
                     jQuery( document ).ready(function() {
