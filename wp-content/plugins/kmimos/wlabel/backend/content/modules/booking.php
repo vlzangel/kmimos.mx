@@ -5,6 +5,11 @@ if(file_exists($kmimos_load)){
     include_once($kmimos_load);
 }
 
+function number_round($number){
+    $number=(round($number*100))/100;
+    return $number;
+}
+
 $wlabel=$_wlabel_user->wlabel;
 $WLcommission=$_wlabel_user->wlabel_Commission();
 
@@ -189,10 +194,10 @@ $_wlabel_user->wlabel_Export('RESERVAS','title','table');
             <td class="duration" data-user="'.$customer.'" data-count="'.$duration.'">'.$duration_text.'</td>
             <td class="duration_total" data-user="'.$customer.'"></td>
             <td>'.$_meta_WCorder_services_additional.'</td>
-            <td>'.$_meta_WCorder_line_total.'</td>
-            <td>'.$_meta_WCorder_line_total*0.17.'</td>
-            <td>'.$_meta_WCorder_line_total*0.17*($WLcommission/100).'</td>
-            <td>'.$_meta_WCorder_line_total*0.17*(1-($WLcommission/100)).'</td>
+            <td>'.number_round($_meta_WCorder_line_total).'</td>
+            <td>'.number_round($_meta_WCorder_line_total*0.17).'</td>
+            <td>'.number_round($_meta_WCorder_line_total*0.17*($WLcommission/100)).'</td>
+            <td>'.number_round($_meta_WCorder_line_total*0.17*(1-($WLcommission/100))).'</td>
         </tr>
         ';//
         echo $html;
