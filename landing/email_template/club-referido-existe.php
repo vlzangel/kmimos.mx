@@ -20,19 +20,19 @@ $html = '
 		</h1>
 	</header>
 	<section style="text-align: center;">
-		<img src="/landing/img/logo_patitas.png" alt="" width="25%">
+		<img src="'.$http.$_SERVER["HTTP_HOST"].'/landing/img/logo_patitas.png" alt="" width="25%">
 		<div style="margin: auto; width: 70%; text-align: justify; padding=bottom:10px;color:#757575;">
 			<p>El usuario <span style="font-weight: bold; color:#00D8B5;"><?php echo $username; ?></span>ya se encuentra en la base de datos de Kmimos, no formara parte de tus referidos. Sin embargo te invitamos a seguir compartiendo para tanto como tú y tus nuevos referidos obtengan los beneficios.
 			</p>
 			<span>Atentamente;</span><br><br>	
-			<img src="/landing/img/logo-kmimos_120x30.png" alt="">
+			<img src="'.$http.$_SERVER["HTTP_HOST"].'/landing/img/logo-kmimos_120x30.png" alt="">
 		</div>
 		<br>
 		<div style="color:#fff;width: 70%; text-align: justify; padding:15px 60px 15px 60px; background:#881C9B; margin:auto;">
 			<p>Recuerda que por cada uno de tus referidos que reserve una noche con kmimos, recibir&aacute;s $150 de regalo en reservaciones.</p>
 		</div>
-		<img style="padding:0px; margin-bottom: -4px;" src="../img/pendiente-01.jpg" width="100%">
-		<img style="padding:0px; margin-bottom: -4px;" src="../img/fondo-paisaje.jpg" width="100%">
+		<img style="padding:0px; margin-bottom: -4px;" src="'.$http.$_SERVER["HTTP_HOST"].'/landing/img/pendiente-01.jpg" width="100%">
+		<img style="padding:0px; margin-bottom: -4px;" src="'.$http.$_SERVER["HTTP_HOST"].'/landing/img/fondo-paisaje.jpg" width="100%">
 
 		<div style="padding:20px;font-size: 22px; text-align: center;color:#fff; background: #00b190; ">
 			<span>La mascota se hospeda en la propia casa de cuidadores certificados</span>

@@ -20,7 +20,7 @@ $html = '
 			</h1>
 		</div>
 		<section style="text-align: center;">
-			<img src="/landing/img/logo_patitas.png" alt="" width="25%">
+			<img src="'.$http.$_SERVER["HTTP_HOST"].'/landing/img/logo_patitas.png" alt="" width="25%">
 			<div style="margin: auto; width: 70%; text-align: justify; padding-bottom:10px;color:#757575;">
 				¡Gracias por unirte a nuestra familia Kmimos!
 				<p>Hola <?php echo $usuario; ?>,</p>
@@ -28,15 +28,35 @@ $html = '
 					<br>E-mail:	<?php echo $usuario; ?>
 					<br>Contraseña:	Debes recuperar tu contraseña
 				</p>
+				<p style="text-align: center;">
+                    <a 
+                        href="'.$http.$_SERVER["HTTP_HOST"].'/?a=inicio"
+                        style="
+                            padding: 10px;
+                            background: #00B190;
+                            color: #fff;
+                            font-weight: 400;
+                            font-size: 17px;
+                            font-family: Roboto;
+                            border-radius: 3px;
+                            border: solid 1px #1f906e;
+                            display: block;
+                            max-width: 300px;
+                            margin: 0px auto;
+                            text-align: center;
+                            text-decoration: none;
+                        "
+                    >Iniciar Sesión</a>
+                </p>
 				<span>Atentamente;</span><br><br>	
-				<img src="/landing/img/logo-kmimos_120x30.png" alt="">
+				<img src="'.$http.$_SERVER["HTTP_HOST"].'/landing/img/logo-kmimos_120x30.png" alt="">
 			</div>
 			<br>
 			<div style="color:#fff;width: 70%; text-align: justify; padding:15px 60px 15px 60px; background:#881C9B; margin:auto;">
 				<p>Recuerda que por cada uno de tus referidos que reserve una noche con kmimos, recibir&aacute;s $150 de regalo en reservaciones.</p>
 			</div>
-			 <img style="padding:0px; margin-bottom: -10px;" src="../img/pendiente-01.jpg" width="100%">
-			<img style="padding:0px; margin-bottom: -10px;" src="../img/fondo-paisaje.jpg" width="100%">
+			 <img style="padding:0px; margin-bottom: -10px;" src="'.$http.$_SERVER["HTTP_HOST"].'/landing/img/pendiente-01.jpg" width="100%">
+			<img style="padding:0px; margin-bottom: -10px;" src="'.$http.$_SERVER["HTTP_HOST"].'/landing/img/fondo-paisaje.jpg" width="100%">
 
 			<div style="padding:20px;font-size: 22px; text-align: center;color:#fff; background: #00b190; ">
 				<span>La mascota se hospeda en la propia casa de cuidadores certificados</span>
