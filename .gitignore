@@ -35,6 +35,8 @@ wp-trackback.php
 xmlrpc.php
 vlz_config.php
 
+/kmibox/*
+
 # Plugins
 
 /wp-content/plugins/admin-custom-login/
