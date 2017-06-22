@@ -174,7 +174,7 @@ class WC_Booking_Form {
 					break;
 			}
 
-			$this->add_field( array(
+			$duracion = array(
 				'type'  => 'number',
 				'name'  => 'duration',
 				'label' => __( 'Duration', 'woocommerce-bookings' ),
@@ -182,7 +182,9 @@ class WC_Booking_Form {
 				'min'   => $this->product->wc_booking_min_duration,
 				'max'   => $this->product->wc_booking_max_duration,
 				'step'  => 1
-			) );
+			);
+
+			$this->add_field( array( "duracion" => $duracion ) );
 		}
 	}
 
@@ -191,6 +193,7 @@ class WC_Booking_Form {
 	 */
 	private function persons_field() {
 		// Persons field
+		$mascotas = array();
 		if ( $this->product->has_persons() ) {
 			if ( $this->product->has_person_types() ) {
 				$person_types = $this->product->get_person_types();
@@ -199,7 +202,7 @@ class WC_Booking_Form {
 					$min_person_type_persons = get_post_meta( $person_type->ID, 'min', true );
 					$max_person_type_persons = get_post_meta( $person_type->ID, 'max', true );
 
-					$this->add_field( array(
+					$mascotas["mascotas"][] = array(
 						'type'  => 'number',
 						'step'  => 1,
 						'min'   => is_numeric( $min_person_type_persons ) ? $min_person_type_persons : 0,
@@ -207,19 +210,21 @@ class WC_Booking_Form {
 						'name'  => 'persons_' . $person_type->ID,
 						'label' => $person_type->post_title,
 						'after' => $person_type->post_excerpt
-					) );
+					);
 				}
 			} else {
-				$this->add_field( array(
+				$mascotas["mascotas"][] = array(
 					'type'  => 'number',
 					'step'  => 1,
 					'min'   => $this->product->get_min_persons(),
 					'max'   => $this->product->get_max_persons() ? $this->product->get_max_persons() : '',
 					'name'  => 'persons',
 					'label' => __( 'Persons', 'woocommerce-bookings' )
-				) );
+				);
 			}
 		}
+
+		$this->add_field( $mascotas );
 	}
 
 	/**
@@ -268,13 +273,15 @@ class WC_Booking_Form {
 				$resource_options[ $resource->ID ] = $resource->post_title . apply_filters( 'woocommerce_bookings_resource_additional_cost_string', $additional_cost_string, $resource );
 			}
 
-			$this->add_field( array(
+			$resource = array(
 				'type'    => 'select',
 				'name'    => 'resource',
 				'label'   => $this->product->wc_booking_resouce_label ? $this->product->wc_booking_resouce_label : __( 'Type', 'woocommerce-bookings' ),
 				'class'   => array( 'wc_booking_field_' . sanitize_title( $this->product->wc_booking_resouce_label ) ),
 				'options' => $resource_options
-			) );
+			);
+
+			$this->add_field( array( "resource" => $resource ) );
 		}
 	}
 
@@ -305,7 +312,7 @@ class WC_Booking_Form {
 		}
 
 		if ( ! is_null( $picker ) ) {
-			$this->add_field( $picker->get_args() );
+			$this->add_field( array( "picker" => $picker->get_args() ) );
 		}
 	}
 
@@ -314,7 +321,19 @@ class WC_Booking_Form {
 	 * @param  array $field
 	 * @return void
 	 */
-	public function add_field( $field ) {
+	public function add_field( $fields ) {
+		foreach ($fields as $key => $field) {
+			if( !isset($field['type']) ){
+				foreach ($field as $xfield) {
+					$this->add_field_interna( $xfield, $key );
+				}
+			}else{
+				$this->add_field_interna( $field, $key );
+			}
+		}
+	}
+
+	public function add_field_interna( $field, $key ) {
 		$default = array(
 			'name'  => '',
 			'class' => array(),
@@ -333,7 +352,7 @@ class WC_Booking_Form {
 		$field['name']    = $nicename;
 		$field['class'][] = $nicename;
 
-		$this->fields[ sanitize_title( $field['name'] ) ] = $field;
+		$this->fields[ $key ][ sanitize_title( $field['name'] ) ] = $field;
 	}
 
 	/**
@@ -343,8 +362,77 @@ class WC_Booking_Form {
 		$this->scripts();
 		$this->prepare_fields();
 
-		foreach ( $this->fields as $key => $field ) {
-			wc_get_template( 'booking-form/' . $field['type'] . '.php', array( 'field' => $field ), 'woocommerce-bookings', WC_BOOKINGS_TEMPLATE_PATH );
+		foreach ( $this->fields as $key => $fields ) {
+			switch ($key) {
+
+				case 'duracion':
+					foreach ( $fields as $key_2 => $field ) {
+						wc_get_template( 'booking-form/' . $field['type'] . '.php', array( 'field' => $field ), 'woocommerce-bookings', WC_BOOKINGS_TEMPLATE_PATH );
+					}
+				break;
+
+				case 'mascotas':
+					foreach ( $fields as $key_2 => $field ) {
+						wc_get_template( 'booking-form/' . $field['type'] . '.php', array( 'field' => $field ), 'woocommerce-bookings', WC_BOOKINGS_TEMPLATE_PATH );
+					}
+				break;
+
+				case 'resource':
+					foreach ( $fields as $key_2 => $field ) {
+						wc_get_template( 'booking-form/' . $field['type'] . '.php', array( 'field' => $field ), 'woocommerce-bookings', WC_BOOKINGS_TEMPLATE_PATH );
+					}
+				break;
+
+				case 'picker':
+					foreach ( $fields as $key_2 => $field ) {
+						wc_get_template( 'booking-form/' . $field['type'] . '.php', array( 'field' => $field ), 'woocommerce-bookings', WC_BOOKINGS_TEMPLATE_PATH );
+					}
+					global $wpdb;
+					global $post;
+
+					$sql = "
+						SELECT 
+							cuidadores.* 
+						FROM 
+							cuidadores
+						INNER JOIN wp_posts ON cuidadores.user_id = wp_posts.post_author
+						WHERE
+							wp_posts.ID = ".$post->ID."
+					";
+					$cuidador = $wpdb->get_row($sql);
+
+					$hoy 		= date("Y-m-d");
+					$entrada 	= strtotime($hoy." ".$cuidador->check_in);
+					$salida 	= strtotime($hoy." ".$cuidador->check_out);
+
+					// echo "$entrada - $salida<br>";
+					// echo $hoy." ".$cuidador->check_in."<br>";
+					// echo $hoy." ".$cuidador->check_out."<br>";
+
+					$opciones = "";
+					for ($i=$entrada; $i <= $salida; $i+=1800) {
+			        	$hora = date("h:i a", $i);
+			            $opciones .= "<option value='{$hora}'>{$hora}</option>";
+			        }
+
+					echo "
+						<div style='overflow: hidden;'>
+							<div class='form-field-horario'>
+								<label>Check In</label>
+								<select id='entrada'>{$opciones}</select>
+							</div>
+
+							<div class='form-field-horario'>
+								<label>Check Out</label>
+								<select id='salida'>{$opciones}</select>
+							</div>
+						</div>
+					";
+					
+				break;
+				
+			}
+			
 		}
 	}
 
@@ -429,41 +517,12 @@ class WC_Booking_Form {
 			// Get the duration * block duration
 			$total_duration = $booking_duration * $this->product->wc_booking_duration;
 
-			// Nice formatted version
-			/*switch ( $booking_duration_unit ) {
-				case 'month' :
-					$data['duration'] = $total_duration . ' ' . _n( 'month', 'months', $total_duration, 'woocommerce-bookings' );
-				break;
-				case 'day' :
-					if ( $total_duration % 7 ) {
-						$data['duration'] = $total_duration . ' ' . _n( 'day', 'days', $total_duration, 'woocommerce-bookings' );
-					} else {
-						$data['duration'] = ( $total_duration / 7 ) . ' ' . _n( 'week', 'weeks', $total_duration, 'woocommerce-bookings' );
-					}
-				break;
-				case 'hour' :
-					$data['duration'] = $total_duration . ' ' . _n( 'hour', 'hours', $total_duration, 'woocommerce-bookings' );
-					break;
-				case 'minute' :
-					$data['duration'] = $total_duration . ' ' . _n( 'minute', 'minutes', $total_duration, 'woocommerce-bookings' );
-				break;
-				case 'night' :
-					$data['duration'] = $total_duration . ' ' . _n( 'night', 'nights', $total_duration, 'woocommerce-bookings' );
-				break;
-				default :
-					$data['duration'] = $total_duration;
-				break;
-			}*/
-
-
-			$tipo_servicio = explode("-", $this->product->post->post_name);
-			if( in_array("hospedaje", $tipo_servicio) ){
+			if( $this->is_hospedaje() ){
 	    		$data['duration'] = ($booking_duration-1) . " Noche(s)";
 			}else{
 	    		$data['duration'] = $booking_duration. " Día(s)";
 			}
 
-			
 		} else {
 			// Fixed duration
 			$booking_duration      = $this->product->get_duration();
@@ -640,6 +699,11 @@ class WC_Booking_Form {
 		);
 	}
 
+	public function is_hospedaje() {
+		$tipo_servicio = explode("-", $this->product->post->post_name);
+		return ( in_array("hospedaje", $tipo_servicio) );
+	}
+
 	/**
 	 * Calculate costs from posted values
 	 * @param  array $posted
@@ -668,8 +732,7 @@ class WC_Booking_Form {
 
 		// Modificacion Ángel Veloz
 
-		$tipo_servicio = explode("-", $this->product->post->post_name);
-		if( in_array("hospedaje", $tipo_servicio) ){
+		if( $this->is_hospedaje() ){
     		$total_duration = (($data['_duration']) > 1 ? ($data['_duration']-1) : ($data['_duration']));
 		}else{
     		$total_duration = (($data['_duration']) > 1 ? ($data['_duration']) : ($data['_duration']));

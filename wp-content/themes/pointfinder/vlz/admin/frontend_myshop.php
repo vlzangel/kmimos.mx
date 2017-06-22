@@ -37,20 +37,20 @@
   $cuidando_desde .= "</select>";
 
     $entrada = "<select class='input' name='entrada'>";
-    for ($i=6; $i < 19; $i++) {
-      if( $i < 10){ $i = "0$i"; }
-      $entrada .= "<option value='{$i}:00:00' ".selected($cuidador->check_in, $i.':00:00', false).">{$i}:00</option>";
-      $entrada .= "<option value='{$i}:30:00' ".selected($cuidador->check_in, $i.':30:00', false).">{$i}:30</option>";
-    }
-  $entrada .= "</select>";
+        for ($i=6; $i < 19; $i++) {
+            if( $i < 10){ $i = "0$i"; }
+            $entrada .= "<option value='{$i}:00:00' ".selected($cuidador->check_in, $i.':00:00', false).">{$i}:00</option>";
+            $entrada .= "<option value='{$i}:30:00' ".selected($cuidador->check_in, $i.':30:00', false).">{$i}:30</option>";
+        }
+    $entrada .= "</select>";
 
     $salida = "<select class='input' name='salida'>";
-    for ($i=6; $i < 19; $i++) {
-      if( $i < 10){ $i = "0$i"; }
-      $salida .= "<option value='{$i}:00:00' ".selected($cuidador->check_out, $i.':00:00', false).">{$i}:00</option>";
-      $salida .= "<option value='{$i}:30:00' ".selected($cuidador->check_out, $i.':30:00', false).">{$i}:30</option>";
-    }
-  $salida .= "</select>";
+        for ($i=6; $i < 19; $i++) {
+            if( $i < 10){ $i = "0$i"; }
+            $salida .= "<option value='{$i}:00:00' ".selected($cuidador->check_out, $i.':00:00', false).">{$i}:00</option>";
+            $salida .= "<option value='{$i}:30:00' ".selected($cuidador->check_out, $i.':30:00', false).">{$i}:30</option>";
+        }
+    $salida .= "</select>";
 
     if( $cuidador->portada != "0" ){
         $imagen = '<img id="img_portada" src="'.get_home_url().'/wp-content/uploads/cuidadores/avatares/'.$petsitter_id.'/0.jpg">';

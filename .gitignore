@@ -69,7 +69,6 @@ vlz_config.php
 /wp-content/plugins/woocommerce-accommodation-bookings/
 # /wp-content/plugins/woocommerce-bookings/
 /wp-content/plugins/woocommerce-menu-bar-cart/
-/wp-content/plugins/woocommerce-product-addons/
 /wp-content/plugins/woocommerce-product-csv-import-suite/
 /wp-content/plugins/woocommerce-qtranslate-x/
 /wp-content/plugins/woothemes-updater/
@@ -98,8 +97,33 @@ vlz_config.php
 /wp-content/plugins/woocommerce-bookings/.tx/
 
 /wp-content/plugins/woocommerce-gateway-stripe/
-
 /wp-content/plugins/kmimos/wlabel/backend/content/export/csv/
+
+
+# woocommerce-product-addons
+
+/wp-content/plugins/woocommerce-product-addons/admin/
+/wp-content/plugins/woocommerce-product-addons/assets/
+/wp-content/plugins/woocommerce-product-addons/classes/
+/wp-content/plugins/woocommerce-product-addons/languages/
+/wp-content/plugins/woocommerce-product-addons/woo-includes/
+
+/wp-content/plugins/woocommerce-product-addons/.gitignore
+/wp-content/plugins/woocommerce-product-addons/changelog.txt
+/wp-content/plugins/woocommerce-product-addons/Gruntfile.js
+/wp-content/plugins/woocommerce-product-addons/package.json
+/wp-content/plugins/woocommerce-product-addons/product-addons.php
+/wp-content/plugins/woocommerce-product-addons/woocommerce-product-addons.php
+
+/wp-content/plugins/woocommerce-product-addons/templates/addons/addon-end.php
+/wp-content/plugins/woocommerce-product-addons/templates/addons/addon-start.php
+/wp-content/plugins/woocommerce-product-addons/templates/addons/checkbox.php
+/wp-content/plugins/woocommerce-product-addons/templates/addons/custom_price.php
+/wp-content/plugins/woocommerce-product-addons/templates/addons/custom_textarea.php
+/wp-content/plugins/woocommerce-product-addons/templates/addons/file_upload.php
+/wp-content/plugins/woocommerce-product-addons/templates/addons/input_multiplier.php
+/wp-content/plugins/woocommerce-product-addons/templates/addons/radiobutton.php
+/wp-content/plugins/woocommerce-product-addons/templates/addons/select.php
 
 /wp-content/w3tc-config/ 
 /wp-content/cache/

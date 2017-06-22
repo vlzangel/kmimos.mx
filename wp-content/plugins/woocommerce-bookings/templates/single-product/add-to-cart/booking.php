@@ -22,7 +22,10 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 
 		<?php do_action( 'woocommerce_before_booking_form' ); ?>
 
-		<?php $booking_form->output(); ?>
+		<?php 
+			//$booking_form->print_fields(); 
+			$booking_form->output(); 
+		?>
 
 		<?php do_action( 'woocommerce_before_add_to_cart_button' ); ?>
 
@@ -38,6 +41,35 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 
 </form>
 
+<style type="text/css">
+	.form-field-horario{
+	    width: 50%;
+	    float: left;
+	    box-sizing: border-box;
+	    padding: 3px;
+	}
+	.form-field-horario select{
+	    padding: 10px;
+	    margin: 0px 5px 0px 0px;
+	    width: calc( 100% - 0px );
+	    outline: none;
+	}
+
+	.form-field-horario select:focus{
+		box-shadow: 0px 0px 0px #FFF;
+	}
+
+	.form-field-horario label{
+		font-weight: bolder;
+	    color: #848484;
+	    font-size: 16px;
+	}
+
+	.product-addon-horario{
+		display: none;
+	}
+</style>
+
 <script type="text/javascript">
 	function activar_continuar(){
 		jQuery('.single_add_to_cart_button').addClass('xdisabled');
@@ -45,6 +77,17 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 		jQuery('.single_add_to_cart_button').css('color', "#fff;");
 		jQuery('.single_add_to_cart_button').html('Continuar');
 	}
+	
+	jQuery("#entrada").on("change", function(e){
+		jQuery("#check-in").val( jQuery(this).val() );
+	});
+	
+	jQuery("#salida").on("change", function(e){
+		jQuery("#check-out").val( jQuery(this).val() );
+	});
+
+	jQuery("#check-in").val( jQuery("#entrada").val() );
+	jQuery("#check-out").val( jQuery("#salida").val() );
 </script>
 
 <?php do_action( 'woocommerce_after_add_to_cart_form' ); ?>

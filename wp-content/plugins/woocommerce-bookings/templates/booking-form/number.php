@@ -1,5 +1,5 @@
 <?php extract( $field ); ?>
-<p class="form-field form-field-wide <?php echo implode( ' ', $class ); ?>">
+<p class="form-field form-field-wide <?php echo implode( ' ', $class ); ?> vlz">
 	<label for="<?php echo $name; ?>"><?php echo $label; ?>:</label>
 	<input
 		type="number"
