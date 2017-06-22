@@ -7,8 +7,9 @@ if(file_exists($kmimos_load)){
 global $wpdb;
 $wlabel=$_wlabel_user->wlabel;
 $WLresult=$_wlabel_user->wlabel_result;
+$_wlabel_user->wlabel_Options('client-booking');
 $_wlabel_user->wLabel_Filter(array('tddate','tdcheck'));
-$_wlabel_user->wlabel_Export('RESERVAS POR CLIENTE','title','table');
+$_wlabel_user->wlabel_Export('client-booking','RESERVAS POR CLIENTE','table');
 //
 ?>
 
