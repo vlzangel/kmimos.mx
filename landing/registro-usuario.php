@@ -6,22 +6,35 @@
     require('../wp-blog-header.php');
     //date_default_timezone_set('America/Mexico_City');
     global $wpdb;
-	global $wpms_options; 
-	$wpms_options = array (
-		'mail_from_name' => 'Club Patitas Felices',
-		'mail_from' => 'clubpatitasfelices@kmimos.la',
-		'smtp_user' => 'clubpatitasfelices@kmimos.la',
-		'smtp_pass' => 'A3Ha>S44',
-	);
-
-	add_filter( 'wp_mail_from_name', function( $name ) {
-		return $wpms_options['mail_from_name'];
-	});
-	add_filter( 'wp_mail_from', function( $email ) {
-		return $wpms_options['mail_from'];
-	});
-
-
+	
+	add_action('phpmailer_init','send_smtp_email');
+	function send_smtp_email( $phpmailer )
+	{
+	    // Define que estamos enviando por SMTP
+	    $phpmailer->isSMTP();
+	 
+	    // La dirección del HOST del servidor de correo SMTP p.e. mail.midominio.com o pa IP del servidor
+	    $phpmailer->Host = "smtp.gmail.com";
+	 
+	    // Uso autenticación por SMTP (true|false)
+	    $phpmailer->SMTPAuth = true;
+	 
+	    // Puerto SMTP - Suele ser el 25, 465 o 587
+	    $phpmailer->Port = "587";
+	 
+	    // Usuario de la cuenta de correo
+	    $phpmailer->Username = "clubpatitasfelices@kmimos.la";
+	 
+	    // Contraseña para la autenticación SMTP
+	    $phpmailer->Password = "Kmimos2017";
+	 
+	    // El tipo de encriptación que usamos al conectar - ssl (deprecated) o tls
+	    $phpmailer->SMTPSecure = "tls";
+	 
+	    $phpmailer->From = "clubpatitasfelices@kmimos.la";
+	    $phpmailer->FromName = "Club de las Patitas Felices";
+	}
+	
 
     $landing_url = "https://www.kmimos.com.mx/referidos";     // URL Landing
 	$landing_name = 'kmimos-mx-clientes-referidos'; 	// Name Landing Page
@@ -125,12 +138,6 @@
 		    # Club Patitas Felices 
 		    # ********************************************
 			require_once('email_template/club-referido-existe.php');
-			add_filter( 'wp_mail_from_name', function( $name ) {
-				return 'Club de las Patitas Felices';
-			});
-			add_filter( 'wp_mail_from', function( $email ) {
-				return 'clubpatitasfelices@kmimos.la';
-			});
 	    	wp_mail(
 	    		$user_participante['rows'][0]['user_email'],
 	    		"Club de la Patitas Felices",
