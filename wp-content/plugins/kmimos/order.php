@@ -34,9 +34,10 @@
 
 	$status = $booking->get_status();
 
-	if( $status == "confirmed" || $status == "cancelled" ){
+	if( $status == "confirmed" || $status == "cancelled" || $status == "modified" ){
 		$estado = array(
 			"confirmed" => "Confirmada",
+			"modified"  => "Modificada",
 			"cancelled" => "Cancelada"
 		);
 		$msg = $styles.'
@@ -208,7 +209,7 @@
 
 		   		if(!empty($user_referido)){
 					$username = $nom_cliente;
-					require_once('../../../landing/email_template/notificacion_reserva_referido.php');
+					require_once('../../../landing/email_template/club-referido-primera-reserva.php');
 					$user_participante = $wpdb->get_results( "
 						select ID, user_email 
 						from wp_users 
