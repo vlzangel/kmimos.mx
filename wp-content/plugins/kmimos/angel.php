@@ -53,6 +53,7 @@
                         <script>
                             window.onload = function(){
                                 jQuery('#toplevel_page_woocommerce > a').attr('href', 'edit.php?post_type=shop_coupon');
+                                jQuery('#toplevel_page_kmimos > a').attr('href', 'admin.php?page=bp_reservas');
                             };
                         </script>
                     ";
