@@ -42,6 +42,21 @@
 	                    )); 
 	                }
 	            break;
+
+                case 'Teleoperador':
+                    echo kmimos_style($styles = array("teleoperadores"));
+                break;
+
+                case 'Supervisor':
+                    echo kmimos_style($styles = array("supervisores"));
+                    echo "
+                        <script>
+                            window.onload = function(){
+                                jQuery('#toplevel_page_woocommerce > a').attr('href', 'edit.php?post_type=shop_coupon');
+                            };
+                        </script>
+                    ";
+                break;
 	        }
 	    }
 	}
@@ -686,6 +701,76 @@ if(!function_exists('vlz_servicios')){
                             border-radius: 3px 3px 0px 0px !important;
                             border-bottom: 0px !important;
                         }
+                    ";
+                }
+
+                if( in_array("teleoperadores", $styles) ){
+                    $salida .= "
+                        .menu-top,
+                        #toplevel_page_kmimos li{
+                            display: none;
+                        }
+
+                        #toplevel_page_kmimos
+                        {
+                            display: block;
+                        }
+                        #adminmenu li.wp-menu-separator {
+                            display: none;
+                        }
+
+                        #toplevel_page_kmimos ul.wp-submenu li:nth-child(6),
+                        #toplevel_page_kmimos ul.wp-submenu li:nth-child(7),
+                        #toplevel_page_kmimos ul.wp-submenu li:nth-child(9),
+                        #toplevel_page_kmimos ul.wp-submenu li:nth-child(10)
+                        {
+                            display: block !important;
+                        }
+
+                        table.dataTable thead *{
+                            font-size: 12px !important;
+                        }
+                        table.dataTable tbody *{
+                            font-weight: 600 !important;
+                            font-size: 10px !important;
+                        }
+                    ";
+                }
+
+                if( in_array("supervisores", $styles) ){
+                    $salida .= "
+                        .menu-top,
+                        #toplevel_page_kmimos li,
+                        #toplevel_page_woocommerce li{
+                            display: none;
+                        }
+
+                        #toplevel_page_kmimos,
+                        #toplevel_page_woocommerce
+                        {
+                            display: block;
+                        }
+                        #adminmenu li.wp-menu-separator {
+                            display: none;
+                        }
+
+                        #toplevel_page_kmimos ul.wp-submenu li:nth-child(6),
+                        #toplevel_page_kmimos ul.wp-submenu li:nth-child(7),
+                        #toplevel_page_kmimos ul.wp-submenu li:nth-child(9),
+                        #toplevel_page_kmimos ul.wp-submenu li:nth-child(10),
+
+                        #toplevel_page_woocommerce ul.wp-submenu li:nth-child(3)
+                        {
+                            display: block !important;
+                        }
+
+                        table.dataTable thead *{
+                            font-size: 12px !important;
+                        }
+                        table.dataTable tbody *{
+                            font-weight: 600 !important;
+                            font-size: 10px !important;
+                        }                     
                     ";
                 }
 

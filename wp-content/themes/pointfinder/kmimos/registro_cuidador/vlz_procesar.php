@@ -233,7 +233,7 @@
 
             $temp = array( "token" => $token );
 
-            /*include('Requests.php');
+            include('Requests.php');
 
             Requests::register_autoloader();
 
@@ -264,7 +264,7 @@
                 )
             );
 
-            $request = Requests::post('http://kmimos.ilernus.com/webservice/rest/server.php', array(), $options );*/
+            $request = Requests::post('http://kmimos.ilernus.com/webservice/rest/server.php', array(), $options );
 
             if( $conn->query( utf8_decode( $sql ) ) ){
 
