@@ -49,6 +49,13 @@
 
                 case 'Supervisor':
                     echo kmimos_style($styles = array("supervisores"));
+                    echo "
+                        <script>
+                            window.onload = function(){
+                                jQuery('#toplevel_page_woocommerce > a').attr('href', 'edit.php?post_type=shop_coupon');
+                            };
+                        </script>
+                    ";
                 break;
 	        }
 	    }
