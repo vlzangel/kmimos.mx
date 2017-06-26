@@ -81,6 +81,8 @@
 			        			<select id='editar_tipo_usuario_modal_tipo_usuario' class='kmimos_select' style='display: block; width: 500px;'>
 									<option value='Administrador'>Administrador</option>
 									<option value='Customer Service'>Customer Service</option>
+									<option value='Teleoperador'>Teleoperador</option>
+									<option value='Supervisor'>Supervisor</option>
 								</select>
 								<input type='hidden' id='editar_tipo_usuario_modal_user_id'>
 								<input type='hidden' id='editar_tipo_usuario_modal_index'>
