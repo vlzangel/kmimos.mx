@@ -47,12 +47,17 @@
                     echo kmimos_style($styles = array("teleoperadores"));
                 break;
 
+                case 'Auditores':
+                    echo kmimos_style($styles = array("auditores"));
+                break;
+
                 case 'Supervisor':
                     echo kmimos_style($styles = array("supervisores"));
                     echo "
                         <script>
                             window.onload = function(){
                                 jQuery('#toplevel_page_woocommerce > a').attr('href', 'edit.php?post_type=shop_coupon');
+                                jQuery('#toplevel_page_kmimos > a').attr('href', 'admin.php?page=bp_reservas');
                             };
                         </script>
                     ";
@@ -771,6 +776,41 @@ if(!function_exists('vlz_servicios')){
                             font-weight: 600 !important;
                             font-size: 10px !important;
                         }                     
+                    ";
+                }
+
+                if( in_array("auditores", $styles) ){
+                    $salida .= "
+                        .menu-top,
+                        #toplevel_page_kmimos li{
+                            display: none;
+                        }
+
+                        #toplevel_page_kmimos
+                        {
+                            display: block;
+                        }
+                        #adminmenu li.wp-menu-separator {
+                            display: none;
+                        }
+
+                        #toplevel_page_kmimos ul.wp-submenu li:nth-child(6),
+                        /*
+                            #toplevel_page_kmimos ul.wp-submenu li:nth-child(7),
+                            #toplevel_page_kmimos ul.wp-submenu li:nth-child(9),
+                        */
+                        #toplevel_page_kmimos ul.wp-submenu li:nth-child(10)
+                        {
+                            display: block !important;
+                        }
+
+                        table.dataTable thead *{
+                            font-size: 12px !important;
+                        }
+                        table.dataTable tbody *{
+                            font-weight: 600 !important;
+                            font-size: 10px !important;
+                        }
                     ";
                 }
 
