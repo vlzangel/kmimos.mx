@@ -3,6 +3,44 @@
     //[kmimos_search]
 
     echo get_estados_municipios(); 
+
+    $HOY = date("Y-m-d");
+
+    $ESTADOS = "
+        <option value=''>Seleccione un estado</option>
+        <option value='7'>Aguascalientes</option>
+        <option value='8'>Baja California</option>
+        <option value='9'>Baja California Sur</option>
+        <option value='10'>Campeche</option>
+        <option value='13'>Chiapas</option>
+        <option value='14'>Chihuahua</option>
+        <option value='1'>Ciudad de México</option>
+        <option value='11'>Coahuila de Zaragoza</option>
+        <option value='12'>Colima</option>
+        <option value='15'>Durango</option>
+        <option value='2'>Estado de México</option>
+        <option value='16'>Guanajuato</option>
+        <option value='17'>Guerrero</option>
+        <option value='18'>Hidalgo</option>
+        <option value='3'>Jalisco</option>
+        <option value='19'>Michoac&aacute;n de Ocampo</option>
+        <option value='20'>Morelos</option>
+        <option value='21'>Nayarit</option>
+        <option value='4'>Nuevo León</option>
+        <option value='22'>Oaxaca</option>
+        <option value='23'>Puebla</option>
+        <option value='24'>Queretaro</option>
+        <option value='25'>Quintana Roo</option>
+        <option value='26'>San Luis Potosi</option>
+        <option value='27'>Sinaloa</option>
+        <option value='28'>Sonora</option>
+        <option value='29'>Tabasco</option>
+        <option value='30'>Tamaulipas</option>
+        <option value='31'>Tlaxcala</option>
+        <option value='32'>Veracruz de Ignacio de la Llave</option>
+        <option value='33'>Yucatan</option>
+        <option value='34'>Zacatecas</option>
+    ";
     $servicios = array(
         'hospedaje'      => '<p>Hospedaje<br><sup>cuidado día y noche</sup></p>', 
         'guarderia'      => '<p>Guardería<br><sup>cuidado durante el día</sup></p>', 
@@ -164,39 +202,7 @@
                                     <div class='icono'><i class='icon-mapa embebed'></i></div>
                                     <sub>Estado:</sub><br>
                                     <select id='estado_cuidador' name='estados' data-location='mx'>
-                                        <option value=''>Seleccione un estado</option>
-                                        <option value='7'>Aguascalientes</option>
-                                        <option value='8'>Baja California</option>
-                                        <option value='9'>Baja California Sur</option>
-                                        <option value='10'>Campeche</option>
-                                        <option value='13'>Chiapas</option>
-                                        <option value='14'>Chihuahua</option>
-                                        <option value='1'>Ciudad de México</option>
-                                        <option value='11'>Coahuila de Zaragoza</option>
-                                        <option value='12'>Colima</option>
-                                        <option value='15'>Durango</option>
-                                        <option value='2'>Estado de México</option>
-                                        <option value='16'>Guanajuato</option>
-                                        <option value='17'>Guerrero</option>
-                                        <option value='18'>Hidalgo</option>
-                                        <option value='3'>Jalisco</option>
-                                        <option value='19'>Michoac&aacute;n de Ocampo</option>
-                                        <option value='20'>Morelos</option>
-                                        <option value='21'>Nayarit</option>
-                                        <option value='4'>Nuevo León</option>
-                                        <option value='22'>Oaxaca</option>
-                                        <option value='23'>Puebla</option>
-                                        <option value='24'>Queretaro</option>
-                                        <option value='25'>Quintana Roo</option>
-                                        <option value='26'>San Luis Potosi</option>
-                                        <option value='27'>Sinaloa</option>
-                                        <option value='28'>Sonora</option>
-                                        <option value='29'>Tabasco</option>
-                                        <option value='30'>Tamaulipas</option>
-                                        <option value='31'>Tlaxcala</option>
-                                        <option value='32'>Veracruz de Ignacio de la Llave</option>
-                                        <option value='33'>Yucatan</option>
-                                        <option value='34'>Zacatecas</option> 
+                                        $ESTADOS
                                     </select>
                                 </div>
                             </div>
@@ -216,6 +222,30 @@
                             <input type='text' id='longitud' name='longitud'>
                         </div>
                     </div>
+
+                    <div id='estado_cuidador_main'>
+                        <div id='selector_locacion'>
+                            <div class='grupo_selector'>
+                                <div class='marco'>
+                                    <div class='icono'><i class='icon-calendario embebed'></i></div>
+                                    <sub>Check In:</sub><br>
+                                    <input type='date' id='checkin' name='checkin' min='$HOY'>
+                                </div>
+                            </div>
+                            <div class='grupo_selector'>
+                                <div class='marco'>
+                                    <div class='icono'><i class='icon-calendario embebed'></i></div>
+                                    <sub>Check Out:</sub><br>
+                                    <input type='date' id='checkout' name='checkout' min='$HOY' disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div id='selector_coordenadas_x' class='hide'>
+                            <input type='text' id='latitud' name='latitud'>
+                            <input type='text' id='longitud' name='longitud'>
+                        </div>
+                    </div>
+
                     <div class='w100pc'>
                        <div class='mt10 izquierda'>
                             <label id='tamano_mascota'><strong>TAMAÑO DE MI MASCOTA</strong></label>
@@ -306,6 +336,23 @@
                 });
                 $('.modal').fancybox({
                     maxWidth: 340
+                });
+
+                $('#checkin').on('change', function(e){
+                    if( $('#checkin').val() != '' ){
+                        var fecha_ini = String( $('#checkin').val() ).split('-');
+                        var fecha_fin = String( $('#checkout').val() ).split('-');
+                        var checkin = new Date( parseInt(fecha_ini[0]), parseInt(fecha_ini[1]), parseInt(fecha_ini[2]) );
+                        var checkout = new Date( parseInt(fecha_fin[0]), parseInt(fecha_fin[1]), parseInt(fecha_fin[2]) );
+                        $('#checkout').attr('min', $('#checkin').val() );
+                        if( Math.abs(checkout.getTime()) < Math.abs(checkin.getTime()) ){
+                            $('#checkout').val( $('#checkin').val() );
+                        }
+                        $('#checkout').attr('disabled', false);
+                    }else{
+                        $('#checkout').val('');
+                        $('#checkout').attr('disabled', true);
+                    }
                 });
             });
         })(jQuery);

@@ -64,6 +64,8 @@
 		$order->update_status('wc-cancelled');
 		$booking->update_status('cancelled');
 
+		update_cupos($reserva_id, "-");
+
 		$msg_cliente = $styles.'
 	    	<p><strong>Cancelación de Reserva (N°. '.$reserva_id.')</strong></p>
 			<p>Hola <strong>'.$nom_cliente.',</strong></p>

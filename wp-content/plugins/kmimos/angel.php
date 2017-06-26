@@ -50,23 +50,22 @@
             $data = get_data_booking($id);
             extract($data);
 
-            $xinicio = date("Y-m-d", strtotime($inicio) );
-            $xfin    = date("Y-m-d", strtotime($fin) );
+            angel_log("inicio: $inicio");
+            
+            for ($i=$inicio; $i < $fin; $i+=86400) { 
+                $fecha = date("Y-m-d", $i);
+                $full = 0;
 
-            $cupos = $wpdb->get_results("SELECT * FROM cupos WHERE servicio = '{$servicio}' AND ( fecha >= '{$xinicio}' AND fecha <= '{$xfin}' )");
+                $existe = $wpdb->get_var("SELECT * FROM cupos WHERE servicio = '{$servicio}' AND fecha = '{$fecha}'");
 
-            angel_log("SELECT * FROM cupos WHERE servicio = {$servicio} AND ( fecha >= {$xinicio} AND fecha <= {$xfin} )");
+                angel_log("SELECT * FROM cupos WHERE servicio = '{$servicio}' AND fecha = '{$fecha}'");
 
-            $dias = (( $fin-$inicio) / 86400);
+                if( isset($existe) ){
+                    $wpdb->query("UPDATE cupos SET cupos = cupos {$accion} {$mascotas} WHERE servicio = '{$servicio}' AND fecha = '{$fecha}' ");
+                    $wpdb->query("UPDATE cupos SET full = 1 WHERE servicio = '{$servicio}' AND ( fecha = '{$fecha}' AND cupos >= acepta )");
+                    $wpdb->query("UPDATE cupos SET full = 0 WHERE servicio = '{$servicio}' AND ( fecha = '{$fecha}' AND cupos < acepta )");
+                }else{
 
-            if( count($cupos) == $dias ){
-                $wpdb->query("UPDATE cupos SET cupos = cupos {$accion} {$mascotas} WHERE servicio = '{$servicio}' AND ( fecha >= '{$xinicio}' AND fecha <= '{$xfin}' )");
-                $wpdb->query("UPDATE cupos SET full = 1 WHERE servicio = '{$servicio}' AND ( fecha >= '{$xinicio}' AND fecha <= '{$xfin}' AND cupos >= acepta )");
-                $wpdb->query("UPDATE cupos SET full = 0 WHERE servicio = '{$servicio}' AND ( fecha >= '{$xinicio}' AND fecha <= '{$xfin}' AND cupos < acepta )");
-            }else{
-                for ($i=$inicio; $i < $fin; $i+=86400) { 
-                    $fecha = date("Y-m-d H:i:s", $i);
-                    $full = 0;
                     if( $mascotas >= $acepta ){ $full = 1; }
                     $sql = "
                         INSERT INTO cupos VALUES (
@@ -80,8 +79,11 @@
                         );
                     ";
                     $wpdb->query($sql);
+
                 }
+
             }
+
         }
     }
 

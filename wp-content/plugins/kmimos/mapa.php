@@ -1,4 +1,11 @@
 <?php
+	header('X-Frame-Options: SAMEORIGIN');
+	header('X-Content-Type-Options: nosniff');
+
+	ini_set('session.cookie_httponly', true);
+	ini_set('session.cookie_secure', true);
+	ini_set('session.use_only_cookies', true);
+
 	//$keyApi = 'AIzaSyBB_j_ufdmyvN2cqhvtl-6xY-xk-PWNHgg';
 	$keyApi = 'AIzaSyD-xrN3-wUMmJ6u2pY_QEQtpMYquGc70F8';
 	$latitud = $_GET['lat'];

@@ -55,6 +55,8 @@
 
 		kmimos_set_kmisaldo($cliente_id, $orden_id, $reserva_id);
 
+		update_cupos($reserva_id, "-");
+
 		$msg = $styles.'
 	    	<p><strong>Cancelación de Reserva (N°. '.$reserva_id.')</strong></p>
 			<p>Hola <strong>'.$nom_cuidador.'</strong></p>

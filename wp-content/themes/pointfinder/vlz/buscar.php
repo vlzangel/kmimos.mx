@@ -9,6 +9,12 @@
 
 	$condiciones = "";
 
+    /* Filtros por fechas */
+	    if( isset($checkin)  && $checkin  != '' && isset($checkout) && $checkout != '' ){ 
+	    	$condiciones .= " AND ( SELECT count(*) FROM cupos WHERE cupos.cuidador = cuidadores.user_id AND cupos.fecha >= '{$checkin}' AND cupos.fecha <= '{$checkout}' AND cupos.full = 1 ) = 0"; 
+	   	}
+    /* Fin Filtros por fechas */
+
     /* Filtros por servicios y tamaños */
 	    if( isset($servicios) ){ foreach ($servicios as $key => $value) { if( $value != "hospedaje" ){ $condiciones .= " AND adicionales LIKE '%".$value."%'"; } } }
 	    if( isset($tamanos) ){ foreach ($tamanos as $key => $value) { $condiciones .= " AND ( tamanos_aceptados LIKE '%\"".$value."\";i:1%' || tamanos_aceptados LIKE '%\"".$value."\";s:1:\"1\"%' ) "; } }
@@ -113,19 +119,21 @@
     $cuidadores = $db->get_results($sql);
 
     $pines = array();
-	foreach ($cuidadores as $key => $cuidador) {
-		$url = $_SERVER["HTTP_ORIGIN"] . "/petsitters/" . $cuidador->slug;
-		$img = kmimos_get_foto_cuidador($cuidador->id);		
-		$pines[] = array(
-			"ID"   => $cuidador->id,
-			"user" => $cuidador->user_id,
-			"lat"  => $cuidador->latitud,
-			"lng"  => $cuidador->longitud,
-			"nom"  => utf8_encode($cuidador->titulo),
-			"url"  => $url,
-			"img"  => kmimos_get_foto_cuidador($cuidador->id)
-		);
-	}
+    if( $cuidadores != false ){
+		foreach ($cuidadores as $key => $cuidador) {
+			$url = $_SERVER["HTTP_ORIGIN"] . "/petsitters/" . $cuidador->slug;
+			$img = kmimos_get_foto_cuidador($cuidador->id);		
+			$pines[] = array(
+				"ID"   => $cuidador->id,
+				"user" => $cuidador->user_id,
+				"lat"  => $cuidador->latitud,
+				"lng"  => $cuidador->longitud,
+				"nom"  => utf8_encode($cuidador->titulo),
+				"url"  => $url,
+				"img"  => kmimos_get_foto_cuidador($cuidador->id)
+			);
+		}
+    }
 
 	session_start();
 
@@ -134,7 +142,8 @@
 	$_SESSION['pines'] = $pines_json;
 	
 	// echo "<pre style='display: block;'>";
-	// 	print_r($pines);
+	// 	print_r($sql);
+	// 	print_r($cuidadores);
 	// echo "</pre>";
 	
 	$_SESSION['busqueda'] = serialize($_POST);

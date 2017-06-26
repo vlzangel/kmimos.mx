@@ -69,7 +69,8 @@
 			startmeta.meta_value 	 AS inicio, 
 			endmeta.meta_value		 AS fin,
 			acepta.meta_value		 AS acepta,
-			mascotas.meta_value 	 AS mascotas
+			mascotas.meta_value 	 AS mascotas,
+			reserva.post_status		 AS status
 
 		FROM wp_posts AS reserva
 
@@ -88,7 +89,8 @@
 			mascotas.meta_key  		= '_booking_persons' 		AND 
 			(
 				reserva.post_status NOT LIKE '%cancelled%' AND
-				reserva.post_status     != 	 'was-in-cart' 
+				reserva.post_status     != 	 'was-in-cart'  AND
+				reserva.post_status     != 	 'modified' 
 			) AND  (
 				endmeta.meta_value >= '{$actual}'
 			)
@@ -111,6 +113,9 @@
 		global $db;
 		$inicio = strtotime($reserva->inicio);
 		$fin 	= strtotime($reserva->fin);
+
+		echo "Status: ".$reserva->status."<br>";
+
 		for ($i=$inicio; $i < $fin; $i+=86400) { 
 			$fecha = date("Y-m-d H:i:s", $i);
 
@@ -151,6 +156,8 @@
 				";
 
 			 	$db->query($sql);
+
+				echo $sql."<br>";
 			}else{
 				$total += $cupos->cupos;
 				if( $total >= $reserva->acepta ){

@@ -12,6 +12,13 @@ if ( 'POST' != $_SERVER['REQUEST_METHOD'] ) {
 	exit;
 }
 
+header('X-Frame-Options: SAMEORIGIN');
+header('X-Content-Type-Options: nosniff');
+
+ini_set('session.cookie_httponly', true);
+ini_set('session.cookie_secure', true);
+ini_set('session.use_only_cookies', true);
+
 $bloquear = false;
 preg_match_all("#<a(.*?)href(.*?)>#", $_POST["comment"], $links);
 if( count($links[0]) > 0 ){

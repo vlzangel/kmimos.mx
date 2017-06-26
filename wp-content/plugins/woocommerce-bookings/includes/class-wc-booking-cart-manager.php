@@ -247,10 +247,6 @@ class WC_Booking_Cart_Manager {
 		// Store in cart
 		$cart_item_meta['booking']['_booking_id'] = $new_booking->id;
 
-		echo "<pre>";
-			print_r( $new_booking->id );
-		echo "</pre>";
-
 		update_cupos($new_booking->id, "+");
 
 		// Schedule this item to be removed from the cart if the user is inactive

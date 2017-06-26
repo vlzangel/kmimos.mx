@@ -10,6 +10,26 @@
 			echo "vlz_select('tamanos_{$value}');";
 		}
 	} ?>
+
+	jQuery('#checkin').on('change', function(e){
+		if( jQuery('#checkin').val() != "" ){
+	        var fecha_ini = String( jQuery('#checkin').val() ).split('-');
+	        var fecha_fin = String( jQuery('#checkout').val() ).split('-');
+	        var checkin = new Date( parseInt(fecha_ini[0]), parseInt(fecha_ini[1]), parseInt(fecha_ini[2]) );
+	        var checkout = new Date( parseInt(fecha_fin[0]), parseInt(fecha_fin[1]), parseInt(fecha_fin[2]) );
+	        jQuery('#checkout').attr('min', jQuery('#checkin').val() );
+	        if( Math.abs(checkout.getTime()) < Math.abs(checkin.getTime()) ){
+	            jQuery('#checkout').val( jQuery('#checkin').val() );
+	        }
+	        jQuery('#checkout').attr('disabled', false);
+		}else{
+			jQuery('#checkout').val("");
+	        jQuery('#checkout').attr('disabled', true);
+		}
+    });
+
+    // jQuery( ".vlz_img_cuidador_interno" ).error(function() { alert( "Handler for .error() called." ); }).attr( "src", "missing.png" );
+
 	jQuery('#orderby > option[value="<?php echo $_POST['orderby']; ?>"]').attr('selected', 'selected'); 
 	jQuery('#tipo_busqueda > option[value="<?php echo $_POST['tipo_busqueda']; ?>"]').attr('selected', 'selected'); vlz_tipo_ubicacion(); <?php
 ?>});</script>

@@ -7,12 +7,12 @@ class Class_Kmimos_Script{
         global $wpdb;
         $this->args = $args;
         $this->wpdb = $wpdb;
-        $this->filejs_script = plugins_url('js/script.js?'.time(), dirname(__FILE__));
+        $this->filejs_script = plugins_url('js/script.js', dirname(__FILE__));
         $this->Script();
     }
 
     function Script(){
-        wp_enqueue_script('kmimos_scriptjs',$this->filejs_script.'?'.time(), '', '', true);
+        wp_enqueue_script('kmimos_scriptjs',$this->filejs_script, '', '', true);
     }
 
 }

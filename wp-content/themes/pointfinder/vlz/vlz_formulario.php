@@ -127,6 +127,19 @@
 	}
 
 	$FORMULARIO = "
+	<style>
+		input[type='date']{
+			line-height: 1;
+			margin-bottom: 3px;
+			border: 1px solid #ccc;
+		    padding-left: 30px;
+		}
+		.icono {
+		    position: absolute;
+		    font-size: 25px;
+		    margin-left: 3px;
+		}
+	</style>
 	<div id='filtros'></div>
 	<form action='".get_home_url()."/wp-content/themes/pointfinder/vlz/buscar.php' method='POST' class='vlz_form' id='vlz_form_buscar' style='margin-top: 20px;'>
 
@@ -162,6 +175,16 @@
 				<div class='vlz_contenedor'>
 					<input type='text' name='n' value='".$_POST['n']."' class='vlz_input' placeholder='Buscar por Nombre'>
 				</div>
+
+			</div>
+		</div>
+
+		<div class='vlz_sub_seccion'>
+			<div class='vlz_sub_seccion_titulo'>Por Fechas</div>
+			<div class='vlz_sub_seccion_interno'>
+
+				<div class='icono'><i class='icon-calendario embebed'></i></div><input type='date' id='checkin' name='checkin' value='".$_POST['checkin']."' class='vlz_input' min='".date("Y-m-d")."' >
+				<div class='icono'><i class='icon-calendario embebed'></i></div><input type='date' id='checkout' name='checkout' value='".$_POST['checkout']."' class='vlz_input' min='".date("Y-m-d")."' >
 
 			</div>
 		</div>

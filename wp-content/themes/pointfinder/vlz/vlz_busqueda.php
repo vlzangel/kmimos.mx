@@ -8,8 +8,12 @@
 	if( isset($_SESSION['busqueda'])){ $_POST = unserialize($_SESSION['busqueda']); }
 	$home = get_home_url();
 	$pagina = vlz_get_page();
-	$TR = count($_SESSION['resultado_busqueda'])+0;
-
+	if( $_SESSION['resultado_busqueda'] ){
+		$TR = count($_SESSION['resultado_busqueda'])+0;
+	}else{
+		$TR = 0;
+	}
+	
 	$paginacion = vlz_get_paginacion($TR, $pagina);
 
 	$resultados = $_SESSION['resultado_busqueda'];
