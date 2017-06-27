@@ -6787,3 +6787,18 @@ input#place_order{
 	}
 }
 
+
+
+
+/*NEW CSS*/
+@media (max-width: 992px) {
+	.wpf-container { margin: 200px 0 0 0 !important;}
+}
+
+@media (max-width: 768px){
+	.wpf-container { margin: 130px 0 0 0 !important;}
+}
+
+@media (max-width: 569px){
+	.wpf-container { margin: 50px 0 0 0 !important;}
+}
