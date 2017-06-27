@@ -13,6 +13,8 @@
 /wp-content/uploads*
 /git/
 
+/kmibox/*
+
 Respaldo*
 
 # Archivos
