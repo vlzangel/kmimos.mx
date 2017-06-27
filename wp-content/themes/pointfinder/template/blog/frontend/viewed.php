@@ -4,8 +4,10 @@ $args = array(
     'post_type'=>'post',
     'posts_per_page' =>5,
     'paged'=>get_query_var('paged'),
+    //'meta_key' => 'post_views_count',
+    //'orderby' => 'meta_value_num',
     /*
-    'post_type'  => 'my_custom_post_type',
+    'post_type'  => 'post_type',
     'meta_key'   => 'age',
     'orderby'    => 'meta_value_num',
     'order'      => 'ASC',

@@ -59,7 +59,7 @@ function WhiteLabel_custom_processing($order){
             update_post_meta($order, '_wlabel', $wlabel_user);
         }
     }
-    
+
 
     /*//kmimos modified
     //$order_post = get_post($order);
