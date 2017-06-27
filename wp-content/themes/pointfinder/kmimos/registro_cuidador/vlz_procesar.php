@@ -683,6 +683,9 @@
                         </p>
                     ';*/
 
+                    include( 'mensaje_web_registro_cuidador.php' );
+
+                    /*
                     $mensaje_web = '
                         <style>
                             p{
@@ -714,7 +717,8 @@
                                 <li style="text-align: justify;">Por último, recibirás una llamada para entrevista telefónica y notificación para la auditoría a tu hogar.</li>
                             </ul>
                         </p>
-                    ';
+                     ';
+                     */
 
 /*                $mensaje_web = '
                         <style>
