@@ -3,14 +3,7 @@
 	$name_photo = get_user_meta($cuidador->user_id, "name_photo", true);
 	$cuidador_id = $cuidador->id;
 
-	if( empty($name_photo)  ){ $name_photo = "0"; }
-	if( file_exists("wp-content/uploads/cuidadores/avatares/".$cuidador_id."/{$name_photo}") ){
-		$img = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/{$name_photo}";
-	}elseif( file_exists("wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg") ){
-		$img = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg";
-	}else{
-		$img = get_home_url()."/wp-content/themes/pointfinder".'/images/noimg.png';
-	}
+	$img = kmimos_get_foto_cuidador($cuidador_id);
 
 	$anios_exp = $cuidador->experiencia;
 	if( $anios_exp > 1900 ){
