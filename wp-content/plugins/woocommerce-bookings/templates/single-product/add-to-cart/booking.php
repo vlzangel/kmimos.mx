@@ -32,11 +32,20 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 
 	<input type="hidden" name="add-to-cart" value="<?php echo esc_attr( $product->id ); ?>" />
 
-	<button type="submit" class="wc-bookings-booking-form-button single_add_to_cart_button button alt xdisabled" style="display:none; float: right;"><?php echo $product->single_add_to_cart_text(); ?></button>
+	<button type="submit" class="wc-bookings-booking-form-button single_add_to_cart_button button xdisabled" style="display:none; float: right; color: #FFF;">Continuar</button>
 
 <?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
 
 </form>
+
+<script type="text/javascript">
+	function activar_continuar(){
+		jQuery('.single_add_to_cart_button').addClass('xdisabled');
+		jQuery('.single_add_to_cart_button').css('background-color', "#60cbac;");
+		jQuery('.single_add_to_cart_button').css('color', "#fff;");
+		jQuery('.single_add_to_cart_button').html('Continuar');
+	}
+</script>
 
 <?php do_action( 'woocommerce_after_add_to_cart_form' ); ?>
 
@@ -100,11 +109,11 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 				echo '<script type="text/javascript"> var solo_fecha_fin = "NO"; </script>';
 			}
 		}else{
-			echo '<script type="text/javascript"> var solo_fecha_fin = "NO"; </script>';
+			echo '<script type="text/javascript"> var solo_fecha_fin = "NO"; jQuery(document).ready(function() { activar_continuar(); }); </script>';
 		}
 
 	}else{
-		echo '<script type="text/javascript"> var solo_fecha_fin = "NO"; </script>';
+		echo '<script type="text/javascript"> var solo_fecha_fin = "NO"; jQuery(document).ready(function() { activar_continuar(); }); </script>';
 	}
 ?>
 

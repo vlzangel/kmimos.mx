@@ -1,6 +1,6 @@
 <?php
 
-$WP_path_load =dirname(dirname(dirname(dirname(dirname(__FILE__))))).'/wp-load.php';
+$WP_path_load =dirname(dirname(dirname(dirname(__DIR__)))).'/wp-load.php';
 if(file_exists($WP_path_load)){
     include_once($WP_path_load);
 }
@@ -36,23 +36,59 @@ function WhiteLabel_registration_save($user_id){
 }
 
 //ORDER PROSSESING
+add_action('woocommerce_thankyou', 'WhiteLabel_custom_processing');
+add_action('woocommerce_order_status_completed', 'WhiteLabel_custom_processing');
 add_action('woocommerce_order_status_processing', 'WhiteLabel_custom_processing');
-function WhiteLabel_custom_processing($order_id){
+function WhiteLabel_custom_processing($order){
     global $_wlabel;
-    if ($_wlabel->wlabel_active){
-        update_post_meta($order_id, '_wlabel', $_wlabel->wlabel);
-    }
-}
+    $wlabel=$_wlabel->wlabel;
 
-//ORDER TANK
-//add_action('woocommerce_thankyou', 'WhiteLabel_custom_thankyou');
-function WhiteLabel_custom_thankyou($order_id){
-    global $_wlabel;
     if ($_wlabel->wlabel_active){
-        update_post_meta($order_id, '_wlabel', $_wlabel->wlabel);
+        update_post_meta($order, '_wlabel', $wlabel);
     }
-}
 
+
+    //WLABEL DEL USUARIO REGISTRADO
+    if ($_wlabel->wlabel_active){
+        $post = get_post($order);
+        $author = $post->post_author;
+        //update_post_meta($order, '_wlabel_user', $author);
+
+        $wlabel_user = get_user_meta($author,'_wlabel', true);//reserva_modificada
+        if(!empty($wlabel_user)){
+            update_post_meta($order, '_wlabel', $wlabel_user);
+        }
+    }
+    
+
+    /*//kmimos modified
+    //$order_post = get_post($order);
+    //$order_post_parent = $order_post->post_parent;//alrevves
+    //$order_post_parent = get_post_ancestors($order);
+
+    $order_post = new WP_Query(array('post_parent' => $order));
+    if ( $order_post->have_posts()){
+        while($order_post->have_posts()){
+            $order_post->the_post();
+            $order_post_parent=$order_post->ID;
+            var_dump();
+
+            $modified_order = get_post_meta($order_post_parent,'modificacion_de', true);//reserva_modificada
+            if(!empty($modified_order)){
+                $modified_post = get_post($modified_order);
+                $modified_post_parent = $modified_post->post_parent;
+                $modified_wlabel = get_post_meta($modified_post_parent,'_wlabel', true);
+                if(!empty($modified_wlabel)){
+                    update_post_meta($order, '_wlabel', $modified_wlabel);
+                }
+            }
+
+            break;
+
+        }
+    }*/
+
+}
 
 
 

@@ -114,11 +114,6 @@
 	    font-size: 80%;
 	}
 
-	/*.vlz_checkbox_contenedor div:hover{
-		background: #fefe78;
-		cursor: pointer;
-	}*/
-
 	.vlz_checkbox_contenedor div:hover *{
 		color:  #000;
 	}
@@ -179,10 +174,6 @@
 
 	.vlz_nav_cont a:hover{
 		background: #dcdc4c;
-	}
-
-	.vlz_nav_cont_interno{
-
 	}
 
 	.vlz_activa{

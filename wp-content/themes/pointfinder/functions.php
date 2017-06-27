@@ -23,6 +23,8 @@ function set_input_attrs( $fields ) {
    	return $fields;
 }*/
 
+// add_filter( 'show_admin_bar', '__return_false' );
+
 add_filter( 'woocommerce_checkout_fields' , 'set_input_attrs' );
 function set_input_attrs( $fields ) {
 	$fields['billing']['billing_address_2']['maxlength'] = 50;
@@ -118,6 +120,9 @@ function mycode_more_info_button() {
 add_filter( 'woocommerce_add_cart_item_data', '_empty_cart' );
 function _empty_cart( $cart_item_data ){
 	WC()->cart->empty_cart();
+	echo "<pre>";
+		print_r($cart_item_data);
+	echo "</pre>";
 	return $cart_item_data;
 }
 

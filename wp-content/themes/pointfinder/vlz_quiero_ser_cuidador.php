@@ -87,7 +87,18 @@
 													<?php
 														$referidos = get_referred_list_options();
 														foreach ($referidos as $key => $value) {
-															echo "<option value='{$key}'>{$value}</option>";
+															$selected='';
+															if(array_key_exists('wlabel',$_SESSION)){
+																$wlabel=$_SESSION['wlabel'];
+
+																if($key=='Volaris' && $wlabel=='volaris'){
+																	$selected='selected';
+
+																}else if($key=='Vintermex' && $wlabel=='viajesintermex'){
+																	$selected='selected';
+																}
+															}
+															echo "<option value='{$key}' $selected>{$value}</option>";
 														}
 													?>
                                                 </select>
@@ -96,10 +107,12 @@
 
 										<div class="vlz_sub_seccion">
 											<div class="vlz_cell100">
+												<div class="vlz_titulo_interno vlz_sub_seccion_mensaje">Aquí puedes completar la descripción sugerida,<spam style="color: red;">"sin embargo tu descripción personalizada es valiosa para atraer más clientes"</spam></div>
 												<textarea 
 													data-title="Ingresa una descripción de al menos 50 caracteres incluyendo los espacios." 
 													data-help='"Cuentanos sobre ti, tus cualidades y porque deberían permitirte cuidar sus perritos"'
-													class='vlz_input jj_desc' id='descripcion' name='descripcion' placeholder='Preséntate con la comunidad Kmimos' required minlength="50"></textarea>
+													class='vlz_input jj_desc' id='descripcion' name='descripcion' placeholder='Preséntate con la comunidad Kmimos' required minlength="50"
+												>¡Hola! Soy ________, tengo ___ años y me encantan los animales. Estaré 100% al cuidado de tu perrito, lo consentiré y recibirás fotos diarias de su estancia conmigo. Mis huéspedes peludos duermen dentro de casa SIN JAULAS NI ENCERRADOS. Cuento con _______ para que jueguen, además cerca de casa hay varios parques donde los saco a pasear diariamente. En su estancia tu perrito contará con seguro de gastos veterinarios, que en caso de emergencia se encuentra a dentro d mi colonia, muy cerca de mi casa. Cualquier duda que tengas no dudes en contactarme.</textarea>
 											</div>
 										</div>
 

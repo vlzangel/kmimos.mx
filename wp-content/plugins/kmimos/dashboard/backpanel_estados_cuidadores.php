@@ -60,8 +60,10 @@ $users = getUsers($desde, $hasta);
 			  <thead>
 			    <tr>
 			      <th>#</th>
+			      <th>ID</th>
 			      <th>Nombre y Apellido</th>
 			      <th>Email</th>
+			      <th>Telef.</th>
 			      <th>Estado</th>
 			      <th>Municipio</th>
 			    </tr>
@@ -79,12 +81,14 @@ $users = getUsers($desde, $hasta);
 			  		?>
 				    <tr>
 				    	<th><?php echo ++$count; ?></th>
+				    	<th><?php echo $row['user_id']; ?></th>
 						<th><?php echo "{$usermeta['first_name']} {$usermeta['last_name']}"; ?></th>
 						<th>
 					  		<a href="<?php echo $link_login; ?>">
 								<?php echo $row['email']; ?>
 							</a>
 						</th>
+						<th><?php echo $usermeta['user_phone']; ?></th>
 						<th><?php echo $ubicacion['estado']; ?></th>
 						<th><?php echo $ubicacion['municipio']; ?></th>
 				    </tr>

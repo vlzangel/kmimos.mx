@@ -201,12 +201,20 @@ if( count($reservas) > 0 ){
 			//var_dump($_metas);
 
 			$pedido = $wpdb->get_row("SELECT * FROM $wpdb->posts WHERE ID = ".$_metas_reserva['_booking_product_id'][0]);
+
+			$orden_status = $wpdb->get_var("SELECT post_status FROM $wpdb->posts WHERE ID = ".$reserva->post_parent);
+
+			$creada =  strtotime( $reserva->post_date );
+			$inicia =  strtotime( $_metas_reserva['_booking_start'][0] );
+
+			$penalizar = ( ($inicia-$creada) <= 172800 ) ? "SI" : "NO";
+
 			//var_dump($pedido);
 
 			//RESERVAS PENDIENTES POR ERROR DE PAGOS DE TARJETAS
-			if($pedido->post_status=='wc_pending') {
+			if($orden_status=='wc-pending') {
 
-			}else if($reserva->post_status=='unpaid' && $_metas['_payment_method'][0] == 'openpay_stores'){
+			}else if($orden_status == 'wc-on-hold' && $_metas['_payment_method'][0] == 'openpay_stores'){
 
 				$pdf = array();
 

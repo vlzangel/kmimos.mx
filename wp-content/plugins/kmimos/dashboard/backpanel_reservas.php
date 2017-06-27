@@ -5,19 +5,21 @@ require_once('core/ControllerReservas.php');
 $date = getdate(); 
 $desde = date("Y-m-01", $date[0] );
 $hasta = date("Y-m-d", $date[0]);
+$_desde = "";
+$_hasta = "";
 if(	!empty($_POST['desde']) && !empty($_POST['hasta']) ){
-	$desde = (!empty($_POST['desde']))? $_POST['desde']: "";
-	$hasta = (!empty($_POST['hasta']))? $_POST['hasta']: "";
+	$_desde = (!empty($_POST['desde']))? $_POST['desde']: "";
+	$_hasta = (!empty($_POST['hasta']))? $_POST['hasta']: "";
 }
 $razas = get_razas();
 // Buscar Reservas
-$reservas = getReservas($desde, $hasta);
+$reservas = getReservas($_desde, $_hasta);
 
 
 ?>
 
 <div class="col-md-12 col-sm-12 col-xs-12">
-<div class="x_panel">
+<div class="row">
 	<div class="col-md-12 col-sm-12 col-xs-12">
 		<div class="x_title">
 		<h2>Panel de Control <small>Reservas</small></h2>
@@ -44,14 +46,22 @@ $reservas = getReservas($desde, $hasta);
 					<button type="submit" class="btn btn-success"><i class="fa fa-search"></i> Buscar</button>			  
 			    </form>
 				<hr>  
+		  		<div class="clearfix"></div>
 			</div>
 		</div>
-	</div>
+  	</div>
+	<div class="clearfix"></div>
   	<div class="col-sm-12">  	
 
   	<?php if( empty($reservas) ){ ?>
   		<!-- Mensaje Sin Datos -->
-	    <div class="row alert alert-info"> No existen registros </div>
+	    <div class="row">
+	    	<div class="col-sm-12">
+	    		<div class="alert alert-info">
+		    		No existen registros
+	    		</div>
+		    </div>
+	    </div> 
   	<?php }else{ ?>  		
 	    <div class="row"> 
 	    	<div class="col-sm-12" id="table-container" 
@@ -71,6 +81,9 @@ $reservas = getReservas($desde, $hasta);
 			      <th># Mascotas</th>
 			      <th># Noches Totales</th>
 			      <th>Cliente</th>
+			      <th>Recompra (1Mes)</th>
+			      <th>Recompra (3Meses)</th>
+			      <th>Recompra (6Meses)</th>
 			      <th>Recompra (12Meses)</th>
 			      <th>Donde nos conocio?</th>
 			      <th>Mascotas</th>
@@ -106,13 +119,36 @@ $reservas = getReservas($desde, $hasta);
 				  		$meta_cuidador = getMetaCuidador($reserva->cuidador_id);
 				  		# MetaDatos del Cliente
 				  		$cliente = getMetaCliente($reserva->cliente_id);
-				  		# Recompra
-				  		$cliente_n_reserva = getCountReservas($reserva->cliente_id);
+
+				  		# Recompra 12 Meses
+				  		$cliente_n_reserva = getCountReservas($reserva->cliente_id, "12");
 				  		if(array_key_exists('rows', $cliente_n_reserva)){
 					  		foreach ($cliente_n_reserva["rows"] as $value) {
-				  				$recompra = ($value['cant']>1)? "SI" : "NO" ;
+				  				$recompra_12M = ($value['cant']>1)? "SI" : "NO" ;
 					  		}
 					  	}
+				  		# Recompra 1 Meses
+				  		$cliente_n_reserva = getCountReservas($reserva->cliente_id, "1");
+				  		if(array_key_exists('rows', $cliente_n_reserva)){
+					  		foreach ($cliente_n_reserva["rows"] as $value) {
+				  				$recompra_1M = ($value['cant']>1)? "SI" : "NO" ;
+					  		}
+					  	}
+				  		# Recompra 3 Meses
+				  		$cliente_n_reserva = getCountReservas($reserva->cliente_id, "3");
+				  		if(array_key_exists('rows', $cliente_n_reserva)){
+					  		foreach ($cliente_n_reserva["rows"] as $value) {
+				  				$recompra_3M = ($value['cant']>1)? "SI" : "NO" ;
+					  		}
+					  	}
+				  		# Recompra 6 Meses
+				  		$cliente_n_reserva = getCountReservas($reserva->cliente_id, "6");
+				  		if(array_key_exists('rows', $cliente_n_reserva)){
+					  		foreach ($cliente_n_reserva["rows"] as $value) {
+				  				$recompra_6M = ($value['cant']>1)? "SI" : "NO" ;
+					  		}
+					  	}
+
 				  		# MetaDatos del Reserva
 				  		$meta_reserva = getMetaReserva($reserva->nro_reserva);
 				  		# MetaDatos del Pedido
@@ -158,9 +194,21 @@ $reservas = getReservas($desde, $hasta);
 								date_convert($meta_reserva['_booking_end'], 'd-m-Y'), 
 								date_convert($meta_reserva['_booking_start'], 'd-m-Y') 
 							);					
-						if( $nro_noches == 0 && !in_array('hospedaje', explode("-", $meta_Pedido['post_name'])) ){
+						if( $nro_noches == 0 && !in_array('hospedaje', explode("-", $reserva['post_name'])) ){
 							$nro_noches = 1;
 						}
+
+
+						$Day = "";
+						$list_service = [ 'hospedaje' ]; // Excluir los servicios del Signo "D"
+						$temp_option = explode("-", $reserva->producto_name);
+						if( count($temp_option) > 0 ){
+							$key = strtolower($temp_option[0]);
+							if( !in_array($key, $list_service) ){
+								$Day = "-D";
+							}
+						}
+
 
 				  	?>
 				    <tr>
@@ -172,11 +220,14 @@ $reservas = getReservas($desde, $hasta);
 					<th><?php echo date_convert($meta_reserva['_booking_start'], 'd-m-Y', true); ?></th>
 					<th><?php echo date_convert($meta_reserva['_booking_end'], 'd-m-Y', true); ?></th>
 
-					<th class="text-center"><?php echo $nro_noches; ?></th>
+					<th class="text-center"><?php echo $nro_noches . $Day; ?></th>
 					<th class="text-center"><?php echo $reserva->nro_mascotas; ?></th>
 					<th><?php echo $nro_noches * $reserva->nro_mascotas; ?></th>
 					<th><?php echo "<a href='".get_home_url()."/?i=".md5($reserva->cliente_id)."'>".$cliente['first_name'].' '.$cliente['last_name']; ?></a></th>
-					<th class="text-center"><?php echo $recompra; ?></th>
+					<th class="text-center"><?php echo $recompra_1M; ?></th>
+					<th class="text-center"><?php echo $recompra_3M; ?></th>
+					<th class="text-center"><?php echo $recompra_6M; ?></th>
+					<th class="text-center"><?php echo $recompra_12M; ?></th>
 					<th><?php echo (empty($cliente['user_referred']))? 'Otros' : $cliente['user_referred'] ; ?></th>
 					<th><?php echo $pets_nombre; ?></th>
 					<th><?php echo $pets_razas; ?></th>

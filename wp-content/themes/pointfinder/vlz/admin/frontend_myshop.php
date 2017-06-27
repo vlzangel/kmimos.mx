@@ -349,7 +349,7 @@
                 <div class="cell50">     
                    <section> 
                       <label for="estado" class="lbl-text">'.esc_html__('Municipio','pointfindert2d').':</label>
-                        <select id="estado" name="estado" class="input" onchange="vlz_ver_municipios()">
+                        <select id="estado" name="estado" class="input">
                             '.$estados.'
                         </select>
                    </section>                          
@@ -357,7 +357,7 @@
             <div class="cell50">     
                     <section>
                         <label for="delegacion" class="lbl-text">'.esc_html__('Localidad','pointfindert2d').':</label>
-                        <select id="delegacion" name="delegacion" class="input" onchange="vlz_coordenadas()">
+                        <select id="delegacion" name="delegacion" class="input">
                             '.$muni.'
                         </select>
                     </section>                          
@@ -460,75 +460,44 @@
             </section>
 
             <section>
-        <input type="hidden" class="geolocation" id="latitude_petsitter" name="latitude_petsitter" placeholder="Latitud" step="any" value="'. $lat_def .'" />
-        <input type="hidden" class="geolocation" id="longitude_petsitter" name="longitude_petsitter" placeholder="Longitud" step="any" value="'. $lng_def .'" />
+                <input type="hidden" class="geolocation" id="latitude_petsitter" name="latitude_petsitter" placeholder="Latitud" step="any" value="'. $lat_def .'" />
+                <input type="hidden" class="geolocation" id="longitude_petsitter" name="longitude_petsitter" placeholder="Longitud" step="any" value="'. $lng_def .'" />
             </section>
-
+            '.get_estados_municipios().'
             <script>
-            jQuery(".vlz_pin_check").on("click", function(){
-                if( jQuery("input", this).attr("value") == "0" ){
-                    jQuery("input", this).attr("value", "1");
-                    jQuery(this).removeClass("vlz_no_check");
-                    jQuery(this).addClass("vlz_check");
-                }else{
-                    jQuery("input", this).attr("value", "0");
-                    jQuery(this).removeClass("vlz_check");
-                    jQuery(this).addClass("vlz_no_check");
-                }
-            });
-            function vlz_ver_municipios(){
-
-          var id =  jQuery("#estado").val();
-          var txt = jQuery("#estado option:selected").text();
-
-          jQuery.ajax( {
-            method: "POST",
-              data: { estado: id },
-            url: "'.get_home_url()."/wp-content/themes/pointfinder".'/vlz/ajax_municipios_2.php",
-              beforeSend: function( xhr ) {
-                jQuery("#delegacion").html("<option value=\'\'>Cargando Localidades</option>");
-              }
-          }).done(function(data){
-            jQuery("#delegacion").html("<option value=\'\'>Seleccione una localidad</option>"+data);
-            vlz_coordenadas();
-          });
-        }
-
-        function vlz_coordenadas(){
-          var estado = jQuery("#estado option:selected").text();
-          var municipio_val = jQuery("#delegacion option:selected").val();
-          var municipio = jQuery("#delegacion option:selected").text();
-
-          var adress = "colombia";
-          if( estado != "" ){ 
-            adress+="+"+estado; 
-          }
-          if( municipio_val != "" ){ 
-            adress+="+"+municipio; 
-          }
-
-          var dir = "https://maps.googleapis.com/maps/api/geocode/json?address="+adress+"&key=AIzaSyD-xrN3-wUMmJ6u2pY_QEQtpMYquGc70F8";
-            jQuery.ajax({ 
-                url: dir
-            }).done(function(data){
-                var location = data.results[0].geometry.location;
-                var norte = data.results[0].geometry.viewport.northeast;
-                var sur   = data.results[0].geometry.viewport.southwest;
-                jQuery("#latitude_petsitter").attr("value", location.lat);
-                jQuery("#longitude_petsitter").attr("value", location.lng);
-                var direccion = "";
-                for(var i=0; i<data.results[0].address_components.length; i++){
-                    if( i == 0 ){
-                        direccion += data.results[0].address_components[i].long_name;
+                jQuery(".vlz_pin_check").on("click", function(){
+                    if( jQuery("input", this).attr("value") == "0" ){
+                        jQuery("input", this).attr("value", "1");
+                        jQuery(this).removeClass("vlz_no_check");
+                        jQuery(this).addClass("vlz_check");
                     }else{
-                        direccion += ", "+data.results[0].address_components[i].long_name;
+                        jQuery("input", this).attr("value", "0");
+                        jQuery(this).removeClass("vlz_check");
+                        jQuery(this).addClass("vlz_no_check");
                     }
-                }
-                jQuery("#direccion").attr("value", direccion);
-            });
-        } 
+                });
 
-          </script> 
+                jQuery("#estado").on("change", function(e){
+                    var estado_id = jQuery("#estado").val();    
+                    if( estado_id != "" ){
+                        var html = "<option value=\'\'>Seleccione un municipio</option>";
+                        jQuery.each(estados_municipios[estado_id]["municipios"], function(i, val) {
+                            html += "<option value="+val.id+" data-id=\'"+i+"\'>"+val.nombre+"</option>";
+                        });
+                        jQuery("#delegacion").html(html);
+                    }
+                });
+
+                jQuery("#delegacion").on("change", function(e){
+                    vlz_coordenadas();
+                });
+
+                function vlz_coordenadas(){
+                    var estado_id = jQuery("#estado").val();            
+                    var municipio_id = jQuery(\'#delegacion > option[value="\'+jQuery("#delegacion").val()+\'"]\').attr(\'data-id\');   
+                }                
+
+            </script> 
         </div>
   ';
 
