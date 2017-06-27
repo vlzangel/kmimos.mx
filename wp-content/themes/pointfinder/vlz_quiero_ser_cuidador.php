@@ -619,7 +619,7 @@
 					</div>
 				</div>
 				<div style="text-align: center;padding-bottom:20px;">
-					<h3>AQUI TE DEJAMOS UNA SUGERENCIA PARA MEJORAR TU DESCRIPCION</h3>
+					<h3>AQU&Iacute; TE DEJAMOS UNA SUGERENCIA PARA MEJORAR TU DESCRIPCI&Oacute;N</h3>
 					<div style="padding:10px; margin: auto; border: 1px solid #ccc;display: inline-block;border-radius: 20px;">
 						<ul class="list-inline">
 							<li style="min-width: 100px; max-width: 200px;" >
@@ -629,8 +629,8 @@
 								<span></span>
 								<p>¡Hola! Soy Valentina, tengo 25 años y me encantan los animales, 
 									Trabajo en casa asi que estare 100% al cuidado de tu perrito, 
-									lo consentire y recibiras fotos diarias de su estancia conmigo. 
-									Mis huespedes peludos duermen de casa y pueden andar libremente 
+									lo consentir&eacute; y recibiras fotos diarias de su estancia conmigo. 
+									Mis hu&eacute;spedes peludos duermen de casa y pueden andar libremente 
 									SIN JAULAS NI ENCIERROS...
 								</p>
 							</li>
