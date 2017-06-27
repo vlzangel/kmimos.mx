@@ -42,6 +42,26 @@
 	                    )); 
 	                }
 	            break;
+
+                case 'Teleoperador':
+                    echo kmimos_style($styles = array("teleoperadores"));
+                break;
+
+                case 'Auditores':
+                    echo kmimos_style($styles = array("auditores"));
+                break;
+
+                case 'Supervisor':
+                    echo kmimos_style($styles = array("supervisores"));
+                    echo "
+                        <script>
+                            window.onload = function(){
+                                jQuery('#toplevel_page_woocommerce > a').attr('href', 'edit.php?post_type=shop_coupon');
+                                jQuery('#toplevel_page_kmimos > a').attr('href', 'admin.php?page=bp_reservas');
+                            };
+                        </script>
+                    ";
+                break;
 	        }
 	    }
 	}
@@ -436,7 +456,11 @@ if(!function_exists('vlz_servicios')){
         }
     }
 
-    // 
+    if(!function_exists('path_base')){
+        function path_base(){
+            return dirname(dirname(dirname(__DIR__)));
+        }
+    }
 
     if(!function_exists('kmimos_get_foto_cuidador')){
         function kmimos_get_foto_cuidador($id){
@@ -446,10 +470,11 @@ if(!function_exists('vlz_servicios')){
             $xx = $name_photo;
             $name_photo = get_user_meta($cuidador->user_id, "name_photo", true);
             if( empty($name_photo)  ){ $name_photo = "0"; }
-            if( file_exists("wp-content/uploads/cuidadores/avatares/".$cuidador_id."/{$name_photo}") ){
+            $base = path_base();
+            if( file_exists($base."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/{$name_photo}") ){
                 $img = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/{$name_photo}";
             }else{
-                if( file_exists("wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg") ){
+                if( file_exists($base."wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg") ){
                     $img = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg";
                 }else{
                     $img = get_home_url()."/wp-content/themes/pointfinder".'/images/noimg.png';
@@ -685,6 +710,111 @@ if(!function_exists('vlz_servicios')){
                         .vlz_input_error{
                             border-radius: 3px 3px 0px 0px !important;
                             border-bottom: 0px !important;
+                        }
+                    ";
+                }
+
+                if( in_array("teleoperadores", $styles) ){
+                    $salida .= "
+                        .menu-top,
+                        #toplevel_page_kmimos li{
+                            display: none;
+                        }
+
+                        #toplevel_page_kmimos
+                        {
+                            display: block;
+                        }
+                        #adminmenu li.wp-menu-separator {
+                            display: none;
+                        }
+
+                        #toplevel_page_kmimos ul.wp-submenu li:nth-child(6),
+                        #toplevel_page_kmimos ul.wp-submenu li:nth-child(7),
+                        #toplevel_page_kmimos ul.wp-submenu li:nth-child(9),
+                        #toplevel_page_kmimos ul.wp-submenu li:nth-child(10)
+                        {
+                            display: block !important;
+                        }
+
+                        table.dataTable thead *{
+                            font-size: 12px !important;
+                        }
+                        table.dataTable tbody *{
+                            font-weight: 600 !important;
+                            font-size: 10px !important;
+                        }
+                    ";
+                }
+
+                if( in_array("supervisores", $styles) ){
+                    $salida .= "
+                        .menu-top,
+                        #toplevel_page_kmimos li,
+                        #toplevel_page_woocommerce li{
+                            display: none;
+                        }
+
+                        #toplevel_page_kmimos,
+                        #toplevel_page_woocommerce
+                        {
+                            display: block;
+                        }
+                        #adminmenu li.wp-menu-separator {
+                            display: none;
+                        }
+
+                        #toplevel_page_kmimos ul.wp-submenu li:nth-child(6),
+                        #toplevel_page_kmimos ul.wp-submenu li:nth-child(7),
+                        #toplevel_page_kmimos ul.wp-submenu li:nth-child(9),
+                        #toplevel_page_kmimos ul.wp-submenu li:nth-child(10),
+
+                        #toplevel_page_woocommerce ul.wp-submenu li:nth-child(3)
+                        {
+                            display: block !important;
+                        }
+
+                        table.dataTable thead *{
+                            font-size: 12px !important;
+                        }
+                        table.dataTable tbody *{
+                            font-weight: 600 !important;
+                            font-size: 10px !important;
+                        }                     
+                    ";
+                }
+
+                if( in_array("auditores", $styles) ){
+                    $salida .= "
+                        .menu-top,
+                        #toplevel_page_kmimos li{
+                            display: none;
+                        }
+
+                        #toplevel_page_kmimos
+                        {
+                            display: block;
+                        }
+                        #adminmenu li.wp-menu-separator {
+                            display: none;
+                        }
+
+                        #toplevel_page_kmimos ul.wp-submenu li:nth-child(6),
+                        /*
+                            #toplevel_page_kmimos ul.wp-submenu li:nth-child(7),
+                            #toplevel_page_kmimos ul.wp-submenu li:nth-child(9),
+                        */
+                        #toplevel_page_kmimos ul.wp-submenu li:nth-child(10)
+                        {
+                            display: block !important;
+                        }
+
+                        table.dataTable thead *{
+                            font-size: 12px !important;
+                        }
+                        table.dataTable tbody *{
+                            font-weight: 600 !important;
+                            font-size: 10px !important;
                         }
                     ";
                 }

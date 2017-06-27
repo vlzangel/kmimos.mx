@@ -5,11 +5,18 @@ if(file_exists($kmimos_load)){
     include_once($kmimos_load);
 }
 
+function number_round($number){
+    $number=(round($number*100))/100;
+    $number=number_format($number, 2, ',', '.');
+    return $number;
+}
+
 $wlabel=$_wlabel_user->wlabel;
 $WLcommission=$_wlabel_user->wlabel_Commission();
 
+$_wlabel_user->wlabel_Options('booking');
 $_wlabel_user->wLabel_Filter(array('trdate'));
-$_wlabel_user->wlabel_Export('RESERVAS','title','table');
+$_wlabel_user->wlabel_Export('booking','RESERVAS','table');
 ?>
 
 <div class="module_title">
@@ -110,35 +117,52 @@ $_wlabel_user->wlabel_Export('RESERVAS','title','table');
         $IDcustomer=$_metas_booking['_booking_customer_id'][0];
         $IDorder_item=$_metas_booking['_booking_order_item_id'][0];
 
-       //var_dump($order);
-       //var_dump($IDorder_item);
+        $_metas_booking_start=strtotime($_metas_booking['_booking_start'][0]);
+        $_metas_booking_end=strtotime($_metas_booking['_booking_end'][0]);
+        $duration = floor(($_metas_booking_end-$_metas_booking_start) / (60 * 60 * 24));
 
         $_meta_WCorder = wc_get_order_item_meta($IDorder_item,'');
        // $_meta_WCorder_line_total = wc_get_order_item_meta($IDorder_item,'_line_total');
         $_meta_WCorder_line_total = wc_get_order_item_meta($IDorder_item,'_line_subtotal');
         $_meta_WCorder_duration = wc_get_order_item_meta($IDorder_item,'Duración');
-       $_meta_WCorder_caregiver = wc_get_order_item_meta($IDorder_item,'Ofrecido por');
+        $_meta_WCorder_caregiver = wc_get_order_item_meta($IDorder_item,'Ofrecido por');
 
-       //SERVICES
-       $post = get_post($IDproduct);
-       $services = $post->post_name;
-       $services=explode('-',$services);
-       if(count($services)>0){
+        //SERVICES
+        $post = get_post($IDproduct);
+        $services = $post->post_name;
+        $services=explode('-',$services);
+        if(count($services)>0){
            $services=trim($services[0]);
-       }else{
+        }else{
            $services='';
-       }
+        }
 
        //DURATION
-       $duration=strtolower($_meta_WCorder_duration);
-       $duration=str_replace(array('días','día','dias','dia','day'),'',$duration);
-       $duration_text=$duration.' Dia(s)';
+       //$duration=strtolower($_meta_WCorder_duration);
+
+       $period = 1;
+       if(strpos($duration, 'semana') !== false){
+           $period = 7;
+       }else if(strpos($duration, 'mes') !== false){
+           $period = 30;
+       }
+
+       $duration=str_replace(array('días','día','dias','dia','day', 'semana', 'semanas', 'mes'),'',$duration);
+       $duration=trim($duration);
+       $duration_text=' Dia(s)';
 
        if($services=='hospedaje'){
            $duration=(int)$duration-1;
-           $duration_text=$duration.' Noche(s)';
+           $duration_text=' Noche(s)';
        }
 
+       if($duration<=0){
+           $duration=(int)$duration+1;
+       }
+
+       $duration_text= $duration.$duration_text;
+       //$duration_text.='<br>'.date('d/m/Y',(int) strtolower($_metas_booking_start));
+       //$duration_text.='<br>'.date('d/m/Y',(int) strtolower($_metas_booking_end));
 
        //var_dump($_meta_WCorder);
        $_meta_WCorder_services_additional=array();
@@ -168,14 +192,14 @@ $_wlabel_user->wlabel_Export('RESERVAS','title','table');
             <td class="user" data-user="'.$customer.'">'.$_customer_name.'</td>
             <td>'.$_caregiver_name.'</td>
             <td>'.$services.'</td>
-            <td>'.$status_name.'</td>
+            <td class="status">'.$status_name.'</td>
             <td class="duration" data-user="'.$customer.'" data-count="'.$duration.'">'.$duration_text.'</td>
             <td class="duration_total" data-user="'.$customer.'"></td>
             <td>'.$_meta_WCorder_services_additional.'</td>
-            <td>'.$_meta_WCorder_line_total.'</td>
-            <td>'.$_meta_WCorder_line_total*0.17.'</td>
-            <td>'.$_meta_WCorder_line_total*0.17*($WLcommission/100).'</td>
-            <td>'.$_meta_WCorder_line_total*0.17*(1-($WLcommission/100)).'</td>
+            <td>'.number_round($_meta_WCorder_line_total).'</td>
+            <td>'.number_round($_meta_WCorder_line_total*0.17).'</td>
+            <td>'.number_round($_meta_WCorder_line_total*0.17*($WLcommission/100)).'</td>
+            <td>'.number_round($_meta_WCorder_line_total*0.17*(1-($WLcommission/100))).'</td>
         </tr>
         ';//
         echo $html;
@@ -216,12 +240,16 @@ $_wlabel_user->wlabel_Export('RESERVAS','title','table');
         jQuery('table tbody tr:not(.noshow)').each(function(e){
             var user=jQuery(this).find('.duration').data('user');
             var duration=jQuery(this).find('.duration').data('count');
+            var status=jQuery(this).data('status');
+
             //times.push({'user':user,'duration':duration});
             //if(jQuery.inArray(user,times)<0){
-            if(times[user] == undefined){
-                times[user]=duration;
-            }else{
-                times[user]=times[user]-(-duration);
+            if(status!='cancelled' && status!='modified' && status!='unpaid'){
+                if(times[user] == undefined){
+                    times[user]=duration;
+                }else{
+                    times[user]=times[user]-(-duration);
+                }
             }
 
         });

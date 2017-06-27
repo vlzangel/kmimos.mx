@@ -1,7 +1,7 @@
 html, body{position:relative; width:100%; height:100%; margin:0; padding:0; font-family: arial, sans-serif;  background:#DDD;}
 img{max-width:100%;}
 
-#panel{position:relative; width:100%; height:100%;}
+#panel{position:relative; width:100%; height:100%; overflow: hidden;}
 #panel .contain{position:relative; width:100%; max-width:900px; height:100%; margin:0 auto;}
 #panel .message{position:relative; padding:10px; color:#fff; font-size:15px; border:1px solid #FFF; border-radius:5px; box-shadow:0 0 5px #CCC; background:#59c9a8; opacity:0; visibility:hidden; display:none; transition:all .5s;}
 #panel .message.show{opacity:1; visibility:visible;}
@@ -32,6 +32,9 @@ form input[type="submit"]{width:100%; color:#FFF; background:#59c9a8;}
 .export{position:relative; margin:5px; padding:10px;  font-size:12px;  border:1px solid #eee;}
 .export .action{padding:5px 10px;  border-radius:5px; cursor:pointer;  box-shadow:0 0 5px #CCC;  background:#EEE;  display:inline-block;}
 .export .file{padding:10px 0;}
+
+.options{position:relative; margin:5px; padding:10px;  font-size:12px;  border:1px solid #eee;}
+.options .button{padding:5px 10px;  border-radius:5px; cursor:pointer;  box-shadow:0 0 5px #CCC;  background:#EEE;  display:inline-block;}
 
 table{position:relative; border-radius:5px; background:#FFF;}
 table thead{color:#FFF; background:#555;}
