@@ -34,9 +34,10 @@
 
 	$status = $booking->get_status();
 
-	if( $status == "confirmed" || $status == "cancelled" ){
+	if( $status == "confirmed" || $status == "cancelled" || $status == "modified" ){
 		$estado = array(
 			"confirmed" => "Confirmada",
+			"modified"  => "Modificada",
 			"cancelled" => "Cancelada"
 		);
 		$msg = $styles.'
@@ -208,7 +209,8 @@
 
 		   		if(!empty($user_referido)){
 					$username = $nom_cliente;
-					require_once('../../../landing/email_template/notificacion_reserva_referido.php');
+					$http = (isset($_SERVER['HTTPS']))? 'https://' : 'http://' ;
+					require_once('../../../landing/email_template/club-referido-primera-reserva.php');
 					$user_participante = $wpdb->get_results( "
 						select ID, user_email 
 						from wp_users 
@@ -217,14 +219,14 @@
 					$user_participante = (count($user_participante)>0)? $user_participante[0] : [];
 
 					if(isset($user_participante->user_email)){
-						$mensaje_reserva_partitipante = kmimos_get_email_html(
-							"Club de las patitas felices",
-							$mensaje_reserva_partitipante,
-							'', true, true);
+						// $mensaje_reserva_partitipante = kmimos_get_email_html(
+						// 	"Club de las patitas felices",
+						// 	$mensaje_reserva_partitipante,
+						// 	'', true, true);
 						
 						wp_mail( $user_participante->user_email, 
 								"¡Felicidades, otro perrhijo moverá su colita de felicidad!", 
-								$mensaje_reserva_partitipante );
+								$html );
 
 					}
 				} 
