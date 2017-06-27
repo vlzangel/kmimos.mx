@@ -1,6 +1,6 @@
 <?php
 
-$WP_path_load =dirname(dirname(dirname(dirname(dirname(__FILE__))))).'/wp-load.php';
+$WP_path_load =dirname(dirname(dirname(dirname(__DIR__)))).'/wp-load.php';
 if(file_exists($WP_path_load)){
     include_once($WP_path_load);
 }
@@ -46,6 +46,20 @@ function WhiteLabel_custom_processing($order){
     if ($_wlabel->wlabel_active){
         update_post_meta($order, '_wlabel', $wlabel);
     }
+
+
+    //WLABEL DEL USUARIO REGISTRADO
+    if ($_wlabel->wlabel_active){
+        $post = get_post($order);
+        $author = $post->post_author;
+        //update_post_meta($order, '_wlabel_user', $author);
+
+        $wlabel_user = get_user_meta($author,'_wlabel', true);//reserva_modificada
+        if(!empty($wlabel_user)){
+            update_post_meta($order, '_wlabel', $wlabel_user);
+        }
+    }
+    
 
     /*//kmimos modified
     //$order_post = get_post($order);
