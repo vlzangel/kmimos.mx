@@ -456,7 +456,11 @@ if(!function_exists('vlz_servicios')){
         }
     }
 
-    // 
+    if(!function_exists('path_base')){
+        function path_base(){
+            return dirname(dirname(dirname(__DIR__)));
+        }
+    }
 
     if(!function_exists('kmimos_get_foto_cuidador')){
         function kmimos_get_foto_cuidador($id){
@@ -466,10 +470,11 @@ if(!function_exists('vlz_servicios')){
             $xx = $name_photo;
             $name_photo = get_user_meta($cuidador->user_id, "name_photo", true);
             if( empty($name_photo)  ){ $name_photo = "0"; }
-            if( file_exists("wp-content/uploads/cuidadores/avatares/".$cuidador_id."/{$name_photo}") ){
+            $base = path_base();
+            if( file_exists($base."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/{$name_photo}") ){
                 $img = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/{$name_photo}";
             }else{
-                if( file_exists("wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg") ){
+                if( file_exists($base."wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg") ){
                     $img = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg";
                 }else{
                     $img = get_home_url()."/wp-content/themes/pointfinder".'/images/noimg.png';
