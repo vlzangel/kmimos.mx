@@ -93,6 +93,7 @@
 
 	if(!function_exists('kmimos_mails_administradores')){
 	    function kmimos_mails_administradores(){
+
             $headers[] = 'BCC: a.lazaro@kmimos.la';
 	        $headers[] = 'BCC: e.celli@kmimos.la';
 	        $headers[] = 'BCC: r.cuevas@kmimos.la';
@@ -100,6 +101,22 @@
 	        $headers[] = 'BCC: m.castellon@kmimos.la';
 	        $headers[] = 'BCC: a.veloz@kmimos.la';
 	        $headers[] = 'BCC: a.pedroza@kmimos.la';
+
+            $headers[] = 'BCC: Operador01@sin-cola.com';
+            $headers[] = 'BCC: Operador02@sin-cola.com';
+            $headers[] = 'BCC: Operador03@sin-cola.com';
+            $headers[] = 'BCC: Operador04@sin-cola.com';
+            $headers[] = 'BCC: Operador05@sin-cola.com';
+            $headers[] = 'BCC: Operador06@sin-cola.com';
+            $headers[] = 'BCC: Operador07@sin-cola.com';
+            $headers[] = 'BCC: Operador08@sin-cola.com';
+            $headers[] = 'BCC: Operador09@sin-cola.com';
+            $headers[] = 'BCC: Operador10@sin-cola.com';
+            $headers[] = 'BCC: Supervisor01@sin-cola.com';
+            $headers[] = 'BCC: Supervisor02@sin-cola.com';       
+            $headers[] = 'BCC: jorge.ballarin@sin-cola.com';
+            $headers[] = 'BCC: gabriel.marquez@sin-cola.com';
+            $headers[] = 'BCC: roberto.madrid@sin-cola.com';
 
 	        return $headers;
 	    }
@@ -456,20 +473,27 @@ if(!function_exists('vlz_servicios')){
         }
     }
 
-    // 
+    if(!function_exists('path_base')){
+        function path_base(){
+            return dirname(dirname(dirname(__DIR__)));
+        }
+    }
 
     if(!function_exists('kmimos_get_foto_cuidador')){
         function kmimos_get_foto_cuidador($id){
             global $wpdb;
             $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id = ".$id);
             $cuidador_id = $cuidador->id;
-            $xx = $name_photo;
             $name_photo = get_user_meta($cuidador->user_id, "name_photo", true);
             if( empty($name_photo)  ){ $name_photo = "0"; }
-            if( file_exists("wp-content/uploads/cuidadores/avatares/".$cuidador_id."/{$name_photo}") ){
+            if( count(explode(".", $name_photo)) == 1 ){
+                $name_photo .= "jpg";
+            }
+            $base = path_base();
+            if( file_exists($base."/wp-contentuploadscuidadoresavatares".$cuidador_id."/{$name_photo}") ){
                 $img = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/{$name_photo}";
             }else{
-                if( file_exists("wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg") ){
+                if( file_exists($base."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg") ){
                     $img = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg";
                 }else{
                     $img = get_home_url()."/wp-content/themes/pointfinder".'/images/noimg.png';
