@@ -33,6 +33,9 @@ form input[type="submit"]{width:100%; color:#FFF; background:#59c9a8;}
 .export .action{padding:5px 10px;  border-radius:5px; cursor:pointer;  box-shadow:0 0 5px #CCC;  background:#EEE;  display:inline-block;}
 .export .file{padding:10px 0;}
 
+.options{position:relative; margin:5px; padding:10px;  font-size:12px;  border:1px solid #eee;}
+.options .button{padding:5px 10px;  border-radius:5px; cursor:pointer;  box-shadow:0 0 5px #CCC;  background:#EEE;  display:inline-block;}
+
 table{position:relative; border-radius:5px; background:#FFF;}
 table thead{color:#FFF; background:#555;}
 table thead th{padding:15px !important;}

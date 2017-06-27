@@ -20,12 +20,12 @@ $html = '
 			</h1>
 		</header>
 		<section style="text-align: center;">
-			<img src="/landing/img/logo_patitas.png" alt="" width="25%">
+			<img src="'.$http.$_SERVER["HTTP_HOST"].'/landing/img/logo_patitas.png" alt="" width="25%">
 			<div style="margin: auto; width: 70%; text-align: justify; padding=bottom:10px;color:#757575;">
 				<p>Tu amigo <span style="font-weight: bold; color:#00D8B5;">'.$username.'</span> se ha unido al CLUB DE LAS PATITAS FELICES y  TODO GRACIAS A TI!. Continua compartiendo y haz que la familia Kmimos siga creciendo.
 				</p>
 				<span>Atentamente;</span><br><br>	
-				<img src="/landing/img/logo-kmimos_120x30.png" alt="">
+				<img src="'.$http.$_SERVER["HTTP_HOST"].'/landing/img/logo-kmimos_120x30.png" alt="">
 			</div>
 			<br>
 			<div style="color:#fff;width: 70%; text-align: justify; padding:15px 60px 15px 60px; background:#881C9B; margin:auto;">
@@ -36,12 +36,12 @@ $html = '
 					<span>Cuando sales de viajes, &iquest;En donde dejas a tu perro?</span>
 				</div>
 				<div style="text-align: right; font-size: 22px;">
-					<img src="/landing/img/logo-kmimos-blanco.png" alt="" width="120px"><br>
+					<img src="'.$http.$_SERVER["HTTP_HOST"].'/landing/img/logo-kmimos-blanco.png" alt="" width="120px"><br>
 					<span>LIBRES DE JAULAS Y ENCIERROS</span>
 				</div>
 			</div -->
-			<img style="padding:0px; margin-bottom: -4px;" src="../img/pendiente-01.jpg" width="100%">
-			<img style="padding:0px; margin-bottom: -4px;" src="../img/fondo-paisaje.jpg" width="100%">
+			<img style="padding:0px; margin-bottom: -4px;" src="'.$http.$_SERVER["HTTP_HOST"].'/landing/img/pendiente-01.jpg" width="100%">
+			<img style="padding:0px; margin-bottom: -4px;" src="'.$http.$_SERVER["HTTP_HOST"].'/landing/img/fondo-paisaje.jpg" width="100%">
 			<div style="padding:20px;font-size: 22px; text-align: center;color:#fff; background: #00b190; ">
 				<span>La mascota se hospeda en la propia casa de cuidadores certificados</span>
 			</div>
