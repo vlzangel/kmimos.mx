@@ -545,7 +545,7 @@
 						  		.css('padding', '0px')
 						  		.css('padding-top', '10px');
 			      			jQuery("#vlz_titulo_registro")
-			      				.html("!GRACIAS¡");
+			      				.html("¡GRACIAS!");
 			      			jQuery("#vlz_titulo_registro")
 			      				.css('background', '#00d8b5')
 			      				.css('color','#fff')
