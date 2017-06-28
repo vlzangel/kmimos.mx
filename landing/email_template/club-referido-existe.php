@@ -22,7 +22,7 @@ $html = '
 	<section style="text-align: center;">
 		<img src="'.$http.$_SERVER["HTTP_HOST"].'/landing/img/logo_patitas.png" alt="" width="25%">
 		<div style="margin: auto; width: 70%; text-align: justify; padding=bottom:10px;color:#757575;">
-			<p>El usuario <span style="font-weight: bold; color:#00D8B5;"><?php echo $username; ?></span>ya se encuentra en la base de datos de Kmimos, no formara parte de tus referidos. Sin embargo te invitamos a seguir compartiendo para tanto como tú y tus nuevos referidos obtengan los beneficios.
+			<p>El usuario <span style="font-weight: bold; color:#00D8B5;"><?php echo $username; ?></span> ya se encuentra en la base de datos de Kmimos, por lo que no formará parte de tus referidos. Sin embargo te invitamos a seguir compartiendo para que, tanto tus referidos como tú obtengan los beneficios.
 			</p>
 			<span>Atentamente;</span><br><br>	
 			<img src="'.$http.$_SERVER["HTTP_HOST"].'/landing/img/logo-kmimos_120x30.png" alt="">
