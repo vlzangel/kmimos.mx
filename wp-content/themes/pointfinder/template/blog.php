@@ -161,7 +161,7 @@ include_once(__DIR__.'/blog/header.php');
         </div>
         <div class="section viewed">
             <?php
-                include_once(__DIR__.'/blog/frontend/viewed.php');
+                include_once(__DIR__.'/blog/process/viewed.php');
             ?>
         </div>
     </div>
@@ -194,7 +194,7 @@ if($page<=0){
                 <i class="icon arrow fa fa-caret-left" data-direction="prev"><a class="absolute"  href="<?php echo $pagePREV;?>"></a></i>
             </div>
             <?php
-                include_once(__DIR__.'/blog/frontend/news.php');
+                include_once(__DIR__.'/blog/process/news.php');
             ?>
         </div>
     </div>
@@ -263,39 +263,10 @@ if($page<=0){
             CONOCE A UN CUIDADOR PARA QUE CONSIENTA A TU PERRHIJO
         </div>
     </div>
-    <div class="caregiver contain" data-section="<?php echo bloginfo('template_directory'); ?>/template/blog/frontend/featured.php">
-        <div class="action">
-            <i class="icon arrow fa fa-caret-left" data-direction="prev"></i>
-            <i class="icon arrow fa fa-caret-right" data-direction="next"></i>
-        </div>
-        <div class="group">
-            <?php
-                //include_once(__DIR__.'/blog/frontend/featured.php');
-            ?>
-        </div>
-    </div>
+        <?php
+            include_once(__DIR__.'/blog/frontend/featured.php');
+        ?>
 </section>
-<script type="text/javascript">
-    var featured = 1;
-    jQuery(document).on('click','#featured .caregiver .action .icon', function(e){ featured_page(this); });
-
-    function featured_page(element){
-        var direction = jQuery(element).data('direction');
-        var caregiver = jQuery(element).closest('.caregiver');
-        var path = caregiver.data('section');
-        jQuery.post(path,{'page':featured, 'direction':direction},function(data){
-            //console.log(data);
-            data=JSON.parse(data);
-            if(data['result']){
-                featured = data['page'];
-                caregiver.find('.group').fadeOut(function(e){
-                    jQuery(this).html(data['html']).fadeIn();
-                });
-            }
-        });
-    }
-    featured_page('#featured .caregiver .action .icon');
-</script>
 
 <section id="kmibox">
     <div class="group contain">
@@ -310,14 +281,14 @@ if($page<=0){
 </section>
 
 <section id="products">
-    <div class="kmibox contain" data-section="<?php echo bloginfo('template_directory'); ?>/template/blog/frontend/products.php">
+    <div class="kmibox contain" data-section="<?php echo bloginfo('template_directory'); ?>/template/blog/process/products.php">
         <div class="action">
             <i class="icon arrow fa fa-caret-left" data-direction="prev"></i>
             <i class="icon arrow fa fa-caret-right" data-direction="next"></i>
         </div>
         <div class="group">
             <?php
-                include_once(__DIR__.'/blog/frontend/products.php');
+                include_once(__DIR__.'/blog/process/products.php');
             ?>
         </div>
     </div>

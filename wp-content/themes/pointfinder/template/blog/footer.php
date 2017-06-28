@@ -68,7 +68,7 @@
     </div>
     <div class="payment">
         <div class="group contain">
-            <div class="section title">Métodos de Pago</div>
+            <div class="section title">MÃ©todos de Pago</div>
             <div class="section items">
                 <div class="item" style="background-image: url('https://www.kmimos.com.mx/wp-content/uploads/2017/06/Para-blog-08.png');"></div>
                 <div class="item" style="background-image: url('https://www.kmimos.com.mx/wp-content/uploads/2017/06/MasterCard_early_1990s_logo.png');"></div>
