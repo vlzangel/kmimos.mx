@@ -34,7 +34,7 @@ $mensaje_web = '
 			Para continuar con el proceso de certificación por favor enviar la siguiente documentación:
 		</p>
 		<div class="" style="width: 150px;display: inline;">
-			<img src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/list.png" widht="150px" style="
+			<img src="'.get_home_url().'/wp-content/themes/pointfinder/images/list.png" widht="150px" style="
 		    width: 80px;">
 		</div>
 		<div class="col-6" style="width: 70%;text-align: left;display: inline-block;padding: 5px;">
@@ -60,19 +60,19 @@ $mensaje_web = '
 		<div style="text-align: center; ">
 			<ul class="list-inline" style="color: #737272;font-weight: 700;">
 				<li>
-					<img src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/1_complado.png" class="img-responsive" width="150px"><br>
+					<img src="'.get_home_url().'/wp-content/themes/pointfinder/images/1_complado.png" class="img-responsive" width="150px"><br>
 					<span>Registrarte y describirte<span>
 				</span></span></li>
 				<li>
-					<img src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/2.png" class="img-responsive" width="150px"><br>
+					<img src="'.get_home_url().'/wp-content/themes/pointfinder/images/2.png" class="img-responsive" width="150px"><br>
 					<span>Enviar documentos<span>
 				</span></span></li>
 				<li>
-					<img src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/3.png" class="img-responsive" width="150px"><br>
+					<img src="'.get_home_url().'/wp-content/themes/pointfinder/images/3.png" class="img-responsive" width="150px"><br>
 					<span>Realizar tus pruebas<span>
 				</span></span></li>
 				<li>
-					<img src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/4.png" class="img-responsive" width="150px"><br>
+					<img src="'.get_home_url().'/wp-content/themes/pointfinder/images/4.png" class="img-responsive" width="150px"><br>
 					<span>Completar tu perfil<span>
 				</span></span></li>
 			</ul>
@@ -86,7 +86,7 @@ $mensaje_web = '
 		<div style="padding:10px; margin: auto; border: 1px solid #ccc;display: inline-block;border-radius: 20px;">
 			<ul class="list-inline">
 				<li style="min-width: 100px; max-width: 200px;">
-					<img src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/girl.png" class="img-responsive" width="150px"></li>
+					<img src="'.get_home_url().'/wp-content/themes/pointfinder/images/girl.png" class="img-responsive" width="150px"></li>
 				<li style="min-width: 200px; max-width: 400px;text-align: left;">
 					<h2 style="margin-top:0px!important;">Valentina Gutierrez</h2>
 					<span></span>
