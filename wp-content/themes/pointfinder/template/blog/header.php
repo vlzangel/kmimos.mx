@@ -1,8 +1,6 @@
 <?php
 wp_head();
-the_post();
-//get_template_part('functions/sections/template/template-sections');
-
+//the_post();
 global $post;
 $slug=$post->post_name;
 $page_current=site_url().'/'.$slug;
