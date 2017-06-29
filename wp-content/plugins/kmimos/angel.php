@@ -17,34 +17,24 @@
 	        switch ($tipo) {
 	            case 'Customer Service':
 	                global $post;
-	                $types = array(
-	                    'petsitters',
-	                    'pets',
-	                    'request',
-	                    'wc_booking',
-	                    'shop_order'
-	                );
-	                $pages = array(
-	                    'kmimos',
-	                    'create_booking'
-	                );
-	                if( count($_GET) == 0 || (!in_array($post->post_type, $types) && !in_array($_GET['page'], $pages)) ){
-	                    header("location: edit.php?post_type=petsitters");
-	                }
 	                echo kmimos_style(array(
 	                    "quitar_edicion",
 	                    "menu_kmimos",
 	                    "menu_reservas"
 	                ));
-	                if( $post->post_type == 'shop_order' || $post->post_type == 'wc_booking' ){
-	                    echo kmimos_style(array(
-	                        'habilitar_edicion_reservas'
-	                    )); 
-	                }
+                    echo kmimos_style($styles = array("customer_services"));
+                    echo "<script> window.onload = function(){ jQuery('#toplevel_page_kmimos > a').attr('href', 'admin.php?page=bp_reservas'); }; </script>";
 	            break;
 
                 case 'Teleoperador':
                     echo kmimos_style($styles = array("teleoperadores"));
+                    echo "
+                        <script>
+                            window.onload = function(){
+                                jQuery('#toplevel_page_kmimos > a').attr('href', 'admin.php?page=bp_reservas');
+                            };
+                        </script>
+                    ";
                 break;
 
                 case 'Auditores':
@@ -839,6 +829,40 @@ if(!function_exists('vlz_servicios')){
                         }
                     ";
                 }
+
+                if( in_array("customer_services", $styles) ){
+                    $salida .= "
+                        .menu-top,
+                        #toplevel_page_kmimos li{
+                            display: none;
+                        }
+
+                        #toplevel_page_kmimos
+                        {
+                            display: block;
+                        }
+                        #adminmenu li.wp-menu-separator {
+                            display: none;
+                        }
+
+                        #toplevel_page_kmimos ul.wp-submenu li:nth-child(6),
+                        #toplevel_page_kmimos ul.wp-submenu li:nth-child(7),
+                        #toplevel_page_kmimos ul.wp-submenu li:nth-child(9),
+                        #toplevel_page_kmimos ul.wp-submenu li:nth-child(10)
+                        {
+                            display: block !important;
+                        }
+
+                        table.dataTable thead *{
+                            font-size: 12px !important;
+                        }
+                        table.dataTable tbody *{
+                            font-weight: 600 !important;
+                            font-size: 10px !important;
+                        }                    
+                    ";
+                }
+
 
             $salida .= "</style>";
 
