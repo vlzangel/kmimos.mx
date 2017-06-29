@@ -7,6 +7,8 @@
     //date_default_timezone_set('America/Mexico_City');
     global $wpdb;
 	
+	$http = (isset($_SERVER['HTTPS']))? 'https://' : 'http://' ;
+
 	add_action('phpmailer_init','send_smtp_email');
 	function send_smtp_email( $phpmailer )
 	{

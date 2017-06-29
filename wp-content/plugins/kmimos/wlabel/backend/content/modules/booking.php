@@ -7,14 +7,16 @@ if(file_exists($kmimos_load)){
 
 function number_round($number){
     $number=(round($number*100))/100;
+    $number=number_format($number, 2, ',', '.');
     return $number;
 }
 
 $wlabel=$_wlabel_user->wlabel;
 $WLcommission=$_wlabel_user->wlabel_Commission();
 
+$_wlabel_user->wlabel_Options('booking');
 $_wlabel_user->wLabel_Filter(array('trdate'));
-$_wlabel_user->wlabel_Export('RESERVAS','title','table');
+$_wlabel_user->wlabel_Export('booking','RESERVAS','table');
 ?>
 
 <div class="module_title">
