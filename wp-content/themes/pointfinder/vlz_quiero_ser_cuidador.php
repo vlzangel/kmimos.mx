@@ -33,14 +33,14 @@
 						<div class="vlz_seccion">
 							<div class="vlz_cell75 vlz_titulo_contenedor">
 								<h1 class="vlz_titulo">Sé parte de Kmimos 
-									<a style="background: #00d8b5;
+									<a class="hidden-sm hidden-xs" style="background: #00d8b5;
 									    border-radius: 40px;
 									    border: 0px;
 									    color: #fff;
 									    font-size: 20px;
 									    font-weight: bold;
 									    padding: 9px 30px 9px 30px;
-									    margin-top: 20px;" 
+									    margin-top: 20px;"
 		    							onclick="jQuery('#modal_instrucciones').css('display', 'block');">
 		    							 Instrucciones </a>
     							</h1>
@@ -590,27 +590,27 @@
 				Te informamos que para activar tu perfil, debes seguir estos pasos:
 				<a style="display:none; color:#fff!important; right:15px;position: absolute; font-weight: bold;" onclick="jQuery('#modal_instrucciones').css('display', 'none');">x</a>
 			</div>
-			<div class="vlz_modal_contenido" style="  height: auto; padding:0px;">
+			<div class="vlz_modal_contenido" style="  max-height: 83vh; padding:0px;">
 				
 				<div style="height: auto; background: #fdfdaa; padding: 20px;">
 
 					<div style="text-align: center; ">
 						<ul class="list-inline" style="color: #737272;font-weight: 700;">
-							<li>
-								<img src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/1.png" class="img-responsive" width="150px"	 ><br>
-								<span>Registrarte y describirte<span>
+							<li class="col-xs-12 col-sm-6 col-md-3" >
+								<img src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/1.png" class="img-responsive" style="margin:auto;" width="150px">
+								<span>Registrarte y describirte<span><br><br>
 							</li>
-							<li>
-								<img src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/2.png" class="img-responsive" width="150px"	><br>
-								<span>Enviar documentos<span>
+							<li class="col-xs-12 col-sm-6 col-md-3"  >
+								<img src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/2.png" class="img-responsive" style="margin:auto;" width="150px">
+								<span>Enviar documentos<span><br><br>
 							</li>
-							<li>
-								<img src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/3.png" class="img-responsive" width="150px"	><br>
-								<span>Realizar tus pruebas<span>
+							<li class="col-xs-12 col-sm-6 col-md-3" >
+								<img src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/3.png" class="img-responsive" style="margin:auto;" width="150px">
+								<span>Realizar tus pruebas<span><br><br>
 							</li>
-							<li>
-								<img src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/4.png" class="img-responsive" width="150px"	><br>
-								<span>Completar tu perfil<span>
+							<li class="col-xs-12 col-sm-6 col-md-3" >
+								<img src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/4.png" class="img-responsive" style="margin:auto;" width="150px">
+								<span>Completar tu perfil<span><br><br>
 							</li>
 						</ul>
 						<p style="color: #de7212;font-weight: bold;font-size: 15px;">
@@ -654,5 +654,12 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+
+	jQuery('#btn-instrucciones-header')
+		.html('<a class="btn-instrucciones-header pull-left hidden-md hidden-lg hidden-xl" onclick="jQuery(' + "'#modal_instrucciones').css('display', 'block');" + '">Instrucciones</a>');
+
+</script>
 
 <?php get_footer(); ?>
