@@ -52,11 +52,26 @@ function WhiteLabel_custom_processing($order){
     if ($_wlabel->wlabel_active){
         $post = get_post($order);
         $author = $post->post_author;
-        //update_post_meta($order, '_wlabel_user', $author);
+        update_post_meta($order, '_wlabel_order_user', $author);
+        update_post_meta($order, '_wlabel_order', $order);
 
-        $wlabel_user = get_user_meta($author,'_wlabel', true);//reserva_modificada
-        if(!empty($wlabel_user)){
-            update_post_meta($order, '_wlabel', $wlabel_user);
+        $booking = new WP_Query(array('post_parent' => $order, 'post_type' => 'wc_booking'));
+        if ( $booking->have_posts()){
+            while($booking->have_posts()){
+                $booking->the_post();
+                $booking_id=get_the_id();//$booking->ID;
+                //$booking_author=get_the_author();//$booking->post_author;
+                $booking_author=get_post_field( 'post_author', $booking_id );
+
+                //update_post_meta($order, '_wlabel_booking', $booking);
+                //update_post_meta($order, '_wlabel_booking_id', $booking_id);
+                //update_post_meta($order, '_wlabel_user', $booking_author);
+                $wlabel_user = get_user_meta($booking_author,'_wlabel', true);
+                update_post_meta($order, '_wlabel_user_label', $wlabel_user);
+                if(!empty($wlabel_user)){
+                    update_post_meta($order, '_wlabel', $wlabel_user);
+                }
+            }
         }
     }
 

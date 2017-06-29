@@ -16,8 +16,8 @@ include_once(__DIR__.'/header.php');
 
     /*FEATURED*/
     #featured{position:fixed; width: 500px; max-width: 100%; top: calc(50% - 220px); right: calc(100% - 40px); border-radius:0 20px 20px 0; background: #dadada; z-index:1; transition: all .3s;}
-    #featured.show{right: auto;}
-    #featured .caregiver{position:relative; max-width: calc(100% - 80px); overflow: hidden;}
+    #featured.show{/*right: auto;*/}
+    #featured .caregiver{position:relative; max-width: calc(100% - 80px); min-width: 150px; overflow: hidden;}
     #featured .caregiver .action{display: none;}
     #featured .caregiver .action,
     #featured .show{position:absolute; width:100%; height:100%;}
@@ -96,8 +96,11 @@ while(have_posts()){
         var featured = jQuery(element).closest('#featured');
         if(featured.hasClass('show')){
             featured.removeClass('show');
+            jQuery('#featured').css({'right':''});
         }else{
             featured.addClass('show');
+            var width= jQuery('#featured.show').width();
+            jQuery('#featured.show').css({'right':'calc(100% - '+width+'px)'});
         }
     }
 </script>
