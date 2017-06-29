@@ -421,6 +421,7 @@
             ?>
             <div class="wpf-navwrapper">
             
+
             <a  href="<?php echo get_home_url();?>/" class="jj-patica-menu"><img src="https://www.kmimos.com.mx/wp-content/uploads/2016/02/patita.png"></a>  
             
 	            <?php 
@@ -450,10 +451,13 @@
 				<a id="pf-primary-search-button" title="<?php echo esc_html__('Search','pointfindert2d');?>"><i class="pfadmicon-glyph-627"></i></a>
 				<div class="pf-container pf-megamenu-container">
 					<div class="pf-row">
+
+						<div id="btn-instrucciones-header"></div>
+
 						<?php
 						function pointfinder_logocolumn_get(){
 						?>
-						<div class="col-lg-2 col-md-2">
+						<div class="col-lg-2 col-md-2 hidden-sm hidden-xs">
 							<a class="pf-logo-container" href="<?php echo esc_url(home_url());?>"></a>
 						</div>
 						<?php	
