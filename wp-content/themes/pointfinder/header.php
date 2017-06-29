@@ -450,9 +450,16 @@
 				?>
 				<a id="pf-primary-search-button" title="<?php echo esc_html__('Search','pointfindert2d');?>"><i class="pfadmicon-glyph-627"></i></a>
 				<div class="pf-container pf-megamenu-container">
-					<div class="pf-row">
 
-						<div id="btn-instrucciones-header"></div>
+					<div class="pf-row" style="min-height: 50px;">
+
+						<?php if( $post->post_name == 'quiero-ser-cuidador-certificado-de-perros' ){ ?>
+							<div id="btn-instrucciones-header" class="hidden-xl hidden-lg hidden-md">
+								<a 	class="btn-instrucciones-header pull-left hidden-md hidden-lg hidden-xl" 		onclick="jQuery('#modal_instrucciones').css('display', 'block');">
+									Instrucciones
+								</a>
+							</div>
+						<?php } ?>
 
 						<?php
 						function pointfinder_logocolumn_get(){

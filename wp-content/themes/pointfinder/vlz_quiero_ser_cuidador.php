@@ -655,11 +655,11 @@
 	</div>
 </div>
 
-<script type="text/javascript">
+<!-- script type="text/javascript">
 
 	jQuery('#btn-instrucciones-header')
 		.html('<a class="btn-instrucciones-header pull-left hidden-md hidden-lg hidden-xl" onclick="jQuery(' + "'#modal_instrucciones').css('display', 'block');" + '">Instrucciones</a>');
 
-</script>
+</script -->
 
 <?php get_footer(); ?>
