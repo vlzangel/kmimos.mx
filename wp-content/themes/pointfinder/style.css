@@ -6802,6 +6802,7 @@ input#place_order{
 @media (max-width: 569px){
 	.wpf-container { margin: 50px 0 0 0 !important;}
 }
+
 .btn-instrucciones-header{
 	background: transparent;
 	border-radius: 40px;

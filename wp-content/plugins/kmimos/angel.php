@@ -17,34 +17,24 @@
 	        switch ($tipo) {
 	            case 'Customer Service':
 	                global $post;
-	                $types = array(
-	                    'petsitters',
-	                    'pets',
-	                    'request',
-	                    'wc_booking',
-	                    'shop_order'
-	                );
-	                $pages = array(
-	                    'kmimos',
-	                    'create_booking'
-	                );
-	                if( count($_GET) == 0 || (!in_array($post->post_type, $types) && !in_array($_GET['page'], $pages)) ){
-	                    header("location: edit.php?post_type=petsitters");
-	                }
 	                echo kmimos_style(array(
 	                    "quitar_edicion",
 	                    "menu_kmimos",
 	                    "menu_reservas"
 	                ));
-	                if( $post->post_type == 'shop_order' || $post->post_type == 'wc_booking' ){
-	                    echo kmimos_style(array(
-	                        'habilitar_edicion_reservas'
-	                    )); 
-	                }
+                    echo kmimos_style($styles = array("customer_services"));
+                    echo "<script> window.onload = function(){ jQuery('#toplevel_page_kmimos > a').attr('href', 'admin.php?page=bp_reservas'); }; </script>";
 	            break;
 
                 case 'Teleoperador':
                     echo kmimos_style($styles = array("teleoperadores"));
+                    echo "
+                        <script>
+                            window.onload = function(){
+                                jQuery('#toplevel_page_kmimos > a').attr('href', 'admin.php?page=bp_reservas');
+                            };
+                        </script>
+                    ";
                 break;
 
                 case 'Auditores':
@@ -93,6 +83,7 @@
 
 	if(!function_exists('kmimos_mails_administradores')){
 	    function kmimos_mails_administradores(){
+
             $headers[] = 'BCC: a.lazaro@kmimos.la';
 	        $headers[] = 'BCC: e.celli@kmimos.la';
 	        $headers[] = 'BCC: r.cuevas@kmimos.la';
@@ -101,7 +92,25 @@
 	        $headers[] = 'BCC: a.veloz@kmimos.la';
 	        $headers[] = 'BCC: a.pedroza@kmimos.la';
 
-	        return $headers;
+            return $headers;
+
+         //    $headers[] = 'BCC: Operador01@sin-cola.com';
+         //    $headers[] = 'BCC: Operador02@sin-cola.com';
+         //    $headers[] = 'BCC: Operador03@sin-cola.com';
+         //    $headers[] = 'BCC: Operador04@sin-cola.com';
+         //    $headers[] = 'BCC: Operador05@sin-cola.com';
+         //    $headers[] = 'BCC: Operador06@sin-cola.com';
+         //    $headers[] = 'BCC: Operador07@sin-cola.com';
+         //    $headers[] = 'BCC: Operador08@sin-cola.com';
+         //    $headers[] = 'BCC: Operador09@sin-cola.com';
+         //    $headers[] = 'BCC: Operador10@sin-cola.com';
+         //    $headers[] = 'BCC: Supervisor01@sin-cola.com';
+         //    $headers[] = 'BCC: Supervisor02@sin-cola.com';       
+         //    $headers[] = 'BCC: jorge.ballarin@sin-cola.com';
+         //    $headers[] = 'BCC: gabriel.marquez@sin-cola.com';
+         //    $headers[] = 'BCC: roberto.madrid@sin-cola.com';
+
+	        // return $headers;
 	    }
 	}
 
@@ -467,14 +476,16 @@ if(!function_exists('vlz_servicios')){
             global $wpdb;
             $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id = ".$id);
             $cuidador_id = $cuidador->id;
-            $xx = $name_photo;
             $name_photo = get_user_meta($cuidador->user_id, "name_photo", true);
             if( empty($name_photo)  ){ $name_photo = "0"; }
+            if( count(explode(".", $name_photo)) == 1 ){
+                $name_photo .= "jpg";
+            }
             $base = path_base();
-            if( file_exists($base."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/{$name_photo}") ){
+            if( file_exists($base."/wp-contentuploadscuidadoresavatares".$cuidador_id."/{$name_photo}") ){
                 $img = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/{$name_photo}";
             }else{
-                if( file_exists($base."wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg") ){
+                if( file_exists($base."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg") ){
                     $img = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg";
                 }else{
                     $img = get_home_url()."/wp-content/themes/pointfinder".'/images/noimg.png';
@@ -818,6 +829,40 @@ if(!function_exists('vlz_servicios')){
                         }
                     ";
                 }
+
+                if( in_array("customer_services", $styles) ){
+                    $salida .= "
+                        .menu-top,
+                        #toplevel_page_kmimos li{
+                            display: none;
+                        }
+
+                        #toplevel_page_kmimos
+                        {
+                            display: block;
+                        }
+                        #adminmenu li.wp-menu-separator {
+                            display: none;
+                        }
+
+                        #toplevel_page_kmimos ul.wp-submenu li:nth-child(6),
+                        #toplevel_page_kmimos ul.wp-submenu li:nth-child(7),
+                        #toplevel_page_kmimos ul.wp-submenu li:nth-child(9),
+                        #toplevel_page_kmimos ul.wp-submenu li:nth-child(10)
+                        {
+                            display: block !important;
+                        }
+
+                        table.dataTable thead *{
+                            font-size: 12px !important;
+                        }
+                        table.dataTable tbody *{
+                            font-weight: 600 !important;
+                            font-size: 10px !important;
+                        }                    
+                    ";
+                }
+
 
             $salida .= "</style>";
 
