@@ -50,13 +50,18 @@ function WhiteLabel_custom_processing($order){
 
     //WLABEL DEL USUARIO REGISTRADO
     if ($_wlabel->wlabel_active){
-        $post = get_post($order);
-        $author = $post->post_author;
-        //update_post_meta($order, '_wlabel_user', $author);
+        $booking = new WP_Query(array('post_parent' => $order, 'post_type' => 'wc_booking'));
+        if ( $booking->have_posts()){
+            while($booking->have_posts()){
+                $booking->the_post();
+                $booking_id=get_the_id();
+                $booking_author=get_post_field( 'post_author', $booking_id );
 
-        $wlabel_user = get_user_meta($author,'_wlabel', true);//reserva_modificada
-        if(!empty($wlabel_user)){
-            update_post_meta($order, '_wlabel', $wlabel_user);
+                $wlabel_user = get_user_meta($booking_author,'_wlabel', true);
+                if(!empty($wlabel_user)){
+                    update_post_meta($order, '_wlabel', $wlabel_user);
+                }
+            }
         }
     }
 
