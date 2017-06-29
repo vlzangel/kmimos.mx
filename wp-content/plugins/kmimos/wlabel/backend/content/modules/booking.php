@@ -152,7 +152,7 @@ $_wlabel_user->wlabel_Export('booking','RESERVAS','table');
        $duration_text=' Dia(s)';
 
        if($services=='hospedaje'){
-           $duration=(int)$duration-1;
+           $duration=(int)$duration;//-1
            $duration_text=' Noche(s)';
        }
 
@@ -161,8 +161,8 @@ $_wlabel_user->wlabel_Export('booking','RESERVAS','table');
        }
 
        $duration_text= $duration.$duration_text;
-       //$duration_text.='<br>'.date('d/m/Y',(int) strtolower($_metas_booking_start));
-       //$duration_text.='<br>'.date('d/m/Y',(int) strtolower($_metas_booking_end));
+       $duration_text.='<br>'.date('d/m/Y',(int) strtolower($_metas_booking_start));
+       $duration_text.='<br>'.date('d/m/Y',(int) strtolower($_metas_booking_end));
 
        //var_dump($_meta_WCorder);
        $_meta_WCorder_services_additional=array();
