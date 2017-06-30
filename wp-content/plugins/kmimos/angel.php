@@ -903,8 +903,8 @@ if(!function_exists('vlz_servicios')){
                             display: none;
                         }
 
-                        body *{
-                            font-size: 13px;
+                        body #wpcontent *{
+                            font-size: 13px ;
                         }
                         table.dataTable tbody *{
                             font-weight: 600 !important;
