@@ -133,7 +133,47 @@
 	    }
 	}
 
-if(!function_exists('vlz_servicios')){
+    if(!function_exists('kmimos_mails_administradores_new')){
+        function kmimos_mails_administradores_new($titulo, $mensaje){
+
+            $info = kmimos_get_info_syte();
+            $email_admin = $info["email"];
+
+            $headers_admins = array(
+                'BCC: a.lazaro@kmimos.la',
+                'BCC: e.celli@kmimos.la',
+                'BCC: r.cuevas@kmimos.la',
+                'BCC: r.gonzalez@kmimos.la',
+                'BCC: m.castellon@kmimos.la',
+                'BCC: a.pedroza@kmimos.la'
+            );
+
+            wp_mail( $email_admin, $titulo, $mensaje, $headers_admins);
+
+            $headers_call_center = array(
+                'BCC: Operador01@sin-cola.com',
+                'BCC: Operador02@sin-cola.com',
+                'BCC: Operador03@sin-cola.com',
+                'BCC: Operador04@sin-cola.com',
+                'BCC: Operador05@sin-cola.com',
+                'BCC: Operador06@sin-cola.com',
+                'BCC: Operador07@sin-cola.com',
+                'BCC: Operador08@sin-cola.com',
+                'BCC: Operador09@sin-cola.com',
+                'BCC: Operador10@sin-cola.com',
+                'BCC: Supervisor01@sin-cola.com',
+                'BCC: Supervisor02@sin-cola.com', 
+                'BCC: jorge.ballarin@sin-cola.com',
+                'BCC: gabriel.marquez@sin-cola.com',
+                'BCC: roberto.madrid@sin-cola.com'          
+            );
+
+            wp_mail( "a.veloz@kmimos.la", $titulo, $mensaje, $headers_call_center);
+
+        }
+    }
+
+    if(!function_exists('vlz_servicios')){
         function vlz_servicios($adicionales){
             $r = ""; $adiestramiento = false;
 
