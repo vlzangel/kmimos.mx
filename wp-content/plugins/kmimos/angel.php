@@ -53,6 +53,22 @@
                     ";
                 break;
 	        }
+
+            $current_user = wp_get_current_user();
+            if( $current_user->ID != 367 ){
+                echo kmimos_style( array("ocultar_updates_wordpress") );
+                echo kmimos_style( array("ocultar_administracion_web_master") );
+                if( $_SERVER["REQUEST_URI"] == "/wp-admin/" ){
+                    echo "
+                        <script>
+                            window.onload = function(){
+                                location.href = jQuery('#toplevel_page_kmimos > a').attr('href');
+                            };
+                        </script>
+                    ";
+                }
+            }
+                
 	    }
 	}
 
@@ -918,27 +934,6 @@ if(!function_exists('vlz_servicios')){
 
             return $salida;
             
-        }
-
-        echo kmimos_style( array("ocultar_updates_wordpress") );
-
-        global $current_user;
-        if( $current_user->ID != 367 ){
-            echo kmimos_style( array("ocultar_administracion_web_master") );
-        }
-
-        // echo "<pre>";
-        //     print_r($_SERVER["REQUEST_URI"]);
-        // echo "</pre>";
-
-        if( $_SERVER["REQUEST_URI"] == "/wp-admin/" ){
-            echo "
-                <script>
-                    window.onload = function(){
-                        location.href = jQuery('#toplevel_page_kmimos > a').attr('href');
-                    };
-                </script>
-            ";
         }
 
     }
