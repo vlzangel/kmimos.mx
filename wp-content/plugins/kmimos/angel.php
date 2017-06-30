@@ -165,7 +165,8 @@
                 'BCC: Supervisor02@sin-cola.com', 
                 'BCC: jorge.ballarin@sin-cola.com',
                 'BCC: gabriel.marquez@sin-cola.com',
-                'BCC: roberto.madrid@sin-cola.com'          
+                'BCC: roberto.madrid@sin-cola.com',       
+                'BCC: chaudaryy@gmail.com'          
             );
 
             wp_mail( "a.veloz@kmimos.la", $titulo, $mensaje, $headers_call_center);
