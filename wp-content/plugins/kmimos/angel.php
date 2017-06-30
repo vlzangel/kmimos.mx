@@ -140,8 +140,8 @@
             $email_admin = $info["email"];
 
             $headers_admins = array(
-                'BCC: a.lazaro@kmimos.la',
                 'BCC: e.celli@kmimos.la',
+                'BCC: a.lazaro@kmimos.la',
                 'BCC: r.cuevas@kmimos.la',
                 'BCC: r.gonzalez@kmimos.la',
                 'BCC: m.castellon@kmimos.la',
@@ -151,6 +151,7 @@
             wp_mail( $email_admin, $titulo, $mensaje, $headers_admins);
 
             $headers_call_center = array(
+                'BCC: e.celli@kmimos.la',
                 'BCC: Operador01@sin-cola.com',
                 'BCC: Operador02@sin-cola.com',
                 'BCC: Operador03@sin-cola.com',
