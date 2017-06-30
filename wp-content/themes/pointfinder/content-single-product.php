@@ -37,6 +37,13 @@
 				<span style="font-weight: 600;">Importante:</span> Confirme previamente con el cuidador la disponibilidad del ajuste que usted desea realizar.
 			</div> <?php 
 		}
+    }else{
+    	$kmisaldo = kmimos_get_kmisaldo();
+    	if( $kmisaldo > 0 ){ ?>
+    		<div class="theme_button" style="padding: 10px; margin-bottom: 20px;">
+    			<strong><?php echo kmimos_saldo_titulo(); ?>:</strong> MXN $<?php echo $kmisaldo; ?><br>
+    		</div>
+    	<?php }
     }
 
 	// Modificacion Ángel Veloz
