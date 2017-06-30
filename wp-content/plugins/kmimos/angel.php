@@ -107,7 +107,7 @@
 
             $headers[] = 'BCC: Supervisor01@sin-cola.com';
             $headers[] = 'BCC: Supervisor02@sin-cola.com'; 
-                 
+
             $headers[] = 'BCC: jorge.ballarin@sin-cola.com';
             $headers[] = 'BCC: gabriel.marquez@sin-cola.com';
             $headers[] = 'BCC: roberto.madrid@sin-cola.com';
@@ -866,12 +866,81 @@ if(!function_exists('vlz_servicios')){
                     ";
                 }
 
+                if( in_array("ocultar_updates_wordpress", $styles) ){
+                    $salida .= "
+                        div.updated,
+                        #menu-dashboard,
+                        #dashboard-widgets-wrap,
+                        .wp-menu-separator,
+                        #wpfooter,
+                        #wp-admin-bar-updates,
+                        .plugin-update-tr{
+                            display: none;
+                        }
+                    ";
+                }
+
+                if( in_array("ocultar_updates_wordpress", $styles) ){
+                    $salida .= "
+                        #menu-posts-testimonials,
+                        #menu-appearance,
+                        #menu-plugins,
+                        #menu-tools,
+                        #toplevel_page_vc-general,
+                        #menu-settings,
+                        #menu-posts-petsitter,
+                        #menu-posts-anunciantes,
+                        #menu-posts-testimoniales,
+                        #menu-posts-pointfinderorders,
+                        #menu-posts-pointfinderinvoices,
+                        #toplevel_page_pointfinder_tools,
+                        #toplevel_page_layerslider,
+                        #toplevel_page_zopim_account_config,
+                        #toplevel_page_wpcf7,
+                        #menu-pages,
+                        #wp-admin-bar-wp-logo
+                        {
+                            display: none;
+                        }
+
+                        body *{
+                            font-size: 13px;
+                        }
+                        table.dataTable tbody *{
+                            font-weight: 600 !important;
+                            font-size: 10px !important;
+                        } 
+                    ";
+                }
+
 
             $salida .= "</style>";
 
             return $salida;
             
         }
+
+        echo kmimos_style( array("ocultar_updates_wordpress") );
+
+        global $current_user;
+        if( $current_user->ID != 367 ){
+            echo kmimos_style( array("ocultar_administracion_web_master") );
+        }
+
+        // echo "<pre>";
+        //     print_r($_SERVER["REQUEST_URI"]);
+        // echo "</pre>";
+
+        if( $_SERVER["REQUEST_URI"] == "/wp-admin/" ){
+            echo "
+                <script>
+                    window.onload = function(){
+                        location.href = jQuery('#toplevel_page_kmimos > a').attr('href');
+                    };
+                </script>
+            ";
+        }
+
     }
 
 ?>

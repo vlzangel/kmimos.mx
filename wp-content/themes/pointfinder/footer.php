@@ -105,6 +105,18 @@
                     .wpmenucartli{
                         display: none !important;
                     }
+
+                    #wp-admin-bar-wp-logo,
+                    #wp-admin-bar-customize,
+                    #wp-admin-bar-updates,
+                    #wp-admin-bar-comments,
+                    .ab-sub-wrapper,
+                    #wp-admin-bar-new-content,
+                    #wp-admin-bar-site-name .ab-sub-wrapper
+                    {
+                        display: none !important;
+                    }
+
                     @media (min-width: 1200px){
                         .jj-offset-2 {
                             margin-left: 16.66666667%!important;
