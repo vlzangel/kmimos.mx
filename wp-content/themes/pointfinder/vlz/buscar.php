@@ -158,21 +158,21 @@
 	function kmimos_get_foto_cuidador($id){
         global $db;
         $cuidador = $db->get_row("SELECT * FROM cuidadores WHERE id = ".$id);
-        $cuidador_id = $cuidador->id;
-        $xx = $name_photo;
-        $name_photo = $db->get_row("SELECT * FROM wp_usermeta WHERE user_id = {$cuidador->user_id} AND meta_key = '{name_photo}'");
+        $name_photo = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$cuidador->user_id} AND meta_key = '{name_photo}'", "meta_value");
         if( empty($name_photo)  ){ $name_photo = "0"; }
-        if( file_exists("../../../uploads/cuidadores/avatares/{$cuidador_id}/{$name_photo}") ){
-            $img = $_SERVER["HTTP_ORIGIN"]."/wp-content/uploads/cuidadores/avatares/{$cuidador_id}/{$name_photo}";
+        if( file_exists("../../../uploads/cuidadores/avatares/{$id}/{$name_photo}") ){
+            $img = $_SERVER["HTTP_ORIGIN"]."/wp-content/uploads/cuidadores/avatares/{$id}/{$name_photo}";
         }else{
-            if( file_exists("../../../uploads/cuidadores/avatares/{$cuidador_id}/0.jpg") ){
-                $img = $_SERVER["HTTP_ORIGIN"]."/wp-content/uploads/cuidadores/avatares/{$cuidador_id}/0.jpg";
+            if( file_exists("../../../uploads/cuidadores/avatares/{$id}/0.jpg") ){
+                $img = $_SERVER["HTTP_ORIGIN"]."/wp-content/uploads/cuidadores/avatares/{$id}/0.jpg";
             }else{
                 $img = $_SERVER["HTTP_ORIGIN"].'/wp-content/themes/pointfinder/images/noimg.png';
             }
         }
         return $img;
     }
+       
+    $home = $db->get_var("SELECT option_name FROM wp_options WHERE option_name = 'siteurl'", "option_name");
 
-	header("location: {$_SERVER["HTTP_ORIGIN"]}/busqueda/");
+	header("location: {$home}/busqueda/");
 ?>
