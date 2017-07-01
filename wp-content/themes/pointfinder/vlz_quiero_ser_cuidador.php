@@ -32,19 +32,10 @@
 
 						<div class="vlz_seccion">
 							<div class="vlz_cell75 vlz_titulo_contenedor">
-								<h1 class="vlz_titulo">Sé parte de Kmimos 
-									<a style="background: #00d8b5;
-									    border-radius: 40px;
-									    border: 0px;
-									    color: #fff;
-									    font-size: 20px;
-									    font-weight: bold;
-									    padding: 9px 30px 9px 30px;
-									    margin-top: 20px;" 
-		    							onclick="jQuery('#modal_instrucciones').css('display', 'block');">
-		    							 Instrucciones </a>
-    							</h1>
+								<div class="vlz_cell75 vlz_titulo_contenedor">
+								<h1 class="vlz_titulo">Sé parte de Kmimos</h1>
 								<div class="vlz_sub_titulo">Para registrarte como cuidador de Kmimos, llena este formulario y nos pondremos en contacto contigo.</div>
+							</div>
 							</div>
 							<div class="vlz_cell25 vlz_banner_cuidador_contenedor">
 								<img class="vlz_banner_cuidador" src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/banner_cuidador.jpeg">
