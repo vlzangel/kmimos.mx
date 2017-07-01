@@ -455,7 +455,7 @@
             }
         ?>
 
-        <?php # Scritp Mixpanel Javascript Solo para "Home"
+        <?php /*
         if( is_front_page() ){ ?> 
             <script>      
                 mixpanel.identify();
@@ -523,7 +523,7 @@
                     }   
                 </script> <?php 
             }
-        } 
+        } */
 
             echo comprimir_styles($scrits);
             echo comprimir_styles($styles);

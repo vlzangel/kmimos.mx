@@ -1,36 +1,25 @@
 <?php 
 
 	if( $post->post_name == "carro" ){
-
 		if( isset($_GET['removed_item']) ){
-
 			global $wpdb;
 			$D = $wpdb;
 			$id_user = get_current_user_id();
-
 			$session = $D->get_var("SELECT session_value FROM wp_woocommerce_sessions WHERE session_key = ".$id_user );
 			$carrito = unserialize($session);
-
 			$removido = unserialize($carrito['removed_cart_contents']);
-
 			$producto = 0;
 			foreach ($removido as $key => $value) {
 				$producto = $value['product_id'];
 			}
-
 			$url = $D->get_var("SELECT post_name FROM wp_posts WHERE ID = ".$producto );
-
 			$url = get_home_url()."/producto/".$url."/";
-
 			header("location: ".$url);
-
 		}
-
 	}
 
 	if( isset($_GET['init'])){
 		global $wpdb;
-
 		$sql = "
 			SELECT 
 				u.user_email AS mail,
@@ -45,36 +34,27 @@
 				u.ID
 		";
 		$data = $wpdb->get_row($sql);
-
 		$info = array();
 	    $info['user_login']     = sanitize_user($data->mail, true);
 	    $info['user_password']  = sanitize_text_field($data->clave);
-
 	    $user_signon = wp_signon( $info, true );
 	    wp_set_auth_cookie($user_signon->ID);
-
 	    header("location: ".get_home_url()."/perfil-usuario/?ua=profile");
 	}
 
 	if( isset($_GET['i'])){
 		global $current_user;
-
         $_SESSION['id_admin'] = $current_user->ID;
         $_SESSION['admin_sub_login'] = "YES";
-
 		global $wpdb;
-
 		$sql = "SELECT ID FROM wp_users WHERE md5(ID) = '{$_GET['i']}'";
-		// $sql = "SELECT ID FROM wp_users WHERE ID = '{$_GET['i']}'";
 		$data = $wpdb->get_row($sql);
-
 	    $user_id = $data->ID;
 		$user = get_user_by( 'id', $user_id ); 
 		if( $user ) {
 		    wp_set_current_user( $user_id, $user->user_login );
 		    wp_set_auth_cookie( $user_id );
 		}
-
 		if( isset($_GET['admin']) ){
 	        $_SESSION['id_admin'] 		 = "";
 	        $_SESSION['admin_sub_login'] = "";
@@ -83,6 +63,19 @@
 	   		header("location: ".get_home_url()."/perfil-usuario/?ua=profile");
 		}
 	}
+/*
+	global $post;
+	if( $post->post_name == "carro" && isset($_GET['remove_item']) ){
+		$carro = WC()->cart->get_cart_item($_GET['remove_item']);
+
+		echo "<pre>";
+			print_r($carro);
+		echo "</pre>";
+
+		update_cupos($carro['booking']['_booking_id'], "-");
+
+		exit;
+	}*/
 
 ?><!doctype html>
 <html <?php language_attributes(); ?> class="no-js">
@@ -241,13 +234,13 @@
 				ga('send', 'pageview');
 			</script>";
 		?>
-<!-- 
+
 		<script type="text/javascript">(function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};g&&c(g,"state")&&(i=JSON.parse(decodeURIComponent(c(g,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",g),history.replaceState(i.desiredHash||"",e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,
 			0)))}}var d=a;"undefined"!==typeof f?d=a[f]=[]:f="mixpanel";d.people=d.people||[];d.toString=function(b){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);b||(a+=" (stub)");return a};d.people.toString=function(){return d.toString(1)+".people (stub)"};k="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
 			for(h=0;h<k.length;h++)e(d,k[h]);a._i.push([b,c,f])};a.__SV=1.2;b=e.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"<?php echo get_home_url().'/wp-content/plugins/kmimos/javascript/mixpanel-2-latest.min.js'; ?>" : "<?php echo get_home_url().'/wp-content/plugins/kmimos/javascript/mixpanel-2-latest.min.js'; ?>";c=e.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c)}})(document,window.mixpanel||[]);
 			mixpanel.init("972817bb3a7c91a4b95c1641495dfeb7");
 
-		</script>end Mixpanel -->
+		</script><!-- end Mixpanel -->
 
 	</head>
 	<body <?php body_class(); ?> >
@@ -467,7 +460,7 @@
 							<div class="pf-menu-container">
 								
 								<nav id="pf-primary-nav" class="pf-nav-dropdown clearfix">
-									<style>
+									<?php $vlz_styles = '<style>
 									.ser_cuidador{
 										vertical-align: middle;
 										text-align: center;
@@ -530,10 +523,9 @@
 										#pf-primary-nav-button,
 										#pf-topprimary-nav-button{
 											display: inline-block;
-											/*padding: 4px 0px;*/
+											padding: 4px 0px;
 										}
-									}
-									</style>
+									} </style>'; echo comprimir_styles($vlz_styles); ?>
 									<ul class="pf-nav-dropdown pfnavmenu pf-topnavmenu">
 										<?php 
 											pointfinder_navigation_menu();
