@@ -31,7 +31,6 @@
     /* Fin Filtros por rangos */
 
     /* Ordenamientos */
-	    $orderby = (isset($orderby)) ? "" : "" ;
 	    switch ($orderby) {
 	    	case 'rating_desc':
 	    		$orderby = "rating DESC, valoraciones DESC";
@@ -141,10 +140,9 @@
     $pines_json = "<script>var pines = eval('".$pines_json."');</script>";
 	$_SESSION['pines'] = $pines_json;
 	
-	// echo "<pre style='display: block;'>";
-	// 	print_r($sql);
-	// 	print_r($cuidadores);
-	// echo "</pre>";
+	echo "<pre style='display: block;'>";
+		print_r($sql);
+	echo "</pre>";
 	
 	$_SESSION['busqueda'] = serialize($_POST);
     $_SESSION['resultado_busqueda'] = $cuidadores;
