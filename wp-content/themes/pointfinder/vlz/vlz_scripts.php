@@ -4,7 +4,6 @@
 	$N = geo("N");
 	$S = geo("S");
 
-	echo "<!-- Hola -->";
 	echo get_estados_municipios();
 ?>
 <script type="text/javascript">
@@ -57,7 +56,7 @@
 	var map;
 
 	<?php
-		foreach ($coordenadas_all_2 as $value) {
+		/*foreach ($coordenadas_all_2 as $value) {
 			//if( geo("C", $value) ){
 				echo "var infowindow_{$value['ID']}; var marker_{$value['ID']}; ";
 			//}	
@@ -121,7 +120,8 @@
 			if( count($coordenadas_all_2) > 0 ){ echo "map.fitBounds(bounds);"; }
 
 		?>
-	}
+	} */
+?>
 
 	jQuery("#estados").on("change", function(e){
 
@@ -265,7 +265,7 @@
 			jQuery.prettyPhoto.open(jQuery(this).attr('data-pf-link'));
 		}
 	});
-
+/*
 	(function(d, s){
 		$ = d.createElement(s), e = d.getElementsByTagName(s)[0];
 		$.async=!0;
@@ -274,7 +274,5 @@
 		$.type='text/javascript';
 		e.parentNode.insertBefore($, e)
 	})(document,'script');
-	
+*/
 </script>
-
-<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyD-xrN3-wUMmJ6u2pY_QEQtpMYquGc70F8&callback=initMap"> -->

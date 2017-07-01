@@ -61,7 +61,7 @@
 	}
 
 	/* Galeria */
-
+/*
 	$id_cuidador = ($cuidador->id)-5000;
 	$path_galeria = "wp-content/uploads/cuidadores/galerias/".$id_cuidador."/";
 
@@ -113,13 +113,9 @@
 	      	}
   		} 
 	}
-
+*/
 	include("vlz/vlz_style_perfil.php");
-
-	$cuidadores = $wpdb->get_results("SELECT * FROM cuidadores");
-	foreach ($cuidadores as $key => $value) {
-		vlz_actualizar_ratings($value->id_post);
-	} ?>
+ ?>
 
 	<style type="text/css">
 		/*
@@ -393,6 +389,7 @@
 		<?php } ?>
 
 		<?php
+/*
 			$comments = count( get_comments('post_id='.$post->ID) );
 			//if( $comments > 0 ){ ?>
 				<div class="vlz_separador"></div>
@@ -401,6 +398,7 @@
 					<?php  comments_template(); ?>
 				</div> <?php
 			//}
+*/
 		?>
 
 	</div>

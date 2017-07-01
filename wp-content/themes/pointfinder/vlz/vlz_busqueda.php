@@ -91,7 +91,7 @@
 		</div>
 
 		<div class="vlz_contenedor_mapa">
-			<div id="mapa" ></div>
+			<!-- <div id="mapa" ></div> -->
 			<div class="vlz_bloquear_map" onclick='jQuery(".vlz_bloquear_map").css("display", "none");'><p style="color: #fff; z-index: 1000; margin-top: 40%;text-align: center;"></p></div>
 		</div>
 
@@ -329,7 +329,7 @@
 					echo '<div class="col-lg-3" style="position: relative;"> <div class="pfwidgettitle"><div class="widgetheader">Filtrar Cuidadores</div></div>';
 
 						include("vlz_formulario.php");
-						include("vlz_sql_marcadores.php");
+						//include("vlz_sql_marcadores.php");
 						include("vlz_scripts.php");
 
 					echo '</div> 
