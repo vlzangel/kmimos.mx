@@ -72,7 +72,7 @@
 	        $FILTRO_UBICACION 	= "HAVING DISTANCIA < ".($distancia+0);
 	        $ubicaciones_inner  = "INNER JOIN ubicaciones AS ubi ON ( cuidadores.id = ubi.cuidador )";
 	        $ubicaciones_filtro = "AND ( ( $ubicacion ) OR ( {$calculo_distancia} <= ".($distancia+0)." ) )";
-	        if( $orderby == "" ){ $orderby = "DISTANCIA ASC"; }
+	        //if( $orderby == "" ){ $orderby = "DISTANCIA ASC"; }
 	    }else{ 
 	        if( $tipo_busqueda == "otra-localidad" && $estados != "" ){
 	            $ubicaciones_inner = "INNER JOIN ubicaciones AS ubi ON ( cuidadores.id = ubi.cuidador )";
