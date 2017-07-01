@@ -172,7 +172,7 @@
         return $img;
     }
        
-    $home = $db->get_var("SELECT option_name FROM wp_options WHERE option_name = 'siteurl'", "option_name");
+    $home = $db->get_var("SELECT option_value FROM wp_options WHERE option_name = 'siteurl'", "option_value");
 
 	header("location: {$home}/busqueda/");
 ?>
