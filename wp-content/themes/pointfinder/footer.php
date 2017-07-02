@@ -64,6 +64,9 @@
 
             $styles = "
                 <style type='text/css'>
+                    .wpf-container{
+                        overflow: hidden;
+                    }
                     .wcvendors_sold_by_in_loop{
                         display: none !important;
                     }
