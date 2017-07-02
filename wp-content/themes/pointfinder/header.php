@@ -1,83 +1,4 @@
-<?php 
-
-	if( $post->post_name == "carro" ){
-		if( isset($_GET['removed_item']) ){
-			global $wpdb;
-			$D = $wpdb;
-			$id_user = get_current_user_id();
-			$session = $D->get_var("SELECT session_value FROM wp_woocommerce_sessions WHERE session_key = ".$id_user );
-			$carrito = unserialize($session);
-			$removido = unserialize($carrito['removed_cart_contents']);
-			$producto = 0;
-			foreach ($removido as $key => $value) {
-				$producto = $value['product_id'];
-			}
-			$url = $D->get_var("SELECT post_name FROM wp_posts WHERE ID = ".$producto );
-			$url = get_home_url()."/producto/".$url."/";
-			header("location: ".$url);
-		}
-	}
-
-	if( isset($_GET['init'])){
-		global $wpdb;
-		$sql = "
-			SELECT 
-				u.user_email AS mail,
-				m.meta_value AS clave
-			FROM 
-				wp_users AS u
-			INNER JOIN wp_usermeta AS m ON (m.user_id = u.ID)
-			WHERE 
-				u.ID = '{$_GET['init']}' AND 
-				m.meta_key = 'user_pass'
-			GROUP BY 
-				u.ID
-		";
-		$data = $wpdb->get_row($sql);
-		$info = array();
-	    $info['user_login']     = sanitize_user($data->mail, true);
-	    $info['user_password']  = sanitize_text_field($data->clave);
-	    $user_signon = wp_signon( $info, true );
-	    wp_set_auth_cookie($user_signon->ID);
-	    header("location: ".get_home_url()."/perfil-usuario/?ua=profile");
-	}
-
-	if( isset($_GET['i'])){
-		global $current_user;
-        $_SESSION['id_admin'] = $current_user->ID;
-        $_SESSION['admin_sub_login'] = "YES";
-		global $wpdb;
-		$sql = "SELECT ID FROM wp_users WHERE md5(ID) = '{$_GET['i']}'";
-		$data = $wpdb->get_row($sql);
-	    $user_id = $data->ID;
-		$user = get_user_by( 'id', $user_id ); 
-		if( $user ) {
-		    wp_set_current_user( $user_id, $user->user_login );
-		    wp_set_auth_cookie( $user_id );
-		}
-		if( isset($_GET['admin']) ){
-	        $_SESSION['id_admin'] 		 = "";
-	        $_SESSION['admin_sub_login'] = "";
-	   		header("location: ".get_home_url()."/wp-admin/admin.php?page=bp_clientes");
-		}else{
-	   		header("location: ".get_home_url()."/perfil-usuario/?ua=profile");
-		}
-	}
-/*
-	global $post;
-	if( $post->post_name == "carro" && isset($_GET['remove_item']) ){
-		$carro = WC()->cart->get_cart_item($_GET['remove_item']);
-
-		echo "<pre>";
-			print_r($carro);
-		echo "</pre>";
-
-		update_cupos($carro['booking']['_booking_id'], "-");
-
-		exit;
-	}*/
-
-?><!doctype html>
+<?php include 'pre-header.php'; ?><!doctype html>
 <html <?php language_attributes(); ?> class="no-js">
 	<head>
 		<meta charset="<?php bloginfo('charset'); ?>">		
@@ -85,9 +6,7 @@
 			if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== false)){
         		header('X-UA-Compatible: IE=edge,chrome=1');
         	}
-		?>
-				
-		<?php
+
 			if ( is_page() ){
 				global $post;
 				$descripcion = get_post_meta($post->ID, 'kmimos_descripcion', true);
@@ -100,27 +19,9 @@
         	}else{
         		?> <meta name="description" content="<?php esc_html(bloginfo('description')); ?>"> <?php
         	}
-		?>
-		<!--[if lt IE 9]>
-		<script src="<?php echo get_home_url()."/wp-content/themes/pointfinder"; ?>/js/html5shiv.js"></script>
-		<![endif]-->
-		<?php
 
-		$general_responsive = esc_attr(PFSAIssetControl('general_responsive','','1'));
-		if($general_responsive == 1){
-			$as_mobile_zoom = PFASSIssetControl('as_mobile_zoom','','1');
-			if ($as_mobile_zoom == 1) {
-				echo '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">';
-			} else {
-				echo '<meta name="viewport" content="width=device-width">';
-			}
-		}
-		
-		$iostouchicon_1 = esc_url(PFSAIssetControl('setup17_logosettings_sitefavicon','url',''));
-		if($iostouchicon_1){
-			echo '<link rel="shortcut icon" href="'.$iostouchicon_1.'" type="image/x-icon">';
-			echo '<link rel="icon" href="'.$iostouchicon_1.'" type="image/x-icon">';
-		}
+        	echo '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">';
+
 
 		/* Start: Transparent Header Addon */
 			global $post;
@@ -223,16 +124,7 @@
 
 		wp_head();
 
-		echo "
-			<script type='text/javascript'>
-				(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-			  	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-			  	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-			  	})(window,document,'script','".get_home_url().'/wp-content/plugins/kmimos/javascript/analytics.js'."','ga');
-
-				ga('create', 'UA-56422840-1', 'auto');
-				ga('send', 'pageview');
-			</script>";
+		
 		?>
 
 		<script type="text/javascript">(function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};g&&c(g,"state")&&(i=JSON.parse(decodeURIComponent(c(g,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",g),history.replaceState(i.desiredHash||"",e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,
@@ -319,6 +211,18 @@
 								<div class="pf-toplinks-right clearfix">
 									<nav id="pf-topprimary-nav" class="pf-topprimary-nav pf-nav-dropdown clearfix hidden-sm hidden-xs">
 										<ul class="pf-nav-dropdown pfnavmenu pf-topnavmenu ">
+											<ul class="pf-nav-dropdown pfnavmenu pf-topnavmenu ">
+												<li class="pf-my-account pfloggedin"></li>
+																						<li class="pf-my-account pfloggedin" style="min-width: 200px; text-align: right;">
+												<a href="#">
+												<i class="pfadmicon-glyph-632"></i> 
+												kmimos												<span class="pfadmicon-glyph-860"></span></a>
+												<ul class="pfnavsub-menu sub-menu menu-odd  menu-depth-1 hidden-xs hidden-sm">
+													<li><a href="http://mx.kmimos.dev/perfil-usuario/?ua=profile"><i class="pfadmicon-glyph-406"></i> Mi Perfil</a></li><li><a href="http://mx.kmimos.dev/perfil-usuario/?ua=mypets"><i class="pfadmicon-glyph-460"></i> Mis Mascotas</a></li><li><a href="http://mx.kmimos.dev/perfil-usuario/?ua=favorites"><i class="pfadmicon-glyph-375"></i> Cuidadores Favoritos</a></li><li><a href="http://mx.kmimos.dev/perfil-usuario/?ua=invoices"><i class="pfadmicon-glyph-33"></i> Historial </a></li><li><a href="http://mx.kmimos.dev/perfil-usuario/?ua=caregiver"><i class="pfadmicon-glyph-33"></i> Mis Solicitudes</a></li><li><a href="http://mx.kmimos.dev/wp-login.php?action=logout&amp;redirect_to=http%3A%2F%2Fmx.kmimos.dev&amp;_wpnonce=a7224a8e0a"><i class="pfadmicon-glyph-476"></i> Cerrar Sesión</a></li>												</ul>
+												
+											</li>
+																					</ul>
+											<?php /*
 											<li class="pf-my-account pfloggedin">
 												<?php 
 												if(function_exists('icl_object_id')) {
@@ -399,7 +303,7 @@
 												</ul>
 												
 											</li>
-											<?php } ?>
+											<?php } */ ?>
 										</ul>
 									</nav>
 								</div>

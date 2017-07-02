@@ -11,6 +11,6 @@
     </a>
 </div>
 <div class="vlz_contenedor_mapa">
-	<!-- <div id="mapa" ></div> -->
+    	<div id="mapa" ></div>
 	<div class="vlz_bloquear_map" onclick='jQuery(".vlz_bloquear_map").css("display", "none");'><p style="color: #fff; z-index: 1000; margin-top: 40%;text-align: center;"></p></div>
 </div>

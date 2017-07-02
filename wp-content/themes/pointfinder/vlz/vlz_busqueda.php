@@ -22,7 +22,10 @@
 	// $depuracion[] = $_POST;
 	// $depuracion[] = $resultados;
 	$favoritos = get_favoritos();
-	echo $_SESSION['pines'];
+	
+	$pines = unserialize($_SESSION['pines_array']);
+	$pines_visibles = array();
+
 	$top_destacados = get_destacados( $_POST['estados'] );
 	echo '<div id="lista" class="pf-blogpage-spacing pfb-top"></div>';
 	echo '<section role="main" class="blog-full-width"> 
@@ -40,6 +43,7 @@
 							if( $TR > 0 ){
 				        		for ($i=$paginacion["inicio"]; $i < $paginacion["fin"]; $i++) {
 				        			$cuidador = $resultados[$i];
+				        			$pines_visibles[] = $pines[$i];
 				        			include("vlz_plantilla_listado.php");
 								}
 							}else{
@@ -59,6 +63,10 @@
 					</div>'; echo '
 					<div class="col-lg-3" style="position: relative;"> <div class="pfwidgettitle"><div class="widgetheader">Filtrar Cuidadores</div></div>';
 						include("vlz_formulario.php");
+
+						$pines_json = json_encode($pines_visibles);
+    					echo "<script>var pines = eval('".$pines_json."');</script>";
+
 						include("vlz_scripts.php"); echo '
 					</div> 
 				</div> 

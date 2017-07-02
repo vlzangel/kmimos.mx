@@ -139,10 +139,7 @@
 	$pines_json = json_encode($pines);
     $pines_json = "<script>var pines = eval('".$pines_json."');</script>";
 	$_SESSION['pines'] = $pines_json;
-	
-	echo "<pre style='display: block;'>";
-		print_r($sql);
-	echo "</pre>";
+	$_SESSION['pines_array'] = serialize($pines);
 	
 	$_SESSION['busqueda'] = serialize($_POST);
     $_SESSION['resultado_busqueda'] = $cuidadores;

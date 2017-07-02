@@ -20,8 +20,7 @@ add_action( 'wp_print_scripts', 'wpdocs_dequeue_script', 100 );
 	Scripts & Styles
 \*------------------------------------*/
 
-function pf_styleandscripts()
-{		
+function pf_styleandscripts(){		
 		$usemin = 1;
 		$general_rtlsupport = PFSAIssetControl('general_rtlsupport','','0');
 
@@ -36,7 +35,7 @@ function pf_styleandscripts()
 		wp_enqueue_script('jquery-ui-dialog');
 		wp_enqueue_script('jquery-ui-autocomplete');
 		wp_deregister_script('wpb_composer_front_js');
-		wp_register_script( 'wpb_composer_front_js', get_home_url()."/wp-content/themes/pointfinder" .'/js/js_composer_front.min.js', array( 'jquery' ), '4.9.1.1', true );
+		// wp_register_script( 'wpb_composer_front_js', get_home_url()."/wp-content/themes/pointfinder" .'/js/js_composer_front.min.js', array( 'jquery' ), '4.9.1.1', true );
 
 		/*------------------------------------*\
 			Special Styles
