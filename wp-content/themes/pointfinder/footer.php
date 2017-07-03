@@ -523,10 +523,10 @@ $HTML = "</div></div>
         } 
         */
 
-        $HTML .= "</body></html>";
-
-        echo comprimir_styles($HTML);
+        //echo comprimir_styles($HTML);
     
         wp_footer();
+
+        echo "</body></html>";
 ?>
         
