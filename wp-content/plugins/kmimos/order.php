@@ -105,7 +105,7 @@
 			.$lista_cercanos;
 	    
    		$msg_admin = kmimos_get_email_html("Reserva Cancelada por Cuidador - ".$nom_cuidador, $msg, "", true, true);
-   		wp_mail( $email_admin, "Cancelación de Reserva", $msg_admin, kmimos_mails_administradores());
+   		kmimos_mails_administradores_new("Cancelación de Reserva", $msg_admin);
 
    		$msg = $styles.'
    			<div>
@@ -170,7 +170,7 @@
 			.$detalles_servicio_cuidador;
 
    		$msg_admin = kmimos_get_email_html("Confirmación de Reserva", $msg_admin, "", true, true);
-   		wp_mail( $email_admin, "Confirmación de Reserva", $msg_admin, kmimos_mails_administradores());
+   		kmimos_mails_administradores_new("Confirmación de Reserva", $msg_admin);
 
    		$nota_importante = $styles.'
    			<p align="justify"><strong>Importante:</strong></p>

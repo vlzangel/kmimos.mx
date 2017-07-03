@@ -2,15 +2,11 @@
 	/*
 		Template Name: vlz quiero ser cuidador
 	*/
-
 	if (!isset($_SESSION)) {
         session_start();
     }
-
 	get_header();
-
 	if(function_exists('PFGetHeaderBar')){PFGetHeaderBar();} 
-
 	wp_enqueue_script(
 		'redimencionar_imagenes',
 		get_home_url()."/wp-content/themes/pointfinder/js/kmimos_imgs.js",
@@ -101,10 +97,8 @@
 															$selected='';
 															if(array_key_exists('wlabel',$_SESSION)){
 																$wlabel=$_SESSION['wlabel'];
-
 																if($key=='Volaris' && $wlabel=='volaris'){
 																	$selected='selected';
-
 																}else if($key=='Vintermex' && $wlabel=='viajesintermex'){
 																	$selected='selected';
 																}
@@ -185,13 +179,11 @@
 												<option value="">Seleccione un estado</option>
 												<?php
 													global $wpdb;
-
 												    $estados = $wpdb->get_results("SELECT * FROM states WHERE country_id = 1 ORDER BY name ASC");
 												    $str_estados = "";
 												    foreach($estados as $estado) { 
 												        $str_estados .= "<option value='".$estado->id."'>".$estado->name."</option>";
 												    } 
-
 												    echo $str_estados = utf8_decode($str_estados);
 												?>
 											</select>
@@ -325,7 +317,6 @@
 											"agresivos_perros"  => "Agresivos con perros",
 											"agresivos_humanos" => "Agresivos con humanos",
 										);
-
 										foreach ($Comportamientos as $key => $value) {
 											echo '
 												<div class="vlz_cell25">
@@ -468,13 +459,11 @@
 											        "medio" => "Medias",
 											        "largo" => "Largas"
 											    );
-
 											    $ayudas_trans_s = array(
 											        "corto" => "Precio por recoger o llevar al perrito con tu carro. (Máximo 5 km. de Distancia)",
 											        "medio" => "Precio por recoger o llevar al perrito con tu carro. (Máximo 9 km. de distancia)",
 											        "largo" => "Precio por recoger o llevar al perrito con tu carro (10 km en adelante. de distancia)"
 											    );
-
 												foreach ($rutas as $key => $value) {
 													echo '
 														<div class="vlz_cell33">
@@ -656,10 +645,8 @@
 </div>
 
 <!-- script type="text/javascript">
-
 	jQuery('#btn-instrucciones-header')
 		.html('<a class="btn-instrucciones-header pull-left hidden-md hidden-lg hidden-xl" onclick="jQuery(' + "'#modal_instrucciones').css('display', 'block');" + '">Instrucciones</a>');
-
 </script -->
 
 <?php get_footer(); ?>
