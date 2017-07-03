@@ -1,6 +1,7 @@
 <?php
 	
-	include_once('includes/functions/vlz_functions.php');
+    include_once('includes/functions/vlz_functions.php');
+	include_once('angel/funciones.php');
 	
 	if(!function_exists('angel_include_script')){
 	    function angel_include_script(){

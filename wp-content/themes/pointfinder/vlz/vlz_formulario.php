@@ -126,10 +126,22 @@
 		$valoraciones_rangos_2 .= "<option value='$i' ".selected($i, $_POST['rangos'][5], false).">$i</option>";
 	}
 
-	$token = md5(rand());
-	echo "
+	$FORMULARIO = "
+	<style>
+		input[type='date']{
+			line-height: 1;
+			margin-bottom: 3px;
+			border: 1px solid #ccc;
+		    padding-left: 30px;
+		}
+		.icono {
+		    position: absolute;
+		    font-size: 25px;
+		    margin-left: 3px;
+		}
+	</style>
 	<div id='filtros'></div>
-	<form action='".get_home_url()."/busqueda' method='POST' class='vlz_form' id='vlz_form_buscar' style='margin-top: 20px;'>
+	<form action='".get_home_url()."/wp-content/themes/pointfinder/vlz/buscar.php' method='POST' class='vlz_form' id='vlz_form_buscar' style='margin-top: 20px;'>
 
 		<input type='submit' value='Aplicar Filtros' class='theme_button vlz_boton'>
 
@@ -252,51 +264,5 @@
 		<input type='submit' value='Aplicar Filtros' class='theme_button vlz_boton'>
 	</form>";
 
-	/*
-	echo '
-		<div class="pfwidgettitle"><div class="widgetheader">Cuidadores Destacados</div></div>
-
-		<div class="pfwidgetinner">
-			<div class="pfwidgetinner">
-			    <ul class="pf-widget-itemlist">
-			        <li class="clearfix widget-featured">
-			            <a href="https://kmimos.com.mx/petsitters/deiree-miranda-diaz/" title="">
-			                <img src="https://kmimos.com.mx/wp-content/uploads/2016/03/0014_000-150x150.jpg" class="alignleft img40x40 wp-post-image" alt="0014_000p" srcset="https://kmimos.com.mx/wp-content/uploads/2016/03/0014_000-150x150.jpg 150w, https://kmimos.com.mx/wp-content/uploads/2016/03/0014_000-180x180.jpg 180w, https://kmimos.com.mx/wp-content/uploads/2016/03/0014_000-300x300.jpg 300w" sizes="(max-width: 150px) 100vw, 150px">                <div class="title">Deiree Miranda Diaz</div>
-			                <div class="price">Hospedaje desde $144.00/noche</div>
-			                <sup>Xochimilco - Distrito Federal</sup>
-			            </a>
-			        </li>
-			        <li class="clearfix widget-featured">
-			            <a href="https://kmimos.com.mx/petsitters/daniel-garcia-moreno/" title="">
-			                <img src="https://kmimos.com.mx/wp-content/uploads/2016/03/0024_000-150x150.jpg" class="alignleft img40x40 wp-post-image" alt="0024_000p" srcset="https://kmimos.com.mx/wp-content/uploads/2016/03/0024_000-150x150.jpg 150w, https://kmimos.com.mx/wp-content/uploads/2016/03/0024_000-180x180.jpg 180w, https://kmimos.com.mx/wp-content/uploads/2016/03/0024_000-300x300.jpg 300w" sizes="(max-width: 150px) 100vw, 150px">                <div class="title">Daniel García Moreno</div>
-			                <div class="price">Hospedaje desde $204.00/noche</div>
-			                <sup>Ocoyoacac - México</sup>
-			            </a>
-			        </li>
-			        <li class="clearfix widget-featured">
-			            <a href="https://kmimos.com.mx/petsitters/claudia-ramirez/" title="">
-			                <img src="https://kmimos.com.mx/wp-content/uploads/2016/03/0029_000-150x150.jpg" class="alignleft img40x40 wp-post-image" alt="0029_000p" srcset="https://kmimos.com.mx/wp-content/uploads/2016/03/0029_000-150x150.jpg 150w, https://kmimos.com.mx/wp-content/uploads/2016/03/0029_000-180x180.jpg 180w, https://kmimos.com.mx/wp-content/uploads/2016/03/0029_000-300x300.jpg 300w" sizes="(max-width: 150px) 100vw, 150px">                <div class="title">Claudia Ramirez</div>
-			                <div class="price">Hospedaje desde $252.00/noche</div>
-			                <sup>Tlalpan - Distrito Federal</sup>
-			            </a>
-			        </li>
-			        <li class="clearfix widget-featured">
-			            <a href="https://kmimos.com.mx/petsitters/pablo-alberto-herrera-santos/" title="">
-			                <img src="https://kmimos.com.mx/wp-content/uploads/2016/03/0411_000-150x150.jpg" class="alignleft img40x40 wp-post-image" alt="0411_000p" srcset="https://kmimos.com.mx/wp-content/uploads/2016/03/0411_000-150x150.jpg 150w, https://kmimos.com.mx/wp-content/uploads/2016/03/0411_000-180x180.jpg 180w, https://kmimos.com.mx/wp-content/uploads/2016/03/0411_000-300x300.jpg 300w" sizes="(max-width: 150px) 100vw, 150px">                <div class="title">Pablo Alberto Herrera Santos</div>
-			                <div class="price">Hospedaje desde $264.00/noche</div>
-			                <sup>Gustavo A. Madero - Distrito Federal</sup>
-			            </a>
-			        </li>
-			        <li class="clearfix widget-featured">
-			            <a href="https://kmimos.com.mx/petsitters/helga-perellon/" title="">
-			                <img src="https://kmimos.com.mx/wp-content/uploads/2016/03/0072_000-150x150.jpg" class="alignleft img40x40 wp-post-image" alt="0072_000p" srcset="https://kmimos.com.mx/wp-content/uploads/2016/03/0072_000-150x150.jpg 150w, https://kmimos.com.mx/wp-content/uploads/2016/03/0072_000-180x180.jpg 180w, https://kmimos.com.mx/wp-content/uploads/2016/03/0072_000-300x300.jpg 300w" sizes="(max-width: 150px) 100vw, 150px">                <div class="title">Helga Perellón</div>
-			                <div class="price">Hospedaje desde $240.00/noche</div>
-			                <sup>Miguel Hidalgo - Distrito Federal</sup>
-			            </a>
-			        </li>
-			    </ul>
-			</div>
-		</div>
-	';
-	*/
+	$FORMULARIO = ($FORMULARIO);
 ?>
