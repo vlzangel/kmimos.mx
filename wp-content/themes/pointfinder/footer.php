@@ -87,10 +87,11 @@ $HTML = "</div></div>
         .switch-candy span {
             color: #000000 !important;
         }
-        .vc-image-carousel .vc-carousel-slideline-inner .vc-inner img {
+        .vc-image-carousel .vc-carousel-slideline-inner .vc-inner img:hover {
             -webkit-filter: grayscale(0%) !important;
             filter: grayscale(0%) !important;
             opacity: 1 !important;
+            transition: all 0.5s ease;
         }
         .wpmenucartli {
             display: none !important;
