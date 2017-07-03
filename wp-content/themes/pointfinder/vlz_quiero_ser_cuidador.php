@@ -587,7 +587,7 @@
 		<div class="vlz_modal_ventana jj_modal_ventana" style="margin-top: 6vh!important; ">
 
 			<div style="text-align: center;background:#00d8b5; color: #fff;" class="vlz_modal_titulo">
-				Te informamos que para activar tu perfil, debes seguir estos pasos:
+				Pasos para convertirte en cuidador certificado kmimos:
 				<a style="display:none; color:#fff!important; right:15px;position: absolute; font-weight: bold;" onclick="jQuery('#modal_instrucciones').css('display', 'none');">x</a>
 			</div>
 			<div class="vlz_modal_contenido" style="  max-height: 83vh; padding:0px;">
