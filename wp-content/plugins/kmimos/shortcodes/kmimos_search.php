@@ -2,8 +2,6 @@
 
     //[kmimos_search]
 
-    echo get_estados_municipios(); 
-
     $HOY = date("Y-m-d");
 
     $ESTADOS = "
@@ -330,33 +328,40 @@
                     $('#selector_locacion').addClass('hide');
                 });
                 function cargar_municipios(CB){
-                    var estado_id = jQuery('#estado_cuidador').val();
+                    var estado_id = jQuery('#estado_cuidador').val();       
                     if( estado_id != '' ){
-                        var html = '<option value=\'\'>Seleccione un municipio</option>';
-                        jQuery.each(estados_municipios[estado_id]['municipios'], function(i, val) {
-                            html += '<option value='+val.id+' data-id='+i+'>'+val.nombre+'</option>';
-                        });
-                        jQuery('#municipio_cuidador').html(html);
-                        if( CB != undefined) {
-                            CB();
-                        }
+                        jQuery.getJSON( 
+                            '".get_bloginfo( 'template_directory', 'display' )."/vlz/ajax_municipios.php', 
+                            {estado: estado_id} 
+                        ).done(
+                            function( data, textStatus, jqXHR ) {
+                                var html = \"<option value=''>Seleccione un municipio</option>\";
+                                jQuery.each(data, function(i, val) {
+                                    html += '<option value='+val.id+'>'+val.name+'</option>';
+                                });
+                                jQuery('#municipio_cuidador').html(html);
+
+                                if( CB != undefined) {
+                                    CB();
+                                }
+                            }
+                        ).fail(
+                            function( jqXHR, textStatus, errorThrown ) {
+                                console.log( 'Error: ' +  errorThrown );
+                            }
+                        );
                     }
                 }
                 jQuery('#estado_cuidador').on('change', function(e){
                     cargar_municipios();
                 });
                 cargar_municipios(function(){
-                    jQuery('#municipio_cuidador > option[value='+jQuery('#municipio_cache').val()+']').attr('selected', 'selected');
-                    vlz_coordenadas();
+                    jQuery(\"#municipio_cuidador > option[value='\"+jQuery('#municipio_cache').val()+\"']\").attr('selected', 'selected');
                 });
                 jQuery('#municipio_cuidador').on('change', function(e){
                     jQuery('#municipio_cache').attr('value', jQuery('#municipio_cuidador').val() );
-                    vlz_coordenadas();
                 });
-                function vlz_coordenadas(){
-                    var estado_id = jQuery('#estado_cuidador').val();
-                    var municipio_id = jQuery('#municipio_cuidador > option[value='+jQuery('#municipio_cache').val()+']').attr('data-id');
-                }
+
                 $('.boton_servicio > input:checkbox').each(function(index){
                     var servicio = $(this).attr('data-key');
                     var activo = $(this).prop('checked');

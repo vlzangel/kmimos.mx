@@ -186,5 +186,5 @@
         <div class="wpf-container">
         	<div id="pfmaincontent" class="wpf-container-inner">';
 
-        echo ($HTML);
+        echo comprimir_styles($HTML);
 
