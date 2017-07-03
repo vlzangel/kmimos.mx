@@ -512,7 +512,7 @@
             </div>
         </div>
         <div style='padding: 0px 0px 60px;'>
-            ".do_shortcode("[pt_pretty_testimonial]")."
+            
         </div>
     </div>
 
