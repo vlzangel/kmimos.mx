@@ -163,6 +163,49 @@
             margin: 7px 0px 15px 38px;
             text-align: left;
         }
+        #popup_mas_servicios{
+            overflow: hidden;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            z-index: 999999999999999999;
+            background: rgba(0,0,0,0.6);
+            width: 100%;
+            height: 100%;
+            vertical-align: middle;
+        }
+        #mas_servicios{
+            display: inline-block;
+            position: relative;
+            max-width: 340px !important;
+            vertical-align: middle;
+            overflow: hidden;
+            background: #FFF;
+            padding: 25px 5px 10px;
+            margin: 50px auto;
+            border-radius: 8px;
+            border: solid 5px rgba(0,0,0,0.8);
+            vertical-align: middle;
+        }
+        #cerrar_mas_servicios{
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            background: #FFF;
+            padding: 3px;
+            font-size: 16px;
+            border: solid 1px #333;
+            border-top: 0px;
+            border-right: 0px;
+            border-radius: 0px 0px 0px 5px;
+            cursor: pointer;
+        }
+        #popup_mas_servicios span{
+            display: inline-block;
+            width: 0px;
+            height: 100%;
+            vertical-align: middle;
+        }
     </style>
     <div id='portada'>
         <form id='pointfinder-search-form-manual' method='POST' action='".get_home_url()."/wp-content/themes/pointfinder/vlz/buscar.php' data-ajax='false' novalidate='novalidate'>
@@ -179,8 +222,10 @@
                     <div id='servicio_cuidador_main' class='w100pc'>
                         {$SERVICIOS}
                     </div>
-                    <div id='popup_mas_servicios' style='display:none; width: 300px; overflow: hidden;'>
+                    <div id='popup_mas_servicios' style='display:none; overflow: hidden;'>
+                        <span></span>
                         <div id='mas_servicios'>
+                            <i id='cerrar_mas_servicios' class='fa fa-times' aria-hidden='true'></i>
                             $MAS_SERVICIOS
                        </div>
                     </div>
@@ -246,6 +291,19 @@
 
         (function($) {
             'use strict';
+
+            $('#ver_mas_servicios').on('click', function(){
+                if( $('#popup_mas_servicios').css('display') == 'none' ){
+                    $('#popup_mas_servicios').css('display', 'block');
+                }else{
+                    $('#popup_mas_servicios').css('display', 'none');
+                }
+            });
+
+            $('#cerrar_mas_servicios').on('click', function(){
+                $('#popup_mas_servicios').css('display', 'none');
+            });
+
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(coordenadas);
             } else {

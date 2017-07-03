@@ -91,4 +91,164 @@
             return $favoritos;
         }
     }
+    
+    if(!function_exists('get_menu_header')){
+        function get_menu_header(){
+
+            if( is_user_logged_in() ){
+
+                $current_user = wp_get_current_user();
+                $user_id = $current_user->ID;
+                $user = new WP_User( $user_id );
+                $salir = wp_logout_url( home_url() );
+
+                // echo "<pre>";
+                //     print_r($user->data->display_name);
+                // echo "</pre>";
+
+                $MENU["head"] = '
+                    <li class="pf-my-account pfloggedin"></li>
+                    <li class="pf-my-account pfloggedin" style="min-width: 200px; text-align: right;">
+                        <a href="#"> <i class="pfadmicon-glyph-632"></i> '.$user->data->display_name.' </a>
+                        <ul class="pfnavsub-menu sub-menu menu-odd  menu-depth-1 hidden-xs hidden-sm">';
+
+                $MENU["body"] = "";
+
+                $MENUS = array(
+                    "vendor" => array(
+                        array(
+                            "url"   => get_home_url()."/perfil-usuario/?ua=profile",
+                            "name"  => "Mi Perfil",
+                            "icono" => "460"
+                        ),
+                        array(
+                            "url"   => get_home_url()."/perfil-usuario/?ua=mypets",
+                            "name"  => "Mis Mascotas",
+                            "icono" => "871"
+                        ),
+                        array(
+                            "url"   => get_home_url()."/perfil-usuario/?ua=favorites",
+                            "name"  => "Cuidadores Favoritos",
+                            "icono" => "375"
+                        ),
+                        array(
+                            "url"   => get_home_url()."/perfil-usuario/?ua=invoices",
+                            "name"  => "Historial",
+                            "icono" => "33"
+                        ),
+                        array(
+                            "url"   => get_home_url()."/perfil-usuario/?ua=myshop",
+                            "name"  => "Descripción del cuidador",
+                            "icono" => "664"
+                        ),
+                        array(
+                            "url"   => get_home_url()."/perfil-usuario/?ua=myservices",
+                            "name"  => "Mis Servicios",
+                            "icono" => "453"
+                        ),
+                        array(
+                            "url"   => get_home_url()."/perfil-usuario/?ua=mypictures",
+                            "name"  => "Mis Fotos",
+                            "icono" => "82"
+                        ),
+                        array(
+                            "url"   => get_home_url()."/perfil-usuario/?ua=mybookings",
+                            "name"  => "Mis Reservas",
+                            "icono" => "33"
+                        ),
+                        array(
+                            "url"   => get_home_url()."/perfil-usuario/?ua=caregiver",
+                            "name"  => "Mis Solicitudes",
+                            "icono" => "33"
+                        ),
+                        array(
+                            "url"   => $salir,
+                            "name"  => "Cerrar Sesión",
+                            "icono" => "476"
+                        )
+                    ),
+                    "subscriber" => array(
+                        array(
+                            "url"   => get_home_url()."/perfil-usuario/?ua=profile",
+                            "name"  => "Mi Perfil",
+                            "icono" => "460"
+                        ),
+                        array(
+                            "url"   => get_home_url()."/perfil-usuario/?ua=mypets",
+                            "name"  => "Mis Mascotas",
+                            "icono" => "871"
+                        ),
+                        array(
+                            "url"   => get_home_url()."/perfil-usuario/?ua=favorites",
+                            "name"  => "Cuidadores Favoritos",
+                            "icono" => "375"
+                        ),
+                        array(
+                            "url"   => get_home_url()."/perfil-usuario/?ua=invoices",
+                            "name"  => "Historial",
+                            "icono" => "33"
+                        ),
+                        array(
+                            "url"   => $salir,
+                            "name"  => "Cerrar Sesión",
+                            "icono" => "476"
+                        )
+                    ),
+                    "administrator" => array(
+                        array(
+                            "url"   => get_home_url()."/perfil-usuario/?ua=profile",
+                            "name"  => "Mi Perfil",
+                            "icono" => "460"
+                        ),
+                        array(
+                            "url"   => get_home_url()."/perfil-usuario/?ua=mypets",
+                            "name"  => "Mis Mascotas",
+                            "icono" => "871"
+                        ),
+                        array(
+                            "url"   => get_home_url()."/perfil-usuario/?ua=favorites",
+                            "name"  => "Cuidadores Favoritos",
+                            "icono" => "375"
+                        ),
+                        array(
+                            "url"   => get_home_url()."/perfil-usuario/?ua=invoices",
+                            "name"  => "Historial",
+                            "icono" => "33"
+                        ),
+                        array(
+                            "url"   => get_home_url()."/wp-admin/",
+                            "name"  => "Panel de Control",
+                            "icono" => "421"
+                        ),
+                        array(
+                            "url"   => $salir,
+                            "name"  => "Cerrar Sesión",
+                            "icono" => "476"
+                        )
+                    )
+                );
+
+                foreach ($MENUS[ $user->roles[0] ] as $key => $value) {
+                    $MENU["body"] .= '
+                        <li>
+                            <a href="'.$value["url"].'">
+                                <i class="pfadmicon-glyph-'.$value["icono"].'"></i> 
+                                '.$value["name"].'
+                            </a>
+                        </li>';
+                }
+
+                $MENU["footer"] = '</ul></li>';
+
+            }else{
+                $MENU["body"] = '
+                    <li class="pf-login-register" id="pf-login-trigger-button"><a href="#"><i class="pfadmicon-glyph-584"></i> Iniciar Sesión</a></li>
+                    <li class="pf-login-register"><a href="'.get_home_url().'/registrar/"><i class="pfadmicon-glyph-365"></i> Registrarse</a></li>
+                    <li class="pf-login-register" id="pf-lp-trigger-button"><a href="#"><i class="pfadmicon-glyph-889"></i> Contraseña Olvidada</a></li>
+                ';
+            }
+
+            return $MENU;
+        }
+    }
 ?>

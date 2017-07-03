@@ -257,8 +257,8 @@ function pf_styleandscripts(){
 		}
 		wp_enqueue_style('theme-owlcarousel');	
 		
-		wp_register_style('pfcss-animations', get_home_url()."/wp-content/themes/pointfinder" . '/css/animate.min.css', array(), '1.0', 'all');
-		wp_enqueue_style('pfcss-animations'); 	
+		// wp_register_style('pfcss-animations', get_home_url()."/wp-content/themes/pointfinder" . '/css/animate.min.css', array(), '1.0', 'all');
+		// wp_enqueue_style('pfcss-animations'); 	
 		
 		if ($usemin == 1) {$script_file_4n = "golden-forms.min.css";}else{$script_file_4n = "golden-forms.css";}
 		wp_register_style('pfsearch-goldenforms-css', get_home_url()."/wp-content/themes/pointfinder" . '/css/'.$script_file_4n, array(), '1.0', 'all');
@@ -275,7 +275,7 @@ function pf_styleandscripts(){
 		
 
 		if ( file_exists( $uploads['basedir'] . '/pfstyles/pf-style-frontend.css' )) {
-			wp_register_style('pf-frontend-compiler', $uploads['baseurl'] . '/pfstyles/pf-style-frontend.css', array(), '1.6.4', 'all');
+			wp_register_style('pf-frontend-compiler', get_home_url().'/wp-content/themes/pointfinder/css/pf-style-frontend.css', array(), '1.6.4', 'all');
 			wp_enqueue_style('pf-frontend-compiler');
 		}else{
 			if($pfcssstyle == 'realestate' || empty($pfcssstyle)){

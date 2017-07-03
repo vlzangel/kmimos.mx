@@ -4,7 +4,6 @@
 	$N = geo("N");
 	$S = geo("S");
 
-	echo get_estados_municipios();
 	$scripts = '
 		<script type="text/javascript">
 			function vlz_select(id){
@@ -51,23 +50,24 @@
 		jQuery("#estados").on("change", function(e){
 			var estado_id = jQuery("#estados").val();       
 		    if( estado_id != "" ){
-		        var html = "<option value=\"\">Seleccione un municipio</option>";
-		        jQuery.each(estados_municipios[estado_id]["municipios"], function(i, val) {
-		            html += "<option value="+val.id+" data-id=\'"+i+"\'>"+val.nombre+"</option>";
-		        });
-		        jQuery("#municipios").html(html);
+		    	jQuery.getJSON( 
+					"'.get_bloginfo( 'template_directory', 'display' ).'/vlz/ajax_municipios.php", 
+					{estado: estado_id} 
+				).done(
+					function( data, textStatus, jqXHR ) {
+				        var html = "<option value=\"\">Seleccione un municipio</option>";
+				        jQuery.each(data, function(i, val) {
+				            html += "<option value="+val.id+">"+val.name+"</option>";
+				        });
+				        jQuery("#municipios").html(html);
+				    }
+			    ).fail(
+			    	function( jqXHR, textStatus, errorThrown ) {
+				        console.log( "Error: " +  errorThrown );
+					}
+				);
 		    }
 		});
-
-		jQuery("#municipios").on("change", function(e){
-			vlz_coordenadas();
-		});
-
-		function vlz_coordenadas(){
-			var estado_id = jQuery("#estados").val();      
-			var municipio_id = jQuery("#municipios").val();
-			jQuery("#municipios > option[value=\'+municipio_id+\'").attr("data-id");  
-		}
 
 		function getLocation() {
 		    if (navigator.geolocation) {
@@ -155,4 +155,4 @@
 		})(document,"script");
 	</script>';
 
-	echo ($scripts);
+	$SCRIPTS = comprimir_styles($scripts);

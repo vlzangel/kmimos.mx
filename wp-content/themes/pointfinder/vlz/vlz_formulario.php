@@ -264,5 +264,5 @@
 		<input type='submit' value='Aplicar Filtros' class='theme_button vlz_boton'>
 	</form>";
 
-	echo comprimir_styles($FORMULARIO);
+	$FORMULARIO = ($FORMULARIO);
 ?>

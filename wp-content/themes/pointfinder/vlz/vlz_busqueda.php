@@ -27,8 +27,9 @@
 	$pines_visibles = array();
 
 	$top_destacados = get_destacados( $_POST['estados'] );
-	echo '<div id="lista" class="pf-blogpage-spacing pfb-top"></div>';
-	echo '<section role="main" class="blog-full-width"> 
+	$HTML .= '
+		<div id="lista" class="pf-blogpage-spacing pfb-top"></div>
+		<section role="main" class="blog-full-width"> 
 			<div class="pf-container"> 
 				<div class="pf-row"> 
 					<div class="col-lg-9">
@@ -41,37 +42,38 @@
 								<div class="pflist-item" style="background-color:#ffffff;"></div>
 							</li>';
 							if( $TR > 0 ){
+			        			include("vlz_plantilla_listado.php");
 				        		for ($i=$paginacion["inicio"]; $i < $paginacion["fin"]; $i++) {
 				        			$cuidador = $resultados[$i];
 				        			$pines_visibles[] = $pines[$i];
-				        			include("vlz_plantilla_listado.php");
+				        			$HTML .= get_ficha_cuidador($cuidador, $i, $favoritos);
 								}
 							}else{
-								echo "<li align='justify'><h2 style='padding-right: 20px!important;'>No tenemos resultados para esta búsqueda, si quieres intentarlo de nuevo pícale <a  style='color: #00b69d; font-weight: 600;' href='".$home."/#jj-landing-page'>aquí,</a> o aplica otro filtro de búsqueda.</h2></li>";
-							} echo '
-						</ul>'; ?>
+								$HTML .= "<li align='justify'><h2 style='padding-right: 20px!important;'>No tenemos resultados para esta búsqueda, si quieres intentarlo de nuevo pícale <a  style='color: #00b69d; font-weight: 600;' href='".$home."/#jj-landing-page'>aquí,</a> o aplica otro filtro de búsqueda.</h2></li>";
+							} $HTML .= '
+						</ul>
 						<div class="vlz_nav_cont">
-							<div class="vlz_nav_cont_interno"> <?php 
-								echo $paginacion["html"]; ?>
-							</div>
-						</div> <?php
-						foreach ($depuracion as $key => $value) {
-							echo "<pre style='display: block;'>";
-								print_r($value);
-							echo "</pre>";
-						} echo '
-					</div>'; echo '
+							<div class="vlz_nav_cont_interno">'.$paginacion["html"].'</div>
+						</div>
+					</div>
 					<div class="col-lg-3" style="position: relative;"> <div class="pfwidgettitle"><div class="widgetheader">Filtrar Cuidadores</div></div>';
 						include("vlz_formulario.php");
-
-						$pines_json = json_encode($pines_visibles);
-    					echo "<script>var pines = eval('".$pines_json."');</script>";
-
-						include("vlz_scripts.php"); echo '
+						include("vlz_scripts.php");
+						$pines_visibles = json_encode($pines_visibles);
+    					$HTML .= $FORMULARIO.$SCRIPTS.'<script>var pines = eval(\''.$pines_visibles.'\');</script>
 					</div> 
 				</div> 
 			</div> 
 		</section>
 		<div class="pf-blogpage-spacing pfb-bottom"></div>';
+
+		echo comprimir_styles($HTML);
+
+		foreach ($depuracion as $key => $value) {
+			echo "<pre style='display: block;'>";
+				print_r($value);
+			echo "</pre>";
+		}
+
 	get_footer();
 ?>
