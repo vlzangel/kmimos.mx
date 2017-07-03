@@ -2,15 +2,11 @@
 	/*
 		Template Name: vlz quiero ser cuidador
 	*/
-
 	if (!isset($_SESSION)) {
         session_start();
     }
-
 	get_header();
-
 	if(function_exists('PFGetHeaderBar')){PFGetHeaderBar();} 
-
 	wp_enqueue_script(
 		'redimencionar_imagenes',
 		get_home_url()."/wp-content/themes/pointfinder/js/kmimos_imgs.js",
@@ -32,7 +28,18 @@
 
 						<div class="vlz_seccion">
 							<div class="vlz_cell75 vlz_titulo_contenedor">
-								<h1 class="vlz_titulo">Sé parte de Kmimos</h1>
+								<h1 class="vlz_titulo">Sé parte de Kmimos 
+									<a class="hidden-sm hidden-xs" style="background: #00d8b5;
+									    border-radius: 40px;
+									    border: 0px;
+									    color: #fff;
+									    font-size: 20px;
+									    font-weight: bold;
+									    padding: 9px 30px 9px 30px;
+									    margin-top: 20px;"
+		    							onclick="jQuery('#modal_instrucciones').css('display', 'block');">
+		    							 Instrucciones </a>
+    							</h1>
 								<div class="vlz_sub_titulo">Para registrarte como cuidador de Kmimos, llena este formulario y nos pondremos en contacto contigo.</div>
 							</div>
 							<div class="vlz_cell25 vlz_banner_cuidador_contenedor">
@@ -87,7 +94,16 @@
 													<?php
 														$referidos = get_referred_list_options();
 														foreach ($referidos as $key => $value) {
-															echo "<option value='{$key}'>{$value}</option>";
+															$selected='';
+															if(array_key_exists('wlabel',$_SESSION)){
+																$wlabel=$_SESSION['wlabel'];
+																if($key=='Volaris' && $wlabel=='volaris'){
+																	$selected='selected';
+																}else if($key=='Vintermex' && $wlabel=='viajesintermex'){
+																	$selected='selected';
+																}
+															}
+															echo "<option value='{$key}' $selected>{$value}</option>";
 														}
 													?>
                                                 </select>
@@ -163,13 +179,11 @@
 												<option value="">Seleccione un estado</option>
 												<?php
 													global $wpdb;
-
 												    $estados = $wpdb->get_results("SELECT * FROM states WHERE country_id = 1 ORDER BY name ASC");
 												    $str_estados = "";
 												    foreach($estados as $estado) { 
 												        $str_estados .= "<option value='".$estado->id."'>".$estado->name."</option>";
 												    } 
-
 												    echo $str_estados = utf8_decode($str_estados);
 												?>
 											</select>
@@ -303,7 +317,6 @@
 											"agresivos_perros"  => "Agresivos con perros",
 											"agresivos_humanos" => "Agresivos con humanos",
 										);
-
 										foreach ($Comportamientos as $key => $value) {
 											echo '
 												<div class="vlz_cell25">
@@ -446,13 +459,11 @@
 											        "medio" => "Medias",
 											        "largo" => "Largas"
 											    );
-
 											    $ayudas_trans_s = array(
 											        "corto" => "Precio por recoger o llevar al perrito con tu carro. (Máximo 5 km. de Distancia)",
 											        "medio" => "Precio por recoger o llevar al perrito con tu carro. (Máximo 9 km. de distancia)",
 											        "largo" => "Precio por recoger o llevar al perrito con tu carro (10 km en adelante. de distancia)"
 											    );
-
 												foreach ($rutas as $key => $value) {
 													echo '
 														<div class="vlz_cell33">
@@ -551,7 +562,91 @@
 			</div>
 		</div>
 	</section>
-	<div class="pf-blogpage-spacing pfb-bottom"></div> <?php 
+	<div class="pf-blogpage-spacing pfb-bottom"></div> 
 
-	get_footer(); 
-?>
+
+<!-- Modal Instrucciones -->
+<div id="modal_instrucciones" class="vlz_modal" style="display: none;">
+
+	<div style="text-align: center;">
+
+		<div style="" class="vlz_modal_fondo" 
+			 onclick="jQuery('#modal_instrucciones').css('display', 'none');"></div>
+
+		<div class="vlz_modal_ventana jj_modal_ventana" style="margin-top: 6vh!important; ">
+
+			<div style="text-align: center;background:#00d8b5; color: #fff;" class="vlz_modal_titulo">
+				Pasos para convertirte en cuidador certificado kmimos:
+				<a style="display:none; color:#fff!important; right:15px;position: absolute; font-weight: bold;" onclick="jQuery('#modal_instrucciones').css('display', 'none');">x</a>
+			</div>
+			<div class="vlz_modal_contenido" style="  max-height: 83vh; padding:0px;">
+				
+				<div style="height: auto; background: #fdfdaa; padding: 20px;">
+
+					<div style="text-align: center; ">
+						<ul class="list-inline" style="color: #737272;font-weight: 700;">
+							<li class="col-xs-12 col-sm-6 col-md-3" >
+								<img src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/1.png" class="img-responsive" style="margin:auto;" width="150px">
+								<span>Registrarte y describirte<span><br><br>
+							</li>
+							<li class="col-xs-12 col-sm-6 col-md-3"  >
+								<img src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/2.png" class="img-responsive" style="margin:auto;" width="150px">
+								<span>Enviar documentos<span><br><br>
+							</li>
+							<li class="col-xs-12 col-sm-6 col-md-3" >
+								<img src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/3.png" class="img-responsive" style="margin:auto;" width="150px">
+								<span>Realizar tus pruebas<span><br><br>
+							</li>
+							<li class="col-xs-12 col-sm-6 col-md-3" >
+								<img src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/4.png" class="img-responsive" style="margin:auto;" width="150px">
+								<span>Completar tu perfil<span><br><br>
+							</li>
+						</ul>
+						<p style="color: #de7212;font-weight: bold;font-size: 15px;">
+							*En caso de que algunos de estos pasos no sea completado, el perfil no podra ser activado
+						</p>
+					</div>
+				</div>
+				<div style="text-align: center;padding-bottom:20px;">
+					<h3>AQU&Iacute; TE DEJAMOS UNA SUGERENCIA PARA MEJORAR TU DESCRIPCI&Oacute;N</h3>
+					<div style="padding:10px; margin: auto; border: 1px solid #ccc;display: inline-block;border-radius: 20px;">
+						<ul class="list-inline">
+							<li style="min-width: 100px; max-width: 200px;" >
+								<img src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/girl.png" class="img-responsive" width="150px"	></li>
+							<li style="min-width: 200px; max-width: 400px;text-align: left;">
+								<h2 style="margin-top:0px!important;">Valentina Gutierrez</h2>
+								<span></span>
+								<p>¡Hola! Soy Valentina, tengo 25 años y me encantan los animales, 
+									Trabajo en casa asi que estare 100% al cuidado de tu perrito, 
+									lo consentir&eacute; y recibiras fotos diarias de su estancia conmigo. 
+									Mis hu&eacute;spedes peludos duermen de casa y pueden andar libremente 
+									SIN JAULAS NI ENCIERROS...
+								</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div  style="text-align: center;padding-bottom:20px;">
+					<a style="background: #00d8b5;
+						    border-radius: 40px;
+						    border: 0px;
+						    color: #fff;
+						    font-size: 15px;
+						    font-weight: bold;
+						    padding: 3px 30px 3px 30px;
+						    margin-top: 20px;"  
+						onclick="jQuery('#modal_instrucciones').css('display', 'none');" >Cerrar</a>
+				</div>
+				
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<!-- script type="text/javascript">
+	jQuery('#btn-instrucciones-header')
+		.html('<a class="btn-instrucciones-header pull-left hidden-md hidden-lg hidden-xl" onclick="jQuery(' + "'#modal_instrucciones').css('display', 'block');" + '">Instrucciones</a>');
+</script -->
+
+<?php get_footer(); ?>
