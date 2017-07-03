@@ -32,18 +32,7 @@
 
 						<div class="vlz_seccion">
 							<div class="vlz_cell75 vlz_titulo_contenedor">
-								<h1 class="vlz_titulo">Sé parte de Kmimos 
-									<a style="background: #00d8b5;
-									    border-radius: 40px;
-									    border: 0px;
-									    color: #fff;
-									    font-size: 20px;
-									    font-weight: bold;
-									    padding: 9px 30px 9px 30px;
-									    margin-top: 20px;" 
-		    							onclick="jQuery('#modal_instrucciones').css('display', 'block');">
-		    							 Instrucciones </a>
-    							</h1>
+								<h1 class="vlz_titulo">Sé parte de Kmimos</h1>
 								<div class="vlz_sub_titulo">Para registrarte como cuidador de Kmimos, llena este formulario y nos pondremos en contacto contigo.</div>
 							</div>
 							<div class="vlz_cell25 vlz_banner_cuidador_contenedor">
@@ -98,18 +87,7 @@
 													<?php
 														$referidos = get_referred_list_options();
 														foreach ($referidos as $key => $value) {
-															$selected='';
-															if(array_key_exists('wlabel',$_SESSION)){
-																$wlabel=$_SESSION['wlabel'];
-
-																if($key=='Volaris' && $wlabel=='volaris'){
-																	$selected='selected';
-
-																}else if($key=='Vintermex' && $wlabel=='viajesintermex'){
-																	$selected='selected';
-																}
-															}
-															echo "<option value='{$key}' $selected>{$value}</option>";
+															echo "<option value='{$key}'>{$value}</option>";
 														}
 													?>
                                                 </select>
@@ -573,86 +551,7 @@
 			</div>
 		</div>
 	</section>
-	<div class="pf-blogpage-spacing pfb-bottom"></div> 
+	<div class="pf-blogpage-spacing pfb-bottom"></div> <?php 
 
-
-<!-- Modal Instrucciones -->
-<div id="modal_instrucciones" class="vlz_modal" style="display: none;">
-
-	<div style="text-align: center;">
-
-		<div style="" class="vlz_modal_fondo" 
-			 onclick="jQuery('#modal_instrucciones').css('display', 'none');"></div>
-
-		<div class="vlz_modal_ventana jj_modal_ventana" style="margin-top: 6vh!important; ">
-
-			<div style="text-align: center;background:#00d8b5; color: #fff;" class="vlz_modal_titulo">
-				Te informamos que para activar tu perfil, debes seguir estos pasos:
-				<a style="display:none; color:#fff!important; right:15px;position: absolute; font-weight: bold;" onclick="jQuery('#modal_instrucciones').css('display', 'none');">x</a>
-			</div>
-			<div class="vlz_modal_contenido" style="  height: auto; padding:0px;">
-				
-				<div style="height: auto; background: #fdfdaa; padding: 20px;">
-
-					<div style="text-align: center; ">
-						<ul class="list-inline" style="color: #737272;font-weight: 700;">
-							<li>
-								<img src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/1.png" class="img-responsive" width="150px"	 ><br>
-								<span>Registrarte y describirte<span>
-							</li>
-							<li>
-								<img src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/2.png" class="img-responsive" width="150px"	><br>
-								<span>Enviar documentos<span>
-							</li>
-							<li>
-								<img src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/3.png" class="img-responsive" width="150px"	><br>
-								<span>Realizar tus pruebas<span>
-							</li>
-							<li>
-								<img src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/4.png" class="img-responsive" width="150px"	><br>
-								<span>Completar tu perfil<span>
-							</li>
-						</ul>
-						<p style="color: #de7212;font-weight: bold;font-size: 15px;">
-							*En caso de que algunos de estos pasos no sea completado, el perfil no podra ser activado
-						</p>
-					</div>
-				</div>
-				<div style="text-align: center;padding-bottom:20px;">
-					<h3>AQU&Iacute; TE DEJAMOS UNA SUGERENCIA PARA MEJORAR TU DESCRIPCI&Oacute;N</h3>
-					<div style="padding:10px; margin: auto; border: 1px solid #ccc;display: inline-block;border-radius: 20px;">
-						<ul class="list-inline">
-							<li style="min-width: 100px; max-width: 200px;" >
-								<img src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/girl.png" class="img-responsive" width="150px"	></li>
-							<li style="min-width: 200px; max-width: 400px;text-align: left;">
-								<h2 style="margin-top:0px!important;">Valentina Gutierrez</h2>
-								<span></span>
-								<p>¡Hola! Soy Valentina, tengo 25 años y me encantan los animales, 
-									Trabajo en casa asi que estare 100% al cuidado de tu perrito, 
-									lo consentir&eacute; y recibiras fotos diarias de su estancia conmigo. 
-									Mis hu&eacute;spedes peludos duermen de casa y pueden andar libremente 
-									SIN JAULAS NI ENCIERROS...
-								</p>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<div  style="text-align: center;padding-bottom:20px;">
-					<a style="background: #00d8b5;
-						    border-radius: 40px;
-						    border: 0px;
-						    color: #fff;
-						    font-size: 15px;
-						    font-weight: bold;
-						    padding: 3px 30px 3px 30px;
-						    margin-top: 20px;"  
-						onclick="jQuery('#modal_instrucciones').css('display', 'none');" >Cerrar</a>
-				</div>
-				
-			</div>
-
-		</div>
-	</div>
-</div>
-
-<?php get_footer(); ?>
+	get_footer(); 
+?>

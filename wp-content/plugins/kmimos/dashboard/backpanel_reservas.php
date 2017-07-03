@@ -194,7 +194,7 @@ $reservas = getReservas($_desde, $_hasta);
 								date_convert($meta_reserva['_booking_end'], 'd-m-Y'), 
 								date_convert($meta_reserva['_booking_start'], 'd-m-Y') 
 							);					
-						if( $nro_noches == 0 && !in_array('hospedaje', explode("-", $reserva['post_name'])) ){
+						if( $nro_noches == 0 && !in_array('hospedaje', explode("-", $reserva->post_name)) ){
 							$nro_noches = 1;
 						}
 

@@ -1,4 +1,6 @@
-<style type="text/css">
+<?php 
+$HTML = "
+<style type='text/css'>
 	.vlz_contenedor{
 	    max-width: 1140px;
 	    margin: 0px auto 20px;
@@ -299,4 +301,5 @@
 		    margin: 10px 10px 10px;
 		}
 	}
-</style>
+</style>";
+?>

@@ -66,15 +66,8 @@ if( isset($_SESSION['busqueda']) ){
 		}
 		ksort($url_servicio);
 
-		// echo '<pre>';
-		// print_r( $url_servicio );
-		// echo '</pre>';
 }
 if( count($url_servicio) > 1 ){
-
-	// Buscar solo productos relacionados a la busqueda por woocomerce
-	// $servicios_comando = '[products ids="'.$ids.'"]';
-	// do_shortcode($servicios_comando)
 
 	$content_modal .= '<!-- Button trigger modal -->
 		<button type="button" class="button reservar" data-toggle="modal" data-target="#selector_servicios">
@@ -113,23 +106,22 @@ if( count($url_servicio) > 1 ){
 		  </div>
 		</div>';
 
-		echo $content_modal;
+		$HTML .= $content_modal;
 
 }else{
 	if( count($url_servicio) == 1){
 		// Buscar url del servicio
 		foreach ($url_servicio as $item) {
-			echo '<a class="button reservar" href="'.$item['url'].'">Reservar</a>';
+			$HTML .= '<a class="button reservar" href="'.$item['url'].'">Reservar</a>';
 			break;
 		}
 	}
 	else{				
-		echo '<a class="button reservar" href="'.get_home_url().'/producto/'.$slug.'/'.'">Reservar</a>';
+		$HTML .= '<a class="button reservar" href="'.get_home_url().'/producto/'.$slug.'/'.'">Reservar</a>';
 	}
 }
 
-?>
-
+$HTML .= '
 <style type="text/css">
  #selector_servicios{
  	position: absolute;
@@ -177,4 +169,5 @@ if( count($url_servicio) > 1 ){
 	background: #0ab7a1;
 	color:#fff;
  }
-</style>
+</style>';
+?>
