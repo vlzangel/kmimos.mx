@@ -291,8 +291,9 @@
 							$mensaje_cuidador = kmimos_get_email_html($titulo_mail, $mensaje_cuidador, 'Nueva Reserva - '.$tipo_servicio.' por: '.$nom_cliente, true, true);
 
 						wp_mail( $cliente_email, 'Pago Recibido Exitosamente!', $mensaje_cliente);
-						wp_mail( $email_admin, "Solicitud de reserva #".$reserva_id, $mensaje_admin, kmimos_mails_administradores() );
-						wp_mail( $cuidador_email, 'Nueva Reserva - '.$tipo_servicio.' por: '.$nom_cliente, $mensaje_cuidador, kmimos_mails_administradores());
+						wp_mail( $cuidador_email, 'Nueva Reserva - '.$tipo_servicio.' por: '.$nom_cliente, $mensaje_cuidador);
+
+						kmimos_mails_administradores_new("Solicitud de reserva #".$reserva_id, $mensaje_admin);
 
 					break;
 				
