@@ -113,6 +113,8 @@
             $headers[] = 'BCC: gabriel.marquez@sin-cola.com';
             $headers[] = 'BCC: roberto.madrid@sin-cola.com';
 
+            // operador01sincola@gmail.com, operador02sincola@gmail.com, operador03sincola@gmail.com, operador04sincola@gmail.com, opeador08sincola@gmail.com, operador10sincola@gmail.com, robertomadridcisneros@gmail.com, jordiballarin@gmail.com
+
             return $headers;
 
 	    }
@@ -486,7 +488,7 @@ if(!function_exists('vlz_servicios')){
                 $name_photo .= "jpg";
             }
             $base = path_base();
-            if( file_exists($base."/wp-contentuploadscuidadoresavatares".$cuidador_id."/{$name_photo}") ){
+            if( file_exists($base."/wp-contentuploadscuidadores/avatares".$cuidador_id."/{$name_photo}") ){
                 $img = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/{$name_photo}";
             }else{
                 if( file_exists($base."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg") ){

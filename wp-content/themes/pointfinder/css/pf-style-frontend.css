@@ -31,7 +31,7 @@ html {
     border-color: #fffbf5 transparent transparent transparent;
 }
 .pfsearchresults-loading .pfloadingimg {
-    background-image: url(http://mx.kmimos.dev/wp-content/themes/pointfinder/images/info-loading-bl.gif)!important;
+    background-image: url(https://www.kmimos.com.mx/wp-content/themes/pointfinder/images/info-loading-bl.gif)!important;
     background-size: 24px 24px;
     background-repeat: no-repeat;
     background-position: center;
@@ -475,7 +475,7 @@ hr,
     height: 50px;
 }
 .pf-logo-container {
-    background-image: url(http://mx.kmimos.dev/wp-content/uploads/2017/02/logo-kmimos.png);
+    background-image: url(https://www.kmimos.com.mx/wp-content/uploads/2017/02/logo-kmimos.png);
     background-size: 185px 50px;
     width: 185px;
 }
