@@ -94,7 +94,7 @@
         </div>";
     }
 
-    $HTML = do_shortcode("[layerslider id='1']")."
+    $HTML = "
     <style>
         #estado_cuidador_main {
             margin: 0px !important;
@@ -501,18 +501,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-
-    <div id='bloque_testimonios' style='background: #00c3aa;'>
-        <div class='wpb_text_column wpb_content_element' style='padding: 10px 0px;'>
-            <div class='wpb_wrapper'>
-                <h1 style='text-align: center;'><span style='color: #FFF;'><strong>Testimonios</strong></span></h1>
-            </div>
-        </div>
-        <div style='padding: 0px 0px 60px;'>
-            
         </div>
     </div>
 
