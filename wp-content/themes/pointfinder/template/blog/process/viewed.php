@@ -57,3 +57,36 @@ while($blogs->have_posts()){
 
 wp_reset_postdata();
 ?>
+
+<script type="text/javascript">
+    jQuery(document).on('click','#blog_viewed .control .icon', function(){  pviewed=jQuery(this).index(); show_viewed(); });
+
+    function show_viewed(){
+        clearTimeout(tviewed);
+        var posts=jQuery('#blog_viewed .post');
+        var control=jQuery('#blog_viewed .control');
+
+        if(control.find('.icon').length==0){
+            posts.each(function(){
+                control.append('<div class="icon"></div>');
+            });
+        }
+
+        if(pviewed>=0 && posts.length>pviewed){
+            posts.removeClass('show');
+            posts.eq(pviewed).addClass('show');
+
+            control.find('.icon').removeClass('show');
+            control.find('.icon').eq(pviewed).addClass('show');
+        }else{
+            pviewed=0;
+            show_viewed();
+        }
+
+        pviewed++;
+        tviewed = setTimeout('show_viewed(pviewed)', 5000);
+    }
+
+    pviewed=0;
+    var tviewed = setTimeout('show_viewed(pviewed)', 0);
+</script>

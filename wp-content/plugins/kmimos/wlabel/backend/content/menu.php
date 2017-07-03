@@ -1,7 +1,11 @@
 <?php
     $title=$_wlabel_user->wlabel_result->title;
-    $image=$_wlabel_user->wlabel_data->image;
     $color=$_wlabel_user->wlabel_data->color;
+
+    $image=$_wlabel_user->wlabel_data->image;
+    if($image==''){
+        $image=$_wlabel_user->wlabel_data->image_label;
+    }
 ?>
 <div class="menu" style="background-color:<?php echo $color; ?>;" data-url="<?php echo plugin_dir_url(__DIR__); ?>">
     <?php

@@ -24,6 +24,8 @@ $_wlabel_user->wlabel_Export('client-booking','RESERVAS POR CLIENTE','table');
         <thead>
         <tr>
             <th>Cliente</th>
+            <td>Fecha de registro</td>
+            <td>email</td>
             <td>Label</td>
             <?php
                 $day_init=strtotime(date('m/d/Y',$WLresult->time));
@@ -167,6 +169,8 @@ foreach($users as $key => $user){
 foreach($BUILDusers as $user){
     echo '<tr>';
     echo '<th class="title">'.$user['name'].'</th>';
+    echo '<td>'.date('d/m/Y',$user['date']).'</td>';
+    echo '<td>'.$user['login'].'</td>';
     echo '<td>'.$user['label'].'</td>';
         $day_init=strtotime(date('m/d/Y',$WLresult->time));
         $day_last=strtotime(date('m/d/Y',time()));

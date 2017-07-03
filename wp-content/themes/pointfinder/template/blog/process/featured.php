@@ -7,7 +7,6 @@ if(file_exists($kmimos_load)){
 $page=0;
 $limit=2;
 $direction='next';
-$direction='next';
 
 if(array_key_exists('direction',$_POST)){
     $direction=$_POST['direction'];
@@ -27,7 +26,7 @@ if($direction=='next'){
 
 
 //var_dump($qpage);
-$row=$qpage*$limit;
+$row=$qpage*1;//$limit;
 $query = "SELECT * FROM destacados ORDER BY id LIMIT $row, $limit";//rand()
 $featureds = $wpdb->get_results($query);
 $result=false;

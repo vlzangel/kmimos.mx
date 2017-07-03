@@ -6791,8 +6791,10 @@ input#place_order{
 
 
 /*NEW CSS*/
+.wpf-container {overflow: hidden;}
+
 @media (max-width: 992px) {
-	.wpf-container { margin: 200px 0 0 0 !important;}
+	.wpf-container {margin: 200px 0 0 0 !important;}
 }
 
 @media (max-width: 768px){
@@ -6800,5 +6802,5 @@ input#place_order{
 }
 
 @media (max-width: 569px){
-	.wpf-container { margin: 50px 0 0 0 !important;}
+	.wpf-container { margin: 45px 0 0 0 !important;}
 }
