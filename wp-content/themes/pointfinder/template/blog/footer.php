@@ -30,6 +30,11 @@
         footer .payment .group{display: block; text-align: center;}
         footer .payment .title{width: auto;}
         footer .payment .items{width: auto;}
+
+        /* RESPONSIVE SUGERIDO */
+        footer .contact .section {margin: 0px 0 0 60px;}
+        footer .contact .section.redes{position: absolute; width: 50px; left: 0; top: 0; margin: 0px;}
+        footer .payment .items .item{width: calc(25% - 20px);}
     }
 </style>
 <footer id="footer">
