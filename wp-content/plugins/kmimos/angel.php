@@ -482,7 +482,7 @@ if(!function_exists('vlz_servicios')){
                 $name_photo .= "jpg";
             }
             $base = path_base();
-            if( file_exists($base."/wp-contentuploadscuidadoresavatares".$cuidador_id."/{$name_photo}") ){
+            if( file_exists($base."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/{$name_photo}") ){
                 $img = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/{$name_photo}";
             }else{
                 if( file_exists($base."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg") ){
