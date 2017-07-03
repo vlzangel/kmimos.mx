@@ -59,7 +59,7 @@ $users = getUsers($desde, $hasta);
 					cellspacing="0" width="100%">
 			  <thead>
 			    <tr>
-			      <th>#</th>
+			      <th>ID</th>
 			      <th>Fecha Registro</th>
 			      <th>Nombre y Apellido</th>
 			      <th>Nombre</th>
