@@ -135,17 +135,17 @@
 				<h1 class='center-white'>".get_the_title()."</h1>
 				".kmimos_petsitter_rating($post_id);
 				if(is_user_logged_in()){
-					$HTML .= "<a class='theme_button button conocer-cuidador' href=''.get_home_url().'/conocer-al-cuidador/?id='.$post_id.''>Conocer al Cuidador</a>";
+					$HTML .= "<a class='theme_button button conocer-cuidador' href='".get_home_url()."/conocer-al-cuidador/?id=".$post_id."'>Conocer al Cuidador</a>";
 					include('vlz/seleccion_boton_reserva.php');
 				}else{
 					$HTML .= "
 					<span 
 						class='theme_button button conocer-cuidador' 
-						onclick='jQuery('#pf-login-trigger-button').click();'
+						onclick=\"jQuery('#pf-login-trigger-button').click();\"
 					>Conocer al Cuidador</span>
 					<span 
 						class='button reservar' 
-						onclick='jQuery('#pf-login-trigger-button').click();'
+						onclick=\"jQuery('#pf-login-trigger-button').click();\"
 					>Reservar</span>";
 				} $HTML .= "
 			</div>
