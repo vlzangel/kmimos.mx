@@ -127,7 +127,7 @@ if(isset($_GET['e'])){
 				</div>
 
 				<!-- Link Email -->
-				<div id="info" class="col-sm-11 clearfix hidden">
+				<div id="info" class="col-sm-12 clearfix hidden">
 					<div class="fondo-verde">
 						<h3 class="text-center">
 							¿Y ahora qué sigue?
@@ -162,6 +162,7 @@ if(isset($_GET['e'])){
 				<h2 class="text-center" style="font-size: 1.8em; color: #881c9b;font-weight: bold;">¡Sigue ganando!</h2>
 			</aside>
 
+			<button></button>
 			<p id="shared" class="hidden">Debes compartir el enlace</p>
 
 		</div>
