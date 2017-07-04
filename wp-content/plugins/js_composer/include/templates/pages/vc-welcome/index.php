@@ -24,15 +24,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<a href="https://twitter.com/share" class="twitter-share-button"
 			data-text="Take full control over your WordPress site with Visual Composer page builder by @WPBakery"
 			data-url="http://vc.wpbakery.com" data-size="large">Tweet</a>
-		<script>! function ( d, s, id ) {
-				var js, fjs = d.getElementsByTagName( s )[ 0 ], p = /^http:/.test( d.location ) ? 'http' : 'https';
-				if ( ! d.getElementById( id ) ) {
-					js = d.createElement( s );
-					js.id = id;
-					js.src = p + '://platform.twitter.com/widgets.js';
-					fjs.parentNode.insertBefore( js, fjs );
-				}
-			}( document, 'script', 'twitter-wjs' );</script>
 	</p>
 	<?php vc_include_template( '/pages/partials/_tabs.php', array(
 			'slug' => $page->getSlug(),

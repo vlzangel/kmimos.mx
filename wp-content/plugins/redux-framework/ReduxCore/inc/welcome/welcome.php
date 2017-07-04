@@ -487,15 +487,6 @@
                 <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://reduxframework.com"
                     data-text="Reduce your dev time! Redux is the most powerful option framework for WordPress on the web"
                     data-via="ReduxFramework" data-size="large" data-hashtags="Redux">Tweet</a>
-                <script>!function( d, s, id ) {
-                        var js, fjs = d.getElementsByTagName( s )[0], p = /^http:/.test( d.location ) ? 'http' : 'https';
-                        if ( !d.getElementById( id ) ) {
-                            js = d.createElement( s );
-                            js.id = id;
-                            js.src = p + '://platform.twitter.com/widgets.js';
-                            fjs.parentNode.insertBefore( js, fjs );
-                        }
-                    }( document, 'script', 'twitter-wjs' );</script>
             </p>
             <?php
         }
