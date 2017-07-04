@@ -9,13 +9,6 @@
 
 ***********************************************************************************************************************************/
 
-function hide_update_notice_to_all_but_admin_users(){
-    if (!current_user_can('update_core')) {
-        remove_action( 'admin_notices', 'update_nag', 3 );
-    }
-}
-add_action( 'admin_head', 'hide_update_notice_to_all_but_admin_users', 1 );
-
 /*add_filter( 'woocommerce_checkout_fields' , 'set_input_attrs' );
 function set_input_attrs( $fields ) {
 	$fields['billing']['billing_first_name'] = array('required'  => false);
@@ -62,6 +55,57 @@ function set_input_attrs( $fields ) {
 
    	return $fields;
 }
+
+// function wpdm_filter_siteurl($content) {
+// 	$current_server = $_SERVER['SERVER_NAME'];
+//    	return "http://".$current_server."/";
+// }
+
+// function wpdm_filter_home($content) {
+// 	$current_server = $_SERVER['SERVER_NAME'];
+//    	return "http://".$current_server."/";
+// }
+
+// function wpdm_conv_tag($content) {
+// 	$search = "/\[dmWpAddr\]/";
+// 	if (preg_match($search, $content)){
+// 		$replace = get_option('siteurl');
+// 		$content = preg_replace ($search, $replace, $content);
+// 	}
+// 	$search = "/\[dmBlogAddr\]/";
+// 	if (preg_match($search, $content)){
+// 		$replace = get_option('home');
+// 		$content = preg_replace ($search, $replace, $content);
+// 	}
+// 	$search = "/\[dmBlogTitle\]/";
+// 	if (preg_match($search, $content)){
+// 		$replace = get_option('blogname');
+// 		$content = preg_replace ($search, $replace, $content);
+// 	}
+// 	$search = "/\[dmTagLine\]/";
+// 	if (preg_match($search, $content)){
+// 		$replace = get_option('blogdescription');
+// 		$content = preg_replace ($search, $replace, $content);
+// 	}
+// 	return $content;
+// }
+
+// // Add the hooks:
+// add_filter('option_siteurl', 'wpdm_filter_siteurl', 1);
+// add_filter('option_home', 'wpdm_filter_home', 1);
+
+
+// function vlz_plugins_url($path = '', $plugin = '') {
+// 	$new_path = explode("/", $path);
+// 	$new_path[2] = $_SERVER['SERVER_NAME'];
+// 	return implode("/", $new_path);
+// }
+// add_filter('plugins_url', 'vlz_plugins_url', -10);
+
+
+// add_filter('the_content', 'wpdm_conv_tag'); 
+// add_filter('the_excerpt', 'wpdm_conv_tag'); 
+
 
 load_theme_textdomain( 'pointfindert2d',get_template_directory() . '/languages');
 

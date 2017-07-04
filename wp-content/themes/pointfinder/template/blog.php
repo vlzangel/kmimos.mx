@@ -9,7 +9,6 @@ include_once(__DIR__.'/blog/header.php');
     #blog_viewed{position:relative; width:100%; margin:50px 0; overflow:hidden;}
     #blog_viewed .viewed{position:relative; overflow:hidden;}
     #blog_viewed .post{position:relative; width:calc(35% - 20px); padding-top:calc(35% - 20px); margin:20px 0 0 20px; float:left; color:#FFF; box-shadow:0 0 5px #555; background:#ff7e00; overflow:hidden; transition:all .5s;}
-    #blog_viewed .control{display:none;}
 
     #blog_viewed .post .content{position:absolute; width:90%; height:60%; top:0; left:0; padding:20% 5%; opacity:0; background:#ff7e00; transition:all .3s;}
     #blog_viewed .post:hover .detail{opacity:1; /*background:#737373;*/}
@@ -37,14 +36,6 @@ include_once(__DIR__.'/blog/header.php');
         #blog_viewed .post{width:calc(50% - 10px); padding-top:calc(50% - 10px);}
         #blog_viewed .post:nth-child(2){ margin-left: 0; }
         #blog_viewed .post:first-child{width:100%; padding-top:70%; margin: 0;}
-
-        /* RESPONSIVE SUGERIDO */
-        #blog_viewed{margin:10px 0;}
-        #blog_viewed .post{width:100%; padding-top:70%; margin: 0; display: none;}
-        #blog_viewed .post.show{display: block;}
-        #blog_viewed .control{position: absolute; width: 100%; bottom: 0; text-align:center; display:block;}
-        #blog_viewed .control .icon{width: 10px; height: 10px; margin:5px; border-radius: 50%; box-shadow: 0 0 5px #555; background: #FFF; cursor: pointer; display: inline-block;}
-        #blog_viewed .control .icon.show{background: #23d3c4; display: inline-block !important;}
     }
 
 
@@ -83,15 +74,6 @@ include_once(__DIR__.'/blog/header.php');
     @media screen and (max-width:480px), screen and (max-device-width:480px){
         #last .section.new .post .image { width: 100%;  height: 200px;  margin: 10px 0;}
         #last .section.new .post .detail { width: 100%; }
-
-        /* RESPONSIVE SUGERIDO */
-        #last{padding: 0;}
-        #last .section.aside .register{margin: 10px 0;}
-        #last .section.news{padding: 0;}
-        #last .section.news .post.show{display: block !important;}
-        #last .section.news .post.show + .post.show{display: none !important;}
-        #last .section.news .post .image{width:auto; height:150px; margin:0; float:none;}
-        #last .section.news .post .detail{width: auto;}
     }
 
 
@@ -110,15 +92,6 @@ include_once(__DIR__.'/blog/header.php');
     @media screen and (max-width:480px), screen and (max-device-width:480px){
         #kmibox .section.detail{width: 100%;}
         #kmibox .section.image{position: absolute; width: 100%; height: 100%; opacity: 0.2;  }
-
-        /* RESPONSIVE SUGERIDO */
-        #kmibox .group {height: calc(100% - 150px);}
-        #kmibox .section.image {display: none;}
-        #kmibox .section.image.responsive{position: relative; height: 300px; opacity: 1; top: -100px; background-position: top right; display: block;}
-        #kmibox .section.detail{max-width: 300px; padding: 0; text-align: left;}
-        #kmibox .detail .logo{background-position: center left;}
-        #kmibox .detail .button {font-size: 15px;}
-
     }
 
     /*FEATURED*/
@@ -129,7 +102,7 @@ include_once(__DIR__.'/blog/header.php');
     #featured .caregiver .action .icon{position:absolute; width:25px; top:calc(50% - 12px); right:0; font-size:15px;}
     #featured .caregiver .action .icon[data-direction="prev"]{left:0; right: auto;}
     #featured .group{width:calc(100% - 80px); margin:0 auto; display: flex; flex-flow: wrap;}
-    #featured .post{width: calc(50% - 20px); margin: 40px 10px; display: flex; flex-flow: wrap;}
+    #featured .post{width: calc(50% - 80px); margin: 40px; display: flex; flex-flow: wrap;}
     #featured .post .image{width: 150px; padding: 20px; border-radius:20px 0 0 20px; background: #ff8700; overflow:hidden;}
     #featured .post .image .img{width: 90%; padding-top: 90%; margin: 10px auto; border-radius: 50%; background: #CCC center/cover no-repeat;}
     #featured .post .image .bone{ width: 50px; height: 40px; margin: 0 auto; background: center/contain no-repeat;}
@@ -141,25 +114,15 @@ include_once(__DIR__.'/blog/header.php');
 
     @media screen and (max-width:768px), screen and (max-device-width:768px){
         #featured .group{display: block;}
-        #featured .post{width: calc(100% - 20px);}
+        #featured .post{width: calc(100% - 80px);}
     }
     @media screen and (max-width:480px), screen and (max-device-width:480px){
-        /*
         #featured .post{display: block;}
         #featured .post .image{width: auto; border-radius: 20px 20px 0 0;}
         #featured .post .image .img{width: 100px; padding-top: 100px;}
         #featured .post .detail{width: auto; border-left-width: 2px; border-top-width: 0; border-radius: 0 0 20px 20px; text-align: center;}
         #featured .post .detail .title{font-size: 20px;}
         #featured .post .detail .content{margin:10px 0; font-size: 15px;}
-        */
-        /* RESPONSIVE SUGERIDO */
-        #featured .info{font-size: 20px;}
-        #featured .post:nth-child(2){display: none;}
-        #featured .post .image{width: 100px; padding: 5px;}
-        #featured .post .detail{width: calc(100% - 100px);}
-        #featured .post .detail .title{font-size: 20px;}
-        #featured .post .detail .content{margin:10px 0; font-size: 15px;}
-
     }
 
 
@@ -178,18 +141,12 @@ include_once(__DIR__.'/blog/header.php');
     #products .product .detail .content.price{color: #23d3c4; font-size: 25px; }
     #products .product .detail .button{padding:10px; color:#999; border:1px solid #999; border-radius:5px; }
 
-
-
     @media screen and (max-width:768px), screen and (max-device-width:768px){
         #products .product {width: calc(50% - 80px);}
         #products .product .detail .title{margin-bottom: 0px;}
     }
     @media screen and (max-width:480px), screen and (max-device-width:480px){
         #products .product { width: calc(50% - 20px);  margin: 10px;}
-
-        /* RESPONSIVE SUGERIDO */
-        #products .product{width: calc(100% - 20px); display: none;}
-        #products .product:first-child{display: block;}
     }
 
 
@@ -206,7 +163,6 @@ include_once(__DIR__.'/blog/header.php');
             <?php
                 include_once(__DIR__.'/blog/process/viewed.php');
             ?>
-            <div class="control"></div>
         </div>
     </div>
 </section>
@@ -246,9 +202,8 @@ if($page<=0){
 <script type="text/javascript">
     var news_show=-1;
     var news_count=2;
-    var news_navigate=1;
-    var news_action = false;
     var news_post=jQuery('#last .section.news .post');
+    var news_action = false;
 
     jQuery('#last .section.news .action .icon.arrow a').click(function(event){
         if(jQuery(this).closest('.icon.arrow').length){
@@ -269,21 +224,12 @@ if($page<=0){
             var show = news_show;
 
             if(direction=='prev'){
-                show=show-(news_navigate*news_count);
+                show=show-(2*news_count);
             }
 
             for(var news=1; news<=news_count; news++){
-                var post=show+news+(news_navigate-news_count);//
+                var post=show+news;
 
-                if(post<0){
-                    post=0;
-
-                }else if(post==(news-news_count) && news<=news_count){
-                    post++;
-
-                }
-
-                //console.log(post);
                 if(news_show_display(post)){
                     news_show=post;
 
@@ -308,6 +254,7 @@ if($page<=0){
     }
 
     news_nav('');
+
 </script>
 
 <section id="featured">
@@ -330,15 +277,21 @@ if($page<=0){
             <div class="content">Regalale un detalle al consentido de tu hogar!</div>
             <div class="button">Quiero mi KmiBOX</div>
         </div>
-        <div class="section image responsive"></div>
     </div>
 </section>
 
-
 <section id="products">
-    <?php
-    include_once(__DIR__.'/blog/frontend/products.php');
-    ?>
+    <div class="kmibox contain" data-section="<?php echo bloginfo('template_directory'); ?>/template/blog/process/products.php">
+        <div class="action">
+            <i class="icon arrow fa fa-caret-left" data-direction="prev"></i>
+            <i class="icon arrow fa fa-caret-right" data-direction="next"></i>
+        </div>
+        <div class="group">
+            <?php
+                include_once(__DIR__.'/blog/process/products.php');
+            ?>
+        </div>
+    </div>
 </section>
 
 

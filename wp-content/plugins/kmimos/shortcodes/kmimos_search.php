@@ -94,117 +94,38 @@
         </div>";
     }
 
+    global $wpdb; $TESTIMONIOS = ""; $WIDTH_SLIDER = 0;
+    $resultado = $wpdb->get_results("SELECT * FROM wp_posts WHERE post_type='testimonials'");
+    foreach($resultado as $key => $testimonio){
+        $TESTIMONIOS .= "
+            <li>
+                <div class='testimonio'>
+                    <div class='testimonio_cont_data'>
+                        <div class='testimonio_titulo'>{$testimonio->post_title}</div>
+                        <div class='testimonio_texto'>{$testimonio->post_content}</div>
+                    </div>
+                </div>
+            </li>
+        ";
+        $WIDTH_SLIDER += 100;
+    }
+
+    $home = get_home_url();
+    wp_enqueue_style('slider_kmimos', $home."/wp-content/themes/pointfinder/css/new/slider_kmimos.css", array(), '1.0.0');
+    wp_enqueue_script('buscar_home', $home."/wp-content/plugins/kmimos/javascript/buscar.js", array(), '1.0.0');
+
     $HTML = "
-    <style>
-        #estado_cuidador_main {
-            margin: 0px !important;
-        }
-        #grupo_fecha {
-            width: 110% !important;
-        }
-        .selector_fecha {
-            width: 50%;
-            overflow: hidden;
-        }
-        .grupo_fecha {
-            overflow: hidden;
-        }
-        .grupo_selector {
-            display: inline-block;
-            width: 50%;
-            float: left;
-            margin-top: 3px;
-        }
-        html.iOS .fecha_hasta, html.iOS .fecha_desde { width: 118px !important}
-        @media only screen and (max-width: 639px) { 
-            .grupo_selector { width: 100%; } 
-            html.iOS .selector_fecha {width: 50% !important}
-            html.iOS .fecha_desde {float: left; margin-top: 0px !important; margin-right: -16px;}
-            html.iOS .fecha_hasta {float: right; margin-top: 0px !important; margin-right: -16px;}
-            .fecha_desde {float: left;}
-            .fecha_hasta { display: block;}
-            .fecha_hasta_full { display: none;}
-        }
-        .grupo_selector .marco {
-            display: inline-block;
-            border: 1px solid #888;
-            width: 99%;
-            padding-right: 5px;
-        }
-        .grupo_selector .icono {
-            display: inline-block;
-            width: 36px;
-            height: 36px;
-            float: left;
-            padding: 5px;
-            font-size: 1.8em;
-        }
-        .grupo_selector sub {
-            top: 8px;
-            float: left;
-        }
-        .grupo_selector select, .grupo_selector input {
-            height: 25px;
-            width: 87%;
-            display: inline-block;
-            clear: right;
-            float: left;
-            margin-top: -10px;
-            border: 0px;
-            background-color: #ffffff;
-        }
-        select.activo, .grupo_fecha input[type=date].activo { color: #00d2b7 !important; }
-        select:focus{
-            outline: 0px;
-        }
-        #pp_full_res .pp_inline p {
-            margin: 7px 0px 15px 38px;
-            text-align: left;
-        }
-        #popup_mas_servicios{
-            overflow: hidden;
-            position: fixed;
-            top: 0px;
-            left: 0px;
-            z-index: 999999999999999999;
-            background: rgba(0,0,0,0.6);
-            width: 100%;
-            height: 100%;
-            vertical-align: middle;
-        }
-        #mas_servicios{
-            display: inline-block;
-            position: relative;
-            max-width: 340px !important;
-            vertical-align: middle;
-            overflow: hidden;
-            background: #FFF;
-            padding: 25px 5px 10px;
-            margin: 50px auto;
-            border-radius: 8px;
-            border: solid 5px rgba(0,0,0,0.8);
-            vertical-align: middle;
-        }
-        #cerrar_mas_servicios{
-            position: absolute;
-            top: 0px;
-            right: 0px;
-            background: #FFF;
-            padding: 3px;
-            font-size: 16px;
-            border: solid 1px #333;
-            border-top: 0px;
-            border-right: 0px;
-            border-radius: 0px 0px 0px 5px;
-            cursor: pointer;
-        }
-        #popup_mas_servicios span{
-            display: inline-block;
-            width: 0px;
-            height: 100%;
-            vertical-align: middle;
-        }
-    </style>
+    <script type='text/javascript'> var URL_MUNICIPIOS = '".get_bloginfo( 'template_directory', 'display' )."/vlz/ajax_municipios.php'; </script>
+
+    <div class='slider_home' style='background-image: url({$home}/wp-content/themes/pointfinder/images/slider_home/fondo_2.png)'>
+        <div class='slider_home_container'>
+            <ul style='width: 200%;' class='slider_home_box'>
+                <li style='background-image: url({$home}/wp-content/themes/pointfinder/images/slider_home/slider_1_1.png)'></li>
+                <li style='background-image: url({$home}/wp-content/themes/pointfinder/images/slider_home/slider_1_2.png)'></li>
+            </ul>
+        </div>
+    </div>
+
     <div id='portada'>
         <form id='pointfinder-search-form-manual' method='POST' action='".get_home_url()."/wp-content/themes/pointfinder/vlz/buscar.php' data-ajax='false' novalidate='novalidate'>
             <center>
@@ -284,113 +205,148 @@
         </form>
     </div>
 
-    <script type='text/javascript'>
-        var hasGPS=false;
+    <div class='vc_row wpb_row vc_row-fluid text-dark hidden-sm hidden-xs vc_custom_1479764110786 vc_row-has-fill' style='background-color: #f9f9f9 !important;'>
+        <div class='pf-container'>
+            <div class='pf-row'>
+                <div class='wpb_column col-lg-12 col-md-12'>
+                    <div class='vc_column-inner '>
+                        <div class='wpb_wrapper'>
+                            <div class='vc_empty_space'  style='height: 10px' >
+                                <span class='vc_empty_space_inner'></span>
+                            </div>
+                            <div class='wpb_text_column wpb_content_element '>
+                                <div class='wpb_wrapper'>
+                                    <h1 style='text-align: center;'><span style='color: #01d7df;'><strong>Beneficios</strong></span></h1>
+                                </div>
+                            </div>
+                            <div class='vc_empty_space'  style='height: 30px' >
+                                <span class='vc_empty_space_inner'></span>
+                            </div>
+                            <div class='vc_row wpb_row vc_inner vc_row-fluid vc_custom_1478877923520 vc_row-has-fill'>
+                                <div class='wpb_column col-lg-3 col-md-3'>
+                                    <div class='vc_column-inner '>
+                                        <div class='wpb_wrapper'>
+                                            <div class='wpb_text_column wpb_content_element  whiteBox'>
+                                                <div class='wpb_wrapper'>
+                                                    <p style='text-align: center;'>
+                                                        <img class='size-full wp-image-686 aligncenter' src='https://www.kmimos.com.mx/iconos/boton-1.png' alt='boton-1' />
+                                                    </p>
+                                                    <h3 style='text-align: center;'>
+                                                        <span style='color: #90a4ae;'>Cuidadores</span><br />
+                                                        <span style='color: #90a4ae;'>Certificados</span>
+                                                    </h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='wpb_column col-lg-3 col-md-3'>
+                                    <div class='vc_column-inner '>
+                                        <div class='wpb_wrapper'>
+                                            <div class='wpb_text_column wpb_content_element  whiteBox'>
+                                                <div class='wpb_wrapper'>
+                                                    <p style='text-align: center;'>
+                                                        <img class='size-full wp-image-687 aligncenter' src='https://www.kmimos.com.mx/iconos/boton-2.png' alt='boton-2' />
+                                                    </p>
+                                                    <h3 style='text-align: center;'>
+                                                        <span style='color: #90a4ae;'>Fotografías</span><br />
+                                                        <span style='color: #90a4ae;'>y videos diarios</span>
+                                                    </h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='wpb_column col-lg-3 col-md-3'>
+                                    <div class='vc_column-inner '>
+                                        <div class='wpb_wrapper'>
+                                            <div class='wpb_text_column wpb_content_element  whiteBox'>
+                                                <div class='wpb_wrapper'>
+                                                    <p style='text-align: center;'>
+                                                        <img class='size-full wp-image-688 aligncenter' src='https://www.kmimos.com.mx/iconos/boton-3.png' alt='boton-3' />
+                                                    </p>
+                                                    <h3 style='text-align: center;'>
+                                                        <span style='color: #90a4ae;'>Atención</span><br />
+                                                        <span style='color: #90a4ae;'>personalizada</span>
+                                                    </h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='wpb_column col-lg-3 col-md-3'>
+                                    <div class='vc_column-inner '>
+                                        <div class='wpb_wrapper'>
+                                            <div class='wpb_text_column wpb_content_element  whiteBox'>
+                                                <div class='wpb_wrapper'>
+                                                    <p style='text-align: center;'>
+                                                        <img class='size-full wp-image-689 aligncenter' src='https://www.kmimos.com.mx/iconos/boton-4.png' alt='boton-4' />
+                                                    </p>
+                                                    <h3 style='text-align: center;'>
+                                                        <span style='color: #90a4ae;'>Cobertura veterinaria</span><br />
+                                                        <span style='color: #90a4ae;'>para tu mascota</span>
+                                                    </h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='vc_btn3-container  leer-mas btn-green vc_btn3-center' style='overflow: hidden; margin: 30px auto; width: 200px; padding: 0px; text-align: center;'>
+                        <a 
+                            class='
+                                vc_general 
+                                vc_btn3 
+                                vc_btn3-size-md 
+                                vc_btn3-shape-square 
+                                vc_btn3-style-flat 
+                                vc_btn3-color-grey
+                            ' 
+                            href='https://www.kmimos.com.mx/beneficios/' 
+                            title='Beneficios' 
+                            target='_self'
+                            style='
+                                display: inline-block;
+                            '
+                        >
+                            Leer más
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        (function($) {
-            'use strict';
 
-            $('#ver_mas_servicios').on('click', function(){
-                if( $('#popup_mas_servicios').css('display') == 'none' ){
-                    $('#popup_mas_servicios').css('display', 'block');
-                }else{
-                    $('#popup_mas_servicios').css('display', 'none');
-                }
-            });
+    <div id='bloque_testimonios' style='background: #00c3aa; padding: 20px 0px 50px;'>
+        <div class='wpb_text_column wpb_content_element' style='padding: 5px 0px;'>
+            <div class='wpb_wrapper'>
+                <h1 style='text-align: center;'><span style='color: #FFF;'><strong>Testimonios</strong></span></h1>
+            </div>
+        </div>
+        <div class='testimonios_container'>
+            <ul style='width: {$WIDTH_SLIDER}%' class='testimonios_box'>
+                ".$TESTIMONIOS."
+            </ul>
+        </div>
+    </div>
 
-            $('#cerrar_mas_servicios').on('click', function(){
-                $('#popup_mas_servicios').css('display', 'none');
-            });
+    <div class='slider_logos_container'>
+        <ul class='slider_logos_box'>
+            <li style='background-image: url({$home}/wp-content/uploads/2017/02/expansion-360x150.png)'></li>
+            <li style='background-image: url({$home}/wp-content/uploads/2017/02/reforma-360x150-360x150.png)'></li>
+            <li style='background-image: url({$home}/wp-content/uploads/2017/02/mural-360x150-360x150.png)'></li>
+            <li style='background-image: url({$home}/wp-content/uploads/2017/02/entrepreneur-360x150.png)'></li>
 
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(coordenadas);
-            } else {
-                $('#selector_locacion').removeClass('hide');
-                $('#selector_coordenadas').addClass('hide');
-                $('#selector_tipo').addClass('hide');
-            }
-            if(navigator.platform.substr(0, 2) == 'iP') $('html').addClass('iOS');
-            $(function(){
-                var edos = $('#estado_cuidador').val();
-                if($('#otra-localidad').prop( 'checked' )){
-                    $('#selector_locacion').removeClass('hide');
-                    $('#selector_coordenadas').addClass('hide');
-                    if( edos != ''){
-                        $('#estado_cuidador > option[value='+edos+']').attr('selected', 'selected');
-                    }
-                }
-                $('#otra-localidad').click(function(){
-                    $('#selector_locacion').removeClass('hide');
-                    $('#selector_coordenadas').addClass('hide');
-                });
-                $('#mi-ubicacion').click(function(){
-                    $('#selector_coordenadas').addClass('hide');
-                    $('#selector_locacion').addClass('hide');
-                });
-                function cargar_municipios(CB){
-                    var estado_id = jQuery('#estado_cuidador').val();       
-                    if( estado_id != '' ){
-                        jQuery.getJSON( 
-                            '".get_bloginfo( 'template_directory', 'display' )."/vlz/ajax_municipios.php', 
-                            {estado: estado_id} 
-                        ).done(
-                            function( data, textStatus, jqXHR ) {
-                                var html = \"<option value=''>Seleccione un municipio</option>\";
-                                jQuery.each(data, function(i, val) {
-                                    html += '<option value='+val.id+'>'+val.name+'</option>';
-                                });
-                                jQuery('#municipio_cuidador').html(html);
-
-                                if( CB != undefined) {
-                                    CB();
-                                }
-                            }
-                        ).fail(
-                            function( jqXHR, textStatus, errorThrown ) {
-                                console.log( 'Error: ' +  errorThrown );
-                            }
-                        );
-                    }
-                }
-                jQuery('#estado_cuidador').on('change', function(e){
-                    cargar_municipios();
-                });
-                cargar_municipios(function(){
-                    jQuery(\"#municipio_cuidador > option[value='\"+jQuery('#municipio_cache').val()+\"']\").attr('selected', 'selected');
-                });
-                jQuery('#municipio_cuidador').on('change', function(e){
-                    jQuery('#municipio_cache').attr('value', jQuery('#municipio_cuidador').val() );
-                });
-
-                $('.boton_servicio > input:checkbox').each(function(index){
-                    var servicio = $(this).attr('data-key');
-                    var activo = $(this).prop('checked');
-                    if(activo) $(this).parent().addClass('activo');
-                    else $(this).parent().removeClass('activo');
-                });
-                $('.boton_portada > input:checkbox').on('change',function(e){
-                    var servicio = $(this).attr('data-key');
-                    var activo = $(this).prop('checked');
-                    if(activo) $('.servicio_cuidador_'+servicio).parent().addClass('activo');
-                    else $('.servicio_cuidador_'+servicio).parent().removeClass('activo');
-                });
-                $('.modal').fancybox({
-                    maxWidth: 340
-                });
-            });
-        })(jQuery);
-
-        function coordenadas(position){
-            if(position.coords.latitude != '' && position.coords.longitude != '') {
-                document.getElementById('latitud').value=position.coords.latitude;
-                document.getElementById('longitud').value=position.coords.longitude;        
-            } else {
-                var mensaje = 'No es posible leer su ubicación,\nverifique si su GPS está encendido\ny vuelva a recargar la página.'+$('#latitud').val()+','+$('#longitud').val();
-                alert(mensaje);        
-            }
-        }
-    </script>
-    ";
+            <li style='background-image: url({$home}/wp-content/uploads/2017/02/el-universal-360x150-360x150.png)'></li>
+            <li style='background-image: url({$home}/wp-content/uploads/2017/02/el-norte-360x150-360x150.png)'></li>
+            <li style='background-image: url({$home}/wp-content/uploads/2017/02/el-financiero-360x150-360x150.png)'></li>
+            <li style='background-image: url({$home}/wp-content/uploads/2017/02/expansion-360x150.png)'></li>
+            <li id='logo_solo_movil' style='background-image: url({$home}/wp-content/uploads/2017/02/expansion-360x150.png)'></li>
+        </ul>
+    </div>";
 
     echo comprimir_styles($HTML);
 ?>
