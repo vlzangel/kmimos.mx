@@ -152,21 +152,18 @@
             wp_mail( $email_admin, $titulo, $mensaje, $headers_admins);
 
             $headers_call_center = array(
-                'BCC: Operador01@sin-cola.com',
-                'BCC: Operador02@sin-cola.com',
-                'BCC: Operador03@sin-cola.com',
-                'BCC: Operador04@sin-cola.com',
-                'BCC: Operador05@sin-cola.com',
-                'BCC: Operador06@sin-cola.com',
-                'BCC: Operador07@sin-cola.com',
-                'BCC: Operador08@sin-cola.com',
-                'BCC: Operador09@sin-cola.com',
-                'BCC: Operador10@sin-cola.com',
-                'BCC: Supervisor01@sin-cola.com',
-                'BCC: Supervisor02@sin-cola.com', 
-                'BCC: jorge.ballarin@sin-cola.com',
-                'BCC: gabriel.marquez@sin-cola.com',
-                'BCC: roberto.madrid@sin-cola.com'     
+                'BCC: operador01sincola@gmail.com',
+                'BCC: operador02sincola@gmail.com',
+                'BCC: operador03sincola@gmail.com',
+                'BCC: operador04sincola@gmail.com',
+                'BCC: Operador05sincola@gmail.com',
+                'BCC: Operador06sincola@gmail.com',
+                'BCC: Operador07sincola@gmail.com',
+                'BCC: opeador08sincola@gmail.com',
+                'BCC: operador10sincola@gmail.com',
+                'BCC: robertomadridcisneros@gmail.com',
+                'BCC: jordiballarin@gmail.com',
+                'BCC: supervisor02incola@gmail.com'   
             );
 
             wp_mail( "a.veloz@kmimos.la", $titulo, $mensaje, $headers_call_center);
