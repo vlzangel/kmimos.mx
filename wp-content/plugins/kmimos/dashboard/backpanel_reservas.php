@@ -194,9 +194,8 @@ $reservas = getReservas($_desde, $_hasta);
 								date_convert($meta_reserva['_booking_end'], 'd-m-Y'), 
 								date_convert($meta_reserva['_booking_start'], 'd-m-Y') 
 							);					
-						if(!in_array('hospedaje', explode("-", $reserva->post_name))){
-							$nro_noches += 1;
-							
+						if( $nro_noches == 0 && !in_array('hospedaje', explode("-", $reserva->post_name)) ){
+							$nro_noches = 1;
 						}
 
 
@@ -207,9 +206,6 @@ $reservas = getReservas($_desde, $_hasta);
 							$key = strtolower($temp_option[0]);
 							if( !in_array($key, $list_service) ){
 								$Day = "-D";
-
-
-
 							}
 						}
 

@@ -24,9 +24,7 @@
 
 		$mensaje_admin = kmimos_get_email_html($titulo_mail, $mensaje_admin, 'Nueva Reserva - '.$producto, true, true);
 
-		//wp_mail( $email_admin, "Solicitud de reserva #".$reserva_id, $mensaje_admin);
-
-		kmimos_mails_administradores_new("Solicitud de reserva #".$reserva_id, $mensaje_admin);
+		wp_mail( $email_admin, "Solicitud de reserva #".$reserva_id, $mensaje_admin, kmimos_mails_administradores() );
 
 	/* Correo Cliente */
 
@@ -134,8 +132,6 @@
 		
 		$mensaje_cuidador = kmimos_get_email_html($titulo_mail, $mensaje_cuidador, 'Nueva Reserva - '.$tipo_servicio.' por: '.$nom_cliente, true, true);
 
-		wp_mail( $cuidador_email, 'Nueva Reserva - '.$tipo_servicio.' por: '.$nom_cliente, $mensaje_cuidador);
-
-		//kmimos_mails_administradores_new('Nueva Reserva - '.$tipo_servicio.' por: '.$nom_cliente, $mensaje_cuidador);
+		wp_mail( $cuidador_email, 'Nueva Reserva - '.$tipo_servicio.' por: '.$nom_cliente, $mensaje_cuidador, kmimos_mails_administradores());
 
 ?>
