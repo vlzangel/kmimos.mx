@@ -23,7 +23,7 @@ if(array_key_exists('search',$_POST)){
 <style>
     a.absolute{position: absolute; width: 100%; height: 100%;  top: 0; left: 0;}
     .contain{position: relative; width: 95%; max-width: 1000px; margin: 0 auto; line-height: 1;}
-    .logo{background:url(https://www.kmimos.com.mx/wp-content/uploads/2017/06/logo-01.png) center/contain no-repeat;}
+    .logo{background:url(https://www.kmimos.com.mx/wp-content/uploads/2017/07/bolsita-y-logotipo-02.png) center/contain no-repeat;}
     .blog_title{color: #ff8700; font-size: 35px; font-weight: bold;}
     .icon.arrow{position: relative; width: 50px; padding: 5px 0; margin: 5px 5px; color: #FFF; font-size: 40px; text-align: center; border-radius: 50%; cursor: pointer; background: #900fa2;  }
     .responsive{display: none;}
@@ -50,7 +50,7 @@ if(array_key_exists('search',$_POST)){
 
     header .redes{position:absolute; width:70px;  right: 0;  top:calc(50% - 150px);}
     header .redes .icon{width: 40px; margin:5px 0; padding:10px; color: #FFF; font-size: 20px; text-align: center; border-radius: 50%; cursor: pointer; background: #23d3c4;}
-    header .redes .icon.bolsa{ height: 40px; border-radius: 0; display: block; background:url(https://www.kmimos.com.mx/wp-content/uploads/2017/06/Para-blog-05.png) center/contain no-repeat;}
+    header .redes .icon.bolsa{ height: 40px; border-radius: 0; display: block; background:url(https://www.kmimos.com.mx/wp-content/uploads/2017/07/bolsita-y-logotipo-03.png) center/contain no-repeat;}
 
     header .search{position: relative; color: #aaa; font-size: 15px; text-align: right;}
     header .search input{position: relative; padding:5px 10px; border:1px solid #aaa; border-radius: 20px;}
@@ -87,7 +87,8 @@ if(array_key_exists('search',$_POST)){
         /* RESPONSIVE SUGERIDO */
         header .info { display: none;}
         header .info.responsive{position: fixed; width: 100%; top: 0; display: block; overflow: visible; z-index: 1;}
-        header .info.responsive .group.contain{width: 100%; font-size: 15px; align-items: center; justify-content: flex-end; display: flex; }
+        header .info.responsive .group.contain{width: 100%; font-size:7px; align-items: center; justify-content: flex-end; display: flex; }
+        header .info.responsive .session{font-size:12px;}
         header .info.responsive .menu{border: none; display: block !important;}
         header .info.responsive .menu .items.show{border: none; background: #23d3c4;}
         header .info.responsive .menu .items.show .item{color: #FFF;}
@@ -146,7 +147,7 @@ if(array_key_exists('search',$_POST)){
                     </div>
                 </div>
 
-                <div class="search">
+                <div class="search section">
                     <form  method="post" action="<?php echo $page_current.'#last'; ?>">
                         <input type="text" name="search" value="<?php echo $search; ?>" placeholder=""/>
                         <button type="submit"><span class="fa fa-search"></span> BUSCAR</button>
@@ -195,9 +196,9 @@ if(array_key_exists('search',$_POST)){
             function responsive_menu(element){
                 var items = jQuery(element).closest('header').find('.menu').find('.items');
                 if(items.hasClass('show')){
-                    items.removeClass('show');
+                    items.slideUp().removeClass('show');
                 }else{
-                    items.addClass('show');
+                    items.slideDown().addClass('show');
                 }
             }
 
@@ -207,11 +208,11 @@ if(array_key_exists('search',$_POST)){
             });
 
             function responsive_search(element){
-                var search = jQuery(element).closest('.info.responsive').find('.search');
+                var search = jQuery(element).closest('.info.responsive').find('.search.section');
                 if(search.hasClass('show')){
-                    search.removeClass('show');
+                    search.slideUp().removeClass('show');
                 }else{
-                    search.addClass('show');
+                    search.slideDown().addClass('show');
                 }
             }
         </script>

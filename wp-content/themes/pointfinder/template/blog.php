@@ -112,7 +112,7 @@ include_once(__DIR__.'/blog/header.php');
         #kmibox .section.image{position: absolute; width: 100%; height: 100%; opacity: 0.2;  }
 
         /* RESPONSIVE SUGERIDO */
-        #kmibox .group {height: calc(100% - 150px);}
+        #kmibox .group {}
         #kmibox .section.image {display: none;}
         #kmibox .section.image.responsive{position: relative; height: 300px; opacity: 1; top: -100px; background-position: top right; display: block;}
         #kmibox .section.detail{max-width: 300px; padding: 0; text-align: left;}
