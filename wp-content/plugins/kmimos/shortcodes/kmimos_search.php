@@ -205,120 +205,50 @@
         </form>
     </div>
 
-    <div class='vc_row wpb_row vc_row-fluid text-dark hidden-sm hidden-xs vc_custom_1479764110786 vc_row-has-fill' style='background-color: #f9f9f9 !important;'>
-        <div class='pf-container'>
-            <div class='pf-row'>
-                <div class='wpb_column col-lg-12 col-md-12'>
-                    <div class='vc_column-inner '>
-                        <div class='wpb_wrapper'>
-                            <div class='vc_empty_space'  style='height: 10px' >
-                                <span class='vc_empty_space_inner'></span>
-                            </div>
-                            <div class='wpb_text_column wpb_content_element '>
-                                <div class='wpb_wrapper'>
-                                    <h1 style='text-align: center;'><span style='color: #01d7df;'><strong>Beneficios</strong></span></h1>
-                                </div>
-                            </div>
-                            <div class='vc_empty_space'  style='height: 30px' >
-                                <span class='vc_empty_space_inner'></span>
-                            </div>
-                            <div class='vc_row wpb_row vc_inner vc_row-fluid vc_custom_1478877923520 vc_row-has-fill'>
-                                <div class='wpb_column col-lg-3 col-md-3'>
-                                    <div class='vc_column-inner '>
-                                        <div class='wpb_wrapper'>
-                                            <div class='wpb_text_column wpb_content_element  whiteBox'>
-                                                <div class='wpb_wrapper'>
-                                                    <p style='text-align: center;'>
-                                                        <img class='size-full wp-image-686 aligncenter' src='https://www.kmimos.com.mx/iconos/boton-1.png' alt='boton-1' />
-                                                    </p>
-                                                    <h3 style='text-align: center;'>
-                                                        <span style='color: #90a4ae;'>Cuidadores</span><br />
-                                                        <span style='color: #90a4ae;'>Certificados</span>
-                                                    </h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class='wpb_column col-lg-3 col-md-3'>
-                                    <div class='vc_column-inner '>
-                                        <div class='wpb_wrapper'>
-                                            <div class='wpb_text_column wpb_content_element  whiteBox'>
-                                                <div class='wpb_wrapper'>
-                                                    <p style='text-align: center;'>
-                                                        <img class='size-full wp-image-687 aligncenter' src='https://www.kmimos.com.mx/iconos/boton-2.png' alt='boton-2' />
-                                                    </p>
-                                                    <h3 style='text-align: center;'>
-                                                        <span style='color: #90a4ae;'>Fotografías</span><br />
-                                                        <span style='color: #90a4ae;'>y videos diarios</span>
-                                                    </h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class='wpb_column col-lg-3 col-md-3'>
-                                    <div class='vc_column-inner '>
-                                        <div class='wpb_wrapper'>
-                                            <div class='wpb_text_column wpb_content_element  whiteBox'>
-                                                <div class='wpb_wrapper'>
-                                                    <p style='text-align: center;'>
-                                                        <img class='size-full wp-image-688 aligncenter' src='https://www.kmimos.com.mx/iconos/boton-3.png' alt='boton-3' />
-                                                    </p>
-                                                    <h3 style='text-align: center;'>
-                                                        <span style='color: #90a4ae;'>Atención</span><br />
-                                                        <span style='color: #90a4ae;'>personalizada</span>
-                                                    </h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class='wpb_column col-lg-3 col-md-3'>
-                                    <div class='vc_column-inner '>
-                                        <div class='wpb_wrapper'>
-                                            <div class='wpb_text_column wpb_content_element  whiteBox'>
-                                                <div class='wpb_wrapper'>
-                                                    <p style='text-align: center;'>
-                                                        <img class='size-full wp-image-689 aligncenter' src='https://www.kmimos.com.mx/iconos/boton-4.png' alt='boton-4' />
-                                                    </p>
-                                                    <h3 style='text-align: center;'>
-                                                        <span style='color: #90a4ae;'>Cobertura veterinaria</span><br />
-                                                        <span style='color: #90a4ae;'>para tu mascota</span>
-                                                    </h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class='vc_btn3-container  leer-mas btn-green vc_btn3-center' style='overflow: hidden; margin: 30px auto; width: 200px; padding: 0px; text-align: center;'>
-                        <a 
-                            class='
-                                vc_general 
-                                vc_btn3 
-                                vc_btn3-size-md 
-                                vc_btn3-shape-square 
-                                vc_btn3-style-flat 
-                                vc_btn3-color-grey
-                            ' 
-                            href='https://www.kmimos.com.mx/beneficios/' 
-                            title='Beneficios' 
-                            target='_self'
-                            style='
-                                display: inline-block;
-                            '
-                        >
-                            Leer más
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class='beneficios_container'>
+        <h1 style='text-align: center;'><span style='color: #01d7df;'><strong>Beneficios</strong></span></h1>
+        <ul class='beneficios_home'>
+            <li>
+                <p style='text-align: center;'>
+                    <img src='https://www.kmimos.com.mx/iconos/boton-1.png' alt='boton-1' />
+                </p>
+                <h3 style='text-align: center;'>
+                    <span style='color: #90a4ae;'>Cuidadores</span><br />
+                    <span style='color: #90a4ae;'>Certificados</span>
+                </h3>
+            </li>  
 
+            <li>
+                <p style='text-align: center;'>
+                    <img src='https://www.kmimos.com.mx/iconos/boton-2.png' alt='boton-2' />
+                </p>
+                <h3 style='text-align: center;'>
+                    <span style='color: #90a4ae;'>Fotografías</span><br />
+                    <span style='color: #90a4ae;'>y videos diarios</span>
+                </h3>
+            </li>  
+
+            <li>
+                <p style='text-align: center;'>
+                    <img src='https://www.kmimos.com.mx/iconos/boton-3.png' alt='boton-3' />
+                </p>
+                <h3 style='text-align: center;'>
+                    <span style='color: #90a4ae;'>Atención</span><br />
+                    <span style='color: #90a4ae;'>personalizada</span>
+                </h3>
+            </li>  
+
+            <li>
+                <p style='text-align: center;'>
+                    <img src='https://www.kmimos.com.mx/iconos/boton-4.png' alt='boton-4' />
+                </p>
+                <h3 style='text-align: center;'>
+                    <span style='color: #90a4ae;'>Cobertura veterinaria</span><br />
+                    <span style='color: #90a4ae;'>para tu mascota</span>
+                </h3>
+            </li> 
+        </ul> 
+    </div>
 
     <div id='bloque_testimonios' style='background: #00c3aa; padding: 20px 0px 50px;'>
         <div class='wpb_text_column wpb_content_element' style='padding: 5px 0px;'>

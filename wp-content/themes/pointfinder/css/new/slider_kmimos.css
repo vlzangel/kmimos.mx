@@ -1,4 +1,30 @@
 /*
+    Beneficios Home
+*/ 
+    .beneficios_container{
+        background: #f9f9f9;
+        padding: 20px;
+    }
+
+    ul.beneficios_home{
+        margin: 0px auto;
+        padding: 20px;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    ul.beneficios_home li{
+        list-style: none;
+        display: inline-block;
+        padding: 30px 0px;
+        margin: 15px;
+        border: solid 1px #eee;
+        border-radius: 3px;
+        width: 250px;
+        background: #FFF;
+    }
+
+/*
     Slider Home
 */
 

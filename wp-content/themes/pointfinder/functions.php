@@ -25,18 +25,18 @@ function set_input_attrs( $fields ) {
 
 // add_filter( 'show_admin_bar', '__return_false' );
 
-function remove_head_scripts() {
+// function remove_head_scripts() {
 
-	remove_action('wp_head', 'wp_print_scripts');
-	remove_action('wp_head', 'wp_print_head_scripts', 9);
-	remove_action('wp_head', 'wp_enqueue_scripts', 1);
+// 	remove_action('wp_head', 'wp_print_scripts');
+// 	remove_action('wp_head', 'wp_print_head_scripts', 9);
+// 	remove_action('wp_head', 'wp_enqueue_scripts', 1);
 
-	add_action('wp_footer', 'wp_print_scripts', 5);
-	add_action('wp_footer', 'wp_enqueue_scripts', 5);
-	add_action('wp_footer', 'wp_print_head_scripts', 5);
+// 	add_action('wp_footer', 'wp_print_scripts', 5);
+// 	add_action('wp_footer', 'wp_enqueue_scripts', 5);
+// 	add_action('wp_footer', 'wp_print_head_scripts', 5);
 
-}
-add_action( 'wp_enqueue_scripts', 'remove_head_scripts' );
+// }
+// add_action( 'wp_enqueue_scripts', 'remove_head_scripts' );
 
 remove_action( 'wp_head', 'wlwmanifest_link' );
 remove_action( 'wp_head', 'wp_generator' );
