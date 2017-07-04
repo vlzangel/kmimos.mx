@@ -7,7 +7,8 @@
     footer .contact .section.redes{width: 16%;}
     footer .contact .section.redes .icon{ width: 40px; margin:5px 0; padding:10px; color: #FFF; font-size: 20px; text-align: center; border-radius: 50%; cursor: pointer; background: #23d3c4; display: block;}
     footer .contact .section .item{padding: 5px 0; font-size: 15px;}
-    footer .contact .section .item a{color: #0992a3;}
+    footer .contact .section .item a{color: #555;}
+    footer .contact .section .item a.kmimos{color: #0992a3;}
     footer .contact .section .item.title{ font-size: 15px; font-weight: bold;}
 
     footer .payment{ padding: 20px 0; background: #FFF;}
