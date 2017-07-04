@@ -20,6 +20,10 @@ header{
     margin-top:5px;
 }
 
+.button-shared{
+    margin-right: 20px;
+}
+
 .resaltar{
     font-size:18px;color:#9F159F;text-decoration: underline;font-weight: bold;
 }
@@ -111,6 +115,17 @@ footer{
 	margin-bottom:15px;
 }
 
+.footer-content{
+    margin-top:15px;
+    background:#881C9B;
+    color:#fff;
+    font-weight:bold;
+    padding:2px 10px 2px 10px;
+    border-radius:10px;
+    margin-bottom:20px;
+}
+
+
 /***************************************/
 /*  Media                              */
 /***************************************/
@@ -118,6 +133,9 @@ footer{
 
 }
 @media 	(max-width: 766px){ 
+    .footer-content{
+        text-align: left;
+    }
     body{
         padding-bottom:20px;
     }
@@ -144,6 +162,9 @@ footer{
     }
 }
 @media 	(min-width: 992px) { 
+    .footer-content{
+        text-align: center;
+    }
     #bloque1{
         padding-right: 12px;
         padding-left: 10px;

@@ -35,7 +35,7 @@ if(isset($_GET['e'])){
 		</script>
 
 	</head>
-	<body onBeforeUnload="cerrarventana()">
+	<body>
 		<!-- Load Facebook SDK for JavaScript -->
 		<div id="fb-root"></div>
 		<script>(function(d, s, id) {
@@ -47,14 +47,10 @@ if(isset($_GET['e'])){
 		}(document, 'script', 'facebook-jssdk'));</script>
 
 		<div class="container">
-			
+
 			<header class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2">
 				<img src="img/dogs-top.jpg" class="img-responsive" width="100%" alt="">
-				<div class="col-md-12"><h1 id="subtitulo" class="col-md-offset-2 col-md-8 text-center">
-					¡Felicidades, ya formas parte de nuestro Club!
-				</h1><br>
-				</div>
-				<h1 class="text-center" style="font-size: 2.14em;">Suma huellas y gana descuentos</h1>
+				<h1 class="text-center" style="font-size: 1.8em;">Suma huellas a nuestro club y gana descuentos</h1>
 			</header>
 
 			<section class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2 text-center">
@@ -62,41 +58,33 @@ if(isset($_GET['e'])){
 					<section class="col-xs-12 col-sm-4 col-md-3  text-right">
 						<span id="bloque1">Es muy sencillo:</span><br>
 					</section>
-
-					<div class="col-xs-12 col-sm-4 col-md-4">
-						<section id="bloque2" class="bloque">
-							<span>Comparte a trav&eacute;s de los botones e invita a tus amigos a unirse a nuestro club.</span>
-						</section>
-						<section id="shared" class="text-right row">
+					<section id="bloque3" class="bloque col-xs-12 col-sm-8 col-md-9 ">
+						<span>Por cada amigo que complete una reservaci&oacute;n, t&uacute; ganas 
+						<span class="resaltar">150$</span> acumulables hasta  <span class="resaltar">750$</span> y tu amigo gana otros <span class="resaltar">150$</span>
+						</span>
+					</section>
+					<section class="col-xs-12 col-sm-12 col-md-12 ">
+						<h2 class="text-center" style="font-size: 1.8em; color: #881c9b;font-weight: bold;">Picale AQU&Iacute; y comparte con tus amigos</h2>
+					</section>
+					<div class="col-xs-12 col-sm-12 col-md-12 text-center">
+						<section id="shared" class="text-center row">
 							<?php if(!empty($url)){ ?>
-							<div class="col-xs-4 col-sm-4 col-sm-4">
-								<span id="twitter_shared" data-target="1">
+								<span id="twitter_shared" data-target="1" class="button-shared" >
 									<img src="img/btntwitter.png" width="50px">
 								</span>
-							</div>
-							<div class="col-xs-4 col-sm-4 col-sm-4">
-								<span id="facebook_shared" data-target="1">
+								<span id="facebook_shared" data-target="1" class="button-shared">
 									<img src="img/btnfacebook.png" width="50px">
 								</span>
-							</div>
-							<div class="col-xs-4 col-sm-4 col-sm-4">
-								<span id="mail_publicar" data-target="1">
+								<span id="mail_publicar" data-target="1" class="button-shared">
 									<img src="img/btnemail.png" width="50px">
 								</span>
-							</div>
 							<?php } else { ?>
 								<a href="/referidos" class="btn btn-md" style="background: #9F159F; border-color:#9F159F;color:#fff;">Obtener enlace</a>
 							<?php } ?>
 						</section>					
 					</div>
-					<section id="bloque3" class="bloque col-xs-12 col-sm-4 col-md-4 ">
-						<span>Por cada amigo que complete una reservaci&oacute;n, t&uacute; ganas 
-						<span class="resaltar">150$</span> acumulables hasta  <span class="resaltar">750$</span> y tu amigo gana otros <span class="resaltar">150$</span>
-						</span>
-					</section>
-
+					
 				</div>	
-
 
 				<!-- Link Twitter -->	
 				<div id="twitter" class="col-sm-11 clearfix hidden">
@@ -157,11 +145,22 @@ if(isset($_GET['e'])){
 				</div>
 			</section>
 
-			<aside class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2 text-center">
-				<img src="img/opciones.png" class="img-responsive hidden-xs hidden-sm " >
-				<img src="img/opciones_mobile.png" class="img-responsive hidden-md hidden-lg" >
+			<aside class="footer-content col-xs-12 col-sm-12 col-md-8 col-md-offset-2 text-left">
+					<span>Amigos referidos: </span>
+					<br class="hidden-md hidden-lg">
+					<img src="img/1.png">
+					<span style="margin:10px;">¡Bien hecho!</span>
+					<br class="hidden-md hidden-lg">
+					<img src="img/5.png">
+					<span style="margin:10px;">¡Muy influyente!</span>
+					<br class="hidden-md hidden-lg">
+					<img src="img/10.png">
+					<span style="margin:10px;">¡Guau!</span>
 			</aside>
 
+			<aside class="col-sm-12 col-md-12 col-lg-12">
+				<h2 class="text-center" style="font-size: 1.8em; color: #881c9b;font-weight: bold;">¡Sigue ganando!</h2>
+			</aside>
 
 			<p id="shared" class="hidden">Debes compartir el enlace</p>
 
@@ -178,6 +177,7 @@ if(isset($_GET['e'])){
 		$(document).ready(function(){
 
 			$("#mail_publicar").click(function(){
+
 		        if(!$("#twitter").hasClass('hidden')){ $("#twitter").addClass('hidden'); }
 		        if(!$("#facebook").hasClass('hidden')){ $("#facebook").addClass('hidden'); }
 
@@ -187,9 +187,11 @@ if(isset($_GET['e'])){
 		        	$("#info").addClass('hidden');
 				}
 				click_action = 1;
+				ga('send', 'pageview', 'referidos_shared_email');
 		    });
 
 			$("#facebook_shared").click(function(){
+
 		        if(!$("#twitter").hasClass('hidden')){ $("#twitter").addClass('hidden'); }
 		        if(!$("#info").hasClass('hidden')){ $("#info").addClass('hidden'); }
 
@@ -199,9 +201,11 @@ if(isset($_GET['e'])){
 		        	$("#facebook").addClass('hidden');
 				}
 				click_action = 1;
+				ga('send', 'pageview', 'referidos_shared_facebook');				
 		    });
 
 			$("#twitter_shared").click(function(){
+
 		        if(!$("#facebook").hasClass('hidden')){ $("#facebook").addClass('hidden'); }
 		        if(!$("#info").hasClass('hidden')){ $("#info").addClass('hidden'); }
 
@@ -211,13 +215,10 @@ if(isset($_GET['e'])){
 		        	$("#twitter").addClass('hidden');
 				}
 				click_action = 1;
+				ga('send', 'pageview', 'referidos_shared_twitter');				
 		    });
 			
 		});
-
-		function cerrarventana() {
-			event.returnValue = ""; 
-		}
 		</script>
 
 	</body>
