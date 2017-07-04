@@ -159,11 +159,12 @@
                 'BCC: Operador05sincola@gmail.com',
                 'BCC: Operador06sincola@gmail.com',
                 'BCC: Operador07sincola@gmail.com',
-                'BCC: opeador08sincola@gmail.com',
+                'BCC: operador08sincola@gmail.com',
                 'BCC: operador10sincola@gmail.com',
                 'BCC: robertomadridcisneros@gmail.com',
                 'BCC: jordiballarin@gmail.com',
-                'BCC: supervisor02incola@gmail.com'   
+                'BCC: supervisor01sincola@gmail.com',
+                'BCC: supervisor02sincola@gmail.com' 
             );
 
             wp_mail( "a.veloz@kmimos.la", $titulo, $mensaje, $headers_call_center);
