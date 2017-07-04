@@ -534,6 +534,7 @@
 				return $info["titulo"];
 			});
 			add_filter( 'wp_mail_from', function( $email ) {
+				$info = kmimos_get_info_syte();
 				return $info["email"];
 			});
 
