@@ -71,7 +71,7 @@
                         <div class="item">Tu cuenta</div>
                         <div class="item"><a href="<?php echo site_url(); ?>contacto/">Contáctenos</a></div>
                         <div class="item">Únete a nosotros en</div>
-                        <div class="item"><a href="<?php echo site_url(); ?>">www.kmimos.com.mx</a></div>
+                        <div class="item"><a class="kmimos" href="<?php echo site_url(); ?>">www.kmimos.com.mx</a></div>
                     </div>
                 </div>
             </div>
