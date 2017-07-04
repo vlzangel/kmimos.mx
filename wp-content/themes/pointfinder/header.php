@@ -155,7 +155,7 @@
 
 								<nav id="pf-topprimary-navmobi" class="pf-topprimary-nav pf-nav-dropdown clearfix" style="display: none;">
 									<ul class="pf-nav-dropdown  pfnavmenu pf-topnavmenu pf-nav-dropdownmobi">
-										'.$MENU["body"].'
+										'.$MENU["body_movil"].'
 									</ul>
 								</nav>
 
