@@ -59,7 +59,10 @@ wp_reset_postdata();
 ?>
 
 <script type="text/javascript">
-    jQuery(document).on('click','#blog_viewed .control .icon', function(){  pviewed=jQuery(this).index(); show_viewed(); });
+    jQuery(document).on('click','#blog_viewed .control .icon', function(){
+        pviewed=jQuery(this).index();
+        show_viewed();
+    });
 
     function show_viewed(){
         clearTimeout(tviewed);

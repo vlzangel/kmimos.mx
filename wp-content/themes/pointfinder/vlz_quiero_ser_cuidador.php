@@ -586,20 +586,24 @@
 					<div style="text-align: center; ">
 						<ul class="list-inline" style="color: #737272;font-weight: 700;">
 							<li class="col-xs-12 col-sm-6 col-md-3" >
-								<img src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/1.png" class="img-responsive" style="margin:auto;" width="150px">
-								<span>Registrarte y describirte<span><br><br>
+								<img class="hidden-sm hidden-xs" src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/1.png" class="img-responsive" style="margin:auto;" width="150px">
+								<img class="hidden-md hidden-lg hidden-xl" src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/1_m.png" class="img-responsive" style="margin:auto;" width="150px">
+								<br><span>Registrarte y describirte<span><br><br>
 							</li>
 							<li class="col-xs-12 col-sm-6 col-md-3"  >
-								<img src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/2.png" class="img-responsive" style="margin:auto;" width="150px">
-								<span>Enviar documentos<span><br><br>
+								<img class="hidden-sm hidden-xs" src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/2.png" class="img-responsive" style="margin:auto;" width="150px">
+								<img  class="hidden-md hidden-lg hidden-xl" src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/2_m.png" class="img-responsive" style="margin:auto;" width="150px">
+								<br><span>Enviar documentos<span><br><br>
 							</li>
 							<li class="col-xs-12 col-sm-6 col-md-3" >
-								<img src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/3.png" class="img-responsive" style="margin:auto;" width="150px">
-								<span>Realizar tus pruebas<span><br><br>
+								<img class="hidden-sm hidden-xs" src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/3.png" class="img-responsive" style="margin:auto;" width="150px">
+								<img class="hidden-md hidden-lg hidden-xl" src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/3_m.png" class="img-responsive" style="margin:auto;" width="150px">
+								<br><span>Realizar tus pruebas<span><br><br>
 							</li>
 							<li class="col-xs-12 col-sm-6 col-md-3" >
-								<img src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/4.png" class="img-responsive" style="margin:auto;" width="150px">
-								<span>Completar tu perfil<span><br><br>
+								<img class="hidden-sm hidden-xs" src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/4.png" class="img-responsive" style="margin:auto;" width="150px">
+								<img class="hidden-md hidden-lg hidden-xl" src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/4_m.png" class="img-responsive" style="margin:auto;" width="150px">
+								<br><span>Completar tu perfil<span><br><br>
 							</li>
 						</ul>
 						<p style="color: #de7212;font-weight: bold;font-size: 15px;">
