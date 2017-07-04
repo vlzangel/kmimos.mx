@@ -111,7 +111,7 @@
     }
 
     $home = get_home_url();
-    wp_enqueue_style('slider_kmimos', $home."/wp-content/themes/pointfinder/css/slider_kmimos.css", array(), '1.0.0');
+    wp_enqueue_style('slider_kmimos', $home."/wp-content/themes/pointfinder/css/new/slider_kmimos.css", array(), '1.0.0');
     wp_enqueue_script('buscar_home', $home."/wp-content/plugins/kmimos/javascript/buscar.js", array(), '1.0.0');
 
     $HTML = "
@@ -334,7 +334,7 @@
     </div>
 
     <div class='slider_logos_container'>
-        <ul style='width: 200%' class='slider_logos_box'>
+        <ul class='slider_logos_box'>
             <li style='background-image: url({$home}/wp-content/uploads/2017/02/expansion-360x150.png)'></li>
             <li style='background-image: url({$home}/wp-content/uploads/2017/02/reforma-360x150-360x150.png)'></li>
             <li style='background-image: url({$home}/wp-content/uploads/2017/02/mural-360x150-360x150.png)'></li>
@@ -344,6 +344,7 @@
             <li style='background-image: url({$home}/wp-content/uploads/2017/02/el-norte-360x150-360x150.png)'></li>
             <li style='background-image: url({$home}/wp-content/uploads/2017/02/el-financiero-360x150-360x150.png)'></li>
             <li style='background-image: url({$home}/wp-content/uploads/2017/02/expansion-360x150.png)'></li>
+            <li id='logo_solo_movil' style='background-image: url({$home}/wp-content/uploads/2017/02/expansion-360x150.png)'></li>
         </ul>
     </div>";
 
