@@ -60,7 +60,9 @@ if(array_key_exists('search',$_POST)){
     header .menu{position: relative; border: 1px solid #aaa;}
     header .menu .items{display: flex; align-items: center;}
     header .menu .items .item{width: 100%;  padding: 10px; color: #aaa; font-size: 20px; text-align: center; border-right: 1px solid #aaa; cursor: pointer;}
+    header .menu .items .item a{color: #aaa;}
     header .menu .items .item.caregiver{width: 250%; color: #FFF; border: none; background: #ff8700;}
+    header .menu .items .item.caregiver a{color: #FFF;}
     header .menu .responsive{text-align: right; display: none;}
     header .menu .responsive .bar{padding: 10px; font-size: 30px; cursor: pointer;}
 
@@ -87,11 +89,16 @@ if(array_key_exists('search',$_POST)){
         /* RESPONSIVE SUGERIDO */
         header .info { display: none;}
         header .info.responsive{position: fixed; width: 100%; top: 0; display: block; overflow: visible; z-index: 1;}
-        header .info.responsive .group.contain{width: 100%; font-size:7px; align-items: center; justify-content: flex-end; display: flex; }
-        header .info.responsive .session{font-size:12px;}
+        header .info.responsive .group.contain{width: 100%; font-size:7px; align-items: center; justify-content: flex-end; overflow: hidden;}
+        header .info.responsive  span{font-size:12px; float: left;}
+        header .info.responsive .session{font-size:12px; padding: 10px 5px; float: right;}
+        header .info.responsive .icon{float: right;}
+        header .info.responsive .icon.help{float: right;}
+        header .info.responsive .icon.bar{padding: 5px 0px;}
         header .info.responsive .menu{border: none; display: block !important;}
         header .info.responsive .menu .items.show{border: none; background: #23d3c4;}
-        header .info.responsive .menu .items.show .item{color: #FFF;}
+        header .info.responsive .menu .items.show .item,
+        header .info.responsive .menu .items.show .item a{color: #FFF;}
         header .info.responsive .search form{padding: 10px 0 0 0; margin: 10px 0 0 0; border-top: 1px solid #FFF;}
         header .info.responsive .search button{color: #FFF; display: inline-flex;}
         header .info .session{width: 60px; padding: 5px; border-left: 2px solid #FFF; }
@@ -130,20 +137,20 @@ if(array_key_exists('search',$_POST)){
                     <i class="icon phone fa fa-phone"></i>
                     +52 (55) 1791.4931<br>+52 (55) 6631.9264
                     </span>
-                    <i class="icon search fa fa-search"></i>
-                    <i class="icon help fa fa-question"></i>
-                    <i class="icon bar fa fa-bars"></i>
                     <div class="session">Inicia Sesion</div>
+                    <i class="icon bar fa fa-bars"></i>
+                    <i class="icon help fa fa-question"></i>
+                    <i class="icon search fa fa-search"></i>
                 </div>
 
 
                 <div class="menu">
                     <div class="items">
-                        <div class="item">KMIMOS</div>
-                        <div class="item">BENEFICOS</div>
-                        <div class="item">FAQ</div>
-                        <div class="item">SERVICIOS</div>
-                        <div class="item caregiver">QUIERO SER CUIDADOR</div>
+                        <div class="item"><a href="<a href="<?php echo site_url(); ?>">KMIMOS</a></div>
+                        <div class="item"><a href="<a href="<?php echo site_url(); ?>beneficios-para-tu-perro/">BENEFICOS</a></div>
+                        <div class="item"><a href="">FAQ</a></div>
+                        <div class="item"><a href="">SERVICIOS</a></div>
+                        <div class="item caregiver"><a href="<?php echo site_url(); ?>quiero-ser-cuidador-certificado-de-perros/">QUIERO SER CUIDADOR</a></div>
                     </div>
                 </div>
 
@@ -173,11 +180,11 @@ if(array_key_exists('search',$_POST)){
 
                 <div class="menu">
                     <div class="items">
-                        <div class="item">KMIMOS</div>
-                        <div class="item">BENEFICOS</div>
-                        <div class="item">FAQ</div>
-                        <div class="item">SERVICIOS</div>
-                        <div class="item caregiver">QUIERO SER CUIDADOR</div>
+                        <div class="item"><a href="<a href="<?php echo site_url(); ?>">KMIMOS</a></div>
+                        <div class="item"><a href="<a href="<?php echo site_url(); ?>beneficios-para-tu-perro/">BENEFICOS</a></div>
+                        <div class="item"><a href="">FAQ</a></div>
+                        <div class="item"><a href="">SERVICIOS</a></div>
+                        <div class="item caregiver"><a href="<?php echo site_url(); ?>quiero-ser-cuidador-certificado-de-perros/">QUIERO SER CUIDADOR</a></div>
                     </div>
                     <div class="responsive">
                         <i class="bar fa fa-bars" aria-hidden="true"></i>
