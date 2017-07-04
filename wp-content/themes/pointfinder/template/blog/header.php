@@ -34,7 +34,6 @@ if(array_key_exists('search',$_POST)){
         .icon.arrow{width:25px; font-size:15px;}
         .blog_title{display:block; text-align:center;}
 
-
         /* RESPONSIVE SUGERIDO */
         .blog_title{text-align:left; font-size: 20px;}
         .responsive{display: block;}
@@ -90,7 +89,7 @@ if(array_key_exists('search',$_POST)){
         header .info { display: none;}
         header .info.responsive{position: fixed; width: 100%; top: 0; display: block; overflow: visible; z-index: 1;}
         header .info.responsive .group.contain{width: 100%; font-size:7px; align-items: center; justify-content: flex-end; overflow: hidden;}
-        header .info.responsive  span{font-size:12px; float: left;}
+        header .info.responsive  span{font-size:15px; float: left;}
         header .info.responsive .session{font-size:12px; padding: 10px 5px; float: right;}
         header .info.responsive .icon{float: right;}
         header .info.responsive .icon.help{float: right;}
@@ -99,8 +98,11 @@ if(array_key_exists('search',$_POST)){
         header .info.responsive .menu .items.show{border: none; background: #23d3c4;}
         header .info.responsive .menu .items.show .item,
         header .info.responsive .menu .items.show .item a{color: #FFF;}
-        header .info.responsive .search form{padding: 10px 0 0 0; margin: 10px 0 0 0; border-top: 1px solid #FFF;}
-        header .info.responsive .search button{color: #FFF; display: inline-flex;}
+        header .info.responsive .section{padding: 10px 0; margin: 0; border-top: 1px solid #FFF; display: none;}
+        header .info.responsive .section.phone{}
+        header .info.responsive .section.search{}
+        header .info.responsive .section.search form{margin: 0;}
+        header .info.responsive .section.search button{color: #FFF; display: inline-flex;}
         header .info .session{width: 60px; padding: 5px; border-left: 2px solid #FFF; }
         header .info .icon{width: 35px; margin: 5px; padding: 10px; font-size: 15px;}
         header .info .icon.help{display: inline-block; float: none;}
@@ -135,7 +137,6 @@ if(array_key_exists('search',$_POST)){
                 <div class="group contain">
                     <span>
                     <i class="icon phone fa fa-phone"></i>
-                    +52 (55) 1791.4931<br>+52 (55) 6631.9264
                     </span>
                     <div class="session">Inicia Sesion</div>
                     <i class="icon bar fa fa-bars"></i>
@@ -152,6 +153,10 @@ if(array_key_exists('search',$_POST)){
                         <div class="item"><a href="">SERVICIOS</a></div>
                         <div class="item caregiver"><a href="<?php echo site_url(); ?>quiero-ser-cuidador-certificado-de-perros/">QUIERO SER CUIDADOR</a></div>
                     </div>
+                </div>
+
+                <div class="phone section">
+                    +52 (55) 1791.4931<br>+52 (55) 6631.9264
                 </div>
 
                 <div class="search section">
@@ -203,7 +208,9 @@ if(array_key_exists('search',$_POST)){
             function responsive_menu(element){
                 var items = jQuery(element).closest('header').find('.menu').find('.items');
                 if(items.hasClass('show')){
-                    items.slideUp().removeClass('show');
+                    items.slideUp(function(){
+                        jQuery(this).removeClass('show');
+                    });
                 }else{
                     items.slideDown().addClass('show');
                 }
@@ -217,9 +224,27 @@ if(array_key_exists('search',$_POST)){
             function responsive_search(element){
                 var search = jQuery(element).closest('.info.responsive').find('.search.section');
                 if(search.hasClass('show')){
-                    search.slideUp().removeClass('show');
+                    search.slideUp(function(){
+                        jQuery(this).removeClass('show');
+                    });
                 }else{
                     search.slideDown().addClass('show');
+                }
+            }
+
+            //PHONE
+            jQuery('header .info.responsive .icon.phone').click(function(e){
+                responsive_phone(this);
+            });
+
+            function responsive_phone(element){
+                var phone = jQuery(element).closest('.info.responsive').find('.phone.section');
+                if(phone.hasClass('show')){
+                    phone.slideUp(function(){
+                        jQuery(this).removeClass('show');
+                    });
+                }else{
+                    phone.slideDown().addClass('show');
                 }
             }
         </script>
