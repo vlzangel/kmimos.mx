@@ -88,7 +88,7 @@
 	            "pais"      => "México",
 	            "titulo"    => "Kmimos México",
 	            "email"     => "contactomex@kmimos.la",
-	            "telefono"  => "+52 (55) 1791.4931/ +52 (55) 66319264",
+	            "telefono"  => "+52 (55) 4742-3162 y WhatsApp (55) 6892-2182",
 	            "twitter"   => "kmimosmx",
 	            "facebook"  => "Kmimosmx",
 	            "instagram" => "kmimosmx",
