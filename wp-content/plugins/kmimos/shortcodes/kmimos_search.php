@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
     //[kmimos_search]
 

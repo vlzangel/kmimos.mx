@@ -129,6 +129,8 @@
             $headers[] = 'BCC: gabriel.marquez@sin-cola.com';
             $headers[] = 'BCC: roberto.madrid@sin-cola.com';
 
+            // operador01sincola@gmail.com, operador02sincola@gmail.com, operador03sincola@gmail.com, operador04sincola@gmail.com, opeador08sincola@gmail.com, operador10sincola@gmail.com, robertomadridcisneros@gmail.com, jordiballarin@gmail.com
+
             return $headers;
 
 	    }
