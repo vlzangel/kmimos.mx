@@ -122,8 +122,8 @@
             $estado = array_filter( explode("=", $ubicacion->estado) );
             $municipio = array_filter( explode("=", $ubicacion->municipios) );
 
-            $estado = utf8_encode($wpdb->get_var("SELECT name FROM states WHERE id = ".$estado[1]));
-            $municipio = utf8_encode($wpdb->get_var("SELECT name FROM locations WHERE id = ".$municipio[1]));
+            $estado = utf8_decode($wpdb->get_var("SELECT name FROM states WHERE id = ".$estado[1]));
+            $municipio = utf8_decode($wpdb->get_var("SELECT name FROM locations WHERE id = ".$municipio[1]));
 
             $HTML .= "
                 <div class='vlz_contenedor_datos_cuidador'>
