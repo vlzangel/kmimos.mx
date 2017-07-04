@@ -1,0 +1,125 @@
+
+<div class="row row-centered overview"  >
+
+ 
+			<div id="center-overview-middle">
+				    <div class="col-md-3 col-sm-3 col-xs-3 col-lg-3 boxp">
+					<div class="box">
+					    <span class="title-box-small"><i class="fa fa-users cnuvi" aria-hidden="true"></i> Visits Today</span>
+					    <div class="text-center vtext" count-to=" {{overview.today_visits}}" duration="1.2" value="{{overview.today_visits_from}}" ></div>
+					</div>
+				    </div>
+
+				    <div class="col-md-3 col-sm-3 col-xs-3 col-lg-3 boxp">
+					<div class="box">
+					    <span class="title-box-small"> <i class="fa fa-paw cnuvi" aria-hidden="true"></i>  Actions Today</span>
+					    <div class="text-center vtext" count-to="{{overview.today_actions}}" duration="1.5" value="{{overview.today_actions_from}}"> </div>
+					</div>
+				    </div>
+				    <div class="col-md-3 col-sm-3 col-xs-3 col-lg-3 boxp">
+					<div class="box">
+					    <span class="title-box-small"> <i class="fa fa-signal cnuvi" aria-hidden="true"></i> Actions / Visit</span>
+					    <div class="text-center vtext" count-to="{{overview.today_action_visit}}" duration=".5" value="{{overview.today_action_visit_from}}"></div>
+					</div>
+				    </div>
+
+				    <div class="col-md-3 col-sm-3 col-xs-3 col-lg-3 boxp">
+					<div class="box">
+					    <span class="title-box-small"> <i class="fa fa-clock-o cnuvi" aria-hidden="true"></i> Average Time / Session</span>
+					    <div class="text-center vtext" ><span class="timeAverage"> {{overview.time_average | secondsToDateTime | date:'HH:mm:ss'  }}</span></div>
+					    
+					</div>
+				    </div>
+
+				    <div class="col-md-3 col-sm-3 col-xs-3 col-lg-3 boxp">
+					<div class="box bw2">
+					    <span class="title-box">Today Graph</span>
+					    <div class="graphVisits"> 
+						<svg></svg> 
+					    </div>
+					</div>
+				    </div>
+				    
+				    <div class="col-md-5 col-sm-5 col-xs-5 col-lg-5 boxp">
+					<div class="box bw2">
+					    <span class="title-box">Live User</span>
+					    <div class="graphLiveUser">  <svg> </svg>  </div>
+					    <div class="dataUser text-center vtext"  > 
+						<span count-to="{{overview.online_visitors}}" duration=".4" value="{{overview.online_visitors_from}}" ></span>
+						<small class="smallLabel">Online</small>
+					    </div>
+					</div>
+				    </div>
+
+				    <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4 boxp">
+					<div class="box bw2">
+					    <span class="title-box">Live Map</span>
+					    <div id="liveMap"></div>
+					</div>
+				    </div>
+
+
+				    <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4 boxp">
+					<div class="box bw2">
+					    <span class="title-box">Live Pages</span>
+
+					    <ul class="list-group list-group-lg listLive">
+						<li   class="repeated-item list-group-item text-left listItemLive" animate-on-change="page.total" ng-repeat = "page in overview.popular_pages | orderBy:'-total'" ng-click = "go(page.url);" >
+						    <div class="progressli"  ng-style= "{'width': page.percent + '%' }" ></div>
+						    <span class="pull-right totalLive">
+							{{page.total}}	
+						    </span>
+						    {{ page.url | url_path | cut:true:40 }}
+						</li>
+					    </ul>
+
+					    <div class="text-center vtext noData" ng-hide="(overview.popular_pages.length)">Nothing to display</div>
+
+					</div>
+				    </div>
+
+				    <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4 boxp">
+					<div class="box bw2">
+					    <span class="title-box">Live Referer</span>
+					    <ul class="list-group list-group-lg listLive">
+						<li  class="repeated-item list-group-item text-left listItemLive " animate-on-change="page.total" ng-repeat = "page in overview.popular_referers | orderBy:'-total'" ng-click = "go(page.url);"  >
+						    <div class="progressli"  ng-style= "{'width': page.percent + '%' }" ></div>
+						    <span class="pull-right totalLive" ng-class="" >
+							{{page.total}}
+						    </span>
+							
+							<i  ng-class="getTypeReferer(page.url)" aria-hidden="true"></i>
+						    	{{ page.url | cut:true:35 }}
+						</li>
+					    </ul>
+					    <div class="text-center vtext noData" ng-hide="(overview.popular_referers.length)">Nothing to display</div>
+					</div>
+				    </div>
+
+				    <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4 boxp">
+					<div class="box bw2">
+					    <span class="title-box">Last Users</span>
+					    <ul class="list-group list-group-lg listUsers">
+						<li  class="listItemUser"  ng-repeat = "user in overview.last_users" ng-click = "goUser( user.session_id);"  >
+						    <span ng-hide="user.metadata">Visitor #{{user.session_id}}</span> <strong ng-show="user.metadata" class="cnuvi">{{user.metadata.display_name}}</strong>
+                                                    <span class="meta-lastUser">
+                                                    <i class="fa icon-small"  ng-class="'fa-'+overview.getSO(user.platform)" aria-hidden="true"  ng-show="overview.getSO(user.platform)" ></i> 
+                                                    <i class="fa icon-small"  ng-class="'fa-'+overview.getIconBrow(user.browser)" ng-show="overview.getIconBrow(user.browser)" aria-hidden="true"></i> 
+                                                    </span>
+						    <small class="font-thin pull-right"  am-time-ago="user.last_action | amFromUnix"   > </small>
+						    <br />
+						</li>
+					    </ul>
+					    <div class="text-center vtext noData" ng-hide="(overview.last_users.length)">Nothing to display</div>
+					</div>
+				    </div>
+
+				    <div class="row"></div>
+
+			</div>
+
+</div>
+
+
+
+
