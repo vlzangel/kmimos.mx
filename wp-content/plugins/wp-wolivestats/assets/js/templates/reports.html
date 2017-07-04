@@ -1,0 +1,164 @@
+    
+
+<div class="reportsWrapper fullHeight">
+
+    <div class="fullHeight" id="reportList">
+        <div class="reportBar text-center">
+                Reports
+         </div>
+
+         <h3 class="subclass-report ">Site</h3>
+                   <ul class="hand">
+                        <li ng-class="{active : name_report ==  'visits'}"  ng-click="goToReport('visits')"   >
+                            <i   class="fa fa-line-chart " aria-hidden="true"></i> Visits & Actions
+                        </li>
+                        <li  ng-class="{active : name_report ==  'search'}" ng-click="goToReport('search')" ><i  class="fa fa-search" aria-hidden="true"></i> Search </li>
+                        <li  ng-class="{active : name_report ==  'post'}" ng-click="goToReport('post')"  >        <i  class="fa fa-file" aria-hidden="true"></i> Post View </li>
+                        <li  ng-class="{active : name_report ==  'url'}" ng-click="goToReport('url')" >         <i  class="fa fa-link" aria-hidden="true"></i> URL View </li>
+                        <li  ng-class="{active : name_report ==  'countries'}" ng-click="goToReport('countries')" >   <i  class="fa fa-globe" aria-hidden="true"></i> Countries </li>
+                        <li  ng-class="{active : name_report ==  'platforms'}" ng-click="goToReport('platforms')" >   <i  class="fa fa-bar-chart" aria-hidden="true"></i> Platforms </li>
+                        <li  ng-class="{active : name_report ==  'browsers'}" ng-click="goToReport('browsers')" >    <i class="fa fa-bar-chart" aria-hidden="true"></i> Browsers </li>
+                        <li  ng-class="{active : name_report ==  'languages'}" ng-click="goToReport('languages')" >   <i  class="fa fa-language" aria-hidden="true"></i> Languages </li>
+                        <li  ng-class="{active : name_report ==  'screens'}" ng-click="goToReport('screens')" >     <i  class="fa fa-desktop" aria-hidden="true"></i> Screen Resolutions </li>
+                        <li  ng-class="{active : name_report ==  'referers'}" ng-click="goToReport('referers')" >    <i  class="fa fa-link" aria-hidden="true"></i> Referers/Sources </li>
+                    </ul>
+
+         <h3 class="subclass-report wcooi" ng-show="woocommerce"  >Woocommerce</h3>
+
+                   <ul class="hand" ng-show="woocommerce" >
+                        <li  ng-class="{active : name_report ==  'addtocart'}"  ng-click="goToReport('addtocart')" >   <i  class=" wcooi fa fa-cart-plus" aria-hidden="true"></i> Added to cart </li>
+                        <li  ng-class="{active : name_report ==  'removecart'}" ng-click="goToReport('removecart')" >    <i class=" wcooi fa fa-cart-arrow-down" aria-hidden="true"></i> Removed items cart </li>
+                        <li  ng-class="{active : name_report ==  'coupons'}" ng-click="goToReport('coupons')" >   <i  class=" wcooi fa fa-ticket" aria-hidden="true"></i> Coupons </li>
+                    </ul>
+
+		
+    </div>
+    <div class="wrapperReport fullHeight">
+
+        <div class="reportBar">
+            <div class="col-md-4 col-sm-4 col-xs-4 col-lg-4   cnuvi over">
+                <span uib-dropdown >
+                    <a href id="" uib-dropdown-toggle>
+                        <i class="fa fa-calendar buttons_report cnuvi" aria-hidden="true"></i> <span>{{filter_date}}</span> <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                    </a>
+                    <ul class="dropdown-menu" uib-dropdown-menu aria-labelledby="simple-dropdown">
+                        <li  class="cnuvi hand" ng-click="changeDateFilter('today')" > Today </li>
+                        <li  class="cnuvi hand" ng-click="changeDateFilter('yesterday')" > Yesterday </li>
+                        <li  class="cnuvi hand" ng-click="changeDateFilter('this week')" > This Week </li>
+                        <li  class="cnuvi hand" ng-click="changeDateFilter('last week')" > Last Week </li>
+                        <li  class="cnuvi hand" ng-click="changeDateFilter('this month')" > This Month </li>
+                        <li  class="cnuvi hand" ng-click="changeDateFilter('last month')" > Last Month </li>
+                        <li  class="cnuvi hand" ng-click="changeDateFilter('this year')" > This Year </li>
+                        <li  class="cnuvi hand" ng-click="report.open();"  > Custom Date Range </li>
+
+			<script type="text/ng-template" id="myModalContent.html">
+			 		
+				<div class="modal-body" id="modal-body">
+				    <div class="row">
+					    <div class="col-md-6">
+						     From:
+					    </div>
+					    <div class="col-md-6">
+						     To:
+					    </div>
+				    </div>
+				    <div class="row">
+					    <div class="col-md-6">
+						    <p class="input-group">
+							    <input type="date" class="form-control" uib-datepicker-popup ng-model="$ctrl.dt1" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close"/>
+							    <span class="input-group-btn">
+							    <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+							    </span>
+						    </p>
+					    </div>
+					    <div class="col-md-6">
+						    <p class="input-group">
+							    <input type="date" class="form-control" uib-datepicker-popup ng-model="$ctrl.dt2" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close"/>
+							    <span class="input-group-btn">
+							    <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+							    </span>
+						    </p>
+					    </div>
+				    </div>
+				</div>
+				
+				<div class="modal-footer">
+				    <button class="btn btn-filter<D-r><D-r>" type="button" ng-click="$ctrl.ok()">OK</button>
+				    <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+				</div>
+				
+			</script>	
+
+		
+                    </ul>
+                </span>
+            </div>
+
+	    <div class="title col-md-4 col-sm-4 col-xs-4 col-lg-4 "> {{titleReport}} </div>
+	    
+	    <div class="col-md-4 col-sm-4 col-xs-4 col-lg-4 cnuvi text-right">
+		<i class="fa fa-refresh hand "  ng-click="refresh();"  aria-hidden="true"></i>
+	    </div>
+
+
+        </div>
+
+         
+        <div id="chartReport">
+		<svg></svg>
+	</div>
+
+	<div id="table"  ng-show ="name_report == 'visits'" >
+	    <table class="table table-striped">
+		<thead>
+		    <tr>
+			<th class="text-left"  ng-show="filter_date == 'today' || filter_date == 'yesterday' || table_type == 'day' " >Hour</th>
+			<th class="text-left"  ng-hide="filter_date == 'today' || filter_date == 'yesterday' || table_type == 'day' " >Date</th>
+
+			<th class="text-right">Visits <i class="fa fa-circle cvisits" aria-hidden="true"></i>   </th>
+			<th class="text-right">Actions <i class="fa fa-circle cactions" aria-hidden="true"></i> </th>
+		    </tr>
+		</thead>
+		<tbody>
+		    <tr ng-repeat="(key,hour) in table">
+			<th class="text-left" ng-show="filter_date == 'today' || filter_date == 'yesterday' || table_type == 'day' " >{{key}}</th>
+			<th class="text-left" ng-hide="filter_date == 'today' || filter_date == 'yesterday' || table_type == 'day' " >{{hour.timestamp |  amFromUnix | amDateFormat:'dddd, MMM Do YYYY'  }}</th>
+			<td class="text-right">{{hour.visits  |  default:0}}</td>
+			<td class="text-right">{{hour.actions |  default:0}}</td>
+		    </tr>
+		</tbody>
+	    </table>
+	</div>
+
+	<div id="table"  ng-show ="type == 'bar'" >
+	    <table class="table table-striped">
+		<thead>
+		    <tr>
+			<th class="text-left"  >Value</th>
+			<th class="text-right">Actions  </th>
+			<th class="text-right"></th>
+		    </tr>
+		</thead>
+		<tbody>
+		    <tr ng-repeat="(key,item) in table">
+			<th class="text-left" ng-hide="name_report=='url'" > <i class="fa fa-circle" ng-style="{'color':  getColorBar(key)}" aria-hidden="true" ></i> {{item.label  }}</th>
+			<th class="text-left"  ng-show="name_report=='url'" > <i class="fa fa-circle" ng-style="{'color':  getColorBar(key)}" aria-hidden="true" ></i> {{item.label| url_path  }}</th>
+			<td class="text-right">{{item.value |  default:0 }}</td>
+			<td class="text-right"></td>
+		    </tr>
+		</tbody>
+	    </table>
+	</div>
+
+
+	
+
+
+    </div>
+
+
+
+    <div class="clearfix"></div>
+
+</div>
+
