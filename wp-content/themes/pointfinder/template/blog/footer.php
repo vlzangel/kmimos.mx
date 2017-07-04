@@ -47,26 +47,29 @@
                     </div>
                     <div class="section menu">
                         <div class="item title">Acerca De Nosotros</div>
-                        <div class="item">item</div>
-                        <div class="item">item</div>
-                        <div class="item">item</div>
-                        <div class="item">item</div>
-                        <div class="item">item</div>
+                        <div class="item"><a href=""></a>¿Quiénes somos?</div>
+                        <div class="item">¿Porque te conviene kmimos?</div>
+                        <div class="item"><a href="<?php echo site_url(); ?>contacto/">Contáctenos</a></div>
+                        <div class="item">¡Estamos contratando!</div>
+                        <div class="item">Blogs</div>
+                        <div class="item">¡Recomienda a un Amigo Y Gana!</div>
                     </div>
                     <div class="section menu">
                         <div class="item title">Politicas</div>
-                        <div class="item">item</div>
-                        <div class="item">item</div>
-                        <div class="item">item</div>
-                        <div class="item">item</div>
-                        <div class="item">item</div>
+                        <div class="item">Envíos Y Entregas</div>
+                        <div class="item">Rembolsos Y Devoluciones</div>
+                        <div class="item">Pagos</div>
+                        <div class="item">Privacidad</div>
+                        <div class="item">Políticas de facturación</div>
+                        <div class="item"><a href="<?php echo site_url(); ?>terminos-y-condiciones/">Términos y Condiciones de Uso</a></div>
                     </div>
                     <div class="section menu">
                         <div class="item title">Servicio al cliente</div>
-                        <div class="item">item</div>
-                        <div class="item">item</div>
-                        <div class="item">item</div>
-                        <div class="item">item</div>
+                        <div class="item">Preguntas Frecuentes - Ayuda</div>
+                        <div class="item">Cómo comprar en kmimos</div>
+                        <div class="item">Tu cuenta</div>
+                        <div class="item"><a href="<?php echo site_url(); ?>contacto/">Contáctenos</a></div>
+                        <div class="item">Únete a nosotros en</div>
                         <div class="item"><a href="<?php echo site_url(); ?>">www.kmimos.com.mx</a></div>
                     </div>
                 </div>
