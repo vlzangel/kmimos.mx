@@ -23,9 +23,9 @@ $html = '
 			<img src="'.$http.$_SERVER["HTTP_HOST"].'/landing/img/logo_patitas.png" alt="" width="25%">
 			<div style="margin: auto; width: 70%; text-align: justify; padding-bottom:10px;color:#757575;">
 				¡Gracias por unirte a nuestra familia Kmimos!
-				<p>Hola <?php echo $usuario; ?>,</p>
+				<p>Hola '. $username .',</p>
 				<p>Abajo encontrarás tus credenciales para que tengas acceso a Kmimos.
-					<br>E-mail:	<?php echo $usuario; ?>
+					<br>E-mail:	'.$email.'
 					<br>Contraseña:	Debes recuperar tu contraseña
 				</p>
 				<p style="text-align: center;">
