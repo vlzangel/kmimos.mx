@@ -48,6 +48,7 @@ if(isset($_GET['e'])){
 		  fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));</script>
 
+		<div id="contenido"></div>
 		<div class="container">
 
 			<header class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2">
@@ -147,7 +148,7 @@ if(isset($_GET['e'])){
 				</div>
 			</section>
 
-			<aside class="footer-content col-xs-12 col-sm-12 col-md-8 col-md-offset-2 text-left">
+			<aside class="clearfix footer-content col-xs-12 col-sm-12 col-md-8 col-md-offset-2 text-left">
 					<span>Amigos referidos: </span>
 					<br class="hidden-md hidden-lg">
 					<img src="img/1.png">
@@ -160,15 +161,16 @@ if(isset($_GET['e'])){
 					<span style="margin:10px;">¡Guau!</span>
 			</aside>
 
-			<aside class="col-sm-12 col-md-12 col-lg-12">
+			<aside class="clearfix col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<h2 class="text-center" style="font-size: 1.8em; color: #881c9b;font-weight: bold;">¡Sigue ganando!</h2>
 			</aside>
 
 			<button class="btn-cerrar" id="close"><i class="fa fa-close"></i> </button>
-			<p id="shared" class="hidden">Debes compartir el enlace</p>
 
 		</div>
 	
+
+
 		<script
 		  src="https://code.jquery.com/jquery-2.2.4.min.js?<?php echo time(); ?>"
 		  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
@@ -225,7 +227,9 @@ if(isset($_GET['e'])){
 				if(click_action==1){
 					window.close();
 				}else{
-					alert("Debes compartir tu enlace en las redes sociales");
+					$('#contenido').append(
+						$('<div id="alert-warning" role="alert"style="position:absolute;top:0px;z-index:999;margin-bottom:0px!important;width:100%;"class="alert alert-warning fade in"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Hola!</strong> Hemos detectado que no compartiste tu link, debes hacerlo para ganar mas referidos.</div>')
+					);
 				}
 			});
 
