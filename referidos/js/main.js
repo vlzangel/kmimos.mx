@@ -40,7 +40,7 @@ function _registerLanding(){
     $('#loading').addClass('hidden');
     $('#msg').html('Guardando referencia.');
 
-    window.open($('#temp').attr('action')+$('#email').val(), '_blank');
+    window.open($('#temp').attr('action')+$('#email').val(), '_system');
     //window.location.href = $('#temp').attr('action')+$('#email').val();
   })
   .fail(function() {
