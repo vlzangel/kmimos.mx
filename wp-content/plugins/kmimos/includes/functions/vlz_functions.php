@@ -767,7 +767,7 @@
                         <tr>
                             <td></td>
                             <td></td>
-                            <th colspan=2 style="'.$styles_celdas_left.'">Descuento</th>
+                            <th colspan=2 style="'.$styles_celdas_left.'">Descuento (*)</th>
                             <td style="'.$styles_celdas_right.'" align="right"> '.$info["mon_izq"].' '.number_format( $metas_orden["_cart_discount"][0], 2, ',', '.').' '.$info["mon_der"].' </td>
                         </tr>
                     ';
@@ -780,8 +780,11 @@
                         <tr>
                             <td></td>
                             <td></td>
-                            <th colspan=2 style="'.$styles_celdas_left.'">Descuento</th>
+                            <th colspan=2 style="'.$styles_celdas_left.'">Descuento (*)</th>
                             <td style="'.$styles_celdas_right.'" align="right"> '.$info["mon_izq"].' '.number_format( $metas_orden["_cart_discount"][0], 2, ',', '.').' '.$info["mon_der"].' </td>
+                        </tr>
+                        <tr>
+                            <td>(*) Monto correspondiente a la aplicación de cupón y/o saldo a favor disponible para el cliente.</td>
                         </tr>
                     ';
 
@@ -796,6 +799,9 @@
                                 <td></td>
                                 <th colspan=2 class="texto_kmimos" style="'.$styles_celdas_left.' '.$nota_cuidador.'">Kmimos te reembolsará</th>
                                 <td class="texto_kmimos" style="'.$styles_celdas_right.' '.$nota_cuidador.' font-weight: 600;" align="right"> '.$info["mon_izq"].' '.number_format( $diferencia, 2, ',', '.').' '.$info["mon_der"].' </td>
+                            </tr>
+                            <tr>
+                                <td>(*) Monto correspondiente a la aplicación de cupón y/o saldo a favor disponible para el cliente.</td>
                             </tr>
                         ';
                     }
