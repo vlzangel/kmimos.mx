@@ -1,7 +1,8 @@
 <?php
 $url="";
+$ssl =  ($_SERVER['SERVER_PORT']==443)? 's':'' ;
 if(isset($_GET['e'])){
-	$url = "https://www.kmimos.com.mx/referidos/?r=".md5($_GET['e']);
+	$url = "http".$ssl."://".$_SERVER['HTTP_HOST']."/referidos/?r=".md5($_GET['e']);
 }
 ?>
 <!DOCTYPE html>
@@ -162,7 +163,7 @@ if(isset($_GET['e'])){
 				<h2 class="text-center" style="font-size: 1.8em; color: #881c9b;font-weight: bold;">¡Sigue ganando!</h2>
 			</aside>
 
-			<button></button>
+			<button class="btn-cerrar" id="close"><i class="fa fa-close"></i> Cerrar</button>
 			<p id="shared" class="hidden">Debes compartir el enlace</p>
 
 		</div>
@@ -219,6 +220,10 @@ if(isset($_GET['e'])){
 				ga('send', 'pageview', 'referidos_shared_twitter');				
 		    });
 			
+			$("close").on('click', function(){
+				window.unload();
+			});
+
 		});
 		</script>
 
