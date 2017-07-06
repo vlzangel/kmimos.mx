@@ -317,16 +317,16 @@
 				</div>
 			';
 		}
-			
-		$comments = count( get_comments('post_id='.$post->ID) );
-		if( $comments > 0 ){ ?>
-			<div class="vlz_separador"></div>
-			<h3 class="vlz_titulo">Valoraciones</h3>
-			<div class="vlz_seccion">
-				<?php  comments_template(); ?>
-			</div> <?php
-		}
-			
+			/*
+			$comments = count( get_comments('post_id='.$post->ID) );
+			//if( $comments > 0 ){ ?>
+				<div class="vlz_separador"></div>
+				<h3 class="vlz_titulo">Valoraciones</h3>
+				<div class="vlz_seccion">
+					<?php  comments_template(); ?>
+				</div> <?php
+			//}
+			*/
 	$HTML .= '</div>';
 
 	echo comprimir_styles($HTML);
