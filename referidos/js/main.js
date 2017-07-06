@@ -27,7 +27,6 @@ function _registerLanding(){
   $.ajax( "/landing/registro-usuario.php?email="+$('#email').val()+"&name="+$('#name').val()+"&referencia="+$('#referencia').val() )
   .done(function() {
     $('#msg').html('Generando url.');
-    $('#frm-redirect').submit();
   })
   .fail(function() {
     $('#msg').html('Registro: No pudimos completar su solicitud, intente nuevamente');
@@ -41,7 +40,8 @@ function _registerLanding(){
     $('#loading').addClass('hidden');
     $('#msg').html('Guardando referencia.');
 
-    window.location.href = $('#temp').attr('action')+$('#email').val();
+    window.open($('#temp').attr('action')+$('#email').val(), '_blank');
+    //window.location.href = $('#temp').attr('action')+$('#email').val();
   })
   .fail(function() {
     $('#msg').html('Referencia: No pudimos completar su solicitud, intente nuevamente');

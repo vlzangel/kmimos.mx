@@ -4,6 +4,7 @@ $ssl =  ($_SERVER['SERVER_PORT']==443)? 's':'' ;
 if(isset($_GET['e'])){
 	$url = "http".$ssl."://".$_SERVER['HTTP_HOST']."/referidos/?r=".md5($_GET['e']);
 }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -220,9 +221,17 @@ if(isset($_GET['e'])){
 				ga('send', 'pageview', 'referidos_shared_twitter');				
 		    });
 			
-			$("close").on('click', function(){
-				window.unload();
+			$("#close").on('click', function(){
+				if(click_action==1){
+					window.close();
+				}else{
+					alert("Debes compartir tu enlace en las redes sociales");
+				}
 			});
+
+			window.onbeforeunload = function(e) {
+			   $("#close").click();
+			};
 
 		});
 		</script>

@@ -37,7 +37,6 @@
 	    $phpmailer->FromName = "Club de las Patitas Felices";
 	}
 	
-
     $landing_url = "https://www.kmimos.com.mx/referidos";     // URL Landing
 	$landing_name = 'kmimos-mx-clientes-referidos'; 	// Name Landing Page
 
@@ -59,7 +58,7 @@
 	$referencia = ( isset( $_GET['referencia'] ) )? $_GET['referencia'] : '' ;
 	$url = ( $email != '' )? md5($email) : '' ;
 	$meta = explode('@', $email);
-	$username = $meta[0];
+	$username = $meta[0].generarClave(4);
 
 	$estatus_registro = 0;
 
@@ -135,6 +134,18 @@
 	    		"Club de la Patitas Felices",
 	    		$html
 	    	);
+		}else{
+
+			$old = get_fetch_assoc("
+				SELECT * 
+				FROM list_subscribe 
+				WHERE source = '".$landing_name."' 
+					and email = '".$email."' 
+					and fecha between DATE_SUB(NOW(), INTERVAL 5 MINUTE) and NOW()"
+			);
+			if( $old['info']->num_rows > 0 ){ 
+				$estatus_registro = 1;
+			}
 		}
 	}
 
@@ -164,6 +175,17 @@
 			}
 		}
 		return $data;
+	}
+	function strRand($lenght=8, $char = ""){
+		if($char == ""){
+			$char = "#-_*@0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		}
+		return substr(str_shuffle($char), 0, $lenght);
+	}
+	function generarClave($lenght=4){
+		$lenght = ($lenght<8)? 8 : $lenght;
+		$char .= strRand($lenght, "0123456789");
+		return str_shuffle($char);
 	}
 
 print_r($estatus_registro);
