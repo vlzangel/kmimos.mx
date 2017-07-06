@@ -272,8 +272,8 @@ ul{margin: 0px; padding: 0px; list-style: none;}
 
 	.menu_syte_box > li > a{
 	    display: inline-block;
-	    height: 74px;
-    	line-height: 74px;
+	    height: 75px;
+    	line-height: 75px;
     	padding: 0 14px 0 14px;
 	    transition: all 0.24s ease-in-out;
 	    cursor: pointer;
@@ -295,6 +295,9 @@ ul{margin: 0px; padding: 0px; list-style: none;}
 		position: absolute;
 		text-align: left;
 		left: 0px;
+		top: 75px;
+		border: solid 1px #EEE;
+    	border-top: 0px;
 	}
 
 	.menu_syte_box > li:hover > .sub-menu{

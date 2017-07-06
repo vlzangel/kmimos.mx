@@ -26,23 +26,35 @@
 			$CUIDADORES .= get_ficha_cuidador($cuidador, $i, $favoritos);
 		}
 	}else{
-		$CUIDADORES .= "<li align='justify'><h2 style='padding-right: 20px!important;'>No tenemos resultados para esta búsqueda, si quieres intentarlo de nuevo pícale <a  style='color: #00b69d; font-weight: 600;' href='".$home."/#jj-landing-page'>aquí,</a> o aplica otro filtro de búsqueda.</h2></li>";
+		$CUIDADORES .= "<h2 style='padding-right: 20px!important;'>No tenemos resultados para esta búsqueda, si quieres intentarlo de nuevo pícale <a  style='color: #00b69d; font-weight: 600;' href='".$home."/#jj-landing-page'>aquí,</a> o aplica otro filtro de búsqueda.</h2>";
 	}
+
+	$PINES = json_encode($pines_visibles);
+
+	include("vlz/vlz_scripts.php");
 
 	wp_enqueue_style('beneficios_kmimos', $home."/wp-content/themes/pointfinder/css/busqueda.css", array(), '1.0.0');
 	wp_enqueue_style('beneficios_responsive', $home."/wp-content/themes/pointfinder/css/responsive/busqueda_responsive.css", array(), '1.0.0');
         
     $HTML = "
-    	<div class='container'>
-	    	<ul id='listado'>
-	    		<div class='total_resultados'>Listado: {$total} cuidador(es)</div>
-	    		".$CUIDADORES."
-	    	</ul>
-	    	<div class='vlz_nav_cont'>
-				<div class='vlz_nav_cont_interno'>".$paginacion["html"]."</div>
+    	<div id='mapa'></div>
+    	<script>var pines = eval('".$PINES."');</script>
+    	<div class='container listado'>
+    		<div class='columna_listado'>
+		    	<ul id='listado'>
+		    		<div class='total_resultados'>Listado: {$total} cuidador(es)</div>
+		    		".$CUIDADORES."
+		    	</ul>
+		    	<div class='vlz_nav_cont'>
+					<div class='vlz_nav_cont_interno'>".$paginacion["html"]."</div>
+				</div>
+			</div>
+			<div class='columna_formulario'>
+				<div class='total_resultados'>Filtrar Cuidadores</div>
+				".get_formulario($_POST)."
 			</div>
 		</div>
-    ";
+    ".$SCRIPTS;
 
 	echo comprimir_styles($HTML);
 

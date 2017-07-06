@@ -107,13 +107,11 @@ function coordenadas(position){
 }
 
 function show_video(){
-    // xjyAXaTzEhM
     $(".modal_video iframe").attr("src", "https://www.youtube.com/embed/xjyAXaTzEhM?rel=0&showinfo=0&autoplay=1");
     $(".modal_video").css("display", "table");
 }
 
 function close_video(){
-    // xjyAXaTzEhM
     $(".modal_video iframe").attr("src", "");
     $(".modal_video").hide();
 }

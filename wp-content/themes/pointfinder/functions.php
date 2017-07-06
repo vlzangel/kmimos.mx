@@ -25,6 +25,10 @@
 	remove_action('wp_head', 'rel_canonical');
 	remove_action('wp_head', 'rel_canonical', 47);
 
+	add_action('wp_enqueue_scripts', 'no_more_jquery');
+	function no_more_jquery(){
+	    wp_deregister_script('jquery');
+	}
 
 	function move_scripts_from_head_to_footer() {
 	    remove_action( 'wp_head', 'wp_print_scripts' );

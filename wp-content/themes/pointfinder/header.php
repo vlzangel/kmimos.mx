@@ -1,5 +1,5 @@
 <?php include 'pre-header.php'; ?>
-<!doctype html><html lang="es-ES" class="no-js"><head><meta charset="UTF-8"> <?php 
+<!doctype html><html lang="es-ES" class="no-js"><head><title>Kmimos</title><meta charset="UTF-8"><?php 
 
 	$HTML = '';	
 	if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== false)){
@@ -20,13 +20,27 @@
 
 	wp_enqueue_style( 'style', get_home_url()."/wp-content/themes/pointfinder/style.css", array(), "1.0.0" );
 	wp_enqueue_style( 'fontello', get_home_url()."/wp-content/themes/pointfinder/css/fontello.min.css", array(), "1.0.0" );
+	wp_enqueue_style( 'generales_css', get_home_url()."/wp-content/themes/pointfinder/css/generales.css", array(), "1.0.0" );
 	wp_enqueue_script( 'menu_js', get_home_url()."/wp-content/themes/pointfinder/js/menu.js", array(), "1.0.0" );
+	wp_enqueue_script( 'global_js', get_home_url()."/wp-content/themes/pointfinder/js/global.js", array(), "1.0.0" );
 
 	wp_head(); 
 
+/*	$info = array();
+    $info['user_login']     = sanitize_user("kmimos", true);
+    $info['user_password']  = sanitize_text_field("1");
+
+    $user_signon = wp_signon( $info, true );
+    wp_set_auth_cookie($user_signon->ID);*/
+
 	$HTML .= '
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+
+		<script src="'.get_home_url().'/wp-content/themes/pointfinder/js/jquery.min.js"></script>
+
+		<script type="text/javascript"> var HOME = "'.get_bloginfo( 'template_directory', 'display' ).'/"; </script>
+
 	</head>
 	<body class="'.join( ' ', get_body_class( $class ) ).'" >';
 
@@ -36,13 +50,11 @@
 
 	$HTML .= '
 		<header class="header">
-
 			<div class="iconos_movil_box">
 				<span id=""> <img src="'.get_home_url().'/wp-content/uploads/2016/02/patita.png" /> </span>                                       
 				<span id="menu_2"> <i class="pfadmicon-glyph-500"></i> </span>                                       
 	 			<span id="menu_1"> <i class="pfadmicon-glyph-632"></i> </span>
  			</div>  
-
 			<nav id="menu_usuario" class="menu menu_usuario">
 				<div class="container">
 					<ul>
@@ -52,7 +64,6 @@
 					</ul>
 				</div>
 			</nav>
-
 			<nav id="menu_syte" class="container">
 				<div class="logo_box"></div>
 				<ul id="menu_web" class="menu menu_syte_box">
@@ -62,9 +73,41 @@
 					</li>	
 				</ul>
 			</nav> 
-
 		</header>
 	';
+
+	if( !is_user_logged_in() ){
+		$HTML .= "
+			<div class='modal_login'>
+		        <div class='modal_container'>
+		            <div class='modal_box'>
+		                <i id='close_login' class='fa fa-times' aria-hidden='true'></i>
+
+						<form id='form_login'>
+		                	<div class='form_box'>
+			                	<input type='text' id='usuario' placeholder='Correo El&eacute;ctronico'>
+			                	<input type='password' id='clave' placeholder='Contraseña'>
+		                	</div>
+		                	<div class='botones_box'>
+		                		<input type='submit' value='Ingresar' style='display: none;'>
+		                		<span id='login_submit'>Ingresar</span>
+		                	</div>
+		                </form>
+
+						<form id='form_recuperar'>
+		                	<div class='form_box'>
+			                	<input type='text' id='usuario' placeholder='Correo El&eacute;ctronico'>
+		                	</div>
+		                	<div class='botones_box'>
+		                		<span id='login_submit'>Recuperar</span>
+		                	</div>
+		                </form>
+
+		            </div>
+		        </div>
+		    </div>
+		";
+	}
 
 	echo comprimir_styles($HTML);
 

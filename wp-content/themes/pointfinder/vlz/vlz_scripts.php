@@ -1,9 +1,4 @@
 <?php 
-	include_once("vlz_geo.php"); 
-	$L = geo("L");
-	$N = geo("N");
-	$S = geo("S");
-
 	$scripts = '
 		<script type="text/javascript">
 			function vlz_select(id){
@@ -16,6 +11,9 @@
 					jQuery("#"+id).addClass("vlz_check_select");
 				}
 			}
+			jQuery(".vlz_checkbox_contenedor div").on("click", function(e){
+				vlz_select( jQuery( this ).attr("id") );
+			});
 	';
 	if( count($_POST['servicios']) > 0 ){
 		foreach ($_POST['servicios'] as $key => $value) {
@@ -153,6 +151,7 @@
 			$.type="text/javascript";
 			e.parentNode.insertBefore($, e)
 		})(document,"script");
+	
 	</script>';
 
 	$SCRIPTS = comprimir_styles($scripts);

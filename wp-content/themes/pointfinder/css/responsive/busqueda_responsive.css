@@ -1,10 +1,13 @@
 @media (max-width: 992px){
-
+	#listado li{
+	    width: 50%;
+	}
 }
 
 @media (max-width: 768px){
-	#listado li{
-	    width: 50%;
+	.columna_listado,
+	.columna_formulario{
+	    width: 100%;
 	}
 }
 
