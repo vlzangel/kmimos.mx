@@ -42,7 +42,6 @@
 								<div class="pflist-item" style="background-color:#ffffff;"></div>
 							</li>';
 							if( $TR > 0 ){
-			        			include("vlz_plantilla_listado.php");
 				        		for ($i=$paginacion["inicio"]; $i < $paginacion["fin"]; $i++) {
 				        			$cuidador = $resultados[$i];
 				        			$pines_visibles[] = $pines[$i];

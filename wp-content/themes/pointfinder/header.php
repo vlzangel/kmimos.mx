@@ -1,28 +1,118 @@
-<?php include 'pre-header.php'; ?><!doctype html>
-<html <?php language_attributes(); ?> class="no-js">
-	<head>
-		<meta charset="<?php bloginfo('charset'); ?>">		
-		<?php
-			if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== false)){
-        		header('X-UA-Compatible: IE=edge,chrome=1');
-        	}
-			if ( is_page() ){
-				global $post;
-				$descripcion = get_post_meta($post->ID, 'kmimos_descripcion', true);
-        		if( $descripcion != ""){
-        			echo "<meta name='description' content='{$descripcion}'>";
-        		}else{ ?> <meta name="description" content="<?php esc_html(bloginfo('description')); ?>"> <?php }
-        	}else{ ?> <meta name="description" content="<?php esc_html(bloginfo('description')); ?>"> <?php }
-        	echo '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">';
+<?php include 'pre-header.php'; ?>
+<!doctype html><html lang="es-ES" class="no-js"><head><meta charset="UTF-8"> <?php 
 
-			wp_enqueue_style( 'vlz', get_home_url()."/wp-content/themes/pointfinder/css/vlz.css?v=1.0.0" );
-			wp_head(); 
-		?>
+	$HTML = '';	
+	if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== false)){
+		header('X-UA-Compatible: IE=edge,chrome=1');
+	}
+	if ( is_page() ){
+		global $post;
+		$descripcion = get_post_meta($post->ID, 'kmimos_descripcion', true);
+		if( $descripcion != ""){
+			$HTML .= "<meta name='description' content='{$descripcion}'>";
+		}else{
+			//$HTML .= '<meta name="description" content="'.bloginfo('description').'">';
+		}
+	}else{
+		//$HTML .= '<meta name="description" content="'.bloginfo('description').'">';
+	}
+	$HTML .= '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">';
+
+	wp_enqueue_style( 'style', get_home_url()."/wp-content/themes/pointfinder/style.css", array(), "1.0.0" );
+	wp_enqueue_style( 'fontello', get_home_url()."/wp-content/themes/pointfinder/css/fontello.min.css", array(), "1.0.0" );
+	wp_enqueue_script( 'menu_js', get_home_url()."/wp-content/themes/pointfinder/js/menu.js", array(), "1.0.0" );
+
+	wp_head(); 
+
+	$HTML .= '
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
 	</head>
-	<body <?php body_class(); ?> > <?php 
+	<body class="'.join( ' ', get_body_class( $class ) ).'" >';
+
+	include_once("funciones.php");
 
 	$MENU = get_menu_header();
-	$HTML = '
+
+	$HTML .= '
+		<header class="header">
+
+			<div class="iconos_movil_box">
+				<span id=""> <img src="'.get_home_url().'/wp-content/uploads/2016/02/patita.png" /> </span>                                       
+				<span id="menu_2"> <i class="pfadmicon-glyph-500"></i> </span>                                       
+	 			<span id="menu_1"> <i class="pfadmicon-glyph-632"></i> </span>
+ 			</div>  
+
+			<nav id="menu_usuario" class="menu menu_usuario">
+				<div class="container">
+					<ul>
+						'.$MENU["head"].'			
+						'.$MENU["body"].'			
+						'.$MENU["footer"].'		
+					</ul>
+				</div>
+			</nav>
+
+			<nav id="menu_syte" class="container">
+				<div class="logo_box"></div>
+				<ul id="menu_web" class="menu menu_syte_box">
+					'.get_menu().'
+					<li class="ser_cuidador">			
+						<div>Quiero ser cuidador</div>
+					</li>	
+				</ul>
+			</nav> 
+
+		</header>
+	';
+
+	echo comprimir_styles($HTML);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*	$HTML = '
 		<div id="pf-loading-dialog" class="pftsrwcontainer-overlay"></div>
         <header class="wpf-header hidden-print" id="pfheadernav">
 		    <div class="pftopline wpf-transition-all">
@@ -136,7 +226,7 @@
 
 										$HTML = "";
 
-										pointfinder_navigation_menu();
+										//pointfinder_navigation_menu();
 									
 										$EC = is_cuidador();
 										if( $EC != 1 ){
@@ -184,7 +274,7 @@
 		</style>
 		
         <div class="wpf-container">
-        	<div id="pfmaincontent" class="wpf-container-inner">';
+        	<div id="pfmaincontent" class="wpf-container-inner">';*/
 
-        echo comprimir_styles($HTML);
+        // echo comprimir_styles($HTML);
 

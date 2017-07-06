@@ -72,7 +72,7 @@
 	            "pais"      => "México",
 	            "titulo"    => "Kmimos México",
 	            "email"     => "contactomex@kmimos.la",
-	            "telefono"  => "+52 (55) 1791.4931/ +52 (55) 66319264",
+	            "telefono"  => "+52 (55) 1791.4931<br>+52 (55) 66319264",
 	            "twitter"   => "kmimosmx",
 	            "facebook"  => "Kmimosmx",
 	            "instagram" => "kmimosmx",
@@ -124,7 +124,7 @@ if(!function_exists('vlz_servicios')){
         function vlz_servicios($adicionales){
             $r = ""; $adiestramiento = false;
 
-            $r .= '<span class="tooltip icono-servicios"><span class="tooltiptext">Hospedaje</span><i class="icon-hospedaje"></i></span>';
+            $r .= '<span><i title="Hospedaje" class="icon-hospedaje"></i></span>';
 
             $adicionales = unserialize($adicionales);
             
@@ -133,7 +133,7 @@ if(!function_exists('vlz_servicios')){
                     foreach($adicionales as $key => $value){
                         switch ($key) {
                             case 'guarderia':
-                                $r .= '<span class="tooltip icono-servicios"><span class="tooltiptext">Guardería</span><i class="icon-guarderia"></i></span>';
+                                $r .= '<span><i title="Guardería" class="icon-guarderia"></i></span>';
                             break;
                             case 'adiestramiento_basico':
                                 $adiestramiento = true;
@@ -145,32 +145,32 @@ if(!function_exists('vlz_servicios')){
                                 $adiestramiento = true;
                             break;
                             case 'corte':
-                                $r .= '<div class="tooltip icono-servicios"><span class="tooltiptext">Corte de pelo y uñas</span><i class="icon-peluqueria"></i></div>';
+                                $r .= '<span><i title="Corte de pelo y uñas" class="icon-peluqueria"></i></span>';
                             break;
                             case 'bano':
-                                $r .= '<div class="tooltip icono-servicios"><span class="tooltiptext">Baño y secado</span><i class="icon-bano"></i></div>';
+                                $r .= '<span><i title="Baño y secado" class="icon-bano"></i></span>';
                             break;
                             case 'transportacion_sencilla':
-                                $r .= '<div class="tooltip icono-servicios"><span class="tooltiptext">Transporte Sencillo</span><i class="icon-transporte"></i></div>';
+                                $r .= '<span><i title="Transporte Sencillo" class="icon-transporte"></i></span>';
                             break;
                             case 'transportacion_redonda':
-                                $r .= '<div class="tooltip icono-servicios"><span class="tooltiptext">Transporte Redondo</span><i class="icon-transporte2"></i></div>';
+                                $r .= '<span><i title="Transporte Redondo" class="icon-transporte2"></i></span>';
                             break;
                             case 'visita_al_veterinario':
-                                $r .= '<div class="tooltip icono-servicios"><span class="tooltiptext">Visita al Veterinario</span><i class="icon-veterinario"></i></div>';
+                                $r .= '<span><i title="Visita al Veterinario" class="icon-veterinario"></i></span>';
                             break;
                             case 'limpieza_dental':
-                                $r .= '<div class="tooltip icono-servicios"><span class="tooltiptext">Limpieza dental</span><i class="icon-limpieza"></i></div>';
+                                $r .= '<span><i title="Limpieza dental" class="icon-limpieza"></i></span>';
                             break;
                             case 'acupuntura':
-                                $r .= '<div class="tooltip icono-servicios"><span class="tooltiptext">Acupuntura</span><i class="icon-acupuntura"></i></div>';
+                                $r .= '<span><i title="Acupuntura" class="icon-acupuntura"></i></span>';
                             break;
                         }
                     }
                 }
             }
             if($adiestramiento){
-                $r .= '<div class="tooltip icono-servicios" ><span class="tooltiptext">Adiestramiento de Obediencia</span><i class="icon-adiestramiento"></i></div>';
+                $r .= '<span><i title="Adiestramiento de Obediencia" class="icon-adiestramiento"></i></span>';
             }
             return $r;
         }

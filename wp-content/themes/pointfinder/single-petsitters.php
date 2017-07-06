@@ -61,11 +61,10 @@
 	}
 
 	/* Galeria */
-/*
+
 	$id_cuidador = ($cuidador->id)-5000;
 	$path_galeria = "wp-content/uploads/cuidadores/galerias/".$id_cuidador."/";
 
-	echo "<div class='hola_xxx' style='display: none;'>".$path_galeria."</div>";
 	if( is_dir($path_galeria) ){
 
 		if ($dh = opendir($path_galeria)) { 
@@ -113,13 +112,12 @@
 	      	}
   		} 
 	}
-*/
-
 
 
 	include("vlz/vlz_style_perfil.php");
 
  	$HTML .= "
+ 	<div class='body'>
 	<div class='vlz_contenedor'>
 
 		<div class='vlz_contenedor_header'>
@@ -186,7 +184,7 @@
 			$HTML .= '<div class="vlz_separador"></div>
 			<h3 class="vlz_titulo">Mi Galería</h3>
 			<div class="vlz_seccion vlz_descripcion">
-				$galeria;
+				'.$galeria.'
 			</div>';
 		}
 
@@ -330,7 +328,7 @@
 				</div> <?php
 			//}
 			*/
-	$HTML .= '</div>';
+	$HTML .= '</div></div>';
 
 	echo comprimir_styles($HTML);
 

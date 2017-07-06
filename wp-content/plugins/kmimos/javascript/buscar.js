@@ -3,20 +3,21 @@ var hasGPS=false;
 (function($) {
     'use strict';
 
-    $('#ver_mas_servicios').on('click', function(){
-        if( $('#popup_mas_servicios').css('display') == 'none' ){
-            $('#popup_mas_servicios').css('display', 'block');
+    $('.adicionales_button').on('click', function(){
+        console.log( "Hola");
+        if( $('.modal_servicios').css('display') == 'none' ){
+            $('.modal_servicios').css('display', 'table');
         }else{
-            $('#popup_mas_servicios').css('display', 'none');
+            $('.modal_servicios').css('display', 'none');
         }
     });
 
-    $('#cerrar_mas_servicios').on('click', function(){
-        $('#popup_mas_servicios').css('display', 'none');
+    $('#close_mas_servicios').on('click', function(){
+        $('.modal_servicios').css('display', 'none');
     });
 
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(coordenadas);
+        // navigator.geolocation.getCurrentPosition(coordenadas);
     } else {
         $('#selector_locacion').removeClass('hide');
         $('#selector_coordenadas').addClass('hide');
@@ -25,21 +26,7 @@ var hasGPS=false;
     if(navigator.platform.substr(0, 2) == 'iP') $('html').addClass('iOS');
     $(function(){
         var edos = $('#estado_cuidador').val();
-        if($('#otra-localidad').prop( 'checked' )){
-            $('#selector_locacion').removeClass('hide');
-            $('#selector_coordenadas').addClass('hide');
-            if( edos != ''){
-                $('#estado_cuidador > option[value='+edos+']').attr('selected', 'selected');
-            }
-        }
-        $('#otra-localidad').click(function(){
-            $('#selector_locacion').removeClass('hide');
-            $('#selector_coordenadas').addClass('hide');
-        });
-        $('#mi-ubicacion').click(function(){
-            $('#selector_coordenadas').addClass('hide');
-            $('#selector_locacion').addClass('hide');
-        });
+        
         function cargar_municipios(CB){
             var estado_id = jQuery('#estado_cuidador').val();       
             if( estado_id != '' ){
@@ -49,10 +36,12 @@ var hasGPS=false;
                 ).done(
                     function( data, textStatus, jqXHR ) {
                         var html = "<option value=''>Seleccione un municipio</option>";
-                        jQuery.each(data, function(i, val) {
-                            html += '<option value='+val.id+'>'+val.name+'</option>';
-                        });
-                        jQuery('#municipio_cuidador').html(html);
+                        if( data != undefined ){
+                            jQuery.each(data, function(i, val) {
+                                html += '<option value='+val.id+'>'+val.name+'</option>';
+                            });
+                            jQuery('#municipio_cuidador').html(html);
+                        }
 
                         if( CB != undefined) {
                             CB();
@@ -75,20 +64,34 @@ var hasGPS=false;
             jQuery('#municipio_cache').attr('value', jQuery('#municipio_cuidador').val() );
         });
 
-        $('.boton_servicio > input:checkbox').each(function(index){
-            var servicio = $(this).attr('data-key');
+        $('.boton_servicio > input').on('change',function(e){
             var activo = $(this).prop('checked');
-            if(activo) $(this).parent().addClass('activo');
-            else $(this).parent().removeClass('activo');
+            if(activo) $( this ).parent().addClass('check_select');
+            else $( this ).parent().removeClass('check_select');
         });
-        $('.boton_portada > input:checkbox').on('change',function(e){
-            var servicio = $(this).attr('data-key');
+
+        $('label > input').on('change',function(e){
             var activo = $(this).prop('checked');
-            if(activo) $('.servicio_cuidador_'+servicio).parent().addClass('activo');
-            else $('.servicio_cuidador_'+servicio).parent().removeClass('activo');
+            $( ".por_ubicacion" ).removeClass('check_select');
+            if(activo) $( this ).parent().addClass('check_select');
+
+            switch( $(this).parent().attr("for") ){
+                case "mi-ubicacion":
+                    $(".selects_ubicacion_container").hide();
+                break;
+                case "otra-localidad":
+                    $(".selects_ubicacion_container").show();
+                break;
+            }
+
         });
-        $('.modal').fancybox({
-            maxWidth: 340
+
+        $("#boton_buscar").on("click", function(e){
+            $("#buscador").submit();
+        });
+
+        $("#close_video").on("click", function(e){
+            close_video();
         });
     });
 })(jQuery);
@@ -101,4 +104,16 @@ function coordenadas(position){
         var mensaje = 'No es posible leer su ubicación,\nverifique si su GPS está encendido\ny vuelva a recargar la página.'+$('#latitud').val()+','+$('#longitud').val();
         alert(mensaje);        
     }
+}
+
+function show_video(){
+    // xjyAXaTzEhM
+    $(".modal_video iframe").attr("src", "https://www.youtube.com/embed/xjyAXaTzEhM?rel=0&showinfo=0&autoplay=1");
+    $(".modal_video").css("display", "table");
+}
+
+function close_video(){
+    // xjyAXaTzEhM
+    $(".modal_video iframe").attr("src", "");
+    $(".modal_video").hide();
 }
