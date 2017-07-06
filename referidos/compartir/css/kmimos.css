@@ -129,11 +129,12 @@ footer{
     color:#fff;
     background:#881C9B;
     border:0px;
-    padding:5px 15px 5px 15px;
+    padding:5px 9px 5px 9px;
     border-radius:15px;
     font:40px;
     position:absolute; 
-    right:0px;
+    right:1px;
+    top:1px;
     margin:10px;
 }
 
@@ -144,10 +145,9 @@ footer{
 
 }
 @media 	(max-width: 766px){ 
-    .btn-cerrar{
-        position: none;
-        margin:auto;
-    }
+   .btn-cerrar{
+    font-size: 18px;
+   }
     .footer-content{
         text-align: left;
     }

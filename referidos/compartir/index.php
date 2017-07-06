@@ -24,7 +24,7 @@ if(isset($_GET['e'])){
 		<meta property="og:type"          content="website" />
 		<meta property="og:title"         content="Kmimos - Clientes Referidos" />
 		<meta property="og:description"   content="Suma huellas a nuestro club y gana descuentos" />
-		<meta property="og:image"         content="https://www.kmimos.com.mx/referidos" />
+		<meta property="og:image"         content="<?php echo $url; ?>" />
 		<script>
 		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -163,7 +163,7 @@ if(isset($_GET['e'])){
 				<h2 class="text-center" style="font-size: 1.8em; color: #881c9b;font-weight: bold;">¡Sigue ganando!</h2>
 			</aside>
 
-			<button class="btn-cerrar" id="close"><i class="fa fa-close"></i> Cerrar</button>
+			<button class="btn-cerrar" id="close"><i class="fa fa-close"></i> </button>
 			<p id="shared" class="hidden">Debes compartir el enlace</p>
 
 		</div>
