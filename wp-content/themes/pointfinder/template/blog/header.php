@@ -160,7 +160,7 @@ if(array_key_exists('search',$_POST)){
                 </div>
 
                 <div class="search section">
-                    <form  method="post" action="<?php echo $page_current.'#last'; ?>">
+                    <form  method="post" action="<?php echo site_url().'/blog#last'; ?>">
                         <input type="text" name="search" value="<?php echo $search; ?>" placeholder=""/>
                         <button type="submit"><span class="fa fa-search"></span> BUSCAR</button>
                     </form>
@@ -177,7 +177,7 @@ if(array_key_exists('search',$_POST)){
                 </div>
 
                 <div class="search">
-                    <form  method="post" action="<?php echo $page_current.'#last'; ?>">
+                    <form  method="post" action="<?php echo site_url().'/blog#last'; ?>">
                         <input type="text" name="search" value="<?php echo $search; ?>" placeholder=""/>
                         <button type="submit"><span class="fa fa-search"></span> BUSCAR</button>
                     </form>
