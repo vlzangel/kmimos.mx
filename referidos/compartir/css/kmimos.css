@@ -65,10 +65,12 @@ h1{
 }
 
 .shared-link-email{
-    padding: 5px;
+    padding: 15px;
     background: #fd06a4;
     color: #fff;
     font-size: 16px;
+    font-weight: bold;
+    text-anchor: middle;
     border-radius: 10px;
 }
 
