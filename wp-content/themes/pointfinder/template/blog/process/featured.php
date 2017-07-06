@@ -70,7 +70,7 @@ if(count($featureds)>0){
 
         $html.='<div class="detail">';
         $html.='<div class="title">'.$data->nom.'</div>';
-        $html.='<div class="content state">'.$state->name.'</div>';
+        $html.='<div class="content state">'.utf8_decode($state->name).'</div>';
         $html.='<div class="content experience">'.$experience.'</div>';
         $html.='</div>';
 

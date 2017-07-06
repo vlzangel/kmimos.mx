@@ -238,6 +238,8 @@
                         </li>';
                 }
 
+                $MENU["body_movil"] = $MENU["body"];
+
                 $MENU["footer"] = '</ul></li>';
 
             }else{
@@ -245,6 +247,11 @@
                     <li class="pf-login-register" id="pf-login-trigger-button"><a href="#"><i class="pfadmicon-glyph-584"></i> Iniciar Sesión</a></li>
                     <li class="pf-login-register"><a href="'.get_home_url().'/registrar/"><i class="pfadmicon-glyph-365"></i> Registrarse</a></li>
                     <li class="pf-login-register" id="pf-lp-trigger-button"><a href="#"><i class="pfadmicon-glyph-889"></i> Contraseña Olvidada</a></li>
+                ';
+                $MENU["body_movil"] = '
+                    <li class="pf-login-register" id="pf-login-trigger-button-mobi"><a href="#"><i class="pfadmicon-glyph-584"></i> Iniciar Sesión</a></li>
+                    <li class="pf-login-register"><a href="'.get_home_url().'/registrar/"><i class="pfadmicon-glyph-365"></i> Registrarse</a></li>
+                    <li class="pf-login-register" id="pf-lp-trigger-button-mobi"><a href="#"><i class="pfadmicon-glyph-889"></i> Contraseña Olvidada</a></li>
                 ';
             }
 
