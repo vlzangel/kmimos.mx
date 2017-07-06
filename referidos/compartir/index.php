@@ -222,11 +222,16 @@ if(isset($_GET['e'])){
 		    });
 			
 			$("#close").on('click', function(){
-				if(click_action!=1){
-			//		alert('Compartir enlace');
-self.close();
+				if(click_action==1){
+					window.close();
+				}else{
+					alert("Debes compartir tu enlace en las redes sociales");
 				}
 			});
+
+			window.onbeforeunload = function(e) {
+			   $("#close").click();
+			};
 
 		});
 		</script>
