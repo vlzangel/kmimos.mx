@@ -10,8 +10,6 @@
                     $paginacion .= "<a href='".$home."/busqueda/".($i)."' ".$active.">".($i+1)."</a>";
                 }
             }
-            $w = 40*$ps;
-            $paginacion .= "<style> .vlz_nav_cont_interno{ width: {$w}px; } </style>";
             return array(
                 "inicio" => $inicio,
                 "fin" => $fin,

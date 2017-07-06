@@ -33,10 +33,15 @@
 	wp_enqueue_style('beneficios_responsive', $home."/wp-content/themes/pointfinder/css/responsive/busqueda_responsive.css", array(), '1.0.0');
         
     $HTML = "
-    	<ul id='listado' class='container'>
-    		<div class='total_resultados'>Listado: {$total} cuidador(es)</div>
-    		".$CUIDADORES."
-    	</ul>
+    	<div class='container'>
+	    	<ul id='listado'>
+	    		<div class='total_resultados'>Listado: {$total} cuidador(es)</div>
+	    		".$CUIDADORES."
+	    	</ul>
+	    	<div class='vlz_nav_cont'>
+				<div class='vlz_nav_cont_interno'>".$paginacion["html"]."</div>
+			</div>
+		</div>
     ";
 
 	echo comprimir_styles($HTML);
