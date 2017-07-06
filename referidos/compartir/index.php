@@ -89,8 +89,12 @@ if(isset($_GET['e'])){
 					
 				</div>	
 
+			</section>
+
+			<section style="padding: 0px; " class="clearfix  col-xs-12 col-sm-12 col-md-8 col-md-offset-2  text-center">
+				
 				<!-- Link Twitter -->	
-				<div id="twitter" class="col-sm-11 clearfix hidden">
+				<div style="padding: 0px; " id="twitter" class="col-sm-12 col-xs-12 col-md-12 col-lg-12 clearfix hidden">
 					<div class="fondo-verde">
 						<h3 class="text-center">
 							¿Y ahora qué sigue?
@@ -112,7 +116,7 @@ if(isset($_GET['e'])){
 				</div>
 
 				<!-- Link Facebook -->	
-				<div id="facebook" class="col-sm-11 clearfix hidden">
+				<div  style="padding: 0px; " id="facebook" class="col-sm-12 col-xs-12 col-md-12 col-lg-12 clearfix hidden">
 					<div class="fondo-verde">				
 						<h3 class="text-center">
 							¿Y ahora qué sigue?
@@ -130,7 +134,7 @@ if(isset($_GET['e'])){
 				</div>
 
 				<!-- Link Email -->
-				<div id="info" class="col-sm-12 clearfix hidden">
+				<div  style="padding: 0px; " id="info" class="col-sm-12 col-xs-12 col-md-12 col-lg-12 clearfix hidden">
 					<div class="fondo-verde">
 						<h3 class="text-center">
 							¿Y ahora qué sigue?
@@ -143,9 +147,10 @@ if(isset($_GET['e'])){
 							<span><strong>Paso 3: GANA.</strong> Cuando alguno de tus referidos haga su primera reserva con Kmimos, te avisaremos con un email. Este es el momento en el que puedes hacer válida tu recompensa.</span><br>
 						</div>
 						<br>
-						<strong class="shared-link-email"><?php echo $url;?></strong>
+						<div class="shared-link-email"><?php echo $url;?></div>
 					</div>
 				</div>
+
 			</section>
 
 			<aside class="clearfix footer-content col-xs-12 col-sm-12 col-md-8 col-md-offset-2 text-left">
