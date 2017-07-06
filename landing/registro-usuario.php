@@ -120,21 +120,11 @@
 	    	$html
 	    );
 
-	    # ********************************************
-	    # Email de Nuevo registro participantes 
-	    # ********************************************
-		require_once('email_template/club-registro-participante.php');
-    	wp_mail(
-    		$email,
-    		"Club de la Patitas Felices",
-    		$html
-    	);
-	    # ********************************************
-
 	    $estatus_registro = 1;
 	    $notificaciones = "Nuevo Usuario Registrado.";
 	}else{
 		if(!empty($referencia)){
+	    	$estatus_registro = 1;
 		    # ********************************************
 		    # El usuario ya existe 
 		    # Club Patitas Felices 
@@ -148,6 +138,18 @@
 		}
 	}
 
+	if($estatus_registro==1){		
+	    # ********************************************
+	    # Email de Nuevo registro participantes 
+	    # ********************************************
+		require_once('email_template/club-registro-participante.php');
+    	wp_mail(
+    		$email,
+    		"Club de la Patitas Felices",
+    		$html
+    	);
+	    # ********************************************
+	}
 
 	function get_fetch_assoc($sql){
 		$cnn = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
