@@ -60,6 +60,13 @@
 	$meta = explode('@', $email);
 	$username = $meta[0].generarClave(4);
 
+	$link="";
+	$ssl =  ($_SERVER['SERVER_PORT']==443)? 's':'' ;
+	if(isset($email)){
+		$link = "http".$ssl."://".$_SERVER['HTTP_HOST']."/referidos/compartir/?e=".$email;
+	}
+
+
 	$estatus_registro = 0;
 
 	// Verificar si existe el email
