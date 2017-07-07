@@ -58,7 +58,7 @@
 	$referencia = ( isset( $_GET['referencia'] ) )? $_GET['referencia'] : '' ;
 	$url = ( $email != '' )? md5($email) : '' ;
 	$meta = explode('@', $email);
-	$username = $meta[0].generarClave(4);
+	$username = $meta[0].generarClave(3);
 
 	$link="";
 	$ssl =  ($_SERVER['SERVER_PORT']==443)? 's':'' ;
@@ -189,9 +189,8 @@
 		}
 		return substr(str_shuffle($char), 0, $lenght);
 	}
-	function generarClave($lenght=4){
-		$lenght = ($lenght<8)? 8 : $lenght;
-		$char .= strRand($lenght, "0123456789");
+	function generarClave($lenght=3){
+		$char = strRand($lenght, "0123456789");
 		return str_shuffle($char);
 	}
 
