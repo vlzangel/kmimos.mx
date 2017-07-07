@@ -72,8 +72,8 @@ var hasGPS=false;
 
         $('label > input').on('change',function(e){
             var activo = $(this).prop('checked');
-            $( ".por_ubicacion" ).removeClass('check_select');
-            if(activo) $( this ).parent().addClass('check_select');
+            $( ".por_ubicacion" ).removeClass('input_select');
+            if(activo) $( this ).parent().addClass('input_select');
 
             switch( $(this).parent().attr("for") ){
                 case "mi-ubicacion":

@@ -67,3 +67,10 @@ a.checkout-button.button.alt.wc-forward {
     font-size: 14px;
     font-weight: 400;
 }
+
+.cart_totals h2{
+    margin: 0px 0px 10px;
+}
+.woocommerce-cart .wc-proceed-to-checkout {
+    padding: 0px;
+}

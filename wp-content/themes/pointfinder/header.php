@@ -27,13 +27,6 @@
 
 	wp_head(); 
 
-/*	$info = array();
-    $info['user_login']     = sanitize_user("kmimos", true);
-    $info['user_password']  = sanitize_text_field("1");
-
-    $user_signon = wp_signon( $info, true );
-    wp_set_auth_cookie($user_signon->ID);*/
-
 	$HTML .= '
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">

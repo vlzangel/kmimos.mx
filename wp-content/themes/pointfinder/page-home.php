@@ -5,7 +5,7 @@
 
     wp_enqueue_style('home_kmimos', $home."/wp-content/themes/pointfinder/css/home_kmimos.css", array(), '1.0.0');
     wp_enqueue_style('home_responsive', $home."/wp-content/themes/pointfinder/css/responsive/home_responsive.css", array(), '1.0.0');
-    wp_enqueue_script('buscar_home', $home."/wp-content/plugins/kmimos/javascript/buscar.js", array(), '1.0.0');
+    wp_enqueue_script('buscar_home', $home."/wp-content/themes/pointfinder/js/home.js", array(), '1.0.0');
             
     get_header();
         
@@ -16,7 +16,7 @@
 	    $home = get_home_url();
 
 	    $HTML = "
-	    <script type='text/javascript'> var URL_MUNICIPIOS = '".get_bloginfo( 'template_directory', 'display' )."/vlz/ajax_municipios.php'; </script>
+	    <script type='text/javascript'> var URL_MUNICIPIOS = '".get_bloginfo( 'template_directory', 'display' )."/procesos/generales/municipios.php'; </script>
 
 	    <div class='modal_video'>
 	        <div class='modal_container'>
@@ -53,12 +53,16 @@
 	                <div class='adicionales_button'>Servicios adicionales...</div>
 	            </div>
 
+	            <div class='servicios_container input_nombre_box'>
+	                <input type='text' name='nombre' id='nombre' class='input_nombre' placeholder='Buscar por nombre'>
+	            </div>
+
 	            <div class='servicios_container'>
 	                ".$SERVICIOS."
 	            </div>
 
 	            <div class='selector_tipo_container'>
-	                <label  for='otra-localidad' class='por_ubicacion check_select'>
+	                <label  for='otra-localidad' class='por_ubicacion input_select'>
 	                    Otra localidad
 	                    <input type='radio' name='tipo_busqueda' id='otra-localidad' value='otra-localidad' checked=''>
 	                </label>

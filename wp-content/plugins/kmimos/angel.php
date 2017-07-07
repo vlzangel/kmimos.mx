@@ -85,7 +85,7 @@
 	if(!function_exists('kmimos_mails_administradores')){
 	    function kmimos_mails_administradores(){
 
-            $headers[] = 'BCC: a.lazaro@kmimos.la';
+/*            $headers[] = 'BCC: a.lazaro@kmimos.la';
 	        $headers[] = 'BCC: e.celli@kmimos.la';
 	        $headers[] = 'BCC: r.cuevas@kmimos.la';
 	        $headers[] = 'BCC: r.gonzalez@kmimos.la';
@@ -111,9 +111,7 @@
                  
             $headers[] = 'BCC: jorge.ballarin@sin-cola.com';
             $headers[] = 'BCC: gabriel.marquez@sin-cola.com';
-            $headers[] = 'BCC: roberto.madrid@sin-cola.com';
-
-            // operador01sincola@gmail.com, operador02sincola@gmail.com, operador03sincola@gmail.com, operador04sincola@gmail.com, opeador08sincola@gmail.com, operador10sincola@gmail.com, robertomadridcisneros@gmail.com, jordiballarin@gmail.com
+            $headers[] = 'BCC: roberto.madrid@sin-cola.com';*/
 
             return $headers;
 
@@ -184,255 +182,6 @@ if(!function_exists('vlz_servicios')){
 
     }
 
-    if( !function_exists('calcular_rango_de_busqueda') ){
-
-        function calcular_rango_de_busqueda($norte, $sur){
-            return ( 6371 * 
-                acos(
-                    cos(
-                        toRadian($norte->lat)
-                    ) * 
-                    cos(
-                        toRadian($sur->lat)
-                    ) * 
-                    cos(
-                        toRadian($sur->lng) - 
-                        toRadian($norte->lng)
-                    ) + 
-                    sin(
-                        toRadian($norte->lat)
-                    ) * 
-                    sin(
-                        toRadian($sur->lat)
-                    )
-                )
-            );
-        }
-
-    }
-
-    if(!function_exists('vlz_sql_busqueda')){
-        function vlz_sql_busqueda($param, $pagina, $actual = false){
-
-            $condiciones = "";
-            if( isset($param["servicios"]) ){
-                foreach ($param["servicios"] as $key => $value) {
-                    if( $value != "hospedaje" ){
-                        $condiciones .= " AND adicionales LIKE '%".$value."%'";
-                    }
-                }
-            }
-
-            if( isset($param['tamanos']) ){
-                foreach ($param['tamanos'] as $key => $value) {
-                    $condiciones .= " AND ( tamanos_aceptados LIKE '%\"".$value."\";i:1%' || tamanos_aceptados LIKE '%\"".$value."\";s:1:\"1\"%' ) ";
-                }
-            }
-
-            if( isset($param['n']) ){
-                if( $param['n'] != "" ){
-                    $condiciones .= " AND nombre LIKE '".$param['n']."%' ";
-                }
-            }
-
-            if( $param['rangos'][0] != "" ){
-                $condiciones .= " AND (hospedaje_desde*1.2) >= '".$param['rangos'][0]."' ";
-            }
-
-            if( $param['rangos'][1] != "" ){
-                $condiciones .= " AND (hospedaje_desde*1.2) <= '".$param['rangos'][1]."' ";
-            }
-
-            if( $param['rangos'][2] != "" ){
-                $anio_1 = date("Y")-$param['rangos'][2];
-                $condiciones .= " AND experiencia <= '".$anio_1."' ";
-            }
-
-            if( $param['rangos'][3] != "" ){
-                $anio_2 = date("Y")-$param['rangos'][3];
-                $condiciones .= " AND experiencia >= '".$anio_2."' ";
-            }
-
-            if( $param['rangos'][4] != "" ){
-                $condiciones .= " AND rating >= '".$param['rangos'][4]."' ";
-            }
-
-            if( $param['rangos'][5] != "" ){
-                $condiciones .= " AND rating <= '".$param['rangos'][5]."' ";
-            }
-
-            // Ordenamiento
-
-            $orderby = (isset($param['orderby'])) ? "" : "" ;
-
-            if( $orderby == "rating_desc" ){
-                $orderby = "rating DESC, valoraciones DESC";
-            }
-
-            if( $orderby == "rating_asc" ){
-                $orderby = "rating ASC, valoraciones ASC";
-            }
-
-            if( $orderby == "distance_asc" ){
-                $orderby = "DISTANCIA ASC";
-            }
-
-            if( $orderby == "distance_desc" ){
-                $orderby = "DISTANCIA DESC";
-            }
-
-            if( $orderby == "price_asc" ){
-                $orderby = "hospedaje_desde ASC";
-            }
-
-            if( $orderby == "price_desc" ){
-                $orderby = "hospedaje_desde DESC";
-            }
-
-            if( $orderby == "experience_asc" ){
-                $orderby = "experiencia ASC";
-            }
-
-            if( $orderby == "experience_desc" ){
-                $orderby = "experiencia DESC";
-            }
-
-            if( $param['tipo_busqueda'] == "otra-localidad" && $param['estados'] != "" && $param['municipios'] != "" ){
-
-                global $wpdb;
-
-                $coordenadas = unserialize( $wpdb->get_var("SELECT valor FROM kmimos_opciones WHERE clave = 'municipio_{$param['municipios']}' ") );
-
-                $latitud  = $coordenadas["referencia"]->lat;
-                $longitud = $coordenadas["referencia"]->lng;
-                $distancia = calcular_rango_de_busqueda($coordenadas["norte"], $coordenadas["sur"]);
-
-                $ubicacion = " ubi.estado LIKE '%=".$param['estados']."=%' AND ubi.municipios LIKE '%=".$param['municipios']."=%' ";
-
-                $DISTANCIA = ",
-                    ( 6371 * 
-                        acos(
-                            cos(
-                                radians({$latitud})
-                            ) * 
-                            cos(
-                                radians(latitud)
-                            ) * 
-                            cos(
-                                radians(longitud) - 
-                                radians({$longitud})
-                            ) + 
-                            sin(
-                                radians({$latitud})
-                            ) * 
-                            sin(
-                                radians(latitud)
-                            )
-                        )
-                    ) as DISTANCIA 
-                ";
-
-                $FILTRO_UBICACION = "HAVING DISTANCIA < ".($distancia+0);
-
-                $ubicaciones_inner = "INNER JOIN ubicaciones AS ubi ON ( cuidadores.id = ubi.cuidador )";
-                $ubicaciones_filtro = "
-                    AND (
-                        ( $ubicacion ) OR (
-                            ( 6371 * 
-                                acos(
-                                    cos(
-                                        radians({$latitud})
-                                    ) * 
-                                    cos(
-                                        radians(latitud)
-                                    ) * 
-                                    cos(
-                                        radians(longitud) - 
-                                        radians({$longitud})
-                                    ) + 
-                                    sin(
-                                        radians({$latitud})
-                                    ) * 
-                                    sin(
-                                        radians(latitud)
-                                    )
-                                )
-                            ) <= ".($distancia+0)."
-                        )
-                    )";
-
-                if( $orderby == "" ){
-                    $orderby = "DISTANCIA ASC";
-                }
-
-            }else{ 
-
-                if(  $param['tipo_busqueda'] == "otra-localidad" && $param['estados'] != "" ){
-                    $ubicaciones_inner = "INNER JOIN ubicaciones AS ubi ON ( cuidadores.id = ubi.cuidador )";
-                    $ubicaciones_filtro = "AND ( ubi.estado LIKE '%=".$param['estados']."=%' )";
-                }else{
-
-                    // Filtro desde mi ubicación
-                    if( $param['tipo_busqueda'] == "mi-ubicacion" && $param['latitud'] != "" && $param['longitud'] != "" ){
-
-                        $DISTANCIA = ",
-                            ( 6371 * 
-                                acos(
-                                    cos(
-                                        radians({$param['latitud']})
-                                    ) * 
-                                    cos(
-                                        radians(latitud)
-                                    ) * 
-                                    cos(
-                                        radians(longitud) - 
-                                        radians({$param['longitud']})
-                                    ) + 
-                                    sin(
-                                        radians({$param['latitud']})
-                                    ) * 
-                                    sin(
-                                        radians(latitud)
-                                    )
-                                )
-                            ) as DISTANCIA 
-                        ";
-
-                        $FILTRO_UBICACION = "HAVING DISTANCIA < 500";
-
-                        if( $orderby == "" ){
-                            $orderby = "DISTANCIA ASC";
-                        }
-
-                    }else{
-                        $DISTANCIA = "";
-                        $FILTRO_UBICACION = "";
-                    }
-                }
-            }
-
-            if( $orderby == "" ){
-                $orderby = "rating DESC, valoraciones DESC";
-            }
-
-            $sql = "
-                SELECT 
-                    SQL_CALC_FOUND_ROWS  
-                    cuidadores.*
-                    {$DISTANCIA}
-                FROM 
-                    cuidadores 
-                    {$ubicaciones_inner}
-                WHERE 
-                    activo = '1' {$condiciones} {$ubicaciones_filtro} {$FILTRO_UBICACION}
-                ORDER BY {$orderby}
-                LIMIT {$pagina}, 15
-            ";
-
-            return $sql;
-        }
-    }
-
     if(!function_exists('servicios_adicionales')){
         function servicios_adicionales(){
 
@@ -477,27 +226,59 @@ if(!function_exists('vlz_servicios')){
         }
     }
 
-    if(!function_exists('kmimos_get_foto_cuidador')){
-        function kmimos_get_foto_cuidador($id){
+    if(!function_exists('kmimos_get_foto')){
+        function kmimos_get_foto($user_id){
             global $wpdb;
-            $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id = ".$id);
-            $cuidador_id = $cuidador->id;
-            $name_photo = get_user_meta($cuidador->user_id, "name_photo", true);
-            if( empty($name_photo)  ){ $name_photo = "0"; }
-            if( count(explode(".", $name_photo)) == 1 ){
-                $name_photo .= "jpg";
-            }
-            $base = path_base();
-            if( file_exists($base."/wp-content/uploads/cuidadores/avatares".$cuidador_id."/{$name_photo}") ){
-                $img = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/{$name_photo}";
+
+            $user = new WP_User( $user_id );
+            if( $user->roles[0] == "vendor" ){
+                $id = $wpdb->get_var("SELECT id FROM cuidadores WHERE user_id = {$user_id}");
+                $sub_path = "cuidadores/avatares/{$id}";
             }else{
-                if( file_exists($base."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg") ){
-                    $img = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg";
+                $sub_path = "avatares_clientes/{$user_id}";
+            }
+            
+            $name_photo = get_user_meta($user_id, "name_photo", true);
+            if( empty($name_photo)  ){ $name_photo = "0"; }
+            if( count(explode(".", $name_photo)) == 1 ){ $name_photo .= "jpg";  }
+            $base = path_base();
+
+            if( file_exists($base."/wp-content/uploads/{$sub_path}/{$name_photo}") ){
+                $img = get_home_url()."/wp-content/uploads/{$sub_path}/{$name_photo}";
+            }else{
+                if( file_exists($base."/wp-content/uploads/{$sub_path}/0.jpg") ){
+                    $img = get_home_url()."/wp-content/uploads/{$sub_path}/0.jpg";
                 }else{
-                    $img = get_home_url()."/wp-content/themes/pointfinder".'/images/noimg.png';
+                    $img = get_home_url()."/wp-content/themes/pointfinder/images/noimg.png";
                 }
             }
+
             return $img;
+        }
+    }
+
+    if(!function_exists('kmimos_get_foto_cuidador')){
+        function kmimos_get_foto_cuidador($id){
+
+            // global $wpdb;
+            // $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id = ".$id);
+            // $cuidador_id = $cuidador->id;
+            // $name_photo = get_user_meta($cuidador->user_id, "name_photo", true);
+            // if( empty($name_photo)  ){ $name_photo = "0"; }
+            // if( count(explode(".", $name_photo)) == 1 ){
+            //     $name_photo .= "jpg";
+            // }
+            // $base = path_base();
+            // if( file_exists($base."/wp-content/uploads/cuidadores/avatares".$cuidador_id."/{$name_photo}") ){
+            //     $img = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/{$name_photo}";
+            // }else{
+            //     if( file_exists($base."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg") ){
+            //         $img = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg";
+            //     }else{
+            //         $img = get_home_url()."/wp-content/themes/pointfinder".'/images/noimg.png';
+            //     }
+            // }
+            // return $img;
         }
     }
 

@@ -118,22 +118,22 @@
                 $MENUS = array(
                     "vendor" => array(
                         array(
-                            "url"   => get_home_url()."/perfil-usuario/?ua=profile",
+                            "url"   => get_home_url()."/perfil-usuario/",
                             "name"  => "Mi Perfil",
                             "icono" => "460"
                         ),
                         array(
-                            "url"   => get_home_url()."/perfil-usuario/?ua=mypets",
+                            "url"   => get_home_url()."/perfil-usuario/mascotas",
                             "name"  => "Mis Mascotas",
                             "icono" => "871"
                         ),
                         array(
-                            "url"   => get_home_url()."/perfil-usuario/?ua=favorites",
+                            "url"   => get_home_url()."/perfil-usuario/favoritos",
                             "name"  => "Cuidadores Favoritos",
                             "icono" => "375"
                         ),
                         array(
-                            "url"   => get_home_url()."/perfil-usuario/?ua=invoices",
+                            "url"   => get_home_url()."/perfil-usuario/historial",
                             "name"  => "Historial",
                             "icono" => "33"
                         ),
@@ -170,22 +170,22 @@
                     ),
                     "subscriber" => array(
                         array(
-                            "url"   => get_home_url()."/perfil-usuario/?ua=profile",
+                            "url"   => get_home_url()."/perfil-usuario/",
                             "name"  => "Mi Perfil",
                             "icono" => "460"
                         ),
                         array(
-                            "url"   => get_home_url()."/perfil-usuario/?ua=mypets",
+                            "url"   => get_home_url()."/perfil-usuario/mascotas",
                             "name"  => "Mis Mascotas",
                             "icono" => "871"
                         ),
                         array(
-                            "url"   => get_home_url()."/perfil-usuario/?ua=favorites",
+                            "url"   => get_home_url()."/perfil-usuario/favoritos",
                             "name"  => "Cuidadores Favoritos",
                             "icono" => "375"
                         ),
                         array(
-                            "url"   => get_home_url()."/perfil-usuario/?ua=invoices",
+                            "url"   => get_home_url()."/perfil-usuario/historial",
                             "name"  => "Historial",
                             "icono" => "33"
                         ),
@@ -197,22 +197,22 @@
                     ),
                     "administrator" => array(
                         array(
-                            "url"   => get_home_url()."/perfil-usuario/?ua=profile",
+                            "url"   => get_home_url()."/perfil-usuario/",
                             "name"  => "Mi Perfil",
                             "icono" => "460"
                         ),
                         array(
-                            "url"   => get_home_url()."/perfil-usuario/?ua=mypets",
+                            "url"   => get_home_url()."/perfil-usuario/mascotas",
                             "name"  => "Mis Mascotas",
                             "icono" => "871"
                         ),
                         array(
-                            "url"   => get_home_url()."/perfil-usuario/?ua=favorites",
+                            "url"   => get_home_url()."/perfil-usuario/favoritos",
                             "name"  => "Cuidadores Favoritos",
                             "icono" => "375"
                         ),
                         array(
-                            "url"   => get_home_url()."/perfil-usuario/?ua=invoices",
+                            "url"   => get_home_url()."/perfil-usuario/historial",
                             "name"  => "Historial",
                             "icono" => "33"
                         ),
@@ -506,7 +506,7 @@
                     <div class='vlz_sub_seccion_interno'>
 
                         <div class='vlz_contenedor'>
-                            <input type='text' name='n' value='".$POST['n']."' class='vlz_input' placeholder='Buscar por Nombre'>
+                            <input type='text' name='nombre' value='".$POST['nombre']."' class='vlz_input' placeholder='Buscar por Nombre'>
                         </div>
 
                     </div>

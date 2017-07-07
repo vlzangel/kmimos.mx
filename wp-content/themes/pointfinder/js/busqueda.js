@@ -33,7 +33,7 @@ jQuery("#estados").on("change", function(e){
 	var estado_id = jQuery("#estados").val();       
     if( estado_id != "" ){
     	jQuery.getJSON( 
-			HOME+"procesos/generales/ajax_municipios.php", 
+			HOME+"procesos/generales/municipios.php", 
 			{estado: estado_id} 
 		).done(
 			function( data, textStatus, jqXHR ) {

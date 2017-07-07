@@ -20,8 +20,11 @@
 	    if( isset($tamanos) ){ foreach ($tamanos as $key => $value) { $condiciones .= " AND ( tamanos_aceptados LIKE '%\"".$value."\";i:1%' || tamanos_aceptados LIKE '%\"".$value."\";s:1:\"1\"%' ) "; } }
     /* Fin Filtros por servicios y tamaños */
 
+    /* Filtro nombre  */
+	    if( isset($nombre) ){ if( $nombre != "" ){ $condiciones .= " AND nombre LIKE '".$nombre."%' "; } }
+    /* Fin Filtro nombre */
+
     /* Filtros por rangos */
-	    if( isset($n) ){ if( $n != "" ){ $condiciones .= " AND nombre LIKE '".$n."%' "; } }
 	    if( $rangos[0] != "" ){ $condiciones .= " AND (hospedaje_desde*1.2) >= '".$rangos[0]."' "; }
 	    if( $rangos[1] != "" ){ $condiciones .= " AND (hospedaje_desde*1.2) <= '".$rangos[1]."' "; }
 	    if( $rangos[2] != "" ){ $anio_1 = date("Y")-$rangos[2]; $condiciones .= " AND experiencia <= '".$anio_1."' "; }
@@ -64,13 +67,9 @@
 	        $coordenadas 		= unserialize( $db->get_var("SELECT valor FROM kmimos_opciones WHERE clave = 'municipio_{$municipios}' ") );
 	        $latitud  			= $coordenadas["referencia"]->lat;
 	        $longitud 			= $coordenadas["referencia"]->lng;
-	        $distancia 			= calcular_rango_de_busqueda($coordenadas["norte"], $coordenadas["sur"]);
 	        $ubicacion 			= " ubi.estado LIKE '%={$estados}=%' AND ubi.municipios LIKE '%={$municipios}=%' ";
-	        $calculo_distancia 	= "( 6371 * acos( cos( radians({$latitud}) ) * cos( radians(latitud) ) * cos( radians(longitud) - radians({$longitud}) ) + sin( radians({$latitud}) ) * sin( radians(latitud) ) ) )";
-	        $DISTANCIA 			= ", {$calculo_distancia} as DISTANCIA";
-	        $FILTRO_UBICACION 	= "HAVING DISTANCIA < ".($distancia+0);
 	        $ubicaciones_inner  = "INNER JOIN ubicaciones AS ubi ON ( cuidadores.id = ubi.cuidador )";
-	        $ubicaciones_filtro = "AND ( ( $ubicacion ) OR ( {$calculo_distancia} <= ".($distancia+0)." ) )";
+	        $ubicaciones_filtro = "AND ( $ubicacion )";
 	        //if( $orderby == "" ){ $orderby = "DISTANCIA ASC"; }
 	    }else{ 
 	        if( $tipo_busqueda == "otra-localidad" && $estados != "" ){
@@ -145,7 +144,7 @@
     $_SESSION['resultado_busqueda'] = $cuidadores;
 
     // echo "<pre>";
-    // 	print_r($_SESSION);
+    // 	print_r($sql);
     // echo "</pre>";
 
     function toRadian($deg) { return $deg * pi() / 180; };

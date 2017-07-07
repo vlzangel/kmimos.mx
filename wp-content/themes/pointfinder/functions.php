@@ -49,9 +49,6 @@
 	add_filter( 'script_loader_src', '_remove_script_version', 15, 1 );
 	add_filter( 'style_loader_src', '_remove_script_version', 15, 1 );
 
-
-	load_theme_textdomain( 'pointfindert2d',get_template_directory() . '/languages');
-
 	add_filter( 'woocommerce_product_tabs', 'sb_woo_remove_reviews_tab', 98);
 	function sb_woo_remove_reviews_tab($tabs) {
 		unset($tabs['reviews']);
@@ -122,15 +119,21 @@
 	remove_action( 'wp_head', 'feed_links', 2 );
 
 	function head_cleanup() {
-
 	    remove_action( 'wp_head', 'rel_canonical' ); //quita el rel canonical
 	    remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head' );//quita rel next y rel prev
 	    remove_action( 'wp_head', 'wp_shortlink_wp_head' );
-
 	}
 	add_action( 'init', 'head_cleanup' ); 
 
 	add_filter( 'wc_add_to_cart_message', '__return_null()' );
+
+	function modify_jquery() {
+		wp_deregister_script('jquery');
+		wp_register_script('jquery', get_template_directory_uri().'/js/jquery.js', false, '1.0.0');
+		wp_enqueue_script('jquery');
+	}
+	add_action('wp_enqueue_scripts', 'modify_jquery');
+
 
 	// /**
 	// * Optimiza los scripts de WooCommerce
