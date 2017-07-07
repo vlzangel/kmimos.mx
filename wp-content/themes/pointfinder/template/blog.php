@@ -43,7 +43,7 @@ include_once(__DIR__.'/blog/header.php');
         #blog_viewed .post{width:100%; padding-top:70%; margin: 0; display: none;}
         #blog_viewed .post.show{display: block;}
         #blog_viewed .control{position: absolute; width: 100%; bottom: 0; text-align:center; display:block;}
-        #blog_viewed .control .icon{width: 10px; height: 10px; margin:5px; border-radius: 50%; box-shadow: 0 0 5px #555; background: #FFF; cursor: pointer; display: inline-block;}
+        #blog_viewed .control .icon{width: 20px; height: 20px; margin:10px; border-radius: 50%; box-shadow: 0 0 5px #555; background: #FFF; cursor: pointer; display: inline-block;}
         #blog_viewed .control .icon.show{background: #23d3c4; display: inline-block !important;}
     }
 
@@ -86,7 +86,7 @@ include_once(__DIR__.'/blog/header.php');
 
         /* RESPONSIVE SUGERIDO */
         #last{padding: 0;}
-        #last .section.aside .register{margin: 10px 0;}
+        #last .section.aside .register{margin: 10px 0; padding: 10px;}
         #last .section.news{padding: 0;}
         #last .section.news .post.show{display: block !important;}
         #last .section.news .post.show + .post.show{display: none !important;}
@@ -112,9 +112,9 @@ include_once(__DIR__.'/blog/header.php');
         #kmibox .section.image{position: absolute; width: 100%; height: 100%; opacity: 0.2;  }
 
         /* RESPONSIVE SUGERIDO */
-        #kmibox .group {height: calc(100% - 150px);}
+        #kmibox .group {padding-bottom: 150px;}
         #kmibox .section.image {display: none;}
-        #kmibox .section.image.responsive{position: relative; height: 300px; opacity: 1; top: -100px; background-position: top right; display: block;}
+        #kmibox .section.image.responsive{position: absolute; height: 200px; opacity: 1; bottom:0px; background-position: bottom right; display: block;}
         #kmibox .section.detail{max-width: 300px; padding: 0; text-align: left;}
         #kmibox .detail .logo{background-position: center left;}
         #kmibox .detail .button {font-size: 15px;}
@@ -323,14 +323,14 @@ if($page<=0){
 
 <section id="kmibox">
     <div class="group contain">
+        <div class="section image responsive"></div>
         <div class="section image"></div>
         <div class="section detail">
             <div class="logo"></div>
             <div class="title">Conoce  y elige el plan que <br>mejor te convenga</div>
             <div class="content">Regalale un detalle al consentido de tu hogar!</div>
-            <div class="button">Quiero mi KmiBOX</div>
+            <a href="http://kmimosmx.sytes.net/kmibox/"><div class="button">Quiero mi KmiBOX</div></a>
         </div>
-        <div class="section image responsive"></div>
     </div>
 </section>
 

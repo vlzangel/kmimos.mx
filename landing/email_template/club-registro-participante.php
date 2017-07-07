@@ -1,5 +1,4 @@
 <?php
-
 $html = '
 	<!DOCTYPE html>
 	<html>
@@ -25,6 +24,27 @@ $html = '
 			<div style="margin: auto; width: 70%; text-align: justify; padding-bottom:10px;color:#757575;">
 				<p>Es una familia creada con la finalidad de brindar los mejores servicios y beneficios tanto para ustedes como para sus mascotas.
 				</p>
+				<p style="text-align: center;">
+					<p style="color:#881C9B;">Comparte con tus amigos</p><br>
+                    <a 
+                        href="'.$link.'"
+                        style="
+                            padding: 10px;
+                            background: #881C9B;
+                            color: #fff;
+                            font-weight: 400;
+                            font-size: 17px;
+                            font-family: Roboto;
+                            border-radius: 3px;
+                            border: solid 0px trnasparent;
+                            display: block;
+                            max-width: 300px;
+                            margin: 0px auto;
+                            text-align: center;
+                            text-decoration: none;
+                        "
+                    >Picale AQUÍ</a>
+                </p>
 				<span>Atentamente;</span><br><br>	
 				<img src="'.$http.$_SERVER["HTTP_HOST"].'/landing/img/logo-kmimos_120x30.png" alt="">
 			</div>

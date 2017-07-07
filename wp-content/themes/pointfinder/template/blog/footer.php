@@ -7,7 +7,8 @@
     footer .contact .section.redes{width: 16%;}
     footer .contact .section.redes .icon{ width: 40px; margin:5px 0; padding:10px; color: #FFF; font-size: 20px; text-align: center; border-radius: 50%; cursor: pointer; background: #23d3c4; display: block;}
     footer .contact .section .item{padding: 5px 0; font-size: 15px;}
-    footer .contact .section .item a{color: #0992a3;}
+    footer .contact .section .item a{color: #555;}
+    footer .contact .section .item a.kmimos{color: #0992a3;}
     footer .contact .section .item.title{ font-size: 15px; font-weight: bold;}
 
     footer .payment{ padding: 20px 0; background: #FFF;}
@@ -47,27 +48,30 @@
                     </div>
                     <div class="section menu">
                         <div class="item title">Acerca De Nosotros</div>
-                        <div class="item">item</div>
-                        <div class="item">item</div>
-                        <div class="item">item</div>
-                        <div class="item">item</div>
-                        <div class="item">item</div>
+                        <div class="item"><a href=""></a>¿Quiénes somos?</div>
+                        <div class="item">¿Porque te conviene kmimos?</div>
+                        <div class="item"><a href="<?php echo site_url(); ?>contacto/">Contáctenos</a></div>
+                        <div class="item">¡Estamos contratando!</div>
+                        <div class="item">Blogs</div>
+                        <div class="item">¡Recomienda a un Amigo Y Gana!</div>
                     </div>
                     <div class="section menu">
                         <div class="item title">Politicas</div>
-                        <div class="item">item</div>
-                        <div class="item">item</div>
-                        <div class="item">item</div>
-                        <div class="item">item</div>
-                        <div class="item">item</div>
+                        <div class="item">Envíos Y Entregas</div>
+                        <div class="item">Rembolsos Y Devoluciones</div>
+                        <div class="item">Pagos</div>
+                        <div class="item">Privacidad</div>
+                        <div class="item">Políticas de facturación</div>
+                        <div class="item"><a href="<?php echo site_url(); ?>terminos-y-condiciones/">Términos y Condiciones de Uso</a></div>
                     </div>
                     <div class="section menu">
                         <div class="item title">Servicio al cliente</div>
-                        <div class="item">item</div>
-                        <div class="item">item</div>
-                        <div class="item">item</div>
-                        <div class="item">item</div>
-                        <div class="item"><a href="<?php echo site_url(); ?>">www.kmimos.com.mx</a></div>
+                        <div class="item">Preguntas Frecuentes - Ayuda</div>
+                        <div class="item">Cómo comprar en kmimos</div>
+                        <div class="item">Tu cuenta</div>
+                        <div class="item"><a href="<?php echo site_url(); ?>contacto/">Contáctenos</a></div>
+                        <div class="item">Únete a nosotros en</div>
+                        <div class="item"><a class="kmimos" href="<?php echo site_url(); ?>">www.kmimos.com.mx</a></div>
                     </div>
                 </div>
             </div>
