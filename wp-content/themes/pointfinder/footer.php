@@ -1,5 +1,4 @@
 <?php
-wp_enqueue_style( 'responsive', get_home_url()."/wp-content/themes/pointfinder/css/responsive/responsive.css", array(), "1.0.0" );
 $datos = kmimos_get_info_syte();
 $HTML = "
     <a class='subir'><i class='pfadmicon-glyph-859'></i></a>
@@ -50,28 +49,7 @@ $HTML = "
                 <img src='https://seal.godaddy.com/images/3/en/siteseal_gd_3_h_l_m.gif' onclick='verifySeal();' />
             </span>  
         </div>
-    </footer>
-
-    <!--
-    <script type='text/javascript'>(function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+'=([^&]*)')))?l[1]:null};g&&c(g,'state')&&(i=JSON.parse(decodeURIComponent(c(g,'state'))),'mpeditor'===i.action&&(b.sessionStorage.setItem('_mpcehash',g),history.replaceState(i.desiredHash||'',e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split('.');2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,
-        0)))}}var d=a;'undefined'!==typeof f?d=a[f]=[]:f='mixpanel';d.people=d.people||[];d.toString=function(b){var a='mixpanel';'mixpanel'!==f&&(a+='.'+f);b||(a+=' (stub)');return a};d.people.toString=function(){return d.toString(1)+'.people (stub)'};k='disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user'.split(' ');
-        for(h=0;h<k.length;h++)e(d,k[h]);a._i.push([b,c,f])};a.__SV=1.2;b=e.createElement('script');b.type='text/javascript';b.async=!0;b.src='undefined'!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:'file:'===e.location.protocol&&'//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js'.match(/^\/\//) ? '".get_home_url()."/wp-content/plugins/kmimos/javascript/mixpanel-2-latest.min.js':'".get_home_url()."/wp-content/plugins/kmimos/javascript/mixpanel-2-latest.min.js';c=e.getElementsByTagName('script')[0];c.parentNode.insertBefore(b,c)}})(document,window.mixpanel||[]);
-        mixpanel.init('972817bb3a7c91a4b95c1641495dfeb7');
-    </script>
-    -->
-    
-    <!--[if lt IE 9]>
-        <script src='".get_home_url()."/wp-content/themes/pointfinder/js/html5shiv.js'></script>
-    <![endif]-->
-    <script type='text/javascript'>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','".get_home_url().'/wp-content/plugins/kmimos/javascript/analytics.js'."','ga');
-
-        ga('create', 'UA-56422840-1', 'auto');
-        ga('send', 'pageview');
-    </script>";
+    </footer>";
 
     if(  $_SESSION['admin_sub_login'] == 'YES' ){
         $HTML .= "
@@ -184,8 +162,33 @@ $HTML = "
     */
 
     echo comprimir_styles($HTML);
-
+ 
     wp_footer();
+
+    $HTML = "
+        <!--
+        <script type='text/javascript'>(function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+'=([^&]*)')))?l[1]:null};g&&c(g,'state')&&(i=JSON.parse(decodeURIComponent(c(g,'state'))),'mpeditor'===i.action&&(b.sessionStorage.setItem('_mpcehash',g),history.replaceState(i.desiredHash||'',e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split('.');2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,
+            0)))}}var d=a;'undefined'!==typeof f?d=a[f]=[]:f='mixpanel';d.people=d.people||[];d.toString=function(b){var a='mixpanel';'mixpanel'!==f&&(a+='.'+f);b||(a+=' (stub)');return a};d.people.toString=function(){return d.toString(1)+'.people (stub)'};k='disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user'.split(' ');
+            for(h=0;h<k.length;h++)e(d,k[h]);a._i.push([b,c,f])};a.__SV=1.2;b=e.createElement('script');b.type='text/javascript';b.async=!0;b.src='undefined'!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:'file:'===e.location.protocol&&'//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js'.match(/^\/\//) ? '".get_home_url()."/wp-content/plugins/kmimos/javascript/mixpanel-2-latest.min.js':'".get_home_url()."/wp-content/plugins/kmimos/javascript/mixpanel-2-latest.min.js';c=e.getElementsByTagName('script')[0];c.parentNode.insertBefore(b,c)}})(document,window.mixpanel||[]);
+            mixpanel.init('972817bb3a7c91a4b95c1641495dfeb7');
+        </script>
+        -->
+        
+        <!--[if lt IE 9]>
+            <script src='".get_home_url()."/wp-content/themes/pointfinder/js/html5shiv.js'></script>
+        <![endif]-->
+        <script type='text/javascript'>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','".get_home_url().'/wp-content/plugins/kmimos/javascript/analytics.js'."','ga');
+
+            ga('create', 'UA-56422840-1', 'auto');
+            ga('send', 'pageview');
+        </script>
+    ";
+
+    echo comprimir_styles($HTML);
 
     echo "</body></html>";
 ?>

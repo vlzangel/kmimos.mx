@@ -84,21 +84,6 @@ class WC_Deposits_Add_To_Cart
         $gstart = $colors['primary'];
         $gend = wc_deposits_adjust_colour($colors['primary'], 15);
 
-        $style = "@media only screen {
-            #wc-deposits-options-form input.input-radio:enabled ~ label { color: {$colors['secondary']}; }
-            #wc-deposits-options-form div a.wc-deposits-switcher {
-              background-color: {$colors['primary']};
-              background: -moz-gradient(center top, {$gstart} 0%, {$gend} 100%);
-              background: -moz-linear-gradient(center top, {$gstart} 0%, {$gend} 100%);
-              background: -webkit-gradient(linear, left top, left bottom, from({$gstart}), to({$gend}));
-              background: -webkit-linear-gradient({$gstart}, {$gend});
-              background: -o-linear-gradient({$gstart}, {$gend});
-              background: linear-gradient({$gstart}, {$gend});
-            }
-            #wc-deposits-options-form .amount { color: {$colors['highlight']}; }
-            #wc-deposits-options-form .deposit-option { display: inline; }
-          }";
-
         wp_add_inline_style('wc-deposits-frontend-styles', $style);
       }
     }

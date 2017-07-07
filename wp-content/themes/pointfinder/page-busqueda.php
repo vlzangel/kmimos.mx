@@ -3,6 +3,11 @@
         Template Name: Busqueda
     */
 
+    wp_enqueue_style('beneficios_kmimos', $home."/wp-content/themes/pointfinder/css/busqueda.css", array(), '1.0.0');
+	wp_enqueue_style('beneficios_responsive', $home."/wp-content/themes/pointfinder/css/responsive/busqueda_responsive.css", array(), '1.0.0');
+
+	wp_enqueue_script('buscar_home', $home."/wp-content/themes/pointfinder/js/busqueda.js", array("jquery"), '1.0.0');
+
     get_header();
 
     if( !isset($_SESSION)){ session_start(); }
@@ -31,11 +36,6 @@
 
 	$PINES = json_encode($pines_visibles);
 
-	include("vlz/vlz_scripts.php");
-
-	wp_enqueue_style('beneficios_kmimos', $home."/wp-content/themes/pointfinder/css/busqueda.css", array(), '1.0.0');
-	wp_enqueue_style('beneficios_responsive', $home."/wp-content/themes/pointfinder/css/responsive/busqueda_responsive.css", array(), '1.0.0');
-        
     $HTML = "
     	<div id='mapa'></div>
     	<script>var pines = eval('".$PINES."');</script>
@@ -54,7 +54,7 @@
 				".get_formulario($_POST)."
 			</div>
 		</div>
-    ".$SCRIPTS;
+    ";
 
 	echo comprimir_styles($HTML);
 

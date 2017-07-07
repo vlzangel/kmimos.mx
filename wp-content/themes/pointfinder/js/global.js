@@ -1,33 +1,33 @@
-(function($) {
+//(function(jQuery) {
 
-	$( document ).ready(function() {
-		$("#close_login").on("click", function(e){
+	jQuery( document ).ready(function() {
+		jQuery("#close_login").on("click", function(e){
 	        close_login_modal();
 	    });
 
-		$("#login").on("click", function(e){
+		jQuery("#login").on("click", function(e){
 	        show_login_modal("login");
 	    });
 
-		$("#recuperar").on("click", function(e){
+		jQuery("#recuperar").on("click", function(e){
 	        show_login_modal("recuperar");
 	    });
 
-		$("#login_submit").on("click", function(e){
+		jQuery("#login_submit").on("click", function(e){
 			logear();
 			e.preventDefault();
 	    });
 
-	    $("#form_login").submit(function(e){ 
+	    jQuery("#form_login").submit(function(e){ 
 	    	logear(); 
 	   	});
 	});
 
 	function logear(){
-		$.post( 
+		jQuery.post( 
 	    	HOME+"/procesos/login/login.php", {
-	    		usu: $("#form_login #usuario").val(),
-	    		clv: $("#form_login #clave").val()
+	    		usu: jQuery("#form_login #usuario").val(),
+	    		clv: jQuery("#form_login #clave").val()
 	    	}
 	    ).done(
 	    	function( data ) {
@@ -39,20 +39,20 @@
 	function show_login_modal(seccion){
 		switch(seccion){
 			case "login":
-				$(".modal_login form").css("display", "none");
-				$("#form_login").css("display", "block");
+				jQuery(".modal_login form").css("display", "none");
+				jQuery("#form_login").css("display", "block");
 			break;
 			case "recuperar":
-				$(".modal_login form").css("display", "none");
-				$("#form_recuperar").css("display", "block");
+				jQuery(".modal_login form").css("display", "none");
+				jQuery("#form_recuperar").css("display", "block");
 			break;
 		}
-	    $(".modal_login").css("display", "table");
+	    jQuery(".modal_login").css("display", "table");
 	}
 
 	function close_login_modal(){
 	    
-	    $(".modal_login").hide();
+	    jQuery(".modal_login").hide();
 	}
 	
-});
+//});

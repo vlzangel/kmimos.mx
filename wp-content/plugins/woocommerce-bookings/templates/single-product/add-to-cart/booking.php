@@ -38,15 +38,6 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 
 </form>
 
-<script type="text/javascript">
-	function activar_continuar(){
-		jQuery('.single_add_to_cart_button').addClass('xdisabled');
-		jQuery('.single_add_to_cart_button').css('background-color', "#60cbac;");
-		jQuery('.single_add_to_cart_button').css('color', "#fff;");
-		jQuery('.single_add_to_cart_button').html('Continuar');
-	}
-</script>
-
 <?php do_action( 'woocommerce_after_add_to_cart_form' ); ?>
 
 <?php 
@@ -109,11 +100,11 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 				echo '<script type="text/javascript"> var solo_fecha_fin = "NO"; </script>';
 			}
 		}else{
-			echo '<script type="text/javascript"> var solo_fecha_fin = "NO"; jQuery(document).ready(function() { activar_continuar(); }); </script>';
+			echo '<script type="text/javascript"> var solo_fecha_fin = "NO"; </script>';
 		}
 
 	}else{
-		echo '<script type="text/javascript"> var solo_fecha_fin = "NO"; jQuery(document).ready(function() { activar_continuar(); }); </script>';
+		echo '<script type="text/javascript"> var solo_fecha_fin = "NO"; </script>';
 	}
 ?>
 

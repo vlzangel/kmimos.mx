@@ -3,8 +3,6 @@
 	* The template for displaying product content in the single-product.php template
 	**/
 
-	include("vlz/vlz_style.php");
-
 	global $wpdb;
 
 	$D = $wpdb;
@@ -20,16 +18,20 @@
 
 	$DS = kmimos_session();
     if( $DS ){ ?>
-		<div class="theme_button" style="padding: 10px; margin-bottom: 20px;">
+		
 			<?php if( $DS["saldo_temporal"] > 0 ){ ?>
-				<strong><?php echo kmimos_saldo_titulo(); ?>:</strong> MXN $<?php echo $DS["saldo"]; ?>
+				<div class="theme_button" style="padding: 10px; margin-bottom: 20px;">
+					<strong><?php echo kmimos_saldo_titulo(); ?>:</strong> MXN $<?php echo $DS["saldo"]; ?>
+				</div>
 			<?php }else{ 
 					$kmisaldo = kmimos_get_kmisaldo();
 					if( $kmisaldo > 0 ){ ?>
-						<strong><?php echo kmimos_saldo_titulo(); ?>:</strong> MXN $<?php echo $kmisaldo; ?><br>
+						<div class="theme_button" style="padding: 10px; margin-bottom: 20px;">
+							<strong><?php echo kmimos_saldo_titulo(); ?>:</strong> MXN $<?php echo $kmisaldo; ?>
+						</div>
 			<?php 	}
 				  } ?>
-		</div> <?php
+		 <?php
 		if( isset($DS["reserva"]) ){ ?>
 			<div class="theme_button" style="padding: 10px 10px 10px 40px; margin-bottom: 20px; position: relative;">
 				<img src="<?php echo get_template_directory_uri()."/images/advertencia.png"; ?>" style="position: absolute; top: 4px; left: 6px; width: 30px;" />
@@ -43,22 +45,6 @@
 	// echo "<pre>";
 	// 	print_r($_SESSION);
 	// echo "</pre>";
-
-	echo "
-	<style>
-		.vlz_modal{ position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; display: table; z-index: 10000; background: rgba(0, 0, 0, 0.8); vertical-align: middle !important; display: none; }
-		h1{ font-size: 18px; }
-		h2{ font-size: 16px; }
-		.vlz_modal_interno{ display: table-cell; text-align: center; vertical-align: middle !important; }
-		.vlz_modal_ventana{ position: relative; display: inline-block; width: 60%!important; text-align: left; box-shadow: 0px 0px 4px #FFF; border-radius: 5px; z-index: 1000; }
-		.vlz_modal_titulo{ background: #FFF; padding: 15px 10px; font-size: 18px; color: #52c8b6; font-weight: 600; border-radius: 5px 5px 0px 0px; }
-		.vlz_modal_contenido{ background: #FFF; height: 450px; box-sizing: border-box; padding: 5px 15px; border-top: solid 1px #d6d6d6; border-bottom: solid 1px #d6d6d6; overflow: auto; text-align: justify; }
-		.vlz_modal_pie{ background: #FFF; padding: 15px 10px; border-radius: 0px 0px 5px 5px; }
-		.vlz_modal_fondo{ position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 500; }
-		.vlz_boton_siguiente{ padding: 10px 50px; background-color: #a8d8c9; display: inline-block; font-size: 16px; border: solid 1px #2ca683; border-radius: 3px; float: right; cursor: pointer; } 
-		@media screen and (max-width: 750px){ .vlz_modal_ventana{ width: 90% !important; } }
-	</style>
-	";
 
 	if( $id_user  == ""){
 
@@ -157,8 +143,6 @@
 							<?php do_action( 'woocommerce_single_product_summary' ); ?>
 						</div>
 
-						<meta itemprop="url" content="<?php the_permalink(); ?>" />
-
 						<div style="clear: both;">
 							<?php
 								$cuidador = $wpdb->get_row( "SELECT * FROM cuidadores WHERE user_id = '".$propietario."'" );
@@ -210,13 +194,12 @@
 								}
 
 								echo '
-									<div class="pfwidgettitle"> 
-										<div class="widgetheader">Otros cuidadores recomendados</div> 
-									</div> 
-									<div class="row" style="margin: 10px auto 20px;">'.$top_destacados;
+									<div class="productos_titulo">Otros cuidadores recomendados</div> 
+									<div class="destacados_box">'.$top_destacados;
 							?>
 						</div>
 
+					</div>
 					</div>
 					<?php do_action( 'woocommerce_after_single_product' ); 
 
@@ -228,15 +211,3 @@
 		
 	}
 ?>
-<script type="text/javascript">
-	jQuery('div.product_meta').hide();
-	jQuery('span#cerrarModal').click(function(){
-		jQuery('#jj_modal_ir_al_inicio').css('display', 'none');	
-	});
-	
-	setTimeout(function(){
-		jQuery('#jj_modal_ir_al_perfil').css('display', 'table');
-		jQuery('#jj_modal_ir_al_inicio').css('display', 'table');
-	}, 100);
-
-</script>

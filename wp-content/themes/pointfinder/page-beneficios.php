@@ -2,10 +2,13 @@
     /*
         Template Name: Beneficios
     */
+    
+    wp_enqueue_style('beneficios_kmimos', $home."/wp-content/themes/pointfinder/css/beneficios.css", array(), '1.0.0');
+	wp_enqueue_style('beneficios_responsive', $home."/wp-content/themes/pointfinder/css/responsive/beneficios_responsive.css", array(), '1.0.0');
+
     get_header();
 
-	wp_enqueue_style('beneficios_kmimos', $home."/wp-content/themes/pointfinder/css/beneficios.css", array(), '1.0.0');
-	wp_enqueue_style('beneficios_responsive', $home."/wp-content/themes/pointfinder/css/responsive/beneficios_responsive.css", array(), '1.0.0');
+	
         
         $HTML = "
 

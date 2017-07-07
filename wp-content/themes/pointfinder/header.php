@@ -1,6 +1,4 @@
-<?php include 'pre-header.php'; ?>
-<!doctype html><html lang="es-ES" class="no-js"><head><title>Kmimos</title><meta charset="UTF-8"><?php 
-
+<?php include 'pre-header.php'; ?><!doctype html><html lang="es-ES" class="no-js"><head><title>Kmimos</title><meta charset="UTF-8"><?php 
 	$HTML = '';	
 	if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== false)){
 		header('X-UA-Compatible: IE=edge,chrome=1');
@@ -21,8 +19,11 @@
 	wp_enqueue_style( 'style', get_home_url()."/wp-content/themes/pointfinder/style.css", array(), "1.0.0" );
 	wp_enqueue_style( 'fontello', get_home_url()."/wp-content/themes/pointfinder/css/fontello.min.css", array(), "1.0.0" );
 	wp_enqueue_style( 'generales_css', get_home_url()."/wp-content/themes/pointfinder/css/generales.css", array(), "1.0.0" );
-	wp_enqueue_script( 'menu_js', get_home_url()."/wp-content/themes/pointfinder/js/menu.js", array(), "1.0.0" );
-	wp_enqueue_script( 'global_js', get_home_url()."/wp-content/themes/pointfinder/js/global.js", array(), "1.0.0" );
+
+	wp_enqueue_script( 'menu_js', get_home_url()."/wp-content/themes/pointfinder/js/menu.js", array("jquery"), "1.0.0" );
+	wp_enqueue_script( 'global_js', get_home_url()."/wp-content/themes/pointfinder/js/global.js", array("jquery"), "1.0.0" );
+
+	wp_enqueue_style( 'responsive', get_home_url()."/wp-content/themes/pointfinder/css/responsive/responsive.css", array(), "1.0.0" );
 
 	wp_head(); 
 
@@ -37,9 +38,10 @@
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
 
-		<script src="'.get_home_url().'/wp-content/themes/pointfinder/js/jquery.min.js"></script>
-
-		<script type="text/javascript"> var HOME = "'.get_bloginfo( 'template_directory', 'display' ).'/"; </script>
+		<script type="text/javascript"> 
+			var HOME = "'.get_bloginfo( 'template_directory', 'display' ).'/"; 
+			var RAIZ = "'.get_home_url().'/"; 
+		</script>
 
 	</head>
 	<body class="'.join( ' ', get_body_class( $class ) ).'" >';

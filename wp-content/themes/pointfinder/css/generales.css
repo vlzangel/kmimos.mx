@@ -74,3 +74,11 @@
     .modal_login .botones_box span:{
         background: #44bf9d;
     }
+
+/*  Clases globales */
+
+    .theme_button {
+        color: #FFF;
+        background-color: #00d2b7;
+        border-color: #00d2b7;
+    }

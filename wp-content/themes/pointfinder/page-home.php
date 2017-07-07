@@ -2,6 +2,11 @@
     /*
         Template Name: Home
     */
+
+    wp_enqueue_style('home_kmimos', $home."/wp-content/themes/pointfinder/css/home_kmimos.css", array(), '1.0.0');
+    wp_enqueue_style('home_responsive', $home."/wp-content/themes/pointfinder/css/responsive/home_responsive.css", array(), '1.0.0');
+    wp_enqueue_script('buscar_home', $home."/wp-content/plugins/kmimos/javascript/buscar.js", array(), '1.0.0');
+            
     get_header();
         
         $data = get_data_home();
@@ -9,9 +14,6 @@
 	    extract($data);
 
 	    $home = get_home_url();
-	    wp_enqueue_style('home_kmimos', $home."/wp-content/themes/pointfinder/css/home_kmimos.css", array(), '1.0.0');
-	    wp_enqueue_style('home_responsive', $home."/wp-content/themes/pointfinder/css/responsive/home_responsive.css", array(), '1.0.0');
-	    wp_enqueue_script('buscar_home', $home."/wp-content/plugins/kmimos/javascript/buscar.js", array(), '1.0.0');
 
 	    $HTML = "
 	    <script type='text/javascript'> var URL_MUNICIPIOS = '".get_bloginfo( 'template_directory', 'display' )."/vlz/ajax_municipios.php'; </script>
@@ -44,7 +46,7 @@
 	    </div>
 
 	    <div class='buscar_box'>
-	        <form id='buscador' class='container' method='POST' action='".get_home_url()."/wp-content/themes/pointfinder/vlz/buscar.php'>
+	        <form id='buscador' class='container' method='POST' action='".get_home_url()."/wp-content/themes/pointfinder/procesos/busqueda/buscar.php'>
 	            
 	            <div class='adicionales_container'>
 	                <label class='titulo_buscar_label'>ESTOY BUSCANDO</label>
