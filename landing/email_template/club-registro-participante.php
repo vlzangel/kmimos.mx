@@ -25,7 +25,7 @@ $html = '
 				<p>Es una familia creada con la finalidad de brindar los mejores servicios y beneficios tanto para ustedes como para sus mascotas.
 				</p>
 				<p style="text-align: center;">
-					<p style="color:#881C9B;">Comparte con tus amigos</p><br>
+					<p>Comparte con tus amigos</p><br>
                     <a 
                         href="'.$link.'"
                         style="

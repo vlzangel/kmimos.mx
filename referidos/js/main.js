@@ -45,8 +45,8 @@ function _registerLanding(){
     //window.location.href = $('#temp').attr('action')+$('#email').val();
   })
   .fail(function() {
-    $('#msg').html('Referencia: No pudimos completar su solicitud, intente nuevamente');
-    $('#loading').addClass('hidden');
+    //$('#msg').html('Referencia: No pudimos completar su solicitud, intente nuevamente');
+    //$('#loading').addClass('hidden');
   });  
 
 }
