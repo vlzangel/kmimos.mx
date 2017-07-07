@@ -1,6 +1,6 @@
 <?php
-	include("../../../../vlz_config.php");
-	include("admin/funciones/kmimos_funciones_db.php");
+	include("../../../../../vlz_config.php");
+	include("../funciones/db.php");
 
 	$conn = new mysqli($host, $user, $pass, $db);
 	$db = new db($conn);
