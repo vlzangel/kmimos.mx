@@ -8,7 +8,8 @@ include_once(__DIR__.'/header.php');
     #single .image{position:relative; width:100%; margin:50px 0;}
     #single .single{position:relative; margin:-150px auto 50px auto; padding:30px 50px; border-radius:20px; box-shadow:0 0 10px #555; background:#FFF;}
     #single .single .title{position:relative; margin:0; padding:40px 0; color:#fdc421; font-size:25px; font-weight:bold; text-align:left;}
-    #single .single .content{position:relative; color:#555; font-size:15px; line-height: 1.3; }
+    #single .single .content{position:relative; color:#555; font-size:15px; line-height: 1.3; display: flex;}
+    #single .single .content .column{width:100%; margin:0 10px;}
 
     @media screen and (max-width:768px), screen and (max-device-width:768px){}
     @media screen and (max-width:480px), screen and (max-device-width:480px){}
@@ -36,8 +37,12 @@ include_once(__DIR__.'/header.php');
     #featured .post .detail .title{color: #888; font-size: 15px;}
     #featured .post .detail .content{margin:10px 0; color: #888; font-size: 12px;}
 
-    @media screen and (max-width:768px), screen and (max-device-width:768px){}
+    @media screen and (max-width:768px), screen and (max-device-width:768px){
+        #single .single .content{display: flex; flex-flow: wrap;}
+        #single .single .content .column{width:calc(50% - 20px);}
+    }
     @media screen and (max-width:480px), screen and (max-device-width:480px){
+        #single .single .content .column{width:100%; margin: 0;}
         #featured .post{display: block;}
         #featured .post .image{width: auto; border-radius: 20px 20px 0 0;}
         #featured .post .image .img{width: 50px; padding-top: 50px;}
@@ -103,6 +108,24 @@ while(have_posts()){
             jQuery('#featured.show').css({'right':'calc(100% - '+width+'px)'});
         }
     }
+
+    function divide_content(column, separator){
+        var content = jQuery('#single .single .content');
+        var sections = content.find(separator).length;
+        var text = content.html();
+        content.html('');
+
+        for(var i=0; i<column; i++){
+            content.append('<div class="column column'+i+'">'+text+'</div>');
+            text='';
+
+            if(i>0){
+                var iprev =  (i-1);
+                content.find('.column'+iprev+' > '+separator).slice(Math.ceil(sections/(column-iprev))).appendTo(content.find('.column'+i));
+            }
+        }
+    }
+    divide_content(2, 'p, h1, h2, h3, ul');
 </script>
 
 <?php
