@@ -21,7 +21,7 @@
 
 		switch ( $post->post_name ) {
 			case 'perfil-usuario':
-				
+				include("admin/frontend/perfil.php");
 			break;
 			case 'mascotas':
 				
@@ -54,11 +54,13 @@
 						'.$MENU["body"].'
 					</ul>
 
+					Page: '.$post->post_name.'
+
 				</div>
 
 				<div class="main">
-
-					Page: '.$post->post_name.'
+				
+					'.$CONTENIDO.'
 					
 				</div>
 	        	
