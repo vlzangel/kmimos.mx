@@ -162,6 +162,7 @@
 
         $coordenadas = unserialize( $wpdb->get_var("SELECT valor FROM kmimos_opciones WHERE clave = 'municipio_{$param['municipios']}' ") );
 
+        /*NEW COORD MAP act CG
         $latitud  = "";
         $longitud = "";
 
@@ -173,6 +174,7 @@
                 $longitud = $coordenadas["referencia"]->lng;
             }
         }
+        */
 
         $sql = "
         	INSERT INTO cuidadores VALUES (
