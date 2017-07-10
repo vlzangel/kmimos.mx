@@ -65,10 +65,12 @@ h1{
 }
 
 .shared-link-email{
-    padding: 5px;
+    padding: 15px;
     background: #fd06a4;
     color: #fff;
     font-size: 16px;
+    font-weight: bold;
+    text-anchor: middle;
     border-radius: 10px;
 }
 
@@ -125,6 +127,18 @@ footer{
     margin-bottom:20px;
 }
 
+.btn-cerrar{
+    color:#fff;
+    background:#881C9B;
+    border:0px;
+    padding:5px 9px 5px 9px;
+    border-radius:15px;
+    font:40px;
+    position:absolute; 
+    right:1px;
+    top:1px;
+    margin:10px;
+}
 
 /***************************************/
 /*  Media                              */
@@ -133,6 +147,9 @@ footer{
 
 }
 @media 	(max-width: 766px){ 
+   .btn-cerrar{
+    font-size: 18px;
+   }
     .footer-content{
         text-align: left;
     }

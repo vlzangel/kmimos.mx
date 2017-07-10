@@ -1,7 +1,10 @@
 <?php
 $http = (isset($_SERVER['HTTPS']))? 'https://' : 'http://' ;
 
-$username = 'italo';
+$username = 'italo username';
+$link = '';
+$email = '';
+$name = 'italo name';
 
 include ("club-paticipante-referido.php");
 echo "$html.<br>";

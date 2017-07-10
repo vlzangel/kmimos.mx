@@ -37,7 +37,6 @@
 	    $phpmailer->FromName = "Club de las Patitas Felices";
 	}
 	
-
     $landing_url = "https://www.kmimos.com.mx/referidos";     // URL Landing
 	$landing_name = 'kmimos-mx-clientes-referidos'; 	// Name Landing Page
 
@@ -59,7 +58,14 @@
 	$referencia = ( isset( $_GET['referencia'] ) )? $_GET['referencia'] : '' ;
 	$url = ( $email != '' )? md5($email) : '' ;
 	$meta = explode('@', $email);
-	$username = $meta[0];
+	$username = $meta[0].generarClave(3);
+
+	$link="";
+	$ssl =  ($_SERVER['SERVER_PORT']==443)? 's':'' ;
+	if(isset($email)){
+		$link = "http".$ssl."://".$_SERVER['HTTP_HOST']."/referidos/compartir/?e=".$email;
+	}
+
 
 	$estatus_registro = 0;
 
@@ -120,21 +126,11 @@
 	    	$html
 	    );
 
-	    # ********************************************
-	    # Email de Nuevo registro participantes 
-	    # ********************************************
-		require_once('email_template/club-registro-participante.php');
-    	wp_mail(
-    		$email,
-    		"Club de la Patitas Felices",
-    		$html
-    	);
-	    # ********************************************
-
 	    $estatus_registro = 1;
 	    $notificaciones = "Nuevo Usuario Registrado.";
 	}else{
 		if(!empty($referencia)){
+	    	$estatus_registro = 1;
 		    # ********************************************
 		    # El usuario ya existe 
 		    # Club Patitas Felices 
@@ -145,9 +141,33 @@
 	    		"Club de la Patitas Felices",
 	    		$html
 	    	);
+		}else{
+
+			$old = get_fetch_assoc("
+				SELECT * 
+				FROM list_subscribe 
+				WHERE source = '".$landing_name."' 
+					and email = '".$email."' 
+					and fecha between DATE_SUB(NOW(), INTERVAL 5 MINUTE) and NOW()"
+			);
+			if( $old['info']->num_rows > 0 ){ 
+				$estatus_registro = 1;
+			}
 		}
 	}
 
+	if($estatus_registro==1){		
+	    # ********************************************
+	    # Email de Nuevo registro participantes 
+	    # ********************************************
+		require_once('email_template/club-registro-participante.php');
+    	wp_mail(
+    		$email,
+    		"Club de la Patitas Felices",
+    		$html
+    	);
+	    # ********************************************
+	}
 
 	function get_fetch_assoc($sql){
 		$cnn = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
@@ -162,6 +182,16 @@
 			}
 		}
 		return $data;
+	}
+	function strRand($lenght=8, $char = ""){
+		if($char == ""){
+			$char = "#-_*@0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		}
+		return substr(str_shuffle($char), 0, $lenght);
+	}
+	function generarClave($lenght=3){
+		$char = strRand($lenght, "0123456789");
+		return str_shuffle($char);
 	}
 
 print_r($estatus_registro);

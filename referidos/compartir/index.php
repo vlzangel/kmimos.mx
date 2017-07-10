@@ -1,8 +1,10 @@
 <?php
 $url="";
+$ssl =  ($_SERVER['SERVER_PORT']==443)? 's':'' ;
 if(isset($_GET['e'])){
-	$url = "https://www.kmimos.com.mx/referidos/?r=".md5($_GET['e']);
+	$url = "http".$ssl."://".$_SERVER['HTTP_HOST']."/referidos/?r=".md5($_GET['e']);
 }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -23,7 +25,7 @@ if(isset($_GET['e'])){
 		<meta property="og:type"          content="website" />
 		<meta property="og:title"         content="Kmimos - Clientes Referidos" />
 		<meta property="og:description"   content="Suma huellas a nuestro club y gana descuentos" />
-		<meta property="og:image"         content="https://www.kmimos.com.mx/referidos" />
+		<meta property="og:image"         content="<?php echo $url; ?>" />
 		<script>
 		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -46,6 +48,7 @@ if(isset($_GET['e'])){
 		  fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));</script>
 
+		<div id="contenido"></div>
 		<div class="container">
 
 			<header class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2">
@@ -86,8 +89,12 @@ if(isset($_GET['e'])){
 					
 				</div>	
 
+			</section>
+
+			<section style="padding: 0px; " class="clearfix  col-xs-12 col-sm-12 col-md-8 col-md-offset-2  text-center">
+				
 				<!-- Link Twitter -->	
-				<div id="twitter" class="col-sm-11 clearfix hidden">
+				<div style="padding: 0px; " id="twitter" class="col-sm-12 col-xs-12 col-md-12 col-lg-12 clearfix hidden">
 					<div class="fondo-verde">
 						<h3 class="text-center">
 							¿Y ahora qué sigue?
@@ -109,7 +116,7 @@ if(isset($_GET['e'])){
 				</div>
 
 				<!-- Link Facebook -->	
-				<div id="facebook" class="col-sm-11 clearfix hidden">
+				<div  style="padding: 0px; " id="facebook" class="col-sm-12 col-xs-12 col-md-12 col-lg-12 clearfix hidden">
 					<div class="fondo-verde">				
 						<h3 class="text-center">
 							¿Y ahora qué sigue?
@@ -127,7 +134,7 @@ if(isset($_GET['e'])){
 				</div>
 
 				<!-- Link Email -->
-				<div id="info" class="col-sm-11 clearfix hidden">
+				<div  style="padding: 0px; " id="info" class="col-sm-12 col-xs-12 col-md-12 col-lg-12 clearfix hidden">
 					<div class="fondo-verde">
 						<h3 class="text-center">
 							¿Y ahora qué sigue?
@@ -140,12 +147,13 @@ if(isset($_GET['e'])){
 							<span><strong>Paso 3: GANA.</strong> Cuando alguno de tus referidos haga su primera reserva con Kmimos, te avisaremos con un email. Este es el momento en el que puedes hacer válida tu recompensa.</span><br>
 						</div>
 						<br>
-						<strong class="shared-link-email"><?php echo $url;?></strong>
+						<div class="shared-link-email"><?php echo $url;?></div>
 					</div>
 				</div>
+
 			</section>
 
-			<aside class="footer-content col-xs-12 col-sm-12 col-md-8 col-md-offset-2 text-left">
+			<aside class="clearfix footer-content col-xs-12 col-sm-12 col-md-8 col-md-offset-2 text-left">
 					<span>Amigos referidos: </span>
 					<br class="hidden-md hidden-lg">
 					<img src="img/1.png">
@@ -158,14 +166,16 @@ if(isset($_GET['e'])){
 					<span style="margin:10px;">¡Guau!</span>
 			</aside>
 
-			<aside class="col-sm-12 col-md-12 col-lg-12">
+			<aside class="clearfix col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<h2 class="text-center" style="font-size: 1.8em; color: #881c9b;font-weight: bold;">¡Sigue ganando!</h2>
 			</aside>
 
-			<p id="shared" class="hidden">Debes compartir el enlace</p>
+			<button class="btn-cerrar" id="close"><i class="fa fa-close"></i> </button>
 
 		</div>
 	
+
+
 		<script
 		  src="https://code.jquery.com/jquery-2.2.4.min.js?<?php echo time(); ?>"
 		  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
@@ -218,6 +228,20 @@ if(isset($_GET['e'])){
 				ga('send', 'pageview', 'referidos_shared_twitter');				
 		    });
 			
+			$("#close").on('click', function(){
+				if(click_action==1){
+					window.close();
+				}else{
+					$('#contenido').append(
+						$('<div id="alert-warning" role="alert"style="position:absolute;top:0px;z-index:999;margin-bottom:0px!important;width:100%;"class="alert alert-warning fade in"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Hola!</strong> Hemos detectado que no compartiste tu link, debes hacerlo para ganar mas referidos.</div>')
+					);
+				}
+			});
+
+			window.onbeforeunload = function(e) {
+			   $("#close").click();
+			};
+
 		});
 		</script>
 
