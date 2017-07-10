@@ -219,7 +219,7 @@ if( count($reservas) > 0 ){
 				//RESERVAS PENDIENTES POR TIENDA DE CONVENIENCIA
 			//}else if($orden_status == 'wc-on-hold' && $_metas['_payment_method'][0] == 'openpay_stores'){
 			}else if($reserva_status == 'unpaid' && $_metas['_payment_method'][0] == 'openpay_stores'){
-				
+
 				$pdf = array();
 
 				$options='<a class="theme_btn" href="'.$_metas['_openpay_pdf'][0].'">Ver PDF</a>';
