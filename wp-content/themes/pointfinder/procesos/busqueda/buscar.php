@@ -145,9 +145,10 @@
 	$_SESSION['busqueda'] = serialize($_POST);
     $_SESSION['resultado_busqueda'] = $cuidadores;
 
-    // echo "<pre>";
-    // 	print_r($sql);
-    // echo "</pre>";
+    echo "<pre>";
+    	print_r($home);
+    	print_r($sql);
+    echo "</pre>";
 
     function toRadian($deg) { return $deg * pi() / 180; };
 
