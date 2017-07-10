@@ -309,7 +309,7 @@
     function get_ficha_cuidador($cuidador, $i, $favoritos){
         $img        = kmimos_get_foto($cuidador->user_id);
         $anios_exp  = $cuidador->experiencia; if( $anios_exp > 1900 ){ $anios_exp = date("Y")-$anios_exp; }
-        $url        = $home."/petsitters/".$cuidador->slug;
+        $url        = get_home_url()."/petsitters/".$cuidador->slug;
 
         if( isset($cuidador->DISTANCIA) ){ $distancia   = 'A '.floor($cuidador->DISTANCIA).' km de tu busqueda'; }
 
