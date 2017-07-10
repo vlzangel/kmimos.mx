@@ -21,7 +21,7 @@
 	$latitud 	= $cuidador->latitud;
 	$longitud 	= $cuidador->longitud;
 
-	$foto = kmimos_get_foto_cuidador($cuidador->id);
+	$foto = kmimos_get_foto($cuidador->user_id);
 
 	$tama_aceptados = unserialize( $cuidador->tamanos_aceptados );
 	$tamanos = array(
@@ -114,7 +114,7 @@
 		<div class='vlz_contenedor_header'>
 
 			<div class='vlz_lados'>
-				<div class='vlz_img_portada'>
+				<div class='vlz_img_portada' style='height: 250px;'>
 	                <div class='vlz_img_portada_fondo easyload' data-original='".$foto."' style='background-image: url(); filter:blur(2px);'></div>
 	                <div class='vlz_img_portada_normal easyload' data-original='".$foto."' style='background-image: url();'></div>
 	            </div>

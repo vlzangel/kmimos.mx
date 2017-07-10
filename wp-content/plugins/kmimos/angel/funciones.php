@@ -307,7 +307,7 @@
     }
 
     function get_ficha_cuidador($cuidador, $i, $favoritos){
-        $img        = kmimos_get_foto_cuidador($cuidador->id);
+        $img        = kmimos_get_foto($cuidador->user_id);
         $anios_exp  = $cuidador->experiencia; if( $anios_exp > 1900 ){ $anios_exp = date("Y")-$anios_exp; }
         $url        = $home."/petsitters/".$cuidador->slug;
 
@@ -315,7 +315,7 @@
 
         $fav_check = 'false';
         if (in_array($cuidador->id_post, $favoritos)) {
-            $fav_check = 'true'; $favtitle_text = esc_html__('Remove from Favorites','pointfindert2d');
+            $fav_check = 'true'; $favtitle_text = esc_html__('Quitar de mis favoritos','kmimos');
         }
 
         $ficha = '

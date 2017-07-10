@@ -2,116 +2,130 @@
     
     $userdata = get_user_meta($user_id);
 
+    $referred = $userdata['user_referred'][0];
+
+    $opciones = get_referred_list_options(); $ref_str = "";
+    foreach($opciones as $key=>$value){
+        $selected = ($referred==$key)? ' selected':'';
+        $ref_str .= '<option value="'.$key.'"'.$selected.'>'.$value.'</option>';
+    }
+
     $CONTENIDO .= '
-        <form id="form_perfil">
-            <input type="hidden" name="tipo_user" value="'.$user->roles[0].'" />
-            <input type="hidden" name="user_tipo" value="'.$user_id_tipo.'" />
+        <input type="hidden" name="accion" value="perfil" />
+        <input type="hidden" name="user_id" value="'.$user_id.'" />
+        <input type="hidden" id="sub_path" name="sub_path" value="'.$img_perfil["sub_path"].'" />
 
-            <section>
-                <div class="vlz_img_portada_perfil">
-                    <div class="vlz_img_portada_fondo" style="background-image: url('.$avatar.');"></div>
-                    <div class="vlz_img_portada_normal" style="background-image: url('.$avatar.');"></div>
-                    <div class="cambiar_portada">
-                        Cambiar Foto
-                        <input type="file" id="portada" name="portada" accept="image/*" />
-                    </div>
+        <section>
+            <div class="vlz_img_portada_perfil">
+                <div class="vlz_img_portada_fondo" style="background-image: url('.$avatar.');"></div>
+                <div class="vlz_img_portada_normal" style="background-image: url('.$avatar.');"></div>
+                <div class="vlz_img_portada_cargando" style="background-image: url('.getTema().'/images/cargando.gif);"></div>
+                <div class="vlz_cambiar_portada">
+                    Cambiar Foto
+                    <input type="file" id="portada" name="xportada" accept="image/*" />
                 </div>
-            </section>
-
-            <div class="box_3">
-
-                <section>
-                    <label for="firstname" class="lbl-text">Nombres:</label>
-                    <label class="lbl-ui">
-                        <input type="text" name="firstname" class="input" value="'.$userdata['first_name'][0].'" />
-                    </label>
-                </section>
-
-                <section>
-                    <label for="lastname" class="lbl-text">Apellidos:</label>
-                    <label class="lbl-ui">
-                        <input type="text" name="lastname" class="input" value="'.$userdata['last_name'][0].'" />
-                    </label>
-                </section>
-
-                <section>
-                    <label for="nickname" class="lbl-text">Apodo (Nombre a mostrar):</label>
-                    <label class="lbl-ui">
-                        <input  type="text" name="nickname" class="input" value="'.$userdata['nickname'][0].'" />
-                    </label>
-                </section>
-
             </div>
+            <input type="hidden" class="vlz_img_portada_valor" id="portada" name="portada" data-valid="requerid" />
+        </section>
 
-            <div class="box_3">
-
-                <section>
-                    <label for="phone" class="lbl-text">'.esc_html__('Teléfono','pointfindert2d').':</label>
-                    <label class="lbl-ui">
-                        <input type="tel" name="phone" maxlength="12" class="input" placeholder="" value="'.$userdata['user_phone'][0].'" />
-                    </label>
-                </section>
-
-                <section>
-                    <label for="mobile" class="lbl-text">'.esc_html__('Móvil','pointfindert2d').':</label>
-                    <label class="lbl-ui">
-                        <input type="tel" name="mobile" maxlength="12" class="input" placeholder="" value="'.$userdata['user_mobile'][0].'"/>
-                    </label>
-                </section>
-
-                <section>
-                    <label for="referred" class="lbl-text">'.esc_html__('¿Como nos conoció?','pointfindert2d').':</label>
-                    <label class="lbl-ui">
-                        <select name="referred" class="input">
-                            <option value="">Por favor seleccione</option>
-                            '.$ref_str.'
-                        </select>
-                    </label>
-                </section>
-
-            </div>
+        <div class="inputs_containers">
 
             <section>
-                <label for="descr" class="lbl-text">'.esc_html__('Información biográfica','pointfindert2d').':</label>
+                <label for="firstname" class="lbl-text">'.esc_html__('Nombres','kmimos').':</label>
                 <label class="lbl-ui">
-                    <textarea name="descr" class="textarea mini" style="border:1px solid #848484; height: 112px;">'.$userdata['description'][0].'</textarea>
-                </label>
-            </section>
-        </div>
-
-
-        <div class="jj_dash_cel50">
-            <section>
-                <label for="username" class="lbl-text"><strong>'.esc_html__('Usuario','pointfindert2d').'</strong>:</label>
-                <label class="lbl-ui">
-                    <input type="text" id="username" class="input" value="'.$current_user->user_login.'" disabled />
-                </label>
-           </section>
-        </div>
-        <div class="jj_dash2_cel50">
-           <section>
-                <label for="email" class="lbl-text"><strong>'.esc_html__('Email Address','pointfindert2d').'</strong>:</label>
-                <label class="lbl-ui">
-                    <input  type="email" id="email" class="input" value="'.$current_user->user_email.'" disabled />
-                </label>
-            </section>
-        </div>
-        <div class="jj_dash_cel50">
-            <section>
-                <label for="password" class="lbl-text">'.esc_html__('Nueva contraseña','pointfindert2d').':</label>
-                <label class="lbl-ui">
-                    <input type="password"
-                    placeholder="Contraseña"
-                    autocomplete="off" name="password" id="password" class="input" />
+                    <input type="text" id="first_name" name="first_name" value="'.$userdata['first_name'][0].'" data-valid="requerid" autocomplete="off" />
                 </label>
             </section>
 
-        </div>
-        <div class="jj_dash2_cel50">
             <section>
-                <label for="password2" class="lbl-text">'.esc_html__('Repita la nueva contraseña','pointfindert2d').':</label>
+                <label for="lastname" class="lbl-text">'.esc_html__('Apellidos','kmimos').':</label>
                 <label class="lbl-ui">
-                    <input type="password" placeholder="Repita la Contraseña" autocomplete="off" name="password2" class="input" />
+                    <input type="text" id="last_name" name="last_name" value="'.$userdata['last_name'][0].'" data-valid="requerid" autocomplete="off" />
+                </label>
+            </section>
+
+            <section>
+                <label for="nickname" class="lbl-text">'.esc_html__('Apodo (Nombre a mostrar)','kmimos').':</label>
+                <label class="lbl-ui">
+                    <input  type="text" id="nickname" name="nickname" value="'.$userdata['nickname'][0].'" data-valid="requerid" autocomplete="off" />
+                </label>
+            </section>
+
+            <section>
+                <label for="phone" class="lbl-text">'.esc_html__('Teléfono','kmimos').':</label>
+                <label class="lbl-ui">
+                    <input type="number" id="phone" name="phone" data-title="El teléfono es requerido y debe tener al menos 10 digitos" value="'.$userdata['user_phone'][0].'" data-valid="requerid,min:10" autocomplete="off" />
+                </label>
+            </section>
+
+            <section>
+                <label for="mobile" class="lbl-text">'.esc_html__('Móvil','kmimos').':</label>
+                <label class="lbl-ui">
+                    <input type="number" id="mobile" name="mobile" data-title="El teléfono es requerido y debe tener al menos 10 digitos" value="'.$userdata['user_mobile'][0].'" data-valid="requerid,min:10" autocomplete="off" />
+                </label>
+            </section>
+
+            <section>
+                <label for="referred" class="lbl-text">'.esc_html__('¿Como nos conoció?','kmimos').':</label>
+                <label class="lbl-ui">
+                    <select id="referred" name="referred" data-valid="requerid" >
+                        <option value="">Por favor seleccione</option>
+                        '.$ref_str.'
+                    </select>
+                </label>
+            </section>
+
+            <section class="container_full">
+                <label for="descr" class="lbl-text">'.esc_html__('Información biográfica','kmimos').':</label>
+                <label class="lbl-ui">
+                    <textarea id="descr" name="descr" data-valid="requerid" >'.$userdata['description'][0].'</textarea>
+                </label>
+            </section>
+
+            <section>
+                <label for="username" class="lbl-text">'.esc_html__('Usuario','kmimos').':</label>
+                <label class="lbl-ui">
+                    <input type="text" id="username" value="'.$current_user->user_login.'" disabled />
+                    <input type="hidden" name="username" value="'.$current_user->user_login.'" />
+                </label>
+            </section>
+
+            <section>
+                <label for="email" class="lbl-text">'.esc_html__('Correo Electrónico','kmimos').':</label>
+                <label class="lbl-ui">
+                    <input  type="email" id="email" value="'.$current_user->user_email.'" disabled />
+                </label>
+            </section>
+
+            <section>
+                <label for="password" class="lbl-text">'.esc_html__('Nueva contraseña','kmimos').':</label>
+                <label class="lbl-ui">
+                    <input 
+                        type="password"
+                        placeholder="Contraseña"
+                        data-title="Las contraseñas deben ser iguales"
+                        autocomplete="off" 
+                        name="password" 
+                        id="password" 
+                        class="clv" 
+                        data-valid="equalTo:password2"
+                    />
+                </label>
+            </section>
+
+            <section>
+                <label for="password2" class="lbl-text">'.esc_html__('Repita la nueva contraseña','kmimos').':</label>
+                <label class="lbl-ui">
+                    <input 
+                        type="password"
+                        placeholder="Contraseña"
+                        data-title="Las contraseñas deben ser iguales"
+                        autocomplete="off" 
+                        name="password2" 
+                        id="password2" 
+                        class="clv" 
+                        data-valid="equalTo:password" 
+                    />
                 </label>
             </section>
 

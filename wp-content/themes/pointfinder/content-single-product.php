@@ -156,7 +156,8 @@
 					                    ROUND ( ( 6371 * acos( cos( radians({$lat}) ) * cos( radians(latitud) ) * cos( radians(longitud) - radians({$lon}) ) + sin( radians({$lat}) ) * sin( radians(latitud) ) ) ), 2 ) as DISTANCIA,
 					                    id_post,
 					                    hospedaje_desde,
-					                    adicionales
+					                    adicionales,
+					                    user_id
 					                FROM 
 					                    cuidadores
 					                WHERE
@@ -173,7 +174,7 @@
     							foreach ($sugeridos as $key => $cuidador) {
 									$data = $wpdb->get_row("SELECT post_title AS nom, post_name AS url FROM wp_posts WHERE ID = {$cuidador->id_post}");
 									$nombre = $data->nom;
-									$img_url = kmimos_get_foto_cuidador($cuidador->id);
+									$img_url = kmimos_get_foto($cuidador->user_id);
 									$url = get_home_url() . "/petsitters/" . $data->url;
 									$top_destacados .= "
 										<a class='vlz_destacados_contenedor' href='{$url}'>

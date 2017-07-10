@@ -102,11 +102,7 @@ input { outline: none!important; }
 .clear:after{ clear:both}
 .clear{ *zoom:1}
 a{color:#444; text-decoration:none; cursor:pointer!important;}
-a:hover{color:#333;text-decoration:none;-webkit-transition:all 0.3s ease-in-out; -moz-transition:all 0.3s ease-in-out; -ms-transition:all 0.3s ease-in-out; -o-transition:all 0.3s ease-in-out; transition:all 0.3s ease-in-out;}
 a:focus{outline:0;text-decoration: none!important;}
-a:hover,
-a:active{outline:0;text-decoration:none!important;-webkit-transition:all 0.3s ease-in-out; -moz-transition:all 0.3s ease-in-out; -ms-transition:all 0.3s ease-in-out; -o-transition:all 0.3s ease-in-out; transition:all 0.3s ease-in-out;}
-
 *{ font-family: Lato; }
 ul{margin: 0px; padding: 0px; list-style: none;}
 .menu li *{color: #FFF;}
@@ -142,6 +138,7 @@ ul{margin: 0px; padding: 0px; list-style: none;}
 		height: auto;
 		box-sizing: border-box;
 	    z-index: 99999999999;
+	    border-bottom: solid 1px #777;
 	}
 
 	.iconos_movil_box{

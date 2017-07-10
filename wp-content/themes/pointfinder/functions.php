@@ -1,5 +1,8 @@
 <?php
-
+	function getTema(){
+        return get_template_directory_uri();
+    }
+    
 	add_filter( 'show_admin_bar', '__return_false' );
 
 	add_action( 'admin_init', 'disable_autosave' );

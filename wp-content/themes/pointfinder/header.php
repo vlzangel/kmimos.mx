@@ -16,14 +16,14 @@
 	}
 	$HTML .= '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">';
 
-	wp_enqueue_style( 'style', get_home_url()."/wp-content/themes/pointfinder/style.css", array(), "1.0.0" );
-	wp_enqueue_style( 'fontello', get_home_url()."/wp-content/themes/pointfinder/css/fontello.min.css", array(), "1.0.0" );
-	wp_enqueue_style( 'generales_css', get_home_url()."/wp-content/themes/pointfinder/css/generales.css", array(), "1.0.0" );
+	wp_enqueue_style( 'style', getTema()."/style.css", array(), "1.0.0" );
+	wp_enqueue_style( 'fontello', getTema()."/css/fontello.min.css", array(), "1.0.0" );
+	wp_enqueue_style( 'generales_css', getTema()."/css/generales.css", array(), "1.0.0" );
 
-	wp_enqueue_script( 'menu_js', get_home_url()."/wp-content/themes/pointfinder/js/menu.js", array("jquery"), "1.0.0" );
-	wp_enqueue_script( 'global_js', get_home_url()."/wp-content/themes/pointfinder/js/global.js", array("jquery"), "1.0.0" );
+	wp_enqueue_script( 'menu_js', getTema()."/js/menu.js", array("jquery"), "1.0.0" );
+	wp_enqueue_script( 'global_js', getTema()."/js/global.js", array("jquery"), "1.0.0" );
 
-	wp_enqueue_style( 'responsive', get_home_url()."/wp-content/themes/pointfinder/css/responsive/responsive.css", array(), "1.0.0" );
+	wp_enqueue_style( 'responsive', getTema()."/css/responsive/responsive.css", array(), "1.0.0" );
 
 	wp_head(); 
 
@@ -32,7 +32,7 @@
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
 
 		<script type="text/javascript"> 
-			var HOME = "'.get_bloginfo( 'template_directory', 'display' ).'/"; 
+			var HOME = "'.getTema().'/"; 
 			var RAIZ = "'.get_home_url().'/"; 
 		</script>
 

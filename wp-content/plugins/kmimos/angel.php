@@ -1,7 +1,8 @@
 <?php
 	
     include_once('includes/functions/vlz_functions.php');
-	include_once('angel/funciones.php');
+    include_once('angel/funciones.php');
+	include_once('angel/admin.php');
 	
 	if(!function_exists('angel_include_script')){
 	    function angel_include_script(){
@@ -118,7 +119,7 @@
 	    }
 	}
 
-if(!function_exists('vlz_servicios')){
+    if(!function_exists('vlz_servicios')){
         function vlz_servicios($adicionales){
             $r = ""; $adiestramiento = false;
 
@@ -227,7 +228,7 @@ if(!function_exists('vlz_servicios')){
     }
 
     if(!function_exists('kmimos_get_foto')){
-        function kmimos_get_foto($user_id){
+        function kmimos_get_foto($user_id, $get_sub_path = false){
             global $wpdb;
 
             $user = new WP_User( $user_id );
@@ -253,7 +254,14 @@ if(!function_exists('vlz_servicios')){
                 }
             }
 
-            return $img;
+            if($get_sub_path){
+                return array(
+                    "img" => $img,
+                    "sub_path" => $sub_path
+                );
+            }else{
+                return $img;
+            }
         }
     }
 

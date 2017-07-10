@@ -8,12 +8,8 @@ jQuery( document ).ready(function() {
 			jQuery(".perfil_cargando").css("display", "inline-block");
        	}, 
        	function( data ) {
-            jQuery(".clv").val("");
 
-            if( jQuery(".vlz_img_portada_valor").val() != "" ){
-                jQuery(".menu_perfil .vlz_img_portada_fondo").css("background-image", "url("+RAIZ+"/wp-content/uploads/"+jQuery("#sub_path").val()+"/"+jQuery(".main .vlz_img_portada_valor").val()+")");
-                jQuery(".menu_perfil .vlz_img_portada_normal").css("background-image", "url("+RAIZ+"/wp-content/uploads/"+jQuery("#sub_path").val()+"/"+jQuery(".main .vlz_img_portada_valor").val()+")");
-            }
+            console.log(data);
 
        		jQuery(".vlz_img_portada_valor").val("");
 
@@ -27,4 +23,17 @@ jQuery( document ).ready(function() {
     jQuery("#form_perfil [data-valid]").each(function( index ) {
         pre_validar( jQuery( this ) );
     });
+
+    jQuery("#pet_type").on("change", function(e){
+        var valor = jQuery("#pet_type").val();
+        if( valor == "2605" ){
+            var opciones = jQuery("#razas_perros").html();
+            jQuery("#pet_breed").html(opciones);
+        }
+        if( valor == "2608" ){
+            var opciones = jQuery("#razas_gatos").html();
+            jQuery("#pet_breed").html(opciones);
+        }
+    });
+
 });

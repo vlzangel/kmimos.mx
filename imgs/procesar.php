@@ -59,4 +59,5 @@
     imageDestroy( $aThumb );
 
     echo $name;
+
 ?>
