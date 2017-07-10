@@ -173,5 +173,5 @@
         return $img;
     }
 
-	header("location: {$home}/busqueda/");
+	//header("location: {$home}/busqueda/");
 ?>
