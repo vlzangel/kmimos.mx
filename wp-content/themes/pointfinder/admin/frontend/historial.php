@@ -162,7 +162,8 @@
 					// Modificacion Ángel Veloz
 					$options_args[]=array(
 						'text'=>'Modificar',
-						'value'=>get_home_url().'/wp-content/themes/pointfinder/vlz/admin/process/mybookings_modificar.php?a='.md5($reserva->ID)."_".md5($user_id)."_".md5($pedido->ID)
+						'class' => 'modified',
+						'value' => md5($reserva->ID)."_".md5($user_id)."_".md5($pedido->ID)
 					);
 
 					$options_args[]= array(
@@ -206,7 +207,8 @@
 							),
 							array(
 								'text'=>'Modificar',
-								'value'=>get_home_url().'/wp-content/themes/pointfinder/vlz/admin/process/mybookings_modificar.php?a='.md5($reserva->ID)."_".md5($user_id)."_".md5($pedido->ID)
+								'class' => 'modified',
+								'value' => md5($reserva->ID)."_".md5($user_id)."_".md5($pedido->ID)
 							)
 						)
 					);
@@ -328,9 +330,6 @@
 
 				}else if($reserva->post_status!='confirmed'){
 
-					$options='<a class="theme_btn" href="'.get_home_url().'/perfil-usuario/historial/ver/'.$reserva->post_parent.'">Ver</a>';
-					$options.='<a class="theme_btn cancelled" href="'.get_home_url().'/wp-content/plugins/kmimos/orden.php?o='.$reserva->post_parent.'&s=0">Cancelar</a>';
-
 					// Modificacion Ángel Veloz
 					$options=build_select(
 						array(
@@ -339,8 +338,9 @@
 								'value'=>get_home_url().'/perfil-usuario/historial/ver/'.$reserva->post_parent
 							),
 							array(
-								'text'=>'Modificar',
-								'value'=>get_home_url().'/wp-content/themes/pointfinder/vlz/admin/process/mybookings_modificar.php?a='.md5($reserva->ID)."_".md5($user_id)."_".md5($pedido->ID)
+								'text'  => 'Modificar',
+								'class' => 'modified',
+								'value' => md5($reserva->ID)."_".md5($user_id)."_".md5($pedido->ID)
 							),
 							array(
 								'text'=>'Cancelar',

@@ -73,7 +73,7 @@ $HTML = "
     if( $DS ){
         if( isset($DS['reserva']) ){
             $HTML .= "
-                <a href='".get_home_url()."/wp-content/themes/pointfinder/vlz/admin/process/mybookings_modificar.php?b=".$user_id."' class='theme_button' style='
+                <a href='".get_home_url()."/wp-content/themes/pointfinder/procesos/perfil/update_reserva.php?b=".$user_id."' class='theme_button' style='
                     position: fixed;
                     display: inline-block;
                     left: 50px;
