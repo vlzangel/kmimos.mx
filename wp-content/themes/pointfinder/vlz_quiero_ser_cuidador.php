@@ -632,28 +632,29 @@
 				<div style="height: auto; background: #fdfdaa; padding: 20px;">
 
 					<div style="text-align: center; ">
-						<ul class="list-inline" style="color: #737272;font-weight: 700;">
+						<ul class="list-inline instrucciones-items" style="color: #737272;font-weight: 800; margin:0px auto; max-width:610px; ">
 							<li class="col-xs-12 col-sm-6 col-md-3" >
 								<img class="hidden-sm hidden-xs" src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/1.png" class="img-responsive" style="margin:auto;" width="150px">
 								<img class="hidden-md hidden-lg hidden-xl" src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/1_m.png" class="img-responsive" style="margin:auto;" width="150px">
-								<br><span>Registrarte y describirte<span><br><br>
+								<br><span>Registrarte y <br> describirte<span><br><br>
 							</li>
-							<li class="col-xs-12 col-sm-6 col-md-3"  >
+							<li  class="col-xs-12 col-sm-6 col-md-3"  >
 								<img class="hidden-sm hidden-xs" src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/2.png" class="img-responsive" style="margin:auto;" width="150px">
 								<img  class="hidden-md hidden-lg hidden-xl" src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/2_m.png" class="img-responsive" style="margin:auto;" width="150px">
-								<br><span>Enviar documentos<span><br><br>
+								<br><span>Enviar <br> documentos<span><br><br>
 							</li>
-							<li class="col-xs-12 col-sm-6 col-md-3" >
+							<li  class="col-xs-12 col-sm-6 col-md-3" >
 								<img class="hidden-sm hidden-xs" src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/3.png" class="img-responsive" style="margin:auto;" width="150px">
 								<img class="hidden-md hidden-lg hidden-xl" src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/3_m.png" class="img-responsive" style="margin:auto;" width="150px">
-								<br><span>Realizar tus pruebas<span><br><br>
+								<br><span>Realizar <br> tus pruebas<span><br><br>
 							</li>
-							<li class="col-xs-12 col-sm-6 col-md-3" >
+							<li  class="col-xs-12 col-sm-6 col-md-3" >
 								<img class="hidden-sm hidden-xs" src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/4.png" class="img-responsive" style="margin:auto;" width="150px">
 								<img class="hidden-md hidden-lg hidden-xl" src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/4_m.png" class="img-responsive" style="margin:auto;" width="150px">
-								<br><span>Completar tu perfil<span><br><br>
+								<br><span>Completar <br> tu perfil<span><br><br>
 							</li>
 						</ul>
+						<div class="clearfix"></div>
 						<p style="color: #de7212;font-weight: bold;font-size: 15px;">
 							*En caso de que algunos de estos pasos no sea completado, el perfil no podra ser activado
 						</p>
@@ -687,9 +688,8 @@
 						    font-weight: bold;
 						    padding: 3px 30px 3px 30px;
 						    margin-top: 20px;"  
-						onclick="jQuery('#modal_instrucciones').css('display', 'none');" >Cerrar</a>
+						onclick="jQuery('#terminos_y_condiciones').css('display', 'none');" >Cerrar</a>
 				</div>
-				
 			</div>
 
 		</div>
