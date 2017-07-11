@@ -5,7 +5,7 @@
 		<img src="https://kmimos.com.mx/wp-content/uploads/2017/02/logo-kmimos.png" alt="logo-kmimos" style="float: right;margin-right:15px;">
 	</div>
 
-	<div style="height:670px; background-size: cover!important; width: 100%;padding:0px; margin:0px;background: url(/landing/img/backgroud.jpg) center bottom;">
+	<div style="height:670px; background-size: cover!important; width: 100%;padding:0px; margin:0px;background: url(https://kmimos.com.mx/landing/img/backgroud.jpg) center bottom;">
 		<div style="color:#9c9c9c;width: 370px; float:left; padding:5px 5px 5px 5px; font-size: 14px; text-align: justify;">
 			<p>
 				<strong>
