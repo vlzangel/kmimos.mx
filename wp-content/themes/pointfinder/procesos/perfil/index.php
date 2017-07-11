@@ -1,7 +1,7 @@
 <?php
 	$raiz = dirname(dirname(dirname(dirname(dirname(__DIR__)))));
 	include_once($raiz."/vlz_config.php");
-	include_once($raiz."/db.php");
+	include_once("../funciones/db.php");
 
 	$db = new db( new mysqli($hots, $user, $pass, $db) );
 

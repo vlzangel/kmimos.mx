@@ -11,6 +11,10 @@
 			return $this->conn->query($sql);
 		}
 
+		function query_multiple($sql){
+			return $this->conn->multi_query($sql);
+		}
+
 		function get_var($sql, $campo = ""){
 			$result = $this->query($sql);
 			if( $result->num_rows > 0 ){

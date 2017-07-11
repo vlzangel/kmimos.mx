@@ -91,6 +91,7 @@
         padding: 10px 0px;
         font-size: 15px;
         border-bottom: solid 2px #59c9a8;
+        margin-bottom: 10px;
     }
 
     .vlz_img_portada{ position: relative; height: 150px; overflow: hidden; border: solid 1px #ccc; background: #EEE; }
