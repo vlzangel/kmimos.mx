@@ -31,9 +31,6 @@
 	wp_head(); 
 
 	$HTML .= '
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
-
 		<script type="text/javascript"> 
 			var HOME = "'.getTema().'/"; 
 			var RAIZ = "'.get_home_url().'/"; 
