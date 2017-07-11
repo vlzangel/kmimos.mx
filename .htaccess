@@ -79,12 +79,6 @@ Header always edit Set-Cookie (.*) "$1;HttpOnly;Secure"
 Header always edit Set-Cookie (.*) "$1; HTTPOnly"
 Header always edit Set-Cookie (.*) "$1; Secure"
 
-php_value session.cookie_httponly 1 
-php_value session.use_only_cookies 1
-php_value session.cookie_secure 0
-
-Header edit Set-Cookie ^(.*)$ $1;HttpOnly;Secure
-
 # BEGIN GZIP
 <ifmodule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/plain
