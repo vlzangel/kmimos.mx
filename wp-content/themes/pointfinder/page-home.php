@@ -36,11 +36,11 @@
 	        </div>
 	    </div>
 
-	    <div class='slider_home' style='background-image: url({$home}/wp-content/themes/pointfinder/images/slider_home/fondo_2.png)'>
+	    <div class='slider_home' style='background-image: url({$home}/wp-content/themes/pointfinder/images/opt/fondo_home.png)'>
 	        <div class='slider_home_container'>
 	            <ul onclick='show_video();' style='width: 200%;' class='slider_home_box'>
-	                <li style='background-image: url({$home}/wp-content/themes/pointfinder/images/slider_home/slider_2_1.png)'></li>
-	                <li style='background-image: url({$home}/wp-content/themes/pointfinder/images/slider_home/slider_2_2.png)'></li>
+	                <li style='background-image: url({$home}/wp-content/themes/pointfinder/images/opt/slider_1.png)'></li>
+	                <li style='background-image: url({$home}/wp-content/themes/pointfinder/images/opt/slider_2.png)'></li>
 	            </ul>
 	        </div>
 	    </div>
