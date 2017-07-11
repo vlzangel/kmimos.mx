@@ -20,11 +20,17 @@
 	        $sql  = "SELECT meta_value FROM $wpdb->usermeta WHERE user_id = {$user_id} AND meta_key = 'user_favorites'";
 	        $favoritos = $wpdb->get_var($sql);
 
-	        $favoritos = str_replace('"', "", $favoritos);
-	        $favoritos = str_replace('[', "", $favoritos);
-	        $favoritos = str_replace(']', "", $favoritos);
+	        if( $favoritos ){
+	        	$favoritos = str_replace('"', "", $favoritos);
+		        $favoritos = str_replace('[', "", $favoritos);
+		        $favoritos = str_replace(']', "", $favoritos);
 
-	        return explode(",", $favoritos);
+		        return explode(",", $favoritos);
+	        }else{
+	        	return false;
+	        }
+
+		        
 	    }
 	}
 

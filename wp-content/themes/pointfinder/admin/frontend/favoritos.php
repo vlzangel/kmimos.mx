@@ -1,8 +1,8 @@
 <?php
     $favoritos = kmimos_get_favoritos($user_id);
 
-    if( count($favoritos) > 0 ) {
-        $CONTENIDO .= '<input type="hidden" id="user_id" name="user_id" value="'.$user_id.'" /><ul class="favoritos_container">';
+    if( $favorito ) {
+        $CONTENIDO .= '<h1 style="margin: 0px; padding: 0px;">Mis Favoritos</h1><hr style="margin: 5px 0px 10px;"><input type="hidden" id="user_id" name="user_id" value="'.$user_id.'" /><ul class="favoritos_container">';
         foreach($favoritos as $favorito){
 
             $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id_post = '{$favorito}'");

@@ -49,6 +49,11 @@
 			wp_enqueue_style('historial_responsive', getTema()."/css/responsive/historial_responsive.css", array(), '1.0.0');
 			wp_enqueue_script('historial', getTema()."/js/historial.js", array("jquery", "global_js"), '1.0.0');
 		break;
+		case 'descripcion':
+		    wp_enqueue_style('descripcion', getTema()."/css/descripcion.css", array(), '1.0.0');
+			wp_enqueue_style('descripcion_responsive', getTema()."/css/responsive/descripcion_responsive.css", array(), '1.0.0');
+			wp_enqueue_script('descripcion', getTema()."/js/descripcion.js", array("jquery", "global_js"), '1.0.0');
+		break;
 	}
 
 	get_header();
@@ -101,6 +106,9 @@
 			case 'historial':
 				$mostrar_btn = false;
 				include("admin/frontend/historial.php");
+			break;
+			case 'descripcion':
+				include("admin/frontend/descripcion.php");
 			break;
 		}
 

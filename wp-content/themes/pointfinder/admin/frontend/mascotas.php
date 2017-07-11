@@ -2,7 +2,7 @@
     $mascotas = kmimos_get_my_pets($user_id);
 
     if( count($mascotas) > 0 ) {
-        $CONTENIDO .= '<ul class="mascotas_container">';
+        $CONTENIDO .= '<h1 style="margin: 0px; padding: 0px;">Mis Mascotas</h1><hr style="margin: 5px 0px 10px;"><ul class="mascotas_container">';
         foreach($mascotas as $pet){
             $pet_detail = get_post_meta($pet->ID);
 

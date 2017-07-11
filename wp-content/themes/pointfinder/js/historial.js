@@ -7,16 +7,15 @@ jQuery(document).ready(function(){
 
                 var confirmed = confirm("Esta Seguro de cancelar esta reserva?");
                 if (confirmed == true) {
-                    //alert("You pressed OK!");
                     window.location.href = value;
-                }else{
-                    //alert("You pressed Cancel!");
                 }
 
             }else{
                 if(jQuery(this).find('option[value="'+value+'"]').hasClass('modified')){
 
                     var data = jQuery(this).val();
+                    
+                    console.log(data);
 
                     jQuery.post(
                         URL_PROCESOS_PERFIL, 
@@ -24,8 +23,9 @@ jQuery(document).ready(function(){
                             accion: "update_reserva",
                             data: data
                         },
-                        function(DATA){
-                            location.href = RAIZ+DATA.url;
+                        function(resp){
+                            console.log(resp);
+                            //location.href = RAIZ+DATA.url;
                         }, 
                         'json'
                     );

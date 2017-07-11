@@ -138,27 +138,27 @@
                             "icono" => "33"
                         ),
                         array(
-                            "url"   => get_home_url()."/perfil-usuario/?ua=myshop",
-                            "name"  => "Descripción del cuidador",
+                            "url"   => get_home_url()."/perfil-usuario/descripcion",
+                            "name"  => "Descripción",
                             "icono" => "664"
                         ),
                         array(
-                            "url"   => get_home_url()."/perfil-usuario/?ua=myservices",
+                            "url"   => get_home_url()."/perfil-usuario/servicios",
                             "name"  => "Mis Servicios",
                             "icono" => "453"
                         ),
                         array(
-                            "url"   => get_home_url()."/perfil-usuario/?ua=mypictures",
+                            "url"   => get_home_url()."/perfil-usuario/galeria",
                             "name"  => "Mis Fotos",
                             "icono" => "82"
                         ),
                         array(
-                            "url"   => get_home_url()."/perfil-usuario/?ua=mybookings",
+                            "url"   => get_home_url()."/perfil-usuario/reservas",
                             "name"  => "Mis Reservas",
                             "icono" => "33"
                         ),
                         array(
-                            "url"   => get_home_url()."/perfil-usuario/?ua=caregiver",
+                            "url"   => get_home_url()."/perfil-usuario/solicitudes",
                             "name"  => "Mis Solicitudes",
                             "icono" => "33"
                         ),

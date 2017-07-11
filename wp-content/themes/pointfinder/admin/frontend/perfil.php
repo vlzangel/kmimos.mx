@@ -15,6 +15,7 @@
         <input type="hidden" name="user_id" value="'.$user_id.'" />
         <input type="hidden" id="sub_path" name="sub_path" value="'.$img_perfil["sub_path"].'" />
 
+        <h1 style="margin: 0px; padding: 0px;">Mi Perfil</h1><hr style="margin: 5px 0px 10px;">
         <section>
             <div class="vlz_img_portada_perfil">
                 <div class="vlz_img_portada_fondo" style="background-image: url('.$avatar.');"></div>

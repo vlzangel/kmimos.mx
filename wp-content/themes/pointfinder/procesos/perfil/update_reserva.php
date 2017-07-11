@@ -27,10 +27,10 @@
 		}
 
 		$r3 = $db->get_results("SELECT * FROM wp_woocommerce_order_itemmeta WHERE order_item_id = '{$metas_reservas['_booking_order_item_id']}'"); 
-
-		$items = array();
-		foreach ($r3 as $key => $value) { $items[ $value->meta_key ] = $value->meta_value; }
-
+		if( count($r3) > 1 ){
+			$items = array();
+			foreach ($r3 as $key => $value) { $items[ $value->meta_key ] = $value->meta_value; }
+		}
 
 		if( $order_status == 'wc-on-hold' && $metas_orden['_payment_method'] == 'openpay_stores'){ }else{
 			$deposito = unserialize( $items['_wc_deposit_meta'] );
@@ -69,15 +69,17 @@
 		$transporte = array();
 		$adicionales = array();
 
-		foreach ($items as $key => $value) {
-			$retorno = array_search(utf8_encode($value), $trans);
+		if( count($r3) > 1 ){
+			foreach ($items as $key => $value) {
+				$retorno = array_search(utf8_encode($value), $trans);
 
-			if( $retorno ){
-				$transporte[] = $retorno;
-			}
-			$retorno = array_search(utf8_encode($value), $adic);
-			if( $retorno ){
-				$adicionales[] = $retorno;
+				if( $retorno ){
+					$transporte[] = $retorno;
+				}
+				$retorno = array_search(utf8_encode($value), $adic);
+				if( $retorno ){
+					$adicionales[] = $retorno;
+				}
 			}
 		}
 
@@ -98,7 +100,8 @@
 		$_SESSION["MR_".$param[1]] = $parametros;
 
 		$respuesta = array(
-			"url" => "producto/".$data->post_name."/"
+			"url" => "producto/".$data->post_name."/",
+			"prm" => $parametros			
 		);
 	}else{
 		extract($_GET);

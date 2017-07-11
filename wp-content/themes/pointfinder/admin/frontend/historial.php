@@ -401,7 +401,7 @@
 		
 
 		//BUILD TABLE
-		$CONTENIDO .= build_table($booking_coming);
+		$CONTENIDO .= '<h1 style="margin: 0px; padding: 0px;">Mi Historial de Reservas</h1><hr style="margin: 5px 0px 10px;">'.build_table($booking_coming);
 
 	}else{
 		$CONTENIDO .= "<h1 style='line-height: normal;'>Usted aún no tiene reservas.</h1><hr>";
