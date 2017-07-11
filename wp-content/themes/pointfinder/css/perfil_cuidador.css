@@ -128,6 +128,7 @@
 }
 .vlz_descripcion p{
 	font-size: 13px;
+    font-weight: 400;
 }
 .label-small{
     line-height: 20px;

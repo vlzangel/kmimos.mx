@@ -74,3 +74,6 @@ a.checkout-button.button.alt.wc-forward {
 .woocommerce-cart .wc-proceed-to-checkout {
     padding: 0px;
 }
+.cart_item *{
+    font-size: 13px;
+}

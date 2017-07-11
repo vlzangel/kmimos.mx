@@ -36,3 +36,4 @@ vlz_config.php
 .tmb/
 
 /QA/
+.htaccess

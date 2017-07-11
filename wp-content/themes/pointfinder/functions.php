@@ -43,14 +43,12 @@
 	}
 	add_action('wp_enqueue_scripts', 'move_scripts_from_head_to_footer');
 
-/*
 	function _remove_script_version( $src ){
 	    $parts = explode( '?ver', $src );
         return $parts[0]."?ver=".time();
 	}
 	add_filter( 'script_loader_src', '_remove_script_version', 15, 1 );
 	add_filter( 'style_loader_src', '_remove_script_version', 15, 1 );
-*/
 
 	add_filter( 'woocommerce_product_tabs', 'sb_woo_remove_reviews_tab', 98);
 	function sb_woo_remove_reviews_tab($tabs) {

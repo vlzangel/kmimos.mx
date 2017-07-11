@@ -3,7 +3,6 @@ function vlz_select(id){
 		jQuery("#"+id+" input").prop("checked", false);
 		jQuery("#"+id).removeClass("vlz_check_select");
 	}else{
-
 		jQuery("#"+id+" input").prop("checked", true);
 		jQuery("#"+id).addClass("vlz_check_select");
 	}
@@ -11,7 +10,6 @@ function vlz_select(id){
 jQuery(".vlz_checkbox_contenedor div").on("click", function(e){
 	vlz_select( jQuery( this ).attr("id") );
 });
-
 jQuery(".vlz_sub_seccion_titulo").on("click", 
 	function (){
 		var con = jQuery(jQuery(this)[0].nextElementSibling);
@@ -22,13 +20,11 @@ jQuery(".vlz_sub_seccion_titulo").on("click",
 		}
 	}
 );
-
 function vlz_top(){
 	jQuery("html, body").animate({
         scrollTop: 0
     }, 500);
 }
-
 jQuery("#estados").on("change", function(e){
 	var estado_id = jQuery("#estados").val();       
     if( estado_id != "" ){
@@ -50,7 +46,6 @@ jQuery("#estados").on("change", function(e){
 		);
     }
 });
-
 function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
@@ -62,7 +57,6 @@ function showPosition(position) {
 	    jQuery("#longitud").val(position.coords.longitude);
 	}
 }
-
 function vlz_tipo_ubicacion(){
 	if( jQuery("#tipo_busqueda option:selected").val() == "mi-ubicacion" ){
 		jQuery("#vlz_estados").css("display", "none");
@@ -72,11 +66,9 @@ function vlz_tipo_ubicacion(){
 		jQuery("#vlz_inputs_coordenadas").css("display", "none");
 	}
 }
-	
 jQuery("#orderby > option[value='"+orderby+"']").attr("selected", "selected"); 
 jQuery("#tipo_busqueda > option[value='"+tipo_busqueda+"']").attr("selected", "selected");
 vlz_tipo_ubicacion();
-
 var markers = [];
 var infos = [];
 var map;
@@ -85,9 +77,7 @@ function initMap() {
         zoom: 3,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     });
-
     var bounds = new google.maps.LatLngBounds();
-
     jQuery.each(pines, function( index, cuidador ) {
         bounds.extend( new google.maps.LatLng(cuidador.lat, cuidador.lng) );
         markers[index] = new google.maps.Marker({ 
@@ -99,22 +89,38 @@ function initMap() {
             icon: "https://www.kmimos.com.mx/wp-content/themes/pointfinder/vlz/img/pin.png"
         });
         infos[index] = new google.maps.InfoWindow({ 
-            content: '<a class="mini_map" href="'+cuidador.url+'" target="_blank"> <img src="'+RAIZ+"wp-content/uploads/cuidadores/avatares/"+cuidador.img+'" style="max-width: 200px; max-height: 230px;"> <div>'+cuidador.nom+'</div> </a>'
+            content: '<a class="mini_map" href="'+cuidador.url+'" target="_blank"> <img src="'+cuidador.img+'" style="max-width: 200px; max-height: 230px;"> <div>'+cuidador.nom+'</div> </a>'
         });
-        markers[index].addListener("spider_click", function(e) { 
+        markers[index].addListener("click", function(e) { 
             infos[this.vlz_index].open(map, this);
         });
     });
-
     map.fitBounds(bounds);
-
 }
-
 (function(d, s){
 	$ = d.createElement(s), e = d.getElementsByTagName(s)[0];
 	$.async=!0;
 	$.setAttribute("charset","utf-8");
 	$.src="//maps.googleapis.com/maps/api/js?v=3&key=AIzaSyD-xrN3-wUMmJ6u2pY_QEQtpMYquGc70F8&callback=initMap";
 	$.type="text/javascript";
-	e.parentNode.insertBefore($, e)
+	e.parentNode.insertBefore($, e);
 })(document,"script");
+function initForm(){
+	// console.log(CAMPOS[0]);
+	if( CAMPOS[0]["servicios"] != undefined ){
+		jQuery.each(CAMPOS[0]["servicios"], function( index, xvalor ) {
+	        vlz_select("servicio_"+xvalor);
+	    });
+	}
+
+	if( CAMPOS[0]["tamanos"] != undefined ){
+		jQuery.each(CAMPOS[0]["tamanos"], function( index, xvalor ) {
+	        vlz_select("tamanos_"+xvalor);
+	    });
+	}
+	
+}
+jQuery(document).ready(function(){
+    initForm();
+});
+

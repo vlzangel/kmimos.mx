@@ -36,9 +36,12 @@
 
 	$PINES = json_encode($pines_visibles);
 
+	$busqueda = unserialize($_SESSION['busqueda']);
+	$CAMPOS = json_encode($busqueda);
+
     $HTML = "
     	<div id='mapa'></div>
-    	<script>var pines = eval('".$PINES."');</script>
+    	<script>var pines = eval('".$PINES."'); var CAMPOS = eval('[".$CAMPOS."]');</script>
     	<div class='container listado'>
     		<div class='columna_listado'>
 		    	<ul id='listado'>

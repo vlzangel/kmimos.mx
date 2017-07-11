@@ -146,6 +146,16 @@ function phpmailer_init_smtp($phpmailer) {
 		
 		// You can add your own options here, see the phpmailer documentation for more info:
 		// http://phpmailer.sourceforge.net/docs/
+
+		$phpmailer->smtpConnect([
+		    'ssl' => [
+		        'verify_peer' => false,
+		        'verify_peer_name' => false,
+		        'allow_self_signed' => true
+		    ]
+		]);
+		$phpmailer->IsHTML(true);
+
 		$phpmailer = apply_filters('wp_mail_smtp_custom_options', $phpmailer);
 		
 		

@@ -126,8 +126,8 @@ if ( $order ) : ?>
 <?php endif; ?>
 
 <div style="text-align: right;">
-	<a href="<?php echo get_option('siteurl'); ?>" class="button pay">Inicio</a>
-	<a href="<?php echo get_option('siteurl')."/perfil-usuario/?ua=invoices"; ?>" class="button pay">Mis reservas</a>
+	<a href="<?php echo get_option('siteurl'); ?>/" class="button pay">Inicio</a>
+	<a href="<?php echo get_option('siteurl')."/perfil-usuario/historial/"; ?>" class="button pay">Mis reservas</a>
 </div>
 
 <style type="text/css">

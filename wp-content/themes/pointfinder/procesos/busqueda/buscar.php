@@ -141,6 +141,15 @@
     $pines_json = "<script>var pines = eval('".$pines_json."');</script>";
 	$_SESSION['pines'] = $pines_json;
 	$_SESSION['pines_array'] = serialize($pines);
+
+	$temp_rangos = array_filter($_POST["rangos"]);
+	if( count($temp_rangos) > 0 ){
+		$_POST["rangos"] = $temp_rangos;
+	}else{
+		unset($_POST["rangos"]);
+	}
+
+	$_POST = array_filter($_POST);
 	
 	$_SESSION['busqueda'] = serialize($_POST);
     $_SESSION['resultado_busqueda'] = $cuidadores;
@@ -156,22 +165,26 @@
 	    return ( 6371 * acos( cos( toRadian($norte->lat) ) * cos( toRadian($sur->lat) ) * cos( toRadian($sur->lng) - toRadian($norte->lng) ) + sin( toRadian($norte->lat) ) * sin( toRadian($sur->lat) ) ) );
 	}
 
-	function kmimos_get_foto_cuidador($id, $home){
+	function kmimos_get_foto_cuidador($id, $xhome){
         global $db;
         $cuidador = $db->get_row("SELECT * FROM cuidadores WHERE id = ".$id);
         $name_photo = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$cuidador->user_id} AND meta_key = '{name_photo}'", "meta_value");
+
+        $home = $xhome."wp-content/uploads/cuidadores/avatares/";
+
         if( empty($name_photo)  ){ $name_photo = "0"; }
-        if( file_exists("../../../uploads/cuidadores/avatares/{$id}/{$name_photo}") ){
-            $img = $home."/{$id}/{$name_photo}";
+        if( count(explode(".", $name_photo)) == 1 ){ $name_photo .= "jpg";  }
+        if( file_exists("../../../../uploads/cuidadores/avatares/{$id}/{$name_photo}") ){
+            $img = $home."{$id}/{$name_photo}";
         }else{
-            if( file_exists("../../../uploads/cuidadores/avatares/{$id}/0.jpg") ){
-                $img = $home."/{$id}/0.jpg";
+            if( file_exists("../../../../uploads/cuidadores/avatares/{$id}/0.jpg") ){
+                $img = $home."{$id}/0.jpg";
             }else{
-                $img = $home.'/wp-content/themes/pointfinder/images/noimg.png';
+                $img = $xhome.'wp-content/themes/pointfinder/images/noimg.png';
             }
         }
         return $img;
     }
 
-	header("location: {$home}/busqueda/");
+	header("location: {$home}busqueda/");
 ?>
