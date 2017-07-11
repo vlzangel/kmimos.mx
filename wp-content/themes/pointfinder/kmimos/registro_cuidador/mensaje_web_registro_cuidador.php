@@ -54,7 +54,7 @@ $mensaje_web = '
 			<strong>Enviar la documentación a cualquiera de las siguientes opciones:</strong>
 			<br>
 			<i class="fa fa-facebook" style="margin:5px;background: #5a5a5a;color: #fff;padding: 7px 10px 6px 10px;border-radius: 50px;"></i>Kmimosmx<br>
-			<i class="fa fa-envelope-o" style="background: #5a5a5a;color: #fff;padding: 7px 6px 7px 7px;border-radius: 50px;margin-bottom: 5px;"></i>certificacion@kmimos.la
+			<i class="fa fa-envelope-o" style="margin:5px;background: #5a5a5a;color: #fff;padding: 7px 6px 7px 7px;border-radius: 50px;margin-bottom: 5px;"></i>certificacion@kmimos.la
 		</div>	
 	</div>
 	<div style="height: auto; background: #fdfdaa; padding: 20px;">
@@ -107,15 +107,5 @@ $mensaje_web = '
 			</ul>
 		</div>
 	</div>
-	<div  style="text-align: center;padding-bottom:20px;">
-		<a style="background: #00d8b5;
-			    border-radius: 40px;
-			    border: 0px;
-			    color: #fff;
-			    font-size: 15px;
-			    font-weight: bold;
-			    padding: 3px 30px 3px 30px;
-			    margin-top: 20px;"  
-			onclick="jQuery(\'#modal_instrucciones\').css(\'display\', \'none\');" >Cerrar</a>
-	</div>
+	
 ';
