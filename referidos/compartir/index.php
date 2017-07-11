@@ -1,4 +1,7 @@
 <?php
+require_once("../../vlz_config.php");
+global $url_base;
+
 $url="";
 $ssl =  ($_SERVER['SERVER_PORT']==443)? 's':'' ;
 if(isset($_GET['e'])){
@@ -183,6 +186,7 @@ if(isset($_GET['e'])){
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 		<script>
+		var url = "<?php echo $url_base; ?>";
 		var click_action = 0;
 		$(document).ready(function(){
 
@@ -246,7 +250,7 @@ if(isset($_GET['e'])){
 			};
 
 			function send_track(email, option){
-				$.ajax( "/landing/list-subscriber-tracking.php?email="+email+"&option="+option )
+				$.ajax( url+"landing/list-subscriber-tracking.php?email="+email+"&option="+option )
 				.done(function() {
 					console.log( 'success track: '+option );
 				})
