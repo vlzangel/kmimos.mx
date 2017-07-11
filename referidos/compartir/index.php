@@ -193,11 +193,12 @@ if(isset($_GET['e'])){
 
 		        if($("#info").hasClass('hidden')){
 		        	$("#info").removeClass('hidden');
+					send_track('<?php echo $_GET['e']; ?>','referidos_email');
+					ga('send', 'pageview', 'referidos_shared_email');
 				}else{
 		        	$("#info").addClass('hidden');
 				}
 				click_action = 1;
-				ga('send', 'pageview', 'referidos_shared_email');
 		    });
 
 			$("#facebook_shared").click(function(){
@@ -207,11 +208,12 @@ if(isset($_GET['e'])){
 
 		        if($("#facebook").hasClass('hidden')){
 		        	$("#facebook").removeClass('hidden');
+					send_track('<?php echo $_GET['e']; ?>','referidos_facebook');				
+					ga('send', 'pageview', 'referidos_shared_facebook');				
 				}else{
 		        	$("#facebook").addClass('hidden');
 				}
 				click_action = 1;
-				ga('send', 'pageview', 'referidos_shared_facebook');				
 		    });
 
 			$("#twitter_shared").click(function(){
@@ -221,11 +223,12 @@ if(isset($_GET['e'])){
 
 		        if($("#twitter").hasClass('hidden')){
 		        	$("#twitter").removeClass('hidden');
+					send_track('<?php echo $_GET['e']; ?>','referidos_twitter');
+					ga('send', 'pageview', 'referidos_shared_twitter');				
 				}else{
 		        	$("#twitter").addClass('hidden');
 				}
 				click_action = 1;
-				ga('send', 'pageview', 'referidos_shared_twitter');				
 		    });
 			
 			$("#close").on('click', function(){
@@ -241,6 +244,16 @@ if(isset($_GET['e'])){
 			window.onbeforeunload = function(e) {
 			   $("#close").click();
 			};
+
+			function send_track(email, option){
+				$.ajax( "/landing/list-subscriber-tracking.php?email="+email+"&option="+option )
+				.done(function() {
+					console.log( 'success track: '+option );
+				})
+				.fail(function() {
+					console.log( 'error al track: '+option );
+				});  
+			}
 
 		});
 		</script>

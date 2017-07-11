@@ -25,13 +25,14 @@ $mensaje_web = '
 		display: inline-block;
 		list-style: none;
 		padding:5px;
-		min-width: 22%; 
+		min-width: 124px!important; 
 	}
 </style>
 
 	<div style="max-width: 600px; margin:auto; padding:20px;">
-		<p style="text-align: left;">
-			Para continuar con el proceso de certificación por favor enviar la siguiente documentación:
+		<p style="text-align: left; font-weight: bold;">
+			Para continuar con el proceso de certificación,
+			<br> por favor enviar la siguiente documentación:
 		</p>
 		<div class="" style="width: 150px;display: inline;">
 			<img src="'.get_home_url().'/wp-content/themes/pointfinder/images/list.png" widht="150px" style="
@@ -52,30 +53,36 @@ $mensaje_web = '
 			</p>
 			<strong>Enviar la documentación a cualquiera de las siguientes opciones:</strong>
 			<br>
-			<i class="fa fa-facebook" style="background: #5a5a5a;color: #fff;padding: 7px 10px 6px 10px;border-radius: 50px;"></i>Kmimosmx<br>
-			<i class="fa fa-envelope-o" style="background: #5a5a5a;color: #fff;padding: 7px 6px 7px 7px;border-radius: 50px;margin-bottom: 5px;"></i>certificacion@kmimos.la
+			<i class="fa fa-facebook" style="margin:5px;background: #5a5a5a;color: #fff;padding: 7px 10px 6px 10px;border-radius: 50px;"></i>Kmimosmx<br>
+			<i class="fa fa-envelope-o" style="margin:5px;background: #5a5a5a;color: #fff;padding: 7px 6px 7px 7px;border-radius: 50px;margin-bottom: 5px;"></i>certificacion@kmimos.la
 		</div>	
 	</div>
 	<div style="height: auto; background: #fdfdaa; padding: 20px;">
 		<div style="text-align: center; ">
-			<ul class="list-inline" style="color: #737272;font-weight: 700;">
-				<li>
-					<img src="'.get_home_url().'/wp-content/themes/pointfinder/images/1_complado.png" class="img-responsive" width="150px"><br>
-					<span>Registrarte y describirte<span>
-				</span></span></li>
-				<li>
-					<img src="'.get_home_url().'/wp-content/themes/pointfinder/images/2.png" class="img-responsive" width="150px"><br>
-					<span>Enviar documentos<span>
-				</span></span></li>
-				<li>
-					<img src="'.get_home_url().'/wp-content/themes/pointfinder/images/3.png" class="img-responsive" width="150px"><br>
-					<span>Realizar tus pruebas<span>
-				</span></span></li>
-				<li>
-					<img src="'.get_home_url().'/wp-content/themes/pointfinder/images/4.png" class="img-responsive" width="150px"><br>
-					<span>Completar tu perfil<span>
-				</span></span></li>
+			<h3>Te informamos que para activar tu perfil debes seguir estos pasos:</h3>
+			<ul class="list-inline instrucciones-items col-md-11 col-md-offset-1" style="color: #737272;font-weight: 700;">
+				<li class="col-xs-12 col-sm-6 col-md-3" >
+					<img class="hidden-sm hidden-xs" src="'.get_home_url().'/wp-content/themes/pointfinder/images/1.png" class="img-responsive" style="margin:auto;" width="150px">
+					<img class="hidden-md hidden-lg hidden-xl" src="'.get_home_url().'/wp-content/themes/pointfinder/images/1_m.png" class="img-responsive" style="margin:auto;" width="150px">
+					<br><span>Registrarte y <br> describirte<span><br><br>
+				</li>
+				<li  class="col-xs-12 col-sm-6 col-md-3"  >
+					<img class="hidden-sm hidden-xs" src="'.get_home_url().'/wp-content/themes/pointfinder/images/2.png" class="img-responsive" style="margin:auto;" width="150px">
+					<img  class="hidden-md hidden-lg hidden-xl" src="'.get_home_url().'/wp-content/themes/pointfinder/images/2_m.png" class="img-responsive" style="margin:auto;" width="150px">
+					<br><span>Enviar <br> documentos<span><br><br>
+				</li>
+				<li  class="col-xs-12 col-sm-6 col-md-3" >
+					<img class="hidden-sm hidden-xs" src="'.get_home_url().'/wp-content/themes/pointfinder/images/3.png" class="img-responsive" style="margin:auto;" width="150px">
+					<img class="hidden-md hidden-lg hidden-xl" src="'.get_home_url().'/wp-content/themes/pointfinder/images/3_m.png" class="img-responsive" style="margin:auto;" width="150px">
+					<br><span>Realizar <br> tus pruebas<span><br><br>
+				</li>
+				<li  class="col-xs-12 col-sm-6 col-md-3" >
+					<img class="hidden-sm hidden-xs" src="'.get_home_url().'/wp-content/themes/pointfinder/images/4.png" class="img-responsive" style="margin:auto;" width="150px">
+					<img class="hidden-md hidden-lg hidden-xl" src="'.get_home_url().'/wp-content/themes/pointfinder/images/4_m.png" class="img-responsive" style="margin:auto;" width="150px">
+					<br><span>Completar <br> tu perfil<span><br><br>
+				</li>
 			</ul>
+			<div class="clearfix"></div>
 			<p style="color: #de7212;font-weight: bold;font-size: 15px;">
 				*En caso de que algunos de estos pasos no sea completado, el perfil no podra ser activado
 			</p>
@@ -100,4 +107,5 @@ $mensaje_web = '
 			</ul>
 		</div>
 	</div>
+	
 ';

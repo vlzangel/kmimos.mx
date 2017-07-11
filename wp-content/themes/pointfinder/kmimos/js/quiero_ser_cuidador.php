@@ -554,10 +554,27 @@
 				      		jQuery("#vlz_titulo_registro").html('Términos y Condiciones');
 			  				jQuery("#boton_registrar_modal").css("display", "inline-block");
 			      		}else{
-			      			jQuery("#vlz_titulo_registro").html("Registro Completado!");
-						  	jQuery("#vlz_cargando").html(data.msg);
-				      		jQuery("#vlz_registro_cuidador_cerrar").css("display", "inline-block");
+							//	jQuery("#vlz_titulo_registro").html("Registro Completado!");
+							//	jQuery("#vlz_cargando").html(data.msg);
+							//	jQuery("#vlz_registro_cuidador_cerrar").css("display", "inline-block");
+							console.log('registro compeltado2');
+						  	jQuery("#vlz_cargando")
+						  		.html(data.msg);
+						  	jQuery("#vlz_cargando")
+						  		.css('padding', '0px')
+						  		.css('padding-top', '10px');
+			      			jQuery("#vlz_titulo_registro")
+			      				.html("!GRACIAS¡");
+			      			jQuery("#vlz_titulo_registro")
+			      				.css('font-size', '36px');
+			      			jQuery("#vlz_titulo_registro")
+			      				.css('background', '#00d8b5')
+			      				.css('color','#fff')
+ 			      				.css('font-weight', 'bold');
+ 			      			jQuery(".vlz_modal_ventana")
+ 			      				.css('width', 'auto');
 
+							jQuery("#vlz_registro_cuidador_cerrar").css("display", "inline-block");
 				      		<?php
 				      			if( substr($_SERVER["HTTP_REFERER"], -18) == "nuevos-aspirantes/" ){
 				      				$_SESSION['nuevosAspirantes'] = "SI";
