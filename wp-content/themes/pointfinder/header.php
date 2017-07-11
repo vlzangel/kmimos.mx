@@ -17,7 +17,6 @@
 	$HTML .= '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">';
 
 	wp_enqueue_style( 'style', getTema()."/style.css", array(), "1.0.0" );
-	wp_enqueue_style( 'fontello', getTema()."/css/fontello.min.css", array(), "1.0.0" );
 	wp_enqueue_style( 'generales_css', getTema()."/css/generales.css", array(), "1.0.0" );
 
 	wp_enqueue_script( 'menu_js', getTema()."/js/menu.js", array("jquery"), "1.0.0" );
@@ -25,10 +24,11 @@
 
 	wp_enqueue_style( 'responsive', getTema()."/css/responsive/responsive.css", array(), "1.0.0" );
 
+	wp_head(); 
+
+	wp_enqueue_style( 'fontello', getTema()."/css/fontello.min.css", array(), "1.0.0" );
 	wp_enqueue_style( 'responsive', getTema()."/font/Roboto/Roboto.css", array(), "1.0.0" );
 	wp_enqueue_style( 'Open+Sans', getTema()."/font/OpenSans/OpenSans.css", array(), "1.0.0" );
-
-	wp_head(); 
 
 	$HTML .= '
 		<script type="text/javascript"> 
