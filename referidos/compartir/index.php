@@ -40,6 +40,7 @@ if(isset($_GET['e'])){
 		  ga('send', 'pageview');
 		</script>
 
+
 	</head>
 	<body>
 		<!-- Load Facebook SDK for JavaScript -->
@@ -70,9 +71,9 @@ if(isset($_GET['e'])){
 						<span class="resaltar">150$</span> acumulables hasta  <span class="resaltar">750$</span> y tu amigo gana otros <span class="resaltar">150$</span>
 						</span>
 					</section>
-					<section class="col-xs-12 col-sm-12 col-md-12 ">
+					<section class="col-xs-12 col-sm-12 col-md-12 wow">
 						<h2 class="text-center" style="font-size: 1.8em; color: #881c9b;font-weight: bold;">Picale 
-						AQU&Iacute; y <label class="animated flip"> comparte </label> con tus amigos</h2>
+						AQU&Iacute; y <label id="label-animated" class="animated flip"> comparte </label> con tus amigos</h2>
 					</section>
 					<div class="col-xs-12 col-sm-12 col-md-12 text-center">
 						<section id="shared" class="text-center row animated bounceIn">
@@ -185,6 +186,7 @@ if(isset($_GET['e'])){
 		  src="https://code.jquery.com/jquery-2.2.4.min.js?<?php echo time(); ?>"
 		  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
 		  crossorigin="anonymous"></script>
+
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 		<script>
@@ -261,6 +263,22 @@ if(isset($_GET['e'])){
 				});  
 			}
 
+			function testAnim(x) {
+				$('#label-animated').removeClass().addClass(x + ' animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+					$(this).removeClass();
+				});
+			};
+			
+			var id = setInterval(frame, 10);
+			var width = 0;
+			function frame() {
+				if (width == 100) {
+					clearInterval(id);
+				} else {
+					testAnim( 'flip' );
+					width++;
+				}
+			}
 		});
 		</script>
 
