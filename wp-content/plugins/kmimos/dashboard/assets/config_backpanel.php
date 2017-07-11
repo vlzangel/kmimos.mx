@@ -20,7 +20,7 @@ if( in_array($_GET['page'], $array_backpanel) ){
 // BEGIN Style Dashboard ( New backpanel )
 // ======================================== 
 wp_enqueue_style( 'kmimos_style1', get_home_url()."/panel/assets/vendor/bootstrap/dist/css/bootstrap.css" );
-//wp_enqueue_style( 'kmimos_style2', get_home_url()."/panel/assets/vendor/font-awesome/css/font-awesome.min.css" );
+wp_enqueue_style( 'kmimos_style2', get_home_url()."/panel/assets/vendor/font-awesome/css/font-awesome.min.css" );
 wp_enqueue_style( 'kmimos_style3', get_home_url()."/panel/assets/vendor/nprogress/nprogress.css" );
 wp_enqueue_style( 'kmimos_style4', get_home_url()."/panel/assets/vendor/iCheck/skins/flat/green.css" );
 wp_enqueue_style( 'kmimos_style5', get_home_url()."/panel/assets/vendor/datatables.net-bs/css/dataTables.bootstrap.min.css" );

@@ -19,6 +19,7 @@ vlz_config.php
 
 # Plugins
 
+/wp-content/plugins/autoptimize/
 /wp-content/plugins/kmimos/wlabel/backend/content/export/csv/
 
 /wp-content/w3tc-config/ 
