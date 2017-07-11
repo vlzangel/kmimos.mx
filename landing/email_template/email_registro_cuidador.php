@@ -94,10 +94,10 @@
 			</div>
 		</div>
 		<div style="text-align: center;padding-bottom:20px;">
-			<h3 style="font-weight: bold;font-size: 15px;">
+			<h3 style="color: #5f5f5f;font-weight: bold;font-size: 15px;">
 				AQU&Iacute; TE DEJAMOS UNA SUGERENCIA PARA MEJORAR TU DESCRIPCI&Oacute;N
 			</h3>
-			<div style="border-radius:10px; border:1px solid #ccc;width: 87%;margin: auto;">
+			<div style="color:#9c9c9c!important; border-radius:10px; border:1px solid #ccc;width: 87%;margin: auto;">
 				<ul class="list-inline">
 					<li style="list-style:none;width: 150px;float:left;position: relative;" >
 						<img src="https://kmimos.com.mx/wp-content/themes/pointfinder/images/girl.png" class="img-responsive" width="150px"	>
