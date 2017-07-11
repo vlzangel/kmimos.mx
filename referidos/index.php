@@ -152,8 +152,8 @@ if( isset($_GET['r']) ){
 					    $('#loading').addClass('hidden');
 					    $('#msg').html('Guardando referencia.');
 
-					    window.open($('#temp').attr('action')+$('#email').val(), '_system');
-					    //window.location.href = $('#temp').attr('action')+$('#email').val();
+					    //window.open($('#temp').attr('action')+$('#email').val(), '_system');
+					    window.location.href = $('#temp').attr('action')+$('#email').val();
 					  })
 					  .fail(function() {
 					    //$('#msg').html('Referencia: No pudimos completar su solicitud, intente nuevamente');

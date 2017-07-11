@@ -173,7 +173,7 @@ if(isset($_GET['e'])){
 				<h2 class="text-center" style="font-size: 1.8em; color: #881c9b;font-weight: bold;">¡Sigue ganando!</h2>
 			</aside>
 
-			<button class="btn-cerrar" id="close"><i class="fa fa-close"></i> </button>
+			<button class="btn-cerrar hidden" id="close"><i class="fa fa-close"></i> </button>
 
 		</div>
 	
@@ -235,15 +235,15 @@ if(isset($_GET['e'])){
 				click_action = 1;
 		    });
 			
-			$("#close").on('click', function(){
-				if(click_action==1){
-					window.close();
-				}else{
-					$('#contenido').append(
-						$('<div id="alert-warning" role="alert"style="position:absolute;top:0px;z-index:999;margin-bottom:0px!important;width:100%;"class="alert alert-warning fade in"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Hola!</strong> Hemos detectado que no compartiste tu link, debes hacerlo para ganar mas referidos.</div>')
-					);
-				}
-			});
+			// $("#close").on('click', function(){
+			// 	if(click_action==1){
+			// 		window.close();
+			// 	}else{
+			// 		$('#contenido').append(
+			// 			$('<div id="alert-warning" role="alert"style="position:absolute;top:0px;z-index:999;margin-bottom:0px!important;width:100%;"class="alert alert-warning fade in"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Hola!</strong> Hemos detectado que no compartiste tu link, debes hacerlo para ganar mas referidos.</div>')
+			// 		);
+			// 	}
+			// });
 
 			window.onbeforeunload = function(e) {
 			   $("#close").click();
@@ -258,6 +258,8 @@ if(isset($_GET['e'])){
 					console.log( 'error al track: '+option );
 				});  
 			}
+
+			self.close();
 
 		});
 		</script>
