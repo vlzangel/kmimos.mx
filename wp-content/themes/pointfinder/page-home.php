@@ -36,11 +36,11 @@
 	        </div>
 	    </div>
 
-	    <div class='slider_home' style='background-image: url({$home}/wp-content/themes/pointfinder/images/opt/fondo_home.png)'>
+	    <div class='slider_home' style='background-image: url(".getTema()."/images/opt/fondo_home.png)'>
 	        <div class='slider_home_container'>
 	            <ul onclick='show_video();' style='width: 200%;' class='slider_home_box'>
-	                <li style='background-image: url({$home}/wp-content/themes/pointfinder/images/opt/slider_1.png)'></li>
-	                <li style='background-image: url({$home}/wp-content/themes/pointfinder/images/opt/slider_2.png)'></li>
+	                <li style='background-image: url(".getTema()."/images/opt/slider_1.png)'></li>
+	                <li style='background-image: url(".getTema()."/images/opt/slider_2.png)'></li>
 	            </ul>
 	        </div>
 	    </div>
@@ -94,7 +94,7 @@
 	            <li>
 	                <div>
 	                    <p style='text-align: center;'>
-	                        <img src='https://www.kmimos.com.mx/iconos/boton-1.png' alt='boton-1' />
+	                        <img src='".getTema()."/images/opt/boton-1.png' alt='boton-1' />
 	                    </p>
 	                    <h3 style='text-align: center;'>
 	                        <span style='color: #90a4ae;'>Cuidadores</span><br />
@@ -106,7 +106,7 @@
 	            <li>
 	                <div>
 	                    <p style='text-align: center;'>
-	                        <img src='https://www.kmimos.com.mx/iconos/boton-2.png' alt='boton-2' />
+	                        <img src='".getTema()."/images/opt/boton-2.png' alt='boton-2' />
 	                    </p>
 	                    <h3 style='text-align: center;'>
 	                        <span style='color: #90a4ae;'>Fotografías</span><br />
@@ -118,7 +118,7 @@
 	            <li>
 	                <div>
 	                    <p style='text-align: center;'>
-	                        <img src='https://www.kmimos.com.mx/iconos/boton-3.png' alt='boton-3' />
+	                        <img src='".getTema()."/images/opt/boton-3.png' alt='boton-3' />
 	                    </p>
 	                    <h3 style='text-align: center;'>
 	                        <span style='color: #90a4ae;'>Atención</span><br />
@@ -130,7 +130,7 @@
 	            <li>
 	                <div>
 	                    <p style='text-align: center;'>
-	                        <img src='https://www.kmimos.com.mx/iconos/boton-4.png' alt='boton-4' />
+	                        <img src='".getTema()."/images/opt/boton-4.png' alt='boton-4' />
 	                    </p>
 	                    <h3 style='text-align: center;'>
 	                        <span style='color: #90a4ae;'>Cobertura veterinaria</span><br />

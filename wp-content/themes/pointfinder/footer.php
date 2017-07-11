@@ -46,7 +46,7 @@ $HTML = "
                         window.open(url,'SealVerfication','menubar=no,toolbar=no,personalbar=no,location=yes,status=no,resizable=yes,fullscreen=no,scrollbars=no,width=' + bgWidth + ',height=' + bgHeight);
                     }
                 </script>
-                <img src='https://seal.godaddy.com/images/3/en/siteseal_gd_3_h_l_m.gif' onclick='verifySeal();' />
+                <img src='".getTema()."/images/opt/siteseal_gd_3_h_l_m.gif' onclick='verifySeal();' />
             </span>  
         </div>
     </footer>";
