@@ -75,7 +75,7 @@ function getTracking($email=""){
 		FROM
 			list_subscriber_tracking as lt
 		WHERE
-			lt.`user_email` = 'italococchini@gmail.com'
+			lt.`user_email` = '".$email."'
 			and lt.`option` like 'referidos_%'
 	";
 
