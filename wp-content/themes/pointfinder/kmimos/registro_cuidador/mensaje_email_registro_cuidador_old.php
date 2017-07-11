@@ -1,8 +1,11 @@
-<div style="width: 600px; margin:auto auto; font-size: 18px;	">
+<?php
+
+$mensaje_mail = '
+<div style="width: 600px;  margin:auto auto; font-size: 18px;	">
 
 	<div style="text-align: center;background:#00d8b5; color: #fff; width: 100%; padding: 10px 0px 10px 0px; text-align: left;">
 		<span style="font-weight:bold;padding-left:10px;font-size: 50px; ">¡Felicidades!</span>
-		<img src="https://kmimos.com.mx/wp-content/uploads/2017/02/logo-kmimos.png" alt="logo-kmimos" style="float: right;margin-right:15px;">
+		<img src="'.get_home_url().'/wp-content/uploads/2017/02/logo-kmimos.png" alt="logo-kmimos" style="float: right;margin-right:15px;">
 	</div>
 
 	<div style="height:670px; background-size: cover!important; width: 100%;padding:0px; margin:0px;background: url(/landing/img/backgroud.jpg) center bottom;">
@@ -26,7 +29,7 @@
 
 			<div style="clear: both; width: 100%;">				
 				<div  style="float:left; width: 100px; text-align:center; padding: 0px; margin:0px;">
-					<img style="margin:auto;" width="60%" src="https://kmimos.com.mx/landing/img/persona.jpg">
+					<img style="margin:auto;" width="60%" src="'.get_home_url().'/landing/img/persona.jpg">
 				</div>
 				<p style="float:right; width: 250px;">
 						<strong>Fotograf&iacute;as de frente a la c&aacute;mara:</strong> Sonr&iacute;e! Es momento de que te presentes al mundo! Subir fotograf&iacute;as
@@ -35,7 +38,7 @@
 
 			<div style="clear: both; width: 100%;">				
 				<div  style="float:left; width: 100px; text-align:center; padding: 0px; margin:0px;">
-					<img style="margin:auto;" width="60%" src="https://kmimos.com.mx/landing/img/arbol.jpg">
+					<img style="margin:auto;" width="60%" src="'.get_home_url().'/landing/img/arbol.jpg">
 				</div>
 				<p style="float:right; width: 250px;">
 					<strong>Fotograf&iacute;as de &aacute;reas verdes,</strong> jardines o parques cercanos a su hogar en donde te la estaras pasando incre&iacute;ble con tus hu&eacute;spedes peludos.
@@ -44,7 +47,7 @@
 
 			<div style="clear: both; width: 100%;">				
 				<div  style="float:left; width: 100px; text-align:center; padding: 0px; margin:0px;">
-					<img style="margin:auto;" width="60%" src="https://kmimos.com.mx/landing/img/perro.jpg">
+					<img style="margin:auto;" width="60%" src="'.get_home_url().'/landing/img/perro.jpg">
 				</div>
 				<p style="float:right; width: 250px;">
 					<strong>Fotograf&iacute;as de &aacute;reas donde duermen tus perritos </strong> y que compartir&iacute;an con tus nuevos invitados. (Dormitorios, sof&aacute;s, camitas).
@@ -53,7 +56,7 @@
 
 			<div style="clear: both; width: 100%;">				
 				<div  style="float:left; width: 100px; text-align:center; padding: 0px; margin:0px;">
-					<img style="margin:auto;" width="60%" src="https://kmimos.com.mx/landing/img/perro2.jpg">
+					<img style="margin:auto;" width="60%" src="'.get_home_url().'/landing/img/perro2.jpg">
 				</div>
 				<p style="float:right; width: 250px;">
 					<strong>Fotograf&iacute;as de &aacute;reas donde juegan </strong>y conviven tus perritos con nuevos visitantes (sala, comedor, etc).
@@ -72,19 +75,19 @@
 			<div style="text-align: center; ">
 				<ul class="list-inline " style="color: #737272;font-weight: 700;">
 					<li style="list-style:none;width: 25%;float:left;position: relative;min-height: 1px;">
-						<img class="hidden-sm hidden-xs" src="https://kmimos.com.mx/landing/img/1_complado.png" class="img-responsive" style="margin:auto;" width="150px">
+						<img class="hidden-sm hidden-xs" src="'.get_home_url().'/wp-content/themes/pointfinder/images/1_complado.png" class="img-responsive" style="margin:auto;" width="150px">
 						<br><span>Registrarte y describirte<span><br><br>
 					</li>
 					<li style="list-style:none;width: 25%;float:left;position: relative;min-height: 1px;" >
-						<img class="hidden-sm hidden-xs" src="https://kmimos.com.mx/landing/img/2_complado.png" class="img-responsive" style="margin:auto;" width="150px">
+						<img class="hidden-sm hidden-xs" src="'.get_home_url().'/wp-content/themes/pointfinder/images/2_complado.png" class="img-responsive" style="margin:auto;" width="150px">
 						<br><span>Enviar documentos<span><br><br>
 					</li>
 					<li style="list-style:none;width: 25%;float:left;position: relative;min-height: 1px;">
-						<img class="hidden-sm hidden-xs" src="https://kmimos.com.mx/landing/img/3_complado.png" class="img-responsive" style="margin:auto;" width="150px">
+						<img class="hidden-sm hidden-xs" src="'.get_home_url().'/wp-content/themes/pointfinder/images/3_complado.png" class="img-responsive" style="margin:auto;" width="150px">
 						<br><span>Realizar tus pruebas<span><br><br>
 					</li>
 					<li style="list-style:none;width: 25%;float:left;position: relative;min-height: 1px;">
-						<img class="hidden-sm hidden-xs" src="https://kmimos.com.mx/landing/img/4_complado.png" class="img-responsive" style="margin:auto;" width="150px">
+						<img class="hidden-sm hidden-xs" src="'.get_home_url().'/wp-content/themes/pointfinder/images/4_complado.png" class="img-responsive" style="margin:auto;" width="150px">
 						<br><span>Completar tu perfil<span><br><br>
 					</li>
 				</ul>
@@ -100,7 +103,7 @@
 			<div style="border-radius:10px; border:1px solid #ccc;width: 87%;margin: auto;">
 				<ul class="list-inline">
 					<li style="list-style:none;width: 150px;float:left;position: relative;" >
-						<img src="https://kmimos.com.mx/wp-content/themes/pointfinder/images/girl.png" class="img-responsive" width="150px"	>
+						<img src="'.get_home_url().'/wp-content/themes/pointfinder/images/girl.png" class="img-responsive" width="150px"	>
 					</li>
 					<li style="list-style:none;width: 300px;text-align: left;float:left;position: relative;font-size:14px;padding-left:10px;">
 						<h2 style="margin-top:0px!important;">Valentina Gutierrez</h2>
@@ -120,3 +123,5 @@
 
 
 </div>
+
+';
