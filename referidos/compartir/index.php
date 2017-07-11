@@ -71,7 +71,8 @@ if(isset($_GET['e'])){
 						</span>
 					</section>
 					<section class="col-xs-12 col-sm-12 col-md-12 ">
-						<h2 class="text-center" style="font-size: 1.8em; color: #881c9b;font-weight: bold;">Picale AQU&Iacute; y comparte con tus amigos</h2>
+						<h2 class="text-center" style="font-size: 1.8em; color: #881c9b;font-weight: bold;">Picale 
+						AQU&Iacute; y <label class="animated flip"> comparte </label> con tus amigos</h2>
 					</section>
 					<div class="col-xs-12 col-sm-12 col-md-12 text-center">
 						<section id="shared" class="text-center row animated bounceIn">
