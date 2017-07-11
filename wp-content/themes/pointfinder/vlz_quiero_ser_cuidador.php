@@ -688,7 +688,7 @@
 						    font-weight: bold;
 						    padding: 3px 30px 3px 30px;
 						    margin-top: 20px;"  
-						onclick="jQuery('#terminos_y_condiciones').css('display', 'none');" >Cerrar</a>
+						onclick="jQuery('#modal_instrucciones').css('display', 'none');" >Cerrar</a>
 				</div>
 			</div>
 
