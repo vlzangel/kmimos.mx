@@ -101,7 +101,7 @@ input { outline: none!important; }
 .clear{ *zoom:1}
 a{color:#444; text-decoration:none; cursor:pointer!important;}
 a:focus{outline:0;text-decoration: none!important;}
-*{ font-family: Lato; }
+*{ font-family: "Roboto Condensed",Arial,Helvetica,sans-serif; }
 ul{margin: 0px; padding: 0px; list-style: none;}
 .menu li *{color: #FFF;}
 
