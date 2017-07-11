@@ -23,6 +23,7 @@ if(isset($_GET['e'])){
         <link rel="stylesheet" href="css/fontawesome/css/font-awesome.min.css">
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/kmimos.css">
+        <link rel="stylesheet" href="css/animate.css">
 
 		<meta property="og:url"           content="<?php echo $url; ?>" />
 		<meta property="og:type"          content="website" />
@@ -51,7 +52,7 @@ if(isset($_GET['e'])){
 		  fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));</script>
 
-		<div id="contenido"></div>
+		<div id="contenidos"></div>
 		<div class="container">
 
 			<header class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2">
@@ -70,10 +71,11 @@ if(isset($_GET['e'])){
 						</span>
 					</section>
 					<section class="col-xs-12 col-sm-12 col-md-12 ">
-						<h2 class="text-center" style="font-size: 1.8em; color: #881c9b;font-weight: bold;">Picale AQU&Iacute; y comparte con tus amigos</h2>
+						<h2 class="text-center" style="font-size: 1.8em; color: #881c9b;font-weight: bold;">Picale 
+						AQU&Iacute; y <label class="animated flip"> comparte </label> con tus amigos</h2>
 					</section>
 					<div class="col-xs-12 col-sm-12 col-md-12 text-center">
-						<section id="shared" class="text-center row">
+						<section id="shared" class="text-center row animated bounceIn">
 							<?php if(!empty($url)){ ?>
 								<span id="twitter_shared" data-target="1" class="button-shared" >
 									<img src="img/btntwitter.png" width="50px">
@@ -173,7 +175,7 @@ if(isset($_GET['e'])){
 				<h2 class="text-center" style="font-size: 1.8em; color: #881c9b;font-weight: bold;">¡Sigue ganando!</h2>
 			</aside>
 
-			<button class="btn-cerrar" id="close"><i class="fa fa-close"></i> </button>
+			<button class="btn-cerrar hidden" id="close"><i class="fa fa-close"></i> </button>
 
 		</div>
 	
@@ -235,19 +237,19 @@ if(isset($_GET['e'])){
 				click_action = 1;
 		    });
 			
-			$("#close").on('click', function(){
-				if(click_action==1){
-					window.close();
-				}else{
-					$('#contenido').append(
-						$('<div id="alert-warning" role="alert"style="position:absolute;top:0px;z-index:999;margin-bottom:0px!important;width:100%;"class="alert alert-warning fade in"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Hola!</strong> Hemos detectado que no compartiste tu link, debes hacerlo para ganar mas referidos.</div>')
-					);
-				}
-			});
+			// $("#close").on('click', function(){
+			// 	if(click_action==1){
+			// 		window.close();
+			// 	}else{
+			// 		$('#contenido').append(
+			// 			$('<div id="alert-warning" role="alert"style="position:absolute;top:0px;z-index:999;margin-bottom:0px!important;width:100%;"class="alert alert-warning fade in"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Hola!</strong> Hemos detectado que no compartiste tu link, debes hacerlo para ganar mas referidos.</div>')
+			// 		);
+			// 	}
+			// });
 
-			window.onbeforeunload = function(e) {
-			   $("#close").click();
-			};
+			// window.onbeforeunload = function(e) {
+			//    $("#close").click();
+			// };
 
 			function send_track(email, option){
 				$.ajax( url+"landing/list-subscriber-tracking.php?email="+email+"&option="+option )
