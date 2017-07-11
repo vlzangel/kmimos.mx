@@ -173,10 +173,12 @@ $HTML = "
             mixpanel.init('972817bb3a7c91a4b95c1641495dfeb7');
         </script>
         -->
-        
+
+
         <!--[if lt IE 9]>
             <script src='".get_home_url()."/wp-content/themes/pointfinder/js/html5shiv.js'></script>
         <![endif]-->
+
         <script type='text/javascript'>
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -186,6 +188,8 @@ $HTML = "
             ga('create', 'UA-56422840-1', 'auto');
             ga('send', 'pageview');
         </script>
+
+        <link type='text/css' href='".get_home_url()."/wp-content/themes/pointfinder/css/fontello.min.css' rel='stylesheet' />
     ";
 
     echo comprimir_styles($HTML);
