@@ -25,6 +25,9 @@
 
 	wp_enqueue_style( 'responsive', getTema()."/css/responsive/responsive.css", array(), "1.0.0" );
 
+	wp_enqueue_style( 'responsive', getTema()."/font/Roboto/Roboto.css", array(), "1.0.0" );
+	wp_enqueue_style( 'Open+Sans', getTema()."/font/OpenSans/OpenSans.css", array(), "1.0.0" );
+
 	wp_head(); 
 
 	$HTML .= '
