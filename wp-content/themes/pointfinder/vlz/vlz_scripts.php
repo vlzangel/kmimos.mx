@@ -136,7 +136,7 @@
 		        infos[index] = new google.maps.InfoWindow({ 
 		            content: \'<a class="mini_map" href="\'+cuidador.url+\'" target="_blank"> <img src="\'+cuidador.img+\'" style="max-width: 200px; max-height: 230px;"> <div>\'+cuidador.nom+\'</div> </a>\'
 		        });
-		        markers[index].addListener("spider_click", function(e) { 
+		        markers[index].addListener("click", function(e) { 
 		            infos[this.vlz_index].open(map, this);
 		        });
 		    });
