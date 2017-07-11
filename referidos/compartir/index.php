@@ -23,6 +23,7 @@ if(isset($_GET['e'])){
         <link rel="stylesheet" href="css/fontawesome/css/font-awesome.min.css">
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/kmimos.css">
+        <link rel="stylesheet" href="css/animate.css">
 
 		<meta property="og:url"           content="<?php echo $url; ?>" />
 		<meta property="og:type"          content="website" />
@@ -51,7 +52,7 @@ if(isset($_GET['e'])){
 		  fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));</script>
 
-		<div id="contenido"></div>
+		<div id="contenidos"></div>
 		<div class="container">
 
 			<header class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2">
@@ -73,7 +74,7 @@ if(isset($_GET['e'])){
 						<h2 class="text-center" style="font-size: 1.8em; color: #881c9b;font-weight: bold;">Picale AQU&Iacute; y comparte con tus amigos</h2>
 					</section>
 					<div class="col-xs-12 col-sm-12 col-md-12 text-center">
-						<section id="shared" class="text-center row">
+						<section id="shared" class="text-center row animated bounceIn">
 							<?php if(!empty($url)){ ?>
 								<span id="twitter_shared" data-target="1" class="button-shared" >
 									<img src="img/btntwitter.png" width="50px">
@@ -245,9 +246,9 @@ if(isset($_GET['e'])){
 			// 	}
 			// });
 
-			window.onbeforeunload = function(e) {
-			   $("#close").click();
-			};
+			// window.onbeforeunload = function(e) {
+			//    $("#close").click();
+			// };
 
 			function send_track(email, option){
 				$.ajax( url+"landing/list-subscriber-tracking.php?email="+email+"&option="+option )
@@ -258,8 +259,6 @@ if(isset($_GET['e'])){
 					console.log( 'error al track: '+option );
 				});  
 			}
-
-			self.close();
 
 		});
 		</script>
