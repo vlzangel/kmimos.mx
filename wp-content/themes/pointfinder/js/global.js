@@ -73,9 +73,9 @@ function subirImg(evt){
             reader.onload = (function(theFile) {
                 return function(e) {
                     redimencionar(e.target.result, function(img_reducida){
-                        var img_pre = jQuery.cookie("img_temp");
-                        jQuery.post( RUTA_IMGS+"/procesar.php", {img: img_reducida, previa: img_pre}, function( url ) {
-                            jQuery.cookie("img_temp", url);
+                        //var img_pre = Cookies.get("img_temp");
+                        jQuery.post( RUTA_IMGS+"/procesar.php", {img: img_reducida, previa: ""}, function( url ) {
+                            //Cookies.set("img_temp", url);
                             padre.children('.vlz_img_portada_fondo').css("background-image", "url("+RUTA_IMGS+"/Temp/"+url+")");
                             padre.children('.vlz_img_portada_normal').css("background-image", "url("+RUTA_IMGS+"/Temp/"+url+")");
                             padre.children('.vlz_img_portada_cargando').css("display", "none");

@@ -511,4 +511,7 @@ function WC() {
 	return WooCommerce::instance();
 }
 
-$GLOBALS['woocommerce'] = WC();
+if( page_wc_valida() ){
+	$GLOBALS['woocommerce'] = WC();
+}
+

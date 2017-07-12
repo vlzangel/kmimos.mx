@@ -289,3 +289,16 @@ h2{ font-size: 16px; }
     font-weight: 600;
     padding: 0px 0px 10px !important;
 }
+.summary.entry-summary div{
+    font-size: 13px;
+    padding: 0px 10px 10px;
+}
+
+.wc-bookings-booking-form .wc-bookings-booking-cost {
+    padding: 1em !important;
+}
+.woocommerce div.product p.price, .woocommerce div.product span.price {
+    font-size: 20px !important;
+    padding: 0px !important;
+    margin: 0px !important;
+}

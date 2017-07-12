@@ -143,25 +143,49 @@
 		<div class='vlz_seccion'>
 			<h3 class='vlz_titulo'>Estos son mis servicios</h3>";
 
+			$sql = "
+				SELECT 
+					producto.ID AS id, 
+					producto.post_title AS titulo, 
+					producto.post_name AS url, 
+					metas.meta_value AS precio 
+				FROM 
+					wp_posts AS producto
+				INNER JOIN wp_postmeta AS metas ON (metas.post_id = producto.ID)
+				WHERE
+					metas.meta_key = '_wc_booking_base_cost' AND 
+					producto.post_author = '{$cuidador->user_id}' AND 
+					producto.post_type = 'product' AND 
+					producto.post_status = 'publish'
+			";
+
 			$args = array(
 				'post_type' => 'product',
 		        'post_status' => 'publish',
 		        'author' => $cuidador->user_id
 		    );
 
-		    $products = get_posts( $args );
-
-		    $ids = '';
-		    foreach($products as $product){
-		        if( $ids != '') $ids .= ',';
-		        $ids .= $product->ID;
+		    $products = $wpdb->get_results( $sql );
+		    $li = '';
+		    foreach ($products as $key => $producto) {
+		    	$tipo = explode("-", $producto->url);
+		    	$li .= "
+		    		<li>
+		    			<a href='".get_home_url()."/producto/{$producto->url}/'>
+		    				<img src='".get_home_url()."/wp-content/uploads/iconos/".$tipo[0].".png' />
+		    				<h3>{$producto->titulo}</h3>
+		    				<span>Desde: $".$producto->precio."</span>
+		    				<div>Reservar</div>
+		    			</a>
+		    		</li>
+		    	";
 		    }
+		    
+		    // echo "<pre>";
+		    // 	print_r( $products[0]->url );
+		    // echo "</pre>";
 
-		    if($ids != ''){
-		        $comando = '[products ids="'.$ids.'"]';
-		        $HTML .= do_shortcode($comando);
-		    } $HTML .= "
-		</div>";
+		    $HTML .= '<ul class="productos">'.$li.'</ul>';
 
 		if( $descripcion != "" ){
 			$HTML .= '<div class="vlz_separador"></div>
