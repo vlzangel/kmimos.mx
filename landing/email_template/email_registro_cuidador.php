@@ -25,7 +25,7 @@
 			</p>
 			<p>
 				<strong>
-					Ahora competa tu perfil. Estos son los 4 tipos de fotograf&iacute;as recomendadas para un perfil ideal:
+					Ahora completa tu perfil. Estos son los 4 tipos de fotograf&iacute;as recomendadas para un perfil ideal:
 				</strong>
 			</p>
 
