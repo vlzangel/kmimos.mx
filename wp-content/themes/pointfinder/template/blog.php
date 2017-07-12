@@ -318,8 +318,10 @@ if($page<=0){
         </div>
     </div>
     <div class="title info">
-        Da un vistazo a nuestros cuidadores certificados que cuidaran de nuestras mascotas.
-        <strong>Libre de jaulas y encierros</strong>
+        <div class="contain">
+            Da un vistazo a nuestros cuidadores certificados que cuidaran de nuestras mascotas.
+            <strong>Libre de jaulas y encierros</strong>
+        </div>
     </div>
         <?php
             include_once(__DIR__.'/blog/frontend/featured.php');
