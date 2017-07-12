@@ -821,7 +821,9 @@
 		}
 	});
 	*/
-	jQuery(document).on('change', 'select[name="municipio"], select[name="estado"], input[name="direccion"]', function(e){
+
+	//, input[name="direccion"]
+	jQuery(document).on('change', 'select[name="municipio"], select[name="estado"]', function(e){
 		var estado=jQuery('select[name="estado"]');
 		var municipio=jQuery('select[name="municipio"]');
 		var direccion=jQuery('input[name="direccion"]');

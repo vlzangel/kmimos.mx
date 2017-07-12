@@ -136,7 +136,8 @@
 											#pf-primary-nav-button,
 											#pf-topprimary-nav-button{
 												display: inline-block;
-												padding: 4px 0px;
+												/*padding: 4px 0px;*/
+
 											}
 										} 
 									</style>
