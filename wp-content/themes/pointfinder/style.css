@@ -6803,26 +6803,6 @@ input#place_order{
 
 
 
-/*NEW CSS*/
-.wpf-container {overflow: hidden;}
-
-@media (max-width: 992px) {
-	.wpf-container {margin: 200px 0 0 0 !important;}
-	.instrucciones-items{
-		max-width: 100%; 
-	}
-	.instrucciones-items li{
-		width: 100%!important;
-	}
-}
-
-@media (max-width: 768px){
-	.wpf-container { margin: 130px 0 0 0 !important;}
-}
-
-@media (max-width: 569px){
-	.wpf-container { margin: 45px 0 0 0 !important;}
-}
 
 .btn-instrucciones-header{
 	background: transparent;
@@ -6847,5 +6827,36 @@ input#place_order{
 }
 
 
-@media (max-width: 540px) {
+
+/*NEW CSS*/
+.wpf-container {
+	margin: 104px 0 0 0 !important;
+	overflow: hidden;
+}
+#jj-landing-page {
+	display: none;
+}
+
+@media (max-width: 992px) {
+	.wpf-container {margin: 104px 0 0 0 !important;}
+	.instrucciones-items{
+		max-width: 100%;
+	}
+	.instrucciones-items li{
+		width: 100%!important;
+	}
+}
+
+@media (max-width: 768px){
+	.wpf-container { margin: 78px 0 0 0 !important;}
+	.wpf-container-inner {
+		top: 0 !important;
+	}
+	.vc_row-fluid .pf-container {
+		margin-top: 0 !important;
+	}
+}
+
+@media (max-width: 569px){
+	.wpf-container { margin: 45px 0 0 0 !important;}
 }
