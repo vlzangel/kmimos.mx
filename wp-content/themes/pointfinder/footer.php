@@ -10,7 +10,8 @@ $HTML = "</div></div>
                 <div class='col-xs-12 jj-xs-offiset-2 col-sm-4 col-md-3 col-lg-3 col-lg-offset-2 left'>
                     <h2>Contáctanos</h2>
                     <p>
-                        <strong>Tlf: </strong> ".$datos['telefono']."<br>
+                        <strong>Tlf: </strong> ".$datos['telefono_solo']."<br>
+                        <strong>WhatsApp: </strong> ".$datos['whatsApp']."<br>
                         <strong>Email: </strong> ".$datos['email']."
                     </p>
                 </div>
