@@ -656,7 +656,7 @@
 						</ul>
 						<div class="clearfix"></div>
 						<p style="color: #de7212;font-weight: bold;font-size: 15px;">
-							*En caso de que algunos de estos pasos no sea completado, el perfil no podra ser activado
+							*En caso de que algunos de estos pasos no sea completado, el perfil no podr&aacute; ser activado
 						</p>
 					</div>
 				</div>
