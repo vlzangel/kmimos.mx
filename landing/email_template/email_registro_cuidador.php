@@ -25,7 +25,7 @@
 			</p>
 			<p>
 				<strong>
-					Ahora competa tu perfil. Estos son los 4 tipos de fotograf&iacute;as recomendadas para un perfil ideal:
+					Ahora completa tu perfil. Estos son los 4 tipos de fotograf&iacute;as recomendadas para un perfil ideal:
 				</strong>
 			</p>
 
@@ -94,7 +94,7 @@
 					</li>
 				</ul>
 				<p style="color: #de7212;font-weight: bold;font-size: 15px;">
-					*En caso de que algunos de estos pasos no sea completado, el perfil no podra ser activado
+					*En caso de que algunos de estos pasos no sea completado, el perfil no podr&aacute; ser activado
 				</p>
 			</div>
 		</div>
@@ -111,7 +111,7 @@
 						<h2 style="margin-top:0px!important;">Valentina Gutierrez</h2>
 						<p>¡Hola! Soy Valentina, tengo 25 años y me encantan los animales, 
 							Trabajo en casa asi que estare 100% al cuidado de tu perrito, 
-							lo consentir&eacute; y recibiras fotos diarias de su estancia conmigo. 
+							lo consentir&eacute; y recibirás fotos diarias de su estancia conmigo. 
 							Mis hu&eacute;spedes peludos duermen de casa y pueden andar libremente 
 							SIN JAULAS NI ENCIERROS...
 						</p>
