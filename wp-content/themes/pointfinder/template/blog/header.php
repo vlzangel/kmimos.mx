@@ -49,7 +49,7 @@ if(array_key_exists('search',$_POST)){
 
     header .redes{position:absolute; width:70px;  right: 0;  top:calc(50% - 150px);}
     header .redes .icon{width: 40px; margin:5px 0; padding:10px; color: #FFF; font-size: 20px; text-align: center; border-radius: 50%; cursor: pointer; background: #23d3c4;}
-    header .redes .icon.bolsa{ height: 40px; border-radius: 0; display: block; background:url(https://www.kmimos.com.mx/wp-content/uploads/2017/07/bolsita-y-logotipo-03.png) center/contain no-repeat;}
+    header .redes .icon.bolsa{ height: 40px; border-radius: 0; display: block; background:url(https://www.kmimos.com.mx/wp-content/uploads/2017/07/bolsita-y-logotipo-03.png) center/contain no-repeat; display: none;}
 
     header .search{position: relative; color: #aaa; font-size: 15px; text-align: right;}
     header .search input{position: relative; padding:5px 10px; border:1px solid #aaa; border-radius: 20px;}
@@ -110,11 +110,8 @@ if(array_key_exists('search',$_POST)){
         header .info .icon.search{cursor: pointer; display: inline-block;}
         header .info span{margin: 0 5px; text-align: left; display: flex; align-items: center;}
 
-        header .header{margin-top: 50px;}
-        header .logo{width: calc(100% - 100px);}
-        header .redes{position: absolute; width: 50px; top: calc(50% - 90px);}
-        header .redes .icon{width:32px; font-size:12px;}
-        header .redes .icon.bolsa{display: block;}
+        header .header{margin-top: 70px;}
+        header .logo{width: calc(100% - 100px); height: 100px;}
         header .search{display: none;}
         header .menu{display: none;}
     }

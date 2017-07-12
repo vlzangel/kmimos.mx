@@ -43,7 +43,7 @@ include_once(__DIR__.'/blog/header.php');
         #blog_viewed .post{width:100%; padding-top:70%; margin: 0; display: none;}
         #blog_viewed .post.show{display: block;}
         #blog_viewed .control{position: absolute; width: 100%; bottom: 0; text-align:center; display:block;}
-        #blog_viewed .control .icon{width: 20px; height: 20px; margin:10px; border-radius: 50%; box-shadow: 0 0 5px #555; background: #FFF; cursor: pointer; display: inline-block;}
+        #blog_viewed .control .icon{width: 15px; height: 15px; margin:10px; border-radius: 50%; box-shadow: 0 0 5px #555; background: #FFF; cursor: pointer; display: inline-block;}
         #blog_viewed .control .icon.show{background: #23d3c4; display: inline-block !important;}
     }
 
@@ -122,22 +122,23 @@ include_once(__DIR__.'/blog/header.php');
     }
 
     /*FEATURED*/
-    #featured{}
-    #featured .info{ padding: 25px 0;  color: #FFF; font-size: 30px; text-align: center; background: #900fa2; }
-    #featured .caregiver{position:relative;}
+    #featured{background: #900fa2;}
+    #featured .info{padding: 25px 0;  color: #FFF; font-size: 30px; text-align: center; line-height:1.3; background: #900fa2; }
+    #featured .caregiver{position:relative; overflow: hidden;}
     #featured .caregiver .action{position:absolute; width:100%; height:100%;}
     #featured .caregiver .action .icon{position:absolute; width:25px; top:calc(50% - 12px); right:0; font-size:15px;}
     #featured .caregiver .action .icon[data-direction="prev"]{left:0; right: auto;}
     #featured .group{width:calc(100% - 80px); margin:0 auto; display: flex; flex-flow: wrap;}
-    #featured .post{width: calc(50% - 20px); margin: 40px 10px; display: flex; flex-flow: wrap;}
-    #featured .post .image{width: 150px; padding: 20px; border-radius:20px 0 0 20px; background: #ff8700; overflow:hidden;}
+    #featured .post{width: calc(50% - 20px); margin: 40px 10px; border:2px solid #8f8f8f; border-radius:20px; overflow:hidden; display: flex; flex-flow: wrap;}
+    #featured .post .image{width: 150px; padding: 20px; /*background: #ff8700;*/ overflow:hidden;}
     #featured .post .image .img{width: 90%; padding-top: 90%; margin: 10px auto; border-radius: 50%; background: #CCC center/cover no-repeat;}
     #featured .post .image .bone{ width: 50px; height: 40px; margin: 0 auto; background: center/contain no-repeat;}
     #featured .post .image .rating{color: #FFF; font-size: 20px; font-weight: bold; text-align: center; }
     #featured .post .image .rating:before{content: "+";}
-    #featured .post .detail{width: calc(100% - 150px); padding: 20px; border:2px solid #8f8f8f; border-left-width:0; border-radius:0 20px 20px 0; overflow:hidden;}
+    #featured .post .detail{width: calc(100% - 150px); padding: 20px; background: #FFF; overflow:hidden;}
     #featured .post .detail .title{color: #888; font-size: 30px;}
     #featured .post .detail .content{margin:30px 0; color: #888; font-size: 20px;}
+    #featured .icon.arrow{color: #900fa2; background: #FFF;}
 
     @media screen and (max-width:768px), screen and (max-device-width:768px){
         #featured .group{display: block;}
@@ -164,7 +165,7 @@ include_once(__DIR__.'/blog/header.php');
 
 
     /*PRODUCTS*/
-    #products{padding: 25px 0; }
+    #products{padding: 25px 0; display: none;}
     #products .kmibox{position:relative;}
     #products .kmibox .action{position:absolute; width:100%; height:100%;}
     #products .kmibox .action .icon{position:absolute; width:25px; top:calc(50% - 12px); right:0; font-size:15px;}
@@ -311,10 +312,14 @@ if($page<=0){
 </script>
 
 <section id="featured">
-    <div class="info">
+    <div class="info" style="display: none;">
         <div class="contain">
             CONOCE A UN CUIDADOR PARA QUE CONSIENTA A TU PERRHIJO
         </div>
+    </div>
+    <div class="title info">
+        Da un vistazo a nuestros cuidadores certificados que cuidaran de nuestras mascotas.
+        <strong>Libre de jaulas y encierros</strong>
     </div>
         <?php
             include_once(__DIR__.'/blog/frontend/featured.php');
