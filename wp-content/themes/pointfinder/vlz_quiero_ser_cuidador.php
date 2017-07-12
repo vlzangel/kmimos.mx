@@ -671,7 +671,7 @@
 								<span></span>
 								<p>¡Hola! Soy Valentina, tengo 25 años y me encantan los animales, 
 									Trabajo en casa asi que estare 100% al cuidado de tu perrito, 
-									lo consentir&eacute; y recibiras fotos diarias de su estancia conmigo. 
+									lo consentir&eacute; y recibirás fotos diarias de su estancia conmigo. 
 									Mis hu&eacute;spedes peludos duermen de casa y pueden andar libremente 
 									SIN JAULAS NI ENCIERROS...
 								</p>
