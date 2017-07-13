@@ -15,7 +15,7 @@ include_once(__DIR__.'/blog/header.php');
     #blog_viewed .post:hover .detail{opacity:1; /*background:#737373;*/}
 
     #blog_viewed .post .image{position:absolute; width:100%; height:100%; top:0; left:0; background:center/cover no-repeat;}
-    #blog_viewed .post .title{position:absolute;  width: 100%;  height: auto;  padding:20px 0; bottom: 20px; color: #000;  font-size:20px; text-align:center; line-height: 1; background: rgba(255,255,255,0.6);}
+    #blog_viewed .post .title{position:absolute;  width: 100%;  height: auto;  padding:20px 30px; bottom: 20px; color: #000;  font-size:20px; text-align:center; line-height: 1; background: rgba(255,255,255,0.6);}
     #blog_viewed .post .title:before {content: "+";  position: absolute;  width: 50px;  height: 50px;      padding: 5px 8px;  right: 0;  bottom: 0; color: #FFF;  font-size: 25px; font-weight: bold; text-align: right;  align-items: flex-end;  justify-content: flex-end; background: linear-gradient(135deg, transparent 50%, #900fa2 50%);  display: flex;  }
     #blog_viewed .post .autor{position:relative; margin:10px 0; font-size:18px; text-align:left; display:none;}
     #blog_viewed .post .content{position:relative; font-size:20px; text-align:justify; display:none;}
@@ -268,6 +268,7 @@ if($page<=0){
             news_post.removeClass('show');
             var direction = jQuery(element).data('direction');
             var show = news_show;
+            var back = false;
 
             if(direction=='prev'){
                 show=show-(news_navigate*news_count);
@@ -275,6 +276,10 @@ if($page<=0){
 
             for(var news=1; news<=news_count; news++){
                 var post=show+news+(news_navigate-news_count);//
+
+                if(post<0 && direction=='prev'){
+                    back=true;
+                }
 
                 if(post<0){
                     post=0;
@@ -285,11 +290,11 @@ if($page<=0){
                 }
 
                 //console.log(post);
-                if(news_show_display(post)){
+                if(news_show_display(post) && !back){//
                     news_show=post;
 
                 }else{
-                    if(news_post.closest('.news').find('.post.show').length<=news_count){
+                    if(news_post.closest('.news').find('.post.show').length<=news_count || back){
                         news_action = true;
                         jQuery(element).find('a').trigger('click');
                         break;

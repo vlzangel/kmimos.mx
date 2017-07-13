@@ -97,7 +97,8 @@
             <div class="info">
                 <div class="contain">
                     Copyright &copy; 2017 <span class="logo"></span> Todos Los Derechos Reservados.<br>
-                    Importante!
+                    Importante! <span class="logo"></span> es una tienda únicamente en línea, por lo cual no contamos con tienda física .<br>
+                    Oficinas Corporativas: San Luis Potosí 196, Col, Roma. Del Cuauhtémoc, Mexico DF CP 06700
                 </div>
             </div>
         </footer>
