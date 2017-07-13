@@ -1,7 +1,11 @@
-<?php 
+<?php
 	/*
 		Template Name: vlz busqueda
 	*/
+
+	//CG only unique use!!!!!!!!!
+	update_additional_service();
+
 	session_start();
 	if( isset($_SESSION['busqueda'])){ $_POST = unserialize($_SESSION['busqueda']); }
 	$home = get_home_url();
@@ -11,7 +15,7 @@
 	}else{
 		$TR = 0;
 	}
-	
+
 	$paginacion = vlz_get_paginacion($TR, $pagina);
 	$resultados = $_SESSION['resultado_busqueda'];
 	get_header();

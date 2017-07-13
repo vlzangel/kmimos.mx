@@ -80,4 +80,39 @@
 		return $count;
 	}
 
+
+
+	//UPDATE Additional Services
+	function update_additional_service(){
+		global $wpdb;
+		$sql = "SELECT * FROM cuidadores";
+		$cuidadores = $wpdb->get_results($sql);
+		foreach ($cuidadores as $cuidador) {
+			$ID =  $cuidador->id;
+			$ID_user =  $cuidador->user_id;
+			$adicionales = unserialize($cuidador->adicionales);
+			//var_dump($ID);
+			//var_dump($adicionales);
+
+			$status_servicios = array();
+			$sql = "SELECT * FROM wp_posts WHERE post_author = {$ID_user} AND post_type = 'product'";
+			$productos = $wpdb->get_results($sql);
+			foreach ($productos as $producto) {
+				$servicio = explode("-", $producto->post_name);
+				$status_servicios[ $servicio[0] ] = $producto->post_status;
+
+				if(isset($adicionales[$servicio[0]]) && $producto->post_status=='publish'){
+					//var_dump($servicio[0]);
+					if(!isset($adicionales['status_'.$servicio[0]])){
+						$adicionales['status_'.$servicio[0]]='1';
+					}
+				}
+			}
+
+			$sql = "UPDATE cuidadores SET adicionales = '".serialize($adicionales)."' WHERE user_id = ".$ID_user.";";
+			$wpdb->query($sql);
+			//var_dump($sql);
+		}
+	}
+
 ?>

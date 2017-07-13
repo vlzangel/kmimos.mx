@@ -2,6 +2,7 @@
 	include("../../../../vlz_config.php");
 	include("admin/funciones/kmimos_funciones_db.php");
 
+
 	$conn = new mysqli($host, $user, $pass, $db);
 	$db = new db($conn);
 
@@ -170,4 +171,8 @@
     $home = $db->get_var("SELECT option_value FROM wp_options WHERE option_name = 'siteurl'", "option_value");
 
 	header("location: {$home}/busqueda/");
+
+
+
+
 ?>
