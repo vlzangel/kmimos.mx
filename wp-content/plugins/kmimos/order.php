@@ -34,9 +34,10 @@
 
 	$status = $booking->get_status();
 
-	if( $status == "confirmed" || $status == "cancelled" ){
+	if( $status == "confirmed" || $status == "cancelled" || $status == "modified" ){
 		$estado = array(
 			"confirmed" => "Confirmada",
+			"modified"  => "Modificada",
 			"cancelled" => "Cancelada"
 		);
 		$msg = $styles.'
@@ -85,7 +86,7 @@
 	        </p>
 	    ';
 	    
-   		$msg_cuidador = kmimos_get_email_html("Reserva Cancelada Exitosamente!", $msg, "", true, true);
+   		echo $msg_cuidador = kmimos_get_email_html("Reserva Cancelada Exitosamente!", $msg, "", true, true);
    		wp_mail( $cuidador_email, "Cancelación de Reserva", $msg_cuidador);
 
 		$msg = $styles.'
@@ -104,7 +105,7 @@
 			.$lista_cercanos;
 	    
    		$msg_admin = kmimos_get_email_html("Reserva Cancelada por Cuidador - ".$nom_cuidador, $msg, "", true, true);
-   		wp_mail( $email_admin, "Cancelación de Reserva", $msg_admin, kmimos_mails_administradores());
+   		kmimos_mails_administradores_new("Cancelación de Reserva", $msg_admin);
 
    		$msg = $styles.'
    			<div>
@@ -121,7 +122,7 @@
 	    ';
 	    
    		$msg_cliente = kmimos_get_email_html("Cancelación de Reserva", $msg, "", true, true);
-   		wp_mail( $cliente_email, "Cancelación de Reserva", $msg_cliente, kmimos_mails_administradores());
+   		wp_mail( $cliente_email, "Cancelación de Reserva", $msg_cliente);
 
     } else {
 		$order->update_status('wc-on-hold');
@@ -169,7 +170,7 @@
 			.$detalles_servicio_cuidador;
 
    		$msg_admin = kmimos_get_email_html("Confirmación de Reserva", $msg_admin, "", true, true);
-   		wp_mail( $email_admin, "Confirmación de Reserva", $msg_admin, kmimos_mails_administradores());
+   		kmimos_mails_administradores_new("Confirmación de Reserva", $msg_admin);
 
    		$nota_importante = $styles.'
    			<p align="justify"><strong>Importante:</strong></p>
@@ -208,7 +209,8 @@
 
 		   		if(!empty($user_referido)){
 					$username = $nom_cliente;
-					require_once('../../../landing/email_template/notificacion_reserva_referido.php');
+					$http = (isset($_SERVER['HTTPS']))? 'https://' : 'http://' ;
+					require_once('../../../landing/email_template/club-referido-primera-reserva.php');
 					$user_participante = $wpdb->get_results( "
 						select ID, user_email 
 						from wp_users 
@@ -217,14 +219,14 @@
 					$user_participante = (count($user_participante)>0)? $user_participante[0] : [];
 
 					if(isset($user_participante->user_email)){
-						$mensaje_reserva_partitipante = kmimos_get_email_html(
-							"Club de las patitas felices",
-							$mensaje_reserva_partitipante,
-							'', true, true);
+						// $mensaje_reserva_partitipante = kmimos_get_email_html(
+						// 	"Club de las patitas felices",
+						// 	$mensaje_reserva_partitipante,
+						// 	'', true, true);
 						
 						wp_mail( $user_participante->user_email, 
 								"¡Felicidades, otro perrhijo moverá su colita de felicidad!", 
-								$mensaje_reserva_partitipante );
+								$html );
 
 					}
 				} 

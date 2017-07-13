@@ -120,43 +120,6 @@
 		  	verificar_cache_form();
 		});
 
-		/*jQuery( document ).ready(function() {
-		  	cambiar_img();
-
-		  	verificar_cache_form();
-		});
-
-		jQuery( window ).resize(function() {
-	  		cambiar_img();
-		});
-
-		function cambiar_img(){
-		  	var w = jQuery( window ).width();
-	  		if( w < 992 ){
-	  			var img = jQuery("#cargar_imagen_1").html();
-	  			if( img != "" ){
-		  			jQuery("#cargar_imagen_1").html("");
-		  			jQuery("#cargar_imagen_2").html(img);
-		  			document.getElementById("portada").addEventListener("change", vista_previa, false);
-		  			jQuery("#cargar_imagen_2").css("display", "block");
-		  			jQuery("#kmimos_datos_personales").removeClass("vlz_cell50");
-	  			}else{
-		  			jQuery("#cargar_imagen_1").css("display", "none");
-	  			}
-	  		}else{
-	  			var img = jQuery("#cargar_imagen_2").html();
-	  			jQuery("#cargar_imagen_1").css("display", "inline-block");
-	  			if( img != "" ){
-		  			jQuery("#cargar_imagen_2").html("");
-		  			jQuery("#cargar_imagen_1").html(img);
-		  			document.getElementById("portada").addEventListener("change", vista_previa, false);
-		  			jQuery("#kmimos_datos_personales").addClass("vlz_cell50");
-	  			}else{
-		  			jQuery("#cargar_imagen_2").css("display", "none");
-	  			}
-	  		}
-		}*/
-
 		function vista_previa(evt) {
 		  	var files = evt.target.files;
 		  	for (var i = 0, f; f = files[i]; i++) {  
@@ -491,11 +454,11 @@
 		            html += "<option value="+val.id+" data-id='"+i+"'>"+val.nombre+"</option>";
 		        });
 		        jQuery("#municipio").html(html);
-		        var location    = estados_municipios[estado_id]['coordenadas']['referencia'];
+		        /*var location    = estados_municipios[estado_id]['coordenadas']['referencia'];
 		        var norte       = estados_municipios[estado_id]['coordenadas']['norte'];
 		        var sur         = estados_municipios[estado_id]['coordenadas']['sur'];
 		        jQuery("#latitud").attr("value", location.lat);
-		        jQuery("#longitud").attr("value", location.lng);
+		        jQuery("#longitud").attr("value", location.lng);*/
 		    }
 		});
 
@@ -506,20 +469,20 @@
 		function vlz_coordenadas(){
 			var estado_id = jQuery("#estado").val();            
 		    var municipio_id = jQuery('#municipio > option[value="'+jQuery("#municipio").val()+'"]').attr('data-id');   
-		    if( estado_id != "" ){
+		    /*if( estado_id != "" ){
 		        var location    = estados_municipios[estado_id]['municipios'][municipio_id]['coordenadas']['referencia'];
 		        var norte       = estados_municipios[estado_id]['municipios'][municipio_id]['coordenadas']['norte'];
 		        var sur         = estados_municipios[estado_id]['municipios'][municipio_id]['coordenadas']['sur'];
 		        jQuery("#latitud").attr("value", location.lat);
 		        jQuery("#longitud").attr("value", location.lng);
-		    }
+		    }*/
 		}
 
 	// Generales
 
 		function GoToHomePage(){
-			location = 'http://kmimos.ilernus.com';  
-			// location = "<?php echo get_home_url().'/perfil-usuario/?ua=profile'; ?>";  
+			// location = 'http://kmimos.ilernus.com';  
+			location = "<?php echo get_home_url().'/perfil-usuario/?ua=profile'; ?>";  
 		}
 			
 		function vlz_modal(tipo, titulo, contenido){
@@ -591,10 +554,27 @@
 				      		jQuery("#vlz_titulo_registro").html('Términos y Condiciones');
 			  				jQuery("#boton_registrar_modal").css("display", "inline-block");
 			      		}else{
-			      			jQuery("#vlz_titulo_registro").html("Registro Completado!");
-						  	jQuery("#vlz_cargando").html(data.msg);
-				      		jQuery("#vlz_registro_cuidador_cerrar").css("display", "inline-block");
+							//	jQuery("#vlz_titulo_registro").html("Registro Completado!");
+							//	jQuery("#vlz_cargando").html(data.msg);
+							//	jQuery("#vlz_registro_cuidador_cerrar").css("display", "inline-block");
+							console.log('registro compeltado2');
+						  	jQuery("#vlz_cargando")
+						  		.html(data.msg);
+						  	jQuery("#vlz_cargando")
+						  		.css('padding', '0px')
+						  		.css('padding-top', '10px');
+			      			jQuery("#vlz_titulo_registro")
+			      				.html("!GRACIAS¡");
+			      			jQuery("#vlz_titulo_registro")
+			      				.css('font-size', '36px');
+			      			jQuery("#vlz_titulo_registro")
+			      				.css('background', '#00d8b5')
+			      				.css('color','#fff')
+ 			      				.css('font-weight', 'bold');
+ 			      			jQuery(".vlz_modal_ventana")
+ 			      				.css('width', 'auto');
 
+							jQuery("#vlz_registro_cuidador_cerrar").css("display", "inline-block");
 				      		<?php
 				      			if( substr($_SERVER["HTTP_REFERER"], -18) == "nuevos-aspirantes/" ){
 				      				$_SESSION['nuevosAspirantes'] = "SI";

@@ -517,8 +517,8 @@ if (!String.prototype.format) {
 		});
 
 
-		$('#pf-primary-nav').pfresponsivenav();
-		$('#pf-topprimary-nav').pfresponsivenav({mleft:0});
+		//$('#pf-primary-nav').pfresponsivenav();
+		//$('#pf-topprimary-nav').pfresponsivenav({mleft:0});
 		
 
 		//Scroll action

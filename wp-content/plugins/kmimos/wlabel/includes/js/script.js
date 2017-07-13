@@ -1,3 +1,5 @@
+var modules='';
+var filters = [];
 
 function  WhiteLabel_form_login(form){
     var url=jQuery(form).data('validate');
@@ -21,6 +23,70 @@ function WhiteLabel_panel_logout(element){
 }
 
 
+function WhiteLabel_panel_export(element){
+    var dexport=jQuery(element).closest('.export');
+    var urlbase=dexport.data('urlbase');
+    var module=dexport.data('module');
+    var title=dexport.data('title');
+    var type=dexport.data('type');
+    var file=dexport.data('file');
+    var url=urlbase+file;
+
+    var data="";
+    if(type=='table'){
+        jQuery('table').each(function(e){
+            jQuery(this).find('tr:not(.noshow)').each(function(e){
+                jQuery(this).find('th, td').each(function(e){//
+                    if(!jQuery(this).hasClass('noshow') && !jQuery(this).hasClass('noshow_check') && !jQuery(this).hasClass('noshow_select')){
+                        data+=jQuery(this).html()+';';
+                    }
+                });
+                data+="\n";
+            });
+            data+="\n\n\n";
+        });
+    }
+
+    jQuery(element).html('Espere ...');
+    jQuery.post(url, { module: module, title: title, data: data, urlbase: urlbase }, function(data){
+        //console.log(data);
+        data=jQuery.parseJSON(data);
+        dexport.find('.action').html(data['message']);
+        dexport.find('.file').html(data['file']);
+    });
+}
+
+
+function WhiteLabel_panel_update(){
+    filters[modules] = jQuery('.filters');
+    WhiteLabel_panel_menu(modules);
+}
+
+
+
+//MENU
+function WhiteLabel_panel_menu(element){
+    var module=jQuery(element).data('module');
+    var color_alt=jQuery(element).closest('.menu').data('coloralt');
+
+    modules=module;
+    var path=jQuery('.section .menu').data('url');
+    var url=path+'content/modules/'+module+'.php';
+    jQuery.get(url, function(data){
+        jQuery('.section .modules').html(data);
+        jQuery('#panel .menu .item').removeClass('select').css({'background':''});
+        jQuery(element).addClass('select').css({'background':color_alt});
+
+        if(module in filters){
+            if(filters[module].length>0){
+                jQuery('.filters').replaceWith(filters[module]);
+            }
+        }
+
+        modules_filter(jQuery('.filter select'));
+        modules_filter(jQuery('.filter input'));
+    });
+}
 
 
 //MODULES
@@ -31,6 +97,7 @@ jQuery(document).on('change click','.filter select, .filter input',function(e){
 function modules_filter(element){
     var type = jQuery(element).closest('.type').data('type');
     var table = jQuery(element).closest('.section').find('table');
+        filters[modules] = jQuery('.filters');
 
     if(type=='trdate'){
         modules_filter_trdate(element, type, table);
@@ -109,14 +176,23 @@ function modules_table_count(element){
 
             jQuery(body_tr).each(function(index){
                 if(!jQuery(this).hasClass('noshow')){
-                    if(jQuery(this).data('status')!='cancelled'){
-                        count=count-(jQuery(this).find('td').eq(indexftd).html()*(-1));
-                    }
+                    //if(jQuery(this).data('status')!='cancelled' && jQuery(this).data('status')!='modified'){}
+                        var number=jQuery(this).find('td').eq(indexftd).html();
+                            number=number.toString();
+                            number=number.replace(/\./g, '');
+                            number=number.replace(/\,/g, '.');
+                            number=parseFloat(number);
+                        count=count-(number*(-1));
+
                 }
             });
         }
 
         count=Math.round(count*100)/100;
+        if(count>0){
+            count=count.toString();
+            count=count.replace(/\./g, ',');
+        }
         //footer_td.eq(index).html(count);
         jQuery(this).html(count);
     });

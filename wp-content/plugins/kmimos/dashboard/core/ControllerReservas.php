@@ -328,9 +328,6 @@ function get_ubicacion_cuidador( $user_id ){
 
 function getReservas($desde="", $hasta=""){
 
-	$desde = "2015-01-01";
-	$hasta = "2017-05-29";
-
 	$filtro_adicional = "";
 
 	if( !empty($desde) && !empty($hasta) ){
@@ -350,6 +347,7 @@ function getReservas($desde="", $hasta=""){
  			p.ID as 'nro_pedido',
  			p.post_status as 'estatus_pago', 			
 			pr.post_title as 'producto_title',
+			pr.post_name as 'producto_name',			
  			(du.meta_value -1) as  'nro_noches',
  			(IFNULL(mpe.meta_value,0) + IFNULL(mme.meta_value,0) + IFNULL(mgr.meta_value,0) + IFNULL(mgi.meta_value,0)) as nro_mascotas,
  			((du.meta_value -1) * ( IFNULL(mpe.meta_value,0) + IFNULL(mme.meta_value,0) + IFNULL(mgr.meta_value,0) + IFNULL(mgi.meta_value,0) )) as 'total_noches',
@@ -365,8 +363,8 @@ function getReservas($desde="", $hasta=""){
 
 			LEFT JOIN wp_woocommerce_order_itemmeta as fe  ON (fe.order_item_id  = rm.meta_value and fe.meta_key  = 'Fecha de Reserva')
 			LEFT JOIN wp_woocommerce_order_itemmeta as du  ON (du.order_item_id  = rm.meta_value and du.meta_key  = 'Duración')
-			LEFT JOIN wp_woocommerce_order_itemmeta as mpe ON (mpe.order_item_id = rm.meta_value and mpe.meta_key = 'Mascotas Pequeños')
-			LEFT JOIN wp_woocommerce_order_itemmeta as mme ON (mme.order_item_id = rm.meta_value and mme.meta_key = 'Mascotas Medianos')
+			LEFT JOIN wp_woocommerce_order_itemmeta as mpe ON mpe.order_item_id = rm.meta_value and (mpe.meta_key = 'Mascotas Pequeños' or mpe.meta_key = 'Mascotas Pequeñas')
+			LEFT JOIN wp_woocommerce_order_itemmeta as mme ON mme.order_item_id = rm.meta_value and (mme.meta_key = 'Mascotas Medianos' or mme.meta_key = 'Mascotas Medianas')
 			LEFT JOIN wp_woocommerce_order_itemmeta as mgr ON (mgr.order_item_id = rm.meta_value and mgr.meta_key = 'Mascotas Grandes')
 			LEFT JOIN wp_woocommerce_order_itemmeta as mgi ON (mgi.order_item_id = rm.meta_value and mgi.meta_key = 'Mascotas Gigantes')
 			LEFT JOIN wp_woocommerce_order_itemmeta as pri ON (pri.order_item_id = rm.meta_value and pri.meta_key = '_product_id')

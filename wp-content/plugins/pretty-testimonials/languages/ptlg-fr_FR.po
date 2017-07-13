@@ -1,0 +1,134 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: pretty testimonial v1\n"
+"POT-Creation-Date: 2015-12-27 11:37+0000\n"
+"PO-Revision-Date: 2015-12-27 11:40+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.6\n"
+"X-Poedit-Basepath: ../../../DataAmine/back_serveur/pretty-testimonials\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-SearchPath-0: pretty-testimonials.php\n"
+
+#: pretty-testimonials.php:57 pretty-testimonials.php:58
+msgid "Pretty Block Testimonials"
+msgstr ""
+
+#: pretty-testimonials.php:86
+msgid "Description"
+msgstr ""
+
+#: pretty-testimonials.php:93
+msgid "Auto play"
+msgstr ""
+
+#: pretty-testimonials.php:101
+msgid "AutoplaySpeed"
+msgstr ""
+
+#: pretty-testimonials.php:109
+msgid "Color"
+msgstr ""
+
+#: pretty-testimonials.php:117
+msgid "Pause on Hover"
+msgstr "Pause au survole"
+
+#: pretty-testimonials.php:125
+msgid "Model"
+msgstr ""
+
+#: pretty-testimonials.php:132
+msgid "Shortcode and Template Tag"
+msgstr "Raccourci et Function"
+
+#: pretty-testimonials.php:217 pretty-testimonials.php:308
+msgid "Testimonials"
+msgstr "Témoignages"
+
+#: pretty-testimonials.php:218
+msgid "Testimonial"
+msgstr "Témoignage"
+
+#: pretty-testimonials.php:219
+msgid "Add New"
+msgstr "Ajouter"
+
+#: pretty-testimonials.php:220
+msgid "Add New Testimonial"
+msgstr "Ajouter un nouceau témoignage"
+
+#: pretty-testimonials.php:221
+msgid "Edit Testimonial"
+msgstr ""
+
+#: pretty-testimonials.php:222
+msgid "New Testimonial"
+msgstr ""
+
+#: pretty-testimonials.php:223
+msgid "All Testimonial"
+msgstr "Tous les Témoignages"
+
+#: pretty-testimonials.php:224
+msgid "View Testimonial"
+msgstr ""
+
+#: pretty-testimonials.php:225
+msgid "Search Testimonial"
+msgstr ""
+
+#: pretty-testimonials.php:226
+msgid "No Staff Found"
+msgstr ""
+
+#: pretty-testimonials.php:227
+msgid "No Staff Found in the Trash"
+msgstr ""
+
+#: pretty-testimonials.php:228
+msgid "Pretty Testimonial"
+msgstr ""
+
+#: pretty-testimonials.php:233
+msgid "Pretty Testimonials"
+msgstr ""
+
+#: pretty-testimonials.php:352
+msgid "They say about us"
+msgstr "Les commentaires de nos clients"
+
+#: pretty-testimonials.php:379
+msgid "Comments from our clients"
+msgstr "Les commentaires de nos clients"
+
+#: pretty-testimonials.php:449
+msgid "What they say?"
+msgstr "Les commentaires de nos clients"
+
+#: pretty-testimonials.php:501
+msgid ""
+"Pretty Testimonials module helps you to adds a testimonial section with an "
+"elegant block on your website."
+msgstr ""
+
+#: pretty-testimonials.php:509
+msgid ""
+"To use Pretty Block testimonials in your posts and pages you can use the "
+"shortcode:"
+msgstr ""
+"Pour utiliser le block témoignage dans vos pages et articles, utiliser le "
+"raccourci :"
+
+#: pretty-testimonials.php:511
+msgid ""
+"To use Pretty Block testimonials manually in your theme template use the "
+"following PHP code:"
+msgstr ""
+"Pour utiliser le bloc témoignage manuellement dans votre théme, utilisé le "
+"code php : "

@@ -66,7 +66,7 @@ class WC_Booking_Form {
 
 		// Modificacion Ángel Veloz
 		// wp_enqueue_script( 'wc-bookings-booking-form', WC_BOOKINGS_PLUGIN_URL . '/assets/js/booking-form' . $suffix . '.js', array( 'jquery', 'jquery-blockui' ), WC_BOOKINGS_VERSION, true );
-		wp_enqueue_script( 'wc-bookings-booking-form', WC_BOOKINGS_PLUGIN_URL . '/assets/js/booking-form.js', array( 'jquery', 'jquery-blockui' ), WC_BOOKINGS_VERSION, true );
+		wp_enqueue_script( 'wc-bookings-booking-form', WC_BOOKINGS_PLUGIN_URL . '/assets/js/booking-form.js', array( 'jquery', 'jquery-blockui' ), "1.9.8", true );
 
 		wp_localize_script( 'wc-bookings-booking-form', 'wc_bookings_booking_form', $wc_bookings_booking_form_args );
 		// wp_register_script( 'wc-bookings-date-picker', WC_BOOKINGS_PLUGIN_URL . '/assets/js/date-picker' . $suffix . '.js', array( 'wc-bookings-booking-form', 'jquery-ui-datepicker' ), WC_BOOKINGS_VERSION, true );
@@ -652,14 +652,14 @@ class WC_Booking_Form {
 			return $validate;
 		}
 
-		$tipo_servicio = explode("-", $this->product->post->post_name);
-		$tipo_servicio = $tipo_servicio[0];
 
 		$base_block_cost    = max( 0, $this->product->wc_booking_base_cost );
 		$total_block_cost   = 0;
 
 		// Modificacion Ángel Veloz
-		if( $tipo_servicio == "hospedaje" ){
+
+		$tipo_servicio = explode("-", $this->product->post->post_name);
+		if( in_array("hospedaje", $tipo_servicio) ){
     		$total_duration = (($data['_duration']) > 1 ? ($data['_duration']-1) : ($data['_duration']));
 		}else{
     		$total_duration = (($data['_duration']) > 1 ? ($data['_duration']) : ($data['_duration']));

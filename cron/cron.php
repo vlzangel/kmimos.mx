@@ -70,13 +70,12 @@
                 $cliente = $cliente['first_name'][0]." ".$cliente['last_name'][0];
             }else{
                 $id_orden = $request->ID;
-                $id_reserva = $id_orden-1;
+                $id_reserva   = $wpdb->get_var("SELECT ID FROM wp_posts WHERE post_parent = {$id_orden} AND post_type = 'wc_booking'");
                 $cliente_id = $wpdb->get_var( "SELECT post_author FROM wp_posts WHERE ID = '".($id_reserva)."'" );
                 $cliente_id_reserva = $cliente_id;
                 $email_cliente = $wpdb->get_var( "SELECT user_email FROM wp_users WHERE ID = '".$cliente_id."'" );
                 $cliente = get_user_meta( $cliente_id );
                 $cliente = $cliente['first_name'][0]." ".$cliente['last_name'][0];
-
                 $metadata = get_post_meta( $id_orden-1 );
                 $user_id_cuidador = $wpdb->get_var( "SELECT post_author FROM wp_posts WHERE ID = '".($metadata['_booking_product_id'][0])."'" );
                 $id_cuidador_post = $wpdb->get_var( "SELECT id_post FROM cuidadores WHERE user_id = '".($user_id_cuidador)."'" );
@@ -225,7 +224,7 @@
                     .$str_sugeridos;
                 
                 $msg_admin = kmimos_get_email_html("Solicitud para Conocer Cuidador Cancelada por el Sistema", $msg, "", true, true);
-                wp_mail( $email_admin, "Solicitud para Conocer Cuidador Cancelada por el Sistema", $msg_admin, kmimos_mails_administradores());
+                kmimos_mails_administradores_new("Solicitud para Conocer Cuidador Cancelada por el Sistema", $msg_admin);
 
                 $msg_cuidador = $styles.'
                     <p><strong>Cancelación de Reserva (N°. '.$request->ID.')</strong></p>
@@ -259,7 +258,9 @@
                     .$str_sugeridos;
                 
                 $msg_admin = kmimos_get_email_html("Reserva Cancelada por el Sistema", $msg, "", true, true);
-                wp_mail( $email_admin, "Reserva Cancelada por el Sistema", $msg_admin, kmimos_mails_administradores());
+                // wp_mail( $email_admin, "Reserva Cancelada por el Sistema", $msg_admin, kmimos_mails_administradores());
+                
+                kmimos_mails_administradores_new("Reserva Cancelada por el Sistema", $msg_admin);
 
                 $msg_cuidador = $styles.'
                     <p><strong>Cancelación de Reserva (N°. '.$id_reserva.')</strong></p>

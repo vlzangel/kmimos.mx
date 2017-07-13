@@ -4,8 +4,6 @@
 
 		$msg_id_reserva ='<p>Solicitud de reserva de servicio <strong>(N° '.$reserva_id.')</strong> </p>';
 
-		$pdf = $metas_orden['_openpay_pdf'][0];
-
 		$saludo = $sql.'
 			<center style="font-size: 16px; font-weight: 600;">¡Gracias '.$nom_cliente.'!</center>
 			<p>Recibimos tu solicitud de reserva de <strong>'.trim($tipo_servicio).'</strong>, para que <strong>'.$nom_cuidador.'</strong> atienda a tu(s) peludo(s).</p>
@@ -36,7 +34,9 @@
 		
 		$mensaje_cliente = kmimos_get_email_html($titulo_mail, $mensaje_cliente, 'Solicitud de Reserva Recibida Exitosamente!', true, true);
 
-		wp_mail( $cliente_email, "Solicitud de Reserva Recibida Exitosamente!", $mensaje_cliente, kmimos_mails_administradores());
+		wp_mail( $cliente_email, "Solicitud de Reserva Recibida Exitosamente!", $mensaje_cliente);
+
+		//kmimos_mails_administradores_new("Solicitud de Reserva Recibida Exitosamente!", $mensaje_cliente);
 
 	/* Administrador */
 
@@ -65,6 +65,6 @@
 		
 		$mensaje_admin = kmimos_get_email_html($titulo_mail, $mensaje_admin, 'Nueva Reserva - '.$producto, true, true);
 
-		wp_mail( $email_admin, "Solicitud de reserva #".$reserva_id, $mensaje_admin, kmimos_mails_administradores());
+		kmimos_mails_administradores_new("Solicitud de reserva #".$reserva_id, $mensaje_admin);
 
 ?>

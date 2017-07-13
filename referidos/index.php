@@ -94,7 +94,8 @@ if( isset($_GET['r']) ){
 			<section class="col-xs-12 col-sm-12 col-md-8 col-lg-8 hidden-md hidden-lg" >
 				<img src="img/bg-movil.jpg" class="img-responsive img-rounded" style="border-radius: 20px;" width="98%">
 			</section>
-
+			<br>
+			<br>
 		</div>
 		<script
 		  src="https://code.jquery.com/jquery-2.2.4.min.js?<?php echo time(); ?>"
