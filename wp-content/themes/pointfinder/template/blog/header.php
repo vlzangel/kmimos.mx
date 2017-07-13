@@ -22,11 +22,12 @@ if(array_key_exists('search',$_POST)){
 
 <style>
     a.absolute{position: absolute; width: 100%; height: 100%;  top: 0; left: 0;}
-    .contain{position: relative; width: 95%; max-width: 1000px; margin: 0 auto; line-height: 1;}
+    .contain{position: relative; width: 95%; max-width: 1000px; margin: 0 auto;}
     .logo{background:url(https://www.kmimos.com.mx/wp-content/uploads/2017/07/bolsita-y-logotipo-02.png) center/contain no-repeat;}
     .blog_title{color: #ff8700; font-size: 35px; font-weight: bold;}
     .icon.arrow{position: relative; width: 50px; padding: 5px 0; margin: 5px 5px; color: #FFF; font-size: 40px; text-align: center; border-radius: 50%; cursor: pointer; background: #900fa2;  }
     .responsive{display: none;}
+    .info{line-height: 1.3;}
 
 
     @media screen and (max-width:768px), screen and (max-device-width:768px){}
@@ -47,9 +48,9 @@ if(array_key_exists('search',$_POST)){
     header .info .icon.help{float:right; cursor: pointer;}
     header .info .session{padding: 10px; float:right; border-left: 2px solid #FFF;}
 
-    header .redes{position:absolute; width:70px;  right: 0;  top:calc(50% - 150px);}
+    header .redes{position:absolute; width:70px;  right: 0;  top:calc(50% - 115px);}
     header .redes .icon{width: 40px; margin:5px 0; padding:10px; color: #FFF; font-size: 20px; text-align: center; border-radius: 50%; cursor: pointer; background: #23d3c4;}
-    header .redes .icon.bolsa{ height: 40px; border-radius: 0; display: block; background:url(https://www.kmimos.com.mx/wp-content/uploads/2017/07/bolsita-y-logotipo-03.png) center/contain no-repeat; display: none;}
+    header .redes .icon.bolsa{ height: 40px; border-radius: 0; display: none !important; background:url(https://www.kmimos.com.mx/wp-content/uploads/2017/07/bolsita-y-logotipo-03.png) center/contain no-repeat;}
 
     header .search{position: relative; color: #aaa; font-size: 15px; text-align: right;}
     header .search input{position: relative; padding:5px 10px; border:1px solid #aaa; border-radius: 20px;}
@@ -82,10 +83,8 @@ if(array_key_exists('search',$_POST)){
         header .menu{border-width: 1px 0 1px 0;}
         header .menu .items{display: none;}
         header .menu .responsive{display: block;}
-    }
-    @media screen and (max-width:480px), screen and (max-device-width:480px){
 
-        /* RESPONSIVE SUGERIDO */
+        /* RESPONSIVE SUGERIDO 480*/
         header .info { display: none;}
         header .info.responsive{position: fixed; width: 100%; top: 0; display: block; overflow: visible; z-index: 1;}
         header .info.responsive .group.contain{width: 100%; font-size:7px; align-items: center; justify-content: flex-end; overflow: hidden;}
@@ -115,6 +114,8 @@ if(array_key_exists('search',$_POST)){
         header .search{display: none;}
         header .menu{display: none;}
     }
+    @media screen and (max-width:480px), screen and (max-device-width:480px){}
+
 </style>
     <body>
         <header>

@@ -5333,8 +5333,7 @@ input#place_order{
                 }
             }
 
-
-                        .jj-patica-menu{
+			.jj-patica-menu{
                 background-color: transparent;
                 position: absolute;
                 z-index: 1;
@@ -5356,6 +5355,7 @@ input#place_order{
             }  
             @media (max-width: 568px){
                 .jj-patica-menu{
+					padding: 2px;
                     right: 100px;  
                     width: 30px; 
                     height: 30px;     

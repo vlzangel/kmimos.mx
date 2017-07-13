@@ -19,7 +19,7 @@ include_once(__DIR__.'/header.php');
     #featured{display: none;}
     #featured{position:fixed; width: 500px; max-width: 100%; top: calc(50% - 220px); right: calc(100% - 40px); border-radius:0 20px 20px 0; background: #dadada; z-index:1; transition: all .3s;}
     #featured.show{/*right: auto;*/}
-    #featured .info{color:#FFF; font-weight:normal; text-align:center; background:#900fa2; display: none;}
+    #featured .info.title{color:#FFF; font-weight:normal; text-align:center; background:#900fa2; display: none;}
     #featured .caregiver{position:relative; max-width: calc(100% - 80px); min-width: 150px; overflow: hidden;}
     #featured .caregiver .action{display: none;}
     #featured .caregiver .action,
@@ -70,7 +70,9 @@ include_once(__DIR__.'/header.php');
         #featured.central .post .detail{padding: 20px; /*border: none;*/ /*border-radius:0;*/}
     }
     @media screen and (max-width:480px), screen and (max-device-width:480px){
-        #single .single .content .column{width:100%; margin: 0;}
+        #single .single{margin-top: -75px;}
+        #single .single .title{padding:10px 20px; font-size: 20px; line-height: 1.3;}
+        #single .single .content .column{width:100%; margin: 0; padding: 10px 20px;}
         #featured .post{display: block;}
         #featured .post .image{width: auto; border-radius: 20px 20px 0 0;}
         #featured .post .image .img{width: 50px; padding-top: 50px;}
