@@ -3,15 +3,9 @@
 $args = array(
     'post_type'=>'post',
     'posts_per_page' =>5,
-    'paged'=>get_query_var('paged'),
-    //'meta_key' => 'post_views_count',
-    //'orderby' => 'meta_value_num',
-    /*
-    'post_type'  => 'post_type',
-    'meta_key'   => 'age',
-    'orderby'    => 'meta_value_num',
-    'order'      => 'ASC',
-    */
+    'meta_key' => 'post_views_count',
+    'orderby' => 'meta_value_num',
+    'order'      => 'DESC',
 );
 
 $iblogs = 0;
@@ -26,6 +20,9 @@ while($blogs->have_posts()){
 
     $blogs_imagen=str_replace('http://kmimos.dev.mx/','https://kmimos.com.mx/',$blogs_imagen);
     $blogs_thumbnail=str_replace('http://kmimos.dev.mx/','https://kmimos.com.mx/',$blogs_thumbnail);
+
+    $blogs_imagen=str_replace('http://kmimosmx.sytes.net/QA1/','https://kmimos.com.mx/',$blogs_imagen);
+    $blogs_thumbnail=str_replace('http://kmimosmx.sytes.net/QA1/','https://kmimos.com.mx/',$blogs_thumbnail);
 
     $blogs_category=wp_get_post_terms($post->ID,'category',array('orderby' => 'name', 'order' => 'ASC'));
     $blogs_category_name=array();

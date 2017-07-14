@@ -55,6 +55,7 @@ include_once(__DIR__.'/blog/header.php');
     #last .section{width: 50%;}
     #last .section.aside{}
     #last .section.news{width: 100%; padding:0 0 0 20px; border-left: 15px solid #6dd700;}
+    #last .section.news .title{font-size: 20px; padding: 20px 0;}
     #last .section.news .action{position: relative; overflow: hidden;}
     #last .section.news .action .icon.arrow{float: right;}
     #last .section.news .post{position:relative; margin: 0 0 20px 0; padding: 20px;  background: #FFF;  box-shadow: 15px 15px 20px -10px #CCC; display: none;  flex-flow: wrap;}
@@ -63,7 +64,7 @@ include_once(__DIR__.'/blog/header.php');
     #last .section.news .post .detail{width: 50%;}
     #last .section.news .post .category{display: none;}
     #last .section.news .post .title {padding: 15px 0;  font-size: 17px;  font-weight: bold;}
-    #last .section.news .post .content{padding: 0 0 50px 0;}
+    #last .section.news .post .content{padding: 0 0 50px 0; text-align: justify;}
     #last .section.news .post .content:before {content: "+";  position: absolute;  width: 50px;  height: 50px;      padding: 5px 8px;  right: 0;  bottom: 0; color: #FFF;  font-size: 25px; font-weight: bold; text-align: right;  align-items: flex-end;  justify-content: flex-end; background: linear-gradient(135deg, transparent 50%, #900fa2 50%);  display: flex;  }
     #last .section.news .post .button.more{display:none;}
 
@@ -268,7 +269,7 @@ if($page<=0){
             news_post.removeClass('show');
             var direction = jQuery(element).data('direction');
             var show = news_show;
-            var back = false;
+            var action = false;
 
             if(direction=='prev'){
                 show=show-(news_navigate*news_count);
@@ -278,7 +279,14 @@ if($page<=0){
                 var post=show+news+(news_navigate-news_count);//
 
                 if(post<0 && direction=='prev'){
-                    back=true;
+                    action=true;
+
+                }else if(post>0 && news_post.eq(post).hasClass('redirect')){
+                    action=true;
+
+                }else if(post>0 && news_post.eq(post).hasClass('loadfirst')){
+                    action=false;
+                    post=-1;
                 }
 
                 if(post<0){
@@ -286,15 +294,14 @@ if($page<=0){
 
                 }else if(post==(news-news_count) && news<=news_count){
                     post++;
-
                 }
 
                 //console.log(post);
-                if(news_show_display(post) && !back){//
+                if(news_show_display(post) && !action){
                     news_show=post;
 
                 }else{
-                    if(news_post.closest('.news').find('.post.show').length<=news_count || back){
+                    if(news_post.closest('.news').find('.post.show').length<=news_count || action){
                         news_action = true;
                         jQuery(element).find('a').trigger('click');
                         break;

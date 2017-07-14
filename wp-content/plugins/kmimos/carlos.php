@@ -10,7 +10,7 @@
 
 	if(!function_exists('carlos_include_script')){
 	    function carlos_include_script(){
-	        
+			wp_enqueue_style('theme_woocmmerce',plugins_url('/css/woocommerce.css',__FILE__));
 	    }
 	}
 
