@@ -123,8 +123,11 @@
 		        	"grandes"  => $adicional_grandes[$key]+0,
 		        	"gigantes" => $adicional_gigantes[$key]+0
 		        );
-		        $adicionales[ $slugs_adicionales[$value] ] = $temp;
+		        $adicionales[$slugs_adicionales[$value]] = $temp;
 		        $temp = NULL;
+
+                //ADDITIONAL STATUS
+                $adicionales['status_'.$slugs_adicionales[$value]] = 1;
         	}
         }
 
@@ -453,6 +456,8 @@
                         foreach ($servicios_adicionales as $key => $precio) {
                             
                             if( isset( $adicionales_principales[$key] )){
+
+
 
                                 if( $precio > 0){
                                     $status = "pending";
