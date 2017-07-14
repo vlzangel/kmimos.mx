@@ -214,10 +214,6 @@
         	);
         ";
 
-        echo json_encode( $servicio );
-
-        /*
-
         $existen = $conn->query( "SELECT * FROM wp_users WHERE  user_login = '{$username}' OR user_email = '{$email}'" );
         if( $existen->num_rows > 0 ){
             $msg = "Se encontraron los siguientes errores:\n\n";
@@ -587,7 +583,6 @@
                 echo "(".json_encode( $error ).")";
             }
         }
-        */
         
 	}
 
