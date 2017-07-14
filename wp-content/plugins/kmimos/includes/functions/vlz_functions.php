@@ -68,11 +68,13 @@
             }
 
             $descuento = 0;
-            if( $metas_orden[ "_cart_discount" ][0] != "" ){
-                $descuento = $metas_orden[ "_cart_discount" ][0]+0;
+            $order_item_id = $wpdb->get_var("SELECT order_item_id FROM wp_woocommerce_order_items WHERE order_id = '{$id_orden}' AND order_item_type = 'coupon' AND order_item_name LIKE '%saldo-%'"); 
+            if( $order_item_id != '' ){
+                $descuento = $wpdb->get_var("SELECT meta_value FROM wp_woocommerce_order_itemmeta WHERE order_item_id = '{$order_item_id}' AND meta_key = 'discount_amount' "); 
             }
 
-            if($status == 'wc-on-hold' && $metas_orden['_payment_method'][0] == 'openpay_stores'){ 
+            // En pago en tienda pasa de wc-on-hold a: wc-partially-paid OR wc-completed
+            if($status == 'wc-on-hold' && $metas_orden['_payment_method'][0] == 'openpay_stores'){
                 $saldo = $descuento;  
             }else{
                 $saldo += $descuento;                
