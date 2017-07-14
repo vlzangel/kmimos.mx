@@ -61,6 +61,9 @@ if(count($featureds)>0){
         $img=str_replace('http://kmimos.dev.mx/','https://kmimos.com.mx/',$img);
         $bone=str_replace('http://kmimos.dev.mx/','https://kmimos.com.mx/',$bone);
 
+        $img=str_replace('http://kmimosmx.sytes.net/QA1/','https://kmimos.com.mx/',$img);
+        $bone=str_replace('http://kmimosmx.sytes.net/QA1/','https://kmimos.com.mx/',$bone);
+
         $html.='<div class="post">';// scroll_animate" data-position="self
         $html.='<div class="image">';
         $html.='<div class="img" data-original="'.$img.'" style="background-image:url('.$img.');"></div>';// easyload

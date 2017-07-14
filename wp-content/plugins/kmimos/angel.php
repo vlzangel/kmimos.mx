@@ -272,10 +272,13 @@
             if( isset($param["servicios"]) ){
                 foreach ($param["servicios"] as $key => $value) {
                     if( $value != "hospedaje" ){
-                        $condiciones .= " AND adicionales LIKE '%".$value."%'";
+                        $condiciones .= " AND adicionales LIKE '%$value%'";
+                        $condiciones .= ' AND adicionales LIKE \'%status_'.$value.'";s:1:"1%\'';
+
                     }
                 }
             }
+
 
             if( isset($param['tamanos']) ){
                 foreach ($param['tamanos'] as $key => $value) {
@@ -424,8 +427,8 @@
                 if(  $param['tipo_busqueda'] == "otra-localidad" && $param['estados'] != "" ){
                     $ubicaciones_inner = "INNER JOIN ubicaciones AS ubi ON ( cuidadores.id = ubi.cuidador )";
                     $ubicaciones_filtro = "AND ( ubi.estado LIKE '%=".$param['estados']."=%' )";
-                }else{
 
+                }else{
                     // Filtro desde mi ubicación
                     if( $param['tipo_busqueda'] == "mi-ubicacion" && $param['latitud'] != "" && $param['longitud'] != "" ){
 
@@ -482,7 +485,6 @@
                 ORDER BY {$orderby}
                 LIMIT {$pagina}, 15
             ";
-
             return $sql;
         }
     }

@@ -2,6 +2,7 @@
 	include("../../../../vlz_config.php");
 	include("admin/funciones/kmimos_funciones_db.php");
 
+
 	$conn = new mysqli($host, $user, $pass, $db);
 	$db = new db($conn);
 
@@ -16,7 +17,15 @@
     /* Fin Filtros por fechas */
 
     /* Filtros por servicios y tamaños */
-	    if( isset($servicios) ){ foreach ($servicios as $key => $value) { if( $value != "hospedaje" ){ $condiciones .= " AND adicionales LIKE '%".$value."%'"; } } }
+	    if( isset($servicios) ){
+			foreach ($servicios as $key => $value) {
+				if( $value != "hospedaje" ){
+					$condiciones .= " AND adicionales LIKE '%".$value."%'";
+					$condiciones .= ' AND adicionales LIKE \'%status_'.$value.'";s:1:"1%\'';
+				}
+			}
+		}
+
 	    if( isset($tamanos) ){ foreach ($tamanos as $key => $value) { $condiciones .= " AND ( tamanos_aceptados LIKE '%\"".$value."\";i:1%' || tamanos_aceptados LIKE '%\"".$value."\";s:1:\"1\"%' ) "; } }
     /* Fin Filtros por servicios y tamaños */
 
@@ -170,4 +179,8 @@
     $home = $db->get_var("SELECT option_value FROM wp_options WHERE option_name = 'siteurl'", "option_value");
 
 	header("location: {$home}/busqueda/");
+
+
+
+
 ?>

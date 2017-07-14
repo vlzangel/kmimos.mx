@@ -107,6 +107,7 @@
 	        "limpieza_dental",
 	        "bano",
 	        "corte",
+            "paseos",
 	        "guarderia",
 	        "adiestramiento_basico",
 	        "adiestramiento_intermedio",	        
@@ -123,8 +124,11 @@
 		        	"grandes"  => $adicional_grandes[$key]+0,
 		        	"gigantes" => $adicional_gigantes[$key]+0
 		        );
-		        $adicionales[ $slugs_adicionales[$value] ] = $temp;
+		        $adicionales[$slugs_adicionales[$value]] = $temp;
 		        $temp = NULL;
+
+                //ADDITIONAL STATUS
+                $adicionales['status_'.$slugs_adicionales[$value]] = "1";
         	}
         }
 
@@ -162,6 +166,7 @@
 
         $coordenadas = unserialize( $wpdb->get_var("SELECT valor FROM kmimos_opciones WHERE clave = 'municipio_{$param['municipios']}' ") );
 
+        /*NEW COORD MAP act CG
         $latitud  = "";
         $longitud = "";
 
@@ -173,6 +178,7 @@
                 $longitud = $coordenadas["referencia"]->lng;
             }
         }
+        */
 
         $sql = "
         	INSERT INTO cuidadores VALUES (
@@ -452,6 +458,8 @@
                             
                             if( isset( $adicionales_principales[$key] )){
 
+
+
                                 if( $precio > 0){
                                     $status = "pending";
                                 }else{
@@ -553,14 +561,8 @@
                     $user_signon = wp_signon( $info, true );
                     wp_set_auth_cookie($user_signon->ID);
 
-                    # ****************************** */
-                    # Mensaje Web - Registro Cuidador
-                    # ****************************** */
                     include( 'mensaje_web_registro_cuidador.php' );
 
-                    # ****************************** */
-                    # Mensaje Email - Registro Cuidador
-                    # ****************************** */
                     include( 'mensaje_email_registro_cuidador.php' );
 
 

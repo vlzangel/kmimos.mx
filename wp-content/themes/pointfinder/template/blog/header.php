@@ -15,18 +15,19 @@ if(array_key_exists('search',$_POST)){
     <head>
         <meta charset="<?php bloginfo('charset'); ?>">
         <?php
-        echo '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">';
-        wp_head();
+            echo '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">';
+            wp_head();
         ?>
     </head>
 
 <style>
     a.absolute{position: absolute; width: 100%; height: 100%;  top: 0; left: 0;}
-    .contain{position: relative; width: 95%; max-width: 1000px; margin: 0 auto; line-height: 1;}
+    .contain{position: relative; width: 95%; max-width: 1000px; margin: 0 auto;}
     .logo{background:url(https://www.kmimos.com.mx/wp-content/uploads/2017/07/bolsita-y-logotipo-02.png) center/contain no-repeat;}
-    .blog_title{color: #ff8700; font-size: 35px; font-weight: bold;}
+    .blog_title{color: #ff8700; font-size: 35px; font-weight: bold; line-height: 1;}
     .icon.arrow{position: relative; width: 50px; padding: 5px 0; margin: 5px 5px; color: #FFF; font-size: 40px; text-align: center; border-radius: 50%; cursor: pointer; background: #900fa2;  }
     .responsive{display: none;}
+    .info{line-height: 1.3;}
 
 
     @media screen and (max-width:768px), screen and (max-device-width:768px){}
@@ -45,11 +46,11 @@ if(array_key_exists('search',$_POST)){
     header .info{padding: 10px;  color: #FFF; font-size: 20px;  background: #23d3c4; overflow: hidden;}
     header .info .icon{width: 40px; margin: 0 10px; padding:10px; color: #23d3c4; text-align: center; border-radius: 50%; background: #FFF;}
     header .info .icon.help{float:right; cursor: pointer;}
-    header .info .session{padding: 10px; float:right; border-left: 2px solid #FFF;}
+    header .info .session{padding: 10px; float:right; border-left: 2px solid #FFF; cursor: pointer;}
 
-    header .redes{position:absolute; width:70px;  right: 0;  top:calc(50% - 150px);}
+    header .redes{position:absolute; width:70px;  right: 0;  top:calc(50% - 115px);}
     header .redes .icon{width: 40px; margin:5px 0; padding:10px; color: #FFF; font-size: 20px; text-align: center; border-radius: 50%; cursor: pointer; background: #23d3c4;}
-    header .redes .icon.bolsa{ height: 40px; border-radius: 0; display: block; background:url(https://www.kmimos.com.mx/wp-content/uploads/2017/07/bolsita-y-logotipo-03.png) center/contain no-repeat;}
+    header .redes .icon.bolsa{ height: 40px; border-radius: 0; display: none !important; background:url(https://www.kmimos.com.mx/wp-content/uploads/2017/07/bolsita-y-logotipo-03.png) center/contain no-repeat;}
 
     header .search{position: relative; color: #aaa; font-size: 15px; text-align: right;}
     header .search input{position: relative; padding:5px 10px; border:1px solid #aaa; border-radius: 20px;}
@@ -82,10 +83,8 @@ if(array_key_exists('search',$_POST)){
         header .menu{border-width: 1px 0 1px 0;}
         header .menu .items{display: none;}
         header .menu .responsive{display: block;}
-    }
-    @media screen and (max-width:480px), screen and (max-device-width:480px){
 
-        /* RESPONSIVE SUGERIDO */
+        /* RESPONSIVE SUGERIDO 480*/
         header .info { display: none;}
         header .info.responsive{position: fixed; width: 100%; top: 0; display: block; overflow: visible; z-index: 1;}
         header .info.responsive .group.contain{width: 100%; font-size:7px; align-items: center; justify-content: flex-end; overflow: hidden;}
@@ -110,14 +109,13 @@ if(array_key_exists('search',$_POST)){
         header .info .icon.search{cursor: pointer; display: inline-block;}
         header .info span{margin: 0 5px; text-align: left; display: flex; align-items: center;}
 
-        header .header{margin-top: 50px;}
-        header .logo{width: calc(100% - 100px);}
-        header .redes{position: absolute; width: 50px; top: calc(50% - 90px);}
-        header .redes .icon{width:32px; font-size:12px;}
-        header .redes .icon.bolsa{display: block;}
+        header .header{margin-top: 70px;}
+        header .logo{width: calc(100% - 100px); height: 100px;}
         header .search{display: none;}
         header .menu{display: none;}
     }
+    @media screen and (max-width:480px), screen and (max-device-width:480px){}
+
 </style>
     <body>
         <header>
@@ -147,11 +145,11 @@ if(array_key_exists('search',$_POST)){
 
                 <div class="menu">
                     <div class="items">
-                        <div class="item"><a href="<a href="<?php echo site_url(); ?>">KMIMOS</a></div>
-                        <div class="item"><a href="<a href="<?php echo site_url(); ?>beneficios-para-tu-perro/">BENEFICOS</a></div>
+                        <div class="item"><a href=<?php echo site_url(); ?>">KMIMOS</a></div>
+                        <div class="item"><a href="<?php echo site_url(); ?>/beneficios-para-tu-perro/">BENEFICOS</a></div>
                         <div class="item"><a href="">FAQ</a></div>
-                        <div class="item"><a href="">SERVICIOS</a></div>
-                        <div class="item caregiver"><a href="<?php echo site_url(); ?>quiero-ser-cuidador-certificado-de-perros/">QUIERO SER CUIDADOR</a></div>
+                        <div class="item"><a href="https://www.booking.com/index.html?aid=1147066&lang=es">SERVICIOS</a></div>
+                        <div class="item caregiver"><a href="<?php echo site_url(); ?>/quiero-ser-cuidador-certificado-de-perros/">QUIERO SER CUIDADOR</a></div>
                     </div>
                 </div>
 
@@ -170,9 +168,9 @@ if(array_key_exists('search',$_POST)){
             <div class="header contain">
                 <div class="logo"></div>
                 <div class="redes">
-                    <i class="icon phone fa fa-facebook"></i>
-                    <i class="icon phone fa fa-twitter"></i>
-                    <i class="icon phone fa fa-instagram"></i>
+                    <a href="https://www.facebook.com/Kmimosmx/"><i class="icon phone fa fa-facebook"></i></a>
+                    <a href="https://twitter.com/kmimosmx/"><i class="icon phone fa fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/kmimosmx/"><i class="icon phone fa fa-instagram"></i></a>
                     <i class="icon bolsa"></i>
                 </div>
 
@@ -185,11 +183,11 @@ if(array_key_exists('search',$_POST)){
 
                 <div class="menu">
                     <div class="items">
-                        <div class="item"><a href="<a href="<?php echo site_url(); ?>">KMIMOS</a></div>
-                        <div class="item"><a href="<a href="<?php echo site_url(); ?>beneficios-para-tu-perro/">BENEFICOS</a></div>
+                        <div class="item"><a href="<?php echo site_url(); ?>">KMIMOS</a></div>
+                        <div class="item"><a href="<?php echo site_url(); ?>/beneficios-para-tu-perro/">BENEFICOS</a></div>
                         <div class="item"><a href="">FAQ</a></div>
-                        <div class="item"><a href="">SERVICIOS</a></div>
-                        <div class="item caregiver"><a href="<?php echo site_url(); ?>quiero-ser-cuidador-certificado-de-perros/">QUIERO SER CUIDADOR</a></div>
+                        <div class="item"><a href="https://www.booking.com/index.html?aid=1147066&lang=es">SERVICIOS</a></div>
+                        <div class="item caregiver"><a href="<?php echo site_url(); ?>/quiero-ser-cuidador-certificado-de-perros/">QUIERO SER CUIDADOR</a></div>
                     </div>
                     <div class="responsive">
                         <i class="bar fa fa-bars" aria-hidden="true"></i>
@@ -247,4 +245,5 @@ if(array_key_exists('search',$_POST)){
                     phone.slideDown().addClass('show');
                 }
             }
+
         </script>

@@ -106,8 +106,13 @@
 		}
 
 		if( max($temp) > 0 ){
-    		$adicionales[$key] = $temp;
+            $adicionales[$key] = $temp;
 			$bases[$key] = $base_temp;
+
+            //ADDITIONAL STATUS
+            if(isset($_POST['status_'.$key])){
+                $adicionales['status_'.$key] = $_POST['status_'.$key];
+            }
 		}
 
     }

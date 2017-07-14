@@ -44,6 +44,19 @@
 			$descuento = $metas_orden[ "_cart_discount" ];
 		}
 
+		$descuento = 0;
+        $order_item_id = $conn->query("SELECT order_item_id FROM wp_woocommerce_order_items WHERE order_id = '{$id_orden}' AND order_item_type = 'coupon' AND order_item_name LIKE '%saldo-%'"); 
+        if( $order_item_id->num_rows > 0 ){
+	        $order_item_id = $order_item_id->fetch_assoc();
+	        $order_item_id = $order_item_id['order_item_id'];
+
+            $descuento = $conn->query("SELECT meta_value FROM wp_woocommerce_order_itemmeta WHERE order_item_id = '{$order_item_id}' AND meta_key = 'discount_amount' ");
+            if( $descuento->num_rows > 0 ){
+		        $descuento = $descuento->fetch_assoc();
+		        $descuento = $descuento['meta_value']; 
+		    }
+        }
+
 		$r3 = $conn->query("SELECT * FROM wp_woocommerce_order_itemmeta WHERE order_item_id = '{$metas_reserva['_booking_order_item_id']}'"); 
 
 		$items = array();
