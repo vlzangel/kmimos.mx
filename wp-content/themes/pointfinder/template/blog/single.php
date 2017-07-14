@@ -8,11 +8,29 @@ include_once(__DIR__.'/header.php');
     #single .image{position:relative; width:100%; margin:50px 0;}
     #single .single{position:relative; margin:-150px auto 50px auto; padding:30px 50px; border-radius:20px; box-shadow:0 0 10px #555; background:#FFF;}
     #single .single .title{position:relative; margin:0; padding:40px 0; color:#fdc421; font-size:25px; font-weight:bold; text-align:left;}
-    #single .single .content{position:relative; color:#555; font-size:15px; line-height: 1.3; display: flex;}
+    #single .single .content{position:relative; color:#555; font-size:15px; text-align: justify; line-height: 1.3; display: flex;}
     #single .single .content .column{width:100%; margin:0 10px;}
 
-    @media screen and (max-width:768px), screen and (max-device-width:768px){}
-    @media screen and (max-width:480px), screen and (max-device-width:480px){}
+    /*new*/
+    #single .single{padding: 30px 0;}
+    #single .single .title{padding: 40px 50px;}
+    #single .single .content {display: block;}
+    #single .single .content .column{margin:0px; padding: 20px 50px;}
+
+    @media screen and (max-width:768px), screen and (max-device-width:768px){
+        #single .single .content{display: flex; flex-flow: wrap;}
+        #single .single .content .column{width:calc(50% - 20px); padding: 10px 20px;}
+
+        /*new*/
+        #single .single .content .column{width: calc(100% - 20px);}
+    }
+
+    @media screen and (max-width:480px), screen and (max-device-width:480px){
+        #single .image{margin: 0;}
+        #single .single{margin-top: 0; box-shadow: none;}
+        #single .single .title{padding:10px 20px; font-size: 20px; line-height: 1.3;}
+        #single .single .content .column{width:100%; margin: 0; padding: 10px 20px;}
+    }
 
 
     /*FEATURED*/
@@ -39,11 +57,6 @@ include_once(__DIR__.'/header.php');
     #featured .post .detail .title{color: #888; font-size: 15px;}
     #featured .post .detail .content{margin:10px 0; color: #888; font-size: 12px;}
 
-    /*new*/
-    #single .single{padding: 30px 0;}
-    #single .single .title{padding: 40px 50px;}
-    #single .single .content {display: block;}
-    #single .single .content .column{margin:0px; padding: 20px 50px;}
 
     #featured.central{position:relative; width:100%; margin:0; padding: 20px 0; top:0; right:0; left:0; border-radius:20px; background:#FFF; display:block;}
     #featured.central .info{display: block;}
@@ -54,25 +67,18 @@ include_once(__DIR__.'/header.php');
     #featured.central .post .image{margin: 0; padding: 20px 10px; background: #900fa2;}
     #featured.central .post .detail{padding: 20px; /*border: none;*/ /*border-radius:0;*/}
     #featured.central .post .detail .title{padding: 10px 0; font-size: 25px;}
-    #featured.central .post .detail .content{color: #888; font-size: 15px;}
+    #featured.central .post .detail .content{color: #888; font-size: 15px; text-align:left;}
     #featured.central .show{display: none !important;}
     #featured.central .icon.arrow{/*color: #900fa2;*/ /*background: #FFF;*/}
 
 
     @media screen and (max-width:768px), screen and (max-device-width:768px){
-        #single .single .content{display: flex; flex-flow: wrap;}
-        #single .single .content .column{width:calc(50% - 20px);}
-
         /*new*/
-        #single .single .content .column{width: calc(100% - 20px);}
         #featured.central .post:nth-child(2){display: none;}
         #featured.central .post{margin: 10px;}
         #featured.central .post .detail{padding: 20px; /*border: none;*/ /*border-radius:0;*/}
     }
     @media screen and (max-width:480px), screen and (max-device-width:480px){
-        #single .single{margin-top: -75px;}
-        #single .single .title{padding:10px 20px; font-size: 20px; line-height: 1.3;}
-        #single .single .content .column{width:100%; margin: 0; padding: 10px 20px;}
         #featured .post{display: block;}
         #featured .post .image{width: auto; border-radius: 20px 20px 0 0;}
         #featured .post .image .img{width: 50px; padding-top: 50px;}

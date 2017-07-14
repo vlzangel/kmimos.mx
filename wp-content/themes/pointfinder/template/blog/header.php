@@ -15,8 +15,8 @@ if(array_key_exists('search',$_POST)){
     <head>
         <meta charset="<?php bloginfo('charset'); ?>">
         <?php
-        echo '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">';
-        wp_head();
+            echo '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">';
+            wp_head();
         ?>
     </head>
 
@@ -24,7 +24,7 @@ if(array_key_exists('search',$_POST)){
     a.absolute{position: absolute; width: 100%; height: 100%;  top: 0; left: 0;}
     .contain{position: relative; width: 95%; max-width: 1000px; margin: 0 auto;}
     .logo{background:url(https://www.kmimos.com.mx/wp-content/uploads/2017/07/bolsita-y-logotipo-02.png) center/contain no-repeat;}
-    .blog_title{color: #ff8700; font-size: 35px; font-weight: bold;}
+    .blog_title{color: #ff8700; font-size: 35px; font-weight: bold; line-height: 1;}
     .icon.arrow{position: relative; width: 50px; padding: 5px 0; margin: 5px 5px; color: #FFF; font-size: 40px; text-align: center; border-radius: 50%; cursor: pointer; background: #900fa2;  }
     .responsive{display: none;}
     .info{line-height: 1.3;}
@@ -126,7 +126,7 @@ if(array_key_exists('search',$_POST)){
                     <i class="icon phone fa fa-phone"></i>
                     +52 (55) 1791.4931 +52 (55) 6631.9264
                     </span>
-                    <div class="session"><a id="pf-login-trigger-button">Inicia Sesion</a></div>
+                    <div id="pf-login-trigger-button" class="session">Inicia Sesion</div>
                     <i class="icon help fa fa-question"></i>
                 </div>
             </div>
@@ -145,11 +145,11 @@ if(array_key_exists('search',$_POST)){
 
                 <div class="menu">
                     <div class="items">
-                        <div class="item"><a href="<a href="<?php echo site_url(); ?>">KMIMOS</a></div>
-                        <div class="item"><a href="<a href="<?php echo site_url(); ?>beneficios-para-tu-perro/">BENEFICOS</a></div>
+                        <div class="item"><a href=<?php echo site_url(); ?>">KMIMOS</a></div>
+                        <div class="item"><a href="<?php echo site_url(); ?>/beneficios-para-tu-perro/">BENEFICOS</a></div>
                         <div class="item"><a href="">FAQ</a></div>
-                        <div class="item"><a href="">SERVICIOS</a></div>
-                        <div class="item caregiver"><a href="<?php echo site_url(); ?>quiero-ser-cuidador-certificado-de-perros/">QUIERO SER CUIDADOR</a></div>
+                        <div class="item"><a href="https://www.booking.com/index.html?aid=1147066&lang=es">SERVICIOS</a></div>
+                        <div class="item caregiver"><a href="<?php echo site_url(); ?>/quiero-ser-cuidador-certificado-de-perros/">QUIERO SER CUIDADOR</a></div>
                     </div>
                 </div>
 
@@ -183,11 +183,11 @@ if(array_key_exists('search',$_POST)){
 
                 <div class="menu">
                     <div class="items">
-                        <div class="item"><a href="<a href="<?php echo site_url(); ?>">KMIMOS</a></div>
-                        <div class="item"><a href="<a href="<?php echo site_url(); ?>beneficios-para-tu-perro/">BENEFICOS</a></div>
+                        <div class="item"><a href="<?php echo site_url(); ?>">KMIMOS</a></div>
+                        <div class="item"><a href="<?php echo site_url(); ?>/beneficios-para-tu-perro/">BENEFICOS</a></div>
                         <div class="item"><a href="">FAQ</a></div>
-                        <div class="item"><a href="">SERVICIOS</a></div>
-                        <div class="item caregiver"><a href="<?php echo site_url(); ?>quiero-ser-cuidador-certificado-de-perros/">QUIERO SER CUIDADOR</a></div>
+                        <div class="item"><a href="https://www.booking.com/index.html?aid=1147066&lang=es">SERVICIOS</a></div>
+                        <div class="item caregiver"><a href="<?php echo site_url(); ?>/quiero-ser-cuidador-certificado-de-perros/">QUIERO SER CUIDADOR</a></div>
                     </div>
                     <div class="responsive">
                         <i class="bar fa fa-bars" aria-hidden="true"></i>
@@ -246,11 +246,4 @@ if(array_key_exists('search',$_POST)){
                 }
             }
 
-            /*//MENU
-            jQuery('#pf-login-trigger-button').click(function(){
-                $.pfOpenLogin('open','login');
-            });
-            jQuery(document).on('click','#pf-login-trigger-button', function(){
-                //$.pfOpenLogin('open','login');
-            });*/
         </script>
