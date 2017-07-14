@@ -99,7 +99,7 @@
 			$productos = $wpdb->get_results($sql);
 			foreach ($productos as $producto) {
 				$servicio = explode("-", $producto->post_name);
-				$status_servicios[ $servicio[0] ] = $producto->post_status;
+				$status_servicios[$servicio[0]] = $producto->post_status;
 
 				if(isset($adicionales[$servicio[0]]) && $producto->post_status=='publish'){
 					//var_dump($servicio[0]);
