@@ -101,9 +101,10 @@ $subscribe = getListsuscribe($landing, $desde, $hasta);
 						<th class="text-center"><?php echo $row['fecha_registro']; ?></th>
 						<th class="text-center"><?php echo $row['tipo']; ?></th>
 						<th class="text-center"><?php echo $row['estatus']; ?></th>
-												<th><?php echo $arr_track['referidos_facebook']; ?></th>
-						<th><?php echo $arr_track['referidos_twitter']; ?></th>
-						<th><?php echo $arr_track['referidos_email']; ?></th>
+						
+						<th><?php echo (!empty($arr_track['referidos_facebook'])) ? $arr_track['referidos_facebook'] : 0 ; ?></th>
+						<th><?php echo (!empty($arr_track['referidos_twitter'])) ? $arr_track['referidos_twitter'] : 0 ; ?></th>
+						<th><?php echo (!empty($arr_track['referidos_email'])) ? $arr_track['referidos_email'] : 0 ; ?></th>
 
 
 				    </tr>
