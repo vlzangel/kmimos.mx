@@ -46,11 +46,11 @@
 		}
 
 		// Modo Producción
-		// $openpay = Openpay::getInstance('mbagfbv0xahlop5kxrui', 'sk_b485a174f8d34df3b52e05c7a9d8cb22');
-		// Openpay::setProductionMode(true);
+		$openpay = Openpay::getInstance('mbagfbv0xahlop5kxrui', 'sk_b485a174f8d34df3b52e05c7a9d8cb22');
+		Openpay::setProductionMode(true);
 
 		 // Modo Pruebas
-		$openpay = Openpay::getInstance('mbdcldmwlolrgxkd55an', 'sk_532855907c61452898d492aa521c8c9f');
+		// $openpay = Openpay::getInstance('mej4n9f1fsisxcpiyfsz', 'sk_684a7f8598784911a42ce52fb9df936f');
 
 		$findDataRequest = array(
 		    'creation[gte]' => $limite,

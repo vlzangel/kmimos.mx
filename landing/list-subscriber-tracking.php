@@ -13,12 +13,12 @@
 		$cnn = new mysqli($host, $user, $pass, $db);
 		if($cnn){
 
-			$rows = "SELECT * FROM list_subscriber_tracking WHERE `option` = '".$_GET['option']."' and user_email = '".$_GET['email']."'";
+			$rows = "SELECT * FROM list_subscriber_tracking WHERE option = '".$_GET['option']."' and user_email = '".$_GET['email']."'";
 			$r = $cnn->query( $rows );
 			if( $r->num_rows == 0){
 				# Insertar registro
 				$sql = "insert into list_subscriber_tracking
-							( user_email, `option`, value) 
+							( user_email, option, value) 
 						values 
 							( '".$_GET['email']."','".$_GET['option']."','1' )";
 			}else{
@@ -27,7 +27,7 @@
 							value = value + 1
 						where 
 							user_email = '".$_GET['email']."' 
-							and `option` = '".$_GET['option']."'" 
+							and option = '".$_GET['option']."'" 
 				;
 			}
 			if( $cnn->query( $sql ) ){	
