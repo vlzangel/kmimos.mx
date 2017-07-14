@@ -564,7 +564,7 @@
 						  		.css('padding', '0px')
 						  		.css('padding-top', '10px');
 			      			jQuery("#vlz_titulo_registro")
-			      				.html("¡Registro completado!");
+			      				.html("!GRACIAS¡");
 			      			jQuery("#vlz_titulo_registro")
 			      				.css('font-size', '36px');
 			      			jQuery("#vlz_titulo_registro")

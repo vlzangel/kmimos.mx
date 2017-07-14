@@ -61,7 +61,7 @@
 	}
 
 	/* Galeria */
-
+/*
 	$id_cuidador = ($cuidador->id)-5000;
 	$path_galeria = "wp-content/uploads/cuidadores/galerias/".$id_cuidador."/";
 
@@ -113,6 +113,9 @@
 	      	}
   		} 
 	}
+*/
+
+
 
 	include("vlz/vlz_style_perfil.php");
 
@@ -183,7 +186,7 @@
 			$HTML .= '<div class="vlz_separador"></div>
 			<h3 class="vlz_titulo">Mi Galería</h3>
 			<div class="vlz_seccion vlz_descripcion">
-				'.$galeria.'
+				$galeria;
 			</div>';
 		}
 
@@ -317,22 +320,19 @@
 				</div>
 			';
 		}
-
-		echo comprimir_styles($HTML);
-
-			
+			/*
 			$comments = count( get_comments('post_id='.$post->ID) );
-			if( $comments > 0 ){ ?>
+			//if( $comments > 0 ){ ?>
 				<div class="vlz_separador"></div>
 				<h3 class="vlz_titulo">Valoraciones</h3>
 				<div class="vlz_seccion">
 					<?php  comments_template(); ?>
 				</div> <?php
-			}
-			
-		echo '</div>';
+			//}
+			*/
+	$HTML .= '</div>';
 
-	
+	echo comprimir_styles($HTML);
 
 	get_footer(); 
 ?>

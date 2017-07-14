@@ -1,4 +1,5 @@
 
+
 $('#frm').on('submit', function(e){
   e.preventDefault(e);
   _registerLanding();
@@ -23,7 +24,7 @@ function _registerLanding(){
 
   $('#loading').removeClass('hidden');
   $('#msg').html('Registrando Usuario.');
-  $.ajax( url+"/landing/registro-usuario.php?email="+$('#email').val()+"&name="+$('#name').val()+"&referencia="+$('#referencia').val() )
+  $.ajax( "/landing/registro-usuario.php?email="+$('#email').val()+"&name="+$('#name').val()+"&referencia="+$('#referencia').val() )
   .done(function() {
     $('#msg').html('Generando url.');
   })
@@ -32,17 +33,16 @@ function _registerLanding(){
     $('#loading').addClass('hidden');
   });  
 
-
-
   $('#loading').removeClass('hidden');
   $('#msg').html('Enviando...');
-  $.ajax( url+"/landing/list-subscriber.php?source=kmimos-mx-clientes-referidos&email="+$('#email').val() )
+  $.ajax( "/landing/list-subscriber.php?source=kmimos-mx-clientes-referidos&email="+$('#email').val() )
   .done(function() {
     $('#loading').addClass('hidden');
     $('#msg').html('Guardando referencia.');
 
-    //window.open($('#temp').attr('action')+$('#email').val(), '_system');
-    window.location.href = $('#temp').attr('action')+$('#email').val();
+    window.open($('#temp').attr('action')+$('#email').val(), '_system');
+
+    //window.location.href = $('#temp').attr('action')+$('#email').val();
   })
   .fail(function() {
     //$('#msg').html('Referencia: No pudimos completar su solicitud, intente nuevamente');
