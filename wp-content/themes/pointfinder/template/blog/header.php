@@ -46,7 +46,7 @@ if(array_key_exists('search',$_POST)){
     header .info{padding: 10px;  color: #FFF; font-size: 20px;  background: #23d3c4; overflow: hidden;}
     header .info .icon{width: 40px; margin: 0 10px; padding:10px; color: #23d3c4; text-align: center; border-radius: 50%; background: #FFF;}
     header .info .icon.help{float:right; cursor: pointer;}
-    header .info .session{padding: 10px; float:right; border-left: 2px solid #FFF;}
+    header .info .session{padding: 10px; float:right; border-left: 2px solid #FFF; cursor: pointer;}
 
     header .redes{position:absolute; width:70px;  right: 0;  top:calc(50% - 115px);}
     header .redes .icon{width: 40px; margin:5px 0; padding:10px; color: #FFF; font-size: 20px; text-align: center; border-radius: 50%; cursor: pointer; background: #23d3c4;}
@@ -126,7 +126,7 @@ if(array_key_exists('search',$_POST)){
                     <i class="icon phone fa fa-phone"></i>
                     +52 (55) 1791.4931 +52 (55) 6631.9264
                     </span>
-                    <div id="pf-login-trigger-button" class="session">Inicia Sesion</div>
+                    <div class="session"><a id="pf-login-trigger-button">Inicia Sesion</a></div>
                     <i class="icon help fa fa-question"></i>
                 </div>
             </div>
@@ -168,9 +168,9 @@ if(array_key_exists('search',$_POST)){
             <div class="header contain">
                 <div class="logo"></div>
                 <div class="redes">
-                    <i class="icon phone fa fa-facebook"></i>
-                    <i class="icon phone fa fa-twitter"></i>
-                    <i class="icon phone fa fa-instagram"></i>
+                    <a href="https://www.facebook.com/Kmimosmx/"><i class="icon phone fa fa-facebook"></i></a>
+                    <a href="https://twitter.com/kmimosmx/"><i class="icon phone fa fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/kmimosmx/"><i class="icon phone fa fa-instagram"></i></a>
                     <i class="icon bolsa"></i>
                 </div>
 
@@ -245,4 +245,12 @@ if(array_key_exists('search',$_POST)){
                     phone.slideDown().addClass('show');
                 }
             }
+
+            /*//MENU
+            jQuery('#pf-login-trigger-button').click(function(){
+                $.pfOpenLogin('open','login');
+            });
+            jQuery(document).on('click','#pf-login-trigger-button', function(){
+                //$.pfOpenLogin('open','login');
+            });*/
         </script>

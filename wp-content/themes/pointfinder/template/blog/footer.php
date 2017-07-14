@@ -1,6 +1,7 @@
 <style>
     /*FOOTER*/
     footer{}
+    footer.wpf-footer{display:none;}
     footer .contact{ padding: 20px 0; background: #ededed;}
     footer .contact .group{display: flex; flex-flow: wrap; align-items: center;}
     footer .contact .section{width: 28%;}
@@ -42,9 +43,9 @@
             <div class="contact">
                 <div class="group contain">
                     <div class="section redes">
-                        <i class="icon phone fa fa-facebook"></i>
-                        <i class="icon phone fa fa-twitter"></i>
-                        <i class="icon phone fa fa-instagram"></i>
+                        <a href="https://www.facebook.com/Kmimosmx/"><i class="icon phone fa fa-facebook"></i></a>
+                        <a href="https://twitter.com/kmimosmx/"><i class="icon phone fa fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/kmimosmx/"><i class="icon phone fa fa-instagram"></i></a>
                     </div>
                     <div class="section menu">
                         <div class="item title">Acerca De Nosotros</div>
@@ -103,8 +104,8 @@
             </div>
         </footer>
         <?php
-        wp_footer();
-        //get_footer();
+        //wp_footer();
+        get_footer();
         ?>
     </body>
 </html>
