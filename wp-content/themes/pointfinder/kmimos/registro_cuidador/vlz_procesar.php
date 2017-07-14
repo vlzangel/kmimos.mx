@@ -107,6 +107,7 @@
 	        "limpieza_dental",
 	        "bano",
 	        "corte",
+            "paseos",
 	        "guarderia",
 	        "adiestramiento_basico",
 	        "adiestramiento_intermedio",	        
@@ -127,7 +128,7 @@
 		        $temp = NULL;
 
                 //ADDITIONAL STATUS
-                $adicionales['status_'.$slugs_adicionales[$value]] = 1;
+                $adicionales['status_'.$slugs_adicionales[$value]] = "1";
         	}
         }
 
