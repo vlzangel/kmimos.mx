@@ -345,7 +345,7 @@
 				</div> <?php
 			//}
 			*/
-	$HTML .= '</div></div>';
+	$HTML .= '</div></div></div>';
 
 	echo comprimir_styles($HTML);
 

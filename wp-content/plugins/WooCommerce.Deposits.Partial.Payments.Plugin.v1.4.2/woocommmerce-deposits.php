@@ -14,25 +14,6 @@
         License URI: http://www.gnu.org/licenses/gpl-3.0.html
     */
 
-    if(!function_exists('page_wc_valida')){
-        function page_wc_valida(){
-            $page = explode("/", $_SERVER["REQUEST_URI"]);
-
-            if( count($page) > 0 ){
-                $validas = array(
-                    "producto",
-                    "carro",
-                    "finalizar-comprar",
-                    "wp-admin",
-                );
-
-                return ( in_array($page[1], $validas));
-            }else{
-                return false;
-            }
-        }
-    }
-
     if( page_wc_valida() ){
         if (!defined('ABSPATH')) {
           exit;
