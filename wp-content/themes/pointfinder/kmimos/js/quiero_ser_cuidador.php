@@ -541,54 +541,57 @@
 			     	
 					jQuery.post( a, jQuery("#vlz_form_nuevo_cuidador").serialize(), function( data ) {
 			      		data = eval(data);
-			      		if( data.error == "SI" ){
-			      			jQuery('html, body').animate({ scrollTop: jQuery("#email").offset().top-75 }, 2000);
-			      			alert(data.msg);
-			      			jQuery("#terminos_y_condiciones").css("display", "none");
-			      			jQuery("#vlz_contenedor_botones").css("display", "block");
-				      		jQuery(".vlz_modal_contenido").css("display", "block");
-				      		jQuery("#terminos").css("display", "block");
-				      		jQuery("#vlz_cargando").css("height", "auto");
-				      		jQuery("#vlz_cargando").css("display", "none");
-				      		jQuery("#vlz_cargando").css("text-align", "justify");
-				      		jQuery("#vlz_titulo_registro").html('Términos y Condiciones');
-			  				jQuery("#boton_registrar_modal").css("display", "inline-block");
-			      		}else{
-							//	jQuery("#vlz_titulo_registro").html("Registro Completado!");
-							//	jQuery("#vlz_cargando").html(data.msg);
-							//	jQuery("#vlz_registro_cuidador_cerrar").css("display", "inline-block");
-							console.log('registro compeltado2');
-						  	jQuery("#vlz_cargando")
-						  		.html(data.msg);
-						  	jQuery("#vlz_cargando")
-						  		.css('padding', '0px')
-						  		.css('padding-top', '10px');
-			      			jQuery("#vlz_titulo_registro")
-			      				.html("¡Registro completado!");
-			      			jQuery("#vlz_titulo_registro")
-			      				.css('font-size', '36px');
-			      			jQuery("#vlz_titulo_registro")
-			      				.css('background', '#00d8b5')
-			      				.css('color','#fff')
- 			      				.css('font-weight', 'bold');
- 			      			jQuery(".vlz_modal_ventana")
- 			      				.css('width', 'auto');
 
-							jQuery("#vlz_registro_cuidador_cerrar").css("display", "inline-block");
-				      		<?php
-				      			if( substr($_SERVER["HTTP_REFERER"], -18) == "nuevos-aspirantes/" ){
-				      				$_SESSION['nuevosAspirantes'] = "SI";
-				      			}
+			      		console.log( data );
 
-				      			if( isset($_SESSION['nuevosAspirantes']) ){
-				      				echo "_gaq.push(['_trackEvent','registro_cuidador','click','aspirantes','1']);";
-				      			}
-				      		?>
+			    //   		if( data.error == "SI" ){
+			    //   			jQuery('html, body').animate({ scrollTop: jQuery("#email").offset().top-75 }, 2000);
+			    //   			alert(data.msg);
+			    //   			jQuery("#terminos_y_condiciones").css("display", "none");
+			    //   			jQuery("#vlz_contenedor_botones").css("display", "block");
+				   //    		jQuery(".vlz_modal_contenido").css("display", "block");
+				   //    		jQuery("#terminos").css("display", "block");
+				   //    		jQuery("#vlz_cargando").css("height", "auto");
+				   //    		jQuery("#vlz_cargando").css("display", "none");
+				   //    		jQuery("#vlz_cargando").css("text-align", "justify");
+				   //    		jQuery("#vlz_titulo_registro").html('Términos y Condiciones');
+			  		// 		jQuery("#boton_registrar_modal").css("display", "inline-block");
+			    //   		}else{
+							// //	jQuery("#vlz_titulo_registro").html("Registro Completado!");
+							// //	jQuery("#vlz_cargando").html(data.msg);
+							// //	jQuery("#vlz_registro_cuidador_cerrar").css("display", "inline-block");
+							// console.log('registro compeltado2');
+						 //  	jQuery("#vlz_cargando")
+						 //  		.html(data.msg);
+						 //  	jQuery("#vlz_cargando")
+						 //  		.css('padding', '0px')
+						 //  		.css('padding-top', '10px');
+			    //   			jQuery("#vlz_titulo_registro")
+			    //   				.html("¡Registro completado!");
+			    //   			jQuery("#vlz_titulo_registro")
+			    //   				.css('font-size', '36px');
+			    //   			jQuery("#vlz_titulo_registro")
+			    //   				.css('background', '#00d8b5')
+			    //   				.css('color','#fff')
+ 			   //    				.css('font-weight', 'bold');
+ 			   //    			jQuery(".vlz_modal_ventana")
+ 			   //    				.css('width', 'auto');
 
-			  				jQuery.each(campos_form, function( id, tipo ) {
-			  					borrar_cookie(id);
-			  				});
-			      		}
+							// jQuery("#vlz_registro_cuidador_cerrar").css("display", "inline-block");
+				   //    		<?php
+				   //    			if( substr($_SERVER["HTTP_REFERER"], -18) == "nuevos-aspirantes/" ){
+				   //    				$_SESSION['nuevosAspirantes'] = "SI";
+				   //    			}
+
+				   //    			if( isset($_SESSION['nuevosAspirantes']) ){
+				   //    				echo "_gaq.push(['_trackEvent','registro_cuidador','click','aspirantes','1']);";
+				   //    			}
+				   //    		?>
+
+			  		// 		jQuery.each(campos_form, function( id, tipo ) {
+			  		// 			borrar_cookie(id);
+			  		// 		});
+			    //   		}
 			      	});
 
 					}else{

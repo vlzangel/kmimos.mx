@@ -213,6 +213,10 @@
         	);
         ";
 
+        echo json_encode( $servicio );
+
+        /*
+
         $existen = $conn->query( "SELECT * FROM wp_users WHERE  user_login = '{$username}' OR user_email = '{$email}'" );
         if( $existen->num_rows > 0 ){
             $msg = "Se encontraron los siguientes errores:\n\n";
@@ -560,14 +564,8 @@
                     $user_signon = wp_signon( $info, true );
                     wp_set_auth_cookie($user_signon->ID);
 
-                    # ****************************** */
-                    # Mensaje Web - Registro Cuidador
-                    # ****************************** */
                     include( 'mensaje_web_registro_cuidador.php' );
 
-                    # ****************************** */
-                    # Mensaje Email - Registro Cuidador
-                    # ****************************** */
                     include( 'mensaje_email_registro_cuidador.php' );
 
 
@@ -588,6 +586,7 @@
                 echo "(".json_encode( $error ).")";
             }
         }
+        */
         
 	}
 
