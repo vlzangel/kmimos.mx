@@ -253,7 +253,8 @@
  }
  .modal_title{
     line-height: 22px;
-    font-size: 16px;
+    font-size: 13px;
+    font-weight: 400;
  }
  .modal-body{
     margin: 0 auto;padding:0px;

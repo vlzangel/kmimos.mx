@@ -170,6 +170,10 @@
 			case 'servicios':
 				include("admin/frontend/servicios.php");
 			break;
+			case 'disponibilidad':
+				$btn_txt = "Editar Disponibilidad";
+				include("admin/frontend/disponibilidad.php");
+			break;
 			case 'galeria':
 				echo '
 					<script> 

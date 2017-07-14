@@ -24,6 +24,20 @@
 }
 .menu_perfil ul li a i:before{
 	margin-right: 5px;
+    font-style: normal;
+    font-weight: normal;
+    speak: none;
+    display: inline-block;
+    text-decoration: inherit;
+    width: 1em;
+    margin-right: .2em;
+    text-align: center;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1em;
+    margin-left: 0px;
+    font-size: 20px;
+}
 }
 .menu_perfil ul li a:hover{
 	background: #59c9a8;

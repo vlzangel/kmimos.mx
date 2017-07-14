@@ -27,6 +27,7 @@
 	wp_head(); 
 
 	// wp_enqueue_style( 'fontello', getTema()."/css/fontello.min.css", array(), "1.0.0" );
+	wp_enqueue_style( 'fontello', getTema()."/css/font-awesome.min", array(), "1.0.0" );
 	wp_enqueue_style( 'responsive', getTema()."/font/Roboto/Roboto.css", array(), "1.0.0" );
 	wp_enqueue_style( 'Open+Sans', getTema()."/font/OpenSans/OpenSans.css", array(), "1.0.0" );
 

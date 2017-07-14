@@ -148,6 +148,11 @@
                             "icono" => "453"
                         ),
                         array(
+                            "url"   => get_home_url()."/perfil-usuario/disponibilidad",
+                            "name"  => "Disponibilidad",
+                            "icono_2" => "fa fa-calendar"
+                        ),
+                        array(
                             "url"   => get_home_url()."/perfil-usuario/galeria",
                             "name"  => "Mis Fotos",
                             "icono" => "82"
@@ -234,10 +239,12 @@
 
                 if( $MENUS[ $user->roles[0] ] != "" ){
                     foreach ($MENUS[ $user->roles[0] ] as $key => $value) {
+                        if( isset($value["icono"]) ){ $icono = '<i class="pfadmicon-glyph-'.$value["icono"].'"></i> '; }
+                        if( isset($value["icono_2"]) ){ $icono = '<i class="'.$value["icono_2"].'"></i> '; }
                         $MENU["body"] .=
                             '<li>
                                 <a href="'.$value["url"].'">
-                                    <i class="pfadmicon-glyph-'.$value["icono"].'"></i> 
+                                    '.$icono.'
                                     '.$value["name"].'
                                 </a>
                             </li>';
@@ -323,7 +330,7 @@
                 <div>
                     <a href="'.$url.'">
                         <div class="vlz_postada_cuidador">
-                            <a class="vlz_img_cuidador easyload" data-preload="'.$home.'/wp-content/themes/pointfinder/images/cargando1111.gif" data-original="'.$img.'" href="'.$url.'" style="background-image: url('.$home.'/wp-content/themes/pointfinder/images/loading.gif); filter:blur(2px);"></a>
+                            <a class="vlz_img_cuidador easyload" data-preload="'.get_home_url().'/wp-content/themes/pointfinder/images/loading.gif" data-original="'.$img.'" href="'.$url.'" style="background-image: url(); filter:blur(2px);"></a>
                             <span class="vlz_img_cuidador_interno easyload" data-original="'.$img.'" data-href="'.$url.'" style="background-image: url();"></span>
                         </div>
                         <div class="nombre">
