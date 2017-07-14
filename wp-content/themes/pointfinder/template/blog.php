@@ -278,15 +278,20 @@ if($page<=0){
             for(var news=1; news<=news_count; news++){
                 var post=show+news+(news_navigate-news_count);//
 
-                if(post<0 && direction=='prev'){
+                if(post>0 && news_post.eq(post).hasClass('loadfirst')){
+                    action=false;
+                    post=-1;
+
+                }else if(post<0 && news_post.closest('.section.news').find('loadfirst').length>0){
+                    action=false;
+                    post=-1;
+
+                }else if(post<0 && direction=='prev'){
                     action=true;
 
                 }else if(post>0 && news_post.eq(post).hasClass('redirect')){
                     action=true;
 
-                }else if(post>0 && news_post.eq(post).hasClass('loadfirst')){
-                    action=false;
-                    post=-1;
                 }
 
                 if(post<0){
