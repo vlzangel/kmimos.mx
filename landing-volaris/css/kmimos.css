@@ -28,6 +28,9 @@ strong{
 	font-weight: 900;
 }
 
+#top-content{
+	position: fixed;
+}
 .container{
 	background: #fff;
 }
@@ -399,10 +402,7 @@ strong{
 /***************************************/
 #section-6{
 	background: #ccc;
-/*	background-image: url(../img/fondo-section1.png);
-	background-size: cover;
-	background-position: bottom;
-*/	color: #fff;
+	color: #fff;
 	font-weight: lighter;
 	padding: 20px 0px 20px 0px;
 }
