@@ -284,7 +284,7 @@ if($page<=0){
 
                 }else if(post<0 && news_post.closest('.section.news').find('loadfirst').length>0){
                     action=false;
-                    post=-1;
+                    post=0;
 
                 }else if(post<0 && direction=='prev'){
                     action=true;
