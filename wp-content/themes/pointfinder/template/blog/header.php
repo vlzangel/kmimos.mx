@@ -145,7 +145,7 @@ if(array_key_exists('search',$_POST)){
 
                 <div class="menu">
                     <div class="items">
-                        <div class="item"><a href=<?php echo site_url(); ?>">KMIMOS</a></div>
+                        <div class="item"><a href="<?php echo site_url(); ?>">KMIMOS</a></div>
                         <div class="item"><a href="<?php echo site_url(); ?>/beneficios-para-tu-perro/">BENEFICOS</a></div>
                         <div class="item"><a href="">FAQ</a></div>
                         <div class="item"><a href="https://www.booking.com/index.html?aid=1147066&lang=es">SERVICIOS</a></div>

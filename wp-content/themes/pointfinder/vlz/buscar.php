@@ -21,10 +21,18 @@
 			foreach ($servicios as $key => $value) {
 				if( $value != "hospedaje" ){
 					$condiciones .= " AND adicionales LIKE '%".$value."%'";
-					$condiciones .= ' AND adicionales LIKE \'%status_'.$value.'";s:1:"1%\'';
+
+					if(strpos($value,'adiestramiento')===false){
+						$condiciones .= ' AND adicionales LIKE \'%status_'.$value.'";s:1:"1%\'';
+
+					}else{
+						$condiciones .= ' AND adicionales REGEXP  \'status_'.$value.'_(basico|intermedio|avanzado)";s:1:"1\'';
+
+					}
 				}
 			}
 		}
+
 
 	    if( isset($tamanos) ){ foreach ($tamanos as $key => $value) { $condiciones .= " AND ( tamanos_aceptados LIKE '%\"".$value."\";i:1%' || tamanos_aceptados LIKE '%\"".$value."\";s:1:\"1\"%' ) "; } }
     /* Fin Filtros por servicios y tamaños */

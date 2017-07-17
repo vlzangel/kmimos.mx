@@ -471,7 +471,7 @@
                                     "hoy"           => $hoy,
                                     "titulo"        => $adicionales_principales[$key]." - ".$nom,
                                     "descripcion"   => descripciones($key),
-                                    "slug"          =>  $user_id."-".$key,
+                                    "slug"          => $key."-".$user_id,
                                     "cuidador"      => $id_post,
                                     "status"        => $status
                                 ));
