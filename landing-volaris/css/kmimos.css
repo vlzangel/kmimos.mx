@@ -4,7 +4,7 @@
 }
 
 body{
-	background: #49c9b0;
+	background: #00d9ae;
 	color: #3a3a3a;
 	font-family: 'Lato', sans-serif;
 	font-weight: 900!important;
@@ -521,7 +521,7 @@ footer aside{
 /*  Media                              */
 /***************************************/
 
-@media (max-width: 766px){ 
+@media (max-width: 768px){ 
 	#section-1{
 		float: none!important;
 		margin-top:20px;
@@ -586,7 +586,6 @@ footer aside{
 	.btn-kmimos-inverso{
 		font-size: 18px;
 	}
-
 
 	.logo-kmimos{
 		width: 40%;
@@ -655,15 +654,24 @@ footer aside{
 		height:100%;
 	}
 }
-@media (min-width: 767px) and (max-width: 991px){ 
+@media (min-width: 769px) and (max-width: 999px){ 
 	footer h1{
     	font-size: 20pt;
     	text-align: center;
 	}
-	#section-1 h1{
-		font-size: 18px;
+	#section-1{
+		float: none!important;
+		margin-top:20px;
+	    height: 69vh;
 	}
-
+	#section-1 h1{
+		font-size: 30pt;
+		text-align: center;
+	}
+	#section-1 h2{
+		font-size: 18pt;
+		text-align: center;
+	}
 	
 
 	.btn-kmimos{

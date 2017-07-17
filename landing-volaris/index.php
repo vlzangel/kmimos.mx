@@ -31,7 +31,7 @@
        	<div class="col-sm-12">
 
 			<section class="row" id="section-1">
-	       	 	<article id="top-content" class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+	       	 	<article id="top-content" class="col-xs-12 col-sm-6 col-sm-offset-6 col-md-6 col-lg-6">
 					<h1>¿Te vas de viaje?</h1>
 					<h2>Deja a tu mascota con un CUIDADOR CERTIFICADO. <strong>Libre de jaulas y encierros.</strong></h2>
 	       	 	</article>
