@@ -665,7 +665,7 @@ footer aside{
 		height:100%;
 	}
 }
-@media (min-width: 769px) and (max-width: 999px){ 
+@media (min-width: 769px) and (max-width: 991px){ 
 	#top-image img{
 		margin-top: 20vh;
 	}
@@ -718,9 +718,16 @@ footer aside{
 		width: 80%;
 	}
 	
-
 }
 @media (min-width: 1200px) { 
 
-
 }
+
+
+
+/*
+Phones (<768px)
+Small  (≥768px)	
+Medium (≥992px)	
+Large  (≥1200px)
+*/
