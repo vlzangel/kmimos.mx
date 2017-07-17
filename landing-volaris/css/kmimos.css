@@ -1,6 +1,6 @@
 @font-face {
 	font-family: 'PoetsenOne';
-	src: url('https://kmimos.com.mx/landing/landing-volaris/font/PoetsenOne-Regular.ttf')  format('truetype');
+	src: url('../font/PoetsenOne-Regular.ttf')  format('truetype');
 }
 
 body{
