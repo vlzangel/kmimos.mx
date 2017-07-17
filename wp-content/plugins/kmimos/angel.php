@@ -155,14 +155,9 @@
 
             // $headers_call_center = array(
             //     'BCC: operador01sincola@gmail.com',
-            //     'BCC: operador02sincola@gmail.com',
-            //     'BCC: operador03sincola@gmail.com',
             //     'BCC: operador04sincola@gmail.com',
             //     'BCC: Operador05sincola@gmail.com',
             //     'BCC: Operador06sincola@gmail.com',
-            //     'BCC: Operador07sincola@gmail.com',
-            //     'BCC: operador08sincola@gmail.com',
-            //     'BCC: operador10sincola@gmail.com',
             //     'BCC: robertomadridcisneros@gmail.com',
             //     'BCC: jordiballarin@gmail.com',
             //     'BCC: supervisor01sincola@gmail.com',
