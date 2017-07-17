@@ -33,7 +33,8 @@ strong{
 }
 
 #waypoint{
-	background: #00D9AE url(../img/bg-section1a.jpg);
+/*	background: #00D9AE;*/
+	background-image: url(../img/bg-section1a.jpg);
 	background-position: center;
 	background-attachment: fixed ;
     background-size: 100%;
