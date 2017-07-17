@@ -5,7 +5,7 @@
 
 	//CG only unique use!!!!!!!!!
 	//update_additional_service();
-	//update_additional_service_postname();
+	update_additional_service_postname();
 
 	session_start();
 	if( isset($_SESSION['busqueda'])){ $_POST = unserialize($_SESSION['busqueda']); }
