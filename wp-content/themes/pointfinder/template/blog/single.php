@@ -101,6 +101,10 @@ while(have_posts()){
     $img=str_replace('http://kmimos.dev.mx/','https://kmimos.com.mx/',$img);
     $thumbnail=str_replace('http://kmimos.dev.mx/','https://kmimos.com.mx/',$thumbnail);
 
+    $img=str_replace('http://kmimosmx.sytes.net/QA1/','https://kmimos.com.mx/',$img);
+    $thumbnail=str_replace('http://kmimosmx.sytes.net/QA1/','https://kmimos.com.mx/',$thumbnail);
+
+
     $POSTarray['title']=the_title('','',false);
     $POSTarray['image']=$img;
     $POSTarray['thumbnail']=$thumbnail;
@@ -111,7 +115,7 @@ while(have_posts()){
 ?>
 
 <section id="single">
-    <?php if($POSTarray['image'][0]!=''){?>
+    <?php if($POSTarray['image'][0]!=''){// && file_exists($POSTarray['image'][0]) ?>
         <img class="image" data-original="<?php echo $POSTarray['image'][0]; ?>" src="<?php echo $POSTarray['thumbnail'][0]; ?>" alt="<?php echo $POSTarray['title']; ?>">
     <?php }?>
     <div class="single contain">
