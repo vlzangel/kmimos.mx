@@ -530,9 +530,12 @@ footer aside{
 /*  Media                              */
 /***************************************/
 
-@media (max-width: 315px){
+@media (min-width: 232px) and (max-width: 315px){
+	#section-4-cuadro{
+		padding: 15px!important;
+	}
 	#section-4-cuadro h2{
-		font-size: 70px!important;
+		font-size: 60px!important;
 	}
 	#section-4-cuadro h3{
 		font-size: 20px!important;
@@ -548,11 +551,15 @@ footer aside{
 		font-size: 60pt!important; 
 	}
 	.btn-kmimos {
-	    font-size: 11pt!important;
+	    font-size: 9pt!important;
 	}
 	.btn-kmimos-inverso {
-	    font-size: 11pt!important;
+	    font-size: 9pt!important;
 	}
+	#section-5 input {
+	    width: 70%;
+	}
+
 }
 
 @media (max-width: 768px){ 
