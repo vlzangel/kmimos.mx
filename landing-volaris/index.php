@@ -132,22 +132,22 @@
 					<section id="section-5" class="col-sm-12 bg-volaris">
 						<dir class="bg-transparent container">
 							<article class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-								<label class="col-xs-2">
+								<label class="col-xs-3">
 									1.</label>
-								<p class="col-xs-10">
+								<p class="col-xs-9">
 									<strong>¡SUSCRIBETE</strong> 
 									y recibe el Newsletter con lo mejor de nuestro post! o</p>
 							</article>
 							<article class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-								<label class="col-xs-2">
+								<label class="col-xs-3">
 									2.</label>
-								<p class="col-xs-10">
+								<p class="col-xs-9">
 									Entra a www.kmimos.com.mx y reg&iacute;strate.</p>
 							</article>
 							<article id="section-5-paso3" class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-								<label class="col-xs-2">
+								<label class="col-xs-3">
 									3.</label>
-								<p class="col-xs-10">
+								<p class="col-xs-9">
 									Una vez que hayas hecho cualquiera de las dos, en el transcurso del d&iacute;a recibir&aacute;s tu cup&oacute;on de descuento en tu correo.</p>
 							</article>
 							<article id="section-5-form" class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-right">
