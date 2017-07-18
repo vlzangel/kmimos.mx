@@ -46,7 +46,7 @@ $('#newsletter').on('click', function(){
 
   if( $('#email').val() != ''){
 
-    $.ajax( "/landing/newsletter.php?source=landing_volaris&email="+$('#email').val() )
+    $.ajax( "/QA1/landing/newsletter.php?source=landing_volaris&email="+$('#email').val() )
     .done(function(data) {
 
 
