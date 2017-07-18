@@ -82,7 +82,7 @@
 				       	 			<img src="img/s2.png" width="150px">
 				       	 		</div>
 				       	 		<div class="col-xs-12 col-sm-12 col-md-8">
-				       	 			<p><br>Dormir&aacute; como un rey en salas, sofas y a veces ¡hasta en la cama del cuidador!</p>
+				       	 			<p><br>Dormir&aacute; como un rey en salas, sof&aacute; y a veces ¡hasta en la cama del cuidador!</p>
 				       	 		</div>
 				       	 	</article>
 				       	 	<article class="row">
@@ -142,7 +142,7 @@
 								<label class="col-xs-2">
 									2.</label>
 								<p class="col-xs-10">
-									Entra a www.kmimos.com.mx y reg&aacute;strate.</p>
+									Entra a www.kmimos.com.mx y reg&iacute;strate.</p>
 							</article>
 							<article id="section-5-paso3" class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 								<label class="col-xs-2">
@@ -168,7 +168,7 @@
 								</div>
 							</article>
 							<article class="col-xs-12 text-center">
-								<h1>¿Como es tu proceso para reservar?</h1>
+								<h1>¿Cómo es tu proceso para reservar?</h1>
 							</article>
 						</dir>
 					</section>
