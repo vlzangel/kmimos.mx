@@ -222,7 +222,6 @@
 									<a href="https://www.kmimos.com.mx/?<?php echo $query ?>" class="btn btn-kmimos-inverso">Buscar Cuidador Disponible</a>
 								</div>
 								<div class="clearfix"></div>
-
 							</section>
 						</div>
 					</div>
