@@ -561,7 +561,7 @@
                     $user_signon = wp_signon( $info, true );
                     wp_set_auth_cookie($user_signon->ID);
 
-                    include( 'mensaje_web_registro_cuidador.php' );
+                    include( 'mensaje_web_registro_cuidador_viejo.php' );
 
                     include( 'mensaje_email_registro_cuidador.php' );
 
