@@ -8,16 +8,36 @@ include_once(__DIR__.'/header.php');
     #single .image{position:relative; width:100%; margin:50px 0;}
     #single .single{position:relative; margin:-150px auto 50px auto; padding:30px 50px; border-radius:20px; box-shadow:0 0 10px #555; background:#FFF;}
     #single .single .title{position:relative; margin:0; padding:40px 0; color:#fdc421; font-size:25px; font-weight:bold; text-align:left;}
-    #single .single .content{position:relative; color:#555; font-size:15px; line-height: 1.3; display: flex;}
+    #single .single .content{position:relative; color:#555; font-size:15px; text-align: justify; line-height: 1.3; display: flex;}
     #single .single .content .column{width:100%; margin:0 10px;}
 
-    @media screen and (max-width:768px), screen and (max-device-width:768px){}
-    @media screen and (max-width:480px), screen and (max-device-width:480px){}
+    /*new*/
+    #single .single{padding: 30px 0;}
+    #single .single .title{padding: 40px 50px;}
+    #single .single .content {display: block;}
+    #single .single .content .column{margin:0px; padding: 20px 50px;}
+
+    @media screen and (max-width:768px), screen and (max-device-width:768px){
+        #single .single .content{display: flex; flex-flow: wrap;}
+        #single .single .content .column{width:calc(50% - 20px); padding: 10px 20px;}
+
+        /*new*/
+        #single .single .content .column{width: calc(100% - 20px);}
+    }
+
+    @media screen and (max-width:480px), screen and (max-device-width:480px){
+        #single .image{margin: 0;}
+        #single .single{margin-top: 0; box-shadow: none;}
+        #single .single .title{padding:10px 20px; font-size: 20px; line-height: 1.3;}
+        #single .single .content .column{width:100%; margin: 0; padding: 10px 20px;}
+    }
 
 
     /*FEATURED*/
+    #featured{display: none;}
     #featured{position:fixed; width: 500px; max-width: 100%; top: calc(50% - 220px); right: calc(100% - 40px); border-radius:0 20px 20px 0; background: #dadada; z-index:1; transition: all .3s;}
     #featured.show{/*right: auto;*/}
+    #featured .info.title{color:#FFF; font-weight:normal; text-align:center; background:#900fa2; display: none;}
     #featured .caregiver{position:relative; max-width: calc(100% - 80px); min-width: 150px; overflow: hidden;}
     #featured .caregiver .action{display: none;}
     #featured .caregiver .action,
@@ -37,16 +57,35 @@ include_once(__DIR__.'/header.php');
     #featured .post .detail .title{color: #888; font-size: 15px;}
     #featured .post .detail .content{margin:10px 0; color: #888; font-size: 12px;}
 
+
+    #featured.central{position:relative; width:100%; margin:0; padding: 20px 0; top:0; right:0; left:0; border-radius:20px; background:#FFF; display:block;}
+    #featured.central .info{display: block;}
+    #featured.central .caregiver{max-width: 100%;}
+    #featured.central .caregiver .action{display: block;}
+    #featured.central .group{width: calc(100% - 80px); margin: 0 auto; float: none; display: flex !important;}
+    #featured.central .post{margin: 30px 20px; border: 2px solid #FFF !important; border-radius: 20px; overflow: hidden;}
+    #featured.central .post .image{margin: 0; padding: 20px 10px; background: #900fa2;}
+    #featured.central .post .detail{padding: 20px; /*border: none;*/ /*border-radius:0;*/}
+    #featured.central .post .detail .title{padding: 10px 0; font-size: 25px;}
+    #featured.central .post .detail .content{color: #888; font-size: 15px; text-align:left;}
+    #featured.central .show{display: none !important;}
+    #featured.central .icon.arrow{/*color: #900fa2;*/ /*background: #FFF;*/}
+
+
     @media screen and (max-width:768px), screen and (max-device-width:768px){
-        #single .single .content{display: flex; flex-flow: wrap;}
-        #single .single .content .column{width:calc(50% - 20px);}
+        /*new*/
+        #featured.central .post:nth-child(2){display: none;}
+        #featured.central .post{margin: 10px;}
+        #featured.central .post .detail{padding: 20px; /*border: none;*/ /*border-radius:0;*/}
     }
     @media screen and (max-width:480px), screen and (max-device-width:480px){
-        #single .single .content .column{width:100%; margin: 0;}
         #featured .post{display: block;}
         #featured .post .image{width: auto; border-radius: 20px 20px 0 0;}
         #featured .post .image .img{width: 50px; padding-top: 50px;}
         #featured .post .detail{width: auto; border-left-width: 2px; border-top-width: 0; border-radius: 0 0 20px 20px; text-align: center;}
+
+        /*new*/
+        #featured.central .post .detail{padding: 10px;}
     }
 
 </style>
@@ -84,6 +123,10 @@ while(have_posts()){
 </section>
 
 <section id="featured" class="">
+    <div class="title info">
+        Da un vistazo a nuestros cuidadores certificados que cuidaran de nuestras mascotas.
+        <strong>Libre de jaulas y encierros</strong>
+    </div>
     <div class="show">
         <i class="icon arrow fa fa-caret-right" data-direction="next"></i>
     </div>
@@ -111,7 +154,7 @@ while(have_posts()){
 
     function divide_content(column, separator){
         var content = jQuery('#single .single .content');
-        var sections = content.find(separator).length;
+        var sections = content.children(separator).length;
         var text = content.html();
         content.html('');
 
@@ -121,11 +164,29 @@ while(have_posts()){
 
             if(i>0){
                 var iprev =  (i-1);
-                content.find('.column'+iprev+' > '+separator).slice(Math.ceil(sections/(column-iprev))).appendTo(content.find('.column'+i));
+                var divide = Math.ceil(sections/(column-iprev));
+                content.find('.column'+iprev).children(separator).slice(divide).appendTo(content.find('.column'+i));
             }
         }
     }
-    divide_content(2, 'p, h1, h2, h3, ul');
+    divide_content(4, 'p, h1, h2, h3, ul');
+
+
+
+
+    function insert_element(element, after,  separator){
+        var content = jQuery('#single .single .content');
+        var sections = content.find('.column').length;
+        var text = content.html();
+
+        if(sections>0){
+            content.find('.column').eq(after).after(jQuery(element).addClass('central'));
+        }
+    }
+
+    jQuery(document).ready(function(e){
+        insert_element('#featured', 0, 'p');
+    });
 </script>
 
 <?php

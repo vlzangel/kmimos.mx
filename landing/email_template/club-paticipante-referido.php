@@ -22,8 +22,29 @@ $html = '
 		<section style="text-align: center;">
 			<img src="'.$http.$_SERVER["HTTP_HOST"].'/landing/img/logo_patitas.png" alt="" width="25%">
 			<div style="margin: auto; width: 70%; text-align: justify; padding=bottom:10px;color:#757575;">
-				<p>Tu amigo <span style="font-weight: bold; color:#00D8B5;">'.$username.'</span> se ha unido al CLUB DE LAS PATITAS FELICES y  TODO GRACIAS A TI!. Continua compartiendo y haz que la familia Kmimos siga creciendo.
+				<p>Tu amigo <span style="font-weight: bold; color:#00D8B5;">'.$name.'</span> se ha unido al CLUB DE LAS PATITAS FELICES y  TODO GRACIAS A TI!. Continua compartiendo y haz que la familia Kmimos siga creciendo.
 				</p>
+
+				<p style="text-align: center;">
+                <a  href="'.$link.'"
+                    style="
+                        padding: 10px;
+                        background: #881C9B;
+                        color: #fff;
+                        font-weight: 400;
+                        font-size: 17px;
+                        font-family: Roboto;
+                        border-radius: 3px;
+                        border: solid 0px trnasparent;
+                        display: block;
+                        max-width: 300px;
+                        margin: 0px auto;
+                        text-align: center;
+                        text-decoration: none;"
+                >Picale AQUÍ</a>
+            </p>
+
+				
 				<span>Atentamente;</span><br><br>	
 				<img src="'.$http.$_SERVER["HTTP_HOST"].'/landing/img/logo-kmimos_120x30.png" alt="">
 			</div>

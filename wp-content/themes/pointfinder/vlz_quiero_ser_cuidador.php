@@ -2,7 +2,7 @@
 	/*
 		Template Name: vlz quiero ser cuidador
 	*/
-	if (!isset($_SESSION)) {
+	if (!isset($_SESSION)){
         session_start();
     }
 	get_header();
@@ -13,8 +13,54 @@
 		array('jquery'),
 		'1.0.0',
 		true
-	); 
-	echo get_estados_municipios(); ?>
+	);
+
+
+	//COORDENADAS
+	$result_coord = $wpdb->get_results("
+						SELECT
+							locations.clave AS clave,
+							locations.valor AS valor
+						FROM
+							kmimos_opciones AS locations
+						WHERE
+							locations.clave LIKE 'municipio%'
+							OR
+							locations.clave LIKE 'estado%'
+						ORDER BY
+							locations.id ASC"
+	);
+
+	$state=array();
+	$locale=array();
+	foreach($result_coord as $data){
+		$clave = $data->clave;
+		$valor = unserialize($data->valor);
+		//var_dump(strpos($clave,'estado'));
+
+		if(strpos($clave,'estado_') !== false){
+			$id=str_replace('estado_','',$clave);
+			$state[$id]=array(
+				'lat'=>$valor['referencia']->lat,
+				'lng'=>$valor['referencia']->lng
+			);
+		}
+
+		if(strpos($clave,'municipio_') !== false){
+			$id=str_replace('municipio_','',$clave);
+			$locale[$id]=array(
+				'lat'=>$valor['referencia']->lat,
+				'lng'=>$valor['referencia']->lng
+			);
+		}/**/
+		//
+	}
+
+	$coord=array();
+	$coord['state']=$state;
+	$coord['locale']=$locale;
+	echo get_estados_municipios();
+?>
 
 	<?php include("vlz/form/vlz_styles.php"); ?>
 
@@ -195,10 +241,12 @@
 										</div>
 										<div class="vlz_contenedor_dir">
 											<input type='text' id='direccion' name='direccion' class='vlz_input' placeholder='Direcci&oacute;n' data-title="Debe agregar una Dirección" data-help="Escribe la dirección que aparece en tu comprobante de domicilio.">
+											<input type='text' id='address' name='address' value="" style="display: none;">
 										</div>
 										<input type="hidden" class="geolocation" id="latitud" name="latitud" placeholder="Latitud" step="any" value="" />
 										<input type="hidden" class="geolocation" id="longitud" name="longitud" placeholder="Longitud" step="any" value="" />
 									</div>
+									<div id="map"></div>
 
 								</div>
 
@@ -584,30 +632,31 @@
 				<div style="height: auto; background: #fdfdaa; padding: 20px;">
 
 					<div style="text-align: center; ">
-						<ul class="list-inline" style="color: #737272;font-weight: 700;">
+						<ul class="list-inline instrucciones-items" style="color: #737272;font-weight: 800; margin:0px auto; max-width:610px; ">
 							<li class="col-xs-12 col-sm-6 col-md-3" >
 								<img class="hidden-sm hidden-xs" src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/1.png" class="img-responsive" style="margin:auto;" width="150px">
 								<img class="hidden-md hidden-lg hidden-xl" src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/1_m.png" class="img-responsive" style="margin:auto;" width="150px">
-								<br><span>Registrarte y describirte<span><br><br>
+								<br><span>Registrarte y <br> describirte<span><br><br>
 							</li>
-							<li class="col-xs-12 col-sm-6 col-md-3"  >
+							<li  class="col-xs-12 col-sm-6 col-md-3"  >
 								<img class="hidden-sm hidden-xs" src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/2.png" class="img-responsive" style="margin:auto;" width="150px">
 								<img  class="hidden-md hidden-lg hidden-xl" src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/2_m.png" class="img-responsive" style="margin:auto;" width="150px">
-								<br><span>Enviar documentos<span><br><br>
+								<br><span>Enviar <br> documentos<span><br><br>
 							</li>
-							<li class="col-xs-12 col-sm-6 col-md-3" >
+							<li  class="col-xs-12 col-sm-6 col-md-3" >
 								<img class="hidden-sm hidden-xs" src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/3.png" class="img-responsive" style="margin:auto;" width="150px">
 								<img class="hidden-md hidden-lg hidden-xl" src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/3_m.png" class="img-responsive" style="margin:auto;" width="150px">
-								<br><span>Realizar tus pruebas<span><br><br>
+								<br><span>Realizar <br> tus pruebas<span><br><br>
 							</li>
-							<li class="col-xs-12 col-sm-6 col-md-3" >
+							<li  class="col-xs-12 col-sm-6 col-md-3" >
 								<img class="hidden-sm hidden-xs" src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/4.png" class="img-responsive" style="margin:auto;" width="150px">
 								<img class="hidden-md hidden-lg hidden-xl" src="<?php echo get_home_url(); ?>/wp-content/themes/pointfinder/images/4_m.png" class="img-responsive" style="margin:auto;" width="150px">
-								<br><span>Completar tu perfil<span><br><br>
+								<br><span>Completar <br> tu perfil<span><br><br>
 							</li>
 						</ul>
+						<div class="clearfix"></div>
 						<p style="color: #de7212;font-weight: bold;font-size: 15px;">
-							*En caso de que algunos de estos pasos no sea completado, el perfil no podra ser activado
+							*En caso de que algunos de estos pasos no sea completado, el perfil no podr&aacute; ser activado
 						</p>
 					</div>
 				</div>
@@ -622,7 +671,7 @@
 								<span></span>
 								<p>¡Hola! Soy Valentina, tengo 25 años y me encantan los animales, 
 									Trabajo en casa asi que estare 100% al cuidado de tu perrito, 
-									lo consentir&eacute; y recibiras fotos diarias de su estancia conmigo. 
+									lo consentir&eacute; y recibirás fotos diarias de su estancia conmigo. 
 									Mis hu&eacute;spedes peludos duermen de casa y pueden andar libremente 
 									SIN JAULAS NI ENCIERROS...
 								</p>
@@ -641,7 +690,6 @@
 						    margin-top: 20px;"  
 						onclick="jQuery('#modal_instrucciones').css('display', 'none');" >Cerrar</a>
 				</div>
-				
 			</div>
 
 		</div>
@@ -652,5 +700,163 @@
 	jQuery('#btn-instrucciones-header')
 		.html('<a class="btn-instrucciones-header pull-left hidden-md hidden-lg hidden-xl" onclick="jQuery(' + "'#modal_instrucciones').css('display', 'block');" + '">Instrucciones</a>');
 </script -->
+
+
+<script type='text/javascript'>
+	//MAP
+	var map;
+	var lat='';
+	var lng='';
+
+	function initMap() {
+		var latitud = lat;
+		var longitud = lng;
+		var input = document.getElementById('direccion');//address
+
+		if(latitud!='' && longitud!='' && typeof(google) != "undefined"){
+			jQuery('#map').css({'height':'250px'});
+
+			point = new google.maps.LatLng(latitud, longitud);
+			map = new google.maps.Map(document.getElementById('map'), {
+				zoom: 10,
+				center:  point,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			});
+
+
+			//AUTOCOMPLETE
+			//map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+			autocomplete = new google.maps.places.Autocomplete(input);
+			autocomplete.addListener('place_changed', fillAutocomplete);
+			//autocomplete.bindTo('bounds', map);
+
+			//ZOOM
+			var bounds = new google.maps.LatLngBounds();
+			bounds.extend(point);
+			//map.fitBounds(bounds);
+
+			marker = new google.maps.Marker({
+				map: map,
+				draggable: true,
+				animation: google.maps.Animation.DROP,
+				position: point,
+				icon: "https://www.kmimos.com.mx/wp-content/themes/pointfinder/vlz/img/pin.png"
+			});
+
+			google.maps.event.addListener(marker, 'dragstart', function(evt){});
+			google.maps.event.addListener(marker, 'dragend', function(event){
+				lat=this.getPosition().lat();
+				lng=this.getPosition().lng();
+				set_inputCoord();
+			});
+
+		}
+	}
+
+
+
+
+	function fillAutocomplete(){
+		var place = autocomplete.getPlace();
+		//console.log(place.geometry.location.lat);
+
+		if(!place.geometry){
+			window.alert("Autocomplete's returned place contains no geometry");
+			return;
+		}else{
+			lat=place.geometry.location.lat();
+			lng=place.geometry.location.lng();
+			set_inputCoordMap();
+		}
+	}
+
+	(function(d, s){
+		$ = d.createElement(s), e = d.getElementsByTagName(s)[0];
+		$.async=!0;
+		$.setAttribute('charset','utf-8');
+		$.src='//maps.googleapis.com/maps/api/js?v=3&key=AIzaSyD-xrN3-wUMmJ6u2pY_QEQtpMYquGc70F8&libraries=places&callback=initMap';
+		$.type='text/javascript';
+		e.parentNode.insertBefore($, e)
+	})(document,'script');
+
+
+	//COORDENADAS
+	var objectCoord = jQuery.makeArray(eval(
+		'(<?php echo json_encode($coord); ?>)'
+	));
+	var Coordsearch = objectCoord[0] ;
+
+	jQuery(document).on('change', 'select[name="estado"]', function(e){
+		var state=jQuery(this).val();
+		var latitude=Coordsearch['state'][state]['lat'];
+		var longitude=Coordsearch['state'][state]['lng'];
+
+		if(latitude!='' && longitude!=''){
+			lat=latitude;
+			lng=longitude;
+			set_inputCoordMap();
+		}
+	});
+
+	jQuery(document).on('change', 'select[name="municipio"]', function(e){
+		var locale=jQuery(this).val();
+		var latitude=Coordsearch['locale'][locale]['lat'];
+		var longitude=Coordsearch['locale'][locale]['lng'];
+
+		if(latitude!='' && longitude!=''){
+			lat=latitude;
+			lng=longitude;
+			set_inputCoordMap();
+		}
+	});
+
+	/*
+	jQuery(document).on('keypress', 'input[name="direccion"]', function (e) {
+		var pressedKey = String.fromCharCode(e.keyCode);
+		var $txt = jQuery(this);
+		jQuery(this).change();
+		e.preventDefault();
+		if(pressedKey == 'a'){
+
+		}
+	});
+	*/
+
+	//, input[name="direccion"]
+	jQuery(document).on('change', 'select[name="municipio"], select[name="estado"]', function(e){
+		var estado=jQuery('select[name="estado"]');
+		var municipio=jQuery('select[name="municipio"]');
+		var direccion=jQuery('input[name="direccion"]');
+
+		var value='';
+		if(estado.val()!=''){
+			value+=estado.find('option:selected').text()+' ';
+		}
+		if(municipio.val()!=''){
+			value+=municipio.find('option:selected').text()+' ';
+		}
+		if(direccion.val()!=''){
+			//value+=direccion.val();
+		}
+
+
+		jQuery('input[name="direccion"]').val(value);
+		jQuery('input[name="address"]').val(value);//.focus();
+
+
+	});
+
+	function set_inputCoord(){
+		jQuery('input[name="latitud"]').val(lat);
+		jQuery('input[name="longitud"]').val(lng);
+	}
+
+	function set_inputCoordMap(){
+		set_inputCoord();
+		initMap();
+	}
+
+</script>
+
 
 <?php get_footer(); ?>
