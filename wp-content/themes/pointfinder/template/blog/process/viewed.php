@@ -89,4 +89,46 @@ wp_reset_postdata();
 
     pviewed=0;
     var tviewed = setTimeout('show_viewed(pviewed)', 0);
+
+
+
+
+    /**///SWIPE
+    jQuery('#blog_viewed .post').on("swipeleft",function(event){
+        if(jQuery('#blog_viewed .control .icon.show').next().length>0){
+            jQuery('#blog_viewed .control .icon.show').next().click();
+        }
+    });
+
+    jQuery('#blog_viewed .post').on("swiperight",function(event){
+        if(jQuery('#blog_viewed .control .icon.show').prev().length>0){
+            jQuery('#blog_viewed .control .icon.show').prev().click();
+        }
+    });
+
+
+
+    /*//SWIPE2
+    jQuery('#blog_viewed .post').on("swipe",function( event ) {
+        var start = event.swipestart.coords[0];
+        var stop = event.swipestop.coords[0];
+        var target = event.target.baseURI;
+        var factor = 30;
+
+        if(start>stop && (start-stop)>factor){
+            if(jQuery('#blog_viewed .control .icon.show').next().length>0){
+                jQuery('#blog_viewed .control .icon.show').next().click();
+            }
+
+        }else if(start<stop && (stop-start)>factor){
+            if(jQuery('#blog_viewed .control .icon.show').prev().length>0){
+                jQuery('#blog_viewed .control .icon.show').prev().click();
+            }
+
+        }else{
+            window.location.href = target;
+        }
+
+    });
+    */
 </script>

@@ -7,8 +7,11 @@ add_filter( 'posts_where', 'blog_posts_where', 10, 2 );
 function blog_posts_where( $where, &$wp_query ){
     global $wpdb;
     if ($blog_search = $wp_query->get('blog_search')) {
-        $where.= " AND ".$wpdb->posts.".post_title LIKE '%".esc_sql($wpdb->esc_like($blog_search))."%'";
-        $where.= " AND ".$wpdb->posts.".post_content LIKE '%".esc_sql($wpdb->esc_like($blog_search))."%'";
+
+        $search=$wpdb->posts.".post_title LIKE '%".esc_sql($wpdb->esc_like($blog_search))."%'";
+        $search.=" OR ".$wpdb->posts.".post_content LIKE '%".esc_sql($wpdb->esc_like($blog_search))."%'";
+
+        $where.= " AND (".$search.")";
     }
     return $where;
 }
