@@ -41,6 +41,7 @@
                 'Vintermex'             =>  'Viajes Intermex',
                 'Amigo/Familiar'        =>  'Recomendación de amigo o familiar',
                 'Youtube'               =>  'Youtube',
+                'COW'                   =>  'COW',
                 'Otros'                 =>  'Otros'
             );
             return $opciones;
