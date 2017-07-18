@@ -176,7 +176,7 @@ while(have_posts()){
 
     function insert_element(element, after,  separator){
         var content = jQuery('#single .single .content');
-        var sections = content.find('.column').length; console.log(sections);
+        var sections = content.find('.column').length;
         var text = content.html();
 
         if(sections>0){
