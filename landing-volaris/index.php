@@ -1,28 +1,13 @@
 <?php
 
-/*  https://www.kmimos.com.mx/?
-	  wlabel=volaris2
-	& utm_source=confirmation_white_label_volaris
-	& utm_medium=email
-	& utm_term=reservas_hospedaje_mascotas_mexico
-	& utm_content=reservas
-	& utm_campaign=landing_white_label_volaris_kmimos
-
-
-	https://mx.kmimos/?
-
-	  wlabel=volaris2
-	& utm_source=confirmation_white_label_volaris
-	& utm_medium=email
-	& utm_campaign=landing_white_label_volaris_kmimos
-	& utm_term=reservas_hospedaje_mascotas_mexico
-	& utm_content=reservas
-
-*/
-	if(isset( $_GET['utm_campaign'] )){
-		$_GET['utm_campaign'] = 'landing_' . $_GET['utm_campaign']; 
+	$query = '';
+	foreach ($_GET as $key => $value) {
+		$separador = (!empty($query))? '&' : '' ;
+		if( $key == 'utm_campaign'){
+			$value = 'landing_' . $_GET['utm_campaign']; 
+		}
+		$query .= $separador.$key.'='.$value;
 	}
-
 
 ?>
 
@@ -71,7 +56,7 @@
 
 			<section class="row bg-white">
 	       	 	<article id="article-1-button" class="col-xs-12 text-center">
-		       	 	<a href="/?<?php echo $_SERVER['QUERY_STRING']; ?>" class="btn btn-kmimos">Buscar Cuidador Disponible</a>
+		       	 	<a href="/?<?php echo $query; ?>" class="btn btn-kmimos">Buscar Cuidador Disponible</a>
 	       	 	</article>
 				<div class="clearfix"></div>
 	       	 	<article class="col-sm-12"  id="section1-footer">
@@ -169,7 +154,18 @@
 								<input type="text" value="" name="email" id="email">
 								<button id="newsletter" style="border:0px; background: transparent; "><img src="img/flecha.png" width="52px"></button>
 								<br>
-								<span id="mensaje"></span>
+								<div id="msg-content" class="text-left" style="
+									padding: 10px;
+								    background: transparent;
+								    border-radius: 50px;
+								    width: 90%;
+								    border: 1px solid #fff;
+								    margin-top: 10px;
+								    text-align: center;
+								    display: none;
+								">	
+									<span id="mensaje"></span>
+								</div>
 							</article>
 							<article class="col-xs-12 text-center">
 								<h1>¿Como es tu proceso para reservar?</h1>
@@ -223,7 +219,7 @@
 									</span>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-6">
-									<a href="/?<?php echo $_SERVER['QUERY_STRING']; ?>" class="btn btn-kmimos-inverso">Buscar Cuidador Disponible</a>
+									<a href="/?<?php echo $query ?>" class="btn btn-kmimos-inverso">Buscar Cuidador Disponible</a>
 								</div>
 								<div class="clearfix"></div>
 
