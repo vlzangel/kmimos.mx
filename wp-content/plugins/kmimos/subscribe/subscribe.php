@@ -16,14 +16,23 @@ function subscribe_enqueue_scripts() {
     wp_enqueue_script('subscribe_script', plugin_dir_url(__DIR__).'subscribe/includes/js/script.js');//
 }
 
+add_action('admin_enqueue_scripts', 'subscribe_admin_enqueue_scripts');
+function subscribe_admin_enqueue_scripts( $hook ) {
+    wp_enqueue_style( 'subscribe_fontawesome', get_template_directory_uri().'/css/font-awesome.min.css' );
+}
+
+
 //DOWNLOAD FILE
 function subscribe_download(){
     global $_subscribe;
     include_once(__DIR__.'/panel/panel.php');
+
+    /*
     $link=plugin_dir_url(__FILE__).'subscribe/subscribe.csv';
     echo '<div style="padding:30px 0; font-size:25px;">';
     echo '<a href="'.$link.'" target="_blank">Descargar Archivo CSV</a>';
     echo '</div>';
+    */
 
 }
 
