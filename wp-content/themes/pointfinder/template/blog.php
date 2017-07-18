@@ -60,6 +60,7 @@ include_once(__DIR__.'/blog/header.php');
     #last .section.news .action .icon.arrow{float: right;}
     #last .section.news .post{position:relative; margin: 0 0 20px 0; padding: 20px;  background: #FFF;  box-shadow: 15px 15px 20px -10px #CCC; display: none;  flex-flow: wrap;}
     #last .section.news .post.show{display: flex !important;}
+    #last .section.news .post.loadfirst{display: none !important;}
     #last .section.news .post .image{float:right;  width:40%;  margin: 10px 5%;  background:center/cover no-repeat;}
     #last .section.news .post .detail{width: 50%;}
     #last .section.news .post .category{display: none;}
