@@ -79,11 +79,12 @@ include_once(__DIR__.'/header.php');
         #featured.central .post .detail{padding: 20px; /*border: none;*/ /*border-radius:0;*/}
     }
     @media screen and (max-width:480px), screen and (max-device-width:480px){
+        /*
         #featured .post{display: block;}
         #featured .post .image{width: auto; border-radius: 20px 20px 0 0;}
         #featured .post .image .img{width: 50px; padding-top: 50px;}
         #featured .post .detail{width: auto; border-left-width: 2px; border-top-width: 0; border-radius: 0 0 20px 20px; text-align: center;}
-
+*/
         /*new*/
         #featured.central .post .detail{padding: 10px;}
     }
