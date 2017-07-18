@@ -107,9 +107,25 @@
 	                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
 	        );
 
+	        $menus[] = array(
+	                'title'=>'Newsletter',
+	                'short-title'=>'Newsletter',
+	                'parent'=>'kmimos',
+	                'slug'=>'bp_newsletter',
+	                'access'=>'manage_options',
+	                'page'=>'backpanel_newsletter',
+	                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
+	        );
+
 	        return $menus;
 	    }
 	}
+
+	if(!function_exists('backpanel_newsletter')){
+        function backpanel_newsletter(){
+            include_once('dashboard/backpanel_newsletter.php');
+        }
+    }
 
 	if(!function_exists('backpanel_ctr_participantes')){
         function backpanel_ctr_participantes(){
