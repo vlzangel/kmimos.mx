@@ -530,7 +530,14 @@ footer aside{
 /*  Media                              */
 /***************************************/
 
-@media (min-width: 232px) and (max-width: 315px){
+@media (max-width: 315px){
+	#section-1 h1 {
+	    margin-top: 0%!important;
+	    font-size: 21pt!important;
+	}
+	#section-1 h2 {
+    	font-size: 13pt!important;
+	}
 	#section-4-cuadro{
 		padding: 15px!important;
 	}
@@ -559,7 +566,33 @@ footer aside{
 	#section-5 input {
 	    width: 70%;
 	}
+	#top-image img {
+    	margin-top: 40vh;
+	}
 
+	#section-5 p{
+    	font-size: 16px!important;
+	    padding-left: 0px;
+	    padding-right: 0px;
+	}
+	#section-5 label {
+/*    	font-size: 19px!important;*/
+	    padding-left: 0px;
+	    padding-right: 0px;
+	}
+	#contactos{
+		font-size: 16px!important; 
+	}
+	#section-6 h1{
+		font-size: 14px!important;
+	}
+
+	#section-6-action {
+	    font-size: 18px!important;
+	}
+	#top-image img {
+	    margin-top: 40vh!important;
+	}
 }
 
 @media (max-width: 768px){ 
