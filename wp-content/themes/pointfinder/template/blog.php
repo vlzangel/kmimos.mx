@@ -72,7 +72,10 @@ include_once(__DIR__.'/blog/header.php');
     #last .section.aside{}
     #last .section.aside .register{margin: 0 40px 0 0; padding: 40px; color: #FFF; font-size: 17px; border-radius: 20px; background: #900fa2;}
     #last .section.aside .register span{padding: 10px;  display: block;}
-    #last .section.aside .register form{display:flex;}
+    #last .section.aside .register .message{padding: 0; text-align: center; opacity:0; visible:hidden; transition: all .3s;}
+    #last .section.aside .register .message.show{opacity:1; visible:visible;}
+    #last .section.aside .register .message .icon{padding: 10px;}
+    #last .section.aside .register form{margin: 0; display:flex;}
     #last .section.aside .register input,
     #last .section.aside .register button{width: 100%; margin: 5px; padding: 5px 10px; color: #CCC; font-size: 15px; border-radius: 20px;  border: none; background: #FFF; }
     #last .section.aside .register button {padding: 10px;  width: 40px;}
@@ -231,7 +234,7 @@ if($page<=0){
             <div class="register">
                 <span>Te interesaron nuestros Articulos?</span>
                 <span><strong>SUSCRIBETE?</strong> y recibe el Newsletter con lo mejor de nuestros post!</span>
-                <?php echo subscribe_input(); ?>
+                <?php echo subscribe_input('blog'); ?>
             </div>
         </div>
         <div class="section news">

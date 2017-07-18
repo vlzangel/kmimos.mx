@@ -18,7 +18,7 @@ class Class_Subscribe{
 
     function BD_Create_Table(){
         $table =  $this->table;
-        $query="CREATE TABLE IF NOT EXISTS $table (id INT NOT NULL AUTO_INCREMENT, name VARCHAR(50) NULL, email VARCHAR(50) NULL, time VARCHAR(50) NULL, PRIMARY KEY(id));";
+        $query="CREATE TABLE IF NOT EXISTS $table (id INT NOT NULL AUTO_INCREMENT, name VARCHAR(50) NULL, email VARCHAR(50) NULL, source VARCHAR(10) NULL, time VARCHAR(50) NULL, PRIMARY KEY(id));";
         $this->wpdb->query($query);
         return;
     }

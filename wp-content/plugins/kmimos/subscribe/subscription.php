@@ -29,6 +29,8 @@ function mail_validate($mail){
 
 $file='subscription.csv';
 $mail=$_POST['mail'];
+$mail=$_POST['mail'];
+$section=$_POST['section'];
 $mail_exist='';
 $datos=array();
 
@@ -63,10 +65,10 @@ if(mail_validate($mail)){
 
 	//BD
 	include_once(__DIR__.'/subscribe.php');
-	$table =  $_subscribe->table;
+	$table = $_subscribe->table;
 	$result = $_subscribe->result("SELECT * FROM $table WHERE email = '$mail'");
 	if(count($result)==0){
-		$_subscribe->insert(array('name' => ''  ,'email' => $mail ,'time' => time()));
+		$_subscribe->insert(array('name' => $name  ,'email' => $mail , 'source' => $section,'time' => time()));
 		$return['message']='Ha sido Registrado';
 	}else{
 		$return['message']='Ya se encuentra registrado';
@@ -74,7 +76,7 @@ if(mail_validate($mail)){
 
 }else{
 	$return['result']=false;
-	$return['message']='The email provided is not correct';
+	$return['message']='El email es incorrecto';
 }
 
 
