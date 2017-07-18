@@ -407,7 +407,7 @@ strong{
 /***************************************/
 /*  Section-6                          */
 /***************************************/
-#section-6{
+#section-6{ 
 	background: #ccc;
 	color: #fff;
 	font-weight: lighter;
@@ -530,6 +530,17 @@ footer aside{
 /*  Media                              */
 /***************************************/
 
+@media (max-width: 200px){
+	#section4-logo {
+	    width: 71px!important;
+	}
+	.btn-kmimos {
+	    font-size: 6pt!important;
+	}
+	.btn-kmimos-inverso {
+	    font-size: 6pt!important;
+	}
+}
 @media (max-width: 315px){
 	#section-1 h1 {
 	    margin-top: 0%!important;
