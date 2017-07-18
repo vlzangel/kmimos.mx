@@ -12,7 +12,7 @@ $array_backpanel = [
 	'bp_wlabel',
 	'bp_referidos_club_patitas_felices',
 	'bp_participantes_club_patitas_felices',
-	'subscribe.php',
+	'subscribe',
 
 ];
 if( in_array($_GET['page'], $array_backpanel) ){ 

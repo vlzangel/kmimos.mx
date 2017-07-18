@@ -107,7 +107,19 @@
 	                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
 	        );
 
-	        return $menus;
+/**/
+			$menus[] = array(
+				'title'=>'Subscriptores',
+				'short-title'=>'Subscriptores',
+				'parent'=>'kmimos',
+				'slug'=>'subscribe',
+				'access'=>'manage_options',
+				'page'=>'subscribe_download',
+				'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
+			);
+
+
+			return $menus;
 	    }
 	}
 
@@ -164,5 +176,6 @@
             include_once('wlabel/admin/backpanel.php');
         }
     }
+
 
 ?>

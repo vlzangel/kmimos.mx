@@ -89,6 +89,34 @@ include_once(__DIR__.'/header.php');
         #featured.central .post .detail{padding: 10px;}
     }
 
+
+
+    /*KMIBOX*/
+    #kmibox{padding: 10px 0;  color: #FFF; font-size: 30px; text-align: center; background: #dadada;}
+    #kmibox .group{display: flex; flex-flow: wrap;}
+    #kmibox .section{width: 50%;}
+    #kmibox .image{position:relative; background: center/contain no-repeat; background-image: url('https://www.kmimos.com.mx/wp-content/uploads/2017/06/personaje-400x353.png');}
+    #kmibox .detail{position:relative; padding: 40px 0; color:#999;  text-align: right;  line-height: 1.5;}
+    #kmibox .detail .logo{height: 100px; background: center right/contain no-repeat; background-image: url('https://www.kmimos.com.mx/wp-content/uploads/2017/06/Logo-2.png');}
+    #kmibox .detail .title{ margin: 10px 0; font-size: 20px; font-weight: bold;}
+    #kmibox .detail .content{ margin: 10px 0; font-size: 15px;}
+    #kmibox .detail .button{padding:10px 20px;  color: #FFF; font-size: 20px; border-radius:50px; cursor: pointer; background: #23d3c4 !important; display: inline-block;}
+
+    @media screen and (max-width:768px), screen and (max-device-width:768px){}
+    @media screen and (max-width:480px), screen and (max-device-width:480px){
+        #kmibox .section.detail{width: 100%;}
+        #kmibox .section.image{position: absolute; width: 100%; height: 100%; opacity: 0.2;  }
+
+        /* RESPONSIVE SUGERIDO */
+        #kmibox .group {padding-bottom: 150px;}
+        #kmibox .section.image {display: none;}
+        #kmibox .section.image.responsive{position: absolute; height: 200px; opacity: 1; bottom:0px; background-position: bottom right; display: block;}
+        #kmibox .section.detail{max-width: 300px; padding: 0; text-align: left;}
+        #kmibox .detail .logo{background-position: center left;}
+        #kmibox .detail .button {font-size: 15px;}
+
+    }
+
 </style>
 
 <?php
@@ -138,6 +166,20 @@ while(have_posts()){
     <?php
         include_once(__DIR__.'/frontend/featured.php');
     ?>
+</section>
+
+
+<section id="kmibox">
+    <div class="group contain">
+        <div class="section image responsive"></div>
+        <div class="section image"></div>
+        <div class="section detail">
+            <div class="logo"></div>
+            <div class="title">Conoce  y elige el plan que <br>mejor te convenga</div>
+            <div class="content">Regalale un detalle al consentido de tu hogar!</div>
+            <a href="<?php echo site_url(); ?>"><div class="button">Quiero mi KmiBOX</div></a>
+        </div>
+    </div>
 </section>
 
 <script type="text/javascript">
