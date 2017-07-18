@@ -8,6 +8,7 @@ body{
 	color: #3a3a3a;
 	font-family: 'Lato', sans-serif;
 	font-weight: 900!important;
+	word-wrap: break-word;
 }
 
 
@@ -529,6 +530,25 @@ footer aside{
 /*  Media                              */
 /***************************************/
 
+@media (max-width: 315px){
+	#section-4-cuadro h2{
+		font-size: 70px!important;
+	}
+	#section-4-cuadro h3{
+		font-size: 20px!important;
+		margin:0px;
+	}
+	#section-4-cuadro span{
+		font-size: 16px!important;
+		margin:0px;
+		color: black;
+	}
+	#section-4-cuadro .monto{
+		color: #00ace6;
+		font-size: 100px!important; 
+	}
+}
+
 @media (max-width: 768px){ 
 	#top-image img{
 		margin-top: 30vh;
@@ -548,7 +568,6 @@ footer aside{
 	}
 	#section-1 > article{
 		margin-right: 0px;
-
 	}
 	#section1-footer h3 {
 	    font-size: 18px!important;
