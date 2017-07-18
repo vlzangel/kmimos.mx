@@ -48,8 +48,18 @@ $('#newsletter').on('click', function(){
 
     $.ajax( "/landing/newsletter.php?source=landing_volaris&email="+$('#email').val() )
     .done(function(data) {
+
+      if( data == 1){
+        $('#mensaje').html('Datos guardados');
+      }else if( data == 2){
+        $('#mensaje').html('Formato de email invalido');
+      }else if( data == 3){
+        $('#mensaje').html('Ya estas registrado en la lista, Gracias!');
+      }else{
+        $('#mensaje').html('Error al guardar los datos');
+      }
+
       $('#loading').addClass('hidden');
-      $('#mensaje').html('Datos guardados');
       $('#email').attr('value', '');
       $("#msg-content").addClass('fadeInDown animated');
       $("#msg-content").css('display', 'inline-block');

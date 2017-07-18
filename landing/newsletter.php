@@ -35,22 +35,22 @@
 				$r = $cnn->query( $rows );
 				if( $r->num_rows == 0){
 					# Insertar registro
-						$sql = "insert into wp_kmimos_subscribe 
-								( `name`, `source`, `email`, `time` )
-						 value 
-								( '', '".$_GET['source']."', '".$_GET['email']."', now() )
-						";
-					$rows = $cnn->query( $sql );
+					$sql = "
+						insert into wp_kmimos_subscribe 
+							( `name`, `source`, `email`, `time` )
+					 	value 
+							( '', '".$_GET['source']."', '".$_GET['email']."', now() )
+					";
+					if( $cnn->query( $sql ) ){
+						$sts = 1;
+					}
+				}else{
+					$sts = 3;
 				}
-				$sts = 1;
-			}else{
-				$sts = 0;
 			}
 		}else{
 			$sts = 2;
 		}
-	}else{
-		$sts = 0;
 	}
 	print_r($sts);
 
