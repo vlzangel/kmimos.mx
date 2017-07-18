@@ -545,7 +545,13 @@ footer aside{
 	}
 	#section-4-cuadro .monto{
 		color: #00ace6;
-		font-size: 100px!important; 
+		font-size: 60pt!important; 
+	}
+	.btn-kmimos {
+	    font-size: 11pt!important;
+	}
+	.btn-kmimos-inverso {
+	    font-size: 11pt!important;
 	}
 }
 
