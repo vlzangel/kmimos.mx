@@ -1,3 +1,31 @@
+<?php
+
+/*  https://www.kmimos.com.mx/?
+	  wlabel=volaris2
+	& utm_source=confirmation_white_label_volaris
+	& utm_medium=email
+	& utm_term=reservas_hospedaje_mascotas_mexico
+	& utm_content=reservas
+	& utm_campaign=landing_white_label_volaris_kmimos
+
+
+	https://mx.kmimos/?
+
+	  wlabel=volaris2
+	& utm_source=confirmation_white_label_volaris
+	& utm_medium=email
+	& utm_campaign=landing_white_label_volaris_kmimos
+	& utm_term=reservas_hospedaje_mascotas_mexico
+	& utm_content=reservas
+
+*/
+	if(isset( $_GET['utm_campaign'] )){
+		$_GET['utm_campaign'] = 'landing_' . $_GET['utm_campaign']; 
+	}
+
+
+?>
+
 <!DOCTYPE html>
 <html> 
     <head>
@@ -183,7 +211,7 @@
 									<h1>P&iacute;cale al video de abajo, te va a encantar la nueva alianza VOLARIS - KMIMOS</h1>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3">
-									<iframe src="https://www.youtube.com/embed/_08UJ0aYDCk" 
+									<iframe src="https://www.youtube.com/embed/8T_yhObrq3s" 
 										frameborder="0" allowfullscreen width="100%" height="100%"></iframe>
 								</div>
 							</section>
