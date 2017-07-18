@@ -46,11 +46,32 @@ $('#newsletter').on('click', function(){
 
   if( $('#email').val() != ''){
 
-    $.ajax( "/landing/newsletter.php?email="+$('#email').val() )
+    $.ajax( "/QA1/landing/newsletter.php?source=landing_volaris&email="+$('#email').val() )
     .done(function(data) {
+
+      if( data == 1){
+        $('#mensaje').html('Datos guardados');
+      }else if( data == 2){
+        $('#mensaje').html('Formato de email invalido');
+      }else if( data == 3){
+        $('#mensaje').html('Ya estas registrado en la lista, Gracias!');
+      }else{
+        $('#mensaje').html('Error al guardar los datos');
+      }
+
       $('#loading').addClass('hidden');
-      $('#mensaje').html('Datos guardados');
       $('#email').attr('value', '');
+      $("#msg-content").addClass('fadeInDown animated');
+      $("#msg-content").css('display', 'inline-block');
+
+      setTimeout(function() {
+        $("#msg-content").removeClass('fadeInDown animated');
+        $("#msg-content").removeClass('fadeOut animated');
+        $("#msg-content").fadeOut(1500);
+      },3000);
+
+
+
     })
     .fail(function() {});
 
