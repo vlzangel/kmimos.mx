@@ -56,7 +56,7 @@
 
 			<section class="row bg-white">
 	       	 	<article id="article-1-button" class="col-xs-12 text-center">
-		       	 	<a href="/?<?php echo $query; ?>" class="btn btn-kmimos">Buscar Cuidador Disponible</a>
+		       	 	<a href="https://www.kmimos.com.mx/?<?php echo $query; ?>" class="btn btn-kmimos">Buscar Cuidador Disponible</a>
 	       	 	</article>
 				<div class="clearfix"></div>
 	       	 	<article class="col-sm-12"  id="section1-footer">
@@ -219,7 +219,7 @@
 									</span>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-6">
-									<a href="/?<?php echo $query ?>" class="btn btn-kmimos-inverso">Buscar Cuidador Disponible</a>
+									<a href="https://www.kmimos.com.mx/?<?php echo $query ?>" class="btn btn-kmimos-inverso">Buscar Cuidador Disponible</a>
 								</div>
 								<div class="clearfix"></div>
 
