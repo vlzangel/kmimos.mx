@@ -34,6 +34,7 @@ if(array_key_exists('search',$_POST)){
     }
 }
 
+
 $iblogs = 0;
 $blogs = new wp_query($args);
 if($blogs->have_posts()){

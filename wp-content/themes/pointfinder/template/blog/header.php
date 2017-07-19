@@ -6,7 +6,14 @@ $page_current=site_url().'/'.$slug;
 
 $search='';
 if(array_key_exists('search',$_POST)){
-    $search = $_POST['search'];
+    $_SESSION['search']=$_POST['search'];
+    header("Refresh:0");
+    exit();
+
+}else if(array_key_exists('search',$_SESSION)){
+    $_POST['search']=$_SESSION['search'];
+    $search = $_SESSION['search'];
+    unset($_SESSION['search']);
 }
 
 ?>
@@ -126,7 +133,7 @@ if(array_key_exists('search',$_POST)){
                     <i class="icon phone fa fa-phone"></i>
                     +52 (55) 1791.4931 +52 (55) 6631.9264
                     </span>
-                    <div id="pf-login-trigger-button" class="session">Inicia Sesion</div>
+                    <div id="pf-login-trigger-button" class="session">Inicia Sesión</div>
                     <i class="icon help fa fa-question"></i>
                 </div>
             </div>

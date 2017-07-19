@@ -6,7 +6,10 @@ $mensaje_mail = '<style>
                             }		
                             a:hover{		
                                 background: #038063;		
-                            }		
+                            }
+
+                                .vlz_modal_ventana{max-width: 800px;}
+                            	.vlz_modal_contenido{padding: 20px !important;}
                         </style>		
                         <h1>¡Gracias por unirte a nuestra familia Kmimos!</h1>		
                         <p>Hola <strong>'.$nombres.' '.$apellidos.'</strong>,</p>		
@@ -21,7 +24,7 @@ $mensaje_mail = '<style>
                             <strong>Siguientes Pasos para activar tu perfil</strong>		
                         </p>		
                         <p style="text-align: justify;">		
-                            <ul>		
+                            <ul style="text-align: justify;">
                                 <li>Compártenos por Mensaje Directo a nuestro Facebook @Kmimosmx tu nombre y apellido completo, email, teléfono de casa y celular</li>		
                                 <li>Una vez que nos envíes dichos datos, en menos de 24 horas recibirás en el correo que registraste las Pruebas Psicométricas y Pruebas de Conceptos Veterinarios básicos.  Por favor respóndelas, y nos llegará a nosotros un mensaje de completadas.</li>		
                                 <li>En menos de 24 horas después de completadas las pruebas recibirás un correo por parte de Certificación Kmimos, notificando tus resultados.  NO TE OLVIDES DE CHECAR SIEMPRE LA BANDEJA DE ENTRADA O EL CORREO NO DESEADO, ya que a veces llegan allí los correos.</li>		
@@ -40,7 +43,7 @@ $mensaje_mail = '<style>
                         </p>		
                         <p style="text-align: center;">		
                             <a 		
-                                href="'.get_home_url().'/?a=inicio"		
+                                href="https://kmimos.ilernus.com"
                                 style="		
                                     padding: 10px;		
                                     background: #59c9a8;		
@@ -58,4 +61,4 @@ $mensaje_mail = '<style>
                                 "		
                             >Iniciar Sesión</a>		
                         </p>		
-                    ';
+                    ';//'.get_home_url().'/?a=inicio
