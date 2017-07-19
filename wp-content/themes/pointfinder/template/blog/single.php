@@ -5,9 +5,10 @@ include_once(__DIR__.'/header.php');
 <style type="text/css">
     /*SINGLE*/
     #single{position:relative; text-align:left; background:#FFF; overflow:hidden;}
-    #single .image{position:relative; width:100%; margin:50px 0;}
-    #single .single{position:relative; margin:-150px auto 50px auto; padding:30px 50px; border-radius:20px; box-shadow:0 0 10px #555; background:#FFF;}
-    #single .single .title{position:relative; margin:0; padding:40px 0; color:#fdc421; font-size:25px; font-weight:bold; text-align:left;}
+    #single .title{position:relative; margin:0; padding:40px 0; color:#fdc421; font-size:25px; font-weight:bold; text-align:center; line-height: 1.3;}
+    #single .image{position:relative; width:100%; margin:0;}
+    #single .single{position:relative; margin:-100px auto 50px auto; padding:30px 50px; border-radius:20px; box-shadow:0 0 10px #555; background:#FFF;}
+    #single .single .title{text-align:left;}
     #single .single .content{position:relative; color:#555; font-size:15px; text-align: justify; line-height: 1.3; display: flex;}
     #single .single .content .column{width:100%; margin:0 10px;}
 
@@ -68,6 +69,7 @@ include_once(__DIR__.'/header.php');
     #featured.central .post .detail{padding: 20px; /*border: none;*/ /*border-radius:0;*/}
     #featured.central .post .detail .title{padding: 10px 0; font-size: 25px;}
     #featured.central .post .detail .content{color: #888; font-size: 15px; text-align:left;}
+    #featured.central .post .detail .content.price{color: #900fa2;}
     #featured.central .show{display: none !important;}
     #featured.central .icon.arrow{/*color: #900fa2;*/ /*background: #FFF;*/}
 
@@ -84,9 +86,53 @@ include_once(__DIR__.'/header.php');
         #featured .post .image{width: auto; border-radius: 20px 20px 0 0;}
         #featured .post .image .img{width: 50px; padding-top: 50px;}
         #featured .post .detail{width: auto; border-left-width: 2px; border-top-width: 0; border-radius: 0 0 20px 20px; text-align: center;}
-*/
+        */
         /*new*/
         #featured.central .post .detail{padding: 10px;}
+    }
+
+
+
+    /*KMIBOX*/
+    #kmibox{position: relative; margin: 30px 0; padding: 20px 0;  color: #FFF; font-size: 30px; text-align: center; overflow: hidden; background: #dadada;}
+    #kmibox .group{display: flex; flex-flow: wrap;}
+    #kmibox .section{width: 30%;}
+    #kmibox .image{position:relative; background: center/contain no-repeat; background-image: url('https://www.kmimos.com.mx/wp-content/uploads/2017/06/personaje-400x353.png');}
+    #kmibox .detail{position:relative; padding: 10px 0; color:#999;  text-align: right;  line-height: 1.5;}
+    #kmibox .detail .logo{height: 100px; background: center right/contain no-repeat; background-image: url('https://www.kmimos.com.mx/wp-content/uploads/2017/06/Logo-2.png');}
+    #kmibox .detail .title{ margin: 10px 0; font-size: 20px; font-weight: bold;}
+    #kmibox .detail .content{ margin: 10px 0; font-size: 15px;}
+    #kmibox .detail .button{padding:10px 20px;  color: #FFF; font-size: 20px; border-radius:50px; cursor: pointer; background: #23d3c4 !important; display: inline-block;}
+
+    #kmibox .section.register{margin: 0 40px 0 0; padding: 40px; color: #FFF; font-size: 17px; border-radius: 20px; background: #900fa2;}
+    #kmibox .section.register span{padding: 10px;  display: block;}
+    #kmibox .section.register .message{padding: 0; text-align: center; opacity:0; visible:hidden; transition: all .3s;}
+    #kmibox .section.register .message.show{opacity:1; visible:visible;}
+    #kmibox .section.register .message .icon{padding: 10px;}
+    #kmibox .section.register form{margin: 0; display:flex;}
+    #kmibox .section.register input,
+    #kmibox .section.register button{width: 100%; margin: 5px; padding: 5px 10px; color: #CCC; font-size: 15px; border-radius: 20px;  border: none; background: #FFF; }
+    #kmibox .section.register button {padding: 10px;  width: 40px;}
+
+    @media screen and (max-width:768px), screen and (max-device-width:768px){
+        #kmibox .section{width: 50%;}
+        #kmibox .section.register{margin: 0;}
+        #kmibox .section.image{display: none;}
+    }
+    @media screen and (max-width:480px), screen and (max-device-width:480px){
+        #kmibox .section{width: 100%;}
+        #kmibox .section.detail{width: 100%;}
+        #kmibox .section.image{position: absolute; width: 100%; width: 100%; height: 100%; opacity: 0.2; }
+
+        /* RESPONSIVE SUGERIDO */
+        #kmibox{margin:0;}
+        #kmibox .group {padding-bottom: 150px;}
+        #kmibox .section.image {display: none;}
+        #kmibox .section.image.responsive{position: absolute; height: 200px; opacity: 1; left: 0; bottom:0px; background-position: bottom right; display: block;}
+        #kmibox .section.detail{max-width: 300px; padding: 0; text-align: left;}
+        #kmibox .detail .logo{background-position: center left;}
+        #kmibox .detail .button {font-size: 15px;}
+
     }
 
 </style>
@@ -116,6 +162,7 @@ while(have_posts()){
 ?>
 
 <section id="single">
+    <div class="title scroll_animate" data-position="self" data-scale="small">LOS ARTÍCULOS MÁS VISTOS</div>
     <?php if($POSTarray['image'][0]!=''){// && file_exists($POSTarray['image'][0]) ?>
         <img class="image" data-original="<?php echo $POSTarray['image'][0]; ?>" src="<?php echo $POSTarray['thumbnail'][0]; ?>" alt="<?php echo $POSTarray['title']; ?>">
     <?php }?>
@@ -138,6 +185,25 @@ while(have_posts()){
     <?php
         include_once(__DIR__.'/frontend/featured.php');
     ?>
+</section>
+
+
+<section id="kmibox">
+    <div class="group contain">
+        <div class="section register">
+            <span>Te interesaron nuestros artículos?</span>
+            <span><strong>SUSCRIBETE!</strong> y recibe el Newsletter con lo mejor de nuestros post!</span>
+            <?php echo subscribe_input('blog'); ?>
+        </div>
+        <div class="section image responsive"></div>
+        <div class="section image"></div>
+        <div class="section detail">
+            <div class="logo"></div>
+            <div class="title">Conoce  y elige el plan que <br>mejor te convenga</div>
+            <div class="content">Regalale un detalle al consentido de tu hogar!</div>
+            <a href="<?php echo site_url(); ?>"><div class="button">Quiero mi KmiBOX</div></a>
+        </div>
+    </div>
 </section>
 
 <script type="text/javascript">

@@ -40,7 +40,8 @@ function subscribe_download(){
 add_action('admin_menu', 'single_subscribe_add_menu');
 function single_subscribe_add_menu(){
     if(function_exists('add_menu_page')){
-        add_menu_page('subscribe', 'Subscribe', 8, basename(__FILE__), 'subscribe_download', '', 996);
+        //add_menu_page('subscribe', 'Subscribe', 8, basename(__FILE__), 'subscribe_download', '', 996);
+        //add_submenu_page(basename(dirname(dirname(__FILE__))), 'subscribe', 'Subscriptores', 8,basename(__FILE__), 'subscribe_download');
     }
 }
 

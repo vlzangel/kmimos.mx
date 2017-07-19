@@ -52,7 +52,7 @@
                         <div class="item title">Acerca De Nosotros</div>
                         <div class="item"><a href=""></a>¿Quiénes somos?</div>
                         <div class="item">¿Porque te conviene kmimos?</div>
-                        <div class="item"><a href="<?php echo site_url(); ?>/contacto/">Contáctenos</a></div>
+                        <div class="item"><a href="<?php echo site_url(); ?>/contacta-con-nosotros/">Contáctenos</a></div>
                         <div class="item">¡Estamos contratando!</div>
                         <div class="item"><a href="<?php echo site_url(); ?>/blog/">Blogs</a></div>
                         <div class="item">¡Recomienda a un Amigo Y Gana!</div>

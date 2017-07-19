@@ -71,7 +71,7 @@
 					<section id="section-3" class="col-xs-12 bg-white">
 				       	 	<article class="row">
 				       	 		<div class="col-xs-12 col-sm-12 col-md-4 text-center">
-				       	 			<img src="img/s1.png" width="150px">
+				       	 			<img src="img/s1.png" class="img-responsive">
 				       	 		</div>
 				       	 		<div class="col-xs-12 col-sm-12 col-md-8">
 					       	 		<p><br>Tu perro ser&aacute; un huesped dentro de la casa del cuidador certificado que escojas.</p>
@@ -79,7 +79,7 @@
 				       	 	</article>
 				       	 	<article class="row">
 				       	 		<div class="col-xs-12 col-sm-12 col-md-4 text-center">
-				       	 			<img src="img/s2.png" width="150px">
+				       	 			<img src="img/s2.png" class="img-responsive">
 				       	 		</div>
 				       	 		<div class="col-xs-12 col-sm-12 col-md-8">
 				       	 			<p><br>Dormir&aacute; como un rey en salas, sof&aacute; y a veces ¡hasta en la cama del cuidador!</p>
@@ -87,7 +87,7 @@
 				       	 	</article>
 				       	 	<article class="row">
 				       	 		<div class="col-xs-12 col-sm-12 col-md-4 text-center">
-				       	 			<img src="img/s3.png" width="150px">
+				       	 			<img src="img/s3.png" class="img-responsive">
 				       	 		</div>
 				       	 		<div class="col-xs-12 col-sm-12 col-md-8">
 				       	 			<p><br>¡Tu amigo estar&aacute; protegido por una cobertura de servicios veterinarios durante su estad&iacute;a!</p>
@@ -95,7 +95,7 @@
 				       	 	</article>
 				       	 	<article class="row">
 				       	 		<div class="col-xs-12 col-sm-12 col-md-4 text-center">
-				       	 			<img src="img/s4.png" width="150px">
+				       	 			<img src="img/s4.png" class="img-responsive">
 				       	 		</div>
 				       	 		<div class="col-xs-12 col-sm-12 col-md-8">
 				       	 			<p>El tamaño de tu perro y el cuidador que elijas determinar&aacute; el costo del servicio.<br>
@@ -108,7 +108,7 @@
 						<dir class="container">
 
 							<article class="col-xs-6 col-sm-6 col-md-4 text-right pull-right">
-								<img src="img/logo.png" width="200px" id="section4-logo">
+								<img src="img/logo.png" class="img-responsive" id="section4-logo">
 							</article>
 							<article class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 								<h2>
@@ -176,24 +176,24 @@
 
 						<div class="container">
 							<div class="col-sm-4">
-								<img src="img/img1.png" class="img-responsive" width="300px">
+								<img src="img/img1.png" class="img-responsive">
 								<p class="section-7-principal">Entra en www.kmimos.com.mx Busca y Compara Cuidadores Cerca de Ti</p>
 							</div>
 							<div class="col-sm-8">
 								<article class="col-sm-6">
-									<img src="img/img2.png" class="img-responsive" width="160px">
-									<p class="section-7-secundario">Una vez que escojas a tu cuidador, p&iacute;cale a reservar</p>
+									<img src="img/img2.png" class="img-responsive">
+									<p class="section-7-secundario">Una vez que escojas a tu cuidador, p&iacute;cale a "RESERVAR"</p>
 								</article>
 								<article class="col-sm-6">
-									<img src="img/img3.png" class="img-responsive" width="160px">
+									<img src="img/img3.png" class="img-responsive">
 									<p class="section-7-secundario">Lleva a tu amigo a la casa del cuidador (o selecciona transportaci&oacute;n si quieres que pasen por &eacute;l)</p>
 								</article>
 								<article class="col-sm-6">
-									<img src="img/img4.png" class="img-responsive" width="160px">
+									<img src="img/img4.png" class="img-responsive">
 									<p class="section-7-secundario">Recibes fotos y v&iacute;deos diarios de tu perro durante su estad&iacute;a</p>
 								</article>
 								<article class="col-sm-6">
-									<img src="img/img5.png" class="img-responsive" width="160px">
+									<img src="img/img5.png" class="img-responsive">
 									<p class="section-7-secundario">Tu Perro Regresa a casa FELIZ al final de la estad&iacute;a</p>
 								</article>
 							</div>
@@ -203,10 +203,10 @@
 					<div class="bg-gris col-sm-12">					
 						<div class="row">
 							<section id="section-6" class="text-center">
-								<div class="col-xs-10 col-xs-offset-1	 col-sm-6 col-sm-offset-3 text-center color-volaris">
+								<div class="col-xs-12 col-sm-6 col-sm-offset-3 text-center color-volaris">
 									<h1>P&iacute;cale al video de abajo, te va a encantar la nueva alianza VOLARIS - KMIMOS</h1>
 								</div>
-								<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3">
+								<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3" id="video">
 									<iframe src="https://www.youtube.com/embed/8T_yhObrq3s" 
 										frameborder="0" allowfullscreen width="100%" height="100%"></iframe>
 								</div>
@@ -230,8 +230,8 @@
 						<div class="container bg-black">
 							<article class="col-xs-12 col-sm-6" style="margin-top:10px;margin-bottom:10px;">
 								<span>Cont&aacute;ctanos a:</span> 
-								<span>55 47 42 31 62 /</span> 
-								<span>+52(55) 68 92 21 82</span>
+								<span>Llamada: 01 800 056 4667 </span>
+								<span>Whatsapp: (55) 6892 2182 </span>
 								<br>
 								<span>contactomex@kmimos.la</span>
 							</article>
