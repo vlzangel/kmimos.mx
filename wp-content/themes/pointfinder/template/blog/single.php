@@ -92,22 +92,38 @@ include_once(__DIR__.'/header.php');
 
 
     /*KMIBOX*/
-    #kmibox{padding: 10px 0;  color: #FFF; font-size: 30px; text-align: center; background: #dadada;}
+    #kmibox{margin: 30px 0; padding: 20px 0;  color: #FFF; font-size: 30px; text-align: center; background: #dadada;}
     #kmibox .group{display: flex; flex-flow: wrap;}
-    #kmibox .section{width: 50%;}
+    #kmibox .section{width: 30%;}
     #kmibox .image{position:relative; background: center/contain no-repeat; background-image: url('https://www.kmimos.com.mx/wp-content/uploads/2017/06/personaje-400x353.png');}
-    #kmibox .detail{position:relative; padding: 40px 0; color:#999;  text-align: right;  line-height: 1.5;}
+    #kmibox .detail{position:relative; padding: 10px 0; color:#999;  text-align: right;  line-height: 1.5;}
     #kmibox .detail .logo{height: 100px; background: center right/contain no-repeat; background-image: url('https://www.kmimos.com.mx/wp-content/uploads/2017/06/Logo-2.png');}
     #kmibox .detail .title{ margin: 10px 0; font-size: 20px; font-weight: bold;}
     #kmibox .detail .content{ margin: 10px 0; font-size: 15px;}
     #kmibox .detail .button{padding:10px 20px;  color: #FFF; font-size: 20px; border-radius:50px; cursor: pointer; background: #23d3c4 !important; display: inline-block;}
 
-    @media screen and (max-width:768px), screen and (max-device-width:768px){}
+    #kmibox .section.register{margin: 0 40px 0 0; padding: 40px; color: #FFF; font-size: 17px; border-radius: 20px; background: #900fa2;}
+    #kmibox .section.register span{padding: 10px;  display: block;}
+    #kmibox .section.register .message{padding: 0; text-align: center; opacity:0; visible:hidden; transition: all .3s;}
+    #kmibox .section.register .message.show{opacity:1; visible:visible;}
+    #kmibox .section.register .message .icon{padding: 10px;}
+    #kmibox .section.register form{margin: 0; display:flex;}
+    #kmibox .section.register input,
+    #kmibox .section.register button{width: 100%; margin: 5px; padding: 5px 10px; color: #CCC; font-size: 15px; border-radius: 20px;  border: none; background: #FFF; }
+    #kmibox .section.register button {padding: 10px;  width: 40px;}
+
+    @media screen and (max-width:768px), screen and (max-device-width:768px){
+        #kmibox .section{width: 50%;}
+        #kmibox .section.register{margin: 0;}
+        #kmibox .section.image{display: none;}
+    }
     @media screen and (max-width:480px), screen and (max-device-width:480px){
+        #kmibox .section{width: 100%;}
         #kmibox .section.detail{width: 100%;}
         #kmibox .section.image{position: absolute; width: 100%; height: 100%; opacity: 0.2;  }
 
         /* RESPONSIVE SUGERIDO */
+        #kmibox{margin:0;}
         #kmibox .group {padding-bottom: 150px;}
         #kmibox .section.image {display: none;}
         #kmibox .section.image.responsive{position: absolute; height: 200px; opacity: 1; bottom:0px; background-position: bottom right; display: block;}
@@ -171,6 +187,11 @@ while(have_posts()){
 
 <section id="kmibox">
     <div class="group contain">
+        <div class="section register">
+            <span>Te interesaron nuestros Articulos?</span>
+            <span><strong>SUSCRIBETE?</strong> y recibe el Newsletter con lo mejor de nuestros post!</span>
+            <?php echo subscribe_input('blog'); ?>
+        </div>
         <div class="section image responsive"></div>
         <div class="section image"></div>
         <div class="section detail">
