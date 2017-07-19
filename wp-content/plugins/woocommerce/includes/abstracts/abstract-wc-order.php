@@ -1124,6 +1124,8 @@ abstract class WC_Abstract_Order {
 	public function get_items( $type = '' ) {
 		global $wpdb;
 
+		$xtype = $type;
+
 		if ( empty( $type ) ) {
 			$type = array( 'line_item' );
 		}
@@ -2308,7 +2310,19 @@ abstract class WC_Abstract_Order {
 
 				// Update reports.
 				wc_delete_shop_order_transients( $this->id );
-				break;
+
+			break;
+
+			case 'partially-paid' :
+				// Record the sales.
+				$this->record_product_sales();
+
+				// Increase coupon usage counts.
+				$this->increase_coupon_usage_counts();
+
+				// Update reports.
+				wc_delete_shop_order_transients( $this->id );
+			break;
 
 			case 'processing' :
 			case 'on-hold' :
@@ -2320,7 +2334,7 @@ abstract class WC_Abstract_Order {
 
 				// Update reports.
 				wc_delete_shop_order_transients( $this->id );
-				break;
+			break;
 
 			case 'cancelled' :
 				// If the order is cancelled, restore used coupons.
@@ -2460,29 +2474,20 @@ abstract class WC_Abstract_Order {
 	 * Increase applied coupon counts.
 	 */
 	public function increase_coupon_usage_counts() {
-		if ( 'yes' == get_post_meta( $this->id, '_recorded_coupon_usage_counts', true ) ) {
-			return;
-		}
-
+		$cupones = serialize($this->get_used_coupons());
 		if ( sizeof( $this->get_used_coupons() ) > 0 ) {
 
 			foreach ( $this->get_used_coupons() as $code ) {
-				if ( ! $code ) {
+				if ( $code == "" ) {
 					continue;
 				}
-
 				$coupon = new WC_Coupon( $code );
-
 				$used_by = $this->get_user_id();
-
-				if ( ! $used_by ) {
+				if ( $used_by == "" ) {
 					$used_by = $this->billing_email;
 				}
-
 				$coupon->inc_usage_count( $used_by );
 			}
-
-			update_post_meta( $this->id, '_recorded_coupon_usage_counts', 'yes' );
 		}
 	}
 
