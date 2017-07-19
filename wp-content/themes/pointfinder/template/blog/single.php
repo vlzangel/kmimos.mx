@@ -5,9 +5,10 @@ include_once(__DIR__.'/header.php');
 <style type="text/css">
     /*SINGLE*/
     #single{position:relative; text-align:left; background:#FFF; overflow:hidden;}
-    #single .image{position:relative; width:100%; margin:50px 0;}
-    #single .single{position:relative; margin:-150px auto 50px auto; padding:30px 50px; border-radius:20px; box-shadow:0 0 10px #555; background:#FFF;}
-    #single .single .title{position:relative; margin:0; padding:40px 0; color:#fdc421; font-size:25px; font-weight:bold; text-align:left;}
+    #single .title{position:relative; margin:0; padding:40px 0; color:#fdc421; font-size:25px; font-weight:bold; text-align:center;}
+    #single .image{position:relative; width:100%; margin:0;}
+    #single .single{position:relative; margin:-100px auto 50px auto; padding:30px 50px; border-radius:20px; box-shadow:0 0 10px #555; background:#FFF;}
+    #single .single .title{text-align:left;}
     #single .single .content{position:relative; color:#555; font-size:15px; text-align: justify; line-height: 1.3; display: flex;}
     #single .single .content .column{width:100%; margin:0 10px;}
 
@@ -68,6 +69,7 @@ include_once(__DIR__.'/header.php');
     #featured.central .post .detail{padding: 20px; /*border: none;*/ /*border-radius:0;*/}
     #featured.central .post .detail .title{padding: 10px 0; font-size: 25px;}
     #featured.central .post .detail .content{color: #888; font-size: 15px; text-align:left;}
+    #featured.central .post .detail .content.price{font-size: 25px;}
     #featured.central .show{display: none !important;}
     #featured.central .icon.arrow{/*color: #900fa2;*/ /*background: #FFF;*/}
 
@@ -160,6 +162,7 @@ while(have_posts()){
 ?>
 
 <section id="single">
+    <div class="title scroll_animate" data-position="self" data-scale="small">LOS ARTÍCULOS MÁS VISTOS</div>
     <?php if($POSTarray['image'][0]!=''){// && file_exists($POSTarray['image'][0]) ?>
         <img class="image" data-original="<?php echo $POSTarray['image'][0]; ?>" src="<?php echo $POSTarray['thumbnail'][0]; ?>" alt="<?php echo $POSTarray['title']; ?>">
     <?php }?>
@@ -188,8 +191,8 @@ while(have_posts()){
 <section id="kmibox">
     <div class="group contain">
         <div class="section register">
-            <span>Te interesaron nuestros Articulos?</span>
-            <span><strong>SUSCRIBETE?</strong> y recibe el Newsletter con lo mejor de nuestros post!</span>
+            <span>Te interesaron nuestros artículos?</span>
+            <span><strong>SUSCRIBETE!</strong> y recibe el Newsletter con lo mejor de nuestros post!</span>
             <?php echo subscribe_input('blog'); ?>
         </div>
         <div class="section image responsive"></div>

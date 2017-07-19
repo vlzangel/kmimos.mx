@@ -143,6 +143,7 @@ include_once(__DIR__.'/blog/header.php');
     #featured .post .detail{width: calc(100% - 150px); padding: 20px; background: #FFF; overflow:hidden;}
     #featured .post .detail .title{color: #888; font-size: 30px;}
     #featured .post .detail .content{margin:30px 0; color: #888; font-size: 20px;}
+    #featured .post .detail .content.price{font-size: 25px;}
     #featured .icon.arrow{color: #900fa2; background: #FFF;}
 
     @media screen and (max-width:768px), screen and (max-device-width:768px){
@@ -232,14 +233,14 @@ if($page<=0){
     <div class="group contain">
         <div class="section aside">
             <div class="register">
-                <span>Te interesaron nuestros Articulos?</span>
-                <span><strong>SUSCRIBETE?</strong> y recibe el Newsletter con lo mejor de nuestros post!</span>
+                <span>Te interesaron nuestros artículos?</span>
+                <span><strong>SUSCRIBETE!</strong> y recibe el Newsletter con lo mejor de nuestros post!</span>
                 <?php echo subscribe_input('blog'); ?>
             </div>
         </div>
         <div class="section news">
             <div class="action">
-                <span class="blog_title">LO MAS NUEVO</span>
+                <span class="blog_title">LO MÁS NUEVO</span>
                 <i class="icon arrow fa fa-caret-right" data-direction="next"><a class="absolute"  href="<?php echo $pageNEXT;?>"></a></i>
                 <i class="icon arrow fa fa-caret-left" data-direction="prev"><a class="absolute"  href="<?php echo $pagePREV;?>"></a></i>
             </div>

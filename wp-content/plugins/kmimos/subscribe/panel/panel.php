@@ -56,7 +56,7 @@ $result = $_subscribe->result("SELECT * FROM $table $query_where ORDER BY id DES
 </style>
 <div class="subscribe">
     <div class="title">
-        <h1>USUARIOS SUBSCRITOS</h1>
+        <h1>USUARIOS SUSCRITOS</h1>
     </div>
 
     <!-- Filtros -->
