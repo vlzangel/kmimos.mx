@@ -86,7 +86,7 @@ include_once(__DIR__.'/header.php');
         #featured .post .image{width: auto; border-radius: 20px 20px 0 0;}
         #featured .post .image .img{width: 50px; padding-top: 50px;}
         #featured .post .detail{width: auto; border-left-width: 2px; border-top-width: 0; border-radius: 0 0 20px 20px; text-align: center;}
-*/
+        */
         /*new*/
         #featured.central .post .detail{padding: 10px;}
     }
@@ -122,13 +122,13 @@ include_once(__DIR__.'/header.php');
     @media screen and (max-width:480px), screen and (max-device-width:480px){
         #kmibox .section{width: 100%;}
         #kmibox .section.detail{width: 100%;}
-        #kmibox .section.image{position: absolute; width: 100%; height: 100%; opacity: 0.2;  }
+        #kmibox .section.image{position: absolute; width: 100%; width: 100%; height: 100%; opacity: 0.2; }
 
         /* RESPONSIVE SUGERIDO */
         #kmibox{margin:0;}
         #kmibox .group {padding-bottom: 150px;}
         #kmibox .section.image {display: none;}
-        #kmibox .section.image.responsive{position: absolute; height: 200px; opacity: 1; bottom:0px; background-position: bottom right; display: block;}
+        #kmibox .section.image.responsive{position: absolute; height: 200px; opacity: 1; left: 0; bottom:0px; background-position: bottom right; display: block;}
         #kmibox .section.detail{max-width: 300px; padding: 0; text-align: left;}
         #kmibox .detail .logo{background-position: center left;}
         #kmibox .detail .button {font-size: 15px;}
