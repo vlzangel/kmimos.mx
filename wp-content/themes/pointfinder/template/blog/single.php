@@ -94,7 +94,7 @@ include_once(__DIR__.'/header.php');
 
 
     /*KMIBOX*/
-    #kmibox{margin: 30px 0; padding: 20px 0;  color: #FFF; font-size: 30px; text-align: center; background: #dadada;}
+    #kmibox{position: relative; margin: 30px 0; padding: 20px 0;  color: #FFF; font-size: 30px; text-align: center; overflow: hidden; background: #dadada;}
     #kmibox .group{display: flex; flex-flow: wrap;}
     #kmibox .section{width: 30%;}
     #kmibox .image{position:relative; background: center/contain no-repeat; background-image: url('https://www.kmimos.com.mx/wp-content/uploads/2017/06/personaje-400x353.png');}
