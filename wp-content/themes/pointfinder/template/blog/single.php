@@ -51,8 +51,8 @@ include_once(__DIR__.'/header.php');
     #featured .post{ width:100%; margin:10px 0; display: flex; flex-flow: wrap;}
     #featured .post .image{width: 100px; padding: 10px; border-radius:20px 0 0 20px; background: #ff8700; overflow:hidden;}
     #featured .post .image .img{width: 90%; padding-top: 90%; margin: 0 auto; border-radius: 50%; background: #CCC center/cover no-repeat;}
-    #featured .post .image .bone{ width: 50px; height: 20px; margin: 0 auto; background: center/contain no-repeat;}
-    #featured .post .image .rating{margin: 5px 0; color: #FFF; font-size: 15px; font-weight: bold; text-align: center; }
+    #featured .post .image .bone{ width: 50px; height: 40px; margin: 0 auto; background: center/contain no-repeat;}
+    #featured .post .image .rating{margin:0; color: #FFF; font-size: 20px; font-weight: bold; text-align: center; }
     #featured .post .image .rating:before{content: "+";}
     #featured .post .detail{width: calc(100% - 100px); padding: 5px; border:2px solid #8f8f8f; border-left-width:0; border-radius:0 20px 20px 0; background: #FFF; overflow:hidden;}
     #featured .post .detail .title{color: #888; font-size: 15px;}
@@ -77,7 +77,7 @@ include_once(__DIR__.'/header.php');
     @media screen and (max-width:768px), screen and (max-device-width:768px){
         /*new*/
         #featured.central .post:nth-child(2){display: none;}
-        #featured.central .post{margin: 10px;}
+        #featured.central .post{margin: 10px 0;}
         #featured.central .post .detail{padding: 20px; /*border: none;*/ /*border-radius:0;*/}
     }
     @media screen and (max-width:480px), screen and (max-device-width:480px){
@@ -89,6 +89,7 @@ include_once(__DIR__.'/header.php');
         */
         /*new*/
         #featured.central .post .detail{padding: 10px;}
+        #featured.central .post .detail .title{font-size: 20px; font-weight: normal;}
     }
 
 
@@ -176,7 +177,7 @@ while(have_posts()){
 
 <section id="featured" class="">
     <div class="title info">
-        Da un vistazo a nuestros cuidadores certificados que cuidaran de nuestras mascotas.
+        Da un vistazo a nuestros cuidadores certificados que cuidarán de nuestras mascotas.
         <strong>Libre de jaulas y encierros</strong>
     </div>
     <div class="show">
@@ -192,7 +193,7 @@ while(have_posts()){
     <div class="group contain">
         <div class="section register">
             <span>Te interesaron nuestros artículos?</span>
-            <span><strong>SUSCRIBETE!</strong> y recibe el Newsletter con lo mejor de nuestros post!</span>
+            <span><strong>SUSCR&Iacute;BETE!</strong> y recibe el Newsletter con lo mejor de nuestros posts!</span>
             <?php echo subscribe_input('blog'); ?>
         </div>
         <div class="section image responsive"></div>

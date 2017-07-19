@@ -133,7 +133,7 @@ if(array_key_exists('search',$_POST)){
                     <i class="icon phone fa fa-phone"></i>
                     +52 (55) 1791.4931 +52 (55) 6631.9264
                     </span>
-                    <div id="pf-login-trigger-button" class="session">Inicia Sesion</div>
+                    <div id="pf-login-trigger-button" class="session">Inicia Sesión</div>
                     <i class="icon help fa fa-question"></i>
                 </div>
             </div>

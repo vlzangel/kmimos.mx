@@ -207,7 +207,7 @@ include_once(__DIR__.'/blog/header.php');
 <section id="blog_viewed">
     <div class="contain">
         <div class="action">
-            <span class="blog_title">LO MAS LEIDO</span>
+            <span class="blog_title">LO M&Aacute;S LEIDO</span>
         </div>
         <div class="section viewed">
             <?php
@@ -234,7 +234,7 @@ if($page<=0){
         <div class="section aside">
             <div class="register">
                 <span>Te interesaron nuestros artículos?</span>
-                <span><strong>SUSCRIBETE!</strong> y recibe el Newsletter con lo mejor de nuestros post!</span>
+                <span><strong>SUSCR&Iacute;BETE!</strong> y recibe el Newsletter con lo mejor de nuestros posts!</span>
                 <?php echo subscribe_input('blog'); ?>
             </div>
         </div>
