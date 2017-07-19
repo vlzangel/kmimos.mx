@@ -128,7 +128,7 @@ include_once(__DIR__.'/header.php');
         #kmibox{margin:0;}
         #kmibox .group {padding-bottom: 150px;}
         #kmibox .section.image {display: none;}
-        #kmibox .section.image.responsive{position: absolute; height: 200px; opacity: 1; bottom:0px; background-position: bottom right; display: block;}
+        #kmibox .section.image.responsive{position: absolute; height: 200px; opacity: 1; left: 0; bottom:0px; background-position: bottom right; display: block;}
         #kmibox .section.detail{max-width: 300px; padding: 0; text-align: left;}
         #kmibox .detail .logo{background-position: center left;}
         #kmibox .detail .button {font-size: 15px;}
