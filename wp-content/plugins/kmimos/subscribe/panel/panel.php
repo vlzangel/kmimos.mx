@@ -25,10 +25,10 @@ if(count($WHERE)>0){
     $query_where=' WHERE ';
     $iwhere=0;
     foreach($WHERE as $key => $item){
-        $Wcondition='';
-        if(isset($item['condition'])){}
-        if($iwhere>0){
-            $query_where.=$item['condition'].' ';
+        if(isset($item['condition'])){
+            if($iwhere>0){
+                $query_where.=$item['condition'].' ';
+            }
         }
         $query_where.=$item['query'];
         $iwhere++;

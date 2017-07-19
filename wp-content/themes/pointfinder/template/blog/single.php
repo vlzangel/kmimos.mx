@@ -5,7 +5,7 @@ include_once(__DIR__.'/header.php');
 <style type="text/css">
     /*SINGLE*/
     #single{position:relative; text-align:left; background:#FFF; overflow:hidden;}
-    #single .title{position:relative; margin:0; padding:40px 0; color:#fdc421; font-size:25px; font-weight:bold; text-align:center;}
+    #single .title{position:relative; margin:0; padding:40px 0; color:#fdc421; font-size:25px; font-weight:bold; text-align:center; line-height: 1.3;}
     #single .image{position:relative; width:100%; margin:0;}
     #single .single{position:relative; margin:-100px auto 50px auto; padding:30px 50px; border-radius:20px; box-shadow:0 0 10px #555; background:#FFF;}
     #single .single .title{text-align:left;}
@@ -69,7 +69,7 @@ include_once(__DIR__.'/header.php');
     #featured.central .post .detail{padding: 20px; /*border: none;*/ /*border-radius:0;*/}
     #featured.central .post .detail .title{padding: 10px 0; font-size: 25px;}
     #featured.central .post .detail .content{color: #888; font-size: 15px; text-align:left;}
-    #featured.central .post .detail .content.price{font-size: 25px;}
+    #featured.central .post .detail .content.price{color: #900fa2;}
     #featured.central .show{display: none !important;}
     #featured.central .icon.arrow{/*color: #900fa2;*/ /*background: #FFF;*/}
 
