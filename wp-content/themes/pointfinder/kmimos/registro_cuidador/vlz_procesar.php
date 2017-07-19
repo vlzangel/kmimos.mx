@@ -162,9 +162,14 @@
             }
         }
 
+        echo "(".json_encode($adicionales).")";
+
         $adicionales = serialize($adicionales);
 
         $coordenadas = unserialize( $wpdb->get_var("SELECT valor FROM kmimos_opciones WHERE clave = 'municipio_{$param['municipios']}' ") );
+
+
+        exit;
 
         /*NEW COORD MAP act CG
         $latitud  = "";
@@ -457,8 +462,6 @@
                         foreach ($servicios_adicionales as $key => $precio) {
                             
                             if( isset( $adicionales_principales[$key] )){
-
-
 
                                 if( $precio > 0){
                                     $status = "pending";
