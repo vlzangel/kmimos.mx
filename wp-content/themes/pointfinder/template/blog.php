@@ -143,7 +143,7 @@ include_once(__DIR__.'/blog/header.php');
     #featured .post .detail{width: calc(100% - 150px); padding: 20px; background: #FFF; overflow:hidden;}
     #featured .post .detail .title{color: #888; font-size: 30px;}
     #featured .post .detail .content{margin:30px 0; color: #888; font-size: 20px;}
-    #featured .post .detail .content.price{font-size: 25px;}
+    #featured .post .detail .content.price{color: #900fa2;}
     #featured .icon.arrow{color: #900fa2; background: #FFF;}
 
     @media screen and (max-width:768px), screen and (max-device-width:768px){
