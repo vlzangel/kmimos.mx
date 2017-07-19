@@ -116,7 +116,6 @@ if(count($result)>0){
                 <td>Email</td>
                 <td>Origen</td>
                 <td>Fecha</td>
-                <td>Time</td>
             </tr>
         </thead>
         <tbody>
@@ -130,7 +129,6 @@ if(count($result)>0){
                 <td><?php echo $row->email; ?></td>
                 <td><?php echo $row->source; ?></td>
                 <td><?php echo date('d/m/Y',$row->time); ?></td>
-                <td><?php echo $row->time; ?></td>
             </tr>
     <?php
     }
