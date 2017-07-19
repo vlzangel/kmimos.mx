@@ -6,7 +6,14 @@ $page_current=site_url().'/'.$slug;
 
 $search='';
 if(array_key_exists('search',$_POST)){
-    $search = $_POST['search'];
+    $_SESSION['search']=$_POST['search'];
+    header("Refresh:0");
+    exit();
+
+}else if(array_key_exists('search',$_SESSION)){
+    $_POST['search']=$_SESSION['search'];
+    $search = $_SESSION['search'];
+    unset($_SESSION['search']);
 }
 
 ?>
