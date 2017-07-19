@@ -13,6 +13,7 @@ $array_backpanel = [
 	'bp_newsletter',
 	'bp_referidos_club_patitas_felices',
 	'bp_participantes_club_patitas_felices',
+	'subscribe',
 
 ];
 if( in_array($_GET['page'], $array_backpanel) ){ 

@@ -18,11 +18,13 @@ function form_subscribe(element){
         //data = jQuery.parseJSON(data);
         //console.log(data);
         if(data['result']===true){
-            message.addClass('show');
-            message.html('<i class="icon fa fa-envelope"></i>'+data['message']+'');
-            vsetTime = setTimeout(function(){
-                message_subscribe(message);
-            }, 5000);
+            if(message.length>0){
+                message.addClass('show');
+                message.html('<i class="icon fa fa-envelope"></i>'+data['message']+'');
+                vsetTime = setTimeout(function(){
+                    message_subscribe(message);
+                }, 5000);
+            }
 
         }else{
 
