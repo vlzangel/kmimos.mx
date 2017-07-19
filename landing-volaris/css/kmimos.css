@@ -294,6 +294,9 @@ strong{
 	vertical-align: middle;
 	padding:40px 0px 40px 0px;
 }
+#section-3 img{
+	margin: 0px auto;
+}
 
 /***************************************/
 /*  Section-4                          */
@@ -321,7 +324,7 @@ strong{
 
 }
 #section-4-cuadro h2{
-	font-size: 90px!important;
+	font-size: 80px!important;
 	margin:0px;
 }
 #section-4-cuadro h3{
@@ -530,82 +533,66 @@ footer aside{
 /*  Media                              */
 /***************************************/
 
-@media (max-width: 200px){
-	#section4-logo {
-	    width: 71px!important;
-	}
-	.btn-kmimos {
-	    font-size: 6pt!important;
-	}
-	.btn-kmimos-inverso {
-	    font-size: 6pt!important;
+
+
+
+
+
+@media (min-width: 1200px) { 
+}
+@media (min-width: 992px) { 
+
+	.img-kmimos{
+		width: 80%;
 	}
 }
-@media (max-width: 315px){
-	#section-1 h1 {
-	    margin-top: 0%!important;
-	    font-size: 21pt!important;
+@media (min-width: 769px) and (max-width: 991px){ 
+	#top-image img{
+		margin-top: 20vh;
 	}
-	#section-1 h2 {
-    	font-size: 13pt!important;
+	footer h1{
+    	font-size: 20pt;
+    	text-align: center;
 	}
-	#section-4-cuadro{
-		padding: 15px!important;
+	#section-1{
+		float: none!important;
+		margin-top:20px;
+	    height: 69vh;
 	}
-	#section-4-cuadro h2{
-		font-size: 60px!important;
+	#section-1 h1{
+		font-size: 30pt;
+		text-align: center;
 	}
-	#section-4-cuadro h3{
-		font-size: 20px!important;
-		margin:0px;
+	#section-1 h2{
+		font-size: 18pt;
+		text-align: center;
 	}
-	#section-4-cuadro span{
-		font-size: 16px!important;
-		margin:0px;
-		color: black;
-	}
-	#section-4-cuadro .monto{
-		color: #00ace6;
-		font-size: 60pt!important; 
-	}
-	.btn-kmimos {
-	    font-size: 9pt!important;
-	}
-	.btn-kmimos-inverso {
-	    font-size: 9pt!important;
-	}
-	#section-5 input {
-	    width: 70%;
-	}
-	#top-image img {
-    	margin-top: 40vh;
-	}
+	
 
-	#section-5 p{
-    	font-size: 16px!important;
-	    padding-left: 0px;
-	    padding-right: 0px;
+	.btn-kmimos{
+	    font-size: 14pt;
 	}
-	#section-5 label {
-/*    	font-size: 19px!important;*/
-	    padding-left: 0px;
-	    padding-right: 0px;
+	.img-kmimos{
+		width: 70%;
+		padding:10px;
 	}
-	#contactos{
-		font-size: 16px!important; 
+	.logo{
+		width: 45%;
 	}
-	#section-6 h1{
-		font-size: 14px!important;
+	.text-right{
+		text-align: center!important;
 	}
-
-	#section-6-action {
-	    font-size: 18px!important;
+	#section-3{
+		text-align: center;
 	}
-	#top-image img {
-	    margin-top: 40vh!important;
+	.img-cuidador {
+	    right: -25%;
+	    bottom: 5%;
+	}
+	.circulo{
+		background: transparent;
 	}
 }
-
 @media (max-width: 768px){ 
 	#top-image img{
 		margin-top: 30vh;
@@ -741,65 +728,161 @@ footer aside{
 		height:100%;
 	}
 }
-@media (min-width: 769px) and (max-width: 991px){ 
-	#top-image img{
-		margin-top: 20vh;
+@media (min-width: 298px) and (max-width: 315px){
+	#section-1 h1 {
+	    margin-top: 0%;
+	    font-size: 21pt;
 	}
-	footer h1{
-    	font-size: 20pt;
-    	text-align: center;
+	#section-1 h2 {
+    	font-size: 13pt;
 	}
-	#section-1{
-		float: none!important;
-		margin-top:20px;
-	    height: 69vh;
+	#section-4-cuadro{
+		padding: 15px;
 	}
-	#section-1 h1{
-		font-size: 30pt;
-		text-align: center;
+	#section-4-cuadro h2{
+		font-size: 60px;
 	}
-	#section-1 h2{
-		font-size: 18pt;
-		text-align: center;
+	#section-4-cuadro h3{
+		font-size: 20px;
+		margin:0px;
 	}
-	
+	#section-4-cuadro span{
+		font-size: 16px;
+		margin:0px;
+		color: black;
+	}
+	#section-4-cuadro .monto{
+		color: #00ace6;
+		font-size: 60pt; 
+	}
+	.btn-kmimos {
+	    font-size: 10pt;
+        padding: 10px 20px 10px 20px;
+	}
+	.btn-kmimos-inverso {
+	    font-size: 9pt;
+	}
+	#section-5 input {
+	    width: 70%;
+	}
+	#top-image img {
+    	margin-top: 40vh;
+	}
 
-	.btn-kmimos{
-	    font-size: 14pt;
+	#section-5 p{
+    	font-size: 16px;
+	    padding-left: 0px;
+	    padding-right: 0px;
 	}
-	.img-kmimos{
-		width: 70%;
-		padding:10px;
+	#section-5 label {
+	    padding-left: 0px;
+	    padding-right: 0px;
 	}
-	.logo{
-		width: 45%;
+	#contactos{
+		font-size: 16px; 
 	}
-	.text-right{
-		text-align: center!important;
+	#section-6 h1{
+		font-size: 14px;
 	}
-	#section-3{
-		text-align: center;
+
+	#section-6-action {
+	    font-size: 18px;
 	}
-	.img-cuidador {
-	    right: -25%;
-	    bottom: 5%;
-	}
-	.circulo{
-		background: transparent;
+	#top-image img {
+	    margin-top: 40vh;
 	}
 }
-@media (min-width: 992px) { 
-
-	.img-kmimos{
-		width: 80%;
+@media (max-width: 297px){
+	#section-1 h1 {
+	    margin-top: 0%;
+	    font-size: 11pt;
 	}
-	
+	#section-1 h2 {
+    	font-size: 7pt;
+	}
+	#section-3 p {
+    	font-size: 10px;
+	}
+	#section-4 h2 {
+    	font-size: 10px;
+	}
+	#section-4-cuadro h2 {
+	    font-size: 25px!important;
+	    margin: 0px;
+	}
+	#section-4-cuadro .monto {
+	    color: #00ace6;
+	    font-size: 33px!important;
+	}
+	#section-4-cuadro h3 {
+	    font-size: 10px!important;
+	    margin: 0px;
+	}
+	#section-4-cuadro span {
+	    font-size: 7px!important;
+	}
+	#section-5 label {
+	    padding: 0px;
+	    font-size: 16px!important;
+	}
+	#section-5 p {
+		font-size: 7px;
+	}
+	#section-5-form {
+	    padding: 10px 0px 20px 0px;
+	}
+	#section-5 input {
+		padding: 7px!important;
+		height: auto;
+		width: 62px;
+	}
+	#section-5 img {
+	    width: 30px!important;
+	}
+	#section-5 h1 {
+	    font-size: 13px!important;
+	}
+	.section-7-principal {
+	    font-size: 8px;
+	}
+	.section-7-secundario {
+	    font-size: 8px;
+	}
+	#section-6 h1 {
+	    font-size: 11px;
+	}
+	#section-6-action {
+	    font-size: 10px;
+	}
+	#contactos {
+	    font-size: 7px;
+	}
+	#contactos article{
+	    margin-top: 10px;
+	    padding-left: 0px;
+	    margin-bottom: 10px;
+	    padding-right: 0px;
+	}
+ 	#section4-logo {
+	    width: 71px;
+	}
+	#top-image img {
+    	margin-top: 31vh;
+	}
+	.btn-kmimos-inverso,
+	.btn-kmimos {
+		font-size: 5pt;
+   		padding: 5px 10px 5px 10px;
+	}
+	#section1-footer h3 {
+	    font-size: 9px!important;
+	    padding: 10px 0px 10px 0px;
+	}
+
+	#video{
+		padding: 0px;
+   	}
 }
-@media (min-width: 1200px) { 
-
-}
-
-
 
 /*
 Phones (<768px)
