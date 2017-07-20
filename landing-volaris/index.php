@@ -134,14 +134,14 @@
 							<article class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
 							</article>
 							<article class="title col-xs-12 col-sm-6 col-md-8 col-lg-8">
-								Para obtener tu cup&oacute;n de descuento sigue estos sencillos pasos.
+								Para obtener tu cup&oacute;n de descuento sigue estos sencillos pasos:
 							</article>
 							<article class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 								<label class="col-xs-2">
 									1.</label>
 								<p class="col-xs-10">
 									<strong>¡SUSCR&Iacute;BETE</strong>
-									y recibe el Newsletter con lo mejor de nuestro post! &oacute;</p>
+									y recibe el Newsletter con nuestras <strong>Promociones</strong>, <strong>Tips de cuidado para mascotas</strong>, etc.! &oacute;</p>
 							</article>
 							<article class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 								<label class="col-xs-2">
