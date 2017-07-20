@@ -161,7 +161,7 @@
                 }
             }
         }
-
+        
         $adicionales = serialize($adicionales);
 
         $coordenadas = unserialize( $wpdb->get_var("SELECT valor FROM kmimos_opciones WHERE clave = 'municipio_{$param['municipios']}' ") );
@@ -457,8 +457,6 @@
                         foreach ($servicios_adicionales as $key => $precio) {
                             
                             if( isset( $adicionales_principales[$key] )){
-
-
 
                                 if( $precio > 0){
                                     $status = "pending";

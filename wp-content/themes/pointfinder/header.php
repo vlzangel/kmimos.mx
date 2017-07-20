@@ -58,7 +58,7 @@
 					<i class="pfadmicon-glyph-632"></i>
 				</a>
 				<div class="pf-container pf-megamenu-container">
-						<div class="pf-row col-md-2 col-lg-2" style="min-height: 50px;">';
+						<div class="pf-row col-md-2 col-lg-2">';
 
 
 				if( $post->post_name == 'quiero-ser-cuidador-certificado-de-perros' ){

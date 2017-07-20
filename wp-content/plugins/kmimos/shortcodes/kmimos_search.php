@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
     //[kmimos_search]
 
@@ -94,7 +94,7 @@
         </div>";
     }
 
-    $HTML = "
+    $HTML = do_shortcode("[layerslider id='1']")."
     <style>
         #estado_cuidador_main {
             margin: 0px !important;
@@ -390,6 +390,7 @@
             }
         }
     </script>
+    
     ";
 
     echo comprimir_styles($HTML);

@@ -51,13 +51,13 @@ $('#newsletter').on('click', function(){
 
 
       if( data == 1){
-        $('#mensaje').html('<i class="fa fa-envelope" aria-hidden="true"></i> Datos guardados');
+        $('#mensaje').html(' Datos guardados');
       }else if( data == 2){
-        $('#mensaje').html('<i class="fa fa-envelope" aria-hidden="true"></i> Formato de email invalido');
+        $('#mensaje').html(' Formato de email invalido');
       }else if( data == 3){
-        $('#mensaje').html('<i class="fa fa-envelope" aria-hidden="true"></i> Ya estas registrado en la lista, Gracias!');
+        $('#mensaje').html(' Ya estas registrado en la lista, Gracias!');
       }else{
-        $('#mensaje').html('<i class="fa fa-envelope" aria-hidden="true"></i> Error al guardar los datos');
+        $('#mensaje').html(' Error al guardar los datos');
       }
 
       $('#loading').addClass('hidden');
