@@ -529,10 +529,26 @@ footer aside{
 	padding-bottom: 30px;
 }
 
+
+/*CG*/
+#section-4-cuadro {
+	z-index: 1;
+}
+#section-5 {
+	margin-top: -150px;
+}
+#section-5 .title{
+	color: #230016 !important;
+	font-size: 30px;
+	background: none !important;
+	font-family: "PoetsenOne";
+	font-weight: normal;
+}
+
+
 /***************************************/
 /*  Media                              */
 /***************************************/
-
 
 
 

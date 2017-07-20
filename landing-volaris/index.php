@@ -131,6 +131,11 @@
 
 					<section id="section-5" class="col-sm-12 bg-volaris">
 						<dir class="bg-transparent container">
+							<article class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+							</article>
+							<article class="title col-xs-12 col-sm6 col-md-8 col-lg-8">
+								Para obtener tu cup&oacute;n de descuento sigue los estos sencillos pasos.
+							</article>
 							<article class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 								<label class="col-xs-3">
 									1.</label>
