@@ -143,7 +143,7 @@ if(array_key_exists('search',$_POST)){
                     <span>
                     <i class="icon phone fa fa-phone"></i>
                     </span>
-                    <div id="pf-login-trigger-button-mobi" class="session">Inicia Sesion</div>
+                    <div id="pf-login-trigger-button-mobi" class="session">Inicia Sesión</div>
                     <i class="icon bar fa fa-bars"></i>
                     <i class="icon help fa fa-question"></i>
                     <i class="icon search fa fa-search"></i>
