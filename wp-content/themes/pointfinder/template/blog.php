@@ -207,7 +207,7 @@ include_once(__DIR__.'/blog/header.php');
 <section id="blog_viewed">
     <div class="contain">
         <div class="action">
-            <span class="blog_title">LO MÁS LEIDO</span>
+            <span class="blog_title">LO MÁS LE&Iacute;DO</span>
         </div>
         <div class="section viewed">
             <?php
