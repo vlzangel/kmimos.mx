@@ -254,7 +254,7 @@
 		  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
 		  crossorigin="anonymous"></script>
 	    <script src="js/wow.js  "></script>
-	    <script src="js/main.js?"></script>
+	    <script src="js/main.js?v=1.0.0"></script>
     
 
     

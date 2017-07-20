@@ -55,7 +55,7 @@ $('#newsletter').on('click', function(){
       }else if( data == 2){
         $('#mensaje').html(' Formato de email invalido');
       }else if( data == 3){
-        $('#mensaje').html(' Ya estas registrado en la lista, Gracias!');
+        $('#mensaje').html(' Ya estás registrado en la lista, Gracias!');
       }else{
         $('#mensaje').html(' Error al guardar los datos');
       }
