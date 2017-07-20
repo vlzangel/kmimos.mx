@@ -207,7 +207,7 @@ include_once(__DIR__.'/blog/header.php');
 <section id="blog_viewed">
     <div class="contain">
         <div class="action">
-            <span class="blog_title">LO M&Aacute;S LEIDO</span>
+            <span class="blog_title">LO MÁS LEIDO</span>
         </div>
         <div class="section viewed">
             <?php
@@ -341,7 +341,7 @@ if($page<=0){
     </div>
     <div class="title info">
         <div class="contain">
-            Da un vistazo a nuestros cuidadores certificados que cuidaran de nuestras mascotas.
+            Da un vistazo a nuestros cuidadores certificados que cuidarán de nuestras mascotas.
             <strong>Libre de jaulas y encierros</strong>
         </div>
     </div>
