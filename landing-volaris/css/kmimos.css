@@ -537,6 +537,9 @@ footer aside{
 #section-5 {
 	margin-top: -150px;
 }
+#section-5 p{
+	font-weight: lighter;
+}
 #section-5 .title{
 	color: #230016 !important;
 	font-size: 30px;
