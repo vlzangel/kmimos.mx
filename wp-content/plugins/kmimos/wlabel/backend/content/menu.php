@@ -5,7 +5,7 @@
 
     $image=$_wlabel_user->wlabel_data->image;
     if($image==''){
-        $image=$_wlabel_user->wlabel_data->image_label;
+        $image=$_wlabel_user->wlabel_data->imagelabel;
     }
 ?>
 <div class="menu" style="background-color:<?php echo $color; ?>;" data-coloralt="<?php echo $coloralt; ?>" data-url="<?php echo plugin_dir_url(__DIR__); ?>">
