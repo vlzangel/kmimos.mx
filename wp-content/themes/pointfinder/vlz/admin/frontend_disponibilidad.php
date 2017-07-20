@@ -1,4 +1,6 @@
 <?php
+
+    date_default_timezone_set('America/Mexico_City');
 	
     $formaction = 'pf_refineinvlist';
     $noncefield = wp_create_nonce($formaction);
@@ -9,8 +11,43 @@
 
     $user_id = $current_user->ID;
 
-    $hospedaje 	= $wpdb->get_var("SELECT ID FROM wp_posts WHERE post_author = '{$user_id}' AND post_type = 'product' AND post_name LIKE '%hospedaje%' ");
-    $rangos 	= unserialize( $wpdb->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = '{$hospedaje}' AND meta_key = '_wc_booking_availability' ") );
+    $servicios = array(
+		2598 => "Hospedaje",
+		2599 => "Guardería",
+		2602 => "Adiestramiento Básico",
+		2606 => "Adiestramiento Intermedio",
+		2607 => "Adiestramiento Avanzado",
+		2601 => "Paseos"
+	);
+
+    $productos 	= $wpdb->get_results("SELECT ID FROM wp_posts WHERE post_author = '{$user_id}' AND post_type = 'product'");
+    $rangos = array();
+    foreach ($productos as $key => $value) {
+    	$temporal = $wpdb->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = '{$value->ID}' AND meta_key = '_wc_booking_availability' ");
+    	$servicio = $wpdb->get_results("SELECT term_taxonomy_id FROM wp_term_relationships WHERE object_id = '{$value->ID}' ");
+    	$temp = unserialize( $temporal );
+    	$xrangos = "";
+	    if( $temp != '' ){
+	    	$xrangos = array();
+		    foreach ($temp as $key2 => $value2) {
+		    	if( $value2['from'] != '' && $value2['to'] != '' ){
+			    	$xrangos[] = array(
+			    		"from" => $value2['from'],
+			    		"to" => $value2['to']
+			    	);
+		    	}
+		    }
+	    }
+	    $rangos[] = array(
+	    	"servicio_id" => $value->ID,
+	    	"servicio" => $servicios[ $servicio[1]->term_taxonomy_id ],
+	    	"rangos" => $xrangos
+	    );
+    }
+
+    // echo "<pre>";
+    // 	print_r( $rangos );
+    // echo "</pre>";
 
     $tabla = "
     	<table class='tabla_disponibilidad'>
@@ -22,30 +59,32 @@
     		</tr>
     ";
 
+    $opciones = "";
     foreach ($rangos as $value) {
-    	if( $value['from'] != '' && $value['to'] != '' ){
-	    	$tabla .= "
-	    		<tr>
-	    			<td> Hospedaje </td>
-	    			<td> {$value['from']} </td>
-	    			<td> {$value['to']} </td>
-	    			<td class='acciones' > 
-	    				<SELECT name=''>
-							<OPTION>Selecciona una opción</OPTION>
-							<OPTION>Editar</OPTION>
-							<OPTION>Eliminar</OPTION>
-						</SELECT> 
-					</td>
-	    		</tr>
-	    	";
+    	$servicio_id = $value['servicio_id'];
+    	$servicio = $value['servicio'];
+    	$opciones .= "<OPTION value='{$servicio_id}' >{$servicio}</OPTION>";
+    	if( $value['rangos'] != "" ){
+    		foreach ($value['rangos'] as $rango) {
+		    	$tabla .= "
+		    		<tr>
+		    			<td> {$servicio} </td>
+		    			<td> {$rango['from']} </td>
+		    			<td> {$rango['to']} </td>
+		    			<td class='acciones' > 
+		    				<SELECT name=''>
+								<OPTION>Selecciona una opción</OPTION>
+								<OPTION>Editar</OPTION>
+								<OPTION>Eliminar</OPTION>
+							</SELECT> 
+						</td>
+		    		</tr>
+		    	";
+	    	}
     	}
     }
 
     $tabla .= "</table>";
-
-    // echo "<pre>";
-    // 	print_r($rangos);
-    // echo "</pre>";
 
     $this->FieldOutput .= '
 	    <style>
@@ -161,31 +200,143 @@
 			.table_main .cancelled {
 			    background-color: red;
 			}
+
+			.acciones{
+				padding: 5px !important;
+			}
+
+			.botones_container{
+				display: block;
+				overflow: hidden;
+			}
+
+			.botones_box{
+			    display: inline-block;
+			    float: right;
+			    width: 33.33333333%;
+			    padding: 5px;
+			    box-sizing: border-box;
+			}
+
+			.botones_box input{
+				padding: 10px 0px;
+			    width: 100%;
+			}
+
+			.fechas{
+				display: none;
+			}
 	    </style>
 	    
 	    <h1>Disponibilidad</h1><br><hr>
 
-		<div class="fechas_box table_main">
+		<div class="fechas_box table_main tabla_disponibilidad_box"> 
 			'.$tabla.'
+
+			<div class="botones_container">
+		        <div class="botones_box">
+		        	<input type="button" id="editar_disponibilidad" value="Editar Disponibilidad" />
+		        </div>
+	        </div> 
 		</div>
 
-		<div class="fechas_box">
-			<div class="fechas_item">
-				<SELECT name="servicio">
-					<OPTION>Hospedaje</OPTION>
-					<OPTION>Guardería</OPTION>
-				</SELECT>
-	        </div>
+		<div class="fechas" >
+			<div class="fechas_box " >
 
-			<div class="fechas_item">
-				<i class="icon-calendario embebed"></i>
-		        <input type="date" id="inicio" name="inicio" class="fechas" placeholder="Inicio" value="'.date("Y-m-d").'" min="'.date("Y-m-d").'">
-	        </div>
+				<div class="fechas_item">
+					<SELECT id="servicio" name="servicio">
+						'.$opciones.'					
+					</SELECT>
+		        </div>
 
-			<div class="fechas_item">
-				<div class="icono"><i class="icon-calendario embebed"></i></div>
-		        <input type="date" id="fin" name="fin" class="fechas" placeholder="Fin" disabled>
+				<div class="fechas_item">
+					<i class="icon-calendario embebed"></i>
+			        <input type="date" id="inicio" name="inicio" class="fechas" placeholder="Inicio" min="'.date("Y-m-d").'">
+		        </div>
+
+				<div class="fechas_item">
+					<div class="icono"><i class="icon-calendario embebed"></i></div>
+			        <input type="date" id="fin" name="fin" class="fechas" placeholder="Fin" disabled>
+		        </div>
+		    </div>
+
+	        <div class="botones_container">
+		        <div class="botones_box">
+		        	<input type="button" id="guardar_disponibilidad" value="Guardar" />
+		        </div>
 	        </div>
 	    </div>
+
+	    <script>
+	    	function editar_disponibilidad(){
+	    		jQuery(".fechas").css("display", "block");
+	    		jQuery(".tabla_disponibilidad_box").css("display", "none");
+	    	}
+
+	    	function guardar_disponibilidad(){
+	    		// jQuery(".fechas").css("display", "none");
+	    		// jQuery(".tabla_disponibilidad_box").css("display", "block");
+
+	    		var ini = jQuery("#inicio").val();
+	    		var fin = jQuery("#fin").val();
+
+	    		if( ini == "" || fin == "" ){
+	    			alert("Debes seleccionar las fechas primero");
+	    		}else{
+		    		jQuery.post(
+				   		"'.get_template_directory_uri().'/vlz/admin/process/new_disponibilidad.php", 
+				   		{
+				   			servicio: jQuery("#servicio").val(),
+				   			inicio: ini,
+				   			fin: fin,
+				   		},
+				   		function(data){
+					   		// console.log(data);
+					   		location.reload();
+					   	}
+				   	);
+	    		}
+	    	}
+
+	    	jQuery("#editar_disponibilidad").on("click", function(e){
+	    		editar_disponibilidad();
+	    	});
+
+	    	jQuery("#guardar_disponibilidad").on("click", function(e){
+	    		guardar_disponibilidad();
+	    	});
+
+			function seleccionar_checkin() {
+			    if( jQuery("#inicio").val() != "" ){
+			        var fecha = new Date();
+			        jQuery("#fin").attr("disabled", false);
+
+			        var ini = String( jQuery("#inicio").val() ).split("-");
+			        var inicio = new Date( parseInt(ini[2]), parseInt(ini[1]), parseInt(ini[0]) );
+
+			        console.log( jQuery("#fin").val() );
+
+			        var fin = String( jQuery("#fin").val() ).split("-");
+			        var fin = new Date( fin[0]+"-"+fin[1]+"-"+fin[2] );
+
+			        if( jQuery("#fin").val() != "" ){
+			        	if( Math.abs(fin.getTime()) < Math.abs(inicio.getTime()) ){
+				            jQuery("#fin").attr("value", ini[0]+"-"+ini[1]+"-"+ini[2] );
+				        }
+			        }else{
+			        	jQuery("#fin").attr("value", ini[0]+"-"+ini[1]+"-"+ini[2] );
+			        }
+				        
+			        jQuery("#fin").attr("min", ini[0]+"-"+ini[1]+"-"+ini[2] );
+			    }else{
+			        jQuery("#fin").val("");
+			        jQuery("#fin").attr("disabled", true);
+			    }
+			}
+
+	    	jQuery("#inicio").on("change", function(e){
+	    		seleccionar_checkin();
+	    	});
+	    </script>
     ';
 ?>
