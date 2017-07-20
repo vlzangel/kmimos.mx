@@ -161,15 +161,10 @@
                 }
             }
         }
-
-        echo "(".json_encode($adicionales).")";
-
+        
         $adicionales = serialize($adicionales);
 
         $coordenadas = unserialize( $wpdb->get_var("SELECT valor FROM kmimos_opciones WHERE clave = 'municipio_{$param['municipios']}' ") );
-
-
-        exit;
 
         /*NEW COORD MAP act CG
         $latitud  = "";
