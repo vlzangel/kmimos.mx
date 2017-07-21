@@ -7,7 +7,7 @@
 	$scripts = '
 		<script type="text/javascript">
 			function vlz_select(id){
-				if( jQuery("#"+id+" input").prop("checked") ){
+				if( jQuery("#"+id+" input").prop("checked") && jQuery("#"+id).hasClass("vlz_check_select")){
 					jQuery("#"+id+" input").prop("checked", false);
 					jQuery("#"+id).removeClass("vlz_check_select");
 				}else{

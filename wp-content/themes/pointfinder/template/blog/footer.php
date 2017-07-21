@@ -52,7 +52,7 @@
                         <div class="item title">Acerca De Nosotros</div>
                         <div class="item"><a href=""></a>¿Quiénes somos?</div>
                         <div class="item">¿Porque te conviene kmimos?</div>
-                        <div class="item"><a href="<?php echo site_url(); ?>/contacto/">Contáctenos</a></div>
+                        <div class="item"><a href="<?php echo site_url(); ?>/contacta-con-nosotros/">Contáctenos</a></div>
                         <div class="item">¡Estamos contratando!</div>
                         <div class="item"><a href="<?php echo site_url(); ?>/blog/">Blogs</a></div>
                         <div class="item">¡Recomienda a un Amigo Y Gana!</div>
@@ -71,7 +71,7 @@
                         <div class="item">Preguntas Frecuentes - Ayuda</div>
                         <div class="item">Cómo comprar en kmimos</div>
                         <div class="item">Tu cuenta</div>
-                        <div class="item"><a href="<?php echo site_url(); ?>/contacto/">Contáctenos</a></div>
+                        <div class="item"><a href="<?php echo site_url(); ?>/contacta-con-nosotros/">Contáctenos</a></div>
                         <div class="item">Únete a nosotros en</div>
                         <div class="item"><a class="kmimos" href="<?php echo site_url(); ?>">www.kmimos.com.mx</a></div>
                     </div>

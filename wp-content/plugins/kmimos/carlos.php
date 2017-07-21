@@ -6,11 +6,12 @@
 	include_once('includes/class/class_kmimos_booking.php');
 	include_once('includes/class/class_kmimos_tables.php');
 	include_once('includes/class/class_kmimos_script.php');
-	// include_once('plugins/woocommerce.php');
+	//include_once('plugins/woocommerce.php');
 
 	if(!function_exists('carlos_include_script')){
 	    function carlos_include_script(){
 			wp_enqueue_style('theme_woocmmerce',plugins_url('/css/woocommerce.css',__FILE__));
+			//wp_enqueue_script('theme_jquerymobile',plugins_url('includes/js/jquery/jquery.mobile-1.4.5.min.js',__FILE__));
 	    }
 	}
 
@@ -114,5 +115,28 @@
 			//var_dump($sql);
 		}
 	}
+
+
+
+//UPDATE Post-Name Additional Services
+function update_additional_service_postname(){
+	global $wpdb;
+	$sql = "SELECT * FROM wp_posts WHERE post_name REGEXP '^[0-9]' AND post_type = 'product'";
+	$services = $wpdb->get_results($sql);
+	foreach ($services as $service){
+		$ID =  $service->ID;
+		$post_name =  $service->post_name;
+		$post_author =  $service->post_author;
+
+		//if(strpos($post_name,$post_author,0)!==false){
+		if(preg_match("/^$post_author-/",$post_name,$matches)) {
+			$post_name=str_replace($post_author.'-','',$post_name).'-'.$post_author;
+		}
+
+		$sql = "UPDATE wp_posts SET post_name = '$post_name' WHERE id = '$ID';";
+		$wpdb->query($sql);
+		//var_dump($sql);
+	}
+}
 
 ?>

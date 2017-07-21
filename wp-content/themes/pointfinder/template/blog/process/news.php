@@ -6,8 +6,12 @@ $html.= '</div>';
 add_filter( 'posts_where', 'blog_posts_where', 10, 2 );
 function blog_posts_where( $where, &$wp_query ){
     global $wpdb;
-    if ($blog_title = $wp_query->get('blog_title')) {
-        $where.= " AND ".$wpdb->posts.".post_title LIKE '%".esc_sql($wpdb->esc_like($blog_title))."%'";
+    if ($blog_search = $wp_query->get('blog_search')) {
+
+        $search=$wpdb->posts.".post_title LIKE '%".esc_sql($wpdb->esc_like($blog_search))."%'";
+        $search.=" OR ".$wpdb->posts.".post_content LIKE '%".esc_sql($wpdb->esc_like($blog_search))."%'";
+
+        $where.= " AND (".$search.")";
     }
     return $where;
 }
@@ -21,7 +25,7 @@ $args = array(
 
 if(array_key_exists('search',$_POST)){
     if($_POST['search']!=''){
-        $args['blog_title'] = $_POST['search'];
+        $args['blog_search'] = $_POST['search'];
         $args['posts_per_page'] = '-1';
 
         $html= '<div class="post scroll_animate" data-position="self">';
@@ -29,6 +33,7 @@ if(array_key_exists('search',$_POST)){
         $html.= '</div>';
     }
 }
+
 
 $iblogs = 0;
 $blogs = new wp_query($args);

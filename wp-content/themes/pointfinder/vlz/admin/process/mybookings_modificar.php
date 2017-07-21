@@ -15,6 +15,14 @@
 	if( isset($a) ){
 		$param = explode("_", $a);
 
+		$sql = "SELECT ID FROM wp_users WHERE md5(user_id) = '{$param[1]}'";
+		$usuario = $conn->query($sql);
+		if( $usuario->num_rows > 0 ){
+			$usuario = $usuario->fetch_assoc();
+			$user_id = $usuario["ID"];
+		}
+
+
 		$r = $conn->query("SELECT * FROM wp_posts WHERE md5(ID) = '{$param[2]}'"); $data = $r->fetch_assoc();	
 		$home = $conn->query("SELECT option_value AS server FROM wp_options WHERE option_name = 'siteurl'"); $home = $home->fetch_assoc();
 
@@ -39,13 +47,14 @@
 			$metas_orden[ $f['meta_key'] ] = $f['meta_value'];
 		}
 
-		$descuento = 0;
-		if( isset( $metas_orden[ "_cart_discount" ] ) ){
-			$descuento = $metas_orden[ "_cart_discount" ];
-		}
+		// $descuento = 0;
+		// if( isset( $metas_orden[ "_cart_discount" ] ) ){
+		// 	$descuento = $metas_orden[ "_cart_discount" ];
+		// }
 
+		// Saldo
 		$descuento = 0;
-        $order_item_id = $conn->query("SELECT order_item_id FROM wp_woocommerce_order_items WHERE order_id = '{$id_orden}' AND order_item_type = 'coupon' AND order_item_name LIKE '%saldo-%'"); 
+        $order_item_id = $conn->query("SELECT order_item_id FROM wp_woocommerce_order_items WHERE order_id = '{$orden_id}' AND order_item_type = 'coupon' AND order_item_name LIKE '%saldo-%'"); 
         if( $order_item_id->num_rows > 0 ){
 	        $order_item_id = $order_item_id->fetch_assoc();
 	        $order_item_id = $order_item_id['order_item_id'];
@@ -57,7 +66,32 @@
 		    }
         }
 
-		$r3 = $conn->query("SELECT * FROM wp_woocommerce_order_itemmeta WHERE order_item_id = '{$metas_reserva['_booking_order_item_id']}'"); 
+        $sql = "SELECT * FROM wp_woocommerce_order_items WHERE order_id = '{$orden_id}' AND order_item_type = 'coupon' AND order_item_name NOT LIKE '%saldo-%'";
+        $otros_cupones = $conn->query($sql);
+
+    	while ( $cupon = $otros_cupones->fetch_assoc() ) {
+
+            $cupon_id = $conn->query("SELECT ID FROM wp_posts WHERE post_title = '{$cupon['order_item_name']}'");
+            $cupon_id = $cupon_id->fetch_assoc();
+            $cupon_id = $cupon_id["ID"];
+
+            $limite = $conn->query("SELECT meta_value FROM wp_postmeta WHERE post_id = '{$cupon_id}' AND meta_key = 'usage_limit_per_user'");
+            $limite = $limite->fetch_assoc();
+            $limite = $limite["meta_value"];
+
+            if( $limite != "" ){
+            	$xdescuento = $conn->query("SELECT meta_value FROM wp_woocommerce_order_itemmeta WHERE order_item_id = '{$cupon['order_item_id']}' AND meta_key = 'discount_amount' ");
+	            if( $xdescuento->num_rows > 0 ){
+			        $xdescuento = $xdescuento->fetch_assoc();
+			        $xdescuento = $xdescuento['meta_value'];
+
+			        $descuento += $xdescuento;
+			    }
+            }
+
+        }
+
+		$r3 = $conn->query("SELECT * FROM wp_woocommerce_order_itemmeta WHERE order_item_id = '{$metas_reserva['_booking_order_item_id']}'");
 
 		$items = array();
 		while ( $f = $r3->fetch_assoc() ) {
@@ -103,14 +137,11 @@
 
 		foreach ($items as $key => $value) {
 			$retorno = array_search(utf8_encode($value), $trans);
-
 			if( $retorno ){
 				$transporte[] = $retorno;
 			}
 			$retorno = array_search(utf8_encode($value), $adic);
 			if( $retorno ){
-			
-				echo utf8_encode($value)."<br>";
 				$adicionales[] = $retorno;
 			}
 		}
@@ -134,6 +165,7 @@
 		);
 
 		$_SESSION["MR_".$param[1]] = $parametros;
+		
 		header("location: ".$home['server']."producto/".$data['post_name']."/");
 	}
 

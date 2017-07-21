@@ -89,4 +89,98 @@ wp_reset_postdata();
 
     pviewed=0;
     var tviewed = setTimeout('show_viewed(pviewed)', 0);
+
+
+
+    /*//MOUSE
+    var view_down = 0;
+    var view_up = 0;
+    var view_factor = 30;
+    jQuery(document).on('mousedown','#blog_viewed .post',function( event ) {
+        view_down = event.offsetX;
+        console.log(view_down);
+        console.log(view_up);
+    });
+
+    jQuery(document).on('mouseup','#blog_viewed .post',function( event ) {
+        view_up = event.offsetX;
+
+        if(view_down>view_up && (view_down-view_up)>view_factor){
+            if(jQuery('#blog_viewed .control .icon.show').next().length>0){
+                jQuery('#blog_viewed .control .icon.show').next().click();
+            }
+
+        }else if(view_down<view_up && (view_up-view_down)>view_factor){
+            if(jQuery('#blog_viewed .control .icon.show').prev().length>0){
+                jQuery('#blog_viewed .control .icon.show').prev().click();
+            }
+        }
+
+    });
+    */
+
+    /**///TOUCHMOVE
+    var viewed_touchstart = 0;
+    var viewed_touchstop = 0;
+    var viewed_touchfactor = 30;
+    jQuery('#blog_viewed .post').on("touchstart",function( event ) {
+        viewed_touchstart = event.originalEvent.changedTouches[0].pageX;//
+        //console.log(viewed_touchstart);
+    });
+    jQuery('#blog_viewed .post').on("touchend",function( event ) {
+        var viewed_touchstop = event.originalEvent.changedTouches[0].pageX;//
+        //console.log(viewed_touchstop);
+
+        if(viewed_touchstart>viewed_touchstop && (viewed_touchstart-viewed_touchstop)>viewed_touchfactor){
+            if(jQuery('#blog_viewed .control .icon.show').next().length>0){
+                jQuery('#blog_viewed .control .icon.show').next().click();
+            }
+
+        }else if(viewed_touchstart<viewed_touchstop && (viewed_touchstop-viewed_touchstart)>viewed_touchfactor){
+            if(jQuery('#blog_viewed .control .icon.show').prev().length>0){
+                jQuery('#blog_viewed .control .icon.show').prev().click();
+            }
+
+        }
+
+    });
+
+    /*//SWIPE
+    jQuery('#blog_viewed .post').on("swipeleft",function(event){
+        if(jQuery('#blog_viewed .control .icon.show').next().length>0){
+            jQuery('#blog_viewed .control .icon.show').next().click();
+        }
+    });
+
+    jQuery('#blog_viewed .post').on("swiperight",function(event){
+        if(jQuery('#blog_viewed .control .icon.show').prev().length>0){
+            jQuery('#blog_viewed .control .icon.show').prev().click();
+        }
+    });
+    */
+
+
+    /*//SWIPE2
+    jQuery('#blog_viewed .post').on("swipe",function( event ) {
+        var start = event.swipestart.coords[0];
+        var stop = event.swipestop.coords[0];
+        var target = event.target.baseURI;
+        var factor = 30;
+
+        if(start>stop && (start-stop)>factor){
+            if(jQuery('#blog_viewed .control .icon.show').next().length>0){
+                jQuery('#blog_viewed .control .icon.show').next().click();
+            }
+
+        }else if(start<stop && (stop-start)>factor){
+            if(jQuery('#blog_viewed .control .icon.show').prev().length>0){
+                jQuery('#blog_viewed .control .icon.show').prev().click();
+            }
+
+        }else{
+            window.location.href = target;
+        }
+
+    });
+    */
 </script>

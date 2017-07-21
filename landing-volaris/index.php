@@ -131,23 +131,28 @@
 
 					<section id="section-5" class="col-sm-12 bg-volaris">
 						<dir class="bg-transparent container">
-							<article class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-								<label class="col-xs-3">
-									1.</label>
-								<p class="col-xs-9">
-									<strong>¡SUSCRIBETE</strong> 
-									y recibe el Newsletter con lo mejor de nuestro post! o</p>
+							<article class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+							</article>
+							<article class="title col-xs-12 col-sm-6 col-md-8 col-lg-8">
+								Para obtener tu cup&oacute;n de descuento sigue estos sencillos pasos:
 							</article>
 							<article class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-								<label class="col-xs-3">
+								<label class="col-xs-2">
+									1.</label>
+								<p class="col-xs-10">
+									<strong>¡SUSCR&Iacute;BETE</strong>
+									y recibe el Newsletter con nuestras <strong>Promociones</strong>, <strong>Tips de cuidado para mascotas</strong>, etc.! &oacute;</p>
+							</article>
+							<article class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+								<label class="col-xs-2">
 									2.</label>
-								<p class="col-xs-9">
-									Entra a www.kmimos.com.mx y reg&iacute;strate.</p>
+								<p class="col-xs-10">
+									<strong>Entra a www.kmimos.com.mx y reg&iacute;strate.</strong></p>
 							</article>
 							<article id="section-5-paso3" class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-								<label class="col-xs-3">
+								<label class="col-xs-2">
 									3.</label>
-								<p class="col-xs-9">
+								<p class="col-xs-10">
 									Una vez que hayas hecho cualquiera de las dos, en el transcurso del d&iacute;a recibir&aacute;s tu cup&oacute;on de descuento en tu correo.</p>
 							</article>
 							<article id="section-5-form" class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-right">
@@ -254,7 +259,7 @@
 		  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
 		  crossorigin="anonymous"></script>
 	    <script src="js/wow.js  "></script>
-	    <script src="js/main.js?"></script>
+	    <script src="js/main.js?v=1.0.0"></script>
     
 
     

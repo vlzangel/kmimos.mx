@@ -60,6 +60,7 @@ include_once(__DIR__.'/blog/header.php');
     #last .section.news .action .icon.arrow{float: right;}
     #last .section.news .post{position:relative; margin: 0 0 20px 0; padding: 20px;  background: #FFF;  box-shadow: 15px 15px 20px -10px #CCC; display: none;  flex-flow: wrap;}
     #last .section.news .post.show{display: flex !important;}
+    #last .section.news .post.loadfirst{display: none !important;}
     #last .section.news .post .image{float:right;  width:40%;  margin: 10px 5%;  background:center/cover no-repeat;}
     #last .section.news .post .detail{width: 50%;}
     #last .section.news .post .category{display: none;}
@@ -71,7 +72,10 @@ include_once(__DIR__.'/blog/header.php');
     #last .section.aside{}
     #last .section.aside .register{margin: 0 40px 0 0; padding: 40px; color: #FFF; font-size: 17px; border-radius: 20px; background: #900fa2;}
     #last .section.aside .register span{padding: 10px;  display: block;}
-    #last .section.aside .register form{display:flex;}
+    #last .section.aside .register .message{padding: 0; text-align: center; opacity:0; visible:hidden; transition: all .3s;}
+    #last .section.aside .register .message.show{opacity:1; visible:visible;}
+    #last .section.aside .register .message .icon{padding: 10px;}
+    #last .section.aside .register form{margin: 0; display:flex;}
     #last .section.aside .register input,
     #last .section.aside .register button{width: 100%; margin: 5px; padding: 5px 10px; color: #CCC; font-size: 15px; border-radius: 20px;  border: none; background: #FFF; }
     #last .section.aside .register button {padding: 10px;  width: 40px;}
@@ -139,6 +143,7 @@ include_once(__DIR__.'/blog/header.php');
     #featured .post .detail{width: calc(100% - 150px); padding: 20px; background: #FFF; overflow:hidden;}
     #featured .post .detail .title{color: #888; font-size: 30px;}
     #featured .post .detail .content{margin:30px 0; color: #888; font-size: 20px;}
+    #featured .post .detail .content.price{color: #900fa2;}
     #featured .icon.arrow{color: #900fa2; background: #FFF;}
 
     @media screen and (max-width:768px), screen and (max-device-width:768px){
@@ -202,7 +207,7 @@ include_once(__DIR__.'/blog/header.php');
 <section id="blog_viewed">
     <div class="contain">
         <div class="action">
-            <span class="blog_title">LO MAS LEIDO</span>
+            <span class="blog_title">LO MÁS LE&Iacute;DO</span>
         </div>
         <div class="section viewed">
             <?php
@@ -228,14 +233,14 @@ if($page<=0){
     <div class="group contain">
         <div class="section aside">
             <div class="register">
-                <span>Te interesaron nuestros Articulos?</span>
-                <span><strong>SUSCRIBETE?</strong> y recibe el Newsletter con lo mejor de nuestros post!</span>
-                <?php echo subscribe_input(); ?>
+                <span>Te interesaron nuestros artículos?</span>
+                <span><strong>SUSCR&Iacute;BETE!</strong> y recibe el Newsletter con lo mejor de nuestros posts!</span>
+                <?php echo subscribe_input('blog'); ?>
             </div>
         </div>
         <div class="section news">
             <div class="action">
-                <span class="blog_title">LO MAS NUEVO</span>
+                <span class="blog_title">LO MÁS NUEVO</span>
                 <i class="icon arrow fa fa-caret-right" data-direction="next"><a class="absolute"  href="<?php echo $pageNEXT;?>"></a></i>
                 <i class="icon arrow fa fa-caret-left" data-direction="prev"><a class="absolute"  href="<?php echo $pagePREV;?>"></a></i>
             </div>
@@ -284,7 +289,7 @@ if($page<=0){
 
                 }else if(post<0 && news_post.closest('.section.news').find('loadfirst').length>0){
                     action=false;
-                    post=-1;
+                    post=0;
 
                 }else if(post<0 && direction=='prev'){
                     action=true;
@@ -336,7 +341,7 @@ if($page<=0){
     </div>
     <div class="title info">
         <div class="contain">
-            Da un vistazo a nuestros cuidadores certificados que cuidaran de nuestras mascotas.
+            Da un vistazo a nuestros cuidadores certificados que cuidarán de nuestras mascotas.
             <strong>Libre de jaulas y encierros</strong>
         </div>
     </div>
@@ -353,7 +358,7 @@ if($page<=0){
             <div class="logo"></div>
             <div class="title">Conoce  y elige el plan que <br>mejor te convenga</div>
             <div class="content">Regalale un detalle al consentido de tu hogar!</div>
-            <a href="http://kmimosmx.sytes.net/kmibox/"><div class="button">Quiero mi KmiBOX</div></a>
+            <a href="<?php echo site_url(); ?>"><div class="button">Quiero mi KmiBOX</div></a>
         </div>
     </div>
 </section>

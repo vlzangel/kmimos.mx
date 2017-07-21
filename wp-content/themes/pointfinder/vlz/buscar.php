@@ -11,9 +11,9 @@
 	$condiciones = "";
 
     /* Filtros por fechas */
-	    // if( isset($checkin)  && $checkin  != '' && isset($checkout) && $checkout != '' ){ 
-	    // 	$condiciones .= " AND ( SELECT count(*) FROM cupos WHERE cupos.cuidador = cuidadores.user_id AND cupos.fecha >= '{$checkin}' AND cupos.fecha <= '{$checkout}' AND cupos.full = 1 ) = 0"; 
-	   	// }
+	    if( isset($checkin)  && $checkin  != '' && isset($checkout) && $checkout != '' ){ 
+	    	$condiciones .= " AND ( SELECT count(*) FROM cupos WHERE cupos.cuidador = cuidadores.user_id AND cupos.fecha >= '{$checkin}' AND cupos.fecha <= '{$checkout}' AND cupos.full = 1 ) = 0"; 
+	   	}
     /* Fin Filtros por fechas */
 
     /* Filtros por servicios y tamaños */
@@ -21,10 +21,18 @@
 			foreach ($servicios as $key => $value) {
 				if( $value != "hospedaje" ){
 					$condiciones .= " AND adicionales LIKE '%".$value."%'";
-					$condiciones .= ' AND adicionales LIKE \'%status_'.$value.'";s:1:"1%\'';
+
+					if(strpos($value,'adiestramiento')===false){
+						$condiciones .= ' AND adicionales LIKE \'%status_'.$value.'";s:1:"1%\'';
+
+					}else{
+						$condiciones .= ' AND adicionales REGEXP  \'status_'.$value.'_(basico|intermedio|avanzado)";s:1:"1\'';
+
+					}
 				}
 			}
 		}
+
 
 	    if( isset($tamanos) ){ foreach ($tamanos as $key => $value) { $condiciones .= " AND ( tamanos_aceptados LIKE '%\"".$value."\";i:1%' || tamanos_aceptados LIKE '%\"".$value."\";s:1:\"1\"%' ) "; } }
     /* Fin Filtros por servicios y tamaños */
@@ -124,6 +132,10 @@
         activo = '1' {$condiciones} {$ubicaciones_filtro} {$FILTRO_UBICACION}
     ORDER BY {$orderby}";
 
+    // echo "<pre>";
+    // 	print_r($sql);
+    // echo "</pre>";
+
     $cuidadores = $db->get_results($sql);
 
     $pines = array();
@@ -179,8 +191,5 @@
     $home = $db->get_var("SELECT option_value FROM wp_options WHERE option_name = 'siteurl'", "option_value");
 
 	header("location: {$home}/busqueda/");
-
-
-
 
 ?>

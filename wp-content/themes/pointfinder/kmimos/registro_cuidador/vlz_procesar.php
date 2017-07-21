@@ -161,7 +161,7 @@
                 }
             }
         }
-
+        
         $adicionales = serialize($adicionales);
 
         $coordenadas = unserialize( $wpdb->get_var("SELECT valor FROM kmimos_opciones WHERE clave = 'municipio_{$param['municipios']}' ") );
@@ -458,8 +458,6 @@
                             
                             if( isset( $adicionales_principales[$key] )){
 
-
-
                                 if( $precio > 0){
                                     $status = "pending";
                                 }else{
@@ -471,7 +469,7 @@
                                     "hoy"           => $hoy,
                                     "titulo"        => $adicionales_principales[$key]." - ".$nom,
                                     "descripcion"   => descripciones($key),
-                                    "slug"          =>  $user_id."-".$key,
+                                    "slug"          => $key."-".$user_id,
                                     "cuidador"      => $id_post,
                                     "status"        => $status
                                 ));
@@ -561,7 +559,7 @@
                     $user_signon = wp_signon( $info, true );
                     wp_set_auth_cookie($user_signon->ID);
 
-                    include( 'mensaje_web_registro_cuidador.php' );
+                    include( 'mensaje_web_registro_cuidador_viejo.php' );
 
                     include( 'mensaje_email_registro_cuidador.php' );
 

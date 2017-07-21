@@ -540,6 +540,7 @@
 			  		jQuery("#vlz_titulo_registro").html("Registrando, por favor espere...");
 			     	
 					jQuery.post( a, jQuery("#vlz_form_nuevo_cuidador").serialize(), function( data ) {
+						console.log(data);
 			      		data = eval(data);
 
 			      		if( data.error == "SI" ){

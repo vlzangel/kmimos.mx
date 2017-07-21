@@ -6,7 +6,14 @@ $page_current=site_url().'/'.$slug;
 
 $search='';
 if(array_key_exists('search',$_POST)){
-    $search = $_POST['search'];
+    $_SESSION['search']=$_POST['search'];
+    header("Refresh:0");
+    exit();
+
+}else if(array_key_exists('search',$_SESSION)){
+    $_POST['search']=$_SESSION['search'];
+    $search = $_SESSION['search'];
+    unset($_SESSION['search']);
 }
 
 ?>
@@ -126,7 +133,7 @@ if(array_key_exists('search',$_POST)){
                     <i class="icon phone fa fa-phone"></i>
                     +52 (55) 1791.4931 +52 (55) 6631.9264
                     </span>
-                    <div id="pf-login-trigger-button" class="session">Inicia Sesion</div>
+                    <div id="pf-login-trigger-button" class="session">Inicia Sesión</div>
                     <i class="icon help fa fa-question"></i>
                 </div>
             </div>
@@ -136,7 +143,7 @@ if(array_key_exists('search',$_POST)){
                     <span>
                     <i class="icon phone fa fa-phone"></i>
                     </span>
-                    <div id="pf-login-trigger-button-mobi" class="session">Inicia Sesion</div>
+                    <div id="pf-login-trigger-button-mobi" class="session">Inicia Sesión</div>
                     <i class="icon bar fa fa-bars"></i>
                     <i class="icon help fa fa-question"></i>
                     <i class="icon search fa fa-search"></i>
@@ -145,7 +152,7 @@ if(array_key_exists('search',$_POST)){
 
                 <div class="menu">
                     <div class="items">
-                        <div class="item"><a href=<?php echo site_url(); ?>">KMIMOS</a></div>
+                        <div class="item"><a href="<?php echo site_url(); ?>">KMIMOS</a></div>
                         <div class="item"><a href="<?php echo site_url(); ?>/beneficios-para-tu-perro/">BENEFICOS</a></div>
                         <div class="item"><a href="">FAQ</a></div>
                         <div class="item"><a href="https://www.booking.com/index.html?aid=1147066&lang=es">SERVICIOS</a></div>
@@ -158,7 +165,7 @@ if(array_key_exists('search',$_POST)){
                 </div>
 
                 <div class="search section">
-                    <form  method="post" action="<?php echo site_url().'/blog#last'; ?>">
+                    <form  method="post" action="<?php echo site_url().'/blog/#last'; ?>">
                         <input type="text" name="search" value="<?php echo $search; ?>" placeholder=""/>
                         <button type="submit"><span class="fa fa-search"></span> BUSCAR</button>
                     </form>
@@ -175,7 +182,7 @@ if(array_key_exists('search',$_POST)){
                 </div>
 
                 <div class="search">
-                    <form  method="post" action="<?php echo site_url().'/blog#last'; ?>">
+                    <form  method="post" action="<?php echo site_url().'/blog/#last'; ?>">
                         <input type="text" name="search" value="<?php echo $search; ?>" placeholder=""/>
                         <button type="submit"><span class="fa fa-search"></span> BUSCAR</button>
                     </form>
