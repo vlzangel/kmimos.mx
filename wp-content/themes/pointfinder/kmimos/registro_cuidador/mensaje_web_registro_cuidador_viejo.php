@@ -1,4 +1,5 @@
  <?php
+ /*
 $mensaje_web = ' 
 <style>
     p{
@@ -61,3 +62,75 @@ $mensaje_web = '
     >Iniciar Sesión</a>
 </p>
 ';//'.get_home_url().'/?a=inicio
+*/
+
+ $mensaje_web = '
+<style>
+    p{
+        text-align: justify;
+    }
+    a:hover{
+        background: #038063;
+    }
+    .vlz_modal_ventana{max-width: 800px;}
+    .vlz_modal_contenido{padding: 20px !important;}
+</style>
+<h1>¡Gracias por unirte a nuestra familia Kmimos!</h1>
+<p>Hola <strong>'.$nombres.' '.$apellidos.'</strong>,</p>
+
+<p style="text-align: justify;">
+    Estimado Kmiamigo, tu perfil ha sido creado con éxito.  El mismo permanecerá <strong>INACTIVO</strong>  en la página hasta que completes tu proceso de certificación que consta:
+</p>
+<p style="text-align: justify;">
+    <ul style="text-align: justify;">
+        <li><strong>Pruebas de conocimiento veterinario.</strong></li>
+        <li><strong>Pruebas Psicométricas.</strong><li>
+        <li><strong>Documentación (IFE, Comprobante de domicilio y Datos Bancarios).</strong></li>
+    </ul>
+</p>
+<p style="text-align: justify;">
+   <strong>Link para continuar es: http://kmimos.ilernus.com</strong>
+</p>
+<p style="text-align: justify;">
+    Dicho proceso ha sido diseñado por expertos veterinarios para seleccionar a las personas más adecuadas para recibir, cuidar y apapachar a nuestros peludos amigos.
+</p>
+<p style="text-align: justify;">
+    Guarda el siguiente link, ahí puedes continuar con las pruebas en caso de no terminarlas por algún imprevisto y/o para cargar documentos.
+</p>
+<p style="text-align: justify; color: #f00;">
+    <strong>INGRESA CON EL NOMBRE DE USUARIO Y CONTRASEÑA:</strong>
+</p>
+<p>
+    <table>
+        <tr> <td> <strong>Usuario:</strong> </td><td>'.$username.'</td> </tr>
+        <tr> <td> <strong>Contraseña:</strong> </td><td>'.$clave.'</td> </tr>
+    </table>
+</p>
+
+<p>
+    Revisa tu correo, ahí te llegarán las segundas pruebas, PRUEBAS PSICOMETRICAS.
+</p>
+<p>
+    ¡EXITO!
+</p>
+<p style="text-align: center;">
+    <a
+        href="https://kmimos.ilernus.com"
+        style="
+            padding: 10px;
+            background: #59c9a8;
+            color: #fff;
+            font-weight: 400;
+            font-size: 17px;
+            font-family: Roboto;
+            border-radius: 3px;
+            border: solid 1px #1f906e;
+            display: block;
+            max-width: 300px;
+            margin: 0px auto;
+            text-align: center;
+            text-decoration: none;
+        "
+    >CONTINUAR</a>
+</p>
+';

@@ -88,7 +88,7 @@ if($blogs->have_posts()){
         $html.= '<div class="button more scroll_animate" data-position="self">'.__('MORE').'</div>';
         $html.= '</div>';
 
-        $html.= '<a class="absolute" href="'.esc_url(get_permalink()).'" title="'.the_title('','',false).'"></a>';
+        $html.= '<a class="absolute" href="'.esc_url(get_permalink()).'" target="_blank" title="'.the_title('','',false).'"></a>';
         $html.= '</div>';
     }
 

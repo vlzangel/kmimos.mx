@@ -78,7 +78,7 @@ if(count($featureds)>0){
         $html.='<div class="content price">Desde $ '.($caregiver->hospedaje_desde*1.2).'</div>';
         $html.='</div>';
 
-        $html.= '<a class="absolute" href="'.$url.'" title="'.$data->nom.'"></a>';
+        $html.= '<a class="absolute" href="'.$url.'" target="_blank" title="'.$data->nom.'"></a>';
         $html.='</div>';
     }
 }

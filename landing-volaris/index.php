@@ -138,20 +138,24 @@
 								<label class="col-xs-3">
 									1.</label>
 								<p class="col-xs-9">
-									<strong>¡SUSCR&Iacute;BETE</strong>
-									y recibe el Newsletter con nuestras <strong>Promociones</strong>, <strong>Tips de cuidado para mascotas</strong>, etc.! &oacute;</p>
+
+								<strong>¡SUSCR&Iacute;BETE</strong>
+								y recibe el Newsletter con nuestras <strong>Promociones</strong>, <strong>Tips de cuidado para mascotas</strong>, etc.! &oacute;</p>
+
 							</article>
 							<article class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 								<label class="col-xs-3">
 									2.</label>
 								<p class="col-xs-9">
+
 									<strong>Entra a www.kmimos.com.mx y reg&iacute;strate.</strong></p>
+
 							</article>
 							<article id="section-5-paso3" class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 								<label class="col-xs-3">
 									3.</label>
 								<p class="col-xs-9">
-									Una vez que hayas hecho cualquiera de las dos, en el transcurso del d&iacute;a recibir&aacute;s tu cup&oacute;on de descuento en tu correo.</p>
+									Una vez que hayas hecho cualquiera de las dos, en el transcurso del d&iacute;a recibir&aacute;s tu cup&oacute;n de descuento en tu correo.</p>
 							</article>
 							<article id="section-5-form" class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-right">
 								<input type="text" value="" name="email" id="email">
@@ -176,7 +180,6 @@
 						</dir>
 					</section>
 					<section class="col-sm-12" id="section-7">
-
 						<div class="container">
 							<div class="col-sm-4">
 								<img src="img/img1.png" class="img-responsive">
@@ -233,7 +236,7 @@
 						<div class="container bg-black">
 							<article class="col-xs-12 col-sm-6" style="margin-top:10px;margin-bottom:10px;">
 								<span>Cont&aacute;ctanos a:</span> 
-								<span>Llamada: 01 800 056 4667 </span>
+								<span>01 800 056 4667 </span>
 								<span>Whatsapp: (55) 6892 2182 </span>
 								<br>
 								<span>contactomex@kmimos.la</span>
@@ -251,15 +254,12 @@
 
 
 		</div>
-
+		
 		<script
 		  src="https://code.jquery.com/jquery-2.2.4.min.js?<?php echo time(); ?>"
 		  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
 		  crossorigin="anonymous"></script>
 	    <script src="js/wow.js  "></script>
 	    <script src="js/main.js?v=1.0.0"></script>
-    
-
-    
     </body>
 </html>
