@@ -14,6 +14,7 @@ $array_backpanel = [
 	'bp_referidos_club_patitas_felices',
 	'bp_participantes_club_patitas_felices',
 	'subscribe',
+	'bp_saldo_cuidadores',
 
 ];
 if( in_array($_GET['page'], $array_backpanel) ){ 
