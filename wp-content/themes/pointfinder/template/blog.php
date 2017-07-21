@@ -127,46 +127,37 @@ include_once(__DIR__.'/blog/header.php');
     }
 
     /*FEATURED*/
-    #featured{background: #900fa2;}
+    #featured{padding-bottom: 40px; background: #900fa2;}
     #featured .info{padding: 25px 0;  color: #FFF; font-size: 30px; text-align: center; line-height:1.3; background: #900fa2; }
     #featured .caregiver{position:relative; overflow: hidden;}
     #featured .caregiver .action{position:absolute; width:100%; height:100%;}
     #featured .caregiver .action .icon{position:absolute; width:25px; top:calc(50% - 12px); right:0; font-size:15px;}
     #featured .caregiver .action .icon[data-direction="prev"]{left:0; right: auto;}
     #featured .group{width:calc(100% - 80px); margin:0 auto; display: flex; flex-flow: wrap;}
-    #featured .post{width: calc(50% - 20px); margin: 40px 10px; border:2px solid #8f8f8f; border-radius:20px; overflow:hidden; display: flex; flex-flow: wrap;}
-    #featured .post .image{width: 150px; padding: 20px; /*background: #ff8700;*/ overflow:hidden;}
-    #featured .post .image .img{width: 90%; padding-top: 90%; margin: 10px auto; border-radius: 50%; background: #CCC center/cover no-repeat;}
-    #featured .post .image .bone{ width: 50px; height: 40px; margin: 0 auto; background: center/contain no-repeat;}
-    #featured .post .image .rating{color: #FFF; font-size: 20px; font-weight: bold; text-align: center; }
-    #featured .post .image .rating:before{content: "+";}
-    #featured .post .detail{width: calc(100% - 150px); padding: 20px; background: #FFF; overflow:hidden;}
-    #featured .post .detail .title{color: #888; font-size: 30px;}
-    #featured .post .detail .content{margin:30px 0; color: #888; font-size: 20px;}
+    #featured .post{ width:calc(50% - 40px); margin:20px; border:2px solid #8f8f8f; border-radius:20px; display: flex; flex-flow: wrap; overflow: hidden;}
+    #featured .post .data{width: 50px; padding: 10px; overflow:hidden;}
+    #featured .post .data .bone{ width: 30px; height: 30px; margin: 0 auto; background: center/contain no-repeat;}
+    #featured .post .data .rating{margin:0; color: #FFF; font-size: 20px; font-weight: bold; text-align: center; }
+    #featured .post .data .rating:before{content: "+";}
+    #featured .post .image{width: 150px; padding: 10px; background: #FFF; overflow:hidden;}
+    #featured .post .image .img{width: 90%; padding-top: 90%; margin: 0 auto; border-radius: 50%; background: #EEE center/cover no-repeat;}
+    #featured .post .detail{width: calc(100% - 200px); padding: 20px; background: #FFF; overflow:hidden;}
+    #featured .post .detail .title{padding: 10px 0; color: #888; font-size: 25px;}
+    #featured .post .detail .content{margin:10px 0; color: #888; font-size: 15px; text-align:left;}
     #featured .post .detail .content.price{color: #900fa2;}
     #featured .icon.arrow{color: #900fa2; background: #FFF;}
 
     @media screen and (max-width:768px), screen and (max-device-width:768px){
-        #featured .group{display: block;}
-        #featured .post{width: calc(100% - 20px);}
+        #featured .post{width: calc(50% - 40px); display: block;}
+        #featured .post .data{width: 100%;}
+        #featured .post .image{width: 100%;}
+        #featured .post .image .img{width: 150px; padding-top: 150px;}
+        #featured .post .detail{width: 100%; text-align: left;}
     }
     @media screen and (max-width:480px), screen and (max-device-width:480px){
-        /*
-        #featured .post{display: block;}
-        #featured .post .image{width: auto; border-radius: 20px 20px 0 0;}
-        #featured .post .image .img{width: 100px; padding-top: 100px;}
-        #featured .post .detail{width: auto; border-left-width: 2px; border-top-width: 0; border-radius: 0 0 20px 20px; text-align: center;}
-        #featured .post .detail .title{font-size: 20px;}
-        #featured .post .detail .content{margin:10px 0; font-size: 15px;}
-        */
-        /* RESPONSIVE SUGERIDO */
         #featured .info{font-size: 20px;}
+        #featured .post {width: 100%;}
         #featured .post:nth-child(2){display: none;}
-        #featured .post .image{width: 100px; padding: 5px;}
-        #featured .post .detail{width: calc(100% - 100px);}
-        #featured .post .detail .title{font-size: 20px;}
-        #featured .post .detail .content{margin:10px 0; font-size: 15px;}
-
     }
 
 

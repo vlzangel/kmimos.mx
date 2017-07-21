@@ -17,7 +17,12 @@
     footer .payment .section{ }
     footer .payment .title{ width: 30%; font-size: 20px; font-weight: bold;}
     footer .payment .items{ width: 70%;}
-    footer .payment .items .item{ width: calc(15% - 20px); margin: 10px; padding-top: 5%;  background: #FFF center/contain no-repeat; display: inline-block;}
+    footer .payment .items .title{width: 30%;}
+    footer .payment .items .item{width: calc(15% - 20px); margin: 10px; padding-top: 5%;  background: #FFF center/contain no-repeat; display: inline-block;}
+
+    footer .payment .items.efectivo .item{width: 10%; padding-top: 10%;}
+    footer .payment .items.efectivo.title{width: 30%;}    /* width: 30%; */
+    footer .payment .items.efectivo.title .item{width: 100%; max-width: 150px; height: 70px; padding: 0;}
 
     footer .info{ padding: 10px;  color: #FFF; font-size: 20px; text-align: center; background: #23d3c4; }
 
@@ -32,6 +37,8 @@
         footer .payment .group{display: block; text-align: center;}
         footer .payment .title{width: auto;}
         footer .payment .items{width: auto;}
+        footer .payment .items.efectivo .item{width: 20%; padding-top: 10%;}
+        footer .payment .items.efectivo.title{width: auto;}
 
         /* RESPONSIVE SUGERIDO
         footer .contact .section {margin: 0px 0 0 60px;}
@@ -70,6 +77,20 @@
                 </div>
             </div>
             <div class="payment">
+                <div class="group contain">
+                    <div class="section items efectivo title">
+                        <div class="item" style="background-image: url('https://www.kmimos.com.mx/wp-content/uploads/2017/07/PROPUESTA-ALTERNA-PAG-1-02-2.jpg');"></div>
+                    </div>
+                    <div class="section items efectivo">
+                        <div class="item" style="background-image: url('https://www.kmimos.com.mx/wp-content/uploads/2017/07/para-programación-pago-en-efectivo-03.jpg');"></div>
+                        <div class="item" style="background-image: url('https://www.kmimos.com.mx/wp-content/uploads/2017/07/para-programación-pago-en-efectivo-01.jpg');"></div>
+                        <div class="item" style="background-image: url('https://www.kmimos.com.mx/wp-content/uploads/2017/07/para-programación-pago-en-efectivo-04.jpg');"></div>
+                        <div class="item" style="background-image: url('https://www.kmimos.com.mx/wp-content/uploads/2017/07/para-programación-pago-en-efectivo-02.jpg');"></div>
+                        <div class="item" style="background-image: url('https://www.kmimos.com.mx/wp-content/uploads/2017/07/para-programación-pago-en-efectivo-05.jpg');"></div>
+                        <div class="item" style="background-image: url('https://www.kmimos.com.mx/wp-content/uploads/2017/07/para-programación-pago-en-efectivo-07-1.jpg');"></div>
+                        <div class="item" style="background-image: url('https://www.kmimos.com.mx/wp-content/uploads/2017/07/para-programación-pago-en-efectivo-06-1.jpg');"></div>
+                    </div>
+                </div>
                 <div class="group contain">
                     <div class="section title">Métodos de Pago</div>
                     <div class="section items">
