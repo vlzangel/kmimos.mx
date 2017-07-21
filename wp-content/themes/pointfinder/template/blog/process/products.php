@@ -51,7 +51,7 @@ foreach ($featureds as $featured){
     $html.='<div class="button">VER MAS</div>';
     $html.='</div>';
 
-    $html.='<a class="absolute" href="'.$url.'" title="'.$data->nom.'"></a>';
+    $html.='<a class="absolute" href="'.$url.'" target="_blank" title="'.$data->nom.'"></a>';
     $html.='</div>';
 }
 
