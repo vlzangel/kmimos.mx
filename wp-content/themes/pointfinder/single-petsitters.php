@@ -146,29 +146,6 @@
 					>Reservar</span>";
 				} $HTML .= "
 			</div>
-		</div>
-		<div class='vlz_separador'></div>
-		<h3 class='vlz_titulo'>Estos son mis servicios</h3>
-		<div class='vlz_seccion'>";
-
-			$args = array(
-				'post_type' => 'product',
-		        'post_status' => 'publish',
-		        'author' => $cuidador->user_id
-		    );
-
-		    $products = get_posts( $args );
-
-		    $ids = '';
-		    foreach($products as $product){
-		        if( $ids != '') $ids .= ',';
-		        $ids .= $product->ID;
-		    }
-
-		    if($ids != ''){
-		        $comando = '[products ids="'.$ids.'"]';
-		        $HTML .= do_shortcode($comando);
-		    } $HTML .= "
 		</div>";
 
 		if( $descripcion != "" ){
@@ -302,13 +279,34 @@
 		<h3 class="vlz_titulo">Mi Ubicaci&oacute;n</h3>
 		<div class="vlz_seccion">
 			<iframe id="petsitter-map" src="'.get_home_url().'/wp-content/plugins/kmimos/mapa.php?lat='.$latitud.'&lng='.$longitud.'" width="100%" height="300" style="border:none"></iframe>
-		</div>';
+		</div>
+
+		<div class="vlz_separador"></div>
+		<h3 class="vlz_titulo">Estos son mis servicios</h3>
+		<div class="vlz_seccion">';
+			$args = array(
+				"post_type" => "product",
+		        "post_status" => "publish",
+		        "author" => $cuidador->user_id
+		    );
+
+		    $products = get_posts( $args );
+
+		    $ids = "";
+		    foreach($products as $product){
+		        if( $ids != "") $ids .= ",";
+		        $ids .= $product->ID;
+		    }
+
+		    if($ids != ""){
+		        $comando = "[products ids='".$ids."']";
+		        $HTML .= do_shortcode($comando);
+		    } $HTML .= "
+		</div>";
 
 		if( $atributos['video_youtube'][0] != ''){
-
 			$video = $atributos['video_youtube'];
 			preg_match_all('#v=(.*?)#', $video, $encontrados);
-
 			$HTML .= '
 				<div class="vlz_separador"></div>
 				<h3 class="vlz_titulo">Este es el video que el cuidador subió a Youtube.</h3>

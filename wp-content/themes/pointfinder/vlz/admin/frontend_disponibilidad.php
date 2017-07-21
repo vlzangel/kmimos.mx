@@ -59,27 +59,37 @@
     		</tr>
     ";
 
-    $opciones = "";
+	$opciones = "<OPTION value='Todos' >Todos</OPTION>";
     foreach ($rangos as $value) {
     	$servicio_id = $value['servicio_id'];
     	$servicio = $value['servicio'];
     	$opciones .= "<OPTION value='{$servicio_id}' >{$servicio}</OPTION>";
     	if( $value['rangos'] != "" ){
     		foreach ($value['rangos'] as $rango) {
+
+    			$from = date("d/m/Y", strtotime($rango['from']));
+    			$to = date("d/m/Y", strtotime($rango['to']));
+
+    			if( $servicio != '' ){
+    				$servicio_top = "border-top: 1px solid #dadada;";
+    			}else{
+    				$servicio_top = "border-top: 1px solid #f1f1f1;";
+    			}
+
 		    	$tabla .= "
 		    		<tr>
-		    			<td> {$servicio} </td>
-		    			<td> {$rango['from']} </td>
-		    			<td> {$rango['to']} </td>
+		    			<td style='{$servicio_top}'> {$servicio} </td>
+		    			<td> {$from} </td>
+		    			<td> {$to} </td>
 		    			<td class='acciones' > 
-		    				<SELECT name=''>
-								<OPTION>Selecciona una opción</OPTION>
-								<OPTION>Editar</OPTION>
-								<OPTION>Eliminar</OPTION>
-							</SELECT> 
+							<input type='button' class='delete_disponibilidad' value='Eliminar' data-id='{$servicio_id}' data-inicio='{$rango['from']}' data-fin='{$rango['to']}' />
 						</td>
 		    		</tr>
 		    	";
+
+    			if( $servicio != '' ){
+    				$servicio = "";
+    			}
 	    	}
     	}
     }
@@ -157,8 +167,7 @@
 			.table_main td {    
     			padding: 10px 10px 0px;
 			    background: #f1f1f1;
-			    border-bottom: 1px solid #fff;
-			    border-top: 1px solid transparent;
+			    border-top: 1px solid #dadada;
 			    vertical-align: top;
 			    font-size: 13px;
 			    color: #444;
@@ -182,17 +191,17 @@
 			    color: #444; 
 			}
 
-			.table_main td select{    
+			.table_main td input{    
 			    padding: 3px 0px;
 			    width: 100%;
-			    background-color: #59c9a8;
+			    background-color: #bf2020;
 			    border: 0;
 			    outline: none;
 			    box-shadow: 0px 0px 0px #000;
-			    color: #FFF;
+			    color: #FFF !important;
 			}
 
-			.table_main td select:focus{  
+			.table_main td input:focus{  
 			    outline: none;
 			    box-shadow: 0px 0px 0px #000;
 			}
@@ -213,7 +222,7 @@
 			.botones_box{
 			    display: inline-block;
 			    float: right;
-			    width: 33.33333333%;
+			    width: 25%;
 			    padding: 5px;
 			    box-sizing: border-box;
 			}
@@ -230,9 +239,10 @@
 	    
 	    <h1>Disponibilidad</h1><br><hr>
 
+	    <input type="hidden" id="user_id" value="'.$user_id.'" />
+
 		<div class="fechas_box table_main tabla_disponibilidad_box"> 
 			'.$tabla.'
-
 			<div class="botones_container">
 		        <div class="botones_box">
 		        	<input type="button" id="editar_disponibilidad" value="Editar Disponibilidad" />
@@ -264,21 +274,28 @@
 		        <div class="botones_box">
 		        	<input type="button" id="guardar_disponibilidad" value="Guardar" />
 		        </div>
+		        <div class="botones_box">
+		        	<input type="button" id="volver_disponibilidad" value="Volver" />
+		        </div>
 	        </div>
 	    </div>
 
 	    <script>
+	    	function volver_disponibilidad(){
+	    		jQuery(".fechas").css("display", "none");
+	    		jQuery(".tabla_disponibilidad_box").css("display", "block");
+	    	}
+
 	    	function editar_disponibilidad(){
 	    		jQuery(".fechas").css("display", "block");
 	    		jQuery(".tabla_disponibilidad_box").css("display", "none");
 	    	}
 
 	    	function guardar_disponibilidad(){
-	    		// jQuery(".fechas").css("display", "none");
-	    		// jQuery(".tabla_disponibilidad_box").css("display", "block");
 
 	    		var ini = jQuery("#inicio").val();
 	    		var fin = jQuery("#fin").val();
+	    		var user_id = jQuery("#user_id").val();
 
 	    		if( ini == "" || fin == "" ){
 	    			alert("Debes seleccionar las fechas primero");
@@ -289,6 +306,7 @@
 				   			servicio: jQuery("#servicio").val(),
 				   			inicio: ini,
 				   			fin: fin,
+				   			user_id: user_id
 				   		},
 				   		function(data){
 					   		// console.log(data);
@@ -300,6 +318,10 @@
 
 	    	jQuery("#editar_disponibilidad").on("click", function(e){
 	    		editar_disponibilidad();
+	    	});
+
+	    	jQuery("#volver_disponibilidad").on("click", function(e){
+	    		volver_disponibilidad();
 	    	});
 
 	    	jQuery("#guardar_disponibilidad").on("click", function(e){
@@ -336,6 +358,37 @@
 
 	    	jQuery("#inicio").on("change", function(e){
 	    		seleccionar_checkin();
+	    	});
+
+	    	jQuery(".delete_disponibilidad").on("click", function(e){
+	    		var valor = jQuery(this).val();
+
+	    		switch (valor) {
+	    			case "Eliminar":
+		    			var confirmed = confirm("Esta seguro de liberar estos días?");
+	                    if (confirmed == true) {
+	                        
+							var id  = jQuery(this).attr("data-id");
+				    		var ini = jQuery(this).attr("data-inicio");
+				    		var fin = jQuery(this).attr("data-fin");
+
+				    		jQuery.post(
+						   		"'.get_template_directory_uri().'/vlz/admin/process/delete_disponibilidad.php", 
+						   		{
+						   			servicio: id,
+						   			inicio: ini,
+						   			fin: fin,
+						   		},
+						   		function(data){
+							   		location.reload();
+							   	}
+						   	);
+
+	                    }
+		    				
+    				break;
+	    		}
+		    		
 	    	});
 	    </script>
     ';
