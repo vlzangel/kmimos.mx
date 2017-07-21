@@ -100,39 +100,6 @@
 	    }
 	}
 
-    if(!function_exists('kmimos_mails_administradores_new')){
-        function kmimos_mails_administradores_new($titulo, $mensaje){
-
-            // $info = kmimos_get_info_syte();
-            // $email_admin = $info["email"];
-
-            // $headers_admins = array(
-            //     'BCC: e.celli@kmimos.la',
-            //     'BCC: a.lazaro@kmimos.la',
-            //     'BCC: r.cuevas@kmimos.la',
-            //     'BCC: r.gonzalez@kmimos.la',
-            //     'BCC: m.castellon@kmimos.la',
-            //     'BCC: a.pedroza@kmimos.la'
-            // );
-
-            // wp_mail( $email_admin, $titulo, $mensaje, $headers_admins);
-
-            // $headers_call_center = array(
-            //     'BCC: operador01sincola@gmail.com',
-            //     'BCC: operador04sincola@gmail.com',
-            //     'BCC: Operador05sincola@gmail.com',
-            //     'BCC: Operador06sincola@gmail.com',
-            //     'BCC: robertomadridcisneros@gmail.com',
-            //     'BCC: jordiballarin@gmail.com',
-            //     'BCC: supervisor01sincola@gmail.com',
-            //     'BCC: supervisor02sincola@gmail.com' 
-            // );
-
-            // wp_mail( "a.veloz@kmimos.la", $titulo, $mensaje, $headers_call_center);
-
-        }
-    }
-
     if(!function_exists('vlz_servicios')){
         function vlz_servicios($adicionales){
             $r = ""; $adiestramiento = false;
@@ -187,41 +154,6 @@
             }
             return $r;
         }
-    }
-
-    if(!function_exists('toRadian')){
-
-        function toRadian($deg) {
-            return $deg * pi() / 180;
-        };
-
-    }
-
-    if( !function_exists('calcular_rango_de_busqueda') ){
-
-        function calcular_rango_de_busqueda($norte, $sur){
-            return ( 6371 * 
-                acos(
-                    cos(
-                        toRadian($norte->lat)
-                    ) * 
-                    cos(
-                        toRadian($sur->lat)
-                    ) * 
-                    cos(
-                        toRadian($sur->lng) - 
-                        toRadian($norte->lng)
-                    ) + 
-                    sin(
-                        toRadian($norte->lat)
-                    ) * 
-                    sin(
-                        toRadian($sur->lat)
-                    )
-                )
-            );
-        }
-
     }
 
     if(!function_exists('servicios_adicionales')){
