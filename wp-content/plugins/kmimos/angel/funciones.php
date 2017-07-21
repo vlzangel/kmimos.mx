@@ -27,7 +27,8 @@
                             '{$fecha}',
                             '{$mascotas}',
                             '{$acepta}',
-                            '{$full} '        
+                            '{$full}',        
+                            '0'        
                         );
                     ";
                     $wpdb->query($sql);
