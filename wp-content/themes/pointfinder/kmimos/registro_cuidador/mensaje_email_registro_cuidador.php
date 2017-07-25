@@ -85,7 +85,7 @@ $mensaje_mail = '
 <p style="text-align: justify;">
     <ul style="text-align: justify;">
         <li><strong>Pruebas de conocimiento veterinario.</strong></li>
-        <li><strong>Pruebas Psicométricas.</strong><li>
+        <li><strong>Pruebas Psicométricas.</strong></li>
         <li><strong>Documentación (IFE, Comprobante de domicilio y Datos Bancarios).</strong></li>
     </ul>
 </p>
