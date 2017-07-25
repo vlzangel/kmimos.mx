@@ -24,17 +24,18 @@
         $rangos = serialize($rangos);
         $db->query(" UPDATE wp_postmeta SET meta_value = '{$rangos}' WHERE post_id = '{$servicio}' AND meta_key = '_wc_booking_availability' ");
 
-        $autor = $db->get_var("SELECT post_author FROM wp_postmeta WHERE ID = '{$servicio}' ", "post_author");
+        $autor = $db->get_var("SELECT post_author FROM wp_posts WHERE ID = '{$servicio}' ", "post_author");
         $acepta = $db->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = '{$servicio}' AND meta_key = '_wc_booking_qty' ", "meta_value");
 
         $inicio = strtotime($inicio);
         $fin = strtotime($fin);
+
         for ($i=$inicio; $i <= $fin; $i+=86400) { 
             $fecha = date("Y-m-d", $i);
 
-            $existe = $db->get_var("SELECT * FROM cupos WHERE servicio = '{$servicio}' AND fecha = '{$fecha}'");
+            $existe = $db->get_var("SELECT id FROM cupos WHERE servicio = '{$servicio}' AND fecha = '{$fecha}'");
 
-            if( isset($existe) ){
+            if( $existe != false ){
                 $db->query("UPDATE cupos SET no_disponible = 1 WHERE servicio = '{$servicio}' AND fecha = '{$fecha}'");
             }else{
                 $sql = "
@@ -45,7 +46,7 @@
                         '{$fecha}',
                         '0',
                         '{$acepta}',
-                        '1',
+                        '0',
                         '1'
                     );
                 ";
@@ -78,17 +79,18 @@
             $rangos = serialize($rangos);
             $db->query(" UPDATE wp_postmeta SET meta_value = '{$rangos}' WHERE post_id = '{$servicio->ID}' AND meta_key = '_wc_booking_availability' ");
 
-            $autor = $db->get_var("SELECT post_author FROM wp_postmeta WHERE ID = '{$servicio->ID}' ", "post_author");
+            $autor = $db->get_var("SELECT post_author FROM wp_posts WHERE ID = '{$servicio->ID}' ", "post_author");
             $acepta = $db->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = '{$servicio->ID}' AND meta_key = '_wc_booking_qty' ", "meta_value");
 
             $inicio = strtotime($inicio);
             $fin = strtotime($fin);
+
             for ($i=$inicio; $i <= $fin; $i+=86400) {
                 $fecha = date("Y-m-d", $i);
 
-                $existe = $db->get_var("SELECT * FROM cupos WHERE servicio = '{$servicio->ID}' AND fecha = '{$fecha}'");
+                $existe = $db->get_var("SELECT id FROM cupos WHERE servicio = '{$servicio->ID}' AND fecha = '{$fecha}'");
 
-                if( isset($existe) ){
+                if( $existe != false ){
                     $db->query("UPDATE cupos SET no_disponible = 1 WHERE servicio = '{$servicio->ID}' AND fecha = '{$fecha}'");
                 }else{
                     $sql = "
@@ -99,7 +101,7 @@
                             '{$fecha}',
                             '0',
                             '{$acepta}',
-                            '1',
+                            '0',
                             '1'
                         );
                     ";
