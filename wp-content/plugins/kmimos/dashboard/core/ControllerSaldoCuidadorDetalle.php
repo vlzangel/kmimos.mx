@@ -6,43 +6,7 @@ require_once('GlobalFunction.php');
 // Cargar listados de Reservas
 // ***************************************
 
-function getPagoCuidador($desde = '', $hasta=''){
-	$reservas = getReservas($desde, $hasta);
-	$pagos = [];
-	$detalle = [];
-	foreach ($reservas as $row) {
-
-		// Datos del cuidador
-		$pagos[ $row->cuidador_id ]['nombre'] = $row->nombre;
-		$pagos[ $row->cuidador_id ]['apellido'] = $row->apellido;
-
-		// Calculo por reserva
-		$monto = calculo_pago_cuidador( $row->total, $row->total_pago, $row->remanente );
-
-		// $detalle[ $row->nombre." ".$row->apellido ][ $row->reserva_id ]['monto'] = $monto;
-		// $detalle[ $row->nombre." ".$row->apellido ][ $row->reserva_id ]['total'] = $row->total;
-		// $detalle[ $row->nombre." ".$row->apellido ][ $row->reserva_id ]['remanente'] = $row->remanente;
-		// $detalle[ $row->nombre." ".$row->apellido ][ $row->reserva_id ]['pagado'] = $row->total_pago;
-		$pagos[ $row->cuidador_id ]['detalle'] .= "[{$row->reserva_id}: {$monto} ]<br>";
-
-		if( array_key_exists('total', $pagos[ $row->cuidador_id ]) ){
-			$monto = $pagos[ $row->cuidador_id ]['total'] + $monto;
-		}
-
-
-		// Total a pagar
-		$pagos[ $row->cuidador_id ]['total'] = $monto;
-
-	}
-
-// echo '<pre>';
-// print_r( $detalle );
-// echo '</pre>';
-
-	return $pagos;
-}
-
-function calculo_pago_cuidador( $total, $pago, $remanente ){
+function calculo_pago_cuidador( $id_reserva, $total, $pago, $remanente ){
 
 	$saldo_cuidador = 0;
 
@@ -68,22 +32,32 @@ function getReservas($desde="", $hasta=""){
 	global $wpdb;
 	$sql = "
 		SELECT 
-			us.user_id as cuidador_id,
- 			us.nombre,
-			us.apellido,
-			r.ID as reserva_id,
-			rm_cost.meta_value as total,
-			pm_remain.meta_value as remanente,
-			pm_total.meta_value as total_pago
+			r.ID as 'nro_reserva',
+ 			DATE_FORMAT(r.post_date,'%d-%m-%Y') as 'fecha_solicitud',
+ 			r.post_status as 'estatus_reserva',
+ 			p.ID as 'nro_pedido',
+ 			p.post_status as 'estatus_pago', 			
+			pr.post_title as 'producto_title',
+			pr.post_name as 'producto_name',			
+ 			(du.meta_value -1) as  'nro_noches',
+ 			(IFNULL(mpe.meta_value,0) + IFNULL(mme.meta_value,0) + IFNULL(mgr.meta_value,0) + IFNULL(mgi.meta_value,0)) as nro_mascotas,
+ 			((du.meta_value -1) * ( IFNULL(mpe.meta_value,0) + IFNULL(mme.meta_value,0) + IFNULL(mgr.meta_value,0) + IFNULL(mgi.meta_value,0) )) as 'total_noches',
 
-		FROM wp_posts as r
+			pr.ID as producto_id,
+			pr.post_name as post_name,
+ 			us.user_id as cuidador_id,
+ 			cl.ID as cliente_id
+
+		from wp_posts as r
 			LEFT JOIN wp_postmeta as rm ON rm.post_id = r.ID and rm.meta_key = '_booking_order_item_id' 
-			LEFT JOIN wp_postmeta as rm_cost ON rm_cost.post_id = r.ID and rm_cost.meta_key = '_booking_cost'
-
 			LEFT JOIN wp_posts as p ON p.ID = r.post_parent
-			LEFT JOIN wp_postmeta as pm_remain ON pm_remain.post_id = p.ID and pm_remain.meta_key = '_wc_deposits_remaining'
-			LEFT JOIN wp_postmeta as pm_total  ON pm_total.post_id = p.ID and pm_total.meta_key = '_order_total'
 
+			LEFT JOIN wp_woocommerce_order_itemmeta as fe  ON (fe.order_item_id  = rm.meta_value and fe.meta_key  = 'Fecha de Reserva')
+			LEFT JOIN wp_woocommerce_order_itemmeta as du  ON (du.order_item_id  = rm.meta_value and du.meta_key  = 'Duración')
+			LEFT JOIN wp_woocommerce_order_itemmeta as mpe ON mpe.order_item_id = rm.meta_value and (mpe.meta_key = 'Mascotas Pequeños' or mpe.meta_key = 'Mascotas Pequeñas')
+			LEFT JOIN wp_woocommerce_order_itemmeta as mme ON mme.order_item_id = rm.meta_value and (mme.meta_key = 'Mascotas Medianos' or mme.meta_key = 'Mascotas Medianas')
+			LEFT JOIN wp_woocommerce_order_itemmeta as mgr ON (mgr.order_item_id = rm.meta_value and mgr.meta_key = 'Mascotas Grandes')
+			LEFT JOIN wp_woocommerce_order_itemmeta as mgi ON (mgi.order_item_id = rm.meta_value and mgi.meta_key = 'Mascotas Gigantes')
 			LEFT JOIN wp_woocommerce_order_itemmeta as pri ON (pri.order_item_id = rm.meta_value and pri.meta_key = '_product_id')
 			LEFT JOIN wp_posts as pr ON pr.ID = pri.meta_value
 			LEFT JOIN cuidadores as us ON us.user_id = pr.post_author
@@ -94,11 +68,11 @@ function getReservas($desde="", $hasta=""){
 			and p.ID > 0
 			and r.post_status = 'confirmed'
 		;";
+//			{$filtro_adicional}
 
 	$reservas = $wpdb->get_results($sql);
 	return $reservas;
 }
-//			{$filtro_adicional}
 
 
 
