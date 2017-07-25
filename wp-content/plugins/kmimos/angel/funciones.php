@@ -1,4 +1,45 @@
 <?php
+
+    if(!function_exists('update_cupos')){
+        function update_cupos($id, $accion){
+            global $wpdb;
+            $data = get_data_booking($id);
+            extract($data);
+
+            for ($i=$inicio; $i < $fin; $i+=86400) { 
+                $fecha = date("Y-m-d", $i);
+                $full = 0;
+
+                $existe = $wpdb->get_var("SELECT * FROM cupos WHERE servicio = '{$servicio}' AND fecha = '{$fecha}'");
+
+                if( isset($existe) ){
+                    $wpdb->query("UPDATE cupos SET cupos = cupos {$accion} {$mascotas} WHERE servicio = '{$servicio}' AND fecha = '{$fecha}' ");
+                    $wpdb->query("UPDATE cupos SET full = 1 WHERE servicio = '{$servicio}' AND ( fecha = '{$fecha}' AND cupos >= acepta )");
+                    $wpdb->query("UPDATE cupos SET full = 0 WHERE servicio = '{$servicio}' AND ( fecha = '{$fecha}' AND cupos < acepta )");
+                }else{
+
+                    if( $mascotas >= $acepta ){ $full = 1; }
+                    $sql = "
+                        INSERT INTO cupos VALUES (
+                            NULL,
+                            '{$autor}',
+                            '{$servicio}',
+                            '{$fecha}',
+                            '{$mascotas}',
+                            '{$acepta}',
+                            '{$full}',        
+                            '0'        
+                        );
+                    ";
+                    $wpdb->query($sql);
+
+                }
+
+            }
+
+        }
+    }
+
 	if(!function_exists('vlz_get_paginacion')){
         function vlz_get_paginacion($t, $pagina){
             $paginacion = ""; $h = 15; $inicio = $pagina*$h; 
@@ -101,10 +142,6 @@
                 $user_id = $current_user->ID;
                 $user = new WP_User( $user_id );
                 $salir = wp_logout_url( home_url() );
-
-                // echo "<pre>";
-                //     print_r($user->data->display_name);
-                // echo "</pre>";
 
                 $MENU["head"] = '
                     <li class="pf-my-account pfloggedin"></li>

@@ -131,7 +131,7 @@ if(array_key_exists('search',$_POST)){
                     <span>Habla con nosotros</span>
                     <span>
                     <i class="icon phone fa fa-phone"></i>
-                    +52 (55) 1791.4931 +52 (55) 6631.9264
+                    01 800 056 4667 <strong>WhatsApp:</strong>  +52 (55) 6892 2182
                     </span>
                     <div id="pf-login-trigger-button" class="session">Inicia Sesión</div>
                     <i class="icon help fa fa-question"></i>
@@ -161,7 +161,7 @@ if(array_key_exists('search',$_POST)){
                 </div>
 
                 <div class="phone section">
-                    +52 (55) 1791.4931<br>+52 (55) 6631.9264
+                    01 800 056 4667<br><strong>WhatsApp:</strong>  +52 (55) 6892 2182
                 </div>
 
                 <div class="search section">

@@ -48,7 +48,7 @@ while($blogs->have_posts()){
     echo '<div class="button more scroll_animate" data-position="self">'.__('MORE').'</div>';
     echo '</div>';
 
-    echo '<a class="absolute" href="'.esc_url(get_permalink()).'" title="'.the_title('','',false).'"></a>';
+    echo '<a class="absolute" href="'.esc_url(get_permalink()).'" target="_blank" title="'.the_title('','',false).'"></a>';
     echo '</div>';
 }
 

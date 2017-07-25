@@ -65,10 +65,14 @@ if(count($featureds)>0){
         $bone=str_replace('http://kmimosmx.sytes.net/QA1/','https://kmimos.com.mx/',$bone);
 
         $html.='<div class="post">';// scroll_animate" data-position="self
-        $html.='<div class="image">';
-        $html.='<div class="img" data-original="'.$img.'" style="background-image:url('.$img.');"></div>';// easyload
+
+        $html.='<div class="data">';
         $html.='<div class="rating">'.round($votes['rating']).'</div>';
         $html.='<div class="bone" style="background-image: url('.$bone.');"></div>';
+        $html.='</div>';
+
+        $html.='<div class="image">';
+        $html.='<div class="img" data-original="'.$img.'" style="background-image:url('.$img.');"></div>';// easyload
         $html.='</div>';
 
         $html.='<div class="detail">';
@@ -78,7 +82,7 @@ if(count($featureds)>0){
         $html.='<div class="content price">Desde $ '.($caregiver->hospedaje_desde*1.2).'</div>';
         $html.='</div>';
 
-        $html.= '<a class="absolute" href="'.$url.'" title="'.$data->nom.'"></a>';
+        $html.= '<a class="absolute" href="'.$url.'" target="_blank" title="'.$data->nom.'"></a>';
         $html.='</div>';
     }
 }

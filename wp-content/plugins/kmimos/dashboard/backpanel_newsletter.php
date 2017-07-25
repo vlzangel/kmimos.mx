@@ -65,6 +65,7 @@ $subscribe = getNewsletter();
 			      <th>Nombre</th>
 			      <th>Email</th>
 			      <th>Fecha de registro</th>
+					<th>Origen</th>
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -75,6 +76,7 @@ $subscribe = getNewsletter();
 						<th><?php echo $row['name'];  ?></th>
 						<th><?php echo $row['email']; ?></th>
 						<th><?php echo $row['time']; ?></th>
+						<th><?php echo $row['source']; ?></th>
 				    </tr>
 			   	<?php } ?>
 			  </tbody>

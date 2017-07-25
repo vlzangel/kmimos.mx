@@ -5,6 +5,9 @@
 	$S = geo("S");
 
 	$scripts = '
+		<script type="text/javascript" src="'.get_home_url().'/wp-content/themes/pointfinder/vlz/js/markerclusterer.js"></script>
+		<script type="text/javascript" src="'.get_home_url().'/wp-content/themes/pointfinder/vlz/js/oms.min.js"></script>
+
 		<script type="text/javascript">
 			function vlz_select(id){
 				if( jQuery("#"+id+" input").prop("checked") && jQuery("#"+id).hasClass("vlz_check_select")){
@@ -121,6 +124,12 @@
 		        mapTypeId: google.maps.MapTypeId.ROADMAP
 		    });
 
+	        var oms = new OverlappingMarkerSpiderfier(map, { 
+		        markersWontMove: true,
+		        markersWontHide: true,
+		        basicFormatEvents: true
+		  	});
+
 		    var bounds = new google.maps.LatLngBounds();
 
 		    jQuery.each(pines, function( index, cuidador ) {
@@ -129,7 +138,6 @@
 		            vlz_index: index,
 		            map: map,
 		            draggable: false,
-		            animation: google.maps.Animation.DROP,
 		            position: new google.maps.LatLng(cuidador.lat, cuidador.lng),
 		            icon: "https://www.kmimos.com.mx/wp-content/themes/pointfinder/vlz/img/pin.png"
 		        });
@@ -139,9 +147,16 @@
 		        markers[index].addListener("click", function(e) { 
 		            infos[this.vlz_index].open(map, this);
 		        });
+
+        		oms.addMarker(markers[index]);
 		    });
 
+		    var markerCluster = new MarkerClusterer(map, markers, {imagePath: "'.get_home_url().'/wp-content/themes/pointfinder/vlz/js/images/m"});
 		    map.fitBounds(bounds);
+
+		    minClusterZoom = 14;
+		    markerCluster.setMaxZoom(minClusterZoom);
+		    window.oms = oms;
 
 		}
 
@@ -153,6 +168,41 @@
 			$.type="text/javascript";
 			e.parentNode.insertBefore($, e)
 		})(document,"script");
+
+		function seleccionar_checkin() {
+	        if( jQuery("#checkin").val() != "" ){
+	            var fecha = new Date();
+	            jQuery("#checkout").attr("disabled", false);
+
+	            var ini = String( jQuery("#checkin").val() ).split("-");
+	            var inicio = new Date( parseInt(ini[0]), parseInt(ini[1])-1, parseInt(ini[2]) );
+
+	            var checkout = String( jQuery("#checkout").val() ).split("-");
+
+	            if( jQuery("#checkout").val() != "" ){
+	            	var checkout = new Date( checkout[0]+"-"+checkout[1]+"-"+checkout[2] );
+
+	            	console.log( inicio );
+	            	console.log( checkout );
+
+	                if( Math.abs(checkout.getTime()) < Math.abs(inicio.getTime()) ){
+	                    jQuery("#checkout").attr("value", ini[0]+"-"+ini[1]+"-"+ini[2] );
+	                }
+	            }else{
+	                jQuery("#checkout").attr("value", ini[0]+"-"+ini[1]+"-"+ini[2] );
+	            }
+	                
+	            jQuery("#checkout").attr("min", ini[0]+"-"+ini[1]+"-"+ini[2] );
+	        }else{
+	            jQuery("#checkout").val("");
+	            jQuery("#checkout").attr("disabled", true);
+	        }
+	    }
+
+	    jQuery("#checkin").on("change", function(e){
+	        seleccionar_checkin();
+	    });
+
 	</script>';
 
 	$SCRIPTS = comprimir_styles($scripts);
