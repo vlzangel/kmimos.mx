@@ -75,7 +75,7 @@ $subscribe = getNewsletter();
 				    	<th class="text-center"><?php echo ++$count; ?></th>
 						<th><?php echo $row['name'];  ?></th>
 						<th><?php echo $row['email']; ?></th>
-						<th><?php echo date('d/m/Y',$row['time']); ?></th>
+						<th><?php echo $row['time']; ?></th>
 						<th><?php echo $row['source']; ?></th>
 				    </tr>
 			   	<?php } ?>

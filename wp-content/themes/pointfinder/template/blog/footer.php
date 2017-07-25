@@ -112,7 +112,7 @@
             <div class="info">
                 <div class="contain">
                     Copyright &copy; 2017 <span class="logo"></span> Todos Los Derechos Reservados.<br>
-                    Importante! <span class="logo"></span> es una tienda únicamente en línea, por lo cual no contamos con tienda física .<br>
+                    <!-- Importante! <span class="logo"></span> es una tienda únicamente en línea, por lo cual no contamos con tienda física .<br> -->
                     Oficinas Corporativas: Bosque de Duraznos 65, Bosque de las Lomas Miguel Hidalgo, México, D.F. C.P. 11700
                 </div>
             </div>
