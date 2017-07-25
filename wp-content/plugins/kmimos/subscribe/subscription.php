@@ -68,7 +68,7 @@ if(mail_validate($mail)){
 	$table = $_subscribe->table;
 	$result = $_subscribe->result("SELECT * FROM $table WHERE email = '$mail'");
 	if(count($result)==0){
-		$_subscribe->insert(array('name' => $name  ,'email' => $mail , 'source' => $section,'time' => time()));
+		$_subscribe->insert(array('name' => $name  ,'email' => $mail , 'source' => $section,'time' => date('Y-m-d H:i:s', time())));
 		$return['message']='Ha sido Registrado';
 	}else{
 		$return['message']='Ya se encuentra registrado';

@@ -2,6 +2,7 @@
 
 $args = array(
     'post_type'=>'post',
+    'post_status' => 'publish',
     'posts_per_page' =>5,
     'meta_key' => 'post_views_count',
     'orderby' => 'meta_value_num',
