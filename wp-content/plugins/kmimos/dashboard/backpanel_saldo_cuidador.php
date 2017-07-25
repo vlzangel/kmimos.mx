@@ -38,7 +38,6 @@ $PagoCuidador = getPagoCuidador($_desde='', $_hasta='');
 			      <th>Nombre</th>
 			      <th>Apellido</th>
 			      <th>Total a pagar</th>
-			      <th>d</th>
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -51,7 +50,6 @@ $PagoCuidador = getPagoCuidador($_desde='', $_hasta='');
 				    	<th class="text-center"><?php echo $row['nombre']; ?></th>
 				    	<th class="text-center"><?php echo $row['apellido']; ?></th>
 				    	<th class="text-center"><?php echo $row['total']; ?></th>
-				    	<th class="text-center"><?php echo $row['detalle']; ?></th>
 
 				    </tr>
 			   	<?php } ?>

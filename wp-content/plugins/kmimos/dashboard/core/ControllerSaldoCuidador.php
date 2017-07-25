@@ -6,7 +6,7 @@ require_once('GlobalFunction.php');
 // Cargar listados de Reservas
 // ***************************************
 
-function getPagoCuidador($desde = '', $hasta=''){
+function getPagoCuidador($desde, $hasta){
 	$reservas = getReservas($desde, $hasta);
 	$pagos = [];
 	$detalle = [];
@@ -29,17 +29,34 @@ function getPagoCuidador($desde = '', $hasta=''){
 			$monto = $pagos[ $row->cuidador_id ]['total'] + $monto;
 		}
 
-
 		// Total a pagar
 		$pagos[ $row->cuidador_id ]['total'] = $monto;
 
 	}
 
-// echo '<pre>';
-// print_r( $detalle );
-// echo '</pre>';
+// print_r(inicio_fin_semana());
 
 	return $pagos;
+}
+
+function inicio_fin_semana(){
+
+    $diaInicio="Tuesday";
+    $diaFin="Monday";
+
+    $d = getdate();
+    $strFecha = strtotime( date("Y-m-d", $d[0]) );
+
+    $fechaInicio = date('Y-m-d',strtotime('last '.$diaInicio,$strFecha));
+    $fechaFin = date('Y-m-d',strtotime('next '.$diaFin,$strFecha));
+
+    if(date("l",$strFecha)==$diaInicio){
+        $fechaInicio= date("Y-m-d",$strFecha);
+    }
+    if(date("l",$strFecha)==$diaFin){
+        $fechaFin= date("Y-m-d",$strFecha);
+    }
+    return Array("fechaInicio"=>$fechaInicio,"fechaFin"=>$fechaFin);
 }
 
 function calculo_pago_cuidador( $total, $pago, $remanente ){
@@ -93,12 +110,12 @@ function getReservas($desde="", $hasta=""){
 			and cl.ID > 0 
 			and p.ID > 0
 			and r.post_status = 'confirmed'
+			{$filtro_adicional}
 		;";
-
+ 
 	$reservas = $wpdb->get_results($sql);
 	return $reservas;
 }
-//			{$filtro_adicional}
 
 
 
