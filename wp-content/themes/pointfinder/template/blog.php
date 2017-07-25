@@ -225,7 +225,7 @@ if($page<=0){
         <div class="section aside">
             <div class="register">
                 <span>Te interesaron nuestros artículos?</span>
-                <span><strong>SUSCR&Iacute;BETE!</strong> y recibe el Newsletter con lo mejor de nuestros posts!</span>
+                <span><strong>SUSCR&Iacute;BETE!</strong> y recibe el Newsletter con nuestras <strong>PROMOCIONES, TIPS DE CUIDADOS PARA MASCOTAS,</strong> etc.!</span>
                 <?php echo subscribe_input('blog'); ?>
             </div>
         </div>
