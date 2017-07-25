@@ -103,7 +103,7 @@ include_once(__DIR__.'/header.php');
     #kmibox .section.register .message .icon{padding: 10px;}
     #kmibox .section.register form{margin: 0; display:flex;}
     #kmibox .section.register input,
-    #kmibox .section.register button{width: 100%; margin: 5px; padding: 5px 10px; color: #CCC; font-size: 15px; border-radius: 20px;  border: none; background: #FFF; }
+    #kmibox .section.register button{width: 100%; max-width: calc(100% - 60px); margin: 5px; padding: 5px 10px; color: #CCC; font-size: 15px; border-radius: 20px;  border: none; background: #FFF; }
     #kmibox .section.register button {padding: 10px;  width: 40px;}
 
     @media screen and (max-width:768px), screen and (max-device-width:768px){
