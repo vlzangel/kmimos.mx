@@ -12,7 +12,7 @@
 
     /* Filtros por fechas */
 	    if( isset($checkin)  && $checkin  != '' && isset($checkout) && $checkout != '' ){ 
-	    	$condiciones .= " AND ( SELECT count(*) FROM cupos WHERE cupos.cuidador = cuidadores.user_id AND cupos.fecha >= '{$checkin}' AND cupos.fecha <= '{$checkout}' AND cupos.full = 1 ) = 0"; 
+	    	$condiciones .= " AND ( SELECT count(*) FROM cupos WHERE cupos.cuidador = cuidadores.user_id AND cupos.fecha >= '{$checkin}' AND cupos.fecha <= '{$checkout}' AND (cupos.full = 1 OR cupos.no_disponible = 1) ) = 0"; 
 	   	}
     /* Fin Filtros por fechas */
 
