@@ -1,5 +1,38 @@
 <?php
 
+    if(!function_exists('angel_log')){
+        function angel_log($salida){
+            global $wpdb;
+            $wpdb->query("INSERT INTO log VALUES(NULL, \"".$salida."\")");
+        }
+    }
+
+    if(!function_exists('get_data_booking')){
+        function get_data_booking($id){
+            global $wpdb;
+
+            $metas      = get_post_meta($id);
+            $servicio   = $metas['_booking_product_id'][0];
+            $mascotas   = unserialize($metas['_booking_persons'][0]);
+
+            $cantidad_mascotas = 0;
+            if( $mascotas != "" && count($mascotas) > 0 ){
+                foreach ($mascotas as $key => $value) {
+                    $cantidad_mascotas += $value;
+                }
+            }
+
+            return array(
+                "inicio"   => strtotime($metas['_booking_start'][0]),
+                "fin"      => strtotime($metas['_booking_end'][0]),
+                "servicio" => $servicio,
+                "mascotas" => $cantidad_mascotas,
+                "acepta"   => get_post_meta($servicio, "_wc_booking_qty", true),
+                "autor"    => $wpdb->get_var("SELECT post_author FROM wp_posts WHERE ID = {$servicio}")
+            );
+        }
+    }
+    
     if(!function_exists('update_cupos')){
         function update_cupos($id, $accion){
             global $wpdb;
