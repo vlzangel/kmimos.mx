@@ -16,6 +16,7 @@ $array_backpanel = [
 	'subscribe',
 	'bp_saldo_cuidadores',
 	'bp_saldo_cuidadores_detalle',
+	'bp_mascotas',
 
 ];
 if( in_array($_GET['page'], $array_backpanel) ){ 

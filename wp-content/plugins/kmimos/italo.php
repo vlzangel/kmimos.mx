@@ -125,6 +125,15 @@
 	                'page'=>'backpanel_saldo_cuidador_detalle',
 	                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
 	        );
+	        $menus[] = array(
+	                'title'=>'Listado Mascotas',
+	                'short-title'=>'Listado Mascotas',
+	                'parent'=>'kmimos',
+	                'slug'=>'bp_mascotas',
+	                'access'=>'manage_options',
+	                'page'=>'backpanel_mascotas',
+	                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
+	        );
 /*
           $menus[] = array(
             'title'=>'Subscriptores',
@@ -153,10 +162,16 @@
 	}
 
 	if(!function_exists('backpanel_saldo_cuidador')){
-        function backpanel_saldo_cuidador(){
-            include_once('dashboard/backpanel_saldo_cuidador.php');
-        }
-    }
+	        function backpanel_saldo_cuidador(){
+	            include_once('dashboard/backpanel_saldo_cuidador.php');
+	        }
+	}
+
+	if(!function_exists('backpanel_mascotas')){
+	        function backpanel_mascotas(){
+	            include_once('dashboard/backpanel_mascotas.php');
+		}
+	}
 
 	if(!function_exists('backpanel_saldo_cuidador_detalle')){
         function backpanel_saldo_cuidador_detalle(){
