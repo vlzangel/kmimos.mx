@@ -45,13 +45,14 @@ $razas = get_razas();
 			  			$row = getmetaMascotas( $rows['ID'] );
 			  			$row['breed_pet'] = $razas[ $row['breed_pet'] ];
 			  			$user = getMetaCliente($row['owner_pet']);	
+
 			  		?>
 				    <tr>
 				    	<th class="text-center"><?php echo ++$count; ?></th>
 				    	<th class="text-center">
 					<?php 
-						if( file_exists($row['photo_pet']) ){
-							echo '<img src="'.$row['photo_pet'].'" >'; 
+						if( file_exists( get_home_url()."/".$row['photo_pet']) ){
+							echo '<img src="'.get_home_url()."/".$row['photo_pet'].'" >'; 
 						}
 					?>
 			    		</th>
