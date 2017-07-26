@@ -113,7 +113,7 @@ $HTML = "</div></div>
             display: none !important;
         }
         .woocommerce-message a{
-            display: none;
+            display: none !important;
         }
         @media (min-width: 1200px){
             .jj-offset-2 {
