@@ -70,40 +70,34 @@ if( isset($_SESSION['busqueda']) ){
 if( count($url_servicio) > 1 ){
 
 	$content_modal .= '<!-- Button trigger modal -->
-		<button type="button" class="button reservar" data-toggle="modal" data-target="#selector_servicios">
+		<button id="btn_reservar" type="button" class="button reservar" data-toggle="modal" data-target="#selector_servicios">
 		  Reservar
 		</button>
 
 		<!-- Modal -->
 		<div class="modal" id="selector_servicios" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		  <div class="modal-dialog" role="document">
-		    <div>
-		      <div class="modal-content">
-		        
-		        	<strong class="modal_title">Cual servicio deseas?</stronge>
-		        	<button style="float:right;" class="btn btn-default btn-sm close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        
-		      </div>
-		      <div class="modal-body">
-		      	<div  class="row">
-		        ';
-			    foreach($url_servicio as $url){
-					$content_modal .= '
-					<a href="'.$url['url'].'">
-						<div class="row text-left modal-items">	
-							<i class="'.$url['icon'].'"></i>
-							<span style="margin-left: 5px;">'.$url['name'].'</span>
-						</div>
-					</a>
-					';
-			    }
-		$content_modal .= '
-
-			      </div>
-		      </div>
-
-		    </div>
-		  </div>
+		  	<div class="modal-dialog" role="document">
+		    	<div>
+		      		<div class="modal-content">
+		        		<strong class="modal_title">Cual servicio deseas?</stronge>
+		        		<button style="float:right;" class="btn btn-default btn-sm close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		      		</div>
+		      		<div class="modal-body">
+		      			<div  class="row">';
+						    foreach($url_servicio as $url){
+								$content_modal .= '
+								<a href="'.$url['url'].'">
+									<div class="row text-left modal-items">	
+										<i class="'.$url['icon'].'"></i>
+										<span style="margin-left: 5px;">'.$url['name'].'</span>
+									</div>
+								</a>
+								';
+						    } $content_modal .= '
+			      		</div>
+		      		</div>
+		    	</div>
+		  	</div>
 		</div>';
 
 		$HTML .= $content_modal;

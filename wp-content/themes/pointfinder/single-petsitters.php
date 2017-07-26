@@ -65,7 +65,6 @@
 	$id_cuidador = ($cuidador->id)-5000;
 	$path_galeria = "wp-content/uploads/cuidadores/galerias/".$id_cuidador."/";
 
-	echo "<div class='hola_xxx' style='display: none;'>".$path_galeria."</div>";
 	if( is_dir($path_galeria) ){
 
 		if ($dh = opendir($path_galeria)) { 
@@ -132,17 +131,19 @@
 				<h1 class='center-white'>".get_the_title()."</h1>
 				".kmimos_petsitter_rating($post_id);
 				if(is_user_logged_in()){
-					$HTML .= "<a class='theme_button button conocer-cuidador' href='".get_home_url()."/conocer-al-cuidador/?id=".$post_id."'>Conocer al Cuidador</a>";
+					$HTML .= "<a id='btn_conocer' class='theme_button button conocer-cuidador' href='".get_home_url()."/conocer-al-cuidador/?id=".$post_id."'>Conocer al Cuidador</a>";
 					include('vlz/seleccion_boton_reserva.php');
 				}else{
 					$HTML .= "
 					<span 
+						id='btn_conocer'
 						class='theme_button button conocer-cuidador' 
-						onclick=\"jQuery('#pf-login-trigger-button').click();\"
+						onclick=\"perfil_login('btn_conocer');\"
 					>Conocer al Cuidador</span>
 					<span 
+						id='btn_reservar'
 						class='button reservar' 
-						onclick=\"jQuery('#pf-login-trigger-button').click();\"
+						onclick=\"perfil_login('btn_reservar');\"
 					>Reservar</span>";
 				} $HTML .= "
 			</div>
@@ -317,7 +318,6 @@
 		}
 
 		echo comprimir_styles($HTML);
-
 			
 			$comments = count( get_comments('post_id='.$post->ID) );
 			if( $comments > 0 ){ ?>
@@ -328,7 +328,50 @@
 				</div> <?php
 			}
 			
-		echo '</div>';
+		echo '</div>
+
+		<script>
+			function perfil_login(accion){
+				setCookie("POST_LOGIN", accion, 1);
+				jQuery("#pf-login-trigger-button").click();
+			}
+
+			function getCookie(cname) {
+			    var name = cname + "=";
+			    var decodedCookie = decodeURIComponent(document.cookie);
+			    var ca = decodedCookie.split(";");
+			    for(var i = 0; i <ca.length; i++) {
+			        var c = ca[i];
+			        while (c.charAt(0) == " ") {
+			            c = c.substring(1);
+			        }
+			        if (c.indexOf(name) == 0) {
+			            return c.substring(name.length, c.length);
+			        }
+			    }
+			    return "";
+			}
+
+			function setCookie(cname, cvalue, exdays) {
+			    var d = new Date();
+			    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+			    var expires = "expires="+ d.toUTCString();
+			    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+			}
+
+			function deleteCookie(cname){
+				document.cookie = cname+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+			}
+
+			jQuery( document ).ready(function() {
+			  	var POST_LOGIN = getCookie("POST_LOGIN");
+			  	console.log(POST_LOGIN);
+				if( POST_LOGIN != "" ){
+					deleteCookie("POST_LOGIN");
+					jQuery("#"+POST_LOGIN).click();
+				}
+			});
+		</script>';
 
 	
 
