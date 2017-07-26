@@ -127,7 +127,7 @@ function getRazaDescripcion($id, $razas){
 	return $nombre;
 }
 
-function get_razas(){
+/*function get_razas(){
 	global $wpdb;
 	$sql = "SELECT * FROM razas ";
 	$result = $wpdb->get_results($sql);
@@ -136,7 +136,7 @@ function get_razas(){
 		$razas[$raza->id] = $raza->nombre;
 	}
 	return $razas;
-}
+}*/
 
 function getCountReservas( $author_id=0, $interval=12, $desde="", $hasta=""){
 
@@ -248,7 +248,7 @@ function photo_exists($path=""){
 	return $photo;
 }
 
-function getEdad($fecha){
+/*function getEdad($fecha){
 	$fecha = str_replace("/","-",$fecha);
 	$hoy = date('Y/m/d');
 
@@ -268,7 +268,7 @@ function getEdad($fecha){
 	}
 
 	return $edad . $desc;
-}
+}*/
 
 function getMascotas($user_id){
 	if(!$user_id>0){ return []; }
