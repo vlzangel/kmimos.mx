@@ -58,19 +58,16 @@
 					<i class="pfadmicon-glyph-632"></i>
 				</a>
 				<div class="pf-container pf-megamenu-container">
-						<div class="pf-row col-md-2 col-lg-2">';
+					<div class="pf-row col-md-2 col-lg-2">';
 
-
-				if( $post->post_name == 'quiero-ser-cuidador-certificado-de-perros' ){
-	$HTML .= 	'<div id="btn-instrucciones-header" class="hidden-xl hidden-lg hidden-md">
-					<a 	class="btn-instrucciones-header pull-left hidden-md hidden-lg hidden-xl" onclick="jQuery(\'#modal_instrucciones\').css(\'display\', \'block\');">
-						Instrucciones
-					</a>
-				</div>';
-	 			}
-
-
-	$HTML .= '				<a class="pf-logo-container hidden-xs hidden-sm" href="'.get_home_url().'"></a>
+					if( $post->post_name == 'quiero-ser-cuidador-certificado-de-perros' ){ $HTML .= '
+						<div id="btn-instrucciones-header" class="hidden-xl hidden-lg hidden-md">
+							<a 	class="btn-instrucciones-header pull-left hidden-md hidden-lg hidden-xl" onclick="jQuery(\'#modal_instrucciones\').css(\'display\', \'block\');">
+								Instrucciones
+							</a>
+						</div>';
+		 			} $HTML .= '				
+							<a class="pf-logo-container hidden-xs hidden-sm" href="'.get_home_url().'"></a>
 						</div>
 						<div class="col-lg-10 col-md-10" id="pfmenucol1">
 							<div class="pf-menu-container">
@@ -198,4 +195,3 @@
         	<div id="pfmaincontent" class="wpf-container-inner">';
 
         echo comprimir_styles($HTML);
-
