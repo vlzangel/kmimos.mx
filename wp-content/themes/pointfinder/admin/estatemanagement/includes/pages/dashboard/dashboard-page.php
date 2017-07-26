@@ -581,11 +581,11 @@ if(isset($ua_action)){
 										);
 										$atributos = serialize($atributos);
 
+										/*
 										$coordenadas = unserialize( $wpdb->get_var("SELECT valor FROM kmimos_opciones WHERE clave = 'municipio_{$delegacion}' ") );
-
 						                $latitud  = $coordenadas["referencia"]->lat;
 						                $longitud = $coordenadas["referencia"]->lng;
-
+										*/
 										$sql = "
                                                 UPDATE
                                                     cuidadores
