@@ -5,6 +5,12 @@ require_once('GlobalFunction.php');
 // ***************************************
 // Cargar listados de Reservas
 // ***************************************
+function getRangoFechas(){
+    	$d = getdate();
+    	$strFecha = strtotime( date("Y-m-d", $d[0]) );
+	$fecha = inicio_fin_semana( $strFecha, 'tue' );
+	return $fecha;
+}
 
 function getPagoCuidador($desde, $hasta){
 	$reservas = getReservas($desde, $hasta);
@@ -19,10 +25,6 @@ function getPagoCuidador($desde, $hasta){
 		// Calculo por reserva
 		$monto = calculo_pago_cuidador( $row->total, $row->total_pago, $row->remanente );
 
-		// $detalle[ $row->nombre." ".$row->apellido ][ $row->reserva_id ]['monto'] = $monto;
-		// $detalle[ $row->nombre." ".$row->apellido ][ $row->reserva_id ]['total'] = $row->total;
-		// $detalle[ $row->nombre." ".$row->apellido ][ $row->reserva_id ]['remanente'] = $row->remanente;
-		// $detalle[ $row->nombre." ".$row->apellido ][ $row->reserva_id ]['pagado'] = $row->total_pago;
 		$pagos[ $row->cuidador_id ]['detalle'] .= "[{$row->reserva_id}: {$monto} ]<br>";
 
 		if( array_key_exists('total', $pagos[ $row->cuidador_id ]) ){
@@ -34,29 +36,21 @@ function getPagoCuidador($desde, $hasta){
 
 	}
 
-// print_r(inicio_fin_semana());
-
 	return $pagos;
 }
 
-function inicio_fin_semana(){
+function inicio_fin_semana( $date, $str_to_date  ){
 
-    $diaInicio="Tuesday";
-    $diaFin="Monday";
+    $diaInicio=$str_to_date;
 
-    $d = getdate();
-    $strFecha = strtotime( date("Y-m-d", $d[0]) );
+    $fecha['ini'] = date('Y-m-d',strtotime('last '.$diaInicio, $date));
+    $fecha['fin'] = date('Y-m-d',$date);
 
-    $fechaInicio = date('Y-m-d',strtotime('last '.$diaInicio,$strFecha));
-    $fechaFin = date('Y-m-d',strtotime('next '.$diaFin,$strFecha));
-
-    if(date("l",$strFecha)==$diaInicio){
-        $fechaInicio= date("Y-m-d",$strFecha);
+    if( date("l",$date) == 'Tuesday' ){
+        $fecha['fin'] = date('Y-m-d',strtotime('last mon', $date));
     }
-    if(date("l",$strFecha)==$diaFin){
-        $fechaFin= date("Y-m-d",$strFecha);
-    }
-    return Array("fechaInicio"=>$fechaInicio,"fechaFin"=>$fechaFin);
+
+    return $fecha;
 }
 
 function calculo_pago_cuidador( $total, $pago, $remanente ){
@@ -78,9 +72,10 @@ function getReservas($desde="", $hasta=""){
 		$filtro_adicional = " 
 			AND ( r.post_date >= '{$desde} 00:00:00' and  r.post_date <= '{$hasta} 23:59:59' )
 		";
-	}else{
-		$filtro_adicional = " AND MONTH(r.post_date) = MONTH(NOW()) AND YEAR(r.post_date) = YEAR(NOW()) ";
 	}
+	// else{
+	// 	$filtro_adicional = " AND MONTH(r.post_date) = MONTH(NOW()) AND YEAR(r.post_date) = YEAR(NOW()) ";
+	// }
 
 	global $wpdb;
 	$sql = "

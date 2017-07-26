@@ -1,8 +1,10 @@
 <?php global $wpdb;
 // PagoCuidador 
 require_once('core/ControllerSaldoCuidador.php');
+
+$date = getRangoFechas();
 // Buscar PagoCuidador
-$PagoCuidador = getPagoCuidador($_desde='', $_hasta='');
+$PagoCuidador = getPagoCuidador($date['ini'], $date['fin']);
 ?>
 
 <div class="col-md-12 col-sm-12 col-xs-12">
@@ -15,13 +17,13 @@ $PagoCuidador = getPagoCuidador($_desde='', $_hasta='');
   	</div>
 	<div class="clearfix"></div>
   	<div class="col-sm-12">  	
-
+  	<div class="alert ">Busqueda realizada, Desde: <strong><?php echo $date['ini']; ?></strong>, Hasta: <strong><?php echo $date['fin']; ?></strong></div>
   	<?php if( empty($PagoCuidador) ){ ?>
   		<!-- Mensaje Sin Datos -->
 	    <div class="row">
 	    	<div class="col-sm-12">
 	    		<div class="alert alert-info">
-		    		No existen registros
+		    		No existen registros.
 	    		</div>
 		    </div>
 	    </div> 
