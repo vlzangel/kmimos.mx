@@ -77,7 +77,7 @@ $mensaje_mail = '
     .vlz_modal_contenido{padding: 20px !important;}
 </style>
 <h1>¡Gracias por unirte a nuestra familia Kmimos!</h1>
-<p>Hola <strong>'.$nombres.' '.$apellidos.'</strong>,</p>
+<p>Hola <strong>'.$nombres.' '.$apellidos.'</strong>,</p> 
 
 <p style="text-align: justify;">
     Estimado Kmiamigo, tu perfil ha sido creado con éxito.  El mismo permanecerá <strong>INACTIVO</strong>  en la página hasta que completes tu proceso de certificación que consta:
@@ -85,7 +85,7 @@ $mensaje_mail = '
 <p style="text-align: justify;">
     <ul style="text-align: justify;">
         <li><strong>Pruebas de conocimiento veterinario.</strong></li>
-        <li><strong>Pruebas Psicométricas.</strong><li>
+        <li><strong>Pruebas Psicométricas.</strong></li>
         <li><strong>Documentación (IFE, Comprobante de domicilio y Datos Bancarios).</strong></li>
     </ul>
 </p>

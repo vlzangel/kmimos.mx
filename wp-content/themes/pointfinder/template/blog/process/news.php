@@ -18,6 +18,7 @@ function blog_posts_where( $where, &$wp_query ){
 
 $args = array(
     'post_type'=>'post',
+    'post_status' => 'publish',
     'posts_per_page' =>10,
     'paged'=>get_query_var('paged'),
 );
