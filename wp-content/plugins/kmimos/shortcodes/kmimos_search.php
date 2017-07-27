@@ -393,6 +393,10 @@
                     seleccionar_checkin();
                 });
 
+                if( jQuery('#checkin').val() != '' ){
+                    seleccionar_checkin();
+                }
+
             });
 
 
