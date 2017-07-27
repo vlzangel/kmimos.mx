@@ -237,7 +237,7 @@
 			}
 	    </style>
 	    
-	    <h1>Disponibilidad</h1><br><hr>
+	    <h1>No estoy disponible en:</h1><br><hr>
 
 	    <input type="hidden" id="user_id" value="'.$user_id.'" />
 

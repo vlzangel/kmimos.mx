@@ -349,7 +349,7 @@ if($page<=0){
             <div class="logo"></div>
             <div class="title">Conoce  y elige el plan que <br>mejor te convenga</div>
             <div class="content">Regalale un detalle al consentido de tu hogar!</div>
-            <a href="<?php echo site_url(); ?>"><div class="button">Quiero mi KmiBOX</div></a>
+            <a href="<?php echo site_url(); ?>/kmibox"><div class="button">Quiero mi KmiBOX</div></a>
         </div>
     </div>
 </section>

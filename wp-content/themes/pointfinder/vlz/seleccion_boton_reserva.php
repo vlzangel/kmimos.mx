@@ -79,7 +79,7 @@ if( count($url_servicio) > 1 ){
 		  	<div class="modal-dialog" role="document">
 		    	<div>
 		      		<div class="modal-content">
-		        		<strong class="modal_title">Cual servicio deseas?</stronge>
+		        		<strong class="modal_title">Cual servicio deseas?</strong>
 		        		<button style="float:right;" class="btn btn-default btn-sm close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 		      		</div>
 		      		<div class="modal-body">
@@ -106,12 +106,11 @@ if( count($url_servicio) > 1 ){
 	if( count($url_servicio) == 1){
 		// Buscar url del servicio
 		foreach ($url_servicio as $item) {
-			$HTML .= '<a class="button reservar" href="'.$item['url'].'">Reservar</a>';
+			$HTML .= '<a id="btn_reservar" class="button reservar" href="'.$item['url'].'">Reservar</a>';
 			break;
 		}
-	}
-	else{				
-		$HTML .= '<a class="button reservar" href="'.get_home_url().'/producto/'.$slug.'/'.'">Reservar</a>';
+	}else{				
+		$HTML .= '<a id="btn_reservar" class="button reservar" href="'.get_home_url().'/producto/'.$slug.'/'.'">Reservar</a>';
 	}
 }
 

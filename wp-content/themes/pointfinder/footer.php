@@ -112,6 +112,9 @@ $HTML = "</div></div>
         .wpmenucartli{
             display: none !important;
         }
+        .woocommerce-message a{
+            display: none !important;
+        }
         @media (min-width: 1200px){
             .jj-offset-2 {
                 margin-left: 16.66666667% !important;
