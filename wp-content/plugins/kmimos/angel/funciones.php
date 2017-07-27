@@ -81,7 +81,7 @@
                 $ps = ceil($t/$h);
                 for( $i=0; $i<$ps; $i++){
                     $active = ( $pagina == $i ) ? "class='vlz_activa'" : "";
-                    $paginacion .= "<a href='".$home."/busqueda/".($i)."' ".$active.">".($i+1)."</a>";
+                    $paginacion .= "<a href='".get_home_url()."/busqueda/".($i)."' ".$active.">".($i+1)."</a>";
                 }
             }
             $w = 40*$ps;
