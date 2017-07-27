@@ -795,6 +795,7 @@
 			lat=latitude;
 			lng=longitude;
 			set_inputCoordMap();
+			message('Seleccionaste estado');
 		}
 	});
 
@@ -802,6 +803,7 @@
 		var locale=jQuery(this).val();
 		var latitude=Coordsearch['locale'][locale]['lat'];
 		var longitude=Coordsearch['locale'][locale]['lng'];
+		message('seleccionaste municipio');
 
 		if(latitude!='' && longitude!=''){
 			lat=latitude;

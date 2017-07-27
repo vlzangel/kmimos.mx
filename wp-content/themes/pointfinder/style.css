@@ -6833,6 +6833,11 @@ input#place_order{
 	margin: 104px 0 0 0 !important;
 	overflow: hidden;
 }
+
+.wpf-header .pf-logo-container {
+	display: block !important;
+}
+
 #jj-landing-page {
 	display: none;
 }
@@ -6844,6 +6849,10 @@ input#place_order{
 	}
 	.instrucciones-items li{
 		width: 100%!important;
+	}
+
+	.wpf-header .pftopline {
+		display: none;
 	}
 }
 
