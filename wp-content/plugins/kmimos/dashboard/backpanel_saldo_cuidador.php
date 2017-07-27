@@ -59,7 +59,7 @@ $PagoCuidador = getPagoCuidador( $desde, $hasta );
 		</div>
 	    </div> 
   	<?php }else{ ?>  		
-	    <div class="row"> 
+	<div class="row"> 
 	    	<div class="col-sm-12" id="table-container" 
 	    		style="font-size: 10px!important;">
 	  		<!-- Listado de PagoCuidador -->
@@ -88,8 +88,8 @@ $PagoCuidador = getPagoCuidador( $desde, $hasta );
 			   	<?php } ?>
 			  </tbody>
 			</table>
-			</div>
 		</div>
+	</div>
 	<?php } ?>
 
   </div>
