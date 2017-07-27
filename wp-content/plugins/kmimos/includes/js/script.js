@@ -52,3 +52,26 @@ function filecss_import(file,count){
         filecss_import(file,(count+1));
     }
 }
+
+//MESSAGE
+function message(message){
+    console.log(message);
+    var content = 'message';
+    var element = jQuery('#'+content);
+    if(element.length==0){
+        jQuery('body').append('<div id="'+content+'"></div>');
+        element.html(message);
+        messageShow();
+
+    }else{
+        element.animate({'bottom' : '-500px'}, 500,function(e){
+            element.html(message);
+            messageShow(element);
+        });
+    }
+}
+
+function messageShow(element){
+    var height = element.height();
+    element.animate({'bottom' : '0'},500);
+}
