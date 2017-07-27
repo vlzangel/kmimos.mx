@@ -105,7 +105,7 @@
                 $data = $wpdb->get_row("SELECT post_title AS nom, post_name AS url FROM wp_posts WHERE ID = {$cuidador->id_post}");
                 $nombre = $data->nom;
                 $img_url = kmimos_get_foto_cuidador($value->cuidador);
-                $url = $home . "/petsitters/" . $data->url;
+                $url = get_home_url() . "/petsitters/" . $data->url;
                 $top_destacados .= "
                     <a class='vlz_destacados_contenedor' href='{$url}'>
                         <div class='vlz_destacados_contenedor_interno'>
