@@ -29,7 +29,6 @@
 	$favoritos = get_favoritos();
 	
 	$pines = unserialize($_SESSION['pines_array']);
-	$pines_visibles = array();
 
 	$top_destacados = get_destacados( $_POST['estados'] );
 	$HTML .= '
@@ -51,7 +50,6 @@
 				        		for ($i=$paginacion["inicio"]; $i < $paginacion["fin"]; $i++) {
 				        			$cuidador = $resultados[$i];
 				        			$HTML .= get_ficha_cuidador($cuidador, $i, $favoritos);
-				        			$pines_visibles[] = $pines[$i];
 								}
 							}else{
 								$HTML .= "<li align='justify'><h2 style='padding-right: 20px!important;'>No tenemos resultados para esta búsqueda, si quieres intentarlo de nuevo pícale <a  style='color: #00b69d; font-weight: 600;' href='".$home."/#jj-landing-page'>aquí,</a> o aplica otro filtro de búsqueda.</h2></li>";
@@ -64,7 +62,7 @@
 					<div class="col-lg-3" style="position: relative;"> <div class="pfwidgettitle"><div class="widgetheader">Filtrar Cuidadores</div></div>';
 						include("vlz_formulario.php");
 						include("vlz_scripts.php");
-						$pines = json_encode($pines_visibles);
+						$pines = json_encode($pines);
     					$HTML .= $FORMULARIO.$SCRIPTS.'<script>var pines = eval(\''.$pines.'\');</script>
 					</div> 
 				</div> 
