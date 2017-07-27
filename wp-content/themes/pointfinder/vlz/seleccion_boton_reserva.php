@@ -79,7 +79,7 @@ if( count($url_servicio) > 1 ){
 		  	<div class="modal-dialog" role="document">
 		    	<div>
 		      		<div class="modal-content">
-		        		<strong class="modal_title">Cual servicio deseas?</stronge>
+		        		<strong class="modal_title">Cual servicio deseas?</strong>
 		        		<button style="float:right;" class="btn btn-default btn-sm close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 		      		</div>
 		      		<div class="modal-body">
