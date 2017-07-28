@@ -326,26 +326,31 @@
         }
 
         $ficha = '
-            <li>
-                <div>
-                    <a href="'.$url.'">
-                        <div class="vlz_postada_cuidador">
-                            <a class="vlz_img_cuidador easyload" data-preload="'.get_home_url().'/wp-content/themes/pointfinder/images/loading.gif" data-original="'.$img.'" href="'.$url.'" style="background-image: url('.get_home_url().'/wp-content/themes/pointfinder/images/loading.gif); filter:blur(2px);"></a>
-                            <span class="vlz_img_cuidador_interno easyload" data-original="'.$img.'" data-href="'.$url.'" style="background-image: url();"></span>
-                        </div>
-                        <div class="nombre">
-                            '.utf8_encode($cuidador->titulo).'
-                        </div>
-                        <div class="rating">
-                            '.kmimos_petsitter_rating($cuidador->id_post).'
-                        </div>
-                        <div class="servicios">
-                            <i class="pfadmicon-glyph-109 pin"></i>
-                            '.vlz_servicios($cuidador->adicionales).'
-                        </div>
-                    </a>
+            <div class="km-item-resultado">
+                <div class="km-foto">
+                    <img src="'.$img.'" width="100%">
+                    <span class="km-contenedor-favorito">
+                        <a href="#" class="km-link-favorito active"></a>
+                    </span>
                 </div>
-            </li>
+                <div class="km-descripcion">
+                    <h1>'.utf8_encode($cuidador->titulo).'</h1>
+                    <p>15 años de experiencia</p>
+                    <div class="km-ranking">
+                        <a href="#" class="active"></a>
+                        <a href="#" class="active"></a>
+                        <a href="#" class="active"></a>
+                        <a href="#" class="active"></a>
+                        <a href="#"></a>
+                    </div>
+                    <div class="km-sellos">
+                        <img src="'.getTema().'/images/new/icon/icon-sello-1.svg" height="30">
+                        <img src="'.getTema().'/images/new/icon/icon-sello-2.svg" height="30">
+                        <img src="'.getTema().'/images/new/icon/icon-sello-3.svg" height="30">
+                        <img src="'.getTema().'/images/new/icon/icon-sello-4.svg" height="30">
+                    </div>
+                </div>
+            </div>
         ';
 
         return ($ficha);
