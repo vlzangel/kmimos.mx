@@ -93,7 +93,7 @@
 					<a class="navbar-brand" href="index.html"><img src="'.getTema().'/images/new/km-logos/km-logo.png" height="60"></a>
 				</div>
 				<ul class="hidden-xs nav-login">
-					<li><a href="#" style="padding-right: 15px">INICIAR SESIÓN</a></li>
+					<li><a id="login" href="#" style="padding-right: 15px">INICIAR SESIÓN</a></li>
 					<li><a href="#" style="padding-left: 15px; border-left: 1px solid white;">REGÍSTRATE</a></li>
 				</ul>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
