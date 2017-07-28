@@ -653,7 +653,7 @@ section {
 	box-shadow: none;
 	border: none;
 	margin: 0;
-	height: 220px;
+	height: 220px !important;
 }
 .km-autor {
 	font-size: 13px;
