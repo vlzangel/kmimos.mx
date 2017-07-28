@@ -67,8 +67,8 @@ function getReservas($desde="", $hasta=""){
 			and cl.ID > 0 
 			and p.ID > 0
 			and r.post_status = 'confirmed'
+			{$filtro_adicional}
 		;";
-//			{$filtro_adicional}
 
 	$reservas = $wpdb->get_results($sql);
 	return $reservas;

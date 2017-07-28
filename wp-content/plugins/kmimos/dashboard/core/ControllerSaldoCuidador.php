@@ -16,8 +16,10 @@ function getPagoCuidador($desde, $hasta){
 	$reservas = getReservas($desde, $hasta);
 	$pagos = [];
 	$detalle = [];
+	$count = 1;
 	foreach ($reservas as $row) {
-
+		$total = 0;
+		
 		// Datos del cuidador
 		$pagos[ $row->cuidador_id ]['nombre'] = $row->nombre;
 		$pagos[ $row->cuidador_id ]['apellido'] = $row->apellido;
@@ -25,14 +27,35 @@ function getPagoCuidador($desde, $hasta){
 		// Calculo por reserva
 		$monto = calculo_pago_cuidador( $row->total, $row->total_pago, $row->remanente );
 
-		$pagos[ $row->cuidador_id ]['detalle'] .= "[{$row->reserva_id}: {$monto} ]<br>";
+		
+		if( $count == 5 ){
+			$separador = '<br>';
+			$count=1;
+		}else{
+			$separador = '';
+			$count++;
+		}
+
+		$r = "";
+		if(!empty($pagos[ $row->cuidador_id ]['detalle'])){
+			$r = ",";
+		}
+		$pagos[ $row->cuidador_id ]['detalle'] .= "{$r}{$row->reserva_id} {$separador}";
 
 		if( array_key_exists('total', $pagos[ $row->cuidador_id ]) ){
 			$monto = $pagos[ $row->cuidador_id ]['total'] + $monto;
 		}
 
+		if( array_key_exists('total_row', $pagos[ $row->cuidador_id ]) ){
+			$total = $pagos[ $row->cuidador_id ]['total_row'] + 1;
+		}
+
+
+		$t = explode(',', $pagos[ $row->cuidador_id ]['detalle']);
+
 		// Total a pagar
 		$pagos[ $row->cuidador_id ]['total'] = $monto;
+		$pagos[ $row->cuidador_id ]['total_row'] = count($t);
 
 	}
 
