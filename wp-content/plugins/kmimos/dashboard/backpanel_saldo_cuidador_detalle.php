@@ -1,19 +1,19 @@
 <?php global $wpdb;
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 // Reservas 
 require_once('core/ControllerSaldoCuidadorDetalle.php');
 // Parametros: Filtro por fecha
 $date = getdate(); 
 $desde = date("Y-m-01", $date[0] );
 $hasta = date("Y-m-d", $date[0]);
-$_desde = "";
-$_hasta = "";
 if(	!empty($_POST['desde']) && !empty($_POST['hasta']) ){
-	$_desde = (!empty($_POST['desde']))? $_POST['desde']: "";
-	$_hasta = (!empty($_POST['hasta']))? $_POST['hasta']: "";
+	$desde = (!empty($_POST['desde']))? $_POST['desde']: "";
+	$hasta = (!empty($_POST['hasta']))? $_POST['hasta']: "";
 }
-$razas = get_razas();
+//$razas = get_razas();
 // Buscar Reservas
-$reservas = getReservas($_desde, $_hasta);
+$reservas = getReservas($desde, $hasta);
 
 
 ?>
@@ -77,6 +77,7 @@ $reservas = getReservas($_desde, $_hasta);
 			      <th>Fecha Reservacion</th>
 			      <th>Cliente</th>
 
+			      <th>Cuidador ID</th>
 			      <th>Cuidador</th>
 			      <th>Servicio Principal</th> 
 			      <th>Forma de Pago</th>
@@ -122,9 +123,9 @@ $reservas = getReservas($_desde, $_hasta);
 					  		$total_remanente += currency_format($meta_Pedido['_wc_deposits_remaining'], "");
 				  		}
 
-						if(!in_array('hospedaje', explode("-", $reserva->post_name))){
-							$nro_noches += 1;
-						}
+						// if(!in_array('hospedaje', explode("-", $reserva->post_name))){
+						// 	$nro_noches += 1;
+						// }
 
 						$Day = "";
 						$list_service = [ 'hospedaje' ]; // Excluir los servicios del Signo "D"
@@ -151,6 +152,7 @@ $reservas = getReservas($_desde, $_hasta);
 
 					<th><?php echo "<a href='".get_home_url()."/?i=".md5($reserva->cliente_id)."'>".$cliente['first_name'].' '.$cliente['last_name']; ?></a></th>
 
+					<th><?php echo 'UC'.$reserva->cuidador_id; ?></th>
 					<th><?php echo $meta_cuidador['first_name'] . ' ' . $meta_cuidador['last_name']; ?></th>
 					<th><?php echo $reserva->producto_title; ?></th>
 					<th><?php
