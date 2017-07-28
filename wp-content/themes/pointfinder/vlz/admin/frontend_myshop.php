@@ -620,15 +620,31 @@ echo get_estados_municipios();
 
     function fillAutocomplete(){
         var place = autocomplete.getPlace();
-        //console.log(place.geometry.location.lat);
+        //console.log(place);
 
-        if(!place.geometry){
-            window.alert("Autocomplete's returned place contains no geometry");
+        if(typeof place === 'undefined'){
+            messageInsite('#messageDirection','Sus coordenadasno fueron reconocidas.  puede buscar su ubicacion directamente en el mapa moviendo el pin');
+            message('Sus coordenadas no fueron reconocidas.  puede buscar su ubicacion directamente en el mapa moviendo el pin');
             return;
+
         }else{
-            lat=place.geometry.location.lat();
-            lng=place.geometry.location.lng();
-            set_inputCoordMap();
+            if(!place.geometry){
+                //window.alert("Autocomplete's returned place contains no geometry");
+                messageInsite('#messageDirection','El sitio Seleccionado, GoogleMap no obtiene las coordenadas');
+                message('El sitio Seleccionado, GoogleMap no obtiene las coordenadas');
+                return;
+
+            }else{
+                var callback = function(){}
+                //messageClose('#messageDirection', callback);
+                jQuery('#messageDirection').css({'display':'none'});
+                messageInsite('#messageDirection','Puede mejorar su ubicacion directamente en el mapa moviendo el pin');
+                message('Puede mejorar su ubicacion directamente en el mapa moviendo el pin');
+
+                lat=place.geometry.location.lat();
+                lng=place.geometry.location.lng();
+                set_inputCoordMap();
+            }
         }
     }
 
@@ -657,6 +673,8 @@ echo get_estados_municipios();
             lat=latitude;
             lng=longitude;
             set_inputCoordMap();
+            messageInsite('#messageDirection','Seleccionaste estado');
+            message('Seleccionaste estado');
         }
     });
 
@@ -669,6 +687,8 @@ echo get_estados_municipios();
             lat=latitude;
             lng=longitude;
             set_inputCoordMap();
+            messageInsite('#messageDirection','seleccionaste municipio');
+            message('seleccionaste municipio');
         }
     });
 
@@ -706,6 +726,12 @@ echo get_estados_municipios();
         jQuery('input[name="address"]').val(value);//.focus();
 
 
+    });
+
+
+    //ADDRESS ACTION
+    jQuery(document).on('focusout', 'input[name="direccion"]', function(e){
+        fillAutocomplete();
     });
 
     function set_inputCoord(){
