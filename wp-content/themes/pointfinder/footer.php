@@ -294,29 +294,26 @@ $HTML = "</div></div>
         }
 
         $HTML .= "
-            jQuery( document ).ready(function() {
-                jQuery( '.reservar' ).unbind();
-                jQuery( '.reservar' ).off();
-                jQuery( '.conocer-cuidador' ).unbind(); 
-                jQuery( '.conocer-cuidador' ).off(); ";
-                
-                if( $post->post_name == 'finalizar-comprar' ){
-                    $HTML .= " jQuery('.payment_method_wc-booking-gateway').css('display', 'none'); ";
-                }
-                if( $post->post_name == 'finalizar-comprar' ){
-                    $HTML .= " jQuery('.payment_method_wc-booking-gateway').css('display', 'none'); ";
-                }
-                if( $post->post_name == 'finalizar-comprar' && $_GET['key'] == '' ){ 
-                    $HTML .= " var abrir = true;
-                    jQuery(window).scroll(function() {
-                            if (jQuery(document).scrollTop() > 10) {
-                                jQuery('#vlz_modal_popup').fadeOut();
-                            }
-                        });
-                    ";
-                }
-
-        $HTML .= "}); </script>
+            <script>
+                jQuery( document ).ready(function() {";
+                    if( $post->post_name == 'finalizar-comprar' ){
+                        $HTML .= " jQuery('.payment_method_wc-booking-gateway').css('display', 'none'); ";
+                    }
+                    if( $post->post_name == 'finalizar-comprar' ){
+                        $HTML .= " jQuery('.payment_method_wc-booking-gateway').css('display', 'none'); ";
+                    }
+                    if( $post->post_name == 'finalizar-comprar' && $_GET['key'] == '' ){ 
+                        $HTML .= " var abrir = true;
+                                jQuery(window).scroll(function() {
+                                    if (jQuery(document).scrollTop() > 10) {
+                                        jQuery('#vlz_modal_popup').fadeOut();
+                                    }
+                                });
+                             </script>
+                        ";
+                    } $HTML .= "
+                });
+            </script>
             <!--[if lt IE 9]>
                 <script src='".get_home_url()."/wp-content/themes/pointfinder/js/html5shiv.js'></script>
             <![endif]-->
