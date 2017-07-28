@@ -207,8 +207,8 @@
 									<div class="km-video-testimonial">
 										<a href="Javascript: void(0);" onclick="playVideo(this)"><img src="'.getTema().'/images/new/icon/icon-video.svg" width="55"></a>
 									</div>
-									<div class="km-testimonial">“Llegan como huéspedes y se van como mis amigos, lo importante es hacerlos sentir en su hogar”</div>
-									<div class="km-autor">JUAN RODRÍGUEZ - México D.F</div>
+									<div class="km-testimonial">“Testimonio II”</div>
+									<div class="km-autor">PEDRO PEREZ - México D.F</div>
 									<div class="km-autor-descripcion">Cuidador Certificado</div>
 								</div>
 								<video>
@@ -226,8 +226,8 @@
 									<div class="km-video-testimonial">
 										<a href="Javascript: void(0);" onclick="playVideo(this)"><img src="'.getTema().'/images/new/icon/icon-video.svg" width="55"></a>
 									</div>
-									<div class="km-testimonial">“Llegan como huéspedes y se van como mis amigos, lo importante es hacerlos sentir en su hogar”</div>
-									<div class="km-autor">JUAN RODRÍGUEZ - México D.F</div>
+									<div class="km-testimonial">“Testimonio III”</div>
+									<div class="km-autor">JOSEFA LOPEZ - México D.F</div>
 									<div class="km-autor-descripcion">Cuidador Certificado</div>
 								</div>
 								<video>

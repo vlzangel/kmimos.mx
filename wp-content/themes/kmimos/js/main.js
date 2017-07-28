@@ -4,7 +4,8 @@ function playVideo(e) {
 	$('video', p).get(0).play();
 	$('.km-testimonial-text').css('display','none');
 	$('.img-testimoniales').css('display','none');
-	$('.overlay').css('display','none');
+	$('video').css('display','block');
+
 }
 
 function menu(){
