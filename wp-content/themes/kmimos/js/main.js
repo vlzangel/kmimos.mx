@@ -7,7 +7,7 @@ function playVideo(e) {
 	$('.overlay').css('display','none');
 }
 
-/*function menu(){
+function menu(){
 	var w = $(window).width();
 	if($(this).scrollTop() > 10) {
 		$('.bg-transparent').addClass('bg-white');
@@ -34,7 +34,7 @@ function playVideo(e) {
 			$('a.km-nav-link, .nav-login li a').css('color','white');
 		}
 	}
-}*/
+}
 
 $(window).resize(function() {
 	menu();
