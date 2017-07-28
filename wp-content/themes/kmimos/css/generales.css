@@ -33,33 +33,31 @@
         border-radius: 5px;
     }
 
+    #form_login{
+        padding: 0px;
+    }
+
     #close_login{
         position: absolute;
-        top: -7px;
-        right: -7px;
+        top: 0px;
+        right: 0px;
         font-size: 15px;
         border: solid 1px #FFF;
         color: #333;
         background: #FFF;
         padding: 2px 4px;
-        border-radius: 50%;
+        border-radius: 0px;
         cursor: pointer;
+        width: 35px;
     }
 
     .modal_login .form_box{
-        padding: 20px 20px 0px;
-    }
-
-    .modal_login .form_box input{
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 5px;
-        border: solid 1px #CCC;
+        padding: 0px 20px 0px;
     }
 
     .modal_login .botones_box{
         text-align: right;
-        padding: 10px 20px;
+        padding: 10px 20px 20px;
     }
 
     .modal_login .botones_box span{

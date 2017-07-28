@@ -197,7 +197,7 @@
 			<div class='modal_login'>
 		        <div class='modal_container'>
 		            <div class='modal_box'>
-		                <i id='close_login' class='fa fa-times' aria-hidden='true'></i>
+		                <img id='close_login' src='".getTema()."/images/closebl.png' />
 
 						<form id='form_login'>
 		                	<div class='form_box'>
