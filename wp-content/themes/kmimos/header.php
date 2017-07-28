@@ -41,6 +41,20 @@
 
 	$MENU = get_menu_header();
 
+	if( !isset($MENU["head"]) ){
+		$menus_normal = '
+			<li><a id="login" style="padding-right: 15px">INICIAR SESIÓN</a></li>
+			<li><a href="#" style="padding-left: 15px; border-left: 1px solid white;">REGÍSTRATE</a></li>
+		';
+		$menus_movil = '
+			<li><a id="login" class="km-nav-link hidden-sm hidden-md hidden-lg">INICIAR SESIÓN</a></li>
+			<li><a href="#" class="km-nav-link hidden-sm hidden-md hidden-lg">REGÍSTRATE</a></li>
+		';
+	}else{
+		$menus_normal = $MENU["head"].$MENU["body"].$MENU["footer"];
+		$menus_movil = $MENU["head_movil"].$MENU["body"].$MENU["footer"];
+	}
+
 	if( is_front_page() ){
 		$HTML .= '
 			<nav class="navbar navbar-fixed-top bg-transparent">
@@ -52,15 +66,16 @@
 						<a class="navbar-brand" href="'.get_home_url().'"><img src="'.getTema().'/images/new/km-logos/km-logo.png" height="60"></a>
 					</div>
 					<ul class="hidden-xs nav-login">
-						<li><a id="login" style="padding-right: 15px">INICIAR SESIÓN</a></li>
-						<li><a href="#" style="padding-left: 15px; border-left: 1px solid white;">REGÍSTRATE</a></li>
+						'.$menus_normal.'
 					</ul>
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav navbar-right">
-							<li><a href="km-resultado.html" class="km-nav-link">BUSCAR CUIDADOR</a></li>
+							<li><a href="'.get_home_url().'/busqueda/" class="km-nav-link">BUSCAR CUIDADOR</a></li>
 							<li><a href="km-cuidador.html" class="km-btn-primary hidden-xs">QUIERO SER CUIDADOR</a></li>
-							<li><a id="login" class="km-nav-link hidden-sm hidden-md hidden-lg">INICIAR SESIÓN</a></li>
-							<li><a href="#" class="km-nav-link hidden-sm hidden-md hidden-lg">REGÍSTRATE</a></li>
+
+							'.$menus_movil.'
+
+							<li><a href="'.get_home_url().'/busqueda/" class="km-nav-link hidden-sm hidden-md hidden-lg">BUSCAR CUIDADOR</a></li>
 							<li><a href="km-cuidador.html" class="km-btn-primary hidden-sm hidden-md hidden-lg">QUIERO SER CUIDADOR</a></li>
 						</ul>
 					</div>
@@ -90,18 +105,18 @@
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
 					<img src="'.getTema().'/images/new/km-navbar-mobile.svg" width="30">
 					</button>
-					<a class="navbar-brand" href="index.html"><img src="'.getTema().'/images/new/km-logos/km-logo.png" height="60"></a>
+					<a class="navbar-brand" href="'.get_home_url().'"><img src="'.getTema().'/images/new/km-logos/km-logo.png" height="60"></a>
 				</div>
 				<ul class="hidden-xs nav-login">
-					<li><a id="login" href="#" style="padding-right: 15px">INICIAR SESIÓN</a></li>
-					<li><a href="#" style="padding-left: 15px; border-left: 1px solid white;">REGÍSTRATE</a></li>
+					'.$menus_normal.'
 				</ul>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="'.get_home_url().'/busqueda/" class="km-nav-link">BUSCAR CUIDADOR</a></li>
 						<li><a href="km-cuidador.html" class="km-btn-primary hidden-xs">QUIERO SER CUIDADOR</a></li>
-						<li><a href="#" class="km-nav-link hidden-sm hidden-md hidden-lg">INICIAR SESIÓN</a></li>
-						<li><a href="#" class="km-nav-link hidden-sm hidden-md hidden-lg">REGÍSTRATE</a></li>
+						
+						'.$menus_movil.'
+
 						<li><a href="km-cuidador.html" class="km-btn-primary hidden-sm hidden-md hidden-lg">QUIERO SER CUIDADOR</a></li>
 					</ul>
 				</div>

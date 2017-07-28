@@ -9,7 +9,23 @@
     $info['user_password']  = sanitize_text_field($clv);
 
     $user_signon = wp_signon( $info, true );
-    wp_set_auth_cookie($user_signon->ID);
+
+	if ( is_wp_error( $user_signon )) {
+	  	echo json_encode( 
+	  		array( 
+	  			'login' => false, 
+	  			'mes'   => "Email y contraseña invalidos."
+	  		)
+	  	);
+	} else {
+	  	wp_set_auth_cookie($user_signon->ID);
+	  	echo json_encode( 
+	  		array( 
+	  			'login' => true, 
+	  			'mes'   => "Login Exitoso!"
+	  		)
+	  	);
+	}
 
 	exit;
 ?>

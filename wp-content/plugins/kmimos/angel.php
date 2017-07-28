@@ -86,34 +86,6 @@
 	if(!function_exists('kmimos_mails_administradores')){
 	    function kmimos_mails_administradores(){
 
-/*            $headers[] = 'BCC: a.lazaro@kmimos.la';
-	        $headers[] = 'BCC: e.celli@kmimos.la';
-	        $headers[] = 'BCC: r.cuevas@kmimos.la';
-	        $headers[] = 'BCC: r.gonzalez@kmimos.la';
-	        $headers[] = 'BCC: m.castellon@kmimos.la';
-	        $headers[] = 'BCC: a.veloz@kmimos.la';
-	        $headers[] = 'BCC: a.pedroza@kmimos.la';
-
-            // Call Center
-
-            $headers[] = 'BCC: Operador01@sin-cola.com';
-            $headers[] = 'BCC: Operador02@sin-cola.com';
-            $headers[] = 'BCC: Operador03@sin-cola.com';
-            $headers[] = 'BCC: Operador04@sin-cola.com';
-            $headers[] = 'BCC: Operador05@sin-cola.com';
-            $headers[] = 'BCC: Operador06@sin-cola.com';
-            $headers[] = 'BCC: Operador07@sin-cola.com';
-            $headers[] = 'BCC: Operador08@sin-cola.com';
-            $headers[] = 'BCC: Operador09@sin-cola.com';
-            $headers[] = 'BCC: Operador10@sin-cola.com';
-
-            $headers[] = 'BCC: Supervisor01@sin-cola.com';
-            $headers[] = 'BCC: Supervisor02@sin-cola.com'; 
-                 
-            $headers[] = 'BCC: jorge.ballarin@sin-cola.com';
-            $headers[] = 'BCC: gabriel.marquez@sin-cola.com';
-            $headers[] = 'BCC: roberto.madrid@sin-cola.com';*/
-
             return $headers;
 
 	    }

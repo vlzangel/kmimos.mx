@@ -91,7 +91,7 @@ p {
 	font-family: 'Gotham-Pro-Bold',arial,sans-serif;
 	font-size: 13px;
 	letter-spacing: 1px;
-	text-align: center;
+	text-align: center !important;
 	text-decoration: none;
 	width: 100%;
 	line-height: 21px;
@@ -244,6 +244,7 @@ section {
 }
 .nav>li>a {
 	line-height: 100%!important;
+    text-align: left;
 }
 .nav>li>a:hover {
 	background-color: transparent;
@@ -601,6 +602,9 @@ section {
 }
 .km-testimoniales .bx-controls-direction {
 	display: none;
+}
+.bx-controls.bx-has-controls-direction.bx-has-pager {
+    position: relative;
 }
 .km-testimonial-text {
 	margin: auto;

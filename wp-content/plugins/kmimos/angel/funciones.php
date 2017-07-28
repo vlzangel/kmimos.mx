@@ -234,7 +234,8 @@
                     )
                 );
 
-                $MENU["head"] = '<li id="separador"></li><li style="width: 200px;"><a href="#"> <i class="pfadmicon-glyph-632"></i> '.$user->data->display_name.' </a><ul class="sub-menu">';
+                $MENU["head"] = '<li><a href="#" class="km-nav-link"> <i class="pfadmicon-glyph-632"></i> '.$user->data->display_name.' </a></li>';
+                $MENU["head_movil"] = '<li><a href="#" class="km-nav-link hidden-sm hidden-md hidden-lg"> <i class="pfadmicon-glyph-632"></i> '.$user->data->display_name.' </a></li>';
                 $MENU["body"] = "";
 
                 if( $MENUS[ $user->roles[0] ] != "" ){
@@ -243,7 +244,7 @@
                         if( isset($value["icono_2"]) ){ $icono = '<i class="'.$value["icono_2"].'"></i> '; }
                         $MENU["body"] .=
                             '<li>
-                                <a href="'.$value["url"].'">
+                                <a href="'.$value["url"].'" class="km-nav-link hidden-sm hidden-md hidden-lg">
                                     '.$icono.'
                                     '.$value["name"].'
                                 </a>
@@ -251,7 +252,7 @@
                     }
                 }
 
-                $MENU["footer"] = '</ul></li>';
+                $MENU["footer"] = '';
 
             }else{
                 $MENU["body"] = 

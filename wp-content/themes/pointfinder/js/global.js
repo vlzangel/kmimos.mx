@@ -23,15 +23,20 @@ jQuery( document ).ready(function() {
 
 function logear(){
 	jQuery.post( 
-    	HOME+"/procesos/login/login.php", {
+    	HOME+"/procesos/login/login.php", 
+        {
     		usu: jQuery("#form_login #usuario").val(),
     		clv: jQuery("#form_login #clave").val()
-    	}
-    ).done(
-    	function( data ) {
-		    location.reload();
-	  	}
-  	);
+    	},
+        function( data ) {
+            if( data.login ){
+                location.reload();
+            }else{
+                alert( data.mes );
+            }
+        },
+        "json"
+    );
 }
 
 function show_login_modal(seccion){
