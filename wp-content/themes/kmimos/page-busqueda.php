@@ -49,181 +49,183 @@
 						<div class="km-search-title">
 							RESULTADO DE B&Uacute;SQUEDA '.$total.' CUIDADORES DISPONIBLES
 						</div>
-						<div class="km-premium-slider">
-							<div class="slide">
-								<div class="item-slide" style="background-image: url('.getTema().'/images/new/km-buscador/slide-01.jpg);">
-									<div class="slide-mask"></div>
-									<div class="slide-content">
-										<div class="slide-price-distance">
-											<div class="slide-price">
-												Desde <span>MXN $ 100.00</span>
+						<div style="height: 220px; overflow: hidden;">
+							<div class="km-premium-slider">
+								<div class="slide">
+									<div class="item-slide" style="background-image: url('.getTema().'/images/new/km-buscador/slide-01.jpg);">
+										<div class="slide-mask"></div>
+										<div class="slide-content">
+											<div class="slide-price-distance">
+												<div class="slide-price">
+													Desde <span>MXN $ 100.00</span>
+												</div>
+												<!--
+												<div class="slide-distance">
+													A 96 km de tu búsqueda
+												</div>
+												-->
 											</div>
-											<!--
-											<div class="slide-distance">
-												A 96 km de tu búsqueda
+
+											<div class="slide-profile">
+												<div class="slide-profile-image" style="background-image: url('.getTema().'/images/new/km-buscador/avatar-01.png);"></div>
 											</div>
-											-->
-										</div>
 
-										<div class="slide-profile">
-											<div class="slide-profile-image" style="background-image: url('.getTema().'/images/new/km-buscador/avatar-01.png);"></div>
-										</div>
-
-										<div class="slide-name">
-											SUSY GALLARDO
-										</div>
-
-										<div class="slide-expertice">
-											5 años de experiencia
-										</div>
-
-										<div class="slide-ranking">
-											<div class="km-ranking">
-												<a href="#" class="active"></a>
-												<a href="#" class="active"></a>
-												<a href="#" class="active"></a>
-												<a href="#" class="active"></a>
-												<a href="#"></a>
+											<div class="slide-name">
+												SUSY GALLARDO
 											</div>
-										</div>
 
-										<div class="slide-buttons">
-											<a href="#">CONÓCELO +</a>
-											<a href="#">RESERVAR</a>
+											<div class="slide-expertice">
+												5 años de experiencia
+											</div>
+
+											<div class="slide-ranking">
+												<div class="km-ranking">
+													<a href="#" class="active"></a>
+													<a href="#" class="active"></a>
+													<a href="#" class="active"></a>
+													<a href="#" class="active"></a>
+													<a href="#"></a>
+												</div>
+											</div>
+
+											<div class="slide-buttons">
+												<a href="#">CONÓCELO +</a>
+												<a href="#">RESERVAR</a>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-							<div class="slide">
-								<div class="item-slide" style="background-image: url('.getTema().'/images/new/km-buscador/slide-01.jpg);">
-									<div class="slide-mask"></div>
-									<div class="slide-content">
-										<div class="slide-price-distance">
-											<div class="slide-price">
-												Desde <span>MXN $ 100.00</span>
+								<div class="slide">
+									<div class="item-slide" style="background-image: url('.getTema().'/images/new/km-buscador/slide-01.jpg);">
+										<div class="slide-mask"></div>
+										<div class="slide-content">
+											<div class="slide-price-distance">
+												<div class="slide-price">
+													Desde <span>MXN $ 100.00</span>
+												</div>
+												<!--
+												<div class="slide-distance">
+													A 96 km de tu búsqueda
+												</div>
+												-->
 											</div>
-											<!--
-											<div class="slide-distance">
-												A 96 km de tu búsqueda
+
+											<div class="slide-profile">
+												<div class="slide-profile-image" style="background-image: url('.getTema().'/images/new/km-buscador/avatar-02.png);"></div>
 											</div>
-											-->
-										</div>
 
-										<div class="slide-profile">
-											<div class="slide-profile-image" style="background-image: url('.getTema().'/images/new/km-buscador/avatar-02.png);"></div>
-										</div>
-
-										<div class="slide-name">
-											LUIS ANGEL DÍAZ
-										</div>
-
-										<div class="slide-expertice">
-											15 años de experiencia
-										</div>
-
-										<div class="slide-ranking">
-											<div class="km-ranking">
-												<a href="#" class="active"></a>
-												<a href="#" class="active"></a>
-												<a href="#" class="active"></a>
-												<a href="#" class="active"></a>
-												<a href="#"></a>
+											<div class="slide-name">
+												LUIS ANGEL DÍAZ
 											</div>
-										</div>
 
-										<div class="slide-buttons">
-											<a href="#">CONÓCELO +</a>
-											<a href="#">RESERVAR</a>
+											<div class="slide-expertice">
+												15 años de experiencia
+											</div>
+
+											<div class="slide-ranking">
+												<div class="km-ranking">
+													<a href="#" class="active"></a>
+													<a href="#" class="active"></a>
+													<a href="#" class="active"></a>
+													<a href="#" class="active"></a>
+													<a href="#"></a>
+												</div>
+											</div>
+
+											<div class="slide-buttons">
+												<a href="#">CONÓCELO +</a>
+												<a href="#">RESERVAR</a>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
 
-							<div class="slide">
-								<div class="item-slide" style="background-image: url('.getTema().'/images/new/km-buscador/slide-01.jpg);">
-									<div class="slide-mask"></div>
-									<div class="slide-content">
-										<div class="slide-price-distance">
-											<div class="slide-price">
-												Desde <span>MXN $ 100.00</span>
+								<div class="slide">
+									<div class="item-slide" style="background-image: url('.getTema().'/images/new/km-buscador/slide-01.jpg);">
+										<div class="slide-mask"></div>
+										<div class="slide-content">
+											<div class="slide-price-distance">
+												<div class="slide-price">
+													Desde <span>MXN $ 100.00</span>
+												</div>
+												<!--
+												<div class="slide-distance">
+													A 96 km de tu búsqueda
+												</div>
+												-->
 											</div>
-											<!--
-											<div class="slide-distance">
-												A 96 km de tu búsqueda
+
+											<div class="slide-profile">
+												<div class="slide-profile-image" style="background-image: url('.getTema().'/images/new/km-buscador/avatar-03.png);"></div>
 											</div>
-											-->
-										</div>
 
-										<div class="slide-profile">
-											<div class="slide-profile-image" style="background-image: url('.getTema().'/images/new/km-buscador/avatar-03.png);"></div>
-										</div>
-
-										<div class="slide-name">
-											SOFIA RENGIFO
-										</div>
-
-										<div class="slide-expertice">
-											5 años de experiencia
-										</div>
-
-										<div class="slide-ranking">
-											<div class="km-ranking">
-												<a href="#" class="active"></a>
-												<a href="#" class="active"></a>
-												<a href="#" class="active"></a>
-												<a href="#" class="active"></a>
-												<a href="#"></a>
+											<div class="slide-name">
+												SOFIA RENGIFO
 											</div>
-										</div>
 
-										<div class="slide-buttons">
-											<a href="#">CONÓCELO +</a>
-											<a href="#">RESERVAR</a>
+											<div class="slide-expertice">
+												5 años de experiencia
+											</div>
+
+											<div class="slide-ranking">
+												<div class="km-ranking">
+													<a href="#" class="active"></a>
+													<a href="#" class="active"></a>
+													<a href="#" class="active"></a>
+													<a href="#" class="active"></a>
+													<a href="#"></a>
+												</div>
+											</div>
+
+											<div class="slide-buttons">
+												<a href="#">CONÓCELO +</a>
+												<a href="#">RESERVAR</a>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
 
-							<div class="slide">
-								<div class="item-slide" style="background-image: url('.getTema().'/images/new/km-buscador/slide-01.jpg);">
-									<div class="slide-mask"></div>
-									<div class="slide-content">
-										<div class="slide-price-distance">
-											<div class="slide-price">
-												Desde <span>MXN $ 100.00</span>
+								<div class="slide">
+									<div class="item-slide" style="background-image: url('.getTema().'/images/new/km-buscador/slide-01.jpg);">
+										<div class="slide-mask"></div>
+										<div class="slide-content">
+											<div class="slide-price-distance">
+												<div class="slide-price">
+													Desde <span>MXN $ 100.00</span>
+												</div>
+												<!--
+												<div class="slide-distance">
+													A 96 km de tu búsqueda
+												</div>
+												-->
 											</div>
-											<!--
-											<div class="slide-distance">
-												A 96 km de tu búsqueda
+
+											<div class="slide-profile">
+												<div class="slide-profile-image" style="background-image: url('.getTema().'/images/new/km-buscador/avatar-01.png);"></div>
 											</div>
-											-->
-										</div>
 
-										<div class="slide-profile">
-											<div class="slide-profile-image" style="background-image: url('.getTema().'/images/new/km-buscador/avatar-01.png);"></div>
-										</div>
-
-										<div class="slide-name">
-											SUSY GALLARDO
-										</div>
-
-										<div class="slide-expertice">
-											5 años de experiencia
-										</div>
-
-										<div class="slide-ranking">
-											<div class="km-ranking">
-												<a href="#" class="active"></a>
-												<a href="#" class="active"></a>
-												<a href="#" class="active"></a>
-												<a href="#" class="active"></a>
-												<a href="#"></a>
+											<div class="slide-name">
+												SUSY GALLARDO
 											</div>
-										</div>
 
-										<div class="slide-buttons">
-											<a href="#">CONÓCELO +</a>
-											<a href="#">RESERVAR</a>
+											<div class="slide-expertice">
+												5 años de experiencia
+											</div>
+
+											<div class="slide-ranking">
+												<div class="km-ranking">
+													<a href="#" class="active"></a>
+													<a href="#" class="active"></a>
+													<a href="#" class="active"></a>
+													<a href="#" class="active"></a>
+													<a href="#"></a>
+												</div>
+											</div>
+
+											<div class="slide-buttons">
+												<a href="#">CONÓCELO +</a>
+												<a href="#">RESERVAR</a>
+											</div>
 										</div>
 									</div>
 								</div>
