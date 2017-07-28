@@ -2247,7 +2247,7 @@ footer .km-icon-redes {
 
 @media all and (max-width: 427px) {
 	.km-resultados-grid .km-item-resultado{
-		width: calc( 100% - 30px );
+		width: calc( 100% - 40px );
     	margin: 20px;
 	}
 
