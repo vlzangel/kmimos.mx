@@ -1,2 +1,4 @@
-#message{position: fixed; width: 100%; bottom: 0; padding: 20px; color: #fff; font-size: 20px; text-align: center; box-shadow: 0 0 3px #CCC; background: #5e1775; display:none;}
-.message{position: relative; padding: 10px; margin: 5px 0; color: #555; font-size: 20px; border: 1px solid #CCC; border-radius: 5px;}
+#message,
+.message{color: #fff; font-size: 20px; line-height: 1.2; background: #5e1775; display:none;}
+#message{position: fixed; width: 100%; bottom: 0; padding: 20px; text-align: center; box-shadow: 0 0 3px #CCC;}
+.message{position: relative; padding: 10px !important; margin: 10px 0; border: 1px solid #CCC; border-radius: 5px;}

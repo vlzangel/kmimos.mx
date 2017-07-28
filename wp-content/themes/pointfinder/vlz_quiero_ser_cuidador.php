@@ -759,23 +759,31 @@
 
 	function fillAutocomplete(){
 		var place = autocomplete.getPlace();
-		console.log(place);
+		//console.log(place);
 
 		if(typeof place === 'undefined'){
 			messageInsite('#messageDirection','Sus coordenadasno fueron reconocidas.  puede buscar su ubicacion directamente en el mapa moviendo el pin');
-			message('Sus coordenadasno fueron reconocidas.  puede buscar su ubicacion directamente en el mapa moviendo el pin');
+			message('Sus coordenadas no fueron reconocidas.  puede buscar su ubicacion directamente en el mapa moviendo el pin');
 			return;
-		}
 
-		if(!place.geometry){
-			//window.alert("Autocomplete's returned place contains no geometry");
-			messageInsite('#messageDirection','El sitio Seleccionado, GoogleMap no obtiene las coordenadas');
-			message('El sitio Seleccionado, GoogleMap no obtiene las coordenadas');
-			return;
 		}else{
-			lat=place.geometry.location.lat();
-			lng=place.geometry.location.lng();
-			set_inputCoordMap();
+			if(!place.geometry){
+				//window.alert("Autocomplete's returned place contains no geometry");
+				messageInsite('#messageDirection','El sitio Seleccionado, GoogleMap no obtiene las coordenadas');
+				message('El sitio Seleccionado, GoogleMap no obtiene las coordenadas');
+				return;
+
+			}else{
+				var callback = function(){}
+				//messageClose('#messageDirection', callback);
+				jQuery('#messageDirection').css({'display':'none'});
+				messageInsite('#messageDirection','Puede mejorar su ubicacion directamente en el mapa moviendo el pin');
+				message('Puede mejorar su ubicacion directamente en el mapa moviendo el pin');
+
+				lat=place.geometry.location.lat();
+				lng=place.geometry.location.lng();
+				set_inputCoordMap();
+			}
 		}
 	}
 
@@ -783,7 +791,7 @@
 		$ = d.createElement(s), e = d.getElementsByTagName(s)[0];
 		$.async=!0;
 		$.setAttribute('charset','utf-8');
-		$.src='//maps.googleapis.com/maps/api/js?v=3&key=AIzaSyD-xrN3-wUMmJ6u2pY_QEQtpMYquGc70F8&libraries=places&callback=initMap';
+		$.src='//maps.googleapis.com/maps/api/js?v=3&libraries=places&key=AIzaSyD-xrN3-wUMmJ6u2pY_QEQtpMYquGc70F8&callback=initMap';
 		$.type='text/javascript';
 		e.parentNode.insertBefore($, e)
 	})(document,'script');
@@ -804,7 +812,6 @@
 			lat=latitude;
 			lng=longitude;
 			set_inputCoordMap();
-
 			messageInsite('#messageDirection','Seleccionaste estado');
 			message('Seleccionaste estado');
 		}
@@ -814,13 +821,13 @@
 		var locale=jQuery(this).val();
 		var latitude=Coordsearch['locale'][locale]['lat'];
 		var longitude=Coordsearch['locale'][locale]['lng'];
-		messageInsite('#messageDirection','seleccionaste municipio');
-		message('seleccionaste municipio');
 
 		if(latitude!='' && longitude!=''){
 			lat=latitude;
 			lng=longitude;
 			set_inputCoordMap();
+			messageInsite('#messageDirection','seleccionaste municipio');
+			message('seleccionaste municipio');
 		}
 	});
 
@@ -864,12 +871,6 @@
 	//ADDRESS ACTION
 	jQuery(document).on('focusout', 'input[name="direccion"]', function(e){
 		fillAutocomplete();
-		/*
-		if(!iplace){
-			messageInsite('#messageDirection','Sus coordenadasno fueron reconocidas.  puede buscar su ubicacion directamente en el mapa moviendo el pin');
-			message('Sus coordenadasno fueron reconocidas.  puede buscar su ubicacion directamente en el mapa moviendo el pin');
-		}
-		*/
 	});
 
 	function set_inputCoord(){
