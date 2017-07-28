@@ -423,6 +423,7 @@ echo get_estados_municipios();
                    </section>                          
                 </div>
 
+				<div id="messageDirection" class="message"></div>
 			    <div id="map"></div>
                 <div class="clearfix" style="margin-bottom:10px"></div>
             </section>
