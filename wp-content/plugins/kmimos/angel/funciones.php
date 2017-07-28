@@ -328,7 +328,7 @@
         $ficha = '
             <div class="km-item-resultado">
                 <div class="km-foto">
-                    <img src="'.$img.'" width="100%">
+                    <div class="km-img" style="background-image: url('.$img.');"></div>
                     <span class="km-contenedor-favorito">
                         <a href="#" class="km-link-favorito active"></a>
                     </span>
