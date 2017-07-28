@@ -167,7 +167,7 @@
 							</div>
 
 							<div class="km-caja-filtro">
-								<input type="text" name="" value="" placeholder="BUSCAR POR NOMBRE" class="km-input-custom">
+								<input type="text" name="nombre" value="" placeholder="BUSCAR POR NOMBRE" class="km-input-custom">
 							</div>
 						</div>
 					</div>
