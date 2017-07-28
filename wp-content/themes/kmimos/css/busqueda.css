@@ -9,3 +9,14 @@
 #mapa{
     height: 400px;
 }
+
+h1 a{
+    color: #000;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+h1 a:hover{
+    color: #000;
+    text-decoration: none;
+}

@@ -334,7 +334,7 @@
                     </span>
                 </div>
                 <div class="km-descripcion">
-                    <h1>'.utf8_encode($cuidador->titulo).'</h1>
+                    <h1><a href="'.$url.'">'.utf8_encode($cuidador->titulo).'</a></h1>
                     <p>15 años de experiencia</p>
                     <div class="km-ranking">
                         <a href="#" class="active"></a>

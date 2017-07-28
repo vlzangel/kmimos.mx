@@ -234,9 +234,9 @@
             $user = new WP_User( $user_id );
             if( $user->roles[0] == "vendor" ){
                 $id = $wpdb->get_var("SELECT id FROM cuidadores WHERE user_id = {$user_id}");
-                $sub_path = "cuidadores/avatares/{$id}";
+                $sub_path = "cuidadores/avatares/miniatura/{$id}_";
             }else{
-                $sub_path = "avatares_clientes/{$user_id}";
+                $sub_path = "avatares_clientes/{$user_id}/";
             }
             
             $name_photo = get_user_meta($user_id, "name_photo", true);
@@ -244,11 +244,11 @@
             if( count(explode(".", $name_photo)) == 1 ){ $name_photo .= "jpg";  }
             $base = path_base();
 
-            if( file_exists($base."/wp-content/uploads/{$sub_path}/{$name_photo}") ){
-                $img = get_home_url()."/wp-content/uploads/{$sub_path}/{$name_photo}";
+            if( file_exists($base."/wp-content/uploads/{$sub_path}{$name_photo}") ){
+                $img = get_home_url()."/wp-content/uploads/{$sub_path}{$name_photo}";
             }else{
-                if( file_exists($base."/wp-content/uploads/{$sub_path}/0.jpg") ){
-                    $img = get_home_url()."/wp-content/uploads/{$sub_path}/0.jpg";
+                if( file_exists($base."/wp-content/uploads/{$sub_path}0.jpg") ){
+                    $img = get_home_url()."/wp-content/uploads/{$sub_path}0.jpg";
                 }else{
                     $img = get_home_url()."/wp-content/themes/pointfinder/images/noimg.png";
                 }

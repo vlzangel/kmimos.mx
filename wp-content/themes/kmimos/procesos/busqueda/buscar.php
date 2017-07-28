@@ -121,7 +121,7 @@
     $pines = array();
     if( $cuidadores != false ){
 		foreach ($cuidadores as $key => $cuidador) {
-			$url = "/".$cuidador->slug;
+			$url = $home."/petsitters/".$cuidador->slug;
 			$img = kmimos_get_foto_cuidador($cuidador->id, $home);		
 			$pines[] = array(
 				"ID"   => $cuidador->id,
@@ -142,21 +142,20 @@
 	$_SESSION['pines'] = $pines_json;
 	$_SESSION['pines_array'] = serialize($pines);
 
-	$temp_rangos = array_filter($_POST["rangos"]);
+	$temp_rangos = @array_filter($_POST["rangos"]);
 	if( count($temp_rangos) > 0 ){
 		$_POST["rangos"] = $temp_rangos;
 	}else{
 		unset($_POST["rangos"]);
 	}
 
-	$_POST = array_filter($_POST);
+	$_POST = @array_filter($_POST);
 	
 	$_SESSION['busqueda'] = serialize($_POST);
     $_SESSION['resultado_busqueda'] = $cuidadores;
 
     // echo "<pre>";
-    // 	print_r($home);
-    // 	print_r($sql);
+    // 	print_r($pines);
     // echo "</pre>";
 
     function toRadian($deg) { return $deg * pi() / 180; };
@@ -170,15 +169,17 @@
         $cuidador = $db->get_row("SELECT * FROM cuidadores WHERE id = ".$id);
         $name_photo = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$cuidador->user_id} AND meta_key = '{name_photo}'", "meta_value");
 
-        $home = $xhome."wp-content/uploads/cuidadores/avatares/";
+        $home = $xhome."wp-content/uploads/cuidadores/avatares/miniatura/{$id}_";
+        $sub_path = "cuidadores/avatares/miniatura/{$id}_";
 
         if( empty($name_photo)  ){ $name_photo = "0"; }
-        if( count(explode(".", $name_photo)) == 1 ){ $name_photo .= "jpg";  }
-        if( file_exists("../../../../uploads/cuidadores/avatares/{$id}/{$name_photo}") ){
-            $img = $home."{$id}/{$name_photo}";
+        if( count(explode(".", $name_photo)) == 1 ){ $name_photo .= ".jpg";  }
+
+        if( file_exists("../../../../uploads/{$sub_path}{$name_photo}") ){
+            $img = $home."{$name_photo}";
         }else{
-            if( file_exists("../../../../uploads/cuidadores/avatares/{$id}/0.jpg") ){
-                $img = $home."{$id}/0.jpg";
+            if( file_exists("../../../../uploads/{$sub_path}/0.jpg") ){
+                $img = $home."0.jpg";
             }else{
                 $img = $xhome.'wp-content/themes/pointfinder/images/noimg.png';
             }

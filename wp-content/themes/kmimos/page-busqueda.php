@@ -47,7 +47,7 @@
 				<div class="km-columna-izq">
 					<div class="km-premium km-search-slider">
 						<div class="km-search-title">
-							RESULTADO DE B&Uacute;SQUEDA 4 CUIDADORES DISPONIBLES
+							RESULTADO DE B&Uacute;SQUEDA '.$total.' CUIDADORES DISPONIBLES
 						</div>
 						<div class="km-premium-slider">
 							<div class="slide">
@@ -58,9 +58,11 @@
 											<div class="slide-price">
 												Desde <span>MXN $ 100.00</span>
 											</div>
+											<!--
 											<div class="slide-distance">
 												A 96 km de tu búsqueda
 											</div>
+											-->
 										</div>
 
 										<div class="slide-profile">
@@ -100,9 +102,11 @@
 											<div class="slide-price">
 												Desde <span>MXN $ 100.00</span>
 											</div>
+											<!--
 											<div class="slide-distance">
 												A 96 km de tu búsqueda
 											</div>
+											-->
 										</div>
 
 										<div class="slide-profile">
@@ -143,9 +147,11 @@
 											<div class="slide-price">
 												Desde <span>MXN $ 100.00</span>
 											</div>
+											<!--
 											<div class="slide-distance">
 												A 96 km de tu búsqueda
 											</div>
+											-->
 										</div>
 
 										<div class="slide-profile">
@@ -186,9 +192,11 @@
 											<div class="slide-price">
 												Desde <span>MXN $ 100.00</span>
 											</div>
+											<!--
 											<div class="slide-distance">
 												A 96 km de tu búsqueda
 											</div>
+											-->
 										</div>
 
 										<div class="slide-profile">
@@ -225,10 +233,11 @@
 
 					<div class="km-superior-resultados">
 						<span class="km-texto-resultados">
-							<b>Resultado de búsqueda</b> 4 cuidadores disponibles
+							<b>Resultado de búsqueda</b> '.$total.' cuidadores disponibles
 						</span>
 
 						<div class="km-opciones-resultados">
+							<!-- 
 							<div class="km-vista-resultados">
 								<a href="./km-resultado.html" class="view-list active">
 									List
@@ -236,14 +245,14 @@
 								<a href="./km-resultado-grid.html" class="view-grid">
 									Gris
 								</a>
-							</div>
-							<!-- <div class="km-orden-resultados">
+							</div> -->
+							<div class="km-orden-resultados">
 								<select class="km-select-custom" name="">
 									<option>ORDENAR POR RANKING</option>
 									<option>ORDEN A</option>
 									<option>ORDEN B</option>
 								</select>
-							</div> -->
+							</div>
 						</div>
 					</div>
 

@@ -98,7 +98,7 @@
 				</ul>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="km-resultado.html" class="km-nav-link">BUSCAR CUIDADOR</a></li>
+						<li><a href="'.get_home_url().'/busqueda/" class="km-nav-link">BUSCAR CUIDADOR</a></li>
 						<li><a href="km-cuidador.html" class="km-btn-primary hidden-xs">QUIERO SER CUIDADOR</a></li>
 						<li><a href="#" class="km-nav-link hidden-sm hidden-md hidden-lg">INICIAR SESIÓN</a></li>
 						<li><a href="#" class="km-nav-link hidden-sm hidden-md hidden-lg">REGÍSTRATE</a></li>
@@ -117,7 +117,7 @@
 
 		<div class="container contentenedor-buscador-todos">
 			<div class="km-contentido-formulario-buscador">
-				<form class="km-formulario-buscador" action="" method="post">
+				<form class="km-formulario-buscador" action="'.getTema().'/procesos/busqueda/buscar.php" method="post">
 					<div class="km-bloque-cajas">
 						<div class="km-div-ubicacion">
 							<select class="km-select-custom km-select-ubicacion" name="">
