@@ -2247,7 +2247,16 @@ footer .km-icon-redes {
 
 @media all and (max-width: 427px) {
 	.km-resultados-grid .km-item-resultado{
-		width: 100%;
+		width: calc( 100% - 30px );
+    	margin: 20px;
+	}
+
+	.km-img {
+	    background-position: center center;
+	    background-size: cover;
+	    background-repeat: no-repeat;
+	    background-color: #292929;
+	    height: 200px;
 	}
 
 	.km-resultados-grid .km-item-resultado{
