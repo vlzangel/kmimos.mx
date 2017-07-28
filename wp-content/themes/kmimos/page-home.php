@@ -40,10 +40,10 @@
 								</select>
 							</div>
 							<div class="col-xs-12 col-sm-3">
-								<input type="text" name="" placeholder="DESDE CUANDO" value="" class="date_from">
+								<input type="text" name="" placeholder="DESDE CUANDO" value="" class="date_from" readonly>
 							</div>
 							<div class="col-xs-12 col-sm-3">
-								<input type="text" name="" placeholder="HASTA CUANDO" value="" class="date_to">
+								<input type="text" name="" placeholder="HASTA CUANDO" value="" class="date_to" readonly>
 							</div>
 						</div>
 						<div class="row km-servicios mtb-10">

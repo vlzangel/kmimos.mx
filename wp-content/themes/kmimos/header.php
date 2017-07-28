@@ -142,8 +142,8 @@
 							</select>
 						</div>
 						<div class="km-div-fechas">
-							<input type="text" name="" placeholder="DESDE" value="" class="km-input-custom km-input-date date_from">
-							<input type="text" name="" placeholder="HASTA" value="" class="km-input-custom km-input-date date_to">
+							<input type="text" name="" placeholder="DESDE" value="" class="km-input-custom km-input-date date_from" readonly>
+							<input type="text" name="" placeholder="HASTA" value="" class="km-input-custom km-input-date date_to" readonly>
 						</div>
 						<div class="km-div-enviar">
 							<button type="submit" class="km-submit-custom" name="button">
