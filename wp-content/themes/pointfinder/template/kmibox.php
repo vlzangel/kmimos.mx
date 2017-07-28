@@ -63,6 +63,10 @@
             section.kmibox .images .group2{height: 50px; bottom: -4px; }
         }
 
+        @media screen and (max-width: 360px), screen and (max-device-width: 360px){
+            section.kmibox .images .group2{height: 40px; bottom: -4px;}
+        }
+
     </style>
 </head>
 

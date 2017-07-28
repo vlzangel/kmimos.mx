@@ -246,6 +246,7 @@
 										<input type="hidden" class="geolocation" id="latitud" name="latitud" placeholder="Latitud" step="any" value="" />
 										<input type="hidden" class="geolocation" id="longitud" name="longitud" placeholder="Longitud" step="any" value="" />
 									</div>
+									<div id="messageDirection" class="message"></div>
 									<div id="map"></div>
 
 								</div>
@@ -758,10 +759,18 @@
 
 	function fillAutocomplete(){
 		var place = autocomplete.getPlace();
-		//console.log(place.geometry.location.lat);
+		console.log(place);
+
+		if(typeof place === 'undefined'){
+			messageInsite('#messageDirection','Sus coordenadasno fueron reconocidas.  puede buscar su ubicacion directamente en el mapa moviendo el pin');
+			message('Sus coordenadasno fueron reconocidas.  puede buscar su ubicacion directamente en el mapa moviendo el pin');
+			return;
+		}
 
 		if(!place.geometry){
-			window.alert("Autocomplete's returned place contains no geometry");
+			//window.alert("Autocomplete's returned place contains no geometry");
+			messageInsite('#messageDirection','El sitio Seleccionado, GoogleMap no obtiene las coordenadas');
+			message('El sitio Seleccionado, GoogleMap no obtiene las coordenadas');
 			return;
 		}else{
 			lat=place.geometry.location.lat();
@@ -795,6 +804,8 @@
 			lat=latitude;
 			lng=longitude;
 			set_inputCoordMap();
+
+			messageInsite('#messageDirection','Seleccionaste estado');
 			message('Seleccionaste estado');
 		}
 	});
@@ -803,6 +814,7 @@
 		var locale=jQuery(this).val();
 		var latitude=Coordsearch['locale'][locale]['lat'];
 		var longitude=Coordsearch['locale'][locale]['lng'];
+		messageInsite('#messageDirection','seleccionaste municipio');
 		message('seleccionaste municipio');
 
 		if(latitude!='' && longitude!=''){
@@ -846,6 +858,18 @@
 		jQuery('input[name="address"]').val(value);//.focus();
 
 
+	});
+
+
+	//ADDRESS ACTION
+	jQuery(document).on('focusout', 'input[name="direccion"]', function(e){
+		fillAutocomplete();
+		/*
+		if(!iplace){
+			messageInsite('#messageDirection','Sus coordenadasno fueron reconocidas.  puede buscar su ubicacion directamente en el mapa moviendo el pin');
+			message('Sus coordenadasno fueron reconocidas.  puede buscar su ubicacion directamente en el mapa moviendo el pin');
+		}
+		*/
 	});
 
 	function set_inputCoord(){
