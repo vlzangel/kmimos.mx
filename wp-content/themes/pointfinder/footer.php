@@ -112,6 +112,9 @@ $HTML = "</div></div>
         .wpmenucartli{
             display: none !important;
         }
+        .woocommerce-message a{
+            display: none !important;
+        }
         @media (min-width: 1200px){
             .jj-offset-2 {
                 margin-left: 16.66666667% !important;
@@ -162,7 +165,7 @@ $HTML = "</div></div>
         function ocultarModal(){
             jQuery('#jj_modal_finalizar_compra').fadeOut();
             jQuery('#jj_modal_finalizar_compra').css('display', 'none');
-        }"; 
+        }</script>"; 
 
         if( isset( $_GET['a'] ) ){
             $HTML .= "
@@ -177,12 +180,14 @@ $HTML = "</div></div>
 
         if( $post->post_name == "carro" ){
             $HTML .= "
-                jQuery('.woocommerce-message>a.button.wc-forward').css('display', 'none');
-                jQuery('.variation-Duracin').css('display', 'none');
-                jQuery('.variation-Ofrecidopor').css('display', 'none');
-                jQuery( document ).ready(function() {
+                <script>
                     jQuery('.woocommerce-message>a.button.wc-forward').css('display', 'none');
-                });
+                    jQuery('.variation-Duracin').css('display', 'none');
+                    jQuery('.variation-Ofrecidopor').css('display', 'none');
+                    jQuery( document ).ready(function() {
+                        jQuery('.woocommerce-message>a.button.wc-forward').css('display', 'none');
+                    });
+                </script>
                 <style>
                     .woocommerce-message>a.button.wc-forward{
                         display; none;
@@ -192,95 +197,7 @@ $HTML = "</div></div>
                 </style>
             ";
         }
-        if( $post->post_name == "perfil-usuario" ){
-            $HTML .= "
-                var es_firefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;  
-                if(es_firefox){
-                    jQuery('input[name=pet_birthdate]').datepicker('destroy');
-                    jQuery('input[name=pet_birthdate]').removeAttr('min');  
-                    jQuery('input[name=pet_birthdate]').removeAttr('max');
-                    jQuery('input[name=pet_birthdate]').prop('readonly', true); 
-                    if (jQuery(window).width() > 550) {
-                        jQuery( 'input[name=pet_birthdate]' ).datepicker({ 
-                            option: 'dd/mm/yy',
-                            changeMonth: true,
-                            changeYear: true,
-                            minDate: '-30y',
-                            maxDate: '-1d',
-                            dataFormat: 'dd/mm/yy',
-                        });
-                    }
-                }
-                <style>
-                    @media (max-width: 568px){ 
-                        .cell50{width:100%!important;}
-                        .cell25{width:50%!important;}
-                    }
-                </style>
-            ";
-        }
-        if( $post->post_name == "conocer-al-cuidador" ){
-            $HTML .= "
-            var es_firefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;  
-            var mdate = '0d';
-            if(es_firefox){
-                if (jQuery(window).width() > 550) {
-
-                    jQuery('input[name=meeting_when],input[name=service_start],input[name=service_end]').datepicker('destroy');
-                    jQuery('input[name=meeting_when]').removeAttr('min');
-                    jQuery('#service_start').prop('disabled', true);
-                    jQuery('#service_end').prop('disabled', true);
-
-                     jQuery( function() {
-                        var dateFormat = 'mm/dd/yy',
-                          from = jQuery( '#meeting_when' )
-                            .datepicker({
-                                option: 'dd/mm/yy',
-                                changeMonth: true,
-                                changeYear: true,
-                                minDate: '0d',
-                                maxDate: '1y',
-                                dataFormat: 'dd/mm/yy',
-                            })
-                            .on( 'change', function() {
-                              to.datepicker( 'option', 'minDate', getDate( this ) );
-                              jQuery('#service_start').prop('disabled', false);
-
-                            }),
-                          to = jQuery( '#service_start' ).datepicker({
-                            option: 'dd/mm/yy',
-                            changeMonth: true,
-                            changeYear: true,
-                            maxDate: '1y',
-                            dataFormat: 'dd/mm/yy',
-                          })
-                          .on( 'change', function() {
-                            toto.datepicker( 'option', 'minDate', getDate( this ) );
-                            jQuery('#service_end').prop('disabled', false);
-                          }),
-                          toto = jQuery( '#service_end' ).datepicker({
-                            option: 'dd/mm/yy',
-                            changeMonth: true,
-                            changeYear: true,
-                            maxDate: '1y',
-                            dataFormat: 'dd/mm/yy',
-                          });
-                     
-                        function getDate( element ) {
-                          var date;
-                          try {
-                            date = jQuery.datepicker.parseDate( dateFormat, element.value );
-                          } catch( error ) {
-                            date = null;
-                          }
-                     
-                          return date;
-                        }
-                    } );
-                    jQuery('input[name=meeting_when],input[name=service_start],input[name=service_end]').prop('readonly', true);
-                }
-            }";
-        }
+        
         if( $post->post_name == "finalizar-comprar" && $_GET['key'] == "" ){
             $HTML .= "
             <style>
@@ -377,29 +294,26 @@ $HTML = "</div></div>
         }
 
         $HTML .= "
-            jQuery( document ).ready(function() {
-                jQuery( '.reservar' ).unbind();
-                jQuery( '.reservar' ).off();
-                jQuery( '.conocer-cuidador' ).unbind(); 
-                jQuery( '.conocer-cuidador' ).off(); ";
-                
-                if( $post->post_name == 'finalizar-comprar' ){
-                    $HTML .= " jQuery('.payment_method_wc-booking-gateway').css('display', 'none'); ";
-                }
-                if( $post->post_name == 'finalizar-comprar' ){
-                    $HTML .= " jQuery('.payment_method_wc-booking-gateway').css('display', 'none'); ";
-                }
-                if( $post->post_name == 'finalizar-comprar' && $_GET['key'] == '' ){ 
-                    $HTML .= " var abrir = true;
-                    jQuery(window).scroll(function() {
-                            if (jQuery(document).scrollTop() > 10) {
-                                jQuery('#vlz_modal_popup').fadeOut();
-                            }
-                        });
-                    ";
-                }
-
-        $HTML .= "}); </script>
+            <script>
+                jQuery( document ).ready(function() {";
+                    if( $post->post_name == 'finalizar-comprar' ){
+                        $HTML .= " jQuery('.payment_method_wc-booking-gateway').css('display', 'none'); ";
+                    }
+                    if( $post->post_name == 'finalizar-comprar' ){
+                        $HTML .= " jQuery('.payment_method_wc-booking-gateway').css('display', 'none'); ";
+                    }
+                    if( $post->post_name == 'finalizar-comprar' && $_GET['key'] == '' ){ 
+                        $HTML .= " var abrir = true;
+                                jQuery(window).scroll(function() {
+                                    if (jQuery(document).scrollTop() > 10) {
+                                        jQuery('#vlz_modal_popup').fadeOut();
+                                    }
+                                });
+                             </script>
+                        ";
+                    } $HTML .= "
+                });
+            </script>
             <!--[if lt IE 9]>
                 <script src='".get_home_url()."/wp-content/themes/pointfinder/js/html5shiv.js'></script>
             <![endif]-->

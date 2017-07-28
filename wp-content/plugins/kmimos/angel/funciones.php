@@ -1,5 +1,38 @@
 <?php
 
+    if(!function_exists('angel_log')){
+        function angel_log($salida){
+            global $wpdb;
+            $wpdb->query("INSERT INTO log VALUES(NULL, \"".$salida."\")");
+        }
+    }
+
+    if(!function_exists('get_data_booking')){
+        function get_data_booking($id){
+            global $wpdb;
+
+            $metas      = get_post_meta($id);
+            $servicio   = $metas['_booking_product_id'][0];
+            $mascotas   = unserialize($metas['_booking_persons'][0]);
+
+            $cantidad_mascotas = 0;
+            if( $mascotas != "" && count($mascotas) > 0 ){
+                foreach ($mascotas as $key => $value) {
+                    $cantidad_mascotas += $value;
+                }
+            }
+
+            return array(
+                "inicio"   => strtotime($metas['_booking_start'][0]),
+                "fin"      => strtotime($metas['_booking_end'][0]),
+                "servicio" => $servicio,
+                "mascotas" => $cantidad_mascotas,
+                "acepta"   => get_post_meta($servicio, "_wc_booking_qty", true),
+                "autor"    => $wpdb->get_var("SELECT post_author FROM wp_posts WHERE ID = {$servicio}")
+            );
+        }
+    }
+    
     if(!function_exists('update_cupos')){
         function update_cupos($id, $accion){
             global $wpdb;
@@ -27,7 +60,8 @@
                             '{$fecha}',
                             '{$mascotas}',
                             '{$acepta}',
-                            '{$full} '        
+                            '{$full}',        
+                            '0'        
                         );
                     ";
                     $wpdb->query($sql);
@@ -47,7 +81,7 @@
                 $ps = ceil($t/$h);
                 for( $i=0; $i<$ps; $i++){
                     $active = ( $pagina == $i ) ? "class='vlz_activa'" : "";
-                    $paginacion .= "<a href='".$home."/busqueda/".($i)."' ".$active.">".($i+1)."</a>";
+                    $paginacion .= "<a href='".get_home_url()."/busqueda/".($i)."' ".$active.">".($i+1)."</a>";
                 }
             }
             $w = 40*$ps;
@@ -71,7 +105,7 @@
                 $data = $wpdb->get_row("SELECT post_title AS nom, post_name AS url FROM wp_posts WHERE ID = {$cuidador->id_post}");
                 $nombre = $data->nom;
                 $img_url = kmimos_get_foto_cuidador($value->cuidador);
-                $url = $home . "/petsitters/" . $data->url;
+                $url = get_home_url() . "/petsitters/" . $data->url;
                 $top_destacados .= "
                     <a class='vlz_destacados_contenedor' href='{$url}'>
                         <div class='vlz_destacados_contenedor_interno'>

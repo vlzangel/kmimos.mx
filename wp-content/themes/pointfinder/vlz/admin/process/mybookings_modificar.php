@@ -15,7 +15,7 @@
 	if( isset($a) ){
 		$param = explode("_", $a);
 
-		$sql = "SELECT ID FROM wp_users WHERE md5(user_id) = '{$param[1]}'";
+		$sql = "SELECT ID FROM wp_users WHERE md5(ID) = '{$param[1]}'";
 		$usuario = $conn->query($sql);
 		if( $usuario->num_rows > 0 ){
 			$usuario = $usuario->fetch_assoc();
@@ -68,26 +68,13 @@
 
         $sql = "SELECT * FROM wp_woocommerce_order_items WHERE order_id = '{$orden_id}' AND order_item_type = 'coupon' AND order_item_name NOT LIKE '%saldo-%'";
         $otros_cupones = $conn->query($sql);
-
     	while ( $cupon = $otros_cupones->fetch_assoc() ) {
 
             $cupon_id = $conn->query("SELECT ID FROM wp_posts WHERE post_title = '{$cupon['order_item_name']}'");
             $cupon_id = $cupon_id->fetch_assoc();
             $cupon_id = $cupon_id["ID"];
 
-            $limite = $conn->query("SELECT meta_value FROM wp_postmeta WHERE post_id = '{$cupon_id}' AND meta_key = 'usage_limit_per_user'");
-            $limite = $limite->fetch_assoc();
-            $limite = $limite["meta_value"];
-
-            if( $limite != "" ){
-            	$xdescuento = $conn->query("SELECT meta_value FROM wp_woocommerce_order_itemmeta WHERE order_item_id = '{$cupon['order_item_id']}' AND meta_key = 'discount_amount' ");
-	            if( $xdescuento->num_rows > 0 ){
-			        $xdescuento = $xdescuento->fetch_assoc();
-			        $xdescuento = $xdescuento['meta_value'];
-
-			        $descuento += $xdescuento;
-			    }
-            }
+            $conn->query("DELETE FROM wp_postmeta WHERE post_id = '{$cupon_id}' AND meta_key = '_used_by' AND meta_value = '{$user_id}'");
 
         }
 
@@ -154,6 +141,8 @@
 		}
 
 		$parametros = array( 
+			"user_id"         => $user_id,
+			"orden_id"        => $orden_id,
 			"reserva"         => $id_reserva,
 			"servicio"        => $data['ID'],
 			"saldo"	          => $saldo+$descuento+$kmisaldo,
@@ -165,11 +154,34 @@
 		);
 
 		$_SESSION["MR_".$param[1]] = $parametros;
+
+/*		echo "<pre>";
+			print_r($_SESSION);
+		echo "</pre>";*/
 		
 		header("location: ".$home['server']."producto/".$data['post_name']."/");
 	}
 
 	if( isset($b) ){
+		$data = "";
+		foreach ($_SESSION as $key => $value) {
+			if(	substr($key, 0, 3) == "MR_" ){
+				$data = $value;
+			}
+		}
+
+		extract($data);
+
+		$sql = "SELECT * FROM wp_woocommerce_order_items WHERE order_id = '{$orden_id}' AND order_item_type = 'coupon' AND order_item_name NOT LIKE '%saldo-%'";
+        $otros_cupones = $conn->query($sql);
+    	while ( $cupon = $otros_cupones->fetch_assoc() ) {
+            $cupon_id = $conn->query("SELECT ID FROM wp_posts WHERE post_title = '{$cupon['order_item_name']}'");
+            $cupon_id = $cupon_id->fetch_assoc();
+            $cupon_id = $cupon_id["ID"];
+
+            $conn->query("INSERT INTO wp_postmeta VALUES (NULL, '{$cupon_id}', '_used_by', '{$user_id}' )");
+        }
+
 		$home = $conn->query("SELECT option_value AS server FROM wp_options WHERE option_name = 'siteurl'"); $home = $home->fetch_assoc();
 		foreach ($_SESSION as $key => $value) {
 			if(	substr($key, 0, 3) == "MR_" ){
