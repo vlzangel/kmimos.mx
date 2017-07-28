@@ -1,18 +1,19 @@
 <?php
 	// Modificacion Ángel Veloz
-	include("../../../../../../vlz_config.php");
 
 	extract($_GET);
 
 	session_start();
 
-	$conn = new mysqli($host, $user, $pass, $db);
 
 /*	session_destroy();
 
 	session_start();*/
 
 	if( isset($a) ){
+		include("../../../../../../vlz_config.php");
+		$conn = new mysqli($host, $user, $pass, $db);
+
 		$param = explode("_", $a);
 
 		$sql = "SELECT ID FROM wp_users WHERE md5(ID) = '{$param[1]}'";
@@ -63,6 +64,8 @@
             if( $descuento->num_rows > 0 ){
 		        $descuento = $descuento->fetch_assoc();
 		        $descuento = $descuento['meta_value']; 
+
+		        echo $descuento."<br>";
 		    }
         }
 
@@ -155,14 +158,22 @@
 
 		$_SESSION["MR_".$param[1]] = $parametros;
 
-/*		echo "<pre>";
-			print_r($_SESSION);
-		echo "</pre>";*/
-		
 		header("location: ".$home['server']."producto/".$data['post_name']."/");
 	}
 
 	if( isset($b) ){
+
+		include("../../../../../../wp-load.php");
+
+		$conn = new mysqli($host, $user, $pass, $db);
+
+		global $wpdb;
+		foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+			$wpdb->query( "DELETE FROM wp_posts WHERE ID = ".$cart_item["booking"]["_booking_id"] );
+			$wpdb->query( "DELETE FROM wp_postmeta WHERE post_id = ".$cart_item["booking"]["_booking_id"] );
+		}
+		WC()->cart->empty_cart();
+
 		$data = "";
 		foreach ($_SESSION as $key => $value) {
 			if(	substr($key, 0, 3) == "MR_" ){
@@ -188,7 +199,8 @@
 				unset($_SESSION[$key]);
 			}
 		}
-		header("location: ".$home['server']."perfil-usuario/?ua=invoices&fm=_");
+
+		header("location: ".$home['server']."perfil-usuario/?ua=invoices");
 	}
 
 ?>
