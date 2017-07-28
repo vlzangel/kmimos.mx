@@ -47,7 +47,7 @@
 			<li><a href="#" style="padding-left: 15px; border-left: 1px solid white;">REGÍSTRATE</a></li>
 		';
 		$menus_movil = '
-			<li><a id="login" class="km-nav-link hidden-sm hidden-md hidden-lg">INICIAR SESIÓN</a></li>
+			<li><a id="login_movil" class="km-nav-link hidden-sm hidden-md hidden-lg">INICIAR SESIÓN</a></li>
 			<li><a href="#" class="km-nav-link hidden-sm hidden-md hidden-lg">REGÍSTRATE</a></li>
 		';
 	}else{

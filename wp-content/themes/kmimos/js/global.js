@@ -3,7 +3,11 @@ jQuery( document ).ready(function() {
         close_login_modal();
     });
 
-	jQuery("#login").on("click", function(e){
+    jQuery("#login").on("click", function(e){
+        show_login_modal("login");
+    });
+
+	jQuery("#login_movil").on("click", function(e){
         show_login_modal("login");
     });
 
