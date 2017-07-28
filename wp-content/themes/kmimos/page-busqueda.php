@@ -21,25 +21,27 @@
 	$favoritos = get_favoritos();
 	
 	$pines = unserialize($_SESSION['pines_array']);
+	$pines_v = array();
 
 	$CUIDADORES = "";
 	if( $total > 0 ){
 		for ($i=$paginacion["inicio"]; $i < $paginacion["fin"]; $i++) {
 			$cuidador = $resultados[$i];
+			$pines_v[] = $pines[$i];
 			$CUIDADORES .= get_ficha_cuidador($cuidador, $i, $favoritos);
 		}
 	}else{
 		$CUIDADORES .= "<h2 style='padding-right: 20px!important;'>No tenemos resultados para esta búsqueda, si quieres intentarlo de nuevo pícale <a  style='color: #00b69d; font-weight: 600;' href='".$home."/#jj-landing-page'>aquí,</a> o aplica otro filtro de búsqueda.</h2>";
 	}
 
-	$PINES = json_encode($pines);
+	$xPINES = json_encode($pines_v);
 
 	$busqueda = unserialize($_SESSION['busqueda']);
 	$CAMPOS = json_encode($busqueda);
 
     $HTML = '
     	<script>
-    		var pines = eval(\''.$PINES.'\'); 
+    		var pines = eval(\''.$xPINES.'\'); 
     	</script>
     	<div class="km-caja-resultados">
 				<div class="km-columna-izq">

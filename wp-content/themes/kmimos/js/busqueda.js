@@ -77,6 +77,7 @@ function initMap() {
     });
     var bounds = new google.maps.LatLngBounds();
     jQuery.each(pines, function( index, cuidador ) {
+    	console.log(cuidador);
         bounds.extend( new google.maps.LatLng(cuidador.lat, cuidador.lng) );
         markers[index] = new google.maps.Marker({ 
             vlz_index: index,
