@@ -107,11 +107,11 @@
 	        "limpieza_dental",
 	        "bano",
 	        "corte",
-            "paseos",
 	        "guarderia",
 	        "adiestramiento_basico",
 	        "adiestramiento_intermedio",	        
-	        "adiestramiento_avanzado"
+	        "adiestramiento_avanzado",
+            "paseos"
 	    );
 
         $adicionales = array();
