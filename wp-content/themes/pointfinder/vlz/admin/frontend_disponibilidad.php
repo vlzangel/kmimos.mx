@@ -227,9 +227,13 @@
 			    box-sizing: border-box;
 			}
 
-			.botones_box input{
-				padding: 10px 0px;
+			.botones_box input {
+			    padding: 10px 0px;
 			    width: 100%;
+			    border: 1px solid #848484;
+			    background-color: #fefe78;
+			    border-radius: 2px;
+			    text-transform: uppercase;
 			}
 
 			.fechas{

@@ -217,6 +217,11 @@
                             "icono" => "453"
                         ),
                         array(
+                            "url"   => get_home_url()."/perfil-usuario/?ua=disponibilidad",
+                            "name"  => "Disponibilidad",
+                            "icono" => "28"
+                        ),
+                        array(
                             "url"   => get_home_url()."/perfil-usuario/?ua=mypictures",
                             "name"  => "Mis Fotos",
                             "icono" => "82"
