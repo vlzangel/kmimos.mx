@@ -664,5 +664,10 @@ ul.slider_logos_box li{
     }
 
     .select2-container--default .select2-selection--single {
-        border: 0px;
+        border: 0px !important;
+    }
+
+    .select2-container--default .select2-selection--single .select2-selection__arrow b {
+        margin-left: -10px;
+        margin-top: 5px;
     }
