@@ -50,6 +50,7 @@ $HTML = '
 
     wp_enqueue_script('main', getTema()."/js/main.js", array("jquery"), '1.0.0');
     wp_enqueue_script('global', getTema()."/js/global.js", array("jquery"), '1.0.0');
+    wp_enqueue_script('select2.min', getTema()."/js/select2.min.js", array("jquery"), '1.0.0');
 
     if(  $_SESSION['admin_sub_login'] == 'YES' ){
         $HTML .= "

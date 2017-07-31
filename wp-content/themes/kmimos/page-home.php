@@ -15,6 +15,21 @@
 
 	    $home = get_home_url();
 
+	    global $wpdb;
+
+	    $estados_str = "";
+	    $estados = $wpdb->get_results("SELECT * FROM states WHERE country_id = 1");
+	    foreach ($estados as $key => $value) {
+	    	//$estados_str .= utf8_decode("<optgroup label=".$value->name.">");
+	    		
+	    		$municipios = $wpdb->get_results("SELECT * FROM locations WHERE state_id = ".$value->id);
+	    		foreach ($municipios as $key => $municipio) {
+	    			$estados_str .= utf8_decode("<option value='".$value->id."=".$municipio->id."'>".$value->name.", ".$municipio->name."</option>");
+	    		}
+
+	    	//$estados_str .= utf8_decode("</optgroup>");
+	    }
+
 	    $HTML = '
 	    <script type="text/javascript"> var URL_MUNICIPIOS ="'.getTema().'/procesos/generales/municipios.php"; </script>
 
@@ -33,10 +48,8 @@
 					<div class="km-formulario-cuidador">
 						<div class="row km-fechas">
 							<div class="col-xs-12 col-sm-6">
-								<select class="km-select-custom km-select-ubicacion" name="">
-									<option>UBICACIÓN, ESTADO, MUNICIPIO</option>
-									<option>UBICACIÓN, A</option>
-									<option>UBICACIÓN, B</option>
+								<select id="select_ubicacion" class="km-select-custom km-select-ubicacion" name="">
+									'.$estados_str.'
 								</select>
 							</div>
 							<div class="col-xs-12 col-sm-3">

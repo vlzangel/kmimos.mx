@@ -24,6 +24,12 @@
 	wp_enqueue_style( 'datepicker.min', getTema()."/css/datepicker.min.css", array(), "1.0.0" );
 	wp_enqueue_style( 'kmimos_style', getTema()."/css/kmimos_style.css", array(), "1.0.0" );
 
+	/*
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+	*/
+	wp_enqueue_style( 'select2.min', getTema()."/css/select2.min.css", array(), "1.0.0" );
+
 
 	wp_head(); 
 

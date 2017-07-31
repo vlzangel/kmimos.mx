@@ -642,3 +642,27 @@ ul.slider_logos_box li{
         color: #FFF;
         border: solid 1px #FFF;
     }
+
+
+    .select2-container {
+        box-sizing: border-box;
+        display: block;
+        margin: 0px !important;
+        position: relative;
+        vertical-align: middle;
+        border: 1px solid #e5e5e5;
+        color: black;
+        font-size: 11px;
+        letter-spacing: 1px;
+        transition: all .3s ease-in-out;
+        -webkit-transition: all .3s ease-in-out;
+        -moz-transition: all .3s ease-in-out;
+        cursor: pointer;
+        width: 100% !important;
+        padding: 10px 14px;
+        border-radius: 8px;
+    }
+
+    .select2-container--default .select2-selection--single {
+        border: 0px;
+    }

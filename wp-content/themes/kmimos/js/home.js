@@ -93,6 +93,8 @@ var hasGPS=false;
         $("#close_video").on("click", function(e){
             close_video();
         });
+
+        $("#select_ubicacion").select2();
     });
 })(jQuery);
 
