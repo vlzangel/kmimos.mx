@@ -184,7 +184,7 @@
 			<div class='vlz_sub_seccion_interno'>
 
 				<div class='icono'><i class='icon-calendario embebed'></i></div><input type='date' id='checkin' value='".$_POST['checkin']."' min='".date("Y-m-d")."' name='checkin' class='fechas vlz_input' placeholder='Check In'>
-				<div class='icono'><i class='icon-calendario embebed'></i></div><input type='date' id='checkout' value='".$_POST['checkout']."' min='".date("Y-m-d")."' name='checkout' class='fechas vlz_input' placeholder='Check Out'>
+				<div class='icono'><i class='icon-calendario embebed'></i></div><input type='date' id='checkout' value='".$_POST['checkout']."' min='".$_POST['checkin']."' name='checkout' class='fechas vlz_input' placeholder='Check Out'>
 
 			</div>
 		</div>
