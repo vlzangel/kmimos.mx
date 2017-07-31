@@ -116,6 +116,11 @@
             margin-top: 3px;
         }
         html.iOS .fecha_hasta, html.iOS .fecha_desde { width: 118px !important}
+        input[type='date'] {
+            line-height: 1.42857143;
+            margin-top: -10px;
+            height: 25px !important;
+        }
         @media only screen and (max-width: 639px) { 
             .grupo_selector { width: 100%; } 
             html.iOS .selector_fecha {width: 50% !important}
@@ -233,12 +238,14 @@
                             <div class='grupo_selector'>
                                 <div class='marco'>
                                     <div class='icono'><i class='icon-calendario embebed'></i></div>
+                                    <sub>Desde cuando:</sub><br>
                                     <input type='date' id='checkin' name='checkin' class='fechas' placeholder='Check In' min='".date("Y-m-d")."'>
                                 </div>
                             </div>
                             <div class='grupo_selector'>
                                 <div class='marco'>
                                     <div class='icono'><i class='icon-calendario embebed'></i></div>
+                                    <sub>Hasta cuando:</sub><br>
                                     <input type='date' id='checkout' name='checkout' class='fechas' placeholder='Check Out' disabled>
                                 </div>
                             </div>
