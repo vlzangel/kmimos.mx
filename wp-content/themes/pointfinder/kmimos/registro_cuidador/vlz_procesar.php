@@ -71,7 +71,8 @@
             "guarderia"         => "55478",
             "adiestramiento_basico"     => "55479",
             "adiestramiento_intermedio" => "55479",
-            "adiestramiento_avanzado"   => "55479"
+            "adiestramiento_avanzado"   => "55479",
+            "paseos"                    => "55480"
         );
 
         $temp = array();
@@ -341,43 +342,10 @@
                     }
                 }
                 
-                $sql = ("
-                    INSERT INTO wp_posts VALUES (
-                        NULL,
-                        '".$user_id."',
-                        '".$hoy."',
-                        '".$hoy."',
-                        '',
-                        '',
-                        '',
-                        'inherit',
-                        'closed',
-                        'closed',
-                        '',
-                        '',
-                        '',
-                        '',
-                        '".$hoy."',
-                        '".$hoy."',
-                        '',
-                        '0',
-                        'http://qa.kmimos.la/kmimos/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg',
-                        '0',
-                        'attachment',
-                        'image/jpeg',
-                        '0'
-                    );
-                ");
-                $conn->query( utf8_decode( $sql ) );
-                $img_id = $conn->insert_id;
-
-                $sql = "INSERT INTO wp_postmeta VALUES (NULL, ".$img_id.", '_wp_attached_file', 'cuidadores/avatares/".$cuidador_id."/0.jpg');";
-                $conn->query( utf8_decode( $sql ) );
-
                 $sql = "
                     INSERT INTO wp_usermeta VALUES
                         (NULL, ".$user_id.", 'user_favorites',      ''),
-                        (NULL, ".$user_id.", 'user_photo',          '".$img_id."'),
+                        (NULL, ".$user_id.", 'user_photo',          '1'),
                         (NULL, ".$user_id.", 'user_address',        '".$direccion."'),
                         (NULL, ".$user_id.", 'user_phone',          '".$telefono."'),
                         (NULL, ".$user_id.", 'user_mobile',         '".$telefono."'),
