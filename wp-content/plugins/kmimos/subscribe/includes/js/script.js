@@ -43,3 +43,31 @@ function message_subscribe(element){
     element.html('');
     return true;
 }
+
+
+
+
+function SubscribePopUp_Create(html){console.log(html);
+    var element = '#message.Msubscribe';
+    if(jQuery(element).length==0){
+        jQuery('body').append('<div id="message" class="Msubscribe"></div>');
+        jQuery(element).append('<div class="contain"></div>');
+    }
+
+    jQuery(element).find('.contain').html(html);
+    jQuery(element).fadeIn(500,function(){
+        /*
+         vsetTime = setTimeout(function(){
+         SubscribePopUp_Close(element);
+        }, 6000);
+        */
+    });
+}
+
+function SubscribePopUp_Close(element){
+    if(jQuery(element).length>0){
+        jQuery(element).fadeOut(500,function(){
+            jQuery(element).remove();
+        });
+    }
+}
