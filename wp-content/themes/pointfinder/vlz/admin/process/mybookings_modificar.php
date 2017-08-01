@@ -88,7 +88,7 @@
 			$items[ $f['meta_key'] ] = $f['meta_value'];
 		}
 
-		if( $order['post_status'] == 'wc-on-hold' && $metas_orden['_payment_method'] == 'openpay_stores'){ }else{
+		if( $orden['post_status'] == 'unpaid' && $order['post_status'] != 'wc-partially-paid' && $metas_orden['_payment_method'] == 'openpay_stores'){ }else{
 			$deposito = unserialize( $items['_wc_deposit_meta'] );
 			$saldo = 0;
 			if( $deposito['enable'] == 'yes' ){
