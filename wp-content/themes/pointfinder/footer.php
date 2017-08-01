@@ -6,7 +6,7 @@
 #PageSubscribe .section.section1{font-size: 20px;}
 #PageSubscribe .section.section1 span{font-size: 25px;}
 #PageSubscribe .section.section1 .images{padding:10px 0; text-align: center;}
-#PageSubscribe .section.section3{width: 100%; font-size: 20px; text-align: center;}
+#PageSubscribe .section.section3{width: 100%; font-size: 17px; font-weight: bold; text-align: center;}
 #PageSubscribe .section.section2{}
 #PageSubscribe .section.section2 .message{font-size: 15px; border: none; background: none; opacity:0; visible: hidden; transition: all .3s;}
 #PageSubscribe .section.section2 .message.show{opacity:1; visible:visible;}
@@ -22,7 +22,7 @@
     #PageSubscribe .section{ width: 100%; padding: 10px 0; font-size: 12px;}
     #PageSubscribe .section.section1 {font-size: 15px;}
     #PageSubscribe .section.section1 span {font-size: 20px;}
-    #PageSubscribe .section.section3 {font-size: 14px; }
+    #PageSubscribe .section.section3 {font-size: 12px;}
 }
 
 </style>
@@ -36,8 +36,8 @@
             '<img height="20" align="bottom" src="https://www.kmimos.com.mx/wp-content/uploads/2017/07/propuestas-banner-10.png">';
 
         var html='<div id="PageSubscribe"><i class="exit fa fa-times" aria-hidden="true" onclick="SubscribePopUp_Close(\'#message.Msubscribe\')"></i>' +
-            '<div class="section section1"><span>G&aacute;nate <strong>$50</strong> pesos en tu primera reserva</span><br>Aplica para clientes nuevos<div class="images">'+dog+'</div></div>' +
-            '<div class="section section2"><span><strong>SUSCRÍBETE!</strong> y recibe el Newsletter con nuestras <strong>PROMOCIONES, TIPS DE CUIDADOS PARA MASCOTAS,</strong> etc.!</span><?php echo subscribe_input('home'); ?></div>' +
+            '<div class="section section1"><span>G&aacute;nate <strong>$50</strong> pesos en tu primera reserva</span><br>‘‘Aplica para clientes nuevos’’<div class="images">'+dog+'</div></div>' +
+            '<div class="section section2"><span><strong>¡SUSCRÍBETE!</strong> y recibe el Newsletter con nuestras <strong>PROMOCIONES, TIPS DE CUIDADOS PARA MASCOTAS,</strong> etc.!</span><?php echo subscribe_input('home'); ?></div>' +
             '<div class="section section3">*Dentro de 48 hrs. Te enviaremos v&iacute;a email tu c&uacute;pon de descuento</div>' +
             '</div>';
 
