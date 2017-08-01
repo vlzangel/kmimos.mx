@@ -41,7 +41,7 @@ if ($_POST["g-recaptcha-response"]) {
     );
 }
 
-if ($response != null && $response->success) {
+if ($response != null && $response->success) {}else{
     $error = new WP_Error( 
 		'require_valid_comment', 
 		__( '
