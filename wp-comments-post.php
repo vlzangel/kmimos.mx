@@ -47,7 +47,7 @@ if ($response != null && $response->success) {}else{
 		__( '
 			<strong>AVISO</strong>
 			<p style="text-align: justify;">
-				Debes marcar <b>CAPTCHA</b> para poder enviar tu comentario.
+				Debes marcar el <b>CAPTCHA</b> para poder enviar tu comentario.
 			</p>' 
 		), 200 );
 	$data = $error->get_error_data();
