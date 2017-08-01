@@ -55,7 +55,9 @@
 
 	}
 
-	include("../vlz_config.php");
+	$path = dirname(__DIR__);
+
+	include($path."/vlz_config.php");
 
 	$db = new db( new mysqli($host, $user, $pass, $db) );
 

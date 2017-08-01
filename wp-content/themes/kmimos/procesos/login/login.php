@@ -4,6 +4,13 @@
 
 	extract($_POST);
 
+	$user = get_user_by( 'email', $usu );
+    if ( isset( $user, $user->user_login, $user->user_status ) && 0 == (int) $user->user_status ){
+        $usu = $user->user_login;
+    }else{
+        $usu = sanitize_user($usu, true);
+    }
+    
 	$info = array();
     $info['user_login']     = sanitize_user($usu, true);
     $info['user_password']  = sanitize_text_field($clv);

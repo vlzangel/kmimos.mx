@@ -1,6 +1,8 @@
-<?php
-	include("db.php");
+<?php 
 
+	include("db.php");
+	include("funciones.php");
+	
 	function redimencionar($base, $subpath, $img){
 		if( file_exists("../".$base."miniatura/".$subpath."_".$img) ){
 			return "miniatura/".$subpath."_".$img;
@@ -23,7 +25,8 @@
 
 	$page *= 15;
 
-	$home = $db->get_var("SELECT option_value FROM wp_options WHERE option_name = 'siteurl'");
+	// $home = $db->get_var("SELECT option_value FROM wp_options WHERE option_name = 'siteurl'");
+	$home = "http://192.168.0.100/kmis/new_kmimos.mx/";
 
 	$condiciones = "";
 
@@ -209,8 +212,8 @@
 
 			$temp[] = array(
 				"titulo" => utf8_encode( $cuidador->titulo ),
-				"img" => kmimos_get_foto_cuidador($cuidador->id, $home),
-				"imgs" => kmimos_get_fotos_galeria($cuidador->id, $home),
+				"img" => app_kmimos_get_foto_cuidador($cuidador->id, $home),
+				"imgs" => app_kmimos_get_fotos_galeria($cuidador->id, $home),
 				"descripcion" => utf8_encode( $cuidador->descripcion ),
 				
 				"experiencia" => $anios_exp." A&ntilde;os",
@@ -246,57 +249,4 @@
 	}
 
 	echo json_encode($respuesta);
-		
-
-	function kmimos_get_foto_cuidador($id, $xhome){
-        global $db;
-        $cuidador = $db->get_row("SELECT * FROM cuidadores WHERE id = ".$id);
-        $name_photo = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$cuidador->user_id} AND meta_key = 'name_photo'");
-
-        $base = "wp-content/uploads/cuidadores/avatares/miniatura/";
-        $subPath = "wp-content/uploads/cuidadores/avatares/miniatura/{$id}_";
-        $home = $xhome.$base;
-
-        if( empty($name_photo)  ){ $name_photo = "0"; }
-        if( count(explode(".", $name_photo)) == 1 ){ $name_photo .= "jpg";  }
-
-        $path = "";
-        if( file_exists("../".$subPath."{$name_photo}") ){
-            $img = "{$name_photo}";
-        }else{
-            if( file_exists("../".$subPath."0.jpg") ){
-                $img = "0.jpg";
-            }else{
-                return $xhome.'wp-content/themes/pointfinder/images/noimg.png';
-            }
-        }
-
-        $img = $xhome.$subPath.$img;
-
-        return $img;
-    }
-
-	function kmimos_get_fotos_galeria($id, $xhome){
-
-        $id_cuidador = $id-5000;
-
-        $base = "wp-content/uploads/cuidadores/galerias/";
-		$sub_path_galeria = "wp-content/uploads/cuidadores/galerias/miniatura/".$id_cuidador."/";
-		$path_galeria = "../".$sub_path_galeria;
-		$home = $xhome.$base;
-
-        $imagenes = array();
-        if( is_dir($path_galeria) ){
-        	if ($dh = opendir($path_galeria)) { 
-		        while (($file = readdir($dh)) !== false) { 
-		            if (!is_dir($path_galeria.$file) && $file!="." && $file!=".."){ 
-		            	$imagenes[] = $xhome.$sub_path_galeria.$file;
-		            } 
-		        } 
-		      	closedir($dh);
-            }
-        }
-
-        return $imagenes;
-    }
 ?>
