@@ -55,7 +55,9 @@
 	$output_cmform = ob_get_contents();
 	ob_end_clean();
     $output_cmform = str_replace('class="comment-form"','class="comment-form golden-forms"',$output_cmform);
-    echo $output_cmform;
+    //echo $output_cmform;
+
+    include(dirname(__FILE__)."/form_comment.php");
 
 	if (have_comments()){ ?>
 		<ul>
