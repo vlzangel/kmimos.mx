@@ -13,6 +13,7 @@ $_subscribe = new Class_Subscribe();
 //SCRIPT
 add_action('wp_enqueue_scripts', 'subscribe_enqueue_scripts');
 function subscribe_enqueue_scripts() {
+    wp_enqueue_style('subscribe_style', plugin_dir_url(__DIR__).'subscribe/includes/css/style.css');
     wp_enqueue_script('subscribe_script', plugin_dir_url(__DIR__).'subscribe/includes/js/script.js');//
 }
 
