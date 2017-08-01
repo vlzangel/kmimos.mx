@@ -119,6 +119,8 @@ $HTML = "</div></div>
     </script>
     -->
 
+    <script src='https://www.google.com/recaptcha/api.js?hl=es'></script>
+
     <style type='text/css'>
         .wpf-container{
             overflow: hidden;

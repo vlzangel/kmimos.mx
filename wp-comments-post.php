@@ -29,6 +29,32 @@ if( count($links[0]) > 0 ){
 /** Sets up the WordPress Environment. */
 require( dirname(__FILE__) . '/wp-load.php' );
 
+$secret = "6LeQPysUAAAAAMop3Acdau8NZVZuWHKfs1bclgV-";
+$response = null;
+$reCaptcha = new ReCaptcha($secret);
+
+// if submitted check response
+if ($_POST["g-recaptcha-response"]) {
+    $response = $reCaptcha->verifyResponse(
+        $_SERVER["REMOTE_ADDR"],
+        $_POST["g-recaptcha-response"]
+    );
+}
+
+if ($response != null && $response->success) {
+    $error = new WP_Error( 
+		'require_valid_comment', 
+		__( '
+			<strong>AVISO</strong>
+			<p style="text-align: justify;">
+				Debes marcar <b>CAPTCHA</b> para poder enviar tu comentario.
+			</p>' 
+		), 200 );
+	$data = $error->get_error_data();
+	wp_die( $error->get_error_message(), $data );
+	exit;
+}
+
 $xip = $_SERVER['REMOTE_ADDR'];
 if( $xip != "" ){
 

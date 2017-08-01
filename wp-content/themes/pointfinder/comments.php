@@ -42,6 +42,11 @@
 	            	<textarea id="comment" name="comment" class="textarea" placeholder="' . esc_html__( 'Your comment','pointfindert2d' ) . '"></textarea>
 	            </label>                          
 	        </section>
+			<section>
+	            <label class="lbl-ui">
+	            	<div class="g-recaptcha" data-sitekey="6LeQPysUAAAAAKKvSp_e-dXSj9cUK2izOe9vGnfC"></div>
+	            </label>                          
+	        </section>
 		'
 	);
 
