@@ -10,11 +10,6 @@
 	            	<textarea id="comment" name="comment" class="textarea" placeholder="Tu comentario" required></textarea>
 	            </label>                          
 	        </section>
-			<section>
-	            <label class="lbl-ui">
-	            	<div class="g-recaptcha" data-sitekey="6LeQPysUAAAAAKKvSp_e-dXSj9cUK2izOe9vGnfC"></div>
-	            </label>                          
-	        </section>
 		
 			<section>
 	       		<div class="row">
@@ -32,6 +27,12 @@
 	                </div>
 	            </div>                       
 	        </section> 
+	        
+			<section>
+	            <label class="lbl-ui">
+	            	<div class="g-recaptcha" data-sitekey="6LeQPysUAAAAAKKvSp_e-dXSj9cUK2izOe9vGnfC"></div>
+	            </label>                          
+	        </section>
 			
 			<p class="form-submit">
 				<input name="submit" type="submit" id="submit" class="submit button" value="Publicar comentario">
