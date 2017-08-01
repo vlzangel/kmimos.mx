@@ -139,6 +139,10 @@
 		    font-size: 25px;
 		    margin-left: 3px;
 		}
+		.vlz_sub_seccion_interno sub {
+		    bottom: 0;
+		    font-size: 11px;
+		}
 	</style>
 	<div id='filtros'></div>
 	<form action='".get_home_url()."/wp-content/themes/pointfinder/vlz/buscar.php' method='POST' class='vlz_form' id='vlz_form_buscar' style='margin-top: 20px;'>
@@ -183,8 +187,13 @@
 			<div class='vlz_sub_seccion_titulo'>Por Fechas</div>
 			<div class='vlz_sub_seccion_interno'>
 
-				<div class='icono'><i class='icon-calendario embebed'></i></div><input type='date' id='checkin' value='".$_POST['checkin']."' min='".date("Y-m-d")."' name='checkin' class='fechas vlz_input' placeholder='Check In'>
-				<div class='icono'><i class='icon-calendario embebed'></i></div><input type='date' id='checkout' value='".$_POST['checkout']."' min='".date("Y-m-d")."' name='checkout' class='fechas vlz_input' placeholder='Check Out'>
+				<sub>Desde:</sub><br>
+				<div class='icono'><i class='icon-calendario embebed'></i></div>
+				<input type='date' id='checkin' value='".$_POST['checkin']."' min='".date("Y-m-d")."' name='checkin' class='fechas vlz_input' placeholder='Check In'>
+
+				<sub>Hasta:</sub><br>
+				<div class='icono'><i class='icon-calendario embebed'></i></div>
+				<input type='date' id='checkout' value='".$_POST['checkout']."' min='".$_POST['checkin']."' name='checkout' class='fechas vlz_input' placeholder='Check Out'>
 
 			</div>
 		</div>

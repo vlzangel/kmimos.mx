@@ -55,15 +55,6 @@ $styles = str_replace("\n", " ", $styles);
 
 echo $styles;
 
-if( isset($_GET["fm"]) ){
-	global $wpdb;
-	foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
-		$wpdb->query( "DELETE FROM wp_posts WHERE ID = ".$cart_item["booking"]["_booking_id"] );
-		$wpdb->query( "DELETE FROM wp_postmeta WHERE post_id = ".$cart_item["booking"]["_booking_id"] );
-	}
-	WC()->cart->empty_cart();
-}
-
 global $wpdb;
 $sql = "SELECT * FROM $wpdb->posts WHERE post_type = 'wc_booking' AND post_author = {$user_id} AND post_status NOT LIKE '%cart%' ORDER BY id DESC";
 $reservas = $wpdb->get_results($sql);

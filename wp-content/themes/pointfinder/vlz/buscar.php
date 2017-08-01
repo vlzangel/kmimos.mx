@@ -9,16 +9,18 @@
 	extract($_POST);
 
 	$condiciones = "";
-
-    /* Filtros por fechas */
-	    if( isset($checkin)  && $checkin  != '' && isset($checkout) && $checkout != '' ){ 
-	    	$condiciones .= " AND ( SELECT count(*) FROM cupos WHERE cupos.cuidador = cuidadores.user_id AND cupos.fecha >= '{$checkin}' AND cupos.fecha <= '{$checkout}' AND (cupos.full = 1 OR cupos.no_disponible = 1) ) = 0"; 
-	   	}
-    /* Fin Filtros por fechas */
+	$servicios_buscados = "";
 
     /* Filtros por servicios y tamaños */
 	    if( isset($servicios) ){
+	    	$servicios_buscados .= "(";
 			foreach ($servicios as $key => $value) {
+				if( $servicios_buscados == "(" ){
+					$servicios_buscados .= "cupos.tipo LIKE '%{$value}%' ";
+				}else{
+					$servicios_buscados .= " OR cupos.tipo LIKE '%{$value}%' ";
+				}
+				
 				if( $value != "hospedaje" ){
 					$condiciones .= " AND adicionales LIKE '%".$value."%'";
 
@@ -26,16 +28,42 @@
 						$condiciones .= ' AND adicionales LIKE \'%status_'.$value.'";s:1:"1%\'';
 
 					}else{
-						$condiciones .= ' AND adicionales REGEXP  \'status_'.$value.'_(basico|intermedio|avanzado)";s:1:"1\'';
+
+						$condiciones .= 'AND (';
+						$condiciones .= ' 	adicionales LIKE \'%status_adiestramiento_basico";s:1:"1%\' 		OR ';
+						$condiciones .= ' 	adicionales LIKE \'%status_adiestramiento_intermedio";s:1:"1%\' 	OR ';
+						$condiciones .= ' 	adicionales LIKE \'%status_adiestramiento_avanzado";s:1:"1%\' 			';
+						$condiciones .= ')';
 
 					}
 				}
 			}
+	    	$servicios_buscados .= " ) AND";
 		}
 
 
 	    if( isset($tamanos) ){ foreach ($tamanos as $key => $value) { $condiciones .= " AND ( tamanos_aceptados LIKE '%\"".$value."\";i:1%' || tamanos_aceptados LIKE '%\"".$value."\";s:1:\"1\"%' ) "; } }
     /* Fin Filtros por servicios y tamaños */
+
+    /* Filtros por fechas */
+	    if( isset($checkin)  && $checkin  != '' && isset($checkout) && $checkout != '' ){ 
+	    	$condiciones .= "
+	    		AND ( 
+	    			SELECT 
+	    				count(*) 
+	    			FROM 
+	    				cupos 
+	    			WHERE 
+	    				cupos.cuidador = cuidadores.user_id AND 
+	    				{$servicios_buscados} 
+	    				cupos.fecha >= '{$checkin}' AND 
+	    				cupos.fecha <= '{$checkout}' AND (
+	    					cupos.full = 1 OR 
+	    					cupos.no_disponible = 1
+	    				) 
+	    		) = 0"; 
+	   	}
+    /* Fin Filtros por fechas */
 
     /* Filtros por rangos */
 	    if( isset($n) ){ if( $n != "" ){ $condiciones .= " AND nombre LIKE '".$n."%' "; } }
