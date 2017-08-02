@@ -24,7 +24,6 @@
     #PageSubscribe .section.section1 span {font-size: 20px;}
     #PageSubscribe .section.section3 {font-size: 12px;}
 }
-
 </style>
 
 <script type='text/javascript'>

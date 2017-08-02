@@ -59,5 +59,6 @@ function subscribe_input($section='any'){
     $html.='<div class="message"></div>';
     $html.='</div>';
     return $html;
+
 }
 ?>
