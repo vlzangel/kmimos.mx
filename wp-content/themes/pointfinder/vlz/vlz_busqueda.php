@@ -71,6 +71,8 @@
 		<div class="pf-blogpage-spacing pfb-bottom"></div>';
 
 		echo comprimir_styles($HTML);
+		
+		//$depuracion[] = $resultados;
 
 		foreach ($depuracion as $key => $value) {
 			echo "<pre style='display: block;'>";

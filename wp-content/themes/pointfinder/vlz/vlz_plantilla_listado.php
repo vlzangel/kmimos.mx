@@ -13,6 +13,12 @@
 			$fav_check = 'true'; $favtitle_text = esc_html__('Remove from Favorites','pointfindert2d');
 		}
 
+		$destacado = "";
+		$atributos = unserialize($cuidador->atributos);
+		if( isset($atributos["destacado"]) && $atributos["destacado"] == "1" ){
+			$destacado = '<div class="pfribbon-wrapper-featured"><div class="pfribbon-featured">DESTACADO</div></div>';
+		}
+
 		$ficha = '
 		<li class="col-lg-4 col-md-6 col-sm-6 col-xs-12 wpfitemlistdata isotope-item">
 			<div class="pflist-item" style="background-color:#ffffff;">  
@@ -43,6 +49,9 @@
 									</a>
 								</span>
 							</div>
+							
+							'.$destacado.'
+
 							<div style="left: 0px; font-size: 12px; position: absolute; top: 0px; font-weight: 600; color: #FFF; padding: 10px; box-sizing: border-box; width: 100%; background: linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.75) 100%);">
 								'.$distancia.'
 							</div>
