@@ -59,6 +59,15 @@ global $wpdb;
 $sql = "SELECT * FROM $wpdb->posts WHERE post_type = 'wc_booking' AND post_author = {$user_id} AND post_status NOT LIKE '%cart%' ORDER BY id DESC";
 $reservas = $wpdb->get_results($sql);
 
+
+if(  $_SESSION['admin_sub_login'] == 'YES' ){
+    echo "
+    	<div style='padding: 20px 0px 0px; text-align: right;'>
+    		<a class='theme_button' style='cursor: pointer; padding: 10px 20px; color: #FFF; border-radius: 3px;' href='".get_home_url()."/wp-content/plugins/kmimos/reinicia_openpay.php?user=".$user_id."'>Reiniciar Openpay</a>
+    	</div>
+    ";
+}
+
 //CART
 $items = WC()->cart->get_cart();
 
