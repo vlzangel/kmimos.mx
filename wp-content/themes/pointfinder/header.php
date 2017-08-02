@@ -19,6 +19,8 @@
         		<meta name="keywords" content="kmimos, mascotas, perros, hospedaje"/>
         	';
 
+        	echo comprimir_styles($metas);
+
 			wp_enqueue_style( 'vlz', get_home_url()."/wp-content/themes/pointfinder/css/vlz.css?v=1.0.0" );
 
 			wp_head(); 
