@@ -15,6 +15,10 @@
         	}else{ ?> <meta name="description" content="<?php esc_html(bloginfo('description')); ?>"> <?php }
         	echo '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">';
 
+        	$metas = '
+        		<meta name="keywords" content="kmimos, mascotas, perros, hospedaje"/>
+        	';
+
 			wp_enqueue_style( 'vlz', get_home_url()."/wp-content/themes/pointfinder/css/vlz.css?v=1.0.0" );
 
 			wp_head(); 
