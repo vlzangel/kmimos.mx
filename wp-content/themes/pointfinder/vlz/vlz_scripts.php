@@ -139,7 +139,7 @@
 		            map: map,
 		            draggable: false,
 		            position: new google.maps.LatLng(cuidador.lat, cuidador.lng),
-		            icon: "https://www.kmimos.com.mx/wp-content/themes/pointfinder/vlz/img/pin.png"
+		            icon: "'.get_home_url().'/wp-content/themes/pointfinder/vlz/js/images/m2.png"
 		        });
 		        infos[index] = new google.maps.InfoWindow({ 
 		            content: \'<a class="mini_map" href="\'+cuidador.url+\'" target="_blank"> <img src="\'+cuidador.img+\'" style="max-width: 200px; max-height: 230px;"> <div>\'+cuidador.nom+\'</div> </a>\'
