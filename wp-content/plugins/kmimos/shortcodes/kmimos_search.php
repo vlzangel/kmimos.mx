@@ -273,7 +273,7 @@
                                 </div>
 
                                 <div id='val_error_fecha_fin' class='no_error'>
-                                    Debe ingresar la fecha de inicio
+                                    Debe ingresar la fecha de finalización
                                 </div>
                             </div>
                         </div>
@@ -395,6 +395,16 @@
                     maxWidth: 340
                 });
 
+                function error_home_2(error, id){
+                    if(error){
+                        jQuery('#'+id).removeClass('no_error');
+                        jQuery('#'+id).addClass('error');
+                    }else{
+                        jQuery('#'+id).removeClass('error');
+                        jQuery('#'+id).addClass('no_error');
+                    }
+                }
+
                 function seleccionar_checkin() {
                     if( jQuery('#checkin').val() != '' ){
                         var fecha = new Date();
@@ -417,7 +427,11 @@
                         }
                             
                         jQuery('#checkout').attr('min', ini[0]+'-'+ini[1]+'-'+ini[2] );
+
+                        error_home_2(false, 'val_error_fecha_ini');
+                        error_home_2(false, 'val_error_fecha_fin');
                     }else{
+                        error_home_2(true, 'val_error_fecha_ini');
                         jQuery('#checkout').val('');
                         jQuery('#checkout').attr('disabled', true);
                     }
@@ -425,6 +439,14 @@
 
                 jQuery('#checkin').on('change', function(e){
                     seleccionar_checkin();
+                });
+
+                jQuery('#checkout').on('change', function(e){
+                    if( jQuery('#checkout').val() != '' ){
+                        error_home_2(false, 'val_error_fecha_fin');
+                    }else{
+                        error_home_2(true, 'val_error_fecha_fin');
+                    }
                 });
 
                 if( jQuery('#checkin').val() != '' ){
