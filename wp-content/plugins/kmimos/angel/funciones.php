@@ -51,7 +51,7 @@
                     $wpdb->query("UPDATE cupos SET full = 0 WHERE servicio = '{$servicio}' AND ( fecha = '{$fecha}' AND cupos < acepta )");
                 }else{
 
-                    $tipo = $db->get_var(
+                    $tipo = $wpdb->get_var(
                         "
                             SELECT
                                 tipo_servicio.slug AS tipo

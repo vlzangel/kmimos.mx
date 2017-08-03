@@ -9,6 +9,10 @@
 
 ***********************************************************************************************************************************/
 
+remove_action( 'wp_head',      'rest_output_link_wp_head'               );
+remove_action( 'wp_head',      'wp_oembed_add_discovery_links'          );
+remove_action( 'template_redirect', 'rest_output_link_header', 11, 0 	);
+
 function hide_update_notice_to_all_but_admin_users(){
     if (!current_user_can('update_core')) {
         remove_action( 'admin_notices', 'update_nag', 3 );
