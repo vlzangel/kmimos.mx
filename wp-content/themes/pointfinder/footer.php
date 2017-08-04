@@ -1,4 +1,7 @@
 
+
+<link rel="stylesheet" href="<?php echo get_bloginfo( 'template_directory', 'display' )."/css/CaviarDreams.css"; ?>" type="text/css" charset="utf-8" />
+
 <style type="text/css">
 #PageSubscribe{position:relative; max-width: 700px;  margin: 0 auto;  padding: 25px;  top: 75px; border-radius: 20px;  background: #ba2287;  overflow: hidden;}
 #PageSubscribe .exit{float: right; cursor: pointer;}
@@ -24,6 +27,15 @@
     #PageSubscribe .section.section1 span {font-size: 20px;}
     #PageSubscribe .section.section3 {font-size: 12px;}
 }
+
+    .gm-style * {
+        font-family: caviar_dreamsregular !important;
+        font-size: 9px  !important;
+    }
+
+    .gm-style > div > div > div > div {
+        padding-top: 1px !important;
+    }
 </style>
 
 <script type='text/javascript'>
