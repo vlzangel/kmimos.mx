@@ -112,9 +112,9 @@
 
 								<strong>Reg&iacute;strate en www.kmimos.com.mx y disruta de todos nuestros servicios.</strong></p>
 
-						</article>
-						<article id="section-5-link" class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center pull-right">
-							<a href="https://www.kmimos.com.mx">Click aqu&iacute;</a>
+							<div id="section-5-link" class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center pull-right">
+								<a href="https://www.kmimos.com.mx">Click aqu&iacute;</a>
+							</div>
 						</article>
 
 					</div>
@@ -149,39 +149,39 @@
 				<div class="row" id="section-content">
 
 					<section id="section-3" class="col-xs-12 bg-white">
-				       	 	<article class="row">
-				       	 		<div class="col-xs-12 col-sm-12 col-md-4 text-center">
-				       	 			<img src="img/s1.png" class="img-responsive">
-				       	 		</div>
-				       	 		<div class="col-xs-12 col-sm-12 col-md-8">
-					       	 		<p><br>Tu perro ser&aacute; un huesped dentro de la casa del cuidador certificado que escojas.</p>
-				       	 		</div>
-				       	 	</article>
-				       	 	<article class="row">
-				       	 		<div class="col-xs-12 col-sm-12 col-md-4 text-center">
-				       	 			<img src="img/s2.png" class="img-responsive">
-				       	 		</div>
-				       	 		<div class="col-xs-12 col-sm-12 col-md-8">
-				       	 			<p><br>Dormir&aacute; como un rey en salas, sof&aacute; y a veces ¡hasta en la cama del cuidador!</p>
-				       	 		</div>
-				       	 	</article>
-				       	 	<article class="row">
-				       	 		<div class="col-xs-12 col-sm-12 col-md-4 text-center">
-				       	 			<img src="img/s3.png" class="img-responsive">
-				       	 		</div>
-				       	 		<div class="col-xs-12 col-sm-12 col-md-8">
-				       	 			<p><br>¡Tu amigo estar&aacute; protegido por una cobertura de servicios veterinarios durante su estad&iacute;a!</p>
-				       	 		</div>
-				       	 	</article>
-				       	 	<article class="row">
-				       	 		<div class="col-xs-12 col-sm-12 col-md-4 text-center">
-				       	 			<img src="img/s4.png" class="img-responsive">
-				       	 		</div>
-				       	 		<div class="col-xs-12 col-sm-12 col-md-8">
-				       	 			<p>El tamaño de tu perro y el cuidador que elijas determinar&aacute; el costo del servicio.<br>
-				       	 		Por ejemplo: para un perro chico la estad&iacute;a costar&aacute entre 100 a 200 pesos</p>
-				       	 		</div>
-				       	 	</article>
+			       	 	<article class="row">
+			       	 		<div class="col-xs-12 col-sm-12 col-md-4 text-center">
+			       	 			<img src="img/s1.png" class="img-responsive">
+			       	 		</div>
+			       	 		<div class="col-xs-12 col-sm-12 col-md-8">
+				       	 		<p><br>Tu perro ser&aacute; un huesped dentro de la casa del cuidador certificado que escojas.</p>
+			       	 		</div>
+			       	 	</article>
+			       	 	<article class="row">
+			       	 		<div class="col-xs-12 col-sm-12 col-md-4 text-center">
+			       	 			<img src="img/s2.png" class="img-responsive">
+			       	 		</div>
+			       	 		<div class="col-xs-12 col-sm-12 col-md-8">
+			       	 			<p><br>Dormir&aacute; como un rey en salas, sof&aacute; y a veces ¡hasta en la cama del cuidador!</p>
+			       	 		</div>
+			       	 	</article>
+			       	 	<article class="row">
+			       	 		<div class="col-xs-12 col-sm-12 col-md-4 text-center">
+			       	 			<img src="img/s3.png" class="img-responsive">
+			       	 		</div>
+			       	 		<div class="col-xs-12 col-sm-12 col-md-8">
+			       	 			<p><br>¡Tu amigo estar&aacute; protegido por una cobertura de servicios veterinarios durante su estad&iacute;a!</p>
+			       	 		</div>
+			       	 	</article>
+			       	 	<article class="row">
+			       	 		<div class="col-xs-12 col-sm-12 col-md-4 text-center">
+			       	 			<img src="img/s4.png" class="img-responsive">
+			       	 		</div>
+			       	 		<div class="col-xs-12 col-sm-12 col-md-8">
+			       	 			<p>El tamaño de tu perro y el cuidador que elijas determinar&aacute; el costo del servicio.<br>
+			       	 		Por ejemplo: para un perro chico la estad&iacute;a costar&aacute entre 100 a 200 pesos</p>
+			       	 		</div>
+			       	 	</article>
 					</section>
 					
 					<article id="proceso-reserva" class="bg-volaris col-xs-12 text-center">
