@@ -30,7 +30,7 @@
 							</div>
 							<div class="RibbonCTR">
 						        <span class="Sign">
-						            <a class="pf-favorites-link" data-pf-num="'.$cuidador->id_post.'" data-pf-active="'.$fav_check.'" data-pf-item="false" title="Agregar a favoritos">
+						            <a id="fav_'.$cuidador->id_post.'" class="pf-favorites-link" data-pf-num="'.$cuidador->id_post.'" data-pf-active="'.$fav_check.'" data-pf-item="false" title="Agregar a favoritos">
 						            	<i class="pfadmicon-glyph-629"></i>
 						            </a>
 						        </span>

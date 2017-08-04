@@ -68,7 +68,25 @@
 				</div> 
 			</div> 
 		</section>
-		<div class="pf-blogpage-spacing pfb-bottom"></div>';
+		<div class="pf-blogpage-spacing pfb-bottom"></div>
+		<script>
+			jQuery( document ).ready(function() {
+
+				if( jQuery("#pf-login-trigger-button").html() != undefined ){
+					jQuery(".pf-favorites-link").on("click", function(e){
+						jQuery.cookie("POST_LOGIN", jQuery(this).attr("id") );
+					});
+				}
+
+			  	var POST_LOGIN = jQuery.cookie("POST_LOGIN");
+				if( POST_LOGIN != undefined ){
+					jQuery.removeCookie("POST_LOGIN");
+					setTimeout(function(){ 
+						jQuery("#"+POST_LOGIN).click();
+					}, 5000);
+				}
+			});
+		</script>';
 
 		echo comprimir_styles($HTML);
 		
