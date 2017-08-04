@@ -86,6 +86,24 @@
 							<strong>¡SUSCR&Iacute;BETE</strong>
 							y recibe el Newsletter con nuestras <strong>Promociones</strong>, <strong>Tips de cuidado para mascotas</strong>, etc.! &oacute;</p>
 
+							<div id="section-5-form" class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-md-offset-2 col-lg-offset-2 text-left pull-left">
+								<input type="text" value="" name="email" id="email">
+								<button id="newsletter" style="border:0px; background: transparent; "><img src="img/flecha.png" width="52px"></button>
+								<br>
+								<div id="msg-content" class="text-left" style="
+									padding: 10px;
+								    background: transparent;
+								    border-radius: 50px;
+								    width: 90%;
+								    border: 1px solid #fff;
+								    margin-top: 10px;
+								    text-align: center;
+								    display: none;
+								">	
+								<span id="mensaje"></span>
+							</div>
+						</div>
+
 						</article>
 						<article class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 							<label class="col-xs-3 col-md-1 text-right">
@@ -95,29 +113,12 @@
 								<strong>Reg&iacute;strate en www.kmimos.com.mx y disruta de todos nuestros servicios.</strong></p>
 
 						</article>
-					</div>
-					<div class="row" style="margin:0px;">
 						<article id="section-5-link" class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center pull-right">
 							<a href="https://www.kmimos.com.mx">Click aqu&iacute;</a>
 						</article>
-						<article id="section-5-form" class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-right pull-left">
-							<input type="text" value="" name="email" id="email">
-							<button id="newsletter" style="border:0px; background: transparent; "><img src="img/flecha.png" width="52px"></button>
-							<br>
-							<div id="msg-content" class="text-left" style="
-								padding: 10px;
-							    background: transparent;
-							    border-radius: 50px;
-							    width: 90%;
-							    border: 1px solid #fff;
-							    margin-top: 10px;
-							    text-align: center;
-							    display: none;
-							">	
-								<span id="mensaje"></span>
-							</div>
-						</article>
+
 					</div>
+					<br>
 				</section>
 	       	</div>
 			<div class="clearfix"></div>
