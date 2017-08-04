@@ -279,7 +279,7 @@
 
 		<h3 class="vlz_titulo">Mi Ubicaci&oacute;n</h3>
 		<div class="vlz_seccion">
-			<iframe id="petsitter-map" src="'.get_home_url().'/wp-content/plugins/kmimos/mapa.php?lat='.$latitud.'&lng='.$longitud.'" width="100%" height="300" style="border:none"></iframe>
+			<div id="mapa" style="height: 300px;"></div>
 		</div>
 
 		<div class="vlz_separador"></div>
@@ -319,16 +319,13 @@
 
 		echo comprimir_styles($HTML);
 			
-			$comments = count( get_comments('post_id='.$post->ID) );
-			if( $comments > 0 ){ ?>
+			$comments = count( get_comments('post_id='.$post->ID) ); ?>
 				<div class="vlz_separador"></div>
 				<h3 class="vlz_titulo">Valoraciones</h3>
 				<div class="vlz_seccion">
 					<?php  comments_template(); ?>
-				</div> <?php
-			}
-			
-		echo '</div>
+				</div> <?php			
+		$HTML = '</div>
 
 		<script>
 			function perfil_login(accion){
@@ -343,9 +340,37 @@
 					document.getElementById(POST_LOGIN).click();
 				}
 			});
+
+			var map;
+			function initMap() {
+				var latitud = '.$latitud.';
+				var longitud = '.$longitud.';
+				map = new google.maps.Map(document.getElementById("mapa"), {
+					zoom: 10,
+					center:  new google.maps.LatLng(latitud, longitud), 
+					mapTypeId: google.maps.MapTypeId.ROADMAP
+				});
+				marker = new google.maps.Marker({
+					map: map,
+					draggable: false,
+					animation: google.maps.Animation.DROP,
+					position: new google.maps.LatLng(latitud, longitud),
+					icon: "https://www.kmimos.com.mx/wp-content/themes/pointfinder/vlz/img/pin.png"
+				});
+			}
+
+			(function(d, s){
+				$ = d.createElement(s), e = d.getElementsByTagName(s)[0];
+				$.async=!0;
+				$.setAttribute("charset","utf-8");
+				$.src="//maps.googleapis.com/maps/api/js?v=3&key=AIzaSyD-xrN3-wUMmJ6u2pY_QEQtpMYquGc70F8&callback=initMap";
+				$.type="text/javascript";
+				e.parentNode.insertBefore($, e)
+			})(document, "script");
+
 		</script>';
 
-	
+		echo comprimir_styles($HTML);
 
 	get_footer(); 
 ?>

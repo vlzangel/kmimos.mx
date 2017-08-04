@@ -78,17 +78,19 @@ $PagoCuidador = getPagoCuidador( $desde, $hasta );
 			  <tbody>
 			  	<?php $count=0; ?>
 			  	<?php foreach( $PagoCuidador as $ID => $row ){ ?>
+			  		<?php if( $row['total'] != 0 ){ ?>
 				    <tr>
 
 				    	<th class="text-center"><?php echo ++$count; ?></th>
 				    	<th class="text-center"><?php echo $ID; ?></th>
 				    	<th class="text-center"><?php echo $row['nombre']; ?></th>
 				    	<th class="text-center"><?php echo $row['apellido']; ?></th>
-				    	<th class="text-center"><?php echo $row['total']; ?></th>
+				    	<th class="text-center"><?php echo number_format($row['total'], 2, ",", "."); ?></th>
 				    	<th class="text-center"><?php echo $row['total_row']; ?></th>
-				    	<th class="text-center"><?php echo $row['detalle']; ?></th>
+				    	<th class="text-left"><?php echo str_replace('|', '', $row['detalle']); ?></th>
 
 				    </tr>
+				   	<?php } ?>
 			   	<?php } ?>
 			  </tbody>
 			</table>

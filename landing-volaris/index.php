@@ -43,8 +43,88 @@
     <body id="waypoint">       
        	<div class="col-sm-12">
 
-			<section class="row" id="section-1">
-	       	 	<article id="top-content" class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+    	   	<div class="row">       		
+				<section id="section-4" class="col-xs-12">
+					<dir class="container">
+
+						<article class="col-xs-6 col-sm-6 col-md-4 text-right pull-right">
+							<img src="img/logo.png" class="img-responsive" id="section4-logo">
+						</article>
+						<article class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+							<h2>
+								Promoci&oacute;n por ser cliente<br>
+								<span class="color-volaris">VOLARIS</span>, si te suscribes HOY:
+							</h2>
+						</article>
+						<article id="avion" class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+							<img src="img/avion.png" class="img-responsive">
+						</article>
+						<article id="section-4-cuadro" class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+							<h2 class="color-volaris">Obt&eacute;n</h2>
+							<h2 class="monto">$150</h2>
+							<h3 class="color-volaris">DE DESCUENTO</h3>
+							<span>En tu primera reserva</span>
+						</article>
+
+					</dir>
+				</section>
+
+				<section id="section-5" class="col-sm-12 bg-volaris" style="padding-right: 0px;">
+					<dir class="bg-transparent container">
+						<article class="title col-xs-12 col-sm-6 col-md-4 col-lg-4">
+						</article>
+						<article class="title col-xs-12 col-sm-6 col-md-8 col-lg-8">
+							Para obtener tu cup&oacute;n de descuento sigue estos sencillos pasos:
+						</article>
+					</dir>
+					<div class="row" style="margin:0px;">
+						<article class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+							<label class="col-xs-3 col-md-1 text-right">
+								1.</label>
+							<p class="col-xs-9 col-md-10">
+
+							<strong>¡SUSCR&Iacute;BETE</strong>
+							y recibe el Newsletter con nuestras <strong>Promociones</strong>, <strong>Tips de cuidado para mascotas</strong>, etc.! &oacute;</p>
+
+							<div id="section-5-form" class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-md-offset-2 col-lg-offset-2 text-left pull-left">
+								<input type="text" value="" name="email" id="email">
+								<button id="newsletter" style="border:0px; background: transparent; "><img src="img/flecha.png" width="52px"></button>
+								<br>
+								<div id="msg-content" class="text-left" style="
+									padding: 10px;
+								    background: transparent;
+								    border-radius: 50px;
+								    width: 90%;
+								    border: 1px solid #fff;
+								    margin-top: 10px;
+								    text-align: center;
+								    display: none;
+								">	
+								<span id="mensaje"></span>
+							</div>
+						</div>
+
+						</article>
+						<article class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+							<label class="col-xs-3 col-md-1 text-right">
+								2.</label>
+							<p class="col-xs-9 col-md-10">
+
+								<strong>Reg&iacute;strate en www.kmimos.com.mx y disruta de todos nuestros servicios.</strong></p>
+
+							<div id="section-5-link" class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center pull-right">
+								<a href="https://www.kmimos.com.mx">Click aqu&iacute;</a>
+							</div>
+						</article>
+
+					</div>
+					<br>
+				</section>
+	       	</div>
+			<div class="clearfix"></div>
+			
+			<section class="row text-center" id="section-1">
+	       	 	<article id="top-content" class="col-xs-12 col-sm-12 col-md-offset-3 col-lg-offset-3 col-md-6 col-lg-6">
 					<h1>¿Te vas de viaje?</h1>
 					<h2>Deja a tu mascota con un CUIDADOR CERTIFICADO. <strong>Libre de jaulas y encierros.</strong></h2>
 	       	 	</article>
@@ -60,7 +140,7 @@
 	       	 	</article>
 				<div class="clearfix"></div>
 	       	 	<article class="col-sm-12"  id="section1-footer">
-	       	 		<h3>Contamos con una Red de m&aacute;s de 700 Cuidadores Certificados</h3> 
+	       	 		<h3>¡Contamos con una Red de <i class="fa fa-plus" ></i> de 1,000 Cuidadores Certificados!</h3> 
 	       	 	</article>
 			</section>
 			<div class="clearfix"></div>
@@ -69,118 +149,45 @@
 				<div class="row" id="section-content">
 
 					<section id="section-3" class="col-xs-12 bg-white">
-				       	 	<article class="row">
-				       	 		<div class="col-xs-12 col-sm-12 col-md-4 text-center">
-				       	 			<img src="img/s1.png" class="img-responsive">
-				       	 		</div>
-				       	 		<div class="col-xs-12 col-sm-12 col-md-8">
-					       	 		<p><br>Tu perro ser&aacute; un huesped dentro de la casa del cuidador certificado que escojas.</p>
-				       	 		</div>
-				       	 	</article>
-				       	 	<article class="row">
-				       	 		<div class="col-xs-12 col-sm-12 col-md-4 text-center">
-				       	 			<img src="img/s2.png" class="img-responsive">
-				       	 		</div>
-				       	 		<div class="col-xs-12 col-sm-12 col-md-8">
-				       	 			<p><br>Dormir&aacute; como un rey en salas, sof&aacute; y a veces ¡hasta en la cama del cuidador!</p>
-				       	 		</div>
-				       	 	</article>
-				       	 	<article class="row">
-				       	 		<div class="col-xs-12 col-sm-12 col-md-4 text-center">
-				       	 			<img src="img/s3.png" class="img-responsive">
-				       	 		</div>
-				       	 		<div class="col-xs-12 col-sm-12 col-md-8">
-				       	 			<p><br>¡Tu amigo estar&aacute; protegido por una cobertura de servicios veterinarios durante su estad&iacute;a!</p>
-				       	 		</div>
-				       	 	</article>
-				       	 	<article class="row">
-				       	 		<div class="col-xs-12 col-sm-12 col-md-4 text-center">
-				       	 			<img src="img/s4.png" class="img-responsive">
-				       	 		</div>
-				       	 		<div class="col-xs-12 col-sm-12 col-md-8">
-				       	 			<p>El tamaño de tu perro y el cuidador que elijas determinar&aacute; el costo del servicio.<br>
-				       	 		Por ejemplo: para un perro chico la estad&iacute;a costar&aacute entre 100 a 200 pesos</p>
-				       	 		</div>
-				       	 	</article>
+			       	 	<article class="row">
+			       	 		<div class="col-xs-12 col-sm-12 col-md-4 text-center">
+			       	 			<img src="img/s1.png" class="img-responsive">
+			       	 		</div>
+			       	 		<div class="col-xs-12 col-sm-12 col-md-8">
+				       	 		<p><br>Tu perro ser&aacute; un huesped dentro de la casa del cuidador certificado que escojas.</p>
+			       	 		</div>
+			       	 	</article>
+			       	 	<article class="row">
+			       	 		<div class="col-xs-12 col-sm-12 col-md-4 text-center">
+			       	 			<img src="img/s2.png" class="img-responsive">
+			       	 		</div>
+			       	 		<div class="col-xs-12 col-sm-12 col-md-8">
+			       	 			<p><br>Dormir&aacute; como un rey en salas, sof&aacute; y a veces ¡hasta en la cama del cuidador!</p>
+			       	 		</div>
+			       	 	</article>
+			       	 	<article class="row">
+			       	 		<div class="col-xs-12 col-sm-12 col-md-4 text-center">
+			       	 			<img src="img/s3.png" class="img-responsive">
+			       	 		</div>
+			       	 		<div class="col-xs-12 col-sm-12 col-md-8">
+			       	 			<p><br>¡Tu amigo estar&aacute; protegido por una cobertura de servicios veterinarios durante su estad&iacute;a!</p>
+			       	 		</div>
+			       	 	</article>
+			       	 	<article class="row">
+			       	 		<div class="col-xs-12 col-sm-12 col-md-4 text-center">
+			       	 			<img src="img/s4.png" class="img-responsive">
+			       	 		</div>
+			       	 		<div class="col-xs-12 col-sm-12 col-md-8">
+			       	 			<p>El tamaño de tu perro y el cuidador que elijas determinar&aacute; el costo del servicio.<br>
+			       	 		Por ejemplo: para un perro chico la estad&iacute;a costar&aacute entre 100 a 200 pesos</p>
+			       	 		</div>
+			       	 	</article>
 					</section>
+					
+					<article id="proceso-reserva" class="bg-volaris col-xs-12 text-center">
+						<h1>¿Cómo es el proceso para reservar?</h1>
+					</article>
 
-					<section id="section-4" class="col-xs-12">
-						<dir class="container">
-
-							<article class="col-xs-6 col-sm-6 col-md-4 text-right pull-right">
-								<img src="img/logo.png" class="img-responsive" id="section4-logo">
-							</article>
-							<article class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-								<h2>
-									Promoci&oacute;n por ser cliente<br>
-									<span class="color-volaris">VOLARIS</span>, si te suscribes HOY:
-								</h2>
-							</article>
-							<article id="avion" class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-								<img src="img/avion.png" class="img-responsive">
-							</article>
-							<article id="section-4-cuadro" class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-								<h2 class="color-volaris">Obt&eacute;n</h2>
-								<h2 class="monto">$150</h2>
-								<h3 class="color-volaris">DE DESCUENTO</h3>
-								<span>En tu primera reserva</span>
-							</article>
-
-						</dir>
-					</section>
-
-					<section id="section-5" class="col-sm-12 bg-volaris">
-						<dir class="bg-transparent container">
-							<article class="title col-xs-12 col-sm-6 col-md-4 col-lg-4">
-							</article>
-							<article class="title col-xs-12 col-sm-6 col-md-8 col-lg-8">
-								Para obtener tu cup&oacute;n de descuento sigue estos sencillos pasos:
-							</article>
-							<article class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-								<label class="col-xs-3">
-									1.</label>
-								<p class="col-xs-9">
-
-								<strong>¡SUSCR&Iacute;BETE</strong>
-								y recibe el Newsletter con nuestras <strong>Promociones</strong>, <strong>Tips de cuidado para mascotas</strong>, etc.! &oacute;</p>
-
-							</article>
-							<article class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-								<label class="col-xs-3">
-									2.</label>
-								<p class="col-xs-9">
-
-									<strong>Entra a www.kmimos.com.mx y reg&iacute;strate.</strong></p>
-
-							</article>
-							<article id="section-5-paso3" class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-								<label class="col-xs-3">
-									3.</label>
-								<p class="col-xs-9">
-									Una vez que hayas hecho cualquiera de las dos, en el transcurso del d&iacute;a recibir&aacute;s tu cup&oacute;n de descuento en tu correo.</p>
-							</article>
-							<article id="section-5-form" class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-right">
-								<input type="text" value="" name="email" id="email">
-								<button id="newsletter" style="border:0px; background: transparent; "><img src="img/flecha.png" width="52px"></button>
-								<br>
-								<div id="msg-content" class="text-left" style="
-									padding: 10px;
-								    background: transparent;
-								    border-radius: 50px;
-								    width: 90%;
-								    border: 1px solid #fff;
-								    margin-top: 10px;
-								    text-align: center;
-								    display: none;
-								">	
-									<span id="mensaje"></span>
-								</div>
-							</article>
-							<article class="col-xs-12 text-center">
-								<h1>¿Cómo es tu proceso para reservar?</h1>
-							</article>
-						</dir>
-					</section>
 					<section class="col-sm-12" id="section-7">
 						<div class="container">
 							<div class="col-sm-4">
@@ -223,7 +230,7 @@
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<span>
 										<strong>NUESTRA PROMESA:</strong><br>
-										Tu mascota regresa feliz
+										¡Tu mascota regresa feliz!
 									</span>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-6">

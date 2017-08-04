@@ -15,6 +15,12 @@
         	}else{ ?> <meta name="description" content="<?php esc_html(bloginfo('description')); ?>"> <?php }
         	echo '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">';
 
+        	$metas = '
+        		<meta name="keywords" content="Pension perro, pensión perro, hotel perro, guarderia perro, guardería perro, pension canina, pensión canina,  hotel canino, guarderia canina, guardería canina, paseador perro, paseo perro, estancia canina, baño perro, corte de uñas perro, corte pelo perro, transporte perro, traslado perro"/>
+        	';
+
+        	echo comprimir_styles($metas);
+
 			wp_enqueue_style( 'vlz', get_home_url()."/wp-content/themes/pointfinder/css/vlz.css?v=1.0.0" );
 
 			wp_head(); 

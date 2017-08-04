@@ -121,15 +121,6 @@
             margin-top: -10px;
             height: 25px !important;
         }
-        @media only screen and (max-width: 639px) { 
-            .grupo_selector { width: 100%; } 
-            html.iOS .selector_fecha {width: 50% !important}
-            html.iOS .fecha_desde {float: left; margin-top: 0px !important; margin-right: -16px;}
-            html.iOS .fecha_hasta {float: right; margin-top: 0px !important; margin-right: -16px;}
-            .fecha_desde {float: left;}
-            .fecha_hasta { display: block;}
-            .fecha_hasta_full { display: none;}
-        }
         .grupo_selector .marco {
             display: inline-block;
             border: 1px solid #888;
@@ -170,6 +161,33 @@
         #pp_full_res .pp_inline p {
             margin: 7px 0px 15px 38px;
             text-align: left;
+        }
+        @media only screen and (max-width: 639px) { 
+            .grupo_selector { width: 100%; } 
+            html.iOS .selector_fecha {width: 50% !important}
+            html.iOS .fecha_desde {float: left; margin-top: 0px !important; margin-right: -16px;}
+            html.iOS .fecha_hasta {float: right; margin-top: 0px !important; margin-right: -16px;}
+            .fecha_desde {float: left;}
+            .fecha_hasta { display: block;}
+            .fecha_hasta_full { display: none;}
+        }
+
+
+        .marco{
+            position: relative;
+        }
+        .no_error {
+            display: none;
+        }
+        .error {
+            position: relative;
+            border: solid 1px #cf6666;
+            margin: 0px 2px 0px 1px;
+            border-top: 0px;
+            background: #cf6666;
+            color: #FFF;
+            border-radius: 0px 0px 3px 3px;
+            font-size: 12px;
         }
     </style>
     <div id='portada'>
@@ -241,12 +259,21 @@
                                     <sub>Desde cuando:</sub><br>
                                     <input type='date' id='checkin' name='checkin' class='fechas' placeholder='Check In' min='".date("Y-m-d")."'>
                                 </div>
+
+                                <div id='val_error_fecha_ini' class='no_error'>
+                                    Debe ingresar la fecha de inicio
+                                </div>
+
                             </div>
                             <div class='grupo_selector'>
                                 <div class='marco'>
                                     <div class='icono'><i class='icon-calendario embebed'></i></div>
                                     <sub>Hasta cuando:</sub><br>
                                     <input type='date' id='checkout' name='checkout' class='fechas' placeholder='Check Out' disabled>
+                                </div>
+
+                                <div id='val_error_fecha_fin' class='no_error'>
+                                    Debe ingresar la fecha de finalización
                                 </div>
                             </div>
                         </div>
@@ -368,6 +395,16 @@
                     maxWidth: 340
                 });
 
+                function error_home_2(error, id){
+                    if(error){
+                        jQuery('#'+id).removeClass('no_error');
+                        jQuery('#'+id).addClass('error');
+                    }else{
+                        jQuery('#'+id).removeClass('error');
+                        jQuery('#'+id).addClass('no_error');
+                    }
+                }
+
                 function seleccionar_checkin() {
                     if( jQuery('#checkin').val() != '' ){
                         var fecha = new Date();
@@ -390,7 +427,11 @@
                         }
                             
                         jQuery('#checkout').attr('min', ini[0]+'-'+ini[1]+'-'+ini[2] );
+
+                        error_home_2(false, 'val_error_fecha_ini');
+                        error_home_2(false, 'val_error_fecha_fin');
                     }else{
+                        error_home_2(true, 'val_error_fecha_ini');
                         jQuery('#checkout').val('');
                         jQuery('#checkout').attr('disabled', true);
                     }
@@ -398,6 +439,14 @@
 
                 jQuery('#checkin').on('change', function(e){
                     seleccionar_checkin();
+                });
+
+                jQuery('#checkout').on('change', function(e){
+                    if( jQuery('#checkout').val() != '' ){
+                        error_home_2(false, 'val_error_fecha_fin');
+                    }else{
+                        error_home_2(true, 'val_error_fecha_fin');
+                    }
                 });
 
                 if( jQuery('#checkin').val() != '' ){

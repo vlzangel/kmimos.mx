@@ -236,7 +236,6 @@ strong{
 
 #section-1 > article{
 	margin-right: 60px;
-	float: right;
 }
 
 #section1-footer h3{
@@ -370,13 +369,15 @@ strong{
 	margin: 0px;
 }
 #section-5 p{
-	font-size: 25px; 
+	font-size: 21px; 
 	margin: 0px 0px 15px 0px;
 }
 #section-5 label{
-    font-size: 40px!important;
+    font-size: 45px!important;
     font-family: "PoetsenOne";
     font-weight: normal;
+    padding-right:0px!important;
+    padding-left:0px!important;
 }
 
 #section-5 img{
@@ -403,10 +404,25 @@ strong{
 	float: right;
 }
 
-#section-5-form{
-	padding: 40px 30px 20px 0px;
+#section-5-link {
+	padding: 20px 0px 40px 0px;
 }
+#section-5-link a{
+    background-color: #fff;
+    border-radius: 50px;
+    width: 90%;
+    text-align: center;
+    padding: 15px 37%;
+    text-decoration: none;
+    font-size: 16px;
+    color: #868686;
+} 
 
+#proceso-reserva{
+	color:#fff;
+	font-size: 20px;
+	padding: 20px;
+}
 /***************************************/
 /*  Section-6                          */
 /***************************************/
@@ -668,7 +684,7 @@ footer aside{
 		width: 50px!important;
 	}
 	#section-5-form{
-    	padding: 40px 0px 20px 0px;
+    	padding: 10px 0px 20px 0px;
 	}
 
 	#section-5 h1 {
@@ -786,7 +802,7 @@ footer aside{
 	    font-size: 9pt;
 	}
 	#section-5 input {
-	    width: 70%;
+	    width: 77%;
 	}
 	#top-image img {
     	margin-top: 40vh;
