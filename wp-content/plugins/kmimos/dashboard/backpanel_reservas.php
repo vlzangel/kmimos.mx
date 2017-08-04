@@ -95,9 +95,9 @@ $reservas = getReservas($_desde, $_hasta);
 			      <th>Estado</th>
 			      <th>Municipio</th>
 			      <th>Forma de Pago</th>
-			      <th>Total a pagar ($)</th>
-			      <th>Monto Pagado ($)</th>
-			      <th>Monto Remanente ($)</th>
+			      <th>Total a pagar</th>
+			      <th>Monto Pagado</th>
+			      <th>Monto Remanente</th>
 			      <th># Pedido</th>
 			      <th>Observaci&oacute;n</th>
 			    </tr>
@@ -168,9 +168,9 @@ $reservas = getReservas($_desde, $_hasta);
 				  		);
 
 				  		if($estatus['addTotal'] == 1){
-							$total_a_pagar += $meta_reserva['_booking_cost'];
-					  		$total_pagado += $meta_Pedido['_order_total'];
-					  		$total_remanente += $meta_Pedido['_wc_deposits_remaining'];
+							$total_a_pagar += currency_format($meta_reserva['_booking_cost'], "");
+					  		$total_pagado += currency_format($meta_Pedido['_order_total'], "");
+					  		$total_remanente += currency_format($meta_Pedido['_wc_deposits_remaining'], "");
 				  		}
 
 				  		$pets_nombre = "";
@@ -257,9 +257,9 @@ $reservas = getReservas($_desde, $_hasta);
 							}
 						} ?>
 					</th>
-					<th><?php echo $meta_reserva['_booking_cost']; ?></th>
-					<th><?php echo $meta_Pedido['_order_total']; ?></th>
-					<th><?php echo $meta_Pedido['_wc_deposits_remaining']; ?></th>
+					<th><?php echo currency_format($meta_reserva['_booking_cost'], ""); ?></th>
+					<th><?php echo currency_format($meta_Pedido['_order_total'], ""); ?></th>
+					<th><?php echo currency_format($meta_Pedido['_wc_deposits_remaining'], ""); ?></th>
 					<th><?php echo $reserva->nro_pedido; ?></th>
 					<th><?php echo $estatus['sts_largo']; ?></th>
 
