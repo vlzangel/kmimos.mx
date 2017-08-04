@@ -405,14 +405,14 @@ strong{
 }
 
 #section-5-link {
-	padding: 20px 0px 40px 20px;
+	padding: 20px 0px 40px 0px;
 }
 #section-5-link a{
     background-color: #fff;
     border-radius: 50px;
     width: 90%;
     text-align: center;
-    padding: 15px 30%;
+    padding: 15px 36%;
     text-decoration: none;
     font-size: 16px;
     color: #868686;
