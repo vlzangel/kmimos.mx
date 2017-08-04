@@ -28,8 +28,8 @@ function getPagoCuidador($desde, $hasta){
 		$monto = calculo_pago_cuidador( $row->total, $row->total_pago, $row->remanente );
 
 		
-		if( $count == 5 ){
-			$separador = '<br>';
+		if( $count == 4 ){
+			$separador = '<br><br>';
 			$count=1;
 		}else{
 			$separador = '';
@@ -38,9 +38,18 @@ function getPagoCuidador($desde, $hasta){
 
 		$r = "";
 		if(!empty($pagos[ $row->cuidador_id ]['detalle'])){
-			$r = ",";
+			$r = "|";
 		}
-		$pagos[ $row->cuidador_id ]['detalle'] .= "{$r}{$row->reserva_id} {$separador}";
+
+		//[ {$row->reserva_id}: $". number_format($monto, 2, ",", ".")." ]{$separador}
+		
+		if( $monto > 0 ){
+			$pagos[ $row->cuidador_id ]['detalle'] .= $r.'
+				<small class="btn btn-xs btn-default" style="color: #555;background-color: #eee;border: 1px solid #ccc;">
+				  '.$row->reserva_id.' <span class="badge" style="background:#fff;color:#000;">$'.number_format($monto, 2, ",", ".").'</span>
+				</small>
+			'.$separador;
+	    }
 
 		if( array_key_exists('total', $pagos[ $row->cuidador_id ]) ){
 			$monto = $pagos[ $row->cuidador_id ]['total'] + $monto;
@@ -51,7 +60,7 @@ function getPagoCuidador($desde, $hasta){
 		}
 
 
-		$t = explode(',', $pagos[ $row->cuidador_id ]['detalle']);
+		$t = explode('|', $pagos[ $row->cuidador_id ]['detalle']);
 
 		// Total a pagar
 		$pagos[ $row->cuidador_id ]['total'] = $monto;
@@ -79,10 +88,13 @@ function inicio_fin_semana( $date, $str_to_date  ){
 function calculo_pago_cuidador( $total, $pago, $remanente ){
 
 	$saldo_cuidador = 0;
-
-	$pago_kmimos = ceil (( 16.666666666 * $total )/100 );
-	$pago_cuidador_real = $total - $pago_kmimos;
-	$saldo_cuidador = $pago_cuidador_real - $remanente;
+	
+	$dif = $remanente + $pago;
+	if( $dif != $total || ($remanente == 0 && $dif == $total) ){
+	        $pago_cuidador_real = ($total / 1.2);
+	        $pago_kmimos = $total - $pago_cuidador_real;
+	        $saldo_cuidador = $pago_cuidador_real - $remanente;
+	}
 
 	return $saldo_cuidador;
 }
