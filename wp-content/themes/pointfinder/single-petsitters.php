@@ -325,7 +325,7 @@
 				<div class="vlz_seccion">
 					<?php  comments_template(); ?>
 				</div> <?php			
-		echo '</div>
+		$HTML = '</div>
 
 		<script>
 			function perfil_login(accion){
@@ -370,7 +370,7 @@
 
 		</script>';
 
-	
+		echo comprimir_styles($HTML);
 
 	get_footer(); 
 ?>

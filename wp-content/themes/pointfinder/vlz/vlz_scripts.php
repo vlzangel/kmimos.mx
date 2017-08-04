@@ -121,7 +121,8 @@
 		function initMap() {
 		    map = new google.maps.Map(document.getElementById("mapa"), {
 		        zoom: 3,
-		        mapTypeId: google.maps.MapTypeId.ROADMAP
+		        mapTypeId: google.maps.MapTypeId.ROADMAP,
+	            fullscreenControl: true
 		    });
 
 	        var oms = new OverlappingMarkerSpiderfier(map, { 
@@ -173,18 +174,11 @@
 	        if( jQuery("#checkin").val() != "" ){
 	            var fecha = new Date();
 	            jQuery("#checkout").attr("disabled", false);
-
 	            var ini = String( jQuery("#checkin").val() ).split("-");
 	            var inicio = new Date( parseInt(ini[0]), parseInt(ini[1])-1, parseInt(ini[2]) );
-
 	            var checkout = String( jQuery("#checkout").val() ).split("-");
-
 	            if( jQuery("#checkout").val() != "" ){
 	            	var checkout = new Date( checkout[0]+"-"+checkout[1]+"-"+checkout[2] );
-
-	            	console.log( inicio );
-	            	console.log( checkout );
-
 	                if( Math.abs(checkout.getTime()) < Math.abs(inicio.getTime()) ){
 	                    jQuery("#checkout").attr("value", ini[0]+"-"+ini[1]+"-"+ini[2] );
 	                }
