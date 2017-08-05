@@ -389,7 +389,7 @@ strong{
 	border-radius: 50px;
 	height: 50px;
 	padding: 10px 20px 10px 20px ;
-	width: 75%;
+	width: calc(100% - 90px);
 	color:black;
 	margin-right: 20px;
 }
@@ -557,6 +557,13 @@ footer aside{
 }
 #section-5 p{
 	font-weight: lighter;
+}
+#section-5 span.o{
+	font-size: 30px;
+}
+#section-5 span.o.xs{
+	text-align: center;
+	display: none;
 }
 #section-5 .title{
 	color: #230016 !important;
@@ -765,6 +772,12 @@ footer aside{
 		min-width:60%;
 		max-width:100%;
 		height:100%;
+	}
+	#section-5 span.o.lg{
+		display: none;
+	}
+	#section-5 span.o.xs{
+		display: block;
 	}
 }
 @media (min-width: 298px) and (max-width: 322px){
