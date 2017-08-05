@@ -84,7 +84,7 @@
 							<p class="col-xs-9 col-md-10">
 
 							<strong>¡SUSCR&Iacute;BETE</strong>
-							y recibe el Newsletter con nuestras <strong>Promociones</strong>, <strong>Tips de cuidado para mascotas</strong>, etc.! &oacute;</p>
+							y recibe el Newsletter con nuestras <strong>Promociones</strong>, <strong>Tips de cuidado para mascotas</strong>, etc.! <span class="o lg">&oacute;</span></p>
 
 							<div id="section-5-form" class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-md-offset-2 col-lg-offset-2 text-left pull-left">
 								<input type="text" value="" name="email" id="email">
@@ -103,7 +103,7 @@
 								<span id="mensaje"></span>
 							</div>
 						</div>
-
+							<span class="o xs">&oacute;</span>
 						</article>
 						<article class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 							<label class="col-xs-3 col-md-1 text-right">
@@ -140,7 +140,7 @@
 	       	 	</article>
 				<div class="clearfix"></div>
 	       	 	<article class="col-sm-12"  id="section1-footer">
-	       	 		<h3>¡Contamos con una Red de <i class="fa fa-plus" ></i> de 1,000 Cuidadores Certificados!</h3> 
+	       	 		<h3>¡Contamos con una Red de <i class="fa fa-plus" ></i> 1,000 Cuidadores Certificados!</h3>
 	       	 	</article>
 			</section>
 			<div class="clearfix"></div>
