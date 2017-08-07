@@ -87,7 +87,7 @@
 							y recibe el Newsletter con nuestras <strong>Promociones</strong>, <strong>Tips de cuidado para mascotas</strong>, etc.! <span class="o lg">&oacute;</span></p>
 
 							<div id="section-5-form" class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-md-offset-2 col-lg-offset-2 text-left pull-left">
-								<input type="text" value="" name="email" id="email">
+								<input type="text" value="" name="email" id="email" placeholder="Introduce tu correo aquí">
 								<button id="newsletter" style="border:0px; background: transparent; "><img src="img/flecha.png" width="52px"></button>
 								<br>
 								<div id="msg-content" class="text-left" style="
