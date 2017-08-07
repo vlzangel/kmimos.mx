@@ -141,14 +141,17 @@
         }
         .grupo_selector select, .grupo_selector input {
             height: 25px;
-            width: 87%;
+            width: calc(100% - 50px) !important;
+            min-width: calc(100% - 50px);
             display: inline-block;
             clear: right;
             float: left;
             border: 0px;
             background-color: #ffffff;
         }
+
         .grupo_selector select{
+            width: calc(100% - 40px) !important;
             margin-top: -10px;
         }
         .grupo_selector input {

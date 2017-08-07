@@ -87,7 +87,7 @@
 							y recibe el Newsletter con nuestras <strong>Promociones</strong>, <strong>Tips de cuidado para mascotas</strong>, etc.! <span class="o lg">&oacute;</span></p>
 
 							<div id="section-5-form" class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-md-offset-2 col-lg-offset-2 text-left pull-left">
-								<input type="text" value="" name="email" id="email">
+								<input type="text" value="" name="email" id="email" placeholder="Introduce tu correo aquí">
 								<button id="newsletter" style="border:0px; background: transparent; "><img src="img/flecha.png" width="52px"></button>
 								<br>
 								<div id="msg-content" class="text-left" style="
@@ -244,8 +244,9 @@
 					<section id="contactos" class="col-sm-12">
 						<div class="container bg-black">
 							<article class="col-xs-12 col-sm-6" style="margin-top:10px;margin-bottom:10px;">
-								<span>Cont&aacute;ctanos a:</span> 
-								<span>01 800 056 4667 </span>
+								<span>Cont&aacute;ctanos a:</span>
+								<span>(01)55 4742 3162</span>
+								<!--<span>01 800 056 4667 </span>-->
 								<span>Whatsapp: (55) 6892 2182 </span>
 								<br>
 								<span>contactomex@kmimos.la</span>
