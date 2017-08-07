@@ -6,18 +6,19 @@
 			if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== false)){
         		header('X-UA-Compatible: IE=edge,chrome=1');
         	}
+
 			if ( is_page() ){
 				global $post;
 				$descripcion = get_post_meta($post->ID, 'kmimos_descripcion', true);
         		if( $descripcion != ""){
         			echo "<meta name='description' content='{$descripcion}'>";
-        		}else{ ?> <meta name="description" content="<?php esc_html(bloginfo('description')); ?>"> <?php }
-        	}else{ ?> <meta name="description" content="<?php esc_html(bloginfo('description')); ?>"> <?php }
-        	echo '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">';
+        			$metas = '
+		        		<meta name="keywords" content="Pension perro, pensión perro, hotel perro, guarderia perro, guardería perro, pension canina, pensión canina,  hotel canino, guarderia canina, guardería canina, paseador perro, paseo perro, estancia canina, baño perro, corte de uñas perro, corte pelo perro, transporte perro, traslado perro"/>
+		        	';
+        		}
+        	}
 
-        	$metas = '
-        		<meta name="keywords" content="Pension perro, pensión perro, hotel perro, guarderia perro, guardería perro, pension canina, pensión canina,  hotel canino, guarderia canina, guardería canina, paseador perro, paseo perro, estancia canina, baño perro, corte de uñas perro, corte pelo perro, transporte perro, traslado perro"/>
-        	';
+        	echo '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">';
 
         	echo comprimir_styles($metas);
 
