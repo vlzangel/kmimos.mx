@@ -26,6 +26,7 @@
 			wp_enqueue_style( 'vlz', get_home_url()."/wp-content/themes/pointfinder/css/vlz.css?v=1.0.0" );
 
 			wp_head(); 
+			
 		?>
 	</head>
 	<body <?php body_class(); ?> > <?php 
