@@ -244,8 +244,9 @@
 					<section id="contactos" class="col-sm-12">
 						<div class="container bg-black">
 							<article class="col-xs-12 col-sm-6" style="margin-top:10px;margin-bottom:10px;">
-								<span>Cont&aacute;ctanos a:</span> 
-								<span>01 800 056 4667 </span>
+								<span>Cont&aacute;ctanos a:</span>
+								<span>(01)55 4742 3162</span>
+								<!--<span>01 800 056 4667 </span>-->
 								<span>Whatsapp: (55) 6892 2182 </span>
 								<br>
 								<span>contactomex@kmimos.la</span>
