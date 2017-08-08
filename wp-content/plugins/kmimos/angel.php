@@ -104,7 +104,7 @@
                     foreach($adicionales as $key => $value){
                         switch ($key) {
                             case 'guarderia':
-                                // $r .= '<img src="'.getTema().'/images/new/icon/icon-guarderia.svg" height="30">';
+                                // $r .= '<img src="'.getTema().'/images/new/icon/icon-guarderia.svg" height="40">';
                             break;
                             case 'adiestramiento_basico':
                                 $adiestramiento = true;
@@ -117,12 +117,12 @@
                             break;
                             case 'corte':
                                 if( $value > 0){
-                                    $r .= '<img src="'.getTema().'/images/new/icon/icon-sello-4.svg" height="30" title="Corte de pelo y u&ntilde;as"> ';
+                                    $r .= '<img src="'.getTema().'/images/new/icon/icon-sello-4.svg" height="40" title="Corte de pelo y u&ntilde;as"> ';
                                 }
                             break;
                             case 'bano':
                                 if( $value > 0){
-                                    $r .= '<img src="'.getTema().'/images/new/icon/icon-sello-6.svg" height="30" title="Ba&ntilde;o"> ';
+                                    $r .= '<img src="'.getTema().'/images/new/icon/icon-sello-6.svg" height="40" title="Ba&ntilde;o"> ';
                                 }
                             break;
                             case 'transportacion_sencilla':
@@ -133,19 +133,19 @@
                             break;
                             case 'visita_al_veterinario':
                                 if( $value > 0){
-                                    $r .= '<img src="'.getTema().'/images/new/icon/icon-sello-1.svg" height="30" title="Visita al Veterinario"> ';
+                                    $r .= '<img src="'.getTema().'/images/new/icon/icon-sello-1.svg" height="40" title="Visita al Veterinario"> ';
                                 }
                             break;
                             case 'limpieza_dental':
                                 if( $value > 0){
-                                    $r .= '<img src="'.getTema().'/images/new/icon/icon-sello-4.svg" height="30" title="Limpieza Dental"> ';
+                                    $r .= '<img src="'.getTema().'/images/new/icon/icon-sello-4.svg" height="40" title="Limpieza Dental"> ';
                                 }
                             break;
                             case 'acupuntura':
                                 //$r .= '<span><i title="Acupuntura" class="icon-acupuntura"></i></span>';
                             break;
                             case 'paseos':
-                                $r .= '<img src="'.getTema().'/images/new/icon/icon-sello-3.svg" height="30" title="Paseos"> ';
+                                $r .= '<img src="'.getTema().'/images/new/icon/icon-sello-3.svg" height="40" title="Paseos"> ';
                             break;
                         }
                     }

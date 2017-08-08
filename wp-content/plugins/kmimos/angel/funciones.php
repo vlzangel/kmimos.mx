@@ -1,7 +1,7 @@
 <?php
 	if(!function_exists('vlz_get_paginacion')){
         function vlz_get_paginacion($t, $pagina){
-            $paginacion = ""; $h = 15; $inicio = $pagina*$h; 
+            $paginacion = ""; $h = 5; $inicio = $pagina*$h; 
             $fin = $inicio+$h; if( $fin > $t){ $fin = $t; }
             if($t > $h){
                 $ps = ceil($t/$h);
@@ -276,36 +276,16 @@
             $valoracion = ($votes==1)? ' Valoración':' Valoraciones';
             if($votes =='' || $votes == 0 || $rating ==''){ 
                 for ($i=0; $i<5; $i++){ 
-                    $html .= '<img src="'.get_home_url().'/wp-content/plugins/kmimos/assets/rating/vacio.png">';
+                    $html .= '<a href="#"></a>';
                 }
-                $html .= '<div class="vlz_valoraciones">Este cuidador no ha sido valorado</div>';
             } else { 
-                $html .= '<div class="vlz_valoraciones">('. number_format($rating, 2).') '.$votes .$valoracion. '</div>';
-                for ($i=0; $i<5; $i++){ 
-                    if(intval($rating)>$i) { 
-                        $html .= '<img src="'.get_home_url().'/wp-content/plugins/kmimos/assets/rating/100.png">';
-                    } else if(intval($rating)<$i) {
-                        $html .= '<img src="'.get_home_url().'/wp-content/plugins/kmimos/assets/rating/0.png">';
-                    } else {
-                        $residuo = ($rating-$i)*100+12.5;
-                        $residuo = intval($residuo/25);
-                        switch($residuo){
-                            case 4: // 100% 
-                                $html .= '<img src="'.get_home_url().'/wp-content/plugins/kmimos/assets/rating/100.png">';
-                            break;
-                            case 3: // 75% 
-                                $html .= '<img src="'.get_home_url().'/wp-content/plugins/kmimos/assets/rating/75.png">';
-                            break;
-                            case 2: // 50% 
-                                $html .= '<img src="'.get_home_url().'/wp-content/plugins/kmimos/assets/rating/50.png">';
-                            break;
-                            case 1: // 25% 
-                                $html .= '<img src="'.get_home_url().'/wp-content/plugins/kmimos/assets/rating/25.png">';
-                            break;
-                            default: // 0% 
-                                $html .= '<img src="'.get_home_url().'/wp-content/plugins/kmimos/assets/rating/0.png">';
-                            break;
-                        }
+                $n = ceil($rating);
+                for ($i=0; $i<$n; $i++){ 
+                    $html .= '<a href="#" class="active"></a>';
+                }
+                if($n <= 4){
+                    for ($i=$n; $i<5; $i++){ 
+                        $html .= '<a href="#"></a>';
                     }
                 }
             }
@@ -338,14 +318,43 @@
                     <h1><a href="'.$url.'">'.utf8_encode($cuidador->titulo).'</a></h1>
                     <p>15 años de experiencia</p>
                     <div class="km-ranking">
-                        <a href="#" class="active"></a>
-                        <a href="#" class="active"></a>
-                        <a href="#" class="active"></a>
-                        <a href="#" class="active"></a>
-                        <a href="#"></a>
+                        '.kmimos_petsitter_rating($cuidador->id_post).'
                     </div>
                     <div class="km-sellos">
                         '.vlz_servicios($cuidador->adicionales).'
+                    </div>
+                </div>
+            </div>
+        ';
+
+        $ficha = '
+            <div class="km-item-resultado active">
+                <div class="km-foto">
+                    <div class="km-img" style="background-image: url('.$img.');"></div>
+                    <span class="km-contenedor-favorito">
+                        <a href="#" class="km-link-favorito active"></a>
+                    </span>
+                </div>
+
+                <div class="km-contenedor-descripcion-opciones">
+                    <div class="km-descripcion">
+                        <h1><a href="'.$url.'">'.utf8_encode($cuidador->titulo).'</a></h1>
+
+                        <p>15 años de experiencia</p>
+
+                        <div class="km-ranking">
+                            '.kmimos_petsitter_rating($cuidador->id_post).'
+                        </div>
+
+                        <div class="km-sellos">
+                            '.vlz_servicios($cuidador->adicionales).'
+                        </div>
+                    </div>
+
+                    <div class="km-opciones">
+                        <div class="precio">Desde MXN $ '.$cuidador->precio.'</div>
+                        <a href="#" class="km-btn-primary-new stroke">CONÓCELO +</a>
+                        <a href="#" class="km-btn-primary-new basic">RESERVA</a>
                     </div>
                 </div>
             </div>

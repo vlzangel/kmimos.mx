@@ -54,7 +54,7 @@
 	}
 
 	function reducir($id){
-		$base = "wp-content/uploads/avatares_clientes/";
+		$base = "wp-content/uploads/cuidadores/avatares/";
 		if( is_dir($base) ){
 	    	if ($dh = opendir($base.$id)) { 
 		        while (($file = readdir($dh)) !== false) { 
@@ -67,7 +67,7 @@
 	    }
 	}
 
-	$base = "wp-content/uploads/avatares_clientes/";
+	$base = "wp-content/uploads/cuidadores/avatares/";
 
     if( is_dir($base) ){
     	if ($dh = opendir($base)) { 

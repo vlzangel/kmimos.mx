@@ -155,7 +155,6 @@
     $_SESSION['resultado_busqueda'] = $cuidadores;
 
     // echo "<pre>";
-    // 	print_r($sql);
     // 	print_r($_POST);
     // echo "</pre>";
 

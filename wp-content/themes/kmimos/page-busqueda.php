@@ -258,10 +258,51 @@
 						</div>
 					</div>
 
-					<div class="km-resultados-grid">
+					<div class="km-resultados-lista">
 
 						'.$CUIDADORES.'
 
+					</div>
+
+					<div class="navigation">
+						<ul>
+							<li>
+								<a href="#">
+									<img src="'.getTema().'/images/new/arrow-left-nav.png" width="8">
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									1
+								</a>
+							</li>
+							<li class="active">
+								<a href="#">
+									2
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									3
+								</a>
+							</li>
+							<li>
+								...
+							</li>
+							<li>
+								<a href="#">
+									18
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<img src="'.getTema().'/images/new/arrow-right-nav.png" width="8">
+								</a>
+							</li>
+						</ul>
+						<div class="message-nav">
+							1-12 de más de 300 Cuidadores Certificados
+						</div>
 					</div>
 				</div>
 

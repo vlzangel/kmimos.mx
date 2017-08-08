@@ -50,17 +50,22 @@
 	if( !isset($MENU["head"]) ){
 		$menus_normal = '
 			<li><a id="login" style="padding-right: 15px">INICIAR SESIÓN</a></li>
-			<li><a href="#" style="padding-left: 15px; border-left: 1px solid white;">REGÍSTRATE</a></li>
+			<li><a href="#" style="padding-left: 15px; border-left: 1px solid white;">REGISTRARME</a></li>
 		';
 		$menus_movil = '
 			<li><a id="login_movil" class="km-nav-link hidden-sm hidden-md hidden-lg">INICIAR SESIÓN</a></li>
-			<li><a href="#" class="km-nav-link hidden-sm hidden-md hidden-lg">REGÍSTRATE</a></li>
+			<li><a href="#" class="km-nav-link hidden-sm hidden-md hidden-lg">REGISTRARME</a></li>
 		';
 	}else{
 		$menus_normal = $MENU["head"].$MENU["body"].$MENU["footer"];
 		$menus_movil = $MENU["head_movil"].$MENU["body"].$MENU["footer"];
 	}
 
+	$busqueda = array();
+	if( isset($_SESSION["busqueda"]) ){
+		$busqueda = unserialize($_SESSION["busqueda"]);
+	}
+	
 	if( is_front_page() ){
 		$HTML .= '
 			<nav class="navbar navbar-fixed-top bg-transparent">
@@ -148,8 +153,8 @@
 							</select>
 						</div>
 						<div class="km-div-fechas">
-							<input type="text" name="" placeholder="DESDE" value="" class="km-input-custom km-input-date date_from" readonly>
-							<input type="text" name="" placeholder="HASTA" value="" class="km-input-custom km-input-date date_to" readonly>
+							<input type="text" name="checkin" placeholder="DESDE" value="" class="km-input-custom km-input-date date_from" readonly>
+							<input type="text" name="checkout" placeholder="HASTA" value="" class="km-input-custom km-input-date date_to" readonly>
 						</div>
 						<div class="km-div-enviar">
 							<button type="submit" class="km-submit-custom" name="button">
@@ -188,7 +193,7 @@
 							</div>
 
 							<div class="km-caja-filtro">
-								<input type="text" name="nombre" value="" placeholder="BUSCAR POR NOMBRE" class="km-input-custom">
+								<input type="text" name="nombre" value="'.$busqueda["nombre"].'" placeholder="BUSCAR POR NOMBRE" class="km-input-custom">
 							</div>
 						</div>
 					</div>

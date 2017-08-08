@@ -104,6 +104,12 @@ function initMap() {
 	map.type="text/javascript";
 	e.parentNode.insertBefore(map, e);
 })(document,"script");
+
+
+$(document).ready(function(){
+
+});
+
 /*
 function initForm(){
 	// console.log(CAMPOS[0]);

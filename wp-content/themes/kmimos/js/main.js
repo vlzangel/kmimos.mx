@@ -37,10 +37,36 @@ function menu(){
 	}
 }
 
+function mapStatic( e ){
+	var w = $(e);
+	if ( w.width() > 991 ) {
+		var scrollTop = w.scrollTop();
+		var mapPrin = $(".km-caja-resultados");
+		var mapElem = $(".km-caja-resultados .km-columna-der");
+		var offset = mapPrin.offset();
+		var topPre = 41;
+
+		if ( scrollTop > 290 ) {
+			mapElem.addClass("mapAbsolute");
+			var topSumar = scrollTop - offset.top + topPre;
+			mapElem.css({
+				top: topSumar
+			});
+		} else {
+			mapElem.removeClass("mapAbsolute");
+		}
+	}
+}
+
 $(window).resize(function() {
 	menu();
 });
 
+$(window).scroll(function() {
+	mapStatic( this );
+});
+
+var $date_t;
 $(document).ready(function(){
 	menu();
 
@@ -94,15 +120,19 @@ $(document).ready(function(){
 	});
 
 	var $date_f = $(".date_from");
-	var $date_t = $(".date_to");
+	$date_t = $(".date_to");
 
 	$date_f.datepicker({
 		language: 'es',
 		onSelect: function (fd, date) {
-			$date_t.data('datepicker').update('minDate', date);
+			$date_t.data('datepicker').update('setValue', new Date(2008,9,03) );
+			// $date_t.data('datepicker').update('startDate', date);
+			// $date_t.data('datepicker').update({date: '2012-08-08'});
 			$date_t.focus();
 		}
 	});
+
+
 
 	$date_f.data('datepicker').update('minDate', new Date() );
 
