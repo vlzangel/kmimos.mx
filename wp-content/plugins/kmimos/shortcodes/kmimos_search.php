@@ -194,9 +194,10 @@
         }
 
         input.fechas {
-            margin-top: 0; 
+            margin-top: 0;
             height: 35px !important;
         }
+        
     </style>
 
     <script>
