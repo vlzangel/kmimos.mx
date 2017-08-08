@@ -24,8 +24,8 @@ $HTML = '
                     </div>
                     <div class="col-xs-12 col-sm-3">
                         <h5>SERVICIOS</h5>
-                        <p><a href="#">Quiero ser cuidador</a></p>
                         <p><a href="#">Blog</a></p>
+                        <p><a href="#">Quiero ser cuidador</a></p>
                         <p><a href="#">Buscar cuidador certificado</a></p>
                     </div>
                     <div class="col-xs-12 col-sm-3">

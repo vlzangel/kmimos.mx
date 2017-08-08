@@ -25,9 +25,6 @@
 
 	$page *= 15;
 
-	// $home = $db->get_var("SELECT option_value FROM wp_options WHERE option_name = 'siteurl'");
-	$home = "http://192.168.0.100/kmis/new_kmimos.mx/";
-
 	$condiciones = "";
 
     /* Filtros por fechas */
@@ -210,7 +207,123 @@
 				$num_mascotas = $cuidador->num_mascotas.' Perro(s) en casa';
 			}
 
+            $sql = "
+				SELECT 
+					servicio.ID 		AS ID, 
+					tipo_servicio.slug 	AS tipo, 
+					servicio.post_title AS titulo 
+				FROM 
+					wp_posts AS servicio
+				INNER JOIN wp_term_relationships AS relacion ON ( relacion.object_id = servicio.ID )
+				INNER JOIN wp_terms as tipo_servicio ON ( tipo_servicio.term_id = relacion.term_taxonomy_id )
+				WHERE 
+					( servicio.post_author = '{$cuidador->user_id}' AND servicio.post_type = 'product' AND servicio.post_status = 'publish' ) AND
+					( relacion.term_taxonomy_id != 28 )
+			";
+
+			$servicios_post = $db->get_results( $sql );
+			$servicios = array();
+
+			$adicio = array(
+				"bano" => array(
+					"titulo" => "Ba&ntilde;o",
+					"iconos" => "icon-bano"
+				),
+				"corte" => array(
+					"titulo" => "Corte de Pelo y U&ntilde;as",
+					"iconos" => "icon-peluqueria"
+				),
+				"acupuntura" => array(
+					"titulo" => "Acupuntura",
+					"iconos" => "icon-acupuntura"
+				),
+				"limpieza_dental" => array(
+					"titulo" => "Limpieza Dental",
+					"iconos" => "icon-limpieza"
+				),
+				"visita_al_veterinario" => array(
+					"titulo" => "Visita al Veterinario",
+					"iconos" => "icon-veterinario"
+				)
+			);
+			$tranp = array(
+				"transportacion_sencilla" => array(
+					"titulo" => "Transp. Sencilla"
+				),
+				"transportacion_redonda" => array(
+					"titulo" => "Transp. Redonda"
+				)
+			);
+			$rutas = array(
+				"corto" => "Rutas Cortas",
+				"medio" => "Rutas Medias",
+				"largo" => "Rutas Largas"
+			);
+
+			$adicionales_array = unserialize( utf8_decode( $cuidador->adicionales ) );
+
+			$adicionales_result = array();
+
+			foreach ($adicionales_array as $key => $servicio) {
+
+				if( array_key_exists($key, $tranp) ){
+					$cont = 0;
+					foreach ($servicio as $key2 => $value2) { 
+						$cont += $value2; 
+						if( $value2 == 0 ){ 
+							unset( $servicio[$key2] ); 
+						}else{
+							$servicio[$key2] = array(
+								"titulo" => $rutas[$key2],
+								"precio" => $servicio[$key2]
+							);
+						}
+					}
+					if( $cont > 0 ){
+						$adicionales_result[ "transporte" ][ $key ] = array(
+							"titulo" => $tranp[$key]["titulo"],
+							"precio" => $servicio
+						);
+					}
+				}
+
+				if( array_key_exists($key, $adicio) ){
+					if( $servicio+0 > 0 ){						
+						$adicionales_result[ "adicionales" ][ $key ] = array(
+							"titulo" => $adicio[$key]["titulo"],
+							"icono"  => $adicio[$key]["iconos"],
+							"precio" => $servicio
+						);
+					}
+				}
+
+			}
+
+			foreach ($servicios_post as $key => $servicio) {
+				$servicios[ $servicio->tipo ] = array(
+					"id" => $servicio->ID,
+					"name" => utf8_encode( $servicio->titulo )
+				);
+			}
+
+			$ini = strtotime( date("Y-m-d")." ".$cuidador->check_in);
+			$fin = strtotime( date("Y-m-d")." ".$cuidador->check_out);
+
+			$horarios = array();
+			if( $ini != $fin ){
+				for ($i=$ini; $i <= $fin; $i+=1800) { 
+					$horarios[] = date("H:i", $i);
+				}
+			}else{
+				$horarios[] = date("H:i", $ini);
+			}
+
+			$hospedaje = unserialize( utf8_decode( $cuidador->hospedaje ) );
+
 			$temp[] = array(
+
+				"id" => utf8_encode( $cuidador->id ),
+
 				"titulo" => utf8_encode( $cuidador->titulo ),
 				"img" => app_kmimos_get_foto_cuidador($cuidador->id, $home),
 				"imgs" => app_kmimos_get_fotos_galeria($cuidador->id, $home),
@@ -229,24 +342,31 @@
 				"latitud" => $cuidador->latitud,
 				"longitud" => $cuidador->longitud,
 
-				"adicionales" => unserialize( utf8_decode( $cuidador->adicionales ) ),
+				"hospedaje" => $hospedaje,
+				"adicionales" => $adicionales_result,
 
-				"desde" => ($cuidador->hospedaje_desde*1.2)
+				"desde" => ($cuidador->hospedaje_desde*1.2),
+
+				"horarios" => $horarios,
+
+				"servicios" => $servicios
 			);
 		}
 
 		$respuesta = array(
 			"resultados" => $temp,
-			"cantidad" => count($temp),
-			"sql" => $sql
+			"cantidad" => count($temp)
 		);
 	}else{
 		$respuesta = array(
 			"resultados" => false,
-			"cantidad" => 0,
-			"sql" => $sql
+			"cantidad" => 0
 		);
 	}
 
 	echo json_encode($respuesta);
+
+	// echo "<pre>";
+	// 	print_r( $respuesta );
+	// echo "</pre>";
 ?>

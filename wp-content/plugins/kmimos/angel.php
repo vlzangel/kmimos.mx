@@ -95,7 +95,7 @@
         function vlz_servicios($adicionales){
             $r = ""; $adiestramiento = false;
 
-            $r .= '<span><i title="Hospedaje" class="icon-hospedaje"></i></span>';
+            //$r .= '<span><i title="Hospedaje" class="icon-hospedaje"></i></span>';
 
             $adicionales = unserialize($adicionales);
             
@@ -104,7 +104,7 @@
                     foreach($adicionales as $key => $value){
                         switch ($key) {
                             case 'guarderia':
-                                $r .= '<span><i title="Guardería" class="icon-guarderia"></i></span>';
+                                // $r .= '<img src="'.getTema().'/images/new/icon/icon-guarderia.svg" height="30">';
                             break;
                             case 'adiestramiento_basico':
                                 $adiestramiento = true;
@@ -116,32 +116,43 @@
                                 $adiestramiento = true;
                             break;
                             case 'corte':
-                                $r .= '<span><i title="Corte de pelo y uñas" class="icon-peluqueria"></i></span>';
+                                if( $value > 0){
+                                    $r .= '<img src="'.getTema().'/images/new/icon/icon-sello-4.svg" height="30" title="Corte de pelo y u&ntilde;as"> ';
+                                }
                             break;
                             case 'bano':
-                                $r .= '<span><i title="Baño y secado" class="icon-bano"></i></span>';
+                                if( $value > 0){
+                                    $r .= '<img src="'.getTema().'/images/new/icon/icon-sello-6.svg" height="30" title="Ba&ntilde;o"> ';
+                                }
                             break;
                             case 'transportacion_sencilla':
-                                $r .= '<span><i title="Transporte Sencillo" class="icon-transporte"></i></span>';
+                                //$r .= '<span><i title="Transporte Sencillo" class="icon-transporte"></i></span>';
                             break;
                             case 'transportacion_redonda':
-                                $r .= '<span><i title="Transporte Redondo" class="icon-transporte2"></i></span>';
+                                //$r .= '<span><i title="Transporte Redondo" class="icon-transporte2"></i></span>';
                             break;
                             case 'visita_al_veterinario':
-                                $r .= '<span><i title="Visita al Veterinario" class="icon-veterinario"></i></span>';
+                                if( $value > 0){
+                                    $r .= '<img src="'.getTema().'/images/new/icon/icon-sello-1.svg" height="30" title="Visita al Veterinario"> ';
+                                }
                             break;
                             case 'limpieza_dental':
-                                $r .= '<span><i title="Limpieza dental" class="icon-limpieza"></i></span>';
+                                if( $value > 0){
+                                    $r .= '<img src="'.getTema().'/images/new/icon/icon-sello-4.svg" height="30" title="Limpieza Dental"> ';
+                                }
                             break;
                             case 'acupuntura':
-                                $r .= '<span><i title="Acupuntura" class="icon-acupuntura"></i></span>';
+                                //$r .= '<span><i title="Acupuntura" class="icon-acupuntura"></i></span>';
+                            break;
+                            case 'paseos':
+                                $r .= '<img src="'.getTema().'/images/new/icon/icon-sello-3.svg" height="30" title="Paseos"> ';
                             break;
                         }
                     }
                 }
             }
             if($adiestramiento){
-                $r .= '<span><i title="Adiestramiento de Obediencia" class="icon-adiestramiento"></i></span>';
+                // $r .= '<span><i title="Adiestramiento de Obediencia" class="icon-adiestramiento"></i></span>';
             }
             return $r;
         }

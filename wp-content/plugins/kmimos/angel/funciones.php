@@ -345,10 +345,7 @@
                         <a href="#"></a>
                     </div>
                     <div class="km-sellos">
-                        <img src="'.getTema().'/images/new/icon/icon-sello-1.svg" height="30">
-                        <img src="'.getTema().'/images/new/icon/icon-sello-2.svg" height="30">
-                        <img src="'.getTema().'/images/new/icon/icon-sello-3.svg" height="30">
-                        <img src="'.getTema().'/images/new/icon/icon-sello-4.svg" height="30">
+                        '.vlz_servicios($cuidador->adicionales).'
                     </div>
                 </div>
             </div>

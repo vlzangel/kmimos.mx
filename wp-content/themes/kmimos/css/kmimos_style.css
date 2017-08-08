@@ -434,6 +434,9 @@ section {
 	width: 100%;
 	text-align: center;
 }
+.km-opcion input{
+	display: none;
+}
 .km-opcion:before {
 	content: "";
 	border-top: 6px solid #fff;
@@ -1196,12 +1199,12 @@ button.close {
 
 .km-caja-resultados .km-columna-izq{
 	float: left;
-	width: 58.528428%;
+	width: 70%;
 }
 
 .km-caja-resultados .km-columna-der{
 	float: right;
-	width: 38.879599%;
+	width: 29%;
 }
 
 .km-superior-resultados::after,
@@ -1873,6 +1876,14 @@ footer .km-icon-redes {
 	height: 25px;
 	width: 25px;
 	margin-right: 10px;
+}
+footer input{
+	outline: none !important;
+	box-shadow: 0px 0px 0px #000 !important;
+	background-color: #f5f5f5 !important;
+}
+footer input:focus{
+	background-color: #f5f5f5 !important;
 }
 /* FIN SECCIÓN FOOTER */
 

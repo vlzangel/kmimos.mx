@@ -155,7 +155,8 @@
     $_SESSION['resultado_busqueda'] = $cuidadores;
 
     // echo "<pre>";
-    // 	print_r($pines);
+    // 	print_r($sql);
+    // 	print_r($_POST);
     // echo "</pre>";
 
     function toRadian($deg) { return $deg * pi() / 180; };

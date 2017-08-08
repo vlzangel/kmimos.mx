@@ -61,32 +61,60 @@
 						</div>
 						<div class="row km-servicios mtb-10">
 							<div class="col-xs-12 col-sm-3">
-								<div class="km-opcion"><img src="'.getTema().'/images/new/icon/icon-hospedaje.svg">HOSPEDAJE DÍA Y NOCHE</div>
+								<div class="km-opcion">
+									<input type="checkbox" name="servicios[]" value="hospedaje" >
+									<img src="'.getTema().'/images/new/icon/icon-hospedaje.svg">HOSPEDAJE DÍA Y NOCHE
+								</div>
 							</div>
 							<div class="col-xs-12 col-sm-3">
-								<div class="km-opcion"><img src="'.getTema().'/images/new/icon/icon-guarderia.svg">GUARDERÍA DÍA</div>
+								<div class="km-opcion">
+									<input type="checkbox" name="servicios[]" value="guarderia" >
+									<img src="'.getTema().'/images/new/icon/icon-guarderia.svg">GUARDERÍA DÍA
+								</div>
 							</div>
 							<div class="col-xs-12 col-sm-3">
-								<div class="km-opcion"><img src="'.getTema().'/images/new/icon/icon-paseo.svg">PASEOS</div>
+								<div class="km-opcion">
+									<input type="checkbox" name="servicios[]" value="paseos" >
+									<img src="'.getTema().'/images/new/icon/icon-paseo.svg">PASEOS
+								</div>
 							</div>
 							<div class="col-xs-12 col-sm-3">
-								<div class="km-opcion"><img src="'.getTema().'/images/new/icon/icon-entrenamiento.svg">ENTRENAMIENTO</div>
+								<div class="km-opcion">
+									<input type="checkbox" name="servicios[]" value="adiestramiento" >
+									<img src="'.getTema().'/images/new/icon/icon-entrenamiento.svg">ENTRENAMIENTO
+								</div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-xs-12 col-sm-9">
 								<div class="row km-tamanio">
 									<div class="col-xs-6 col-sm-3">
-										<div class="km-opcion"><img src="'.getTema().'/images/new/icon/icon-pequenio.svg"><div class="km-opcion-text"><b>PEQUEÑO</b><br>0 a 25 cm</div></div>
+										<div class="km-opcion">
+											<input type="checkbox" name="tamanos[]" value="peqeunos" >
+											<img src="'.getTema().'/images/new/icon/icon-pequenio.svg"><div class="km-opcion-text">
+											<b>PEQUEÑO</b><br>0 a 25 cm</div>
+										</div>
 									</div>
 									<div class="col-xs-6 col-sm-3">
-										<div class="km-opcion"><img src="'.getTema().'/images/new/icon/icon-mediano.svg"><div class="km-opcion-text"><b>MEDIANO</b><br>25 a 58cm</div></div>
+										<div class="km-opcion">
+											<input type="checkbox" name="tamanos[]" value="medianos" >
+											<img src="'.getTema().'/images/new/icon/icon-mediano.svg"><div class="km-opcion-text">
+											<b>MEDIANO</b><br>25 a 58cm</div>
+										</div>
 									</div>
 									<div class="col-xs-6 col-sm-3">
-										<div class="km-opcion"><img src="'.getTema().'/images/new/icon/icon-grande.svg"><div class="km-opcion-text"><b>GRANDE</b><br>58 a 73 cm</div></div>
+										<div class="km-opcion">
+											<input type="checkbox" name="tamanos[]" value="grandes" >
+											<img src="'.getTema().'/images/new/icon/icon-grande.svg"><div class="km-opcion-text">
+											<b>GRANDE</b><br>58 a 73 cm</div>
+										</div>
 									</div>
 									<div class="col-xs-6 col-sm-3">
-										<div class="km-opcion"><img src="'.getTema().'/images/new/icon/icon-gigante.svg"><div class="km-opcion-text"><b>GIGANTE</b><br>73 a 200 cm</div></div>
+										<div class="km-opcion">
+											<input type="checkbox" name="tamanos[]" value="gigantes" >
+											<img src="'.getTema().'/images/new/icon/icon-gigante.svg"><div class="km-opcion-text">
+											<b>GIGANTE</b><br>73 a 200 cm</div>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -100,27 +128,27 @@
 											<div class="km-servicios-adicionales">
 												<div class="row">
 													<div class="col-xs-12 col-sm-3">
-														<div class="km-opcion"><img src="'.getTema().'/images/new/icon/icon-corteypelo.svg"><div class="km-opcion-text">CORTE DE<br> PELO Y UÑAS</div></div>
+														<div class="km-opcion"><input type="checkbox" name="servicios[]" value="corte" ><img src="'.getTema().'/images/new/icon/icon-corteypelo.svg"><div class="km-opcion-text">CORTE DE<br> PELO Y UÑAS</div></div>
 													</div>
 													<div class="col-xs-12 col-sm-3">
-														<div class="km-opcion"><img src="'.getTema().'/images/new/icon/icon-banoyseco.svg"><div class="km-opcion-text">BAÑO<br> Y SECADO</div></div>
+														<div class="km-opcion"><input type="checkbox" name="servicios[]" value="bano" ><img src="'.getTema().'/images/new/icon/icon-banoyseco.svg"><div class="km-opcion-text">BAÑO<br> Y SECADO</div></div>
 													</div>
 													<div class="col-xs-12 col-sm-3">
-														<div class="km-opcion"><img src="'.getTema().'/images/new/icon/icon-dental.svg"><div class="km-opcion-text">LIMPIEZA<br> DENTAL</div></div>
+														<div class="km-opcion"><input type="checkbox" name="servicios[]" value="limpieza_dental" ><img src="'.getTema().'/images/new/icon/icon-dental.svg"><div class="km-opcion-text">LIMPIEZA<br> DENTAL</div></div>
 													</div>
 													<div class="col-xs-12 col-sm-3">
-														<div class="km-opcion"><img src="'.getTema().'/images/new/icon/icon-veterinario.svg"><div class="km-opcion-text">VISITA AL<br> VETERINARIO</div></div>
+														<div class="km-opcion"><input type="checkbox" name="servicios[]" value="visita_al_veterinario" ><img src="'.getTema().'/images/new/icon/icon-veterinario.svg"><div class="km-opcion-text">VISITA AL<br> VETERINARIO</div></div>
 													</div>
 												</div>
 												<div class="row mtb-10">
 													<div class="col-xs-12 col-sm-3">
-														<div class="km-opcion"><img src="'.getTema().'/images/new/icon/icon-acupuntura.svg"><div class="km-opcion-text">ACUPUNTURA</div></div>
+														<div class="km-opcion"><input type="checkbox" name="servicios[]" value="acupuntura" ><img src="'.getTema().'/images/new/icon/icon-acupuntura.svg"><div class="km-opcion-text">ACUPUNTURA</div></div>
 													</div>
 													<div class="col-xs-12 col-sm-3">
-														<div class="km-opcion"><img src="'.getTema().'/images/new/icon/icon-transportesencillo.svg"><div class="km-opcion-text">TRANSPORTE<br> SENCILLO</div></div>
+														<div class="km-opcion"><input type="checkbox" name="servicios[]" value="transportacion_sencilla" ><img src="'.getTema().'/images/new/icon/icon-transportesencillo.svg"><div class="km-opcion-text">TRANSPORTE<br> SENCILLO</div></div>
 													</div>
 													<div class="col-xs-12 col-sm-3">
-														<div class="km-opcion"><img src="'.getTema().'/images/new/icon/icon-transporteredondo.svg"><div class="km-opcion-text">TRANSPORTE<br> REDONDO</div></div>
+														<div class="km-opcion"><input type="checkbox" name="servicios[]" value="transportacion_redonda" ><img src="'.getTema().'/images/new/icon/icon-transporteredondo.svg"><div class="km-opcion-text">TRANSPORTE<br> REDONDO</div></div>
 													</div>
 													<div class="col-xs-12 col-sm-3">
 														<a id="buscar" href="#" class="km-btn-primary" style="height: 70px; line-height: 40px;">AGREGAR SERVICIO</a>

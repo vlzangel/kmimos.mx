@@ -73,7 +73,8 @@ var map;
 function initMap() {
     map = new google.maps.Map(document.getElementById("mapa"), {
         zoom: 3,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        fullscreenControl: true
     });
     var bounds = new google.maps.LatLngBounds();
     jQuery.each(pines, function( index, cuidador ) {
