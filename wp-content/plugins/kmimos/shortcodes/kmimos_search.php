@@ -192,7 +192,24 @@
             border-radius: 0px 0px 3px 3px;
             font-size: 12px;
         }
+
+
+
+        input.fechas {
+            line-height: 1.42857143;
+            margin-top: -10px;
+            height: 25px !important;
+        }
     </style>
+
+    <script>
+        jQuery(document).on('click','input.fechas',function(event){
+                jQuery(this).blur();
+                jQuery(this).attr('type','date');
+                jQuery(this).focus();
+        });
+    </script>
+
     <div id='portada'>
         <form id='pointfinder-search-form-manual' method='POST' action='".get_home_url()."/wp-content/themes/pointfinder/vlz/buscar.php' data-ajax='false' novalidate='novalidate'>
             <center>
@@ -259,8 +276,8 @@
                             <div class='grupo_selector'>
                                 <div class='marco'>
                                     <div class='icono'><i class='icon-calendario embebed'></i></div>
-                                    <sub>Desde cuando:</sub><br>
-                                    <input type='date' id='checkin' name='checkin' class='fechas' placeholder='Check In' min='".date("Y-m-d")."'>
+                                    <!--<sub>Desde cuando:</sub><br>-->
+                                    <input type='date' placeholder='Desde' id='checkin' name='checkin' class='fechas' min='".date("Y-m-d")."'>
                                 </div>
 
                                 <div id='val_error_fecha_ini' class='no_error'>
@@ -271,8 +288,8 @@
                             <div class='grupo_selector'>
                                 <div class='marco'>
                                     <div class='icono'><i class='icon-calendario embebed'></i></div>
-                                    <sub>Hasta cuando:</sub><br>
-                                    <input type='date' id='checkout' name='checkout' class='fechas' placeholder='Check Out' disabled>
+                                    <!--<sub>Hasta cuando:</sub><br>-->
+                                    <input type='date' placeholder='Hasta' id='checkout' name='checkout' class='fechas' disabled>
                                 </div>
 
                                 <div id='val_error_fecha_fin' class='no_error'>
