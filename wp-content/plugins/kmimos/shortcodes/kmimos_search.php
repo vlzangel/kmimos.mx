@@ -193,12 +193,9 @@
             font-size: 12px;
         }
 
-
-
         input.fechas {
-            line-height: 1.42857143;
-            margin-top: -10px;
-            height: 25px !important;
+            margin-top: 0;
+            height: 35px !important;
         }
     </style>
 
@@ -277,7 +274,7 @@
                                 <div class='marco'>
                                     <div class='icono'><i class='icon-calendario embebed'></i></div>
                                     <!--<sub>Desde cuando:</sub><br>-->
-                                    <input type='date' placeholder='Desde' id='checkin' name='checkin' class='fechas' min='".date("Y-m-d")."'>
+                                    <input type='text' placeholder='Desde' id='checkin' name='checkin' class='fechas' min='".date("Y-m-d")."'>
                                 </div>
 
                                 <div id='val_error_fecha_ini' class='no_error'>
@@ -289,7 +286,7 @@
                                 <div class='marco'>
                                     <div class='icono'><i class='icon-calendario embebed'></i></div>
                                     <!--<sub>Hasta cuando:</sub><br>-->
-                                    <input type='date' placeholder='Hasta' id='checkout' name='checkout' class='fechas' disabled>
+                                    <input type='text' placeholder='Hasta' id='checkout' name='checkout' class='fechas' disabled>
                                 </div>
 
                                 <div id='val_error_fecha_fin' class='no_error'>
