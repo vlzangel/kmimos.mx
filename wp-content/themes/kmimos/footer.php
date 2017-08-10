@@ -2,8 +2,7 @@
 $datos = kmimos_get_info_syte();
 $HTML = '
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script type="text/javascript" src="'.getTema().'/js/datepicker.min.js"></script>
-        <script type="text/javascript" src="'.getTema().'/js/datepicker.es.min.js"></script>
+        
         <script type="text/javascript" src="'.getTema().'/js/jquery.bxslider.js"></script>
         <script type="text/javascript" src="'.getTema().'/js/bootstrap.min.js"></script>
         <!-- SECCIÓN FOOTER -->
@@ -48,6 +47,8 @@ $HTML = '
         </footer>
     ';
 
+    wp_enqueue_script('jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.js", array("jquery"), '1.0.0');
+    wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
     wp_enqueue_script('main', getTema()."/js/main.js", array("jquery"), '1.0.0');
     wp_enqueue_script('global', getTema()."/js/global.js", array("jquery"), '1.0.0');
     wp_enqueue_script('select2.min', getTema()."/js/select2.min.js", array("jquery"), '1.0.0');

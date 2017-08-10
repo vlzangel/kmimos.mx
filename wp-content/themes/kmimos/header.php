@@ -9,11 +9,12 @@
 		if( $descripcion != ""){
 			$HTML .= "<meta name='description' content='{$descripcion}'>";
 		}else{
-			//$HTML .= '<meta name="description" content="'.bloginfo('description').'">';
+			// $HTML .= '<meta name="description" content="'.bloginfo('description').'">';
 		}
 	}else{
-		//$HTML .= '<meta name="description" content="'.bloginfo('description').'">';
+		// $HTML .= '<meta name="description" content="'.bloginfo('description').'">';
 	}
+
 	$HTML .= '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">';
 
 	wp_enqueue_style( 'style', getTema()."/style.css", array(), "1.0.0" );
@@ -23,6 +24,8 @@
 	wp_enqueue_style( 'bootstrap.min', getTema()."/css/bootstrap.min.css", array(), "1.0.0" );
 	wp_enqueue_style( 'datepicker.min', getTema()."/css/datepicker.min.css", array(), "1.0.0" );
 	wp_enqueue_style( 'kmimos_style', getTema()."/css/kmimos_style.css", array(), "1.0.0" );
+
+	wp_enqueue_style( 'jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.css", array(), "1.0.0" );
 
 	/*
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
@@ -153,8 +156,8 @@
 							</select>
 						</div>
 						<div class="km-div-fechas">
-							<input type="text" name="checkin" placeholder="DESDE" value="" class="km-input-custom km-input-date date_from" readonly>
-							<input type="text" name="checkout" placeholder="HASTA" value="" class="km-input-custom km-input-date date_to" readonly>
+							<input type="text" id="checkin" name="checkin" placeholder="DESDE" value="'.$busqueda["checkin"].'" class="km-input-custom km-input-date date_from" readonly>
+							<input type="text" id="checkout" name="checkout" placeholder="HASTA" value="'.$busqueda["checkout"].'" class="km-input-custom km-input-date date_to" readonly>
 						</div>
 						<div class="km-div-enviar">
 							<button type="submit" class="km-submit-custom" name="button">

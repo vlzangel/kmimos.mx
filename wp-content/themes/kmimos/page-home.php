@@ -48,15 +48,19 @@
 					<div class="km-formulario-cuidador">
 						<div class="row km-fechas">
 							<div class="col-xs-12 col-sm-6">
-								<select id="select_ubicacion" class="km-select-custom km-select-ubicacion" name="">
-									'.$estados_str.'
-								</select>
+								<div class="km-select-custom km-select-ubicacion" style="height: 48px">
+
+									<input type="text" name="ubicacion" placeholder="Ubicaci&oacute;n, Estado, Municipio" />
+
+									<div id="ubicacion"></div>
+
+								</div>
 							</div>
 							<div class="col-xs-12 col-sm-3">
-								<input type="text" name="checkin" placeholder="DESDE CUANDO" value="" class="date_from" readonly>
+								<input type="text" id="checkin" name="checkin" placeholder="DESDE CUANDO" value="" class="date_from" readonly>
 							</div>
 							<div class="col-xs-12 col-sm-3">
-								<input type="text" name="checkout" placeholder="HASTA CUANDO" value="" class="date_to" readonly>
+								<input type="text" id="checkout" name="checkout" placeholder="HASTA CUANDO" value="" class="date_to" readonly>
 							</div>
 						</div>
 						<div class="row km-servicios mtb-10">

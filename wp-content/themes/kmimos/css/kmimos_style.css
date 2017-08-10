@@ -874,32 +874,55 @@ button.close {
 	height: 47px;
 	background: #FFF;
 	line-height: 47px;
-
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;
 	border-radius: 6px;
-
 	-webkit-box-shadow: 0 4px 4px 0 rgba(0,0,0,0.25);
 	-moz-box-shadow: 0 4px 4px 0 rgba(0,0,0,0.25);
 	box-shadow: 0 4px 4px 0 rgba(0,0,0,0.25);
 }
 
 .km-select-custom{
-	border: none;
+	position: relative;
+	border: solid 1px #e5e5e5;
 	background-color: #FFF;
 	background-size: 14px 13px;
 	background-repeat: no-repeat;
 	background-position: calc(100% - 9px) 50%;
 	background-image: url(../images/new/km-arrow-form.svg);
 	border-right: 1px solid rgba(0, 0, 0, .2);
-
-	-webkit-border-radius: 6px 0px 0px 6px;
-	-moz-border-radius: 6px 0px 0px 6px;
-	border-radius: 6px 0px 0px 6px;
-
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
 	appearance:none;
 	-moz-appearance:none;
 	-webkit-appearance:none;
+	cursor: pointer;
+}
+
+.km-select-custom input{
+	border: 0px;
+    background-image: none;
+    padding: 14px;
+    background: transparent;
+}
+
+div#ubicacion {
+	display: none;
+}
+
+.km-select-custom input:focus ~ div#ubicacion {
+	display: block;
+    position: absolute;
+    top: 43px;
+    left: -1px;
+    width: calc( 100% + 2px );
+    height: 350px;
+    background: #FFF;
+    z-index: 999999;
+    border: 1px solid #e5e5e5;
+    padding: 10px;
+    border-radius: 0px 0px 5px 5px;
 }
 
 .km-search-slider{
@@ -1111,16 +1134,16 @@ button.close {
 
 .km-div-fechas .date_from {
 	width: 50%;
-	padding-left: 2.758621%;
-	padding-right: 13.533835%;
+	padding-left: 15px;
+	padding-right: 15px;
 	border-right: 1px solid rgba(0, 0, 0, 0.2);
 	background-image: url(../images/new/icon/icon-calendario.svg)!important;
 }
 
 .km-div-fechas .date_to{
 	width: 50%;
-	padding-left: 2.758621%;
-	padding-right: 13.533835%;
+	padding-left: 15px;
+	padding-right: 15px;
 	background-image: url(../images/new/icon/icon-calendario.svg);
 }
 
