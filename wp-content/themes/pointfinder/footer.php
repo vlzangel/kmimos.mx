@@ -56,8 +56,15 @@
         SubscribePopUp_Create(html);
     }
 
+    var checkparam = true;
+    
+    <?php
+        if(isset($_GET['utm'])){
+            echo ' checkparam = false;';
+        }
+    ?>
     jQuery(document).ready(function(e){
-        if(jQuery('body').hasClass('home')){
+        if(jQuery('body').hasClass('home') && checkparam){
             SubscribeTime = setTimeout(function(){
                 SubscribeSite();
             }, 7400);
