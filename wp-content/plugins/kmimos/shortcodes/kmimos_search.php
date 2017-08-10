@@ -273,9 +273,12 @@
                             <div class='grupo_selector'>
                                 <div class='marco'>
                                     <div class='icono'><i class='icon-calendario embebed'></i></div>
-                                    <!--<sub>Desde cuando:</sub><br>-->
+                                    <!--
+                                    <sub>Desde cuando:</sub><br>
                                     <input type='text' placeholder='Desde' id='checkin' name='checkin' class='fechas' min='".date("Y-m-d")."'>
-                                </div>
+                                    -->
+                                    <input type='text' id='checkin' name='checkin' placeholder='DESDE CUANDO' value='' class='date_from' readonly>
+                                 </div>
 
                                 <div id='val_error_fecha_ini' class='no_error'>
                                     Debe ingresar la fecha de inicio
@@ -285,8 +288,11 @@
                             <div class='grupo_selector'>
                                 <div class='marco'>
                                     <div class='icono'><i class='icon-calendario embebed'></i></div>
-                                    <!--<sub>Hasta cuando:</sub><br>-->
+                                    <!--
+                                    <sub>Hasta cuando:</sub><br>
                                     <input type='text' placeholder='Hasta' id='checkout' name='checkout' class='fechas' disabled>
+                                    -->
+                                    <input type='text' id='checkout' name='checkout' placeholder='HASTA CUANDO' value='' class='date_to' readonly>
                                 </div>
 
                                 <div id='val_error_fecha_fin' class='no_error'>
@@ -491,3 +497,74 @@
     echo comprimir_styles($HTML);
 ?>
 
+<script type="text/javascript">
+    var fecha = new Date();
+    jQuery(document).ready(function(){
+        function initCheckin(date, actual){
+            if(actual){
+                jQuery('#checkout').datepick({
+                    dateFormat: 'dd/mm/yyyy',
+                    defaultDate: date,
+                    selectDefaultDate: true,
+                    minDate: date,
+                    onSelect: function(xdate) {
+
+                    },
+                    yearRange: date.getFullYear()+':'+(parseInt(date.getFullYear())+1),
+                    firstDay: 1,
+                    onmonthsToShow: [1, 1]
+                });
+                // jQuery('#checkout').focus();
+            }else{
+                jQuery('#checkout').datepick({
+                    dateFormat: 'dd/mm/yyyy',
+                    minDate: date,
+                    onSelect: function(xdate) {
+
+                    },
+                    yearRange: date.getFullYear()+':'+(parseInt(date.getFullYear())+1),
+                    firstDay: 1,
+                    onmonthsToShow: [1, 1]
+                });
+                // jQuery('#checkout').focus();
+            }
+        }
+
+        jQuery('#checkin').datepick({
+            dateFormat: 'dd/mm/yyyy',
+            minDate: fecha,
+            onSelect: function(date1) {
+                var ini = jQuery('#checkin').datepick( "getDate" );
+                var fin = jQuery('#checkout').datepick( "getDate" );
+                if( fin.length > 0 ){
+                    var xini = ini[0].getTime();
+                    var xfin = fin[0].getTime();
+                    if( xini > xfin ){
+                        jQuery('#checkout').datepick('destroy');
+                        initCheckin(date1[0], true);
+                    }else{
+                        jQuery('#checkout').datepick('destroy');
+                        initCheckin(date1[0], false);
+                    }
+                }else{
+                    jQuery('#checkout').datepick('destroy');
+                    initCheckin(date1[0], true);
+                }
+            },
+            yearRange: fecha.getFullYear()+':'+(parseInt(fecha.getFullYear())+1),
+            firstDay: 1,
+            onmonthsToShow: [1, 1]
+        });
+
+        jQuery('#checkout').datepick({
+            dateFormat: 'dd/mm/yyyy',
+            minDate: fecha,
+            onSelect: function(xdate) {
+
+            },
+            yearRange: fecha.getFullYear()+':'+(parseInt(fecha.getFullYear())+1),
+            firstDay: 1,
+            onmonthsToShow: [1, 1]
+        });
+    });
+</script>
