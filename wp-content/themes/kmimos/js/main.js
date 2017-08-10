@@ -66,10 +66,51 @@ $(window).scroll(function() {
 	mapStatic( this );
 });
 
-var $date_t;
 var fecha = new Date();
 $(document).ready(function(){
 	menu();
+
+	jQuery(".datepick td").on("click", function(e){
+		jQuery( this ).children("a").click();
+	});
+
+	function getCleanedString(cadena){
+		var specialChars = "!@#$^&%*()+=-[]\/{}|:<>?,.";
+		for (var i = 0; i < specialChars.length; i++) {
+			cadena= cadena.replace(new RegExp("\\" + specialChars[i], 'gi'), '');
+		}   
+		cadena = cadena.toLowerCase();
+		cadena = cadena.replace(/ /g," ");
+		cadena = cadena.replace(/á/gi,"a");
+		cadena = cadena.replace(/é/gi,"e");
+		cadena = cadena.replace(/í/gi,"i");
+		cadena = cadena.replace(/ó/gi,"o");
+		cadena = cadena.replace(/ú/gi,"u");
+		cadena = cadena.replace(/ñ/gi,"n");
+		return cadena;
+	}
+
+	jQuery("#ubicacion_txt").on("keyup", function ( e ) {		
+		var buscar_1 = getCleanedString( String(jQuery("#ubicacion_txt").val()).toLowerCase() );
+
+		jQuery("#ubicacion_list div").css("display", "none");
+		jQuery("#ubicacion_list div").each(function( index ) {
+			if( String(jQuery( this ).attr("data-value")).toLowerCase().search(buscar_1) != -1 ){
+				jQuery( this ).css("display", "block");
+			}
+		});
+	});
+
+	jQuery("#ubicacion_txt").on("focus", function ( e ) {		
+		var buscar_1 = getCleanedString( String(jQuery("#ubicacion_txt").val()).toLowerCase() );
+
+		jQuery("#ubicacion_list div").css("display", "none");
+		jQuery("#ubicacion_list div").each(function( index ) {
+			if( String(jQuery( this ).attr("data-value")).toLowerCase().search(buscar_1) != -1 ){
+				jQuery( this ).css("display", "block");
+			}
+		});
+	});
 
 	$(window).scroll(function() {
 		menu();
@@ -79,7 +120,13 @@ $(document).ready(function(){
 		HOME+"/procesos/busqueda/ubicacion.php",
 		{},
 		function(data){
-			jQuery("#ubicacion").html(data);
+			jQuery("#ubicacion_list").html(data);
+			jQuery("#ubicacion_list div").on("click", function(e){
+				jQuery("#ubicacion_txt").val( jQuery(this).html() );
+				jQuery("#ubicacion").val( jQuery(this).attr("value") );
+				jQuery("#ubicacion").attr( "data-value", jQuery(this).attr("data-value") );
+			});
+			jQuery("#ubicacion_txt").attr("readonly", false);
 		}
 	);
 
@@ -128,63 +175,56 @@ $(document).ready(function(){
 		$(".km-map-content").removeClass("showMap");
 	});
 
+	function initCheckin(date, actual){
+		if(actual){
+			jQuery('#checkout').datepick({
+				dateFormat: 'dd/mm/yyyy',
+				defaultDate: date,
+				selectDefaultDate: true,
+				minDate: date,
+				onSelect: function(xdate) {
+
+				},
+				yearRange: date.getFullYear()+':'+(parseInt(date.getFullYear())+1),
+				firstDay: 1,
+				onmonthsToShow: [1, 1]
+			});
+			// jQuery('#checkout').focus();
+		}else{
+			jQuery('#checkout').datepick({
+				dateFormat: 'dd/mm/yyyy',
+				minDate: date,
+				onSelect: function(xdate) {
+
+				},
+				yearRange: date.getFullYear()+':'+(parseInt(date.getFullYear())+1),
+				firstDay: 1,
+				onmonthsToShow: [1, 1]
+			});
+			// jQuery('#checkout').focus();
+		}
+	}
+
 	jQuery('#checkin').datepick({
 		dateFormat: 'dd/mm/yyyy',
 		minDate: fecha,
 		onSelect: function(date1) {
-			
 			var ini = jQuery('#checkin').datepick( "getDate" );
 			var fin = jQuery('#checkout').datepick( "getDate" );
-
 			if( fin.length > 0 ){
-
 				var xini = ini[0].getTime();
 				var xfin = fin[0].getTime();
-
 				if( xini > xfin ){
 	            	jQuery('#checkout').datepick('destroy');
-					jQuery('#checkout').datepick({
-						dateFormat: 'dd/mm/yyyy',
-						defaultDate: date1[0],
-						selectDefaultDate: true,
-						minDate: date1[0],
-						onSelect: function(xdate) {
-
-						},
-						yearRange: date1[0].getFullYear()+':'+(parseInt(date1[0].getFullYear())+1),
-						firstDay: 1,
-						onmonthsToShow: [1, 1]
-					});
-					jQuery('#checkout').focus();
+					initCheckin(date1[0], true);
 	            }else{
 	            	jQuery('#checkout').datepick('destroy');
-					jQuery('#checkout').datepick({
-						dateFormat: 'dd/mm/yyyy',
-						minDate: date1[0],
-						onSelect: function(xdate) {
-
-						},
-						yearRange: date1[0].getFullYear()+':'+(parseInt(date1[0].getFullYear())+1),
-						firstDay: 1,
-						onmonthsToShow: [1, 1]
-					});
-					jQuery('#checkout').focus();
+					initCheckin(date1[0], false);
 	            }
 			}else{
 				jQuery('#checkout').datepick('destroy');
-				jQuery('#checkout').datepick({
-					dateFormat: 'dd/mm/yyyy',
-					minDate: date1[0],
-					onSelect: function(xdate) {
-
-					},
-					yearRange: date1[0].getFullYear()+':'+(parseInt(date1[0].getFullYear())+1),
-					firstDay: 1,
-					onmonthsToShow: [1, 1]
-				});
-				jQuery('#checkout').focus();
+				initCheckin(date1[0], true);
 			}
-
 		},
 		yearRange: fecha.getFullYear()+':'+(parseInt(fecha.getFullYear())+1),
 		firstDay: 1,
@@ -202,16 +242,6 @@ $(document).ready(function(){
 		onmonthsToShow: [1, 1]
 	});
 
-	//$checkin.data('datepicker').update('minDate', new Date() );
-
-	/*$date_t.datepicker({
-		language: 'es',
-		onSelect: function (fd, date) {
-			//$date_f.data('datepicker').update('maxDate', date);
-			$date_t.blur();
-		}
-	});*/
-
 	$("#buscar").on("click", function ( e ) {
 		e.preventDefault();
 		$("#buscador").submit();
@@ -221,4 +251,6 @@ $(document).ready(function(){
 		e.preventDefault();
 		$("#buscador").submit();
 	});
+
+
 });

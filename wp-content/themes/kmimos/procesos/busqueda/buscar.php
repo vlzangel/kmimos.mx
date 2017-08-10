@@ -63,7 +63,16 @@
     /* Fin Ordenamientos */
 
     /* Filtro de busqueda */
-	    if( $tipo_busqueda == "otra-localidad" && $estados != "" && $municipios != "" ){
+
+    	$ubicacion = explode("_", $ubicacion);
+    	$estados = $ubicacion[0];
+    	$municipios = $ubicacion[1];
+
+	    if( 
+	    	// $tipo_busqueda == "otra-localidad" && 
+	    	$estados != "" && 
+	    	$municipios != "" 
+	    ){
 	        $coordenadas 		= unserialize( $db->get_var("SELECT valor FROM kmimos_opciones WHERE clave = 'municipio_{$municipios}' ") );
 	        $latitud  			= $coordenadas["referencia"]->lat;
 	        $longitud 			= $coordenadas["referencia"]->lng;
@@ -72,11 +81,18 @@
 	        $ubicaciones_filtro = "AND ( $ubicacion )";
 	        //if( $orderby == "" ){ $orderby = "DISTANCIA ASC"; }
 	    }else{ 
-	        if( $tipo_busqueda == "otra-localidad" && $estados != "" ){
+	        if( 
+	        	// $tipo_busqueda == "otra-localidad" && 
+	        	$estados != "" 
+	        ){
 	            $ubicaciones_inner = "INNER JOIN ubicaciones AS ubi ON ( cuidadores.id = ubi.cuidador )";
 	            $ubicaciones_filtro = "AND ( ubi.estado LIKE '%=".$estados."=%' )";
 	        }else{
-	            if( $tipo_busqueda == "mi-ubicacion" && $latitud != "" && $longitud != "" ){
+	            if( 
+	            	// $tipo_busqueda == "mi-ubicacion" && 
+	            	$latitud != "" && 
+	            	$longitud != "" 
+	            ){
 	       			$calculo_distancia 	= "( 6371 * acos( cos( radians({$latitud}) ) * cos( radians(latitud) ) * cos( radians(longitud) - radians({$longitud}) ) + sin( radians({$latitud}) ) * sin( radians(latitud) ) ) )";
 	                $DISTANCIA 			= ", {$calculo_distancia} as DISTANCIA";
 	                $FILTRO_UBICACION = "HAVING DISTANCIA < 500";
@@ -93,7 +109,7 @@
     	if( $orderby == "" ){ $orderby = "rating DESC, valoraciones DESC"; }
     /* Fin Filtro predeterminado */
 
-    $home = $db->get_var("SELECT option_value FROM wp_options WHERE option_name = 'siteurl'", "option_value");
+    $home = $db->get_var("SELECT option_value FROM wp_options WHERE option_name = 'siteurl'");
 
     $sql = "
     SELECT 
@@ -121,16 +137,24 @@
     $pines = array();
     if( $cuidadores != false ){
 		foreach ($cuidadores as $key => $cuidador) {
+			$anios_exp = $cuidador->experiencia;
+			if( $anios_exp > 1900 ){
+				$anios_exp = date("Y")-$anios_exp;
+			}
 			$url = $home."/petsitters/".$cuidador->slug;
 			$img = kmimos_get_foto_cuidador($cuidador->id, $home);		
 			$pines[] = array(
 				"ID"   => $cuidador->id,
+				"post_id"   => $cuidador->id_post,
 				"user" => $cuidador->user_id,
 				"lat"  => $cuidador->latitud,
 				"lng"  => $cuidador->longitud,
 				"nom"  => utf8_encode($cuidador->titulo),
 				"url"  => $url,
-				"img"  => $img
+				"exp"  => $anios_exp,
+				"adi"  => $cuidador->adicionales,
+				"ser"  => "",
+				"pre"  => $cuidador->precio
 			);
 		}
     }
@@ -154,9 +178,11 @@
 	$_SESSION['busqueda'] = serialize($_POST);
     $_SESSION['resultado_busqueda'] = $cuidadores;
 
-    // echo "<pre>";
-    // 	print_r($_POST);
-    // echo "</pre>";
+/*    echo "<pre>";
+    	print_r( $_POST );
+    	print_r( $ubicacion );
+    	print_r( $cuidadores );
+    echo "</pre>";*/
 
     function toRadian($deg) { return $deg * pi() / 180; };
 
@@ -181,7 +207,7 @@
             if( file_exists("../../../../uploads/{$sub_path}/0.jpg") ){
                 $img = $home."0.jpg";
             }else{
-                $img = $xhome.'wp-content/themes/pointfinder/images/noimg.png';
+                $img = $xhome.'/wp-content/themes/kmimos/images/noimg.png';
             }
         }
         return $img;

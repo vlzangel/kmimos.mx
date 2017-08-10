@@ -20,14 +20,10 @@
 	    $estados_str = "";
 	    $estados = $wpdb->get_results("SELECT * FROM states WHERE country_id = 1");
 	    foreach ($estados as $key => $value) {
-	    	//$estados_str .= utf8_decode("<optgroup label=".$value->name.">");
-	    		
-	    		$municipios = $wpdb->get_results("SELECT * FROM locations WHERE state_id = ".$value->id);
-	    		foreach ($municipios as $key => $municipio) {
-	    			$estados_str .= utf8_decode("<option value='".$value->id."=".$municipio->id."'>".$value->name.", ".$municipio->name."</option>");
-	    		}
-
-	    	//$estados_str .= utf8_decode("</optgroup>");
+    		$municipios = $wpdb->get_results("SELECT * FROM locations WHERE state_id = ".$value->id);
+    		foreach ($municipios as $key => $municipio) {
+    			$estados_str .= utf8_decode("<option value='".$value->id."=".$municipio->id."'>".$value->name.", ".$municipio->name."</option>");
+    		}
 	    }
 
 	    $HTML = '
@@ -48,12 +44,11 @@
 					<div class="km-formulario-cuidador">
 						<div class="row km-fechas">
 							<div class="col-xs-12 col-sm-6">
-								<div class="km-select-custom km-select-ubicacion" style="height: 48px">
-
-									<input type="text" name="ubicacion" placeholder="Ubicaci&oacute;n, Estado, Municipio" />
-
-									<div id="ubicacion"></div>
-
+								<div class="km-select-custom km-select-ubicacion km-fechas" style="height: 48px">
+									<img src="'.getTema().'/images/new/icon/icon-gps.svg" class="icon_left" />
+									<input type="text" id="ubicacion_txt" class="km-fechas" name="ubicacion_txt" placeholder="UBICACI&Oacute;N, ESTADO, MUNICIPIO" value="'.$busqueda["ubicacion_txt"].'" autocomplete="off" readonly />
+									<input type="hidden" id="ubicacion" name="ubicacion" value="'.$busqueda["ubicacion"].'" />
+									<div id="ubicacion_list"></div>
 								</div>
 							</div>
 							<div class="col-xs-12 col-sm-3">
@@ -303,7 +298,7 @@
 						<div class="box-form">
 							<form>
 								<input placeholder="NOMBRES Y APELLIDOS" type="text" required="">
-								<input placeholder="EMAIL" type="password" required="">
+								<input placeholder="EMAIL" type="email" required="">
 							</form>
 						</div>
 						<a href="#" class="km-btn-primary ">INSCRÍBETE Y GANA</a>

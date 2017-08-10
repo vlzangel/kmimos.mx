@@ -219,11 +219,11 @@
 		name: pluginName,
 		defaultRenderer: {
 			picker: '<div class="datepick">' +
-			'<div class="datepick-nav">{link:prev}{link:today}{link:next}</div>{months}' +
-			'{popup:start}<div class="datepick-ctrl">{link:clear}{link:close}</div>{popup:end}' +
+			'<div class="datepick-nav"></div>{months}' +
+			'{popup:start}<div class="datepick-ctrl"></div>{popup:end}' +
 			'<div class="datepick-clear-fix"></div></div>',
 			monthRow: '<div class="datepick-month-row">{months}</div>',
-			month: '<div class="datepick-month"><div class="datepick-month-header">{monthHeader}</div>' +
+			month: '<div class="datepick-month"><div class="datepick-month-header">{link:prev}{monthHeader}{link:next}</div>' +
 			'<table><thead>{weekHeader}</thead><tbody>{weeks}</tbody></table></div>',
 			weekHeader: '<tr>{days}</tr>',
 			dayHeader: '<th>{day}</th>',
@@ -446,11 +446,11 @@
 				dateFormat: 'dd/mm/yyyy',
 				firstDay: 0,
 				renderer: {}, // this.defaultRenderer
-				prevText: 'Anterior',
+				prevText: '',
 				prevStatus: 'Mostrar el mes anterior',
 				prevJumpText: '&lt;&lt;',
 				prevJumpStatus: 'Mostrar el a&ntilde;o anterior',
-				nextText: 'Siguiente',
+				nextText: '',
 				nextStatus: 'Mostrar el siguiente mes',
 				nextJumpText: '&gt;&gt;',
 				nextJumpStatus: 'Mostrar el siguiente a&ntilde;o',

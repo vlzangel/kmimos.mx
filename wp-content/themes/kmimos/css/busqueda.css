@@ -24,3 +24,29 @@ h1 a:hover{
 .rating img {
     width: 20px;
 }
+
+.km-sellos.maps{
+    padding: 10px 0px 0px;
+}
+
+.km-sellos.maps .km-sellos{
+    padding: 0px;
+}
+
+h1.maps {
+    margin: 0;
+    padding: 5px 0 0 0;
+    font-size: 14px;
+    font-family: Gotham-Pro-Bold,arial,sans-serif;
+    text-transform: uppercase;
+}
+.km-opciones.maps {
+    width: 100%;
+    padding: 10px 0 0 0!important;
+    text-align: left;
+}
+#map .km-opciones .precio {
+    color: #6a2499;
+    font-size: 17px;
+    text-align: left;
+}

@@ -92,69 +92,142 @@
 	}
 
     if(!function_exists('vlz_servicios')){
-        function vlz_servicios($adicionales){
-            $r = ""; $adiestramiento = false;
-
-            //$r .= '<span><i title="Hospedaje" class="icon-hospedaje"></i></span>';
-
+        function vlz_servicios($adicionales, $is_data = false){
+            $r = "";
+                
             $adicionales = unserialize($adicionales);
-            
-            if( $adicionales != "" ){
-                if( count($adicionales) > 0 ){
-                    foreach($adicionales as $key => $value){
-                        switch ($key) {
-                            case 'guarderia':
-                                // $r .= '<img src="'.getTema().'/images/new/icon/icon-guarderia.svg" height="40">';
-                            break;
-                            case 'adiestramiento_basico':
-                                $adiestramiento = true;
-                            break;
-                            case 'adiestramiento_intermedio':
-                                $adiestramiento = true;
-                            break;
-                            case 'adiestramiento_avanzado':
-                                $adiestramiento = true;
-                            break;
-                            case 'corte':
-                                if( $value > 0){
-                                    $r .= '<img src="'.getTema().'/images/new/icon/icon-sello-4.svg" height="40" title="Corte de pelo y u&ntilde;as"> ';
-                                }
-                            break;
-                            case 'bano':
-                                if( $value > 0){
-                                    $r .= '<img src="'.getTema().'/images/new/icon/icon-sello-6.svg" height="40" title="Ba&ntilde;o"> ';
-                                }
-                            break;
-                            case 'transportacion_sencilla':
-                                //$r .= '<span><i title="Transporte Sencillo" class="icon-transporte"></i></span>';
-                            break;
-                            case 'transportacion_redonda':
-                                //$r .= '<span><i title="Transporte Redondo" class="icon-transporte2"></i></span>';
-                            break;
-                            case 'visita_al_veterinario':
-                                if( $value > 0){
-                                    $r .= '<img src="'.getTema().'/images/new/icon/icon-sello-1.svg" height="40" title="Visita al Veterinario"> ';
-                                }
-                            break;
-                            case 'limpieza_dental':
-                                if( $value > 0){
-                                    $r .= '<img src="'.getTema().'/images/new/icon/icon-sello-4.svg" height="40" title="Limpieza Dental"> ';
-                                }
-                            break;
-                            case 'acupuntura':
-                                //$r .= '<span><i title="Acupuntura" class="icon-acupuntura"></i></span>';
-                            break;
-                            case 'paseos':
-                                $r .= '<img src="'.getTema().'/images/new/icon/icon-sello-3.svg" height="40" title="Paseos"> ';
-                            break;
+
+            if( $is_data ){
+                $data = array();
+                
+                if( $adicionales != "" ){
+                    if( count($adicionales) > 0 ){
+                        foreach($adicionales as $key => $value){
+                            switch ($key) {
+                                case 'guarderia':
+                                    // $r .= '<img src="'.getTema().'/images/new/icon/icon-guarderia.svg" height="40">';
+                                break;
+                                case 'adiestramiento_basico':
+                                    $adiestramiento = true;
+                                break;
+                                case 'adiestramiento_intermedio':
+                                    $adiestramiento = true;
+                                break;
+                                case 'adiestramiento_avanzado':
+                                    $adiestramiento = true;
+                                break;
+                                case 'corte':
+                                    if( $value > 0){
+                                        $data[] = array(
+                                            "img" => "icon-sello-4.svg",
+                                            "titulo" => "Corte de pelo y u&ntilde;as"
+                                        );
+                                    }
+                                break;
+                                case 'bano':
+                                    if( $value > 0){
+                                        $data[] = array(
+                                            "img" => "icon-sello-6.svg",
+                                            "titulo" => "Ba&ntilde;o"
+                                        );
+                                    }
+                                break;
+                                case 'transportacion_sencilla':
+                                    //$r .= '<span><i title="Transporte Sencillo" class="icon-transporte"></i></span>';
+                                break;
+                                case 'transportacion_redonda':
+                                    //$r .= '<span><i title="Transporte Redondo" class="icon-transporte2"></i></span>';
+                                break;
+                                case 'visita_al_veterinario':
+                                    if( $value > 0){
+                                        $data[] = array(
+                                            "img" => "icon-sello-1.svg",
+                                            "titulo" => "Visita al Veterinario"
+                                        );
+                                    }
+                                break;
+                                case 'limpieza_dental':
+                                    if( $value > 0){
+                                        $data[] = array(
+                                            "img" => "icon-sello-4.svg",
+                                            "titulo" => "Limpieza Dental"
+                                        );
+                                    }
+                                break;
+                                case 'acupuntura':
+                                    //$r .= '<span><i title="Acupuntura" class="icon-acupuntura"></i></span>';
+                                break;
+                                case 'paseos':
+                                    $r .= "<img src='".getTema()."/images/new/icon/icon-sello-3.svg' height='40' title='Paseos'> ";
+                                    $data[] = array(
+                                        "img" => "icon-sello-3.svg",
+                                        "titulo" => "Paseos"
+                                    );
+                                break;
+                            }
                         }
+
+                        return $data;
+                    }
+                }
+
+            }else{
+                if( $adicionales != "" ){
+                    if( count($adicionales) > 0 ){
+                        foreach($adicionales as $key => $value){
+                            switch ($key) {
+                                case 'guarderia':
+                                    // $r .= '<img src="'.getTema().'/images/new/icon/icon-guarderia.svg" height="40">';
+                                break;
+                                case 'adiestramiento_basico':
+                                    $adiestramiento = true;
+                                break;
+                                case 'adiestramiento_intermedio':
+                                    $adiestramiento = true;
+                                break;
+                                case 'adiestramiento_avanzado':
+                                    $adiestramiento = true;
+                                break;
+                                case 'corte':
+                                    if( $value > 0){
+                                        $r .= "<img src='".getTema()."/images/new/icon/icon-sello-4.svg' height='40' title='Corte de pelo y u&ntilde;as'> ";
+                                    }
+                                break;
+                                case 'bano':
+                                    if( $value > 0){
+                                        $r .= "<img src='".getTema()."/images/new/icon/icon-sello-6.svg' height='40' title='Ba&ntilde;o'> ";
+                                    }
+                                break;
+                                case 'transportacion_sencilla':
+                                    //$r .= '<span><i title="Transporte Sencillo" class="icon-transporte"></i></span>';
+                                break;
+                                case 'transportacion_redonda':
+                                    //$r .= '<span><i title="Transporte Redondo" class="icon-transporte2"></i></span>';
+                                break;
+                                case 'visita_al_veterinario':
+                                    if( $value > 0){
+                                        $r .= "<img src='".getTema()."/images/new/icon/icon-sello-1.svg' height='40' title='Visita al Veterinario'> ";
+                                    }
+                                break;
+                                case 'limpieza_dental':
+                                    if( $value > 0){
+                                        $r .= "<img src='".getTema()."/images/new/icon/icon-sello-4.svg' height='40' title='Limpieza Dental'> ";
+                                    }
+                                break;
+                                case 'acupuntura':
+                                    //$r .= '<span><i title="Acupuntura" class="icon-acupuntura"></i></span>';
+                                break;
+                                case 'paseos':
+                                    $r .= "<img src='".getTema()."/images/new/icon/icon-sello-3.svg' height='40' title='Paseos'> ";
+                                break;
+                            }
+                        }
+
+                        return $r;
                     }
                 }
             }
-            if($adiestramiento){
-                // $r .= '<span><i title="Adiestramiento de Obediencia" class="icon-adiestramiento"></i></span>';
-            }
-            return $r;
+            return "";
         }
     }
 
@@ -233,7 +306,7 @@
                 if( file_exists($base."/wp-content/uploads/{$sub_path}0.jpg") ){
                     $img = get_home_url()."/wp-content/uploads/{$sub_path}0.jpg";
                 }else{
-                    $img = get_home_url()."/wp-content/themes/pointfinder/images/noimg.png";
+                    $img = get_home_url()."/wp-content/themes/kmimos/images/noimg.png";
                 }
             }
 

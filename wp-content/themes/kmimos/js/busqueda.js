@@ -76,6 +76,13 @@ function initMap() {
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         fullscreenControl: true
     });
+
+    var oms = new OverlappingMarkerSpiderfier(map, { 
+        markersWontMove: true,
+        markersWontHide: true,
+        basicFormatEvents: true
+  	});
+
     var bounds = new google.maps.LatLngBounds();
     jQuery.each(pines, function( index, cuidador ) {
         bounds.extend( new google.maps.LatLng(cuidador.lat, cuidador.lng) );
@@ -85,16 +92,59 @@ function initMap() {
             draggable: false,
             animation: google.maps.Animation.DROP,
             position: new google.maps.LatLng(cuidador.lat, cuidador.lng),
-            icon: "https://www.kmimos.com.mx/wp-content/themes/pointfinder/vlz/img/pin.png"
+            icon: HOME+"/js/images/n2.png"
         });
+
+        var servicios = "";
+        if( cuidador["ser"] != undefined && cuidador["ser"].length > 0 ){
+	        jQuery.each(cuidador["ser"], function( index, servicio ) {
+	        	servicios += '<img src="http://mx.kmimos.dev/wp-content/themes/kmimos/images/new/icon/'+servicio.img+'" height="40" title="'+servicio.titulo+'"> ';
+	        });
+        }
+
+        var rating = "";
+        if( cuidador["rating"] != undefined && cuidador["rating"].length > 0 ){
+	        jQuery.each(cuidador["rating"], function( index, xrating ) {
+	        	if( xrating == 1 ){
+	        		rating += '<a href="#" class="active"></a>';
+	        	}else{
+	        		rating += '<a href="#"></a>';
+	        	}
+	        });
+        }
+
+        console.log( rating );
+
         infos[index] = new google.maps.InfoWindow({ 
-            content: '<a class="mini_map" href="'+cuidador.url+'" target="_blank"> <img src="'+cuidador.img+'" style="max-width: 200px; max-height: 230px;"> <div>'+cuidador.nom+'</div> </a>'
+            content: 	'<h1 class="maps">'+cuidador.nom+'</h1>'
+						+'<p>'+cuidador.exp+' a&ntilde;o(s) de experiencia</p>'
+						+'<div class="km-ranking">'
+						+	rating
+						+'</div>'
+						+'<div class="km-sellos maps">'
+						+'    <div class="km-sellos"> '+servicios+' </div>'
+						+'</div>'
+						+'<div class="km-opciones maps">'
+						+'    <div class="precio">MXN $ '+cuidador.pre+'</div>'
+						+'    <a href="'+cuidador.url+'" class="km-btn-primary-new stroke">CON&Oacute;CELO +</a>'
+						+'    <a href="'+cuidador.url+'" class="km-btn-primary-new basic">RESERVA</a>'
+						+'</div>'
         });
+
         markers[index].addListener("click", function(e) { 
             infos[this.vlz_index].open(map, this);
         });
+
+		oms.addMarker(markers[index]);
     });
+
+
+    var markerCluster = new MarkerClusterer(map, markers, {imagePath: HOME+"/js/images/n"});
     map.fitBounds(bounds);
+
+    minClusterZoom = 14;
+    markerCluster.setMaxZoom(minClusterZoom);
+    window.oms = oms;
 }
 (function(d, s){
 	map = d.createElement(s), e = d.getElementsByTagName(s)[0];
@@ -104,29 +154,4 @@ function initMap() {
 	map.type="text/javascript";
 	e.parentNode.insertBefore(map, e);
 })(document,"script");
-
-
-$(document).ready(function(){
-
-});
-
-/*
-function initForm(){
-	// console.log(CAMPOS[0]);
-	if( CAMPOS[0]["servicios"] != undefined ){
-		jQuery.each(CAMPOS[0]["servicios"], function( index, xvalor ) {
-	        vlz_select("servicio_"+xvalor);
-	    });
-	}
-
-	if( CAMPOS[0]["tamanos"] != undefined ){
-		jQuery.each(CAMPOS[0]["tamanos"], function( index, xvalor ) {
-	        vlz_select("tamanos_"+xvalor);
-	    });
-	}
-}
-jQuery(document).ready(function(){
-    initForm();
-});
-*/
 

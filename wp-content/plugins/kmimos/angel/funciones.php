@@ -268,29 +268,49 @@
 
     if(!function_exists('kmimos_petsitter_rating')){
 
-        function kmimos_petsitter_rating($post_id){
-            $html = '<div class="rating">';
+        function kmimos_petsitter_rating($post_id, $is_data = false){
             $valoracion = kmimos_petsitter_rating_and_votes($post_id);
             $votes = $valoracion['votes'];
             $rating = $valoracion['rating'];
-            $valoracion = ($votes==1)? ' Valoración':' Valoraciones';
-            if($votes =='' || $votes == 0 || $rating ==''){ 
-                for ($i=0; $i<5; $i++){ 
-                    $html .= '<a href="#"></a>';
-                }
-            } else { 
-                $n = ceil($rating);
-                for ($i=0; $i<$n; $i++){ 
-                    $html .= '<a href="#" class="active"></a>';
-                }
-                if($n <= 4){
-                    for ($i=$n; $i<5; $i++){ 
-                        $html .= '<a href="#"></a>';
+            if( $is_data ){
+                $data = array();
+                if($votes =='' || $votes == 0 || $rating ==''){ 
+                    for ($i=0; $i<5; $i++){ 
+                        $data[] = 0;
+                    }
+                } else { 
+                    $n = ceil($rating);
+                    for ($i=0; $i<$n; $i++){ 
+                        $data[] = 1;
+                    }
+                    if($n <= 4){
+                        for ($i=$n; $i<5; $i++){ 
+                            $data[] = 0;
+                        }
                     }
                 }
+                return $data;
+            }else{
+                $html = '<div class="rating">';
+                if($votes =='' || $votes == 0 || $rating ==''){ 
+                    for ($i=0; $i<5; $i++){ 
+                        $html .= "<a href='#'></a>";
+                    }
+                } else { 
+                    $n = ceil($rating);
+                    for ($i=0; $i<$n; $i++){ 
+                        $html .= "<a href='#' class='active'></a>";
+                    }
+                    if($n <= 4){
+                        for ($i=$n; $i<5; $i++){ 
+                            $html .= "<a href='#'></a>";
+                        }
+                    }
+                }
+                $html .= '</div>';
+                return $html;
             }
-            $html .= '</div>';
-            return $html;
+            return "";
         }
     }
 
@@ -300,6 +320,11 @@
         $url        = get_home_url()."/petsitters/".$cuidador->slug;
 
         if( isset($cuidador->DISTANCIA) ){ $distancia   = 'A '.floor($cuidador->DISTANCIA).' km de tu busqueda'; }
+
+        $anios_exp = $cuidador->experiencia;
+        if( $anios_exp > 1900 ){
+            $anios_exp = date("Y")-$anios_exp;
+        }
 
         $fav_check = 'false';
         if (in_array($cuidador->id_post, $favoritos)) {
@@ -316,7 +341,7 @@
                 </div>
                 <div class="km-descripcion">
                     <h1><a href="'.$url.'">'.utf8_encode($cuidador->titulo).'</a></h1>
-                    <p>15 años de experiencia</p>
+                    <p>'.$anios_exp.' año(s) de experiencia</p>
                     <div class="km-ranking">
                         '.kmimos_petsitter_rating($cuidador->id_post).'
                     </div>
@@ -340,7 +365,7 @@
                     <div class="km-descripcion">
                         <h1><a href="'.$url.'">'.utf8_encode($cuidador->titulo).'</a></h1>
 
-                        <p>15 años de experiencia</p>
+                        <p>'.$anios_exp.' año(s) años de experiencia</p>
 
                         <div class="km-ranking">
                             '.kmimos_petsitter_rating($cuidador->id_post).'
@@ -353,14 +378,14 @@
 
                     <div class="km-opciones">
                         <div class="precio">Desde MXN $ '.$cuidador->precio.'</div>
-                        <a href="#" class="km-btn-primary-new stroke">CONÓCELO +</a>
-                        <a href="#" class="km-btn-primary-new basic">RESERVA</a>
+                        <a href="'.get_home_url()."/petsitters/".$cuidador->slug.'" class="km-btn-primary-new stroke">CONÓCELO +</a>
+                        <a href="'.get_home_url()."/petsitters/".$cuidador->slug.'" class="km-btn-primary-new basic">RESERVA</a>
                     </div>
                 </div>
             </div>
         ';
 
-        return ($ficha);
+        return $ficha;
     }
 
     function get_formulario($POST){

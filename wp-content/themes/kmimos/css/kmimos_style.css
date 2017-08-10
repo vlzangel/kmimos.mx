@@ -239,13 +239,6 @@ section {
 	padding: 60px 0;
 }
 
-
-
-
-
-
-
-
 /* MENÚ */
 .bg-transparent {
 	background-color: transparent;
@@ -544,10 +537,14 @@ section {
 	-webkit-transform: translateY(0px)!important;
 			transform: translateY(0px)!important;
 }
-.km-fechas select {
-	background: url(../images/new/icon/icon-gps.svg) no-repeat;
+.km-fechas {
 	background-position: 20px;
-	padding-left: 45px;
+}
+.icon_left{
+    position: absolute !important;
+    left: 13px !important;
+    top: 12px !important;
+    width: 17px !important;
 }
 .km-servicios-adicionales {
 	margin-top: 30px;
@@ -731,7 +728,7 @@ input::-webkit-input-placeholder, button {
 	-moz-transition: all .3s ease-in-out;
 	-webkit-transition: all .3s ease-in-out;
 	transition: all .3s ease-in-out;
-	font-weight: 700;
+	font-weight: 400;
 }
 form {
 	box-sizing: border-box;
@@ -762,14 +759,25 @@ input:focus{
   outline: none;
   background-position: 0 0;
 }
+/*
 input:focus::-webkit-input-placeholder {
   	color: #6B1C9B;
   	font-size: 13px;
-  	-webkit-transform: translateY(-20px);
-		  	transform: translateY(-20px);
+  	-webkit-transform: translateY(-15px);
+		  	transform: translateY(-15px);
   	visibility: visible !important;
   	font-family: 'Gotham-Pro-Regular', arial, sans-serif;
 }
+
+#buscador input:focus::-webkit-input-placeholder {
+  	color: #6B1C9B;
+  	font-size: 13px;
+  	-webkit-transform: translateY(0px);
+		  	transform: translateY(0px);
+  	visibility: visible !important;
+  	font-family: 'Gotham-Pro-Regular', arial, sans-serif;
+}
+*/
 
 
 
@@ -885,7 +893,7 @@ button.close {
 .km-select-custom{
 	position: relative;
 	border: solid 1px #e5e5e5;
-	background-color: #FFF;
+	#background-color: #FFF;
 	background-size: 14px 13px;
 	background-repeat: no-repeat;
 	background-position: calc(100% - 9px) 50%;
@@ -898,31 +906,48 @@ button.close {
 	-moz-appearance:none;
 	-webkit-appearance:none;
 	cursor: pointer;
+	padding-left: 25px;
 }
 
 .km-select-custom input{
 	border: 0px;
     background-image: none;
-    padding: 14px;
+    padding: 0px 14px;
+    margin: 0px;
     background: transparent;
+    height: 47px;
 }
 
-div#ubicacion {
+div#ubicacion_list {
 	display: none;
 }
 
-.km-select-custom input:focus ~ div#ubicacion {
+.km-select-custom input:focus ~ div#ubicacion_list,
+div#ubicacion_list:hover
+{
 	display: block;
+	overflow: auto;
     position: absolute;
     top: 43px;
     left: -1px;
     width: calc( 100% + 2px );
-    height: 350px;
+    max-height: 350px;
     background: #FFF;
     z-index: 999999;
     border: 1px solid #e5e5e5;
     padding: 10px;
     border-radius: 0px 0px 5px 5px;
+}
+
+div#ubicacion_list div {
+    padding: 2px 10px;
+    margin: 0;
+    line-height: 17px;
+    font-size: 12px;
+}
+
+div#ubicacion_list div:hover {
+	background: #DDD;
 }
 
 .km-search-slider{
@@ -1999,6 +2024,8 @@ footer input:focus{
 	}
 }
 @media (min-width: 767px) {
+
+
 	.km-opcion:hover:before {
 		border-top: 6px solid #33e1be;
 		top: -1px;
@@ -2024,6 +2051,22 @@ footer input:focus{
 	}
 }
 @media (max-width: 767px) {
+
+	#popup-servicios .km-opcion {
+		text-align: left;
+	}
+
+	#popup-servicios .km-opcion {
+	    padding: 10px 10px 5px;
+	}
+
+	.km-select-custom input:focus ~ div#ubicacion_list,
+	div#ubicacion_list:hover
+	{
+	    max-height: 250px;
+	    font-size: 10px;
+	}
+
 	.bx-wrapper .bx-prev, .bx-wrapper .bx-next {
 		display: none;
 	}
@@ -2269,12 +2312,7 @@ footer input:focus{
 	}
 
 	.km-select-custom{
-		border-right: none;
-		border-bottom: 1px solid rgba(0, 0, 0, .2);
-
-		-webkit-border-radius: 6px 6px 0px 0px;
-		-moz-border-radius: 6px 6px 0px 0px;
-		border-radius: 6px 6px 0px 0px;
+		
 	}
 
 	.km-submit-custom{

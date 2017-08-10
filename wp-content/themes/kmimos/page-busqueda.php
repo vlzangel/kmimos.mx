@@ -22,19 +22,24 @@
 	
 	$pines = unserialize($_SESSION['pines_array']);
 	$pines_v = array();
+ 	$t = count($pines);
+	for($i = 0; $i < $t; $i++){
+		$pines[$i]["ser"] = vlz_servicios($pines[$i]["adi"], true);
+		$pines[$i]["rating"] = kmimos_petsitter_rating( $pines[$i]["post_id"], true );
+		unset($pines[$i]["adi"]);
+	}
 
 	$CUIDADORES = "";
 	if( $total > 0 ){
 		for ($i=$paginacion["inicio"]; $i < $paginacion["fin"]; $i++) {
 			$cuidador = $resultados[$i];
-			$pines_v[] = $pines[$i];
 			$CUIDADORES .= get_ficha_cuidador($cuidador, $i, $favoritos);
 		}
 	}else{
-		$CUIDADORES .= "<h2 style='padding-right: 20px!important; font-size: 21px; text-align: justify; margin: 10px 0px;'>No tenemos resultados para esta búsqueda, si quieres intentarlo de nuevo pícale <a  style='color: #00b69d; font-weight: 600;' href='".$home."/#jj-landing-page'>aquí,</a> o aplica otro filtro de búsqueda.</h2>";
+		$CUIDADORES .= "<h2 style='padding-right: 20px!important; font-size: 21px; text-align: justify; margin: 10px 0px;'>No tenemos resultados para esta búsqueda, si quieres intentarlo de nuevo pícale <a  style='color: #00b69d; font-weight: 600;' href='".$home."/'>aquí,</a> o aplica otro filtro de búsqueda.</h2>";
 	}
 
-	$xPINES = json_encode($pines_v);
+	$xPINES = json_encode($pines);
 
 	$busqueda = unserialize($_SESSION['busqueda']);
 	$CAMPOS = json_encode($busqueda);
@@ -314,9 +319,13 @@
 				</div>
 			</div>
 		</div>
+		<script type="text/javascript" src="'.getTema().'/js/markerclusterer.js"></script>
+		<script type="text/javascript" src="'.getTema().'/js/oms.min.js"></script>
     ';
 
 	echo comprimir_styles($HTML);
+
+
 
     get_footer(); 
 ?>

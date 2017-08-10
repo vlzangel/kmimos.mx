@@ -149,11 +149,12 @@
 				<form class="km-formulario-buscador" action="'.getTema().'/procesos/busqueda/buscar.php" method="post">
 					<div class="km-bloque-cajas">
 						<div class="km-div-ubicacion">
-							<select class="km-select-custom km-select-ubicacion" name="">
-								<option>UBICACIÓN, ESTADO, MUNICIPIO</option>
-								<option>UBICACIÓN, A</option>
-								<option>UBICACIÓN, B</option>
-							</select>
+							<div class="km-select-custom km-select-ubicacion" style="border-right: 0px; height: 47px;">
+								<img src="'.getTema().'/images/new/icon/icon-gps.svg" class="icon_left" />
+								<input type="text" id="ubicacion_txt" class="km-fechas" name="ubicacion_txt" placeholder="UBICACI&Oacute;N, ESTADO, MUNICIPIO" value="'.$busqueda["ubicacion_txt"].'" autocomplete="off" readonly />
+								<input type="hidden" id="ubicacion" name="ubicacion" value="'.$busqueda["ubicacion"].'" />
+								<div id="ubicacion_list"></div>
+							</div>
 						</div>
 						<div class="km-div-fechas">
 							<input type="text" id="checkin" name="checkin" placeholder="DESDE" value="'.$busqueda["checkin"].'" class="km-input-custom km-input-date date_from" readonly>
