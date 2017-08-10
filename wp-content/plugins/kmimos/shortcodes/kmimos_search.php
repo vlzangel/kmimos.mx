@@ -200,7 +200,7 @@
     </style>
 
     <script>
-        jQuery(document).on('click','input.fechas',function(event){
+        jQuery(document).on('click','input[type=\'text\'].fechas',function(event){
                 jQuery(this).blur();
                 jQuery(this).attr('type','date');
                 jQuery(this).focus();
