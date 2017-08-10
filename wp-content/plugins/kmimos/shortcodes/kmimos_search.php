@@ -277,7 +277,7 @@
                                     <sub>Desde cuando:</sub><br>
                                     <input type='text' placeholder='Desde' id='checkin' name='checkin' class='fechas' min='".date("Y-m-d")."'>
                                     -->
-                                    <input type='text' id='checkin' name='checkin' placeholder='DESDE CUANDO' value='' class='date_from' readonly>
+                                    <input type='text' id='checkin' name='checkin' placeholder='DESDE' value='' class='date_from' readonly>
                                  </div>
 
                                 <div id='val_error_fecha_ini' class='no_error'>
@@ -292,7 +292,7 @@
                                     <sub>Hasta cuando:</sub><br>
                                     <input type='text' placeholder='Hasta' id='checkout' name='checkout' class='fechas' disabled>
                                     -->
-                                    <input type='text' id='checkout' name='checkout' placeholder='HASTA CUANDO' value='' class='date_to' readonly>
+                                    <input type='text' id='checkout' name='checkout' placeholder='HASTA' value='' class='date_to' readonly>
                                 </div>
 
                                 <div id='val_error_fecha_fin' class='no_error'>
