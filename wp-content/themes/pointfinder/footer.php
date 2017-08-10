@@ -60,7 +60,7 @@
 
     <?php
         if(isset($_GET['utm_campaign'])){
-            if($_GET['utm_campaign']==''){ }
+            if($_GET['utm_campaign']==''){ } 
                 echo ' checkparam = false;';
         }
     ?>
