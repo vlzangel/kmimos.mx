@@ -82,4 +82,3 @@ $('#newsletter').on('click', function(){
   }
 
 });
-

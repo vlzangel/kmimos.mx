@@ -748,5 +748,3 @@ echo get_estados_municipios();
 
 
 <?php // include(dirname(dirname(__DIR__))."/kmimos/js/quiero_ser_cuidador.php"); ?>
-
-
