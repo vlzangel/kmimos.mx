@@ -186,14 +186,19 @@
 		<div class='vlz_sub_seccion'>
 			<div class='vlz_sub_seccion_titulo'>Por Fechas</div>
 			<div class='vlz_sub_seccion_interno'>
-
+				<!--
 				<sub>Desde:</sub><br>
-				<div class='icono'><i class='icon-calendario embebed'></i></div>
 				<input type='date' id='checkin' value='".$_POST['checkin']."' min='".date("Y-m-d")."' name='checkin' class='fechas vlz_input' placeholder='Check In'>
+    			-->
+    			<div class='icono'><i class='icon-calendario embebed'></i></div>
+				<input type='text' id='checkout' name='checkout' placeholder='HASTA' value='".$_POST['checkin']."' class='date_to fechas vlz_input' readonly>
 
+				<!--
 				<sub>Hasta:</sub><br>
-				<div class='icono'><i class='icon-calendario embebed'></i></div>
 				<input type='date' id='checkout' value='".$_POST['checkout']."' min='".$_POST['checkin']."' name='checkout' class='fechas vlz_input' placeholder='Check Out'>
+				-->
+				<div class='icono'><i class='icon-calendario embebed'></i></div>
+				<input type='text' id='checkout' name='checkout' placeholder='HASTA' value='".$_POST['checkout']."' class='date_to fechas vlz_input' readonly>
 
 			</div>
 		</div>
@@ -285,3 +290,83 @@
 
 	$FORMULARIO = ($FORMULARIO);
 ?>
+
+<style type="text/css">
+	input.fechas {
+		line-height: 1;
+		margin-bottom: 3px;
+		border: 1px solid #ccc;
+		padding-left: 30px;
+	}
+</style>
+<script type="text/javascript">
+	var fecha = new Date();
+	jQuery(document).ready(function(){
+		function initCheckin(date, actual){
+			if(actual){
+				jQuery('#checkout').datepick({
+					dateFormat: 'dd/mm/yyyy',
+					defaultDate: date,
+					selectDefaultDate: true,
+					minDate: date,
+					onSelect: function(xdate) {
+
+					},
+					yearRange: date.getFullYear()+':'+(parseInt(date.getFullYear())+1),
+					firstDay: 1,
+					onmonthsToShow: [1, 1]
+				});
+				// jQuery('#checkout').focus();
+			}else{
+				jQuery('#checkout').datepick({
+					dateFormat: 'dd/mm/yyyy',
+					minDate: date,
+					onSelect: function(xdate) {
+
+					},
+					yearRange: date.getFullYear()+':'+(parseInt(date.getFullYear())+1),
+					firstDay: 1,
+					onmonthsToShow: [1, 1]
+				});
+				// jQuery('#checkout').focus();
+			}
+		}
+
+		jQuery('#checkin').datepick({
+			dateFormat: 'dd/mm/yyyy',
+			minDate: fecha,
+			onSelect: function(date1) {
+				var ini = jQuery('#checkin').datepick( "getDate" );
+				var fin = jQuery('#checkout').datepick( "getDate" );
+				if( fin.length > 0 ){
+					var xini = ini[0].getTime();
+					var xfin = fin[0].getTime();
+					if( xini > xfin ){
+						jQuery('#checkout').datepick('destroy');
+						initCheckin(date1[0], true);
+					}else{
+						jQuery('#checkout').datepick('destroy');
+						initCheckin(date1[0], false);
+					}
+				}else{
+					jQuery('#checkout').datepick('destroy');
+					initCheckin(date1[0], true);
+				}
+			},
+			yearRange: fecha.getFullYear()+':'+(parseInt(fecha.getFullYear())+1),
+			firstDay: 1,
+			onmonthsToShow: [1, 1]
+		});
+
+		jQuery('#checkout').datepick({
+			dateFormat: 'dd/mm/yyyy',
+			minDate: fecha,
+			onSelect: function(xdate) {
+
+			},
+			yearRange: fecha.getFullYear()+':'+(parseInt(fecha.getFullYear())+1),
+			firstDay: 1,
+			onmonthsToShow: [1, 1]
+		});
+	});
+</script>
