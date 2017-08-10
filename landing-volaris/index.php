@@ -158,6 +158,14 @@
 			return true;
 		}
 
+		function SubscribePopUp_Close(element){
+			if(jQuery(element).length>0){
+				jQuery(element).fadeOut(500,function(){
+					jQuery(element).remove();
+				});
+			}
+		}
+
 	</script>
 	
     </head>
