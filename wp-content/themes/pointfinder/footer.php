@@ -57,10 +57,11 @@
     }
 
     var checkparam = true;
-    
+
     <?php
-        if(isset($_GET['utm'])){
-            echo ' checkparam = false;';
+        if(isset($_GET['utm_campaign'])){
+            if($_GET['utm_campaign']==''){ } 
+                echo ' checkparam = false;';
         }
     ?>
     jQuery(document).ready(function(e){
