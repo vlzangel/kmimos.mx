@@ -142,8 +142,8 @@
     </div>
     <div class="contain">
         <div class="action">
-            <i class="icon arrow fa fa-caret-right" data-direction="next"><a class="absolute"  href="<?php echo $pageNEXT;?>"></a></i>
-            <i class="icon arrow fa fa-caret-left" data-direction="prev"><a class="absolute"  href="<?php echo $pagePREV;?>"></a></i>
+            <i class="icon arrow fa fa-caret-right" data-direction="next"></i>
+            <i class="icon arrow fa fa-caret-left" data-direction="prev"></i>
         </div>
         <div class="posts">
             <div class="group">
