@@ -65,6 +65,47 @@
 		}
 	}
 
+	$housings = array(
+		'1' => 'Casa',
+		'2' => 'Departamento'
+	);
+
+	$acepto = ""; $t = count($aceptados);
+	if( $t > 0 && $t < 4 ){
+		$acepto .= implode(', ',$aceptados);
+	}else{
+		if( $t == 0 ){
+			$acepto = "Ninguno";
+		}else{
+			$acepto = "Todos";
+		}
+	}
+	$num_masc = "";
+	if($cuidador->num_mascotas+0 > 0){ 
+		if( count($mascotas_cuidador) > 0 ){
+			$tams = '<br>('.implode(', ',$mascotas_cuidador).')';
+		}else{
+			$tams = "";
+		} 
+		if( $cuidador->num_mascotas > 1 ){
+			$num_masc = $cuidador->num_mascotas.' Perro '.$tams;
+		}else{
+			$num_masc = $cuidador->num_mascotas.' Perros '.$tams;
+		}
+	}else{
+		$num_masc = 'No tiene mascotas';
+	}
+	$num_masc = strtoupper($num_masc);
+
+	$patio = ( $atributos['yard'] == 1 ) ? 'TIENE PATIO' : 'NO TIENE PATIO';
+	$areas = ( $atributos['green'] == 1 ) ? 'TIENE ÁREAS VERDES' : 'NO TIENE ÁREAS VERDES';
+
+	if( $cuidador->mascotas_permitidas > 1 ){
+		$cuidador->mascotas_permitidas .= ' PERROS';
+	}else{
+		$cuidador->mascotas_permitidas .= ' PERRO';
+	}
+
 	/* Galeria */
 	$id_cuidador = ($cuidador->id)-5000;
 	$path_galeria = "wp-content/uploads/cuidadores/galerias/".$id_cuidador."/";
@@ -107,245 +148,364 @@
   		} 
 	}
 
- 	$HTML .= "
- 	<div class='body'>
-	<div class='vlz_contenedor'>
+	$busqueda = getBusqueda();
 
-		<div class='vlz_contenedor_header'>
-
-			<div class='vlz_lados'>
-				<div class='vlz_img_portada' style='height: 250px;'>
-	                <div class='vlz_img_portada_fondo easyload' data-original='".$foto."' style='background-image: url(); filter:blur(2px);'></div>
-	                <div class='vlz_img_portada_normal easyload' data-original='".$foto."' style='background-image: url();'></div>
-	            </div>
-			</div>
-
-			<div class='vlz_lados'>
-				<h1 class='vlz_nombre'>".get_the_title()."</h1>
-				".kmimos_petsitter_rating($post_id);
-				if(is_user_logged_in()){
-					$HTML .= "<a class='theme_button button conocer-cuidador' href='".get_home_url()."/conocer-al-cuidador/?id=".$post_id."'>Conocer al Cuidador</a>";
-					include('partes/seleccion_boton_reserva.php');
-				}else{
-					$HTML .= "
-					<span class='theme_button button conocer-cuidador' onclick='show_login_modal(\"login\")' >
-						Conocer al Cuidador
-					</span>
-					<span class='button reservar' onclick='show_login_modal(\"login\")' >
-						Reservar
-					</span>";
-				} $HTML .= "
+ 	$HTML .= '
+ 		<div class="km-ficha-bg" style="background-image:url('.getTema().'/images/new/km-ficha/km-bg-ficha.jpg);">
+			<div class="overlay"></div>
+		</div>
+		'.$cuidador->num_mascotas.'
+		<div class="km-ficha-info-cuidador">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-3">
+						<div class="km-ficha-cuidador" style="background-image: url('.$foto.');"></div>
+					</div>
+					<div class="col-xs-12 col-sm-6">
+						<div class="km-tit-cuidador">'.strtoupper( get_the_title() ).'</div>
+						<div class="km-ficha-icon">
+							<div class="km-ranking">
+								'.kmimos_petsitter_rating($cuidador->id_post).'
+							</div>
+							<a class="km-link-comentarios" href="#km-comentario">VER COMENTARIOS</a>
+						</div>
+					</div>
+					<div class="km-costo hidden-xs">
+						<p>SERVICIOS DESDE</p>
+						<div class="km-tit-costo">MXN $'.($cuidador->hospedaje_desde*1.2).'</div>
+						<div class="km-ficha-fechas">
+							<input type="text" id="checkin" name="checkin" placeholder="DESDE" value="'.$busqueda["checkin"].'" class="km-input-custom km-input-date date_from" readonly>
+							<input type="text" id="checkout" name="checkout" placeholder="HASTA" value="'.$busqueda["checkout"].'" class="km-input-custom km-input-date date_to" readonly>
+						</div>
+						<a href="#" class="km-btn-secondary">RESERVAR</a>
+					</div>
+				</div>
 			</div>
 		</div>
 
-		<div class='vlz_separador'></div>
-		
-		<div class='vlz_seccion'>
-			<h3 class='vlz_titulo'>Estos son mis servicios</h3>";
-
-			$sql = "
-				SELECT 
-					producto.ID AS id, 
-					producto.post_title AS titulo, 
-					producto.post_name AS url, 
-					metas.meta_value AS precio 
-				FROM 
-					wp_posts AS producto
-				INNER JOIN wp_postmeta AS metas ON (metas.post_id = producto.ID)
-				WHERE
-					metas.meta_key = '_wc_booking_base_cost' AND 
-					producto.post_author = '{$cuidador->user_id}' AND 
-					producto.post_type = 'product' AND 
-					producto.post_status = 'publish'
-			";
-
-			$args = array(
-				'post_type' => 'product',
-		        'post_status' => 'publish',
-		        'author' => $cuidador->user_id
-		    );
-
-		    $products = $wpdb->get_results( $sql );
-		    $li = '';
-		    foreach ($products as $key => $producto) {
-		    	$tipo = explode("-", $producto->url);
-		    	$li .= "
-		    		<li>
-		    			<a href='".get_home_url()."/producto/{$producto->url}/'>
-		    				<img src='".get_home_url()."/wp-content/uploads/iconos/".$tipo[0].".png' />
-		    				<h3>{$producto->titulo}</h3>
-		    				<span>Desde: $".$producto->precio."</span>
-		    				<div>Reservar</div>
-		    			</a>
-		    		</li>
-		    	";
-		    }
-		    
-		    // echo "<pre>";
-		    // 	print_r( $products[0]->url );
-		    // echo "</pre>";
-
-		    $HTML .= '<ul class="productos">'.$li.'</ul>';
-
-		if( $descripcion != "" ){
-			$HTML .= '<div class="vlz_separador"></div>
-			<div class="vlz_seccion vlz_descripcion">
-				<h3 class="vlz_titulo">Descripción del Cuidador</h3>
-				<p> '.$descripcion.' </p>
-			</div>';
-		}
-
-		if( $galeria != "" ){
-			$HTML .= '<div class="vlz_separador"></div>
-			<div class="vlz_seccion vlz_descripcion">
-				<h3 class="vlz_titulo">Mi Galería</h3>
-				'.$galeria.'
-			</div>';
-		}
-
-		$housings = array('1'=>'Casa','2'=>'Departamento');
-		$patio = ( $atributos['yard'] == 1 ) ? 'Tiene patio' : 'No tiene patio';
-		$areas = ( $atributos['green'] == 1 ) ? 'Tiene áreas verdes' : 'No tiene áreas verdes';
-
-		$HTML .= '
-		<div class="vlz_separador"></div>
-
-		<div class="vlz_seccion">
-
-			<h3 class="vlz_titulo">Detalles del Cuidador</h3>
-
-			<div class="vlz_detalles">
-				<div class="vlz_item_detalles">
-					<p class="label text-gray">Tipo de propiedad</p>
-					<div class="icon">
-						<img alt="Detalles casa" height="32px" src="'.get_home_url().'/wp-content/plugins/kmimos/assets/images/casa.png">
+		<div class="km-ficha-info">
+			<div class="container">
+					<div class="col-xs-12 col-sm-3 hidden-xs">
+						<p class="km-tit-ficha">DATOS DEL CUIDADOR</p>
+						<div class="km-desc-ficha-text">
+							<img src="'.getTema().'/images/new/icon/icon-experiencia-morado.svg">
+							<div class="km-desc-ficha">
+								<p>EXPERIENCIA</p>
+								<p>'.$anios_exp.' AÑO(S)</p>
+							</div>
+						</div>
+						<div class="km-desc-ficha-text">
+							<img src="'.getTema().'/images/new/icon/icon-propiedad.svg">
+							<div class="km-desc-ficha">
+								<p>TIPO DE PROPIEDAD</p>
+								<p>'.$housings[ $atributos['propiedad'] ].'</p>
+							</div>
+						</div>
+						<div class="km-desc-ficha-text">
+							<img src="'.getTema().'/images/new/icon/icon-propiedad.svg">
+							<div class="km-desc-ficha">
+								<p>TAMAÑOS ACEPTADOS</p>
+								<p>'.$acepto.'</p>
+							</div>
+						</div>
+						<div class="km-desc-ficha-text">
+							<img src="'.getTema().'/images/new/icon/icon-edades.svg">
+							<div class="km-desc-ficha">
+								<p>EDADES ACEPTADAS</p>
+								<p>'.implode(', ',$edades_aceptadas).'</p>
+							</div>
+						</div>
+						<p class="km-tit-ficha">DATOS DE PROPIEDAD</p>
+						<div class="km-desc-ficha-text">
+							<img src="'.getTema().'/images/new/icon/icon-mascotas.svg">
+							<div class="km-desc-ficha">
+								<p>MASCOTAS EN CASA</p>
+								<p>'.$num_masc.'</p>
+							</div>
+						</div>
+						<div class="km-desc-ficha-text">
+							<img src="'.getTema().'/images/new/icon/icon-propiedad.svg">
+							<div class="km-desc-ficha">
+								<p>DETALLES DE PROPIEDAD</p>
+								<p>'.$patio.'</p>
+							</div>
+						</div>
+						<div class="km-desc-ficha-text">
+							<img src="'.getTema().'/images/new/icon/icon-propiedad.svg">
+							<div class="km-desc-ficha">
+								<p>DETALLES DE PROPIEDAD</p>
+								<p>'.$areas.'</p>
+							</div>
+						</div>
+						<div class="km-desc-ficha-text">
+							<img src="'.getTema().'/images/new/icon/icon-mascotas.svg">
+							<div class="km-desc-ficha">
+								<p>CANTIDAD MÁX. ACEPTADA</p>
+								<p>'.$cuidador->mascotas_permitidas.'</p>
+							</div>
+						</div>
 					</div>
-					<p class="label-small">
-						'.$housings[ $atributos['propiedad'] ].'
-					</p>
-				</div>
+					<div class="col-xs-12 col-sm-6">
+						<div class="km-ficha-datos hidden-sm hidden-md hidden-lg">
+							<div class="tabbable">
+								<ul class="nav nav-tabs">
+									<li class="active"><a href="#tab1" data-toggle="tab">DATOS DEL <br>CUIDADOR</a></li>
+									<li><a href="#tab2" data-toggle="tab">DATOS DE <br>PROPIEDAD</a></li>
+								</ul>
+								<div class="tab-content">
+									<div class="tab-pane active" id="tab1">
+										
+										<div class="km-desc-ficha-text">
+											<img src="'.getTema().'/images/new/icon/icon-experiencia-morado.svg">
+											<div class="km-desc-ficha">
+												<p>EXPERIENCIA</p>
+												<p>'.$anios_exp.' AÑO(S)</p>
+											</div>
+										</div>
+										<div class="km-desc-ficha-text">
+											<img src="'.getTema().'/images/new/icon/icon-propiedad.svg">
+											<div class="km-desc-ficha">
+												<p>TIPO DE PROPIEDAD</p>
+												<p>'.$housings[ $atributos['propiedad'] ].'</p>
+											</div>
+										</div>
+										<div class="km-desc-ficha-text">
+											<img src="'.getTema().'/images/new/icon/icon-propiedad.svg">
+											<div class="km-desc-ficha">
+												<p>TAMAÑOS ACEPTADOS</p>
+												<p>'.$acepto.'</p>
+											</div>
+										</div>
+										<div class="km-desc-ficha-text">
+											<img src="'.getTema().'/images/new/icon/icon-edades.svg">
+											<div class="km-desc-ficha">
+												<p>EDADES ACEPTADAS</p>
+												<p>'.implode(', ',$edades_aceptadas).'</p>
+											</div>
+										</div>
 
-				<div class="vlz_item_detalles">
-					<p class="label text-gray">Tamaños aceptados</p>
-					<div class="icon"><img alt="Detalles perro grande" height="32px" src="'.get_home_url().'/wp-content/plugins/kmimos/assets/images/detalles-perro-grande.png"></div>
-					<p class="label-small">';
-						if( count($aceptados) > 0 ){
-							$HTML .= '<br>('.implode(', ',$aceptados).')';
-						}else{
-							$HTML .= "Todos";
-						}
-						$HTML .= ''.$tams_acep.'
-					</p>
-				</div>
+									</div>
+									<div class="tab-pane" id="tab2">
 
-				<div class="vlz_separador_item"></div>
+										<div class="km-desc-ficha-text">
+											<img src="'.getTema().'/images/new/icon/icon-mascotas.svg">
+											<div class="km-desc-ficha">
+												<p>MASCOTAS EN CASA</p>
+												<p>'.$num_masc.'</p>
+											</div>
+										</div>
+										<div class="km-desc-ficha-text">
+											<img src="'.getTema().'/images/new/icon/icon-propiedad.svg">
+											<div class="km-desc-ficha">
+												<p>DETALLES DE PROPIEDAD</p>
+												<p>'.$patio.'</p>
+											</div>
+										</div>
+										<div class="km-desc-ficha-text">
+											<img src="'.getTema().'/images/new/icon/icon-propiedad.svg">
+											<div class="km-desc-ficha">
+												<p>DETALLES DE PROPIEDAD</p>
+												<p>'.$areas.'</p>
+											</div>
+										</div>
+										<div class="km-desc-ficha-text">
+											<img src="'.getTema().'/images/new/icon/icon-mascotas.svg">
+											<div class="km-desc-ficha">
+												<p>CANTIDAD MÁX. ACEPTADA</p>
+												<p>'.$cuidador->mascotas_permitidas.'</p>
+											</div>
+										</div>
 
-				<div class="vlz_item_detalles">
-					<p class="label text-gray">Edades aceptadas</p>
-					<div class="icon">
-						<img alt="Detalles edad perro cachorro" height="32px" src="'.get_home_url().'/wp-content/plugins/kmimos/assets/images/detalles-edad-perro-cachorro.png">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="km-ficha-datos hidden-sm hidden-md hidden-lg">
+							<a href="#" class="km-btn-primary show-map-mobile">VER UBICACIÓN EN MAPA</a>
+						</div>
+
+						<p style="text-align: justify;">'.$descripcion.'</p>
+						
+						<p class="km-tit-ficha">MIRA MIS FOTOS Y CONÓCEME</p>
+						<div class="km-galeria-cuidador">
+							<div class="km-galeria-cuidador-slider">
+								<div class="slide"><img src="'.getTema().'/images/new/km-ficha/km-galeria-cuidadores/km-galeria-cuidador1/km-foto1.jpg"></div>
+								<div class="slide"><img src="'.getTema().'/images/new/km-ficha/km-galeria-cuidadores/km-galeria-cuidador1/km-foto2.jpg"></div>
+								<div class="slide"><img src="'.getTema().'/images/new/km-ficha/km-galeria-cuidadores/km-galeria-cuidador1/km-foto3.jpg"></div>
+								<div class="slide"><img src="'.getTema().'/images/new/km-ficha/km-galeria-cuidadores/km-galeria-cuidador1/km-foto1.jpg"></div>
+								<div class="slide"><img src="'.getTema().'/images/new/km-ficha/km-galeria-cuidadores/km-galeria-cuidador1/km-foto2.jpg"></div>
+								<div class="slide"><img src="'.getTema().'/images/new/km-ficha/km-galeria-cuidadores/km-galeria-cuidador1/km-foto3.jpg"></div>
+							</div>
+						</div>
+						<p class="km-tit-ficha">SERVICIOS QUE OFREZCO</p>
+						<div class="row">
+							<div class="col-xs-12 col-md-6">
+								<div class="km-ficha-servicio">
+									<div class="servicio-tit">
+										<img src="'.getTema().'/images/new/icon/km-servicios/icon-hospedaje.svg">
+										<div>HOSPEDAJE<br>DÍA Y NOCHE</div>
+									</div>
+									<p>SELECCIÓN SEGÚN TAMAÑO</p>
+									<div class="km-servicio-opcion km-servicio-opcionactivo">
+										<div class="km-servicio-desc">
+											<img src="'.getTema().'/images/new/icon/icon-pequenio.svg">
+											<div class="km-opcion-text"><b>PEQUEÑO</b><br>0 a 25 cm</div>
+										</div>
+										<div class="km-servicio-costo"><b>$40.00</b></div>
+									</div>
+									<div class="km-servicio-opcion km-servicio-opcionactivo">
+										<div class="km-servicio-desc">
+											<img src="'.getTema().'/images/new/icon/icon-mediano.svg">
+											<div class="km-opcion-text"><b>MEDIANO</b><br>25 a 28 cm</div>
+										</div>
+										<div class="km-servicio-costo"><b>$40.00</b></div>
+									</div>
+									<div class="km-servicio-opcion km-servicio-opcionactivo">
+										<div class="km-servicio-desc">
+											<img src="'.getTema().'/images/new/icon/icon-grande.svg">
+											<div class="km-opcion-text"><b>GRANDE</b><br>58 a 73 cm</div>
+										</div>
+										<div class="km-servicio-costo"><b>$40.00</b></div>
+									</div>
+									<div class="km-servicio-opcion km-servicio-opcionactivo">
+										<div class="km-servicio-desc">
+											<img src="'.getTema().'/images/new/icon/icon-gigante.svg">
+											<div class="km-opcion-text"><b>GIGANTE</b><br>73 a 200 cm</div>
+										</div>
+										<div class="km-servicio-costo"><b>$40.00</b></div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-md-6">
+								<div class="km-ficha-servicio">
+									<div class="servicio-tit">
+										<img src="'.getTema().'/images/new/icon/km-servicios/icon-hospedaje.svg">
+										<div>GUARDERÍA<br>DÍA</div>
+									</div>
+									<p>SELECCIÓN SEGÚN TAMAÑO</p>
+									<div class="km-servicio-opcion km-servicio-opcionactivo">
+										<div class="km-servicio-desc">
+											<img src="'.getTema().'/images/new/icon/icon-pequenio.svg">
+											<div class="km-opcion-text"><b>PEQUEÑO</b><br>0 a 25 cm</div>
+										</div>
+										<div class="km-servicio-costo"><b>$40.00</b></div>
+									</div>
+									<div class="km-servicio-opcion km-servicio-opcionactivo">
+										<div class="km-servicio-desc">
+											<img src="'.getTema().'/images/new/icon/icon-mediano.svg">
+											<div class="km-opcion-text"><b>MEDIANO</b><br>25 a 28 cm</div>
+										</div>
+										<div class="km-servicio-costo"><b>$40.00</b></div>
+									</div>
+									<div class="km-servicio-opcion km-servicio-opcionactivo">
+										<div class="km-servicio-desc">
+											<img src="'.getTema().'/images/new/icon/icon-grande.svg">
+											<div class="km-opcion-text"><b>GRANDE</b><br>58 a 73 cm</div>
+										</div>
+										<div class="km-servicio-costo"><b>$40.00</b></div>
+									</div>
+									<div class="km-servicio-opcion km-servicio-opcionactivo">
+										<div class="km-servicio-desc">
+											<img src="'.getTema().'/images/new/icon/icon-gigante.svg">
+											<div class="km-opcion-text"><b>GIGANTE</b><br>73 a 200 cm</div>
+										</div>
+										<div class="km-servicio-costo"><b>$40.00</b></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-12 col-md-6">
+								<div class="km-ficha-servicio">
+									<div class="servicio-tit">
+										<img src="'.getTema().'/images/new/icon/km-servicios/icon-hospedaje.svg">
+										<div>PASEOS</div>
+									</div>
+									<p>SELECCIÓN SEGÚN TAMAÑO</p>
+									<div class="km-servicio-opcion km-servicio-opcionactivo">
+										<div class="km-servicio-desc">
+											<img src="'.getTema().'/images/new/icon/icon-pequenio.svg">
+											<div class="km-opcion-text"><b>PEQUEÑO</b><br>0 a 25 cm</div>
+										</div>
+										<div class="km-servicio-costo"><b>$40.00</b></div>
+									</div>
+									<div class="km-servicio-opcion km-servicio-opcionactivo">
+										<div class="km-servicio-desc">
+											<img src="'.getTema().'/images/new/icon/icon-mediano.svg">
+											<div class="km-opcion-text"><b>MEDIANO</b><br>25 a 28 cm</div>
+										</div>
+										<div class="km-servicio-costo"><b>$40.00</b></div>
+									</div>
+									<div class="km-servicio-opcion km-servicio-opcionactivo">
+										<div class="km-servicio-desc">
+											<img src="'.getTema().'/images/new/icon/icon-grande.svg">
+											<div class="km-opcion-text"><b>GRANDE</b><br>58 a 73 cm</div>
+										</div>
+										<div class="km-servicio-costo"><b>$40.00</b></div>
+									</div>
+									<div class="km-servicio-opcion km-servicio-opcionactivo">
+										<div class="km-servicio-desc">
+											<img src="'.getTema().'/images/new/icon/icon-gigante.svg">
+											<div class="km-opcion-text"><b>GIGANTE</b><br>73 a 200 cm</div>
+										</div>
+										<div class="km-servicio-costo"><b>$40.00</b></div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-md-6">
+								<div class="km-ficha-servicio">
+									<div class="servicio-tit">
+										<img src="'.getTema().'/images/new/icon/km-servicios/icon-hospedaje.svg">
+										<div>ENTRENAMIENTO</div>
+									</div>
+									<p>SELECCIÓN SEGÚN TAMAÑO</p>
+									<div class="km-servicio-opcion km-servicio-opcionactivo">
+										<div class="km-servicio-desc">
+											<img src="'.getTema().'/images/new/icon/icon-pequenio.svg">
+											<div class="km-opcion-text"><b>PEQUEÑO</b><br>0 a 25 cm</div>
+										</div>
+										<div class="km-servicio-costo"><b>$40.00</b></div>
+									</div>
+									<div class="km-servicio-opcion km-servicio-opcionactivo">
+										<div class="km-servicio-desc">
+											<img src="'.getTema().'/images/new/icon/icon-mediano.svg">
+											<div class="km-opcion-text"><b>MEDIANO</b><br>25 a 28 cm</div>
+										</div>
+										<div class="km-servicio-costo"><b>$40.00</b></div>
+									</div>
+									<div class="km-servicio-opcion km-servicio-opcionactivo">
+										<div class="km-servicio-desc">
+											<img src="'.getTema().'/images/new/icon/icon-grande.svg">
+											<div class="km-opcion-text"><b>GRANDE</b><br>58 a 73 cm</div>
+										</div>
+										<div class="km-servicio-costo"><b>$40.00</b></div>
+									</div>
+									<div class="km-servicio-opcion km-servicio-opcionactivo">
+										<div class="km-servicio-desc">
+											<img src="'.getTema().'/images/new/icon/icon-gigante.svg">
+											<div class="km-opcion-text"><b>GIGANTE</b><br>73 a 200 cm</div>
+										</div>
+										<div class="km-servicio-costo"><b>$40.00</b></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<a href="#popup-servicios" class="km-btn-primary" role="button" data-toggle="modal">RECOMPENSA A TU MASCOTA</a>
 					</div>
-					<p class="label-small">
-						'.implode(', ',$edades_aceptadas).'
-					</p>
-				</div>
+					<div class="hidden-xs col-sm-3 km-map-content">
+						<a href="#" class="km-map-close">Cerrar</a>
+						<p class="km-tit-ficha">UBICACIÓN</p>
 
-				<div class="vlz_item_detalles">
-					<p class="label text-gray">Años de experiencia</p>
-					<div class="icon">
-						<img alt="Detalles experiencia" height="32px" src="'.get_home_url().'/wp-content/plugins/kmimos/assets/images/detalles-experiencia.png">
+						<div id="mapa" class="km-ficha-mapa"></div>
+
+						<div class="banner-servicio" style="margin-top: 30px;">
+							<a href="#popup-servicios" role="button" data-toggle="modal"><img src="'.getTema().'/images/new/km-ficha/banner-serviciosadicionales.jpg"></a>
+						</div>
 					</div>
-					<p class="label-small"> '.$anios_exp.' </p>
 				</div>
 			</div>
-
 		</div>
-
-		<div class="vlz_separador"></div>
-
-		<div class="vlz_seccion">
-
-			<h3 class="vlz_titulo">Otros Detalles</h3>
-
-			<div class="vlz_detalles">
-				<div class="vlz_item_detalles">
-					<p class="label text-gray">Mascotas en casa</p>
-					<div class="icon">
-						<img alt="Otros detalles otros perros" height="32px" src="'.get_home_url().'/wp-content/plugins/kmimos/assets/images/otros-detalles-otros-perros.png">
-					</div>';
-					if($cuidador->num_mascotas+0 > 0){ 
-						if( count($mascotas_cuidador) > 0 ){
-							$tams = '<br>('.implode(', ',$mascotas_cuidador).')';
-						}else{
-							$tams = "";
-						} 
-						$HTML .= '<p class="label-small"> '.$cuidador->num_mascotas.' Perro(s) en casa '.$tams.' </p>';
-					}else{
-						$HTML .= '<p class="label-small"> No tiene mascotas propias </p>';
-					} $HTML .= '
-				</div>
-
-				<div class="vlz_item_detalles">
-					<p class="label text-gray">Mi propiedad</p>
-					<div class="icon"><img alt="Otros detalles patio" height="32px" src="'.get_home_url().'/wp-content/plugins/kmimos/assets/images/otros-detalles-patio.png"></div>
-					<p class="label-small">
-						'.$patio.'
-					</p>
-				</div>
-
-				<div class="vlz_separador_item"></div>
-
-				<div class="vlz_item_detalles">
-					<p class="label text-gray">Mi propiedad</p>
-					<div class="icon"><img alt="Otros detalles areas verdes" height="32px" src="'.get_home_url().'/wp-content/plugins/kmimos/assets/images/otros-detalles-areas-verdes.png"></div>
-					<p class="label-small">
-						 '.$areas.'
-					</p>
-				</div>
-
-				<div class="vlz_item_detalles">
-					<p class="label text-gray"># Perros aceptados</p>
-					<div class="icon"><img alt="Otros detalles cantidad perros" height="32px" src="'.get_home_url().'/wp-content/plugins/kmimos/assets/images/otros-detalles-cantidad-perros.png"></div>
-					<p class="label-small">
-						'.$cuidador->mascotas_permitidas.' 
-					</p>
-				</div>
-
-			</div>
-
-		</div>
-
-		<div class="vlz_separador"></div>
-
-		<div class="vlz_seccion">
-			<h3 class="vlz_titulo">Mi Ubicaci&oacute;n</h3>
-			<iframe id="petsitter-map" src="'.get_home_url().'/wp-content/plugins/kmimos/mapa.php?lat='.$latitud.'&lng='.$longitud.'" width="100%" height="300" style="border:none"></iframe>
-		</div>';
-
-		if( $atributos['video_youtube'][0] != ''){
-
-			$video = $atributos['video_youtube'];
-			preg_match_all('#v=(.*?)#', $video, $encontrados);
-
-			$HTML .= '
-				<div class="vlz_separador"></div>
-				<div class="vlz_seccion">
-					<h3 class="vlz_titulo">Este es el video que el cuidador subió a Youtube.</h3>
-					<iframe id="video_youtube" width="100%" src="https://www.youtube.com/embed/'.$video.'" frameborder="0" allowfullscreen></iframe>
-				</div>
-			';
-		}
-			/*
-			$comments = count( get_comments('post_id='.$post->ID) );
-			//if( $comments > 0 ){ ?>
-				<div class="vlz_separador"></div>
-				<div class="vlz_seccion">
-					<h3 class="vlz_titulo">Valoraciones</h3>
-					<?php  comments_template(); ?>
-				</div> <?php
-			//}
-			*/
-	$HTML .= '</div></div></div>';
+ 	';
 
 	echo comprimir_styles($HTML);
 

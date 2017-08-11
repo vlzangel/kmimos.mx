@@ -19,4 +19,13 @@
 		);
 		return wp_nav_menu( $defaults );
 	}
+
+	function getBusqueda(){
+		if( !isset($_SESSION) ){ session_start(); }
+		$busqueda = array();
+		if( isset($_SESSION["busqueda"]) ){
+			$busqueda = unserialize($_SESSION["busqueda"]);
+		}
+		return $busqueda;
+	}
 ?>

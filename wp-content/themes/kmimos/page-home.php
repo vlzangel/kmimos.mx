@@ -29,6 +29,21 @@
 	    $HTML = '
 	    <script type="text/javascript"> var URL_MUNICIPIOS ="'.getTema().'/procesos/generales/municipios.php"; </script>
 
+	    <div class="km-video">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="km-video-bg">
+						<div class="overlay"></div>
+						<video loop muted autoplay poster="'.getTema().'/images/new/km-hero-desktop.jpg" class="km-video-bgscreen">
+							<source src="'.getTema().'/images/new/videos/km-home/km-video.webm" type="video/webm">
+							<source src="'.getTema().'/images/new/videos/km-home/km-video.mp4" type="video/mp4">
+							<source src="'.getTema().'/images/new/videos/km-home/km-video.ogv" type="video/ogg">
+						</video>
+					</div>
+				</div>
+			</div>
+		</div>
+			
 	    <!-- SECCIÓN 1 - PARTE FORMULARIO CUIDADOR -->
 		<div class="km-credibilidad">
 

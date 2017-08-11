@@ -94,7 +94,6 @@ var hasGPS=false;
             close_video();
         });
 
-        $("#select_ubicacion").select2();
     });
 })(jQuery);
 

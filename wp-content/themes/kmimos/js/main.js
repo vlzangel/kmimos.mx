@@ -63,8 +63,11 @@ $(window).resize(function() {
 });
 
 $(window).scroll(function() {
-	if( pines.length > 1 ){
-		mapStatic( this );
+
+	if( pines != undefined ){
+		if( pines.length > 1 ){
+			mapStatic( this );
+		}
 	}
 });
 

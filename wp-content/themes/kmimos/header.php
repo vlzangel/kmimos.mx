@@ -8,11 +8,7 @@
 		$descripcion = get_post_meta($post->ID, 'kmimos_descripcion', true);
 		if( $descripcion != ""){
 			$HTML .= "<meta name='description' content='{$descripcion}'>";
-		}else{
-			// $HTML .= '<meta name="description" content="'.bloginfo('description').'">';
 		}
-	}else{
-		// $HTML .= '<meta name="description" content="'.bloginfo('description').'">';
 	}
 
 	$HTML .= '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">';
@@ -27,23 +23,17 @@
 
 	wp_enqueue_style( 'jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.css", array(), "1.0.0" );
 
-	/*
-		<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-	*/
-	wp_enqueue_style( 'select2.min', getTema()."/css/select2.min.css", array(), "1.0.0" );
-
-
 	wp_head(); 
-
 
 	$HTML .= '
 		<script type="text/javascript"> 
 			var HOME = "'.getTema().'/"; 
 			var RAIZ = "'.get_home_url().'/"; 
+			var pines = []; 
 		</script>
 
 	</head>
+
 	<body class="'.join( ' ', get_body_class( $class ) ).'" >';
 
 	include_once("funciones.php");
@@ -64,60 +54,12 @@
 		$menus_movil = $MENU["head_movil"].$MENU["body"].$MENU["footer"];
 	}
 
-	$busqueda = array();
-	if( isset($_SESSION["busqueda"]) ){
-		$busqueda = unserialize($_SESSION["busqueda"]);
-	}
-	
-	if( is_front_page() ){
-		$HTML .= '
-			<nav class="navbar navbar-fixed-top bg-transparent">
-				<div class="container">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-							<img src="'.getTema().'/images/new/km-navbar-mobile.svg" width="30">
-						</button>
-						<a class="navbar-brand" href="'.get_home_url().'"><img src="'.getTema().'/images/new/km-logos/km-logo.png" height="60"></a>
-					</div>
-					<ul class="hidden-xs nav-login">
-						'.$menus_normal.'
-					</ul>
-					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-						<ul class="nav navbar-nav navbar-right">
-							<li><a href="'.get_home_url().'/busqueda/" class="km-nav-link">BUSCAR CUIDADOR</a></li>
-							<li><a href="km-cuidador.html" class="km-btn-primary hidden-xs">QUIERO SER CUIDADOR</a></li>
-
-							'.$menus_movil.'
-
-							<li><a href="'.get_home_url().'/busqueda/" class="km-nav-link hidden-sm hidden-md hidden-lg">BUSCAR CUIDADOR</a></li>
-							<li><a href="km-cuidador.html" class="km-btn-primary hidden-sm hidden-md hidden-lg">QUIERO SER CUIDADOR</a></li>
-						</ul>
-					</div>
-				</div>
-			</nav>
-
-			<div class="km-video">
-				<div class="container-fluid">
-					<div class="row">
-						<div class="km-video-bg">
-							<div class="overlay"></div>
-							<video loop muted autoplay poster="'.getTema().'/images/new/km-hero-desktop.jpg" class="km-video-bgscreen">
-								<source src="'.getTema().'/images/new/videos/km-home/km-video.webm" type="video/webm">
-								<source src="'.getTema().'/images/new/videos/km-home/km-video.mp4" type="video/mp4">
-								<source src="'.getTema().'/images/new/videos/km-home/km-video.ogv" type="video/ogg">
-							</video>
-						</div>
-					</div>
-				</div>
-			</div>
-		';
-	}else{
-		$HTML .= '
-			<nav class="navbar navbar-fixed-top bg-transparent">
+	$HTML .= '
+		<nav class="navbar navbar-fixed-top bg-transparent">
 			<div class="container">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-					<img src="'.getTema().'/images/new/km-navbar-mobile.svg" width="30">
+						<img src="'.getTema().'/images/new/km-navbar-mobile.svg" width="30">
 					</button>
 					<a class="navbar-brand" href="'.get_home_url().'"><img src="'.getTema().'/images/new/km-logos/km-logo.png" height="60"></a>
 				</div>
@@ -128,84 +70,16 @@
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="'.get_home_url().'/busqueda/" class="km-nav-link">BUSCAR CUIDADOR</a></li>
 						<li><a href="km-cuidador.html" class="km-btn-primary hidden-xs">QUIERO SER CUIDADOR</a></li>
-						
+
 						'.$menus_movil.'
 
+						<li><a href="'.get_home_url().'/busqueda/" class="km-nav-link hidden-sm hidden-md hidden-lg">BUSCAR CUIDADOR</a></li>
 						<li><a href="km-cuidador.html" class="km-btn-primary hidden-sm hidden-md hidden-lg">QUIERO SER CUIDADOR</a></li>
 					</ul>
 				</div>
 			</div>
 		</nav>
-		<!-- FIN SECCIÓN MENU -->
-
-		<!-- HEADER SEARCH -->
-		<div class="header-search" style="background-image:url('.getTema().'/images/new/km-fondo-buscador.gif);">
-			<div class="overlay"></div>
-		</div>
-		<!-- END HEADER SEARCH -->
-
-		<div class="container contentenedor-buscador-todos">
-			<div class="km-contentido-formulario-buscador">
-				<form class="km-formulario-buscador" action="'.getTema().'/procesos/busqueda/buscar.php" method="post">
-					<div class="km-bloque-cajas">
-						<div class="km-div-ubicacion">
-							<div class="km-select-custom km-select-ubicacion" style="border-right: 0px; height: 47px;">
-								<img src="'.getTema().'/images/new/icon/icon-gps.svg" class="icon_left" />
-								<input type="text" id="ubicacion_txt" class="km-fechas" name="ubicacion_txt" placeholder="UBICACI&Oacute;N, ESTADO, MUNICIPIO" value="'.$busqueda["ubicacion_txt"].'" autocomplete="off" readonly />
-								<input type="hidden" id="ubicacion" name="ubicacion" value="'.$busqueda["ubicacion"].'" />
-								<div id="ubicacion_list"></div>
-							</div>
-						</div>
-						<div class="km-div-fechas">
-							<input type="text" id="checkin" name="checkin" placeholder="DESDE" value="'.$busqueda["checkin"].'" class="km-input-custom km-input-date date_from" readonly>
-							<input type="text" id="checkout" name="checkout" placeholder="HASTA" value="'.$busqueda["checkout"].'" class="km-input-custom km-input-date date_to" readonly>
-						</div>
-						<div class="km-div-enviar">
-							<button type="submit" class="km-submit-custom" name="button">
-								BUSCAR
-							</button>
-						</div>
-					</div>
-
-					<div class="km-div-filtro">
-						<div class="km-titulo-filtro">
-							FILTRAR BÚSQUEDA
-						</div>
-						<div class="km-cajas-filtro">
-							<div class="km-caja-filtro">
-								<select class="km-select-custom" name="">
-									<option>TIPO DE SERVICIO</option>
-									<option>TIPO A</option>
-									<option>TIPO B</option>
-								</select>
-							</div>
-
-							<div class="km-caja-filtro">
-								<select class="km-select-custom" name="">
-									<option>TAMAÑO DE MASCOTA</option>
-									<option>TAMAÑO A</option>
-									<option>TAMAÑO B</option>
-								</select>
-							</div>
-
-							<div class="km-caja-filtro">
-								<select class="km-select-custom" name="">
-									<option>SERVICIOS ADICIONALES</option>
-									<option>SERVICIO A</option>
-									<option>SERVICIO B</option>
-								</select>
-							</div>
-
-							<div class="km-caja-filtro">
-								<input type="text" name="nombre" value="'.$busqueda["nombre"].'" placeholder="BUSCAR POR NOMBRE" class="km-input-custom">
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
-		';
-	}
-	
+	';
 
 	if( !is_user_logged_in() ){
 		$HTML .= "

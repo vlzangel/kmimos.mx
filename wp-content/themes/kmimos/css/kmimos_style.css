@@ -691,7 +691,7 @@ section {
 	box-shadow: none;
 	border: none;
 	margin: 0;
-	height: 220px !important;
+	height: 200px !important;
 }
 .km-autor {
 	font-size: 13px;
@@ -1644,7 +1644,11 @@ div#ubicacion_list div:hover {
     background-size: 30px 30px;
 }
 .km-ficha-info-cuidador .km-ficha-cuidador {
-	text-align: center;
+    text-align: center;
+    background-size: contain;
+    height: 200px;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 .km-ficha-info-cuidador .km-ficha-cuidador img {
 	max-width: 200px;
@@ -1676,16 +1680,16 @@ div#ubicacion_list div:hover {
 	margin-bottom: 10px;
 }
 .km-ficha-fechas input {
-	width: 48%;
-	padding: 14px 0px 14px 42px;
-	border: 1px solid #e5e5e5;
-	border-radius: 8px;
-	margin: 0;
-	display: inline-block;
-	background: white;
-	background-image: url(../images/new/icon/icon-calendario.svg);
-	background-repeat: no-repeat;
-	background-position: 20px center!important;
+    width: 48%;
+    padding: 14px 0px 14px 40px;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    margin: 0;
+    display: inline-block;
+    background: white;
+    background-image: url(../images/new/icon/icon-calendario.svg);
+    background-repeat: no-repeat;
+    background-position: 15px center!important;
 }
 .km-ficha-fechas input::-webkit-input-placeholder {
 	color: #000!important;
@@ -1865,6 +1869,7 @@ a.km-btn-comentario {
 .km-desc-ficha p:last-child {
 	font-size: 15px;
 	margin: 0;
+	text-transform: uppercase;
 }
 .km-costo {
 	background-color: white;
