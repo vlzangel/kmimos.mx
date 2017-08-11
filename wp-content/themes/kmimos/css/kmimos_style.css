@@ -1003,6 +1003,7 @@ div#ubicacion_list div:hover {
 	width: 45px;
 	height: 45px;
 	border-radius: 50%;
+	background-size: cover;
 }
 
 .km-search-slider .item-slide .slide-content .slide-name{
@@ -1536,40 +1537,66 @@ div#ubicacion_list div:hover {
 	line-height: 32px;
 }
 
-
-.km-resultados-grid::after{
-	content: "";
-	display: block;
-	clear: both;
+.km-resultados-grid::after {
+    content:"";
+    display:block;
+    clear:both
 }
-
-.km-resultados-grid .km-item-resultado{
-	float: left;
-	width: 31.333333%;
-	margin-bottom: 9px;
-
-	-webkit-box-shadow: 0 4px 4px 0 rgba(0,0,0,0.25);
-	-moz-box-shadow: 0 4px 4px 0 rgba(0,0,0,0.25);
-	box-shadow: 0 4px 4px 0 rgba(0,0,0,0.25);
+.km-resultados-grid .km-item-resultado {
+    float:left;
+    width:31.333333%;
+    margin-bottom:9px;
+    -webkit-box-shadow:0 4px 4px 0 rgba(0, 0, 0, .1);
+    -moz-box-shadow:0 4px 4px 0 rgba(0, 0, 0, .1);
+    box-shadow:0 4px 4px 0 rgba(0, 0, 0, .1)
 }
-
-.km-resultados-grid .km-item-resultado{
-	margin-right: 3%;
+.km-resultados-grid .km-item-resultado {
+    margin-right:3%
 }
-
-.km-resultados-grid .km-item-resultado:nth-child(3n){
-	margin-right: 0%;
+.km-resultados-grid .km-item-resultado:nth-child(3n) {
+    margin-right:0
 }
-
-.km-resultados-grid .km-item-resultado .km-descripcion{
-	padding: 10px 16px;
-	min-height: 125px;
+.km-resultados-grid .km-item-resultado .km-descripcion {
+	position: relative;
+    padding:10px 16px;
+    min-height:175px;
 }
-
-.km-resultados-grid .km-item-resultado .km-descripcion .km-sellos{
-	padding-top: 15px;
+.km-resultados-grid .km-item-resultado .km-descripcion .km-sellos {
+    padding-top:15px
 }
+.km-resultados-grid .km-item-resultado .km-descripcion .km-buttons::after {
+    content:"";
+    clear:both;
+    display:table
+}
+.km-resultados-grid .km-item-resultado .km-descripcion .km-buttons a {
+    float:left;
+    width:49%;
+    font-size:10px;
+    text-align:center;
+    display:block;
+    border:1px solid #7dd1c4;
+    line-height:31px;
+    border-radius:5px;
+    color:#7dd1c4
+}
+.km-resultados-grid .km-item-resultado .km-descripcion .km-buttons {
+    padding-top:15px;
 
+    position: absolute;
+    left: 0px;
+    bottom: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+}
+.km-resultados-grid .km-item-resultado .km-descripcion .km-buttons a:last-child {
+    float:right
+}
+.km-resultados-grid .km-item-resultado .km-descripcion .km-buttons a.active, .km-resultados-grid .km-item-resultado .km-descripcion .km-buttons a:hover {
+    background:#7dd1c4;
+    color:#fff
+}
 
 
 
@@ -2339,45 +2366,30 @@ footer input:focus{
 	}
 }
 
-@media all and (max-width: 629px) {
-	.km-resultados-grid .km-item-resultado{
-		width: 48%;
-	}
-
-	.km-resultados-grid .km-item-resultado:nth-child(2n){
-		margin-right: 0;
-	}
-
-	.km-resultados-grid .km-item-resultado:nth-child(3n){
-		margin-right: 3%;
-	}
+@media all and (max-width:629px) {
+    .km-resultados-grid .km-item-resultado {
+        width:48%
+    }
+    .km-resultados-grid .km-item-resultado:nth-child(2n) {
+        margin-right:0
+    }
+    .km-resultados-grid .km-item-resultado:nth-child(3n) {
+        margin-right:3%
+    }
 }
-
-@media all and (max-width: 427px) {
-	.km-resultados-grid .km-item-resultado{
-		width: calc( 100% - 40px );
-    	margin: 20px;
-	}
-
-	.km-img {
-	    background-position: center center;
-	    background-size: cover;
-	    background-repeat: no-repeat;
-	    background-color: #292929;
-	    height: 200px;
-	}
-
-	.km-resultados-grid .km-item-resultado{
-		margin-right: 0;
-	}
-
-	.km-resultados-grid .km-item-resultado:nth-child(2n){
-		margin-right: 0;
-	}
-
-	.km-resultados-grid .km-item-resultado:nth-child(3n){
-		margin-right: 0%;
-	}
+@media all and (max-width:427px) {
+    .km-resultados-grid .km-item-resultado {
+        width:100%
+    }
+    .km-resultados-grid .km-item-resultado {
+        margin-right:0
+    }
+    .km-resultados-grid .km-item-resultado:nth-child(2n) {
+        margin-right:0
+    }
+    .km-resultados-grid .km-item-resultado:nth-child(3n) {
+        margin-right:0
+    }
 }
 
 @media all and (max-width: 629px) {

@@ -1,14 +1,80 @@
 <?php
+
 	if(!function_exists('vlz_get_paginacion')){
         function vlz_get_paginacion($t, $pagina){
-            $paginacion = ""; $h = 5; $inicio = $pagina*$h; 
+            $paginacion = ""; $h = 12; $inicio = $pagina*$h; 
             $fin = $inicio+$h; if( $fin > $t){ $fin = $t; }
             if($t > $h){
+
                 $ps = ceil($t/$h);
-                for( $i=0; $i<$ps; $i++){
-                    $active = ( $pagina == $i ) ? "class='vlz_activa'" : "";
-                    $paginacion .= "<a href='".$home."/busqueda/".($i)."' ".$active.">".($i+1)."</a>";
+
+                if( $ps < 5 ){
+                    for( $i=0; $i<=2; $i++){
+                        $active = ( $pagina == $i ) ? " class='active'" : "";
+                        $paginacion .= "<li ".$active."> <a href='".$home."/busqueda/".($i)."'> ".($i+1)." </a> </li>";
+                    }
+                }else{
+                    if( $pagina < ($ps-3)){
+                        if( $pagina > 0){
+                            $in = $pagina-1;
+                            $fi = $pagina+1;
+                        }else{
+                            $in = $pagina;
+                            $fi = $pagina+2;
+                        }
+
+                        if( $pagina > 1){
+                            $paginacion .= "<li ".$active."> <a href='".$home."/busqueda/0'> 1 </a> </li>";
+                        }
+
+                        for( $i=$in; $i<=$fi; $i++){
+                            $active = ( $pagina == $i ) ? " class='active'" : "";
+                            $paginacion .= "<li ".$active."> <a href='".$home."/busqueda/".($i)."'> ".($i+1)." </a> </li>";
+                        }
+                        $paginacion .= "<li> <a href='#'> ... </a> </li>";
+                        $active = ( $pagina == ($ps-1) ) ? " class='active'" : "";
+                        $paginacion .= "<li ".$active."> <a href='".$home."/busqueda/".($ps-1)."'> ".($ps)." </a> </li>";
+
+                        if( $pagina > 0 ){
+                            $atras = '
+                                <li>
+                                    <a href="'.$home.'/busqueda/'.($in).'">
+                                        <img src="'.getTema().'/images/new/arrow-left-nav.png" width="8">
+                                    </a>
+                                </li>
+                            ';
+                        }else{
+                            $fi -= 1;
+                        }
+
+                        $paginacion = '
+                            '.$atras.'
+                            '.$paginacion.'
+                            <li>
+                                <a href="'.$home.'/busqueda/'.($fi).'">
+                                    <img src="'.getTema().'/images/new/arrow-right-nav.png" width="8">
+                                </a>
+                            </li>
+                        ';
+                    }else{
+
+                        $in = $pagina-2;
+                        $fi = ($ps-1);
+                        $active = ( $pagina == ($in) ) ? " class='active'" : "";
+                        $paginacion = "
+                            <li> <a href='".$home."/busqueda/".($in)."'> <img src='".getTema()."/images/new/arrow-left-nav.png' width='8'> </a> </li>
+                            <li ".$active."> <a href='".$home."/busqueda/0'> 1 </a> </li>
+                            <li> <a href='#'> ... </a> </li>
+                        ";
+                        for( $i=$in; $i<=$fi; $i++){
+                            $active = ( $pagina == $i ) ? " class='active'" : "";
+                            $paginacion .= "<li ".$active."> <a href='".$home."/busqueda/".($i)."'> ".($i+1)." </a> </li>";
+                        }
+                        $paginacion .= '<li> <a href="'.$home.'/busqueda/'.($fi).'"> <img src="'.getTema().'/images/new/arrow-right-nav.png" width="8"> </a> </li>';
+
+                    }
                 }
+
             }
             return array(
                 "inicio" => $inicio,
@@ -17,8 +83,13 @@
             );
         }
     }
+
     if(!function_exists('get_destacados')){
-        function get_destacados($estado){
+        function get_destacados(){
+            if( !isset($_SESSION) ){ session_start(); }
+            $_POST = unserialize( $_SESSION['busqueda'] );
+            $ubicacion = explode("_", $_POST["ubicacion"]);
+            if( count($ubicacion) > 0 ){ $estado = $ubicacion[0]; }
             global $wpdb;
             $estado_des = $wpdb->get_var("SELECT name FROM states WHERE id = ".$estado);
             $sql_top = "SELECT * FROM destacados WHERE estado = '{$estado}'";
@@ -28,30 +99,54 @@
                 $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id = {$value->cuidador}");
                 $data = $wpdb->get_row("SELECT post_title AS nom, post_name AS url FROM wp_posts WHERE ID = {$cuidador->id_post}");
                 $nombre = $data->nom;
-                $img_url = kmimos_get_foto_cuidador($value->cuidador);
-                $url = $home . "/petsitters/" . $data->url;
-                $top_destacados .= "
-                    <a class='vlz_destacados_contenedor' href='{$url}'>
-                        <div class='vlz_destacados_contenedor_interno'>
-                            <div class='vlz_destacados_img'>
-                                <div class='vlz_descado_img_fondo' style='background-image: url({$img_url});'></div>
-                                <div class='vlz_descado_img_normal' style='background-image: url({$img_url});'></div>
-                                <div class='vlz_destacados_precio'><sub style='bottom: 0px;'>Hospedaje desde</sub><br>MXN $".($cuidador->hospedaje_desde*1.2)."</div>
-                            </div>
-                            <div class='vlz_destacados_data' >
-                                <div class='vlz_destacados_nombre'>{$nombre}</div>
-                                <div class='vlz_destacados_adicionales'>".vlz_servicios($cuidador->adicionales)."</div>
+                $img_url = kmimos_get_foto($cuidador->user_id);
+                $url = get_home_url() . "/petsitters/" . $data->url;
+                $anios_exp = $cuidador->experiencia;
+                if( $anios_exp > 1900 ){
+                    $anios_exp = date("Y")-$anios_exp;
+                }
+                $top_destacados .= '
+                    <div class="slide">
+                        <div class="item-slide" style="background-image: url('.getTema().'/images/new/km-buscador/slide-01.jpg);">
+                            <div class="slide-mask"></div>
+                            <div class="slide-content">
+                                <div class="slide-price-distance">
+                                    <div class="slide-price">
+                                        Desde <span>MXN $'.($cuidador->hospedaje_desde*1.2).'</span>
+                                    </div>
+                                    <!--
+                                    <div class="slide-distance">
+                                        A 96 km de tu búsqueda
+                                    </div>
+                                    -->
+                                </div>
+
+                                <div class="slide-profile">
+                                    <div class="slide-profile-image" style="background-image: url('.$img_url.');"></div>
+                                </div>
+
+                                <div class="slide-name">
+                                    '.$nombre.'
+                                </div>
+
+                                <div class="slide-expertice">
+                                    '.$anios_exp.' año(s) de experiencia
+                                </div>
+
+                                <div class="slide-ranking">
+                                    <div class="km-ranking">
+                                        '.kmimos_petsitter_rating($cuidador->id_post).'
+                                    </div>
+                                </div>
+
+                                <div class="slide-buttons">
+                                    <a href="'.$url.'">CONÓCELO +</a>
+                                    <a href="'.$url.'">RESERVAR</a>
+                                </div>
                             </div>
                         </div>
-                    </a>
-                ";
-                $cont++;
-            }
-            if( $cont > 0 ){
-                if( $top_destacados != '' ){
-                    $top_destacados = $top_destacados."</div>"; 
-                }
-                $top_destacados = utf8_decode( '<div class="pfwidgettitle"> <div class="widgetheader">Destacados Kmimos en: '.$estado_des.' '.$municipio_des.'</div> </div> <div class="row" style="margin: 10px auto 20px;">').$top_destacados;
+                    </div>
+                ';
             }
             return comprimir_styles($top_destacados);
         }
@@ -314,7 +409,7 @@
         }
     }
 
-    function get_ficha_cuidador($cuidador, $i, $favoritos){
+    function get_ficha_cuidador($cuidador, $i, $favoritos, $disenio){
         $img        = kmimos_get_foto($cuidador->user_id);
         $anios_exp  = $cuidador->experiencia; if( $anios_exp > 1900 ){ $anios_exp = date("Y")-$anios_exp; }
         $url        = get_home_url()."/petsitters/".$cuidador->slug;
@@ -331,60 +426,69 @@
             $fav_check = 'true'; $favtitle_text = esc_html__('Quitar de mis favoritos','kmimos');
         }
 
-        $ficha = '
-            <div class="km-item-resultado">
-                <div class="km-foto">
-                    <div class="km-img" style="background-image: url('.$img.');"></div>
-                    <span class="km-contenedor-favorito">
-                        <a href="#" class="km-link-favorito active"></a>
-                    </span>
-                </div>
-                <div class="km-descripcion">
-                    <h1><a href="'.$url.'">'.utf8_encode($cuidador->titulo).'</a></h1>
-                    <p>'.$anios_exp.' año(s) de experiencia</p>
-                    <div class="km-ranking">
-                        '.kmimos_petsitter_rating($cuidador->id_post).'
-                    </div>
-                    <div class="km-sellos">
-                        '.vlz_servicios($cuidador->adicionales).'
-                    </div>
-                </div>
-            </div>
-        ';
-
-        $ficha = '
-            <div class="km-item-resultado active">
-                <div class="km-foto">
-                    <div class="km-img" style="background-image: url('.$img.');"></div>
-                    <span class="km-contenedor-favorito">
-                        <a href="#" class="km-link-favorito active"></a>
-                    </span>
-                </div>
-
-                <div class="km-contenedor-descripcion-opciones">
-                    <div class="km-descripcion">
-                        <h1><a href="'.$url.'">'.utf8_encode($cuidador->titulo).'</a></h1>
-
-                        <p>'.$anios_exp.' año(s) años de experiencia</p>
-
-                        <div class="km-ranking">
-                            '.kmimos_petsitter_rating($cuidador->id_post).'
+        switch ($disenio) {
+            case 'list':
+                $ficha = '
+                    <div class="km-item-resultado active">
+                        <div class="km-foto">
+                            <div class="km-img" style="background-image: url('.$img.');"></div>
+                            <span class="km-contenedor-favorito">
+                                <a href="#" class="km-link-favorito active"></a>
+                            </span>
                         </div>
 
-                        <div class="km-sellos">
-                            '.vlz_servicios($cuidador->adicionales).'
+                        <div class="km-contenedor-descripcion-opciones">
+                            <div class="km-descripcion">
+                                <h1><a href="'.$url.'">'.utf8_encode($cuidador->titulo).'</a></h1>
+
+                                <p>'.$anios_exp.' año(s) años de experiencia</p>
+
+                                <div class="km-ranking">
+                                    '.kmimos_petsitter_rating($cuidador->id_post).'
+                                </div>
+
+                                <div class="km-sellos">
+                                    '.vlz_servicios($cuidador->adicionales).'
+                                </div>
+                            </div>
+
+                            <div class="km-opciones">
+                                <div class="precio">Desde MXN $ '.$cuidador->precio.'</div>
+                                <a href="'.get_home_url()."/petsitters/".$cuidador->slug.'" class="km-btn-primary-new stroke">CONÓCELO +</a>
+                                <a href="'.get_home_url()."/petsitters/".$cuidador->slug.'" class="km-btn-primary-new basic">RESERVA</a>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="km-opciones">
-                        <div class="precio">Desde MXN $ '.$cuidador->precio.'</div>
-                        <a href="'.get_home_url()."/petsitters/".$cuidador->slug.'" class="km-btn-primary-new stroke">CONÓCELO +</a>
-                        <a href="'.get_home_url()."/petsitters/".$cuidador->slug.'" class="km-btn-primary-new basic">RESERVA</a>
+                ';
+            break;
+            case 'grid':
+                $ficha = '
+                    <div class="km-item-resultado">
+                        <div class="km-foto">
+                            <div class="km-img" style="background-image: url('.$img.');"></div>
+                            <span class="km-contenedor-favorito">
+                                <a href="#" class="km-link-favorito active"></a>
+                            </span>
+                        </div>
+                        <div class="km-descripcion">
+                            <h1><a href="'.$url.'">'.utf8_encode($cuidador->titulo).'</a></h1>
+                            <p>'.$anios_exp.' año(s) de experiencia</p>
+                            <div class="km-ranking">
+                                '.kmimos_petsitter_rating($cuidador->id_post).'
+                            </div>
+                            <div class="km-sellos">
+                                '.vlz_servicios($cuidador->adicionales).'
+                            </div>
+                            <div class="km-buttons">
+                                <a href="'.get_home_url()."/petsitters/".$cuidador->slug.'" >CONÓCELO +</a> <!-- role="button" data-toggle="modal" -->
+                                <a href="'.get_home_url()."/petsitters/".$cuidador->slug.'" class="active">RESERVAR</a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        ';
-
+                ';
+            break;
+        }
+    
         return $ficha;
     }
 

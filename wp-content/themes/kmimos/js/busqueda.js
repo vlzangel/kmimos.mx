@@ -25,27 +25,6 @@ function vlz_top(){
         scrollTop: 0
     }, 500);
 }
-jQuery("#estados").on("change", function(e){
-	var estado_id = jQuery("#estados").val();       
-    if( estado_id != "" ){
-    	jQuery.getJSON( 
-			HOME+"procesos/generales/municipios.php", 
-			{estado: estado_id} 
-		).done(
-			function( data, textStatus, jqXHR ) {
-		        var html = "<option value=''>Seleccione un municipio</option>";
-		        jQuery.each(data, function(i, val) {
-		            html += "<option value="+val.id+">"+val.name+"</option>";
-		        });
-		        jQuery("#municipios").html(html);
-		    }
-	    ).fail(
-	    	function( jqXHR, textStatus, errorThrown ) {
-		        console.log( "Error: " +  errorThrown );
-			}
-		);
-    }
-});
 function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
@@ -71,80 +50,92 @@ var markers = [];
 var infos = [];
 var map;
 function initMap() {
-    map = new google.maps.Map(document.getElementById("mapa"), {
-        zoom: 3,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        fullscreenControl: true
-    });
+	if( pines.length > 0 ){
+		map = new google.maps.Map(document.getElementById("mapa"), {
+	        zoom: 3,
+	        mapTypeId: google.maps.MapTypeId.ROADMAP,
+	        fullscreenControl: true,
+			scrollwheel: false
+	    });
 
-    var oms = new OverlappingMarkerSpiderfier(map, { 
-        markersWontMove: true,
-        markersWontHide: true,
-        basicFormatEvents: true
-  	});
+	    var oms = new OverlappingMarkerSpiderfier(map, { 
+	        markersWontMove: true,
+	        markersWontHide: true,
+	        basicFormatEvents: true
+	  	});
 
-    var bounds = new google.maps.LatLngBounds();
-    jQuery.each(pines, function( index, cuidador ) {
-        bounds.extend( new google.maps.LatLng(cuidador.lat, cuidador.lng) );
-        markers[index] = new google.maps.Marker({ 
-            vlz_index: index,
-            map: map,
-            draggable: false,
-            animation: google.maps.Animation.DROP,
-            position: new google.maps.LatLng(cuidador.lat, cuidador.lng),
-            icon: HOME+"/js/images/n2.png"
-        });
+	    var bounds = new google.maps.LatLngBounds();
+	    jQuery.each(pines, function( index, cuidador ) {
 
-        var servicios = "";
-        if( cuidador["ser"] != undefined && cuidador["ser"].length > 0 ){
-	        jQuery.each(cuidador["ser"], function( index, servicio ) {
-	        	servicios += '<img src="http://mx.kmimos.dev/wp-content/themes/kmimos/images/new/icon/'+servicio.img+'" height="40" title="'+servicio.titulo+'"> ';
+	        bounds.extend( new google.maps.LatLng(cuidador.lat, cuidador.lng) );
+	        markers[index] = new google.maps.Marker({ 
+	            vlz_index: index,
+	            map: map,
+	            draggable: false,
+	            animation: google.maps.Animation.DROP,
+	            position: new google.maps.LatLng(cuidador.lat, cuidador.lng),
+	            icon: HOME+"/js/images/n2.png"
 	        });
-        }
 
-        var rating = "";
-        if( cuidador["rating"] != undefined && cuidador["rating"].length > 0 ){
-	        jQuery.each(cuidador["rating"], function( index, xrating ) {
-	        	if( xrating == 1 ){
-	        		rating += '<a href="#" class="active"></a>';
-	        	}else{
-	        		rating += '<a href="#"></a>';
-	        	}
+	        var servicios = "";
+	        if( cuidador["ser"] != undefined && cuidador["ser"].length > 0 ){
+		        jQuery.each(cuidador["ser"], function( index, servicio ) {
+		        	servicios += '<img src="http://mx.kmimos.dev/wp-content/themes/kmimos/images/new/icon/'+servicio.img+'" height="40" title="'+servicio.titulo+'"> ';
+		        });
+	        }
+
+	        var rating = "";
+	        if( cuidador["rating"] != undefined && cuidador["rating"].length > 0 ){
+		        jQuery.each(cuidador["rating"], function( index, xrating ) {
+		        	if( xrating == 1 ){
+		        		rating += '<a href="#" class="active"></a>';
+		        	}else{
+		        		rating += '<a href="#"></a>';
+		        	}
+		        });
+	        }
+
+	        infos[index] = new google.maps.InfoWindow({ 
+	            content: 	'<h1 class="maps">'+cuidador.nom+'</h1>'
+							+'<p>'+cuidador.exp+' a&ntilde;o(s) de experiencia</p>'
+							+'<div class="km-ranking">'
+							+	rating
+							+'</div>'
+							+'<div class="km-sellos maps">'
+							+'    <div class="km-sellos"> '+servicios+' </div>'
+							+'</div>'
+							+'<div class="km-opciones maps">'
+							+'    <div class="precio">MXN $ '+cuidador.pre+'</div>'
+							+'    <a href="'+cuidador.url+'" class="km-btn-primary-new stroke">CON&Oacute;CELO +</a>'
+							+'    <a href="'+cuidador.url+'" class="km-btn-primary-new basic">RESERVA</a>'
+							+'</div>'
 	        });
-        }
 
-        console.log( rating );
+	        markers[index].addListener("click", function(e) { 
+	            infos[this.vlz_index].open(map, this);
+	        });
 
-        infos[index] = new google.maps.InfoWindow({ 
-            content: 	'<h1 class="maps">'+cuidador.nom+'</h1>'
-						+'<p>'+cuidador.exp+' a&ntilde;o(s) de experiencia</p>'
-						+'<div class="km-ranking">'
-						+	rating
-						+'</div>'
-						+'<div class="km-sellos maps">'
-						+'    <div class="km-sellos"> '+servicios+' </div>'
-						+'</div>'
-						+'<div class="km-opciones maps">'
-						+'    <div class="precio">MXN $ '+cuidador.pre+'</div>'
-						+'    <a href="'+cuidador.url+'" class="km-btn-primary-new stroke">CON&Oacute;CELO +</a>'
-						+'    <a href="'+cuidador.url+'" class="km-btn-primary-new basic">RESERVA</a>'
-						+'</div>'
-        });
-
-        markers[index].addListener("click", function(e) { 
-            infos[this.vlz_index].open(map, this);
-        });
-
-		oms.addMarker(markers[index]);
-    });
+			oms.addMarker(markers[index]);
+	    });
 
 
-    var markerCluster = new MarkerClusterer(map, markers, {imagePath: HOME+"/js/images/n"});
-    map.fitBounds(bounds);
+	    var markerCluster = new MarkerClusterer(map, markers, {imagePath: HOME+"/js/images/n"});
+	    map.fitBounds(bounds);
 
-    minClusterZoom = 14;
-    markerCluster.setMaxZoom(minClusterZoom);
-    window.oms = oms;
+	    minClusterZoom = 14;
+	    markerCluster.setMaxZoom(minClusterZoom);
+	    window.oms = oms;
+   	}else{
+		map = new google.maps.Map(document.getElementById("mapa"), {
+	        zoom: 4,
+	        mapTypeId: google.maps.MapTypeId.ROADMAP,
+			center: new google.maps.LatLng(23.634501, -102.552784), 
+	        fullscreenControl: true,
+			scrollwheel: false
+	    });
+   	}
+
+		    
 }
 (function(d, s){
 	map = d.createElement(s), e = d.getElementsByTagName(s)[0];

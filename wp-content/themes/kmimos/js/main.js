@@ -63,7 +63,9 @@ $(window).resize(function() {
 });
 
 $(window).scroll(function() {
-	mapStatic( this );
+	if( pines.length > 1 ){
+		mapStatic( this );
+	}
 });
 
 var fecha = new Date();
@@ -97,6 +99,10 @@ $(document).ready(function(){
 		jQuery("#ubicacion_list div").each(function( index ) {
 			if( String(jQuery( this ).attr("data-value")).toLowerCase().search(buscar_1) != -1 ){
 				jQuery( this ).css("display", "block");
+				if( index == 0 ){
+					// jQuery("#ubicacion").val( jQuery( this ).html() );
+					// jQuery("#ubicacion").attr( "data-value", jQuery( this ).attr("data-value") );
+				}
 			}
 		});
 	});
@@ -110,6 +116,14 @@ $(document).ready(function(){
 				jQuery( this ).css("display", "block");
 			}
 		});
+	});
+
+	jQuery("#ubicacion_txt").on("change", function ( e ) {		
+		var txt = getCleanedString( String(jQuery("#ubicacion_txt").val()).toLowerCase() );
+		if( txt == "" ){
+			jQuery("#ubicacion").val( "" );
+			jQuery("#ubicacion").attr( "data-value", "" );
+		}
 	});
 
 	$(window).scroll(function() {
@@ -189,7 +203,6 @@ $(document).ready(function(){
 				firstDay: 1,
 				onmonthsToShow: [1, 1]
 			});
-			// jQuery('#checkout').focus();
 		}else{
 			jQuery('#checkout').datepick({
 				dateFormat: 'dd/mm/yyyy',
@@ -201,7 +214,6 @@ $(document).ready(function(){
 				firstDay: 1,
 				onmonthsToShow: [1, 1]
 			});
-			// jQuery('#checkout').focus();
 		}
 	}
 

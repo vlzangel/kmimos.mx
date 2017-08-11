@@ -21,7 +21,12 @@
     /* Fin Filtros por servicios y tamaños */
 
     /* Filtro nombre  */
-	    if( isset($nombre) ){ if( $nombre != "" ){ $condiciones .= " AND nombre LIKE '".$nombre."%' "; } }
+	    if( isset($nombre) ){ 
+	    	if( $nombre != "" ){ 
+	    		$nombre_inner = "INNER JOIN wp_posts AS nom ON ( nom.ID = cuidadores.id_post)";
+	    		$condiciones .= " AND nom.post_title LIKE '".$nombre."%' "; 
+	    	} 
+	   	}
     /* Fin Filtro nombre */
 
     /* Filtros por rangos */
@@ -111,26 +116,31 @@
 
     $home = $db->get_var("SELECT option_value FROM wp_options WHERE option_name = 'siteurl'");
 
-    $sql = "
-    SELECT 
-        cuidadores.id,
-        cuidadores.id_post,
-        cuidadores.user_id,
-        cuidadores.longitud,
-        cuidadores.latitud,
-        cuidadores.adicionales,
-        (cuidadores.hospedaje_desde*1.2) AS precio,
-        cuidadores.experiencia,
-        post_cuidador.post_name AS slug,
-        post_cuidador.post_title AS titulo
-        {$DISTANCIA}
-    FROM 
-        cuidadores 
-    INNER JOIN wp_posts AS post_cuidador ON ( cuidadores.id_post = post_cuidador.ID )
-    {$ubicaciones_inner}
-    WHERE 
-        activo = '1' {$condiciones} {$ubicaciones_filtro} {$FILTRO_UBICACION}
-    ORDER BY {$orderby}";
+    /* SQL cuidadores */
+
+	    $sql = "
+	    SELECT 
+	        cuidadores.id,
+	        cuidadores.id_post,
+	        cuidadores.user_id,
+	        cuidadores.longitud,
+	        cuidadores.latitud,
+	        cuidadores.adicionales,
+	        (cuidadores.hospedaje_desde*1.2) AS precio,
+	        cuidadores.experiencia,
+	        post_cuidador.post_name AS slug,
+	        post_cuidador.post_title AS titulo
+	        {$DISTANCIA}
+	    FROM 
+	        cuidadores 
+	    INNER JOIN wp_posts AS post_cuidador ON ( cuidadores.id_post = post_cuidador.ID )
+	    {$ubicaciones_inner}
+	    {$nombre_inner}
+	    WHERE 
+	        activo = '1' {$condiciones} {$ubicaciones_filtro} {$FILTRO_UBICACION}
+	    ORDER BY {$orderby}";
+
+    /* FIN SQL cuidadores */
 
     $cuidadores = $db->get_results($sql);
 
@@ -178,40 +188,44 @@
 	$_SESSION['busqueda'] = serialize($_POST);
     $_SESSION['resultado_busqueda'] = $cuidadores;
 
-/*    echo "<pre>";
+	/* echo "<pre>";
     	print_r( $_POST );
     	print_r( $ubicacion );
     	print_r( $cuidadores );
     echo "</pre>";*/
 
-    function toRadian($deg) { return $deg * pi() / 180; };
+    /* Funciones */
 
-	function calcular_rango_de_busqueda($norte, $sur){
-	    return ( 6371 * acos( cos( toRadian($norte->lat) ) * cos( toRadian($sur->lat) ) * cos( toRadian($sur->lng) - toRadian($norte->lng) ) + sin( toRadian($norte->lat) ) * sin( toRadian($sur->lat) ) ) );
-	}
+	    function toRadian($deg) { return $deg * pi() / 180; };
 
-	function kmimos_get_foto_cuidador($id, $xhome){
-        global $db;
-        $cuidador = $db->get_row("SELECT * FROM cuidadores WHERE id = ".$id);
-        $name_photo = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$cuidador->user_id} AND meta_key = '{name_photo}'", "meta_value");
+		function calcular_rango_de_busqueda($norte, $sur){
+		    return ( 6371 * acos( cos( toRadian($norte->lat) ) * cos( toRadian($sur->lat) ) * cos( toRadian($sur->lng) - toRadian($norte->lng) ) + sin( toRadian($norte->lat) ) * sin( toRadian($sur->lat) ) ) );
+		}
 
-        $home = $xhome."wp-content/uploads/cuidadores/avatares/miniatura/{$id}_";
-        $sub_path = "cuidadores/avatares/miniatura/{$id}_";
+		function kmimos_get_foto_cuidador($id, $xhome){
+	        global $db;
+	        $cuidador = $db->get_row("SELECT * FROM cuidadores WHERE id = ".$id);
+	        $name_photo = $db->get_var("SELECT meta_value FROM wp_usermeta WHERE user_id = {$cuidador->user_id} AND meta_key = '{name_photo}'", "meta_value");
 
-        if( empty($name_photo)  ){ $name_photo = "0"; }
-        if( count(explode(".", $name_photo)) == 1 ){ $name_photo .= ".jpg";  }
+	        $home = $xhome."wp-content/uploads/cuidadores/avatares/miniatura/{$id}_";
+	        $sub_path = "cuidadores/avatares/miniatura/{$id}_";
 
-        if( file_exists("../../../../uploads/{$sub_path}{$name_photo}") ){
-            $img = $home."{$name_photo}";
-        }else{
-            if( file_exists("../../../../uploads/{$sub_path}/0.jpg") ){
-                $img = $home."0.jpg";
-            }else{
-                $img = $xhome.'/wp-content/themes/kmimos/images/noimg.png';
-            }
-        }
-        return $img;
-    }
+	        if( empty($name_photo)  ){ $name_photo = "0"; }
+	        if( count(explode(".", $name_photo)) == 1 ){ $name_photo .= ".jpg";  }
+
+	        if( file_exists("../../../../uploads/{$sub_path}{$name_photo}") ){
+	            $img = $home."{$name_photo}";
+	        }else{
+	            if( file_exists("../../../../uploads/{$sub_path}/0.jpg") ){
+	                $img = $home."0.jpg";
+	            }else{
+	                $img = $xhome.'/wp-content/themes/kmimos/images/noimg.png';
+	            }
+	        }
+	        return $img;
+	    }
+
+    /* FIN Funciones */
 
 	header("location: {$home}busqueda/");
 ?>

@@ -213,7 +213,7 @@ button.datepick-cmd {
 	display: inline-block;
     color: #000;
     text-decoration: none;
-    padding: 0px;
+    padding: 4px 8px;
     outline: none;
 }
 .datepick-month th span {
