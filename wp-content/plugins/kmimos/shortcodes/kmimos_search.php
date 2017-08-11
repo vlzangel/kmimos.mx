@@ -199,14 +199,6 @@
         } 
     </style>
 
-    <script>
-        jQuery(document).on('click','input[type=\'text\'].fechas',function(event){
-                jQuery(this).blur();
-                jQuery(this).attr('type','date');
-                jQuery(this).focus();
-        });
-    </script>
-
     <div id='portada'>
         <form id='pointfinder-search-form-manual' method='POST' action='".get_home_url()."/wp-content/themes/pointfinder/vlz/buscar.php' data-ajax='false' novalidate='novalidate'>
             <center>
@@ -567,4 +559,13 @@
             onmonthsToShow: [1, 1]
         });
     });
+
+
+/*
+    jQuery(document).on('click','input[type=\'text\'].fechas',function(event){
+        jQuery(this).blur();
+        jQuery(this).attr('type','date');
+        jQuery(this).focus();
+    });
+*/
 </script>

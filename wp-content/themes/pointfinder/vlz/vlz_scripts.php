@@ -169,7 +169,7 @@
 			$.type="text/javascript";
 			e.parentNode.insertBefore($, e)
 		})(document,"script");
-
+/*
 		function seleccionar_checkin() {
 	        if( jQuery("#checkin").val() != "" ){
 	            var fecha = new Date();
@@ -196,7 +196,7 @@
 	    jQuery("#checkin").on("change", function(e){
 	        seleccionar_checkin();
 	    });
-
+*/
 	</script>';
 
 	$SCRIPTS = comprimir_styles($scripts);
