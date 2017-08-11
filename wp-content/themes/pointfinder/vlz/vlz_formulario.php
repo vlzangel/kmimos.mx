@@ -191,7 +191,7 @@
 				<input type='date' id='checkin' value='".$_POST['checkin']."' min='".date("Y-m-d")."' name='checkin' class='fechas vlz_input' placeholder='Check In'>
     			-->
     			<div class='icono'><i class='icon-calendario embebed'></i></div>
-				<input type='text' id='checkout' name='checkout' placeholder='HASTA' value='".$_POST['checkin']."' class='date_to fechas vlz_input' readonly>
+				<input type='text' id='checkin' name='checkin' placeholder='DESDE' value='".$_POST['checkin']."' class='date_to fechas vlz_input' readonly>
 
 				<!--
 				<sub>Hasta:</sub><br>
@@ -297,6 +297,9 @@
 		margin-bottom: 3px;
 		border: 1px solid #ccc;
 		padding-left: 30px;
+	}
+	.datepick-month td {
+		font-size: 12px;
 	}
 </style>
 <script type="text/javascript">
