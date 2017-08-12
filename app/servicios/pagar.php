@@ -34,7 +34,6 @@
 	   		$customer = $openpay->customers->get( $cliente_openpay );
 	   	}else{
 	   		$customerData = array(
-				'external_id' 		=> '',
 				'name' 				=> $nombre,
 				'last_name' 		=> $apellido,
 				'email' 			=> $email,
@@ -59,8 +58,8 @@
 					    'holder_name' => $holder_name,
 					    'card_number' => $card_number,
 					    'cvv2' => $cvv2,
-					    'expiration_month' => $mes,
-					    'expiration_year' => $anio,
+					    'expiration_month' => $expiration_month,
+					    'expiration_year' => $expiration_year,
 					    'device_session_id' => $deviceIdHiddenFieldName,
 					    'address' => array(
 					            'line1' => $customer->address->line1,
@@ -75,8 +74,15 @@
 
 					$cardList = $customer->cards->getList( array() );
 
+					$card = "";
+
 					if( count($cardList) == 0 ){
-						$card = $customer->cards->add($cardDataRequest);
+						try {
+				            $card = $customer->cards->add($cardDataRequest);
+				        } catch (Exception $e) {
+				          	print_r("Entro 1");
+				          	print_r($e);
+				        }
 					}else{
 						$no_existe = true;
 						$card_num = substr($card_number, 0, 6)."XXXXXX".substr($card_number, -4);
@@ -86,21 +92,33 @@
 							}
 						}
 						if( $no_existe ){
-							$card = $customer->cards->add($cardDataRequest);
+							try {
+					            $card = $customer->cards->add($cardDataRequest);
+					        } catch (Exception $e) {
+				          		print_r("Entro 2");
+					          	print_r($e);
+					        }
 						}
 					}
 
 					$chargeData = array(
 					    'method' 			=> 'card',
 					    'source_id' 		=> $card->id,
-					    'amount' 			=> (float) $_POST["monto"],
+					    'amount' 			=> (float) $info[0]->total,
 					    'order_id' 			=> time(),
 					    'description' 		=> "Pago de pruebas",
 					    'device_session_id' => $_POST["deviceIdHiddenFieldName"]
 				    );
 
-					$charge = $customer->charges->create($chargeData);
+					$charge = "";
 
+					try {
+			            $charge = $customer->charges->create($chargeData);
+			        } catch (Exception $e) {
+		          		print_r("Entro 3");
+			          	print_r($e);
+			        }
+					
 	   				echo json_encode(array(
 	   					"user_id" => $customer->id
 					));
@@ -140,7 +158,7 @@
 	}else{
 		echo json_encode(array(
 			"Error" => "Sin ID de dispositivo",
-			"Data"  => $info
+			"Data"  => $_POST
 		));
 	}
 
