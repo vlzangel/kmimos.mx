@@ -12,6 +12,10 @@
 			return $this->conn->query($sql);
 		}
 
+		function multi_query($sql){
+			return $this->conn->multi_query($sql);
+		}
+
 		function get_var($sql, $campo = ""){
 			$result = $this->query($sql);
 			if( $result->num_rows > 0 ){
@@ -59,6 +63,6 @@
 
 	include($path."/vlz_config.php");
 
-	$db = new db( new mysqli($host, $user, $pass, $db) );
+	$db = new db( new mysqli($host, $user, $pass, "kmimos.reservas") );
 
 ?>

@@ -1,7 +1,9 @@
 <?php
 	$path = dirname(dirname(__DIR__));
 
+	include( $path."/app/config.php");
 	include( $path."/app/db.php");
+	include( $path."/app/servicios/reservar.php");
 	include( $path."/app/lib/openpay/Openpay.php");
 
 	extract($_POST);
@@ -15,11 +17,57 @@
 	extract($info);
 	extract($data);
 
+	$num_mascotas = 0;
+	foreach ($info[2] as $key => $value) {
+		if( count($value) > 0 ){
+			$num_mascotas += $value[0];
+		}		
+	}
+
+	$time = time();
+    $hoy = date("Y-m-d H:i:s", $time);
+    $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+    $inicio = strtotime( $info[1]->inicio );
+    $hoy_f = date('d', $inicio)." ".$meses[date('n', $inicio)-1]. ", ".date('Y', $inicio) ;
+
+	$data_reserva = array(
+		"servicio" 				=> $info[0]->servicio,
+		"titulo_servicio" 		=> $info[0]->titulo,
+		"cliente" 				=> $servicio,
+		"cuidador" 				=> $info[0]->cuidador,
+		"hoy" 					=> $hoy,
+		"fecha_formato" 		=> $hoy_f,
+		"token" 				=> time(),
+		"inicio" 				=> date("Ymd", strtotime( $info[1]->inicio ) ),
+		"fin" 					=> date("Ymd", strtotime( $info[1]->fin ) ),
+		"monto" 				=> $info[0]->total,
+		"num_mascotas" 			=> $num_mascotas,
+		"metodo_pago" 			=> $metodo_pago,
+		"metodo_pago_titulo" 	=> $metodo_pago,
+		"moneda" 				=> "MXN",
+		"duracion_formato" 		=> $info[1]->duracion." Noche(s)",
+		"mascotas" 				=> $servicio,
+		"deposito" 				=> $servicio,
+		"status_reserva" 		=> "unpaid",
+		"status_orden" 			=> "wc-pending"
+	);
+
+	//$reservar = new Reservas($db, $data_reserva);
+
+	//$id_orden = $reservar->new_reserva();
+
+	echo json_encode(array(
+		"post"  => $_POST,
+		"info"  => $info,
+		"array"  => $data_reserva
+	));
+
+	/*
 	if( $deviceIdHiddenFieldName != "" ){
 
-		$MERCHANT_ID = "mbdcldmwlolrgxkd55an";
+		
 
-		$openpay = Openpay::getInstance($MERCHANT_ID, 'sk_532855907c61452898d492aa521c8c9f');
+		$openpay = Openpay::getInstance($MERCHANT_ID, $OPENPAY_KEY_SECRET);
 
 		$nombre 	= "Angel";
 		$apellido 	= "Veloz";
@@ -105,7 +153,7 @@
 					    'method' 			=> 'card',
 					    'source_id' 		=> $card->id,
 					    'amount' 			=> (float) $info[0]->total,
-					    'order_id' 			=> time(),
+					    'order_id' 			=> $id_orden,
 					    'description' 		=> "Pago de pruebas",
 					    'device_session_id' => $_POST["deviceIdHiddenFieldName"]
 				    );
@@ -139,7 +187,7 @@
 				    'method' => 'store',
 				    'amount' => (float) $info[0]->total,
 				    'description' => 'Cargo con tienda',
-				    'order_id' => time(),
+				    'order_id' => $id_orden,
 				    'due_date' => $due_date
 				);
 
@@ -161,5 +209,6 @@
 			"Data"  => $_POST
 		));
 	}
+	*/
 
 ?>
