@@ -1,3 +1,46 @@
+<style type="text/css">
+	#knowCaregiver{position:relative; max-width: 700px;  margin: 0 auto; top: 75px; border-radius: 20px;  background: #a8d432;  overflow: hidden; display: flex; align-items: flex-end;}
+	#knowCaregiver .exit{position: absolute; top: 0; right: 0; margin: 10px; font-size: 20px; cursor: pointer; z-index: 1;}
+	#knowCaregiver .section{position: relative; width: 60%; padding: 10px 0; float: left; font-size: 17px; text-align: left;}
+	#knowCaregiver .section.section1{width: 40%; min-width:250px;}
+	#knowCaregiver .section.section1:before{content:""; position:absolute; width:100%; height:40px; bottom: 0; background:#80ae08;}
+	#knowCaregiver .section.section1 .images{position: relative; display: flex; justify-content: center; align-items: baseline;}
+	#knowCaregiver .section.section2{padding:20px; font-size: 14px; background: #61a6af;}
+	#knowCaregiver .section.section2 button{padding: 5px 10px; color: #FFF; font-size: 15px; border-radius: 5px;  border: none; background: #ff416d; }
+	#knowCaregiver .section.section2:before{content: ""; position: absolute; width: 40px; height: 40px; left: -20px; top: calc(50% - 20px); border-radius: 50%; background: #61a6af;}
+
+	@media screen and (max-width:480px), screen and (max-device-width:480px) {
+		#knowCaregiver {top: 15px; display: block;}
+		#knowCaregiver .section{ width: 100%; padding: 10px 0; font-size: 12px;}
+		#knowCaregiver .section.section1{width: 100%; margin: 20px 0;}
+		#knowCaregiver .section.section2{text-align: center;}
+		#knowCaregiver .section.section2:before{top: -20px; left: calc(50% - 20px);}
+	}
+</style>
+
+<script type='text/javascript'>
+	//knowCaregiver
+	function PopUpknowCaregiver(){
+		var dog = '<img height="120" align="bottom" src="https://www.kmimos.com.mx/wp-content/uploads/2017/08/Botón-conocer-cuidador-07.png">' +
+				'<img height="80" align="bottom" src="https://www.kmimos.com.mx/wp-content/uploads/2017/08/Botón-conocer-cuidador-08.png">';
+
+		var html='<div id="knowCaregiver">' +
+			'<i class="exit fa fa-times" aria-hidden="true" onclick="messagePopUp_Close(\'#message.PopUp\')"></i>' +
+			'<div class="section section1"><div class="images">'+dog+'</div></div>' +
+			'<div class="section section2"><span>Te invitamos a realizar tu <button onclick="PopUpknowCaregiverBooking()">Reserva</button><br>Podr&aacute;s conocer a tu cuidador en cualquier momento antes de la entrada de tu perrito, en su casa o cualquier punto en el que acuerden. Los datos para conocerse vendr&aacute;n en el correo que recibir&aacute;s al completar la solicitud de reserva.</span></div>' +
+			'</div>';
+
+		messagePopUp_Create(html);
+	}
+
+	function PopUpknowCaregiverBooking(){
+		messagePopUp_Close('#message.PopUp');
+		jQuery('#btn_reservar').click();
+	}
+
+
+</script>
+
 <?php
 
 	get_header();
@@ -131,15 +174,18 @@
 				<h1 class='center-white'>".get_the_title()."</h1>
 				".kmimos_petsitter_rating($post_id);
 				if(is_user_logged_in()){
-					$HTML .= "<a id='btn_conocer' class='theme_button button conocer-cuidador' href='".get_home_url()."/conocer-al-cuidador/?id=".$post_id."'>Conocer al Cuidador</a>";
+					//$HTML .= "<a id='btn_conocer' style='display:none;' class='theme_button button conocer-cuidador' href='".get_home_url()."/conocer-al-cuidador/?id=".$post_id."'>Conocer al Cuidador</a>";
+					$HTML .= "<span id='btn_conocer' class='theme_button button conocer-cuidador' onclick='PopUpknowCaregiver();'>Conocer al Cuidador</span>";
 					include('vlz/seleccion_boton_reserva.php');
 				}else{
 					$HTML .= "
 					<span 
 						id='btn_conocer'
+						style='display:none;'
 						class='theme_button button conocer-cuidador' 
 						onclick=\"perfil_login('btn_conocer');\"
 					>Conocer al Cuidador</span>
+					<span id='btn_conocer' class='theme_button button conocer-cuidador' onclick='PopUpknowCaregiver();'>Conocer al Cuidador</span>
 					<span 
 						id='btn_reservar'
 						class='button reservar' 
