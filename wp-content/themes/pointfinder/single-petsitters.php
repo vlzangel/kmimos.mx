@@ -4,6 +4,7 @@
 	#knowCaregiver .section{position: relative; width: 60%; padding: 10px 0; float: left; font-size: 17px; text-align: left;}
 	#knowCaregiver .section.section1{width: 40%; min-width:250px;}
 	#knowCaregiver .section.section1:before{content:""; position:absolute; width:100%; height:40px; bottom: 0; background:#80ae08;}
+	#knowCaregiver .section.section1:after{content:""; position: absolute; width: 40%; height: 30px; top:0; right:10px; background: url(https://kmimos.com.mx/wp-content/uploads/2017/02/logo-kmimos.png)center/contain no-repeat;}
 	#knowCaregiver .section.section1 .images{position: relative; display: flex; justify-content: center; align-items: baseline;}
 	#knowCaregiver .section.section2{padding:20px; font-size: 14px; background: #61a6af;}
 	#knowCaregiver .section.section2 button{padding: 5px 10px; color: #FFF; font-size: 15px; border-radius: 5px;  border: none; background: #ff416d; }
