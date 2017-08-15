@@ -3,7 +3,8 @@
 <link rel="stylesheet" href="<?php echo get_bloginfo( 'template_directory', 'display' )."/css/CaviarDreams.css"; ?>" type="text/css" charset="utf-8" />
 
 <style type="text/css">
-#news{width: 100%; padding: 20px 0; background: #900fa2; }
+#news{width: 100%; padding: 20px 0; background: #900fa2; display:none;}
+#news.central{display:block;}
 #news a{position: absolute; width: 100%; height: 100%; top:0; left:0;}
 #news .contain{position: relative; width: 95%; max-width: 1000px;  margin: 0 auto;}
 #news .title{font-size: 20px;}
@@ -129,6 +130,13 @@
 
         var left = (-1)*caroussel*(widthPost-(-40));
         news.find('.posts > .group').css({'left': left+'px'});
+    });
+
+
+    jQuery(document).ready(function(e){
+        if(jQuery('body').hasClass('home')){
+            jQuery('#news').insertAfter(jQuery('.vc_row.buscador')).addClass('central');
+        }
     });
 </script>
 
