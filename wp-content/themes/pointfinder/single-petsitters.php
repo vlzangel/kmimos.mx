@@ -42,7 +42,13 @@
 
 	function PopUpknowCaregiverBooking(){
 		messagePopUp_Close('#message.PopUp');
-		jQuery('#btn_reservar').click();
+
+		var href = jQuery('#btn_reservar').attr('href');
+		if(typeof href ==='undefined'){
+			jQuery('#btn_reservar').trigger("click");//.click();
+		}else{
+			window.location.href = href;
+		}
 	}
 
 
