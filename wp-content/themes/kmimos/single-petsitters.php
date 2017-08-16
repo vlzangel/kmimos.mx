@@ -191,13 +191,15 @@
         $tamanos_servicio = $wpdb->get_results("SELECT * FROM wp_posts WHERE post_parent = '{$servicio->ID}' AND post_type = 'bookable_person' AND post_status = 'publish' ");
         foreach ($tamanos_servicio as $tamano ) {
         	$activo = false;
-        	if( in_array($tipo, $busqueda["servicios"]) ){
-        		$activo = true;
-        	}
-        	preg_match_all("#adiestramiento#", $tipo, $matches);
+        	if( isset($busqueda["servicios"]) ){
+	        	if( in_array($tipo, $busqueda["servicios"]) ){
+	        		$activo = true;
+	        	}
+	        	preg_match_all("#adiestramiento#", $tipo, $matches);
 
-        	if( in_array("adiestramiento", $busqueda["servicios"]) && count( $matches ) > 0 ){
-        		$activo = true;
+	        	if( in_array("adiestramiento", $busqueda["servicios"]) && count( $matches ) > 0 ){
+	        		$activo = true;
+	        	}
         	}
         	$tamanos .= get_tamano($tamano->post_title, "$40.00", $activo, $busqueda["tamanos"]);
         }
@@ -213,166 +215,8 @@
 
 	$productos .= '</div>';
 
-	/*
-
-	$productos = '
-		<div class="row">
-			<div class="col-xs-12 col-md-6">
-				<div class="km-ficha-servicio">
-					<div class="servicio-tit">
-						<img src="'.getTema().'/images/new/icon/km-servicios/icon-hospedaje.svg">
-						<div>HOSPEDAJE<br>DÍA Y NOCHE</div>
-					</div>
-					<p>SELECCIÓN SEGÚN TAMAÑO</p>
-					<div class="km-servicio-opcion km-servicio-opcionactivo">
-						<div class="km-servicio-desc">
-							<img src="'.getTema().'/images/new/icon/icon-pequenio.svg">
-							<div class="km-opcion-text"><b>PEQUEÑO</b><br>0 a 25 cm</div>
-						</div>
-						<div class="km-servicio-costo"><b>$40.00</b></div>
-					</div>
-					<div class="km-servicio-opcion km-servicio-opcionactivo">
-						<div class="km-servicio-desc">
-							<img src="'.getTema().'/images/new/icon/icon-mediano.svg">
-							<div class="km-opcion-text"><b>MEDIANO</b><br>25 a 28 cm</div>
-						</div>
-						<div class="km-servicio-costo"><b>$40.00</b></div>
-					</div>
-					<div class="km-servicio-opcion km-servicio-opcionactivo">
-						<div class="km-servicio-desc">
-							<img src="'.getTema().'/images/new/icon/icon-grande.svg">
-							<div class="km-opcion-text"><b>GRANDE</b><br>58 a 73 cm</div>
-						</div>
-						<div class="km-servicio-costo"><b>$40.00</b></div>
-					</div>
-					<div class="km-servicio-opcion km-servicio-opcionactivo">
-						<div class="km-servicio-desc">
-							<img src="'.getTema().'/images/new/icon/icon-gigante.svg">
-							<div class="km-opcion-text"><b>GIGANTE</b><br>73 a 200 cm</div>
-						</div>
-						<div class="km-servicio-costo"><b>$40.00</b></div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-12 col-md-6">
-				<div class="km-ficha-servicio">
-					<div class="servicio-tit">
-						<img src="'.getTema().'/images/new/icon/km-servicios/icon-hospedaje.svg">
-						<div>GUARDERÍA<br>DÍA</div>
-					</div>
-					<p>SELECCIÓN SEGÚN TAMAÑO</p>
-					<div class="km-servicio-opcion km-servicio-opcionactivo">
-						<div class="km-servicio-desc">
-							<img src="'.getTema().'/images/new/icon/icon-pequenio.svg">
-							<div class="km-opcion-text"><b>PEQUEÑO</b><br>0 a 25 cm</div>
-						</div>
-						<div class="km-servicio-costo"><b>$40.00</b></div>
-					</div>
-					<div class="km-servicio-opcion km-servicio-opcionactivo">
-						<div class="km-servicio-desc">
-							<img src="'.getTema().'/images/new/icon/icon-mediano.svg">
-							<div class="km-opcion-text"><b>MEDIANO</b><br>25 a 28 cm</div>
-						</div>
-						<div class="km-servicio-costo"><b>$40.00</b></div>
-					</div>
-					<div class="km-servicio-opcion km-servicio-opcionactivo">
-						<div class="km-servicio-desc">
-							<img src="'.getTema().'/images/new/icon/icon-grande.svg">
-							<div class="km-opcion-text"><b>GRANDE</b><br>58 a 73 cm</div>
-						</div>
-						<div class="km-servicio-costo"><b>$40.00</b></div>
-					</div>
-					<div class="km-servicio-opcion km-servicio-opcionactivo">
-						<div class="km-servicio-desc">
-							<img src="'.getTema().'/images/new/icon/icon-gigante.svg">
-							<div class="km-opcion-text"><b>GIGANTE</b><br>73 a 200 cm</div>
-						</div>
-						<div class="km-servicio-costo"><b>$40.00</b></div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-12 col-md-6">
-				<div class="km-ficha-servicio">
-					<div class="servicio-tit">
-						<img src="'.getTema().'/images/new/icon/km-servicios/icon-hospedaje.svg">
-						<div>PASEOS</div>
-					</div>
-					<p>SELECCIÓN SEGÚN TAMAÑO</p>
-					<div class="km-servicio-opcion km-servicio-opcionactivo">
-						<div class="km-servicio-desc">
-							<img src="'.getTema().'/images/new/icon/icon-pequenio.svg">
-							<div class="km-opcion-text"><b>PEQUEÑO</b><br>0 a 25 cm</div>
-						</div>
-						<div class="km-servicio-costo"><b>$40.00</b></div>
-					</div>
-					<div class="km-servicio-opcion km-servicio-opcionactivo">
-						<div class="km-servicio-desc">
-							<img src="'.getTema().'/images/new/icon/icon-mediano.svg">
-							<div class="km-opcion-text"><b>MEDIANO</b><br>25 a 28 cm</div>
-						</div>
-						<div class="km-servicio-costo"><b>$40.00</b></div>
-					</div>
-					<div class="km-servicio-opcion km-servicio-opcionactivo">
-						<div class="km-servicio-desc">
-							<img src="'.getTema().'/images/new/icon/icon-grande.svg">
-							<div class="km-opcion-text"><b>GRANDE</b><br>58 a 73 cm</div>
-						</div>
-						<div class="km-servicio-costo"><b>$40.00</b></div>
-					</div>
-					<div class="km-servicio-opcion km-servicio-opcionactivo">
-						<div class="km-servicio-desc">
-							<img src="'.getTema().'/images/new/icon/icon-gigante.svg">
-							<div class="km-opcion-text"><b>GIGANTE</b><br>73 a 200 cm</div>
-						</div>
-						<div class="km-servicio-costo"><b>$40.00</b></div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-12 col-md-6">
-				<div class="km-ficha-servicio">
-					<div class="servicio-tit">
-						<img src="'.getTema().'/images/new/icon/km-servicios/icon-hospedaje.svg">
-						<div>ENTRENAMIENTO</div>
-					</div>
-					<p>SELECCIÓN SEGÚN TAMAÑO</p>
-					<div class="km-servicio-opcion km-servicio-opcionactivo">
-						<div class="km-servicio-desc">
-							<img src="'.getTema().'/images/new/icon/icon-pequenio.svg">
-							<div class="km-opcion-text"><b>PEQUEÑO</b><br>0 a 25 cm</div>
-						</div>
-						<div class="km-servicio-costo"><b>$40.00</b></div>
-					</div>
-					<div class="km-servicio-opcion km-servicio-opcionactivo">
-						<div class="km-servicio-desc">
-							<img src="'.getTema().'/images/new/icon/icon-mediano.svg">
-							<div class="km-opcion-text"><b>MEDIANO</b><br>25 a 28 cm</div>
-						</div>
-						<div class="km-servicio-costo"><b>$40.00</b></div>
-					</div>
-					<div class="km-servicio-opcion km-servicio-opcionactivo">
-						<div class="km-servicio-desc">
-							<img src="'.getTema().'/images/new/icon/icon-grande.svg">
-							<div class="km-opcion-text"><b>GRANDE</b><br>58 a 73 cm</div>
-						</div>
-						<div class="km-servicio-costo"><b>$40.00</b></div>
-					</div>
-					<div class="km-servicio-opcion km-servicio-opcionactivo">
-						<div class="km-servicio-desc">
-							<img src="'.getTema().'/images/new/icon/icon-gigante.svg">
-							<div class="km-opcion-text"><b>GIGANTE</b><br>73 a 200 cm</div>
-						</div>
-						<div class="km-servicio-costo"><b>$40.00</b></div>
-					</div>
-				</div>
-			</div>
-		</div>
-	';
-
-	*/
-
  	$HTML .= '
+ 		<script> var SERVICIO_ID = "'.$cuidador->id_post.'"; </script>
  		<div class="km-ficha-bg" style="background-image:url('.getTema().'/images/new/km-ficha/km-bg-ficha.jpg);">
 			<div class="overlay"></div>
 		</div>
@@ -576,115 +420,13 @@
 								<p>85% Lo recomienda</p>
 							</div>
 						</div>
+
 						<a href="#" class="km-btn-comentario">ESCRIBE UN COMENTARIO</a>
-						<div class="km-comentario">
-							<div class="row">
-								<div class="col-xs-2">
-									<img class="km-foto-comentario-cuidador" src="images/km-ficha/km-comentarios-cuidadores/km-comentario-cuidador1.jpg">
-								</div>
-								<div class="col-xs-10">
-									<p>Mis niñas muy contentas y súper bien cuidadas. Gaby es encantadora y tiene un tacto especial con los perritos, súper recomendable!.</p>
-									<p class="km-tit-ficha">RAÚL RODRÍGUEZ</p>
-									<p class="km-fecha-comentario">29 Mayo 2017</p>
-								</div>
-							</div>
-							<div class="row km-review-categoria">
-								<div class="col-xs-6 col-md-3">
-									<p>CUIDADO</p>
-									<div class="km-ranking">
-										<a href="#" class="active"></a>
-										<a href="#" class="active"></a>
-										<a href="#" class="active"></a>
-										<a href="#" class="active"></a>
-										<a href="#"></a>
-									</div>
-								</div>
-								<div class="col-xs-6 col-md-3">
-									<p>PUNTUALIDAD</p>
-									<div class="km-ranking">
-										<a href="#" class="active"></a>
-										<a href="#" class="active"></a>
-										<a href="#" class="active"></a>
-										<a href="#" class="active"></a>
-										<a href="#"></a>
-									</div>
-								</div>
-								<div class="col-xs-6 col-md-3">
-									<p>LIMPIEZA</p>
-									<div class="km-ranking">
-										<a href="#" class="active"></a>
-										<a href="#" class="active"></a>
-										<a href="#" class="active"></a>
-										<a href="#" class="active"></a>
-										<a href="#"></a>
-									</div>
-								</div>
-								<div class="col-xs-6 col-md-3">
-									<p>CONFIANZA</p>
-									<div class="km-ranking">
-										<a href="#" class="active"></a>
-										<a href="#" class="active"></a>
-										<a href="#" class="active"></a>
-										<a href="#" class="active"></a>
-										<a href="#"></a>
-									</div>
-								</div>
-							</div>
+
+						<div id="comentarios_box">
+							
 						</div>
-						<div class="km-comentario">
-							<div class="row">
-								<div class="col-xs-2">
-									<img class="km-foto-comentario-cuidador" src="images/km-ficha/km-comentarios-cuidadores/km-comentario-cuidador2.jpg">
-								</div>
-								<div class="col-xs-10">
-									<p>Mis niñas muy contentas y súper bien cuidadas. Gaby es encantadora y tiene un tacto especial con los perritos, súper recomendable!.</p>
-									<p class="km-tit-ficha">RAÚL RODRÍGUEZ</p>
-									<p class="km-fecha-comentario">29 Mayo 2017</p>
-								</div>
-							</div>
-							<div class="row km-review-categoria">
-								<div class="col-xs-6 col-md-3">
-									<p>CUIDADO</p>
-									<div class="km-ranking">
-										<a href="#" class="active"></a>
-										<a href="#" class="active"></a>
-										<a href="#" class="active"></a>
-										<a href="#" class="active"></a>
-										<a href="#"></a>
-									</div>
-								</div>
-								<div class="col-xs-6 col-md-3">
-									<p>PUNTUALIDAD</p>
-									<div class="km-ranking">
-										<a href="#" class="active"></a>
-										<a href="#" class="active"></a>
-										<a href="#" class="active"></a>
-										<a href="#" class="active"></a>
-										<a href="#"></a>
-									</div>
-								</div>
-								<div class="col-xs-6 col-md-3">
-									<p>LIMPIEZA</p>
-									<div class="km-ranking">
-										<a href="#" class="active"></a>
-										<a href="#" class="active"></a>
-										<a href="#" class="active"></a>
-										<a href="#" class="active"></a>
-										<a href="#"></a>
-									</div>
-								</div>
-								<div class="col-xs-6 col-md-3">
-									<p>CONFIANZA</p>
-									<div class="km-ranking">
-										<a href="#" class="active"></a>
-										<a href="#" class="active"></a>
-										<a href="#" class="active"></a>
-										<a href="#" class="active"></a>
-										<a href="#"></a>
-									</div>
-								</div>
-							</div>
-						</div>
+
 					</div>
 				</div>
 			</div>

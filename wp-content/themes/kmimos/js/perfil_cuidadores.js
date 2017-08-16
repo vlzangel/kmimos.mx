@@ -34,3 +34,83 @@ function initMap() {
 	map.type="text/javascript";
 	e.parentNode.insertBefore(map, e);
 })(document,"script");
+
+var comentarios_cuidador = [];
+
+function comentarios(pagina = 0){
+	console.log(pagina);
+
+	var comentario = '';
+	
+	jQuery.each(comentarios_cuidador, function( pagina, cuidador ) {
+		comentario += '	<div class="km-comentario">';
+		comentario += '			<div class="row">';
+		comentario += '				<div class="col-xs-2">';
+		comentario += '					<div class="km-foto-comentario-cuidador" style="background-image: url('+comentarios_cuidador[pagina]["img"]+');"></div>';
+		comentario += '				</div>';
+		comentario += '				<div class="col-xs-10">';
+		comentario += '					<p>'+comentarios_cuidador[pagina]["contenido"]+'</p>';
+		comentario += '					<p class="km-tit-ficha">'+comentarios_cuidador[pagina]["cliente"]+'</p>';
+		comentario += '					<p class="km-fecha-comentario">'+comentarios_cuidador[pagina]["fecha"]+'</p>';
+		comentario += '				</div>';
+		comentario += '			</div>';
+		comentario += '			<div class="row km-review-categoria">';
+		comentario += '				<div class="col-xs-6 col-md-3">';
+		comentario += '				<p>CUIDADO</p>';
+		comentario += '				<div class="km-ranking">';
+		comentario += 					get_huesitos(comentarios_cuidador[pagina]["cuidado"]);
+		comentario += '				</div>';
+		comentario += '			</div>';
+		comentario += '			<div class="col-xs-6 col-md-3">';
+		comentario += '				<p>PUNTUALIDAD</p>';
+		comentario += '				<div class="km-ranking">';
+		comentario += 					get_huesitos(comentarios_cuidador[pagina]["puntualidad"]);
+		comentario += '				</div>';
+		comentario += '			</div>';
+		comentario += '			<div class="col-xs-6 col-md-3">';
+		comentario += '				<p>LIMPIEZA</p>';
+		comentario += '				<div class="km-ranking">';
+		comentario += 					get_huesitos(comentarios_cuidador[pagina]["limpieza"]);
+		comentario += '				</div>';
+		comentario += '			</div>';
+		comentario += '			<div class="col-xs-6 col-md-3">';
+		comentario += '				<p>CONFIANZA</p>';
+		comentario += '				<div class="km-ranking">';
+		comentario += 					get_huesitos(comentarios_cuidador[pagina]["confianza"]);
+		comentario += '				</div>';
+		comentario += '			</div>';
+		comentario += '		</div>';
+		comentario += '	</div>';
+	});
+
+	//console.log(comentario);
+
+	jQuery("#comentarios_box").html( comentario );
+}
+
+function get_huesitos(valor){
+	var huesos = "";
+	for (var i = 0; i < valor; i++) {
+		huesos += '<a href="#" class="active"></a>';
+	}
+	for (var i = valor; i < 5; i++) {
+		huesos += '<a href="#"></a>';
+	}
+	return huesos;
+}
+
+jQuery( document ).ready(function() {
+	jQuery.post(
+		HOME+"/procesos/cuidador/comentarios.php",
+		{
+			servicio: SERVICIO_ID
+		}, function(data){
+			console.log(data);
+
+			comentarios_cuidador = data;
+
+			comentarios();
+
+		}, "json"
+	);
+});

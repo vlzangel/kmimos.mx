@@ -1859,6 +1859,9 @@ div#ubicacion_list div:hover {
 	margin-top: 30px;
 	border-bottom: 1px solid #929292;
 }
+.km-comentario p{
+	text-align: justify;
+}
 .km-comentario:last-child {
 	border: none;
 }
@@ -1867,7 +1870,10 @@ div#ubicacion_list div:hover {
 }
 .km-comentario .col-xs-2 .km-foto-comentario-cuidador {
 	border-radius: 100%;
-	width: 100%;
+    width: 100%;
+    height: 80px;
+    background-position: center;
+    background-size: cover;
 }
 
 a.km-btn-comentario {
