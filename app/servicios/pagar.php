@@ -30,10 +30,47 @@
     $inicio = strtotime( $info[1]->inicio );
     $hoy_f = date('d', $inicio)." ".$meses[date('n', $inicio)-1]. ", ".date('Y', $inicio) ;
 
+    if( $tipo_pago != "deposito" ){
+	    $deposito = array(
+			"enable" => "no"
+	    );
+    }else{
+	    $deposito = array(
+	    	"deposit" => ( $info[0]->total - ( $info[0]->total / 1.2) ),
+			"enable" => "yes",
+			"ratio" => 1,
+			"remaining" => ( $info[0]->total / 1.2),
+			"total" => $info[0]->total
+	    );
+    }
+
+    // $deposito = unserialize( 'a:5:{s:6:"enable";s:3:"yes";s:7:"deposit";i:0;s:9:"remaining";i:960;s:5:"total";i:960;s:5:"ratio";d:1;}' );
+    $tamanos = array(
+    	"pequenos" => "Pequeñas",
+    	"medianos" => "Medianas",
+    	"grandes"  => "Grandes",
+    	"gigantes" => "Gigantes"
+    );
+    $mascotas = array();
+
+    foreach ($info[2] as $key => $value) {
+    	if( is_array($value) ){
+    		if( $value[0] > 0 ){
+    			$mascotas[ "Mascotas ".$tamanos[ $key ] ] = $value[0];
+    		}
+    	}
+    }
+
+    if( $info[1]->duracion > 1 ){
+    	$info[1]->duracion .= " Noches";
+    }else{
+    	$info[1]->duracion .= " Noche";
+    }
+
 	$data_reserva = array(
 		"servicio" 				=> $info[0]->servicio,
 		"titulo_servicio" 		=> $info[0]->titulo,
-		"cliente" 				=> $servicio,
+		"cliente" 				=> $info[0]->cliente,
 		"cuidador" 				=> $info[0]->cuidador,
 		"hoy" 					=> $hoy,
 		"fecha_formato" 		=> $hoy_f,
@@ -45,21 +82,23 @@
 		"metodo_pago" 			=> $metodo_pago,
 		"metodo_pago_titulo" 	=> $metodo_pago,
 		"moneda" 				=> "MXN",
-		"duracion_formato" 		=> $info[1]->duracion." Noche(s)",
-		"mascotas" 				=> $servicio,
-		"deposito" 				=> $servicio,
+		"duracion_formato" 		=> $info[1]->duracion,
+		"mascotas" 				=> $mascotas,
+		"deposito" 				=> $deposito,
 		"status_reserva" 		=> "unpaid",
 		"status_orden" 			=> "wc-pending"
 	);
 
-	//$reservar = new Reservas($db, $data_reserva);
+	$reservar = new Reservas($db, $data_reserva);
 
-	//$id_orden = $reservar->new_reserva();
+	$id_orden = $reservar->new_reserva();
 
 	echo json_encode(array(
 		"post"  => $_POST,
 		"info"  => $info,
-		"array"  => $data_reserva
+		"array"  => $data_reserva,
+		"id_orden"  => $id_orden,
+		"sql" => $reservar->sql
 	));
 
 	/*

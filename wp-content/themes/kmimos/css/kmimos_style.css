@@ -1674,7 +1674,7 @@ div#ubicacion_list div:hover {
 .km-tit-ficha {
 	font-size: 13px;
     font-family: 'Gotham-Pro-Bold';
-    margin-bottom: 0;
+    margin: 5px 0px;
 }
 .km-ficha-fechas {
 	margin-bottom: 10px;
@@ -1760,6 +1760,36 @@ div#ubicacion_list div:hover {
 	margin-bottom: 10px;
 }
 .km-servicio-opcion:before {
+	content: "";
+	border-top: 6px solid #fafafa;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	border-radius: 8px;
+	left: 0;
+	right: 0;
+	transition: all .2s ease-in-out;
+	-webkit-transition: all .2s ease-in-out;
+	-moz-transition: all .2s ease-in-out;
+}
+.km-servicio-opcion_productos {
+	border: 1px solid #e5e5e5;
+	border-radius: 8px;
+	padding: 14px 0;
+	color: #929292;
+	font-size: 11px;
+	letter-spacing: 1px;
+	transition: all .2s ease-in-out;
+	-webkit-transition: all .2s ease-in-out;
+	-moz-transition: all .2s ease-in-out;
+	position: relative;
+	cursor: pointer;
+	width: 100%;
+	text-align: center;
+	margin-bottom: 10px;
+}
+.km-servicio-opcion_productos:before {
 	content: "";
 	border-top: 6px solid #fafafa;
 	height: 100%;

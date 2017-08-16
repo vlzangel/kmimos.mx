@@ -1,7 +1,7 @@
 <?php
 $datos = kmimos_get_info_syte();
 $HTML = '
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="'.getTema().'/js/jquery.min.js"></script>
         
         <script type="text/javascript" src="'.getTema().'/js/jquery.bxslider.js"></script>
         <script type="text/javascript" src="'.getTema().'/js/bootstrap.min.js"></script>

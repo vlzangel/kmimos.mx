@@ -7,7 +7,8 @@
 	function home(){
         global $db;
 		// $home = $db->get_var("SELECT option_value FROM wp_options WHERE option_name = 'siteurl'");
-		$home = "http://192.168.0.105/kmis/new_kmimos.mx/";
+        // $home = "http://192.168.0.105/kmis/new_kmimos.mx/";
+		$home = "http://localhost/kmis/new_kmimos.mx/";
 
 		return $home;
 	}

@@ -5,6 +5,8 @@ class Reservas {
     private $db;
     private $data;
 
+    public $sql;
+
     function Reservas($db, $data){
         $this->db = $db;
         $this->data = $data;
@@ -51,9 +53,21 @@ class Reservas {
 
         $this->data["id_reserva"] = $this->db->insert_id();
 
+
+
         $this->create_metas_reserva();
 
+        $this->update_item();
+        
         return $this->data["id_order"];
+    }
+
+    function update_item(){
+        extract($this->data);
+        
+        $sql = "UPDATE wp_woocommerce_order_itemmeta SET meta_value = '{$id_reserva}' WHERE order_item_id = {$id_item} AND meta_key = 'Reserva ID'";
+
+        $this->db->multi_query($sql);
     }
 
     function create_metas_reserva(){
@@ -139,10 +153,6 @@ class Reservas {
             (NULL, '{$id_order}', '_order_currency',                        '{$moneda}');
         ";
 
-        echo "<pre>";
-            print_r($sql);
-        echo "</pre>";
-
         $this->db->multi_query( $sql );
     }
 
@@ -171,7 +181,15 @@ class Reservas {
         extract($this->data);
 
         $mascotas = "";
-        
+        foreach ($this->data["mascotas"] as $key => $value) {
+            $mascotas .= "(NULL, '{$id_item}', '{$key}', '{$value}'),";
+        }
+
+        $deposito = serialize($deposito);
+
+        // $deposito = str_replace('"', '\"', $deposito);
+        $mascotas = str_replace('"', '\"', $mascotas);
+
         $sql = "
             INSERT INTO wp_woocommerce_order_itemmeta VALUES
             (NULL, '{$id_item}', 'Reserva ID', '{$id_reserva}'),
@@ -194,7 +212,9 @@ class Reservas {
             (NULL, '{$id_item}', '_qty', '1');
         ";
 
-        $this->db->multi_query($sql);
+        $this->sql = $sql;
+
+        $this->db->multi_query( utf8_decode($sql) );
     }
 
 }
