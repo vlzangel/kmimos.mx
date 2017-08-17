@@ -481,8 +481,8 @@
 	// Generales
 
 		function GoToHomePage(){
-			// location = 'http://kmimos.ilernus.com';  
-			location = "<?php echo get_home_url().'/perfil-usuario/?ua=profile'; ?>";  
+			location = 'http://kmimos.ilernus.com';
+			// location = "<?php echo get_home_url().'/perfil-usuario/?ua=profile'; ?>";
 		}
 			
 		function vlz_modal(tipo, titulo, contenido){
@@ -541,6 +541,7 @@
 			     	
 					jQuery.post( a, jQuery("#vlz_form_nuevo_cuidador").serialize(), function( data ) {
 			      		data = eval(data);
+
 			      		if( data.error == "SI" ){
 			      			jQuery('html, body').animate({ scrollTop: jQuery("#email").offset().top-75 }, 2000);
 			      			alert(data.msg);
@@ -564,7 +565,7 @@
 						  		.css('padding', '0px')
 						  		.css('padding-top', '10px');
 			      			jQuery("#vlz_titulo_registro")
-			      				.html("!GRACIAS¡");
+			      				.html("¡Registro completado!");
 			      			jQuery("#vlz_titulo_registro")
 			      				.css('font-size', '36px');
 			      			jQuery("#vlz_titulo_registro")
@@ -591,7 +592,7 @@
 			      		}
 			      	});
 
-					}else{
+				}else{
 			  		alert("Debe aceptar los términos y condiciones.");
 					vlz_modal('terminos', 'Términos y Condiciones');
 				}

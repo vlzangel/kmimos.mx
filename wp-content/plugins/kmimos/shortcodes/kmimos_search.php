@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
     //[kmimos_search]
 
@@ -94,7 +94,7 @@
         </div>";
     }
 
-    $HTML = "
+    $HTML = do_shortcode("[layerslider id='1']")."
     <style>
         #estado_cuidador_main {
             margin: 0px !important;
@@ -116,6 +116,11 @@
             margin-top: 3px;
         }
         html.iOS .fecha_hasta, html.iOS .fecha_desde { width: 118px !important}
+        input[type='date'] {
+            line-height: 1.42857143;
+            margin-top: -10px;
+            height: 25px !important;
+        }
         @media only screen and (max-width: 639px) { 
             .grupo_selector { width: 100%; } 
             html.iOS .selector_fecha {width: 50% !important}
@@ -149,9 +154,14 @@
             display: inline-block;
             clear: right;
             float: left;
-            margin-top: -10px;
             border: 0px;
             background-color: #ffffff;
+        }
+        .grupo_selector select{
+            margin-top: -10px;
+        }
+        .grupo_selector input {
+            height: 36px;
         }
         select.activo, .grupo_fecha input[type=date].activo { color: #00d2b7 !important; }
         select:focus{
@@ -160,49 +170,6 @@
         #pp_full_res .pp_inline p {
             margin: 7px 0px 15px 38px;
             text-align: left;
-        }
-        #popup_mas_servicios{
-            overflow: hidden;
-            position: fixed;
-            top: 0px;
-            left: 0px;
-            z-index: 999999999999999999;
-            background: rgba(0,0,0,0.6);
-            width: 100%;
-            height: 100%;
-            vertical-align: middle;
-        }
-        #mas_servicios{
-            display: inline-block;
-            position: relative;
-            max-width: 340px !important;
-            vertical-align: middle;
-            overflow: hidden;
-            background: #FFF;
-            padding: 25px 5px 10px;
-            margin: 50px auto;
-            border-radius: 8px;
-            border: solid 5px rgba(0,0,0,0.8);
-            vertical-align: middle;
-        }
-        #cerrar_mas_servicios{
-            position: absolute;
-            top: 0px;
-            right: 0px;
-            background: #FFF;
-            padding: 3px;
-            font-size: 16px;
-            border: solid 1px #333;
-            border-top: 0px;
-            border-right: 0px;
-            border-radius: 0px 0px 0px 5px;
-            cursor: pointer;
-        }
-        #popup_mas_servicios span{
-            display: inline-block;
-            width: 0px;
-            height: 100%;
-            vertical-align: middle;
         }
     </style>
     <div id='portada'>
@@ -257,6 +224,29 @@
                                         <option value=''>Seleccione primero un estado</option>
                                     </select>
                                     <input type='hidden' id='municipio_cache' name='municipio_cache'>
+                                </div>
+                            </div>
+                        </div>
+                        <div id='selector_coordenadas_x' class='hide'>
+                            <input type='text' id='latitud' name='latitud'>
+                            <input type='text' id='longitud' name='longitud'>
+                        </div>
+                    </div>
+
+                    <div id='estado_cuidador_main'>
+                        <div id='selector_locacion'>
+                            <div class='grupo_selector'>
+                                <div class='marco'>
+                                    <div class='icono'><i class='icon-calendario embebed'></i></div>
+                                    <sub>Desde cuando:</sub><br>
+                                    <input type='date' id='checkin' name='checkin' class='fechas' placeholder='Check In' min='".date("Y-m-d")."'>
+                                </div>
+                            </div>
+                            <div class='grupo_selector'>
+                                <div class='marco'>
+                                    <div class='icono'><i class='icon-calendario embebed'></i></div>
+                                    <sub>Hasta cuando:</sub><br>
+                                    <input type='date' id='checkout' name='checkout' class='fechas' placeholder='Check Out' disabled>
                                 </div>
                             </div>
                         </div>
@@ -377,7 +367,46 @@
                 $('.modal').fancybox({
                     maxWidth: 340
                 });
+
+                function seleccionar_checkin() {
+                    if( jQuery('#checkin').val() != '' ){
+                        var fecha = new Date();
+                        jQuery('#checkout').attr('disabled', false);
+
+                        var ini = String( jQuery('#checkin').val() ).split('-');
+                        var inicio = new Date( parseInt(ini[2]), parseInt(ini[1]), parseInt(ini[0]) );
+
+                        console.log( jQuery('#checkout').val() );
+
+                        var checkout = String( jQuery('#checkout').val() ).split('-');
+                        var checkout = new Date( checkout[0]+'-'+checkout[1]+'-'+checkout[2] );
+
+                        if( jQuery('#checkout').val() != '' ){
+                            if( Math.abs(checkout.getTime()) < Math.abs(inicio.getTime()) ){
+                                jQuery('#checkout').attr('value', ini[0]+'-'+ini[1]+'-'+ini[2] );
+                            }
+                        }else{
+                            jQuery('#checkout').attr('value', ini[0]+'-'+ini[1]+'-'+ini[2] );
+                        }
+                            
+                        jQuery('#checkout').attr('min', ini[0]+'-'+ini[1]+'-'+ini[2] );
+                    }else{
+                        jQuery('#checkout').val('');
+                        jQuery('#checkout').attr('disabled', true);
+                    }
+                }
+
+                jQuery('#checkin').on('change', function(e){
+                    seleccionar_checkin();
+                });
+
+                if( jQuery('#checkin').val() != '' ){
+                    seleccionar_checkin();
+                }
+
             });
+
+
         })(jQuery);
 
         function coordenadas(position){
@@ -390,6 +419,7 @@
             }
         }
     </script>
+    
     ";
 
     echo comprimir_styles($HTML);

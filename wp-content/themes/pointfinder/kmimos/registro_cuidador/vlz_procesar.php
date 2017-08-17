@@ -71,7 +71,8 @@
             "guarderia"         => "55478",
             "adiestramiento_basico"     => "55479",
             "adiestramiento_intermedio" => "55479",
-            "adiestramiento_avanzado"   => "55479"
+            "adiestramiento_avanzado"   => "55479",
+            "paseos"                    => "55480"
         );
 
         $temp = array();
@@ -110,7 +111,8 @@
 	        "guarderia",
 	        "adiestramiento_basico",
 	        "adiestramiento_intermedio",	        
-	        "adiestramiento_avanzado"
+	        "adiestramiento_avanzado",
+            "paseos"
 	    );
 
         $adicionales = array();
@@ -123,8 +125,11 @@
 		        	"grandes"  => $adicional_grandes[$key]+0,
 		        	"gigantes" => $adicional_gigantes[$key]+0
 		        );
-		        $adicionales[ $slugs_adicionales[$value] ] = $temp;
+		        $adicionales[$slugs_adicionales[$value]] = $temp;
 		        $temp = NULL;
+
+                //ADDITIONAL STATUS
+                $adicionales['status_'.$slugs_adicionales[$value]] = "1";
         	}
         }
 
@@ -157,7 +162,7 @@
                 }
             }
         }
-
+        
         $adicionales = serialize($adicionales);
 
         $coordenadas = unserialize( $wpdb->get_var("SELECT valor FROM kmimos_opciones WHERE clave = 'municipio_{$param['municipios']}' ") );
@@ -337,43 +342,10 @@
                     }
                 }
                 
-                $sql = ("
-                    INSERT INTO wp_posts VALUES (
-                        NULL,
-                        '".$user_id."',
-                        '".$hoy."',
-                        '".$hoy."',
-                        '',
-                        '',
-                        '',
-                        'inherit',
-                        'closed',
-                        'closed',
-                        '',
-                        '',
-                        '',
-                        '',
-                        '".$hoy."',
-                        '".$hoy."',
-                        '',
-                        '0',
-                        'http://qa.kmimos.la/kmimos/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg',
-                        '0',
-                        'attachment',
-                        'image/jpeg',
-                        '0'
-                    );
-                ");
-                $conn->query( utf8_decode( $sql ) );
-                $img_id = $conn->insert_id;
-
-                $sql = "INSERT INTO wp_postmeta VALUES (NULL, ".$img_id.", '_wp_attached_file', 'cuidadores/avatares/".$cuidador_id."/0.jpg');";
-                $conn->query( utf8_decode( $sql ) );
-
                 $sql = "
                     INSERT INTO wp_usermeta VALUES
                         (NULL, ".$user_id.", 'user_favorites',      ''),
-                        (NULL, ".$user_id.", 'user_photo',          '".$img_id."'),
+                        (NULL, ".$user_id.", 'user_photo',          '1'),
                         (NULL, ".$user_id.", 'user_address',        '".$direccion."'),
                         (NULL, ".$user_id.", 'user_phone',          '".$telefono."'),
                         (NULL, ".$user_id.", 'user_mobile',         '".$telefono."'),
@@ -465,7 +437,7 @@
                                     "hoy"           => $hoy,
                                     "titulo"        => $adicionales_principales[$key]." - ".$nom,
                                     "descripcion"   => descripciones($key),
-                                    "slug"          =>  $user_id."-".$key,
+                                    "slug"          => $key."-".$user_id,
                                     "cuidador"      => $id_post,
                                     "status"        => $status
                                 ));
@@ -555,19 +527,13 @@
                     $user_signon = wp_signon( $info, true );
                     wp_set_auth_cookie($user_signon->ID);
 
-                    # ****************************** */
-                    # Mensaje Web - Registro Cuidador
-                    # ****************************** */
-                    include( 'mensaje_web_registro_cuidador.php' );
+                    include( 'mensaje_web_registro_cuidador_viejo.php' );
 
-                    # ****************************** */
-                    # Mensaje Email - Registro Cuidador
-                    # ****************************** */
                     include( 'mensaje_email_registro_cuidador.php' );
 
 
-                    //$mail_msg = kmimos_get_email_html("Gracias por registrarte como cuidador.", $mensaje_mail, 'Registro de Nuevo Cuidador.', true, true);
-                    wp_mail( $email, "Kmimos México – Gracias por registrarte como cuidador! Kmimos la NUEVA forma de cuidar a tu perro!", $mensaje_mail);
+                    $mail_msg = kmimos_get_email_html("Gracias por registrarte como cuidador.", $mensaje_mail, 'Registro de Nuevo Cuidador.', true, true);
+                    wp_mail( $email, "Kmimos México – Gracias por registrarte como cuidador! Kmimos la NUEVA forma de cuidar a tu perro!", $mail_msg);
 
                     $error = array(
                         "error"         => "NO",

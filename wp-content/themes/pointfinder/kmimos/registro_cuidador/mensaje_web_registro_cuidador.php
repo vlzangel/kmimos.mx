@@ -53,8 +53,8 @@ $mensaje_web = '
 			</p>
 			<strong>Enviar la documentación a cualquiera de las siguientes opciones:</strong>
 			<br>
+			<i class="fa fa-envelope-o" style="margin:5px;background: #5a5a5a;color: #fff;padding: 7px 6px 7px 7px;border-radius: 50px;margin-bottom: 5px;"></i>certificacion@kmimos.la<br>
 			<i class="fa fa-facebook" style="margin:5px;background: #5a5a5a;color: #fff;padding: 7px 10px 6px 10px;border-radius: 50px;"></i>Kmimosmx<br>
-			<i class="fa fa-envelope-o" style="margin:5px;background: #5a5a5a;color: #fff;padding: 7px 6px 7px 7px;border-radius: 50px;margin-bottom: 5px;"></i>certificacion@kmimos.la
 		</div>	
 	</div>
 	<div style="height: auto; background: #fdfdaa; padding: 20px;">
@@ -84,7 +84,7 @@ $mensaje_web = '
 			</ul>
 			<div class="clearfix"></div>
 			<p style="color: #de7212;font-weight: bold;font-size: 15px;">
-				*En caso de que algunos de estos pasos no sea completado, el perfil no podra ser activado
+				*En caso de que algunos de estos pasos no sea completado, el perfil no podr&aacute; ser activado
 			</p>
 		</div>
 	</div>
@@ -99,7 +99,7 @@ $mensaje_web = '
 					<span></span>
 					<p>¡Hola! Soy Valentina, tengo 25 años y me encantan los animales, 
 						Trabajo en casa asi que estare 100% al cuidado de tu perrito, 
-						lo consentir&eacute; y recibiras fotos diarias de su estancia conmigo. 
+						lo consentir&eacute; y recibirás fotos diarias de su estancia conmigo. 
 						Mis hu&eacute;spedes peludos duermen de casa y pueden andar libremente 
 						SIN JAULAS NI ENCIERROS...
 					</p>

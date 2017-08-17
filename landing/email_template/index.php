@@ -1,4 +1,8 @@
 <?php
+
+exit();
+
+
 $http = (isset($_SERVER['HTTPS']))? 'https://' : 'http://' ;
 
 $username = 'italo username';
