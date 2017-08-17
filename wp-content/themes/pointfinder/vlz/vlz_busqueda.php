@@ -7,7 +7,6 @@
 	//update_additional_service();
 	//update_additional_service_postname();
 
-var_dump($_POST);
 	session_start();
 	if( isset($_SESSION['busqueda'])){ $_POST = unserialize($_SESSION['busqueda']); }
 	$home = get_home_url();
