@@ -1,19 +1,22 @@
 <style type="text/css">
 	#knowCaregiver{position:relative; max-width: 700px;  margin: 0 auto; top: 75px; border-radius: 20px;  background: #a8d432;  overflow: hidden; display: flex; align-items: flex-end;}
-	#knowCaregiver .exit{position: absolute; top: 0; right: 0; margin: 10px; font-size: 20px; cursor: pointer; z-index: 1;}
+	#knowCaregiver .exit{position: absolute; top: 0; right: 0; margin: 10px; font-size: 20px; font-style: inherit; cursor: pointer; z-index: 1;}
 	#knowCaregiver .section{position: relative; width: 60%; padding: 10px 0; float: left; font-size: 17px; text-align: left;}
 	#knowCaregiver .section.section1{width: 40%; min-width:250px;}
 	#knowCaregiver .section.section1:before{content:""; position:absolute; width:100%; height:40px; bottom: 0; background:#80ae08;}
-	#knowCaregiver .section.section1:after{content:""; position: absolute; width: 40%; height: 30px; top:0; right:10px; background: url(https://kmimos.com.mx/wp-content/uploads/2017/02/logo-kmimos.png)center/contain no-repeat;}
-	#knowCaregiver .section.section1 .images{position: relative; display: flex; justify-content: center; align-items: baseline;}
-	#knowCaregiver .section.section2{padding:20px; font-size: 14px; background: #61a6af;}
+	#knowCaregiver .section.section1:after{content:""; position: absolute; width: 40%; height: 25px; top: 10px; right:10px; background: url(https://kmimos.com.mx/wp-content/uploads/2017/02/logo-kmimos.png)center/contain no-repeat;}
+	#knowCaregiver .section.section1 .images{position: relative; margin: 0 40px; display: flex; justify-content: flex-start; align-items: baseline;}
+	#knowCaregiver .section.section2{padding:20px; font-size: 14px; text-align: justify; background: #61a6af;}
 	#knowCaregiver .section.section2 button{padding: 5px 10px; color: #FFF; font-size: 15px; border-radius: 5px;  border: none; background: #ff416d; }
 	#knowCaregiver .section.section2:before{content: ""; position: absolute; width: 40px; height: 40px; left: -20px; top: calc(50% - 20px); border-radius: 50%; background: #61a6af;}
 
 	@media screen and (max-width:480px), screen and (max-device-width:480px) {
 		#knowCaregiver {top: 15px; display: block;}
+		#knowCaregiver .exit {right: 5px;}
 		#knowCaregiver .section{ width: 100%; padding: 10px 0; font-size: 12px;}
-		#knowCaregiver .section.section1{width: 100%; margin: 20px 0;}
+		#knowCaregiver .section.section1{width: 100%; margin: 25px 0;}
+		#knowCaregiver .section.section1:after{top: 20px; right: 0px;}
+		#knowCaregiver .section.section1 .images{justify-content: flex-start;}
 		#knowCaregiver .section.section2{text-align: center;}
 		#knowCaregiver .section.section2:before{top: -20px; left: calc(50% - 20px);}
 	}
@@ -22,13 +25,14 @@
 <script type='text/javascript'>
 	//knowCaregiver
 	function PopUpknowCaregiver(){
-		var dog = '<img height="120" align="bottom" src="https://www.kmimos.com.mx/wp-content/uploads/2017/08/Botón-conocer-cuidador-07.png">' +
-				'<img height="80" align="bottom" src="https://www.kmimos.com.mx/wp-content/uploads/2017/08/Botón-conocer-cuidador-08.png">';
+		var dog = '<img height="120" style="z-index: 1;" align="bottom" src="https://www.kmimos.com.mx/wp-content/uploads/2017/08/Botón-conocer-cuidador-07.png">' +
+				'<img height="80" style="position:relative; margin-left:-6px; top: 5px;" align="bottom" src="https://www.kmimos.com.mx/wp-content/uploads/2017/08/Botón-conocer-cuidador-08.png">';
 
 		var html='<div id="knowCaregiver">' +
-			'<i class="exit fa fa-times" aria-hidden="true" onclick="messagePopUp_Close(\'#message.PopUp\')"></i>' +
+			//'<i class="exit fa fa-times" aria-hidden="true" onclick="messagePopUp_Close(\'#message.PopUp\')"></i>' +
+			'<i class="exit" onclick="messagePopUp_Close(\'#message.PopUp\')">X</i>' +
 			'<div class="section section1"><div class="images">'+dog+'</div></div>' +
-			'<div class="section section2"><span>Te invitamos a realizar tu <button onclick="PopUpknowCaregiverBooking()">Reserva</button><br>Podr&aacute;s conocer a tu cuidador en cualquier momento antes de la entrada de tu perrito, en su casa o cualquier punto en el que acuerden. Los datos para conocerse vendr&aacute;n en el correo que recibir&aacute;s al completar la solicitud de reserva.</span></div>' +
+			'<div class="section section2"><span>Te invitamos a realizar tu <button onclick="PopUpknowCaregiverBooking()">Reserva</button><br>Podr&aacute;s conocer a tu cuidador en cualquier momento antes de la entrada de tu perrito, en su casa o cualquier punto en el que acuerden. Los datos para conocerse vendr&aacute;n en el correo que recibir&aacute;s al completar la solicitud de Reserva.</span></div>' +
 			'</div>';
 
 		messagePopUp_Create(html);
