@@ -215,6 +215,17 @@
 
 	$productos .= '</div>';
 
+	if(is_user_logged_in()){
+		include('partes/seleccion_boton_reserva.php');
+	}else{
+		$BOTON_RESERVAR .= "
+		<a href='#'
+			id='btn_reservar'
+			class='km-btn-secondary' 
+			onclick=\"perfil_login('btn_reservar');\"
+		>RESERVAR</a>";
+	}
+
  	$HTML .= '
  		<script> var SERVICIO_ID = "'.$cuidador->id_post.'"; </script>
  		<div class="km-ficha-bg" style="background-image:url('.getTema().'/images/new/km-ficha/km-bg-ficha.jpg);">
@@ -243,7 +254,7 @@
 							<input type="text" id="checkin" name="checkin" placeholder="DESDE" value="'.$busqueda["checkin"].'" class="km-input-custom km-input-date date_from" readonly>
 							<input type="text" id="checkout" name="checkout" placeholder="HASTA" value="'.$busqueda["checkout"].'" class="km-input-custom km-input-date date_to" readonly>
 						</div>
-						<a href="#" class="km-btn-secondary">RESERVAR</a>
+						'.$BOTON_RESERVAR.'
 					</div>
 				</div>
 			</div>

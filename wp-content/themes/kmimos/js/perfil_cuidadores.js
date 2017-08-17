@@ -12,7 +12,7 @@ function initMap() {
 	var latitud = lat;
 	var longitud = lng;
 	map_cuidador = new google.maps.Map(document.getElementById('mapa'), {
-		zoom: 5,
+		zoom: 15,
 		center:  new google.maps.LatLng(latitud, longitud), 
 		mapTypeId: google.maps.MapTypeId.ROADMAP,
 		scrollwheel: false

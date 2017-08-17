@@ -99,8 +99,10 @@
 			$tamano = "gigantes";
 		}
 
-		if( $activo && in_array($tamano, $tamanos) ){
-			$class = "km-servicio-opcionactivo";
+		if( is_array($tamanos) ){
+			if( $activo && in_array($tamano, $tamanos) ){
+				$class = "km-servicio-opcionactivo";
+			}
 		}
 
 		switch ( $tamano ) {

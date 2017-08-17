@@ -83,7 +83,7 @@
 
 	if( !is_user_logged_in() ){
 		$HTML .= "
-			<div class='modal_login'>
+			<div id='modal_login' class='modal_login'>
 		        <div class='modal_container'>
 		            <div class='modal_box'>
 		                <img id='close_login' src='".getTema()."/images/closebl.png' />

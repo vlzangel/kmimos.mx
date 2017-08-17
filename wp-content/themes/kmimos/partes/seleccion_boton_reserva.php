@@ -61,12 +61,12 @@
 	if( count($url_servicio) > 1 ){
 
 		$content_modal .= '
-		<button type="button" class="button reservar" data-toggle="modal" data-target="#selector_servicios">
-		  Reservar
-		</button>
+		<a href="#" class="km-btn-secondary">
+		  	RESERVAR
+		</a>
 
-		<div class="modal" id="selector_servicios" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		  	<div class="modal-dialog" role="document">
+		<div class="modal" id="selector_servicios">
+		  	<div class="modal-dialog">
 		    	<div>
 		      		<div class="modal-content">
 		        		<strong class="modal_title">Cual servicio deseas?</stronge>
@@ -90,17 +90,17 @@
 		  	</div>
 		</div>';
 
-		$HTML .= $content_modal;
+		$BOTON_RESERVAR .= $content_modal;
 
 	}else{
 		if( count($url_servicio) == 1){
 			foreach ($url_servicio as $item) {
-				$HTML .= '<a class="button reservar" href="'.$item['url'].'">Reservar</a>';
+				$BOTON_RESERVAR .= '<a class="km-btn-secondary" href="'.$item['url'].'">RESERVAR</a>';
 				break;
 			}
 		}
 		else{				
-			$HTML .= '<a class="button reservar" href="'.get_home_url().'/producto/'.$slug.'/'.'">Reservar</a>';
+			$BOTON_RESERVAR .= '<a class="km-btn-secondary" href="'.get_home_url().'/producto/'.$slug.'/'.'">RESERVAR</a>';
 		}
 	}
 ?>
