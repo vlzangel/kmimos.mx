@@ -1,3 +1,169 @@
+
+
+<link rel="stylesheet" href="<?php echo get_bloginfo( 'template_directory', 'display' )."/css/CaviarDreams.css"; ?>" type="text/css" charset="utf-8" />
+
+<style type="text/css">
+#news{width: 100%; padding: 20px 0; background: #900fa2; display:none;}
+#news.central{display:block;}
+#news a{position: absolute; width: 100%; height: 100%; top:0; left:0;}
+#news .contain{position: relative; width: 95%; max-width: 1000px;  margin: 0 auto;}
+#news .title{font-size: 20px;}
+#news > .title { font-size: 25px; padding: 0; color: #FFF; text-align: center; line-height: 1.2;}
+#news .action{position: absolute; width: 100%; height: 100%; overflow: hidden;}
+#news .action .icon.arrow{position: absolute; top: calc(50% - 18px); left: 0; width:36px;  height: auto;  font-size: 20px;  color: #900fa2;  text-align: center;  padding: 10px 0;  background: #FFF;  border-radius: 50%;  cursor: pointer; }
+#news .action .icon.arrow[data-direction="next"]{right: 0; left: auto;}
+#news .posts{position: relative; width: calc(100% - 100px);  margin: 0 auto; overflow: hidden;}
+#news .group{position: relative; width: 10000px; left:0; display: flex; transition: all .3s;}
+#news .post{position:relative; width: 260px; margin: 20px; padding: 0; border-radius: 10px; background: #FFF; align-items: center;  display: flex;  flex-flow: wrap;  overflow: hidden;}
+#news .post.show{display: flex !important;}
+#news .post.redirect{display: none !important;}
+#news .post.loadfirst{display: none !important;}
+#news .post .image{float:left;  width:80px; height: 100%; min-height: 100px; margin: 0;  background:center/cover no-repeat;}
+#news .post .detail{width: calc(100% - 100px); margin: 10px;}
+#news .post .category{display: none;}
+#news .post .title {font-size: 17px;  font-weight: bold;}
+#news .post .content{padding: 0 0 50px 0; text-align: justify; display: none;}
+#news .post .button.more{display:none;}
+
+@media screen and (max-width:480px), screen and (max-device-width:480px) {
+    #news .post {
+        display: block;
+        width: 200px;
+    }
+    #news .post .image {
+        width: 100%;
+        height: 20px;
+        float: none;
+    }
+    #news .post .detail {
+        width: auto;
+        margin: 20px;
+    }
+}
+
+
+#PageSubscribe{position:relative; max-width: 700px;  margin: 0 auto;  padding: 25px;  top: 75px; border-radius: 20px;  background: #ba2287;  overflow: hidden;}
+#PageSubscribe .exit{float: right; cursor: pointer;}
+#PageSubscribe .section{ width: 50%; padding: 10px; float: left; font-size: 17px; text-align: left;}
+#PageSubscribe .section.section1{font-size: 20px;}
+#PageSubscribe .section.section1 span{font-size: 25px;}
+#PageSubscribe .section.section1 .images{padding:10px 0; text-align: center;}
+#PageSubscribe .section.section3{width: 100%; font-size: 17px; font-weight: bold; text-align: center;}
+#PageSubscribe .section.section2{}
+#PageSubscribe .section.section2 .message{font-size: 15px; border: none; background: none; opacity:0; visible: hidden; transition: all .3s;}
+#PageSubscribe .section.section2 .message.show{opacity:1; visible:visible;}
+#PageSubscribe .section.section2 .icon{width: 30px; padding: 5px 0;}
+#PageSubscribe .section.section2 .subscribe {margin: 20px 0;  }
+#PageSubscribe .section.section2 form{margin: 0; display:flex;}
+#PageSubscribe .section.section2 input,
+#PageSubscribe .section.section2 button{width: 100%; max-width: calc(100% - 60px); margin: 5px; padding: 5px 10px; color: #CCC; font-size: 15px; border-radius: 20px;  border: none; background: #FFF; }
+#PageSubscribe .section.section2 button {padding: 10px;  width: 40px;}
+
+@media screen and (max-width:480px), screen and (max-device-width:480px) {
+    #PageSubscribe { top: 15px;}
+    #PageSubscribe .section{ width: 100%; padding: 10px 0; font-size: 12px;}
+    #PageSubscribe .section.section1 {font-size: 15px;}
+    #PageSubscribe .section.section1 span {font-size: 20px;}
+    #PageSubscribe .section.section3 {font-size: 12px;}
+}
+
+    .gm-style * {
+        font-family: caviar_dreamsregular !important;
+        font-size: 9px  !important;
+    }
+
+    .gm-style > div > div > div > div {
+        padding-top: 1px !important;
+    }
+</style>
+
+<script type='text/javascript'>
+    //Subscribe
+    function SubscribeSite(){
+        clearTimeout(SubscribeTime);
+
+        var dog = '<img height="70" align="bottom" src="https://www.kmimos.com.mx/wp-content/uploads/2017/07/propuestas-banner-09.png">' +
+            '<img height="20" align="bottom" src="https://www.kmimos.com.mx/wp-content/uploads/2017/07/propuestas-banner-10.png">';
+
+        var html='<div id="PageSubscribe"><i class="exit fa fa-times" aria-hidden="true" onclick="SubscribePopUp_Close(\'#message.Msubscribe\')"></i>' +
+            '<div class="section section1"><span>G&aacute;nate <strong>$50</strong> pesos en tu primera reserva</span><br>&#8216;&#8216;Aplica para clientes nuevos&#8217;&#8217;<div class="images">'+dog+'</div></div>' +
+            '<div class="section section2"><span><strong>&#161;SUSCR&Iacute;BETE!</strong> y recibe el Newsletter con nuestras <strong>PROMOCIONES, TIPS DE CUIDADOS PARA MASCOTAS,</strong> etc.!</span><?php echo subscribe_input('home'); ?></div>' +
+            '<div class="section section3">*Dentro de 48 hrs. Te enviaremos v&iacute;a email tu c&uacute;pon de descuento</div>' +
+            '</div>';
+
+        SubscribePopUp_Create(html);
+    }
+
+    var checkparam = true;
+
+    <?php
+        if(isset($_GET['utm_campaign'])){
+            if($_GET['utm_campaign']=='landing_white_label_volaris_kmimos'){
+                echo ' checkparam = false;';
+            }
+        }
+    ?>
+    jQuery(document).ready(function(e){
+        if(jQuery('body').hasClass('home') && checkparam){
+            SubscribeTime = setTimeout(function(){
+                SubscribeSite();
+            }, 7400);
+        }
+    });
+
+    //CARUSEL
+    var caroussel = 0;
+    jQuery(document).on('click', '#news .action .icon.arrow', function(e){
+        var news = jQuery(this).closest('#news');
+        var widthContain = news.find('.posts').width();
+        var widthPost = news.find('.posts > .group > .post:first-child').width();
+        var posts = news.find('.posts > .group > .post').length-1;
+        var maxPosts = posts-(widthContain/widthPost);
+        console.log(maxPosts);
+
+        if(jQuery(this).data('direction')=='prev' && caroussel>0){
+            caroussel--;
+
+        }else if(jQuery(this).data('direction')!='prev' && caroussel<=maxPosts){
+            caroussel++;
+        }
+
+        var left = (-1)*caroussel*(widthPost-(-40));
+        news.find('.posts > .group').css({'left': left+'px'});
+    });
+
+
+    jQuery(document).ready(function(e){
+        if(jQuery('body').hasClass('home')){
+            jQuery('#news').insertAfter(jQuery('.vc_row.buscador')).addClass('central');
+        }
+    });
+</script>
+
+
+
+<section id="news">
+    <div class="title">
+        <div class="contain">
+            Entra y descubre los art&iacute;culos m&aacute;s le&iacute;dos esta semana en nuestro blog
+        </div>
+    </div>
+    <div class="contain">
+        <div class="action">
+            <i class="icon arrow fa fa-caret-right" data-direction="next"></i>
+            <i class="icon arrow fa fa-caret-left" data-direction="prev"></i>
+        </div>
+        <div class="posts">
+            <div class="group">
+            <?php
+                include_once(__DIR__.'/template/blog/process/news.php');
+            ?>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 <?php
 $datos = kmimos_get_info_syte();
 $HTML = "</div></div>
@@ -62,6 +228,17 @@ $HTML = "</div></div>
         mixpanel.init('972817bb3a7c91a4b95c1641495dfeb7');
     </script>
     -->
+
+    <script>
+        (function(d, s){
+            $ = d.createElement(s), e = d.getElementsByTagName(s)[0];
+            $.async=!0;
+            $.setAttribute('charset','utf-8');
+            $.src='//www.google.com/recaptcha/api.js?hl=es';
+            $.type='text/javascript';
+            e.parentNode.insertBefore($, e)
+        })(document, 'script');
+    </script>
 
     <style type='text/css'>
         .wpf-container{
@@ -165,7 +342,7 @@ $HTML = "</div></div>
         function ocultarModal(){
             jQuery('#jj_modal_finalizar_compra').fadeOut();
             jQuery('#jj_modal_finalizar_compra').css('display', 'none');
-        }"; 
+        }</script>"; 
 
         if( isset( $_GET['a'] ) ){
             $HTML .= "
@@ -180,12 +357,14 @@ $HTML = "</div></div>
 
         if( $post->post_name == "carro" ){
             $HTML .= "
-                jQuery('.woocommerce-message>a.button.wc-forward').css('display', 'none');
-                jQuery('.variation-Duracin').css('display', 'none');
-                jQuery('.variation-Ofrecidopor').css('display', 'none');
-                jQuery( document ).ready(function() {
+                <script>
                     jQuery('.woocommerce-message>a.button.wc-forward').css('display', 'none');
-                });
+                    jQuery('.variation-Duracin').css('display', 'none');
+                    jQuery('.variation-Ofrecidopor').css('display', 'none');
+                    jQuery( document ).ready(function() {
+                        jQuery('.woocommerce-message>a.button.wc-forward').css('display', 'none');
+                    });
+                </script>
                 <style>
                     .woocommerce-message>a.button.wc-forward{
                         display; none;
@@ -195,95 +374,7 @@ $HTML = "</div></div>
                 </style>
             ";
         }
-        if( $post->post_name == "perfil-usuario" ){
-            $HTML .= "
-                var es_firefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;  
-                if(es_firefox){
-                    jQuery('input[name=pet_birthdate]').datepicker('destroy');
-                    jQuery('input[name=pet_birthdate]').removeAttr('min');  
-                    jQuery('input[name=pet_birthdate]').removeAttr('max');
-                    jQuery('input[name=pet_birthdate]').prop('readonly', true); 
-                    if (jQuery(window).width() > 550) {
-                        jQuery( 'input[name=pet_birthdate]' ).datepicker({ 
-                            option: 'dd/mm/yy',
-                            changeMonth: true,
-                            changeYear: true,
-                            minDate: '-30y',
-                            maxDate: '-1d',
-                            dataFormat: 'dd/mm/yy',
-                        });
-                    }
-                }
-                <style>
-                    @media (max-width: 568px){ 
-                        .cell50{width:100%!important;}
-                        .cell25{width:50%!important;}
-                    }
-                </style>
-            ";
-        }
-        if( $post->post_name == "conocer-al-cuidador" ){
-            $HTML .= "
-            var es_firefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;  
-            var mdate = '0d';
-            if(es_firefox){
-                if (jQuery(window).width() > 550) {
-
-                    jQuery('input[name=meeting_when],input[name=service_start],input[name=service_end]').datepicker('destroy');
-                    jQuery('input[name=meeting_when]').removeAttr('min');
-                    jQuery('#service_start').prop('disabled', true);
-                    jQuery('#service_end').prop('disabled', true);
-
-                     jQuery( function() {
-                        var dateFormat = 'mm/dd/yy',
-                          from = jQuery( '#meeting_when' )
-                            .datepicker({
-                                option: 'dd/mm/yy',
-                                changeMonth: true,
-                                changeYear: true,
-                                minDate: '0d',
-                                maxDate: '1y',
-                                dataFormat: 'dd/mm/yy',
-                            })
-                            .on( 'change', function() {
-                              to.datepicker( 'option', 'minDate', getDate( this ) );
-                              jQuery('#service_start').prop('disabled', false);
-
-                            }),
-                          to = jQuery( '#service_start' ).datepicker({
-                            option: 'dd/mm/yy',
-                            changeMonth: true,
-                            changeYear: true,
-                            maxDate: '1y',
-                            dataFormat: 'dd/mm/yy',
-                          })
-                          .on( 'change', function() {
-                            toto.datepicker( 'option', 'minDate', getDate( this ) );
-                            jQuery('#service_end').prop('disabled', false);
-                          }),
-                          toto = jQuery( '#service_end' ).datepicker({
-                            option: 'dd/mm/yy',
-                            changeMonth: true,
-                            changeYear: true,
-                            maxDate: '1y',
-                            dataFormat: 'dd/mm/yy',
-                          });
-                     
-                        function getDate( element ) {
-                          var date;
-                          try {
-                            date = jQuery.datepicker.parseDate( dateFormat, element.value );
-                          } catch( error ) {
-                            date = null;
-                          }
-                     
-                          return date;
-                        }
-                    } );
-                    jQuery('input[name=meeting_when],input[name=service_start],input[name=service_end]').prop('readonly', true);
-                }
-            }";
-        }
+        
         if( $post->post_name == "finalizar-comprar" && $_GET['key'] == "" ){
             $HTML .= "
             <style>
@@ -380,29 +471,26 @@ $HTML = "</div></div>
         }
 
         $HTML .= "
-            jQuery( document ).ready(function() {
-                jQuery( '.reservar' ).unbind();
-                jQuery( '.reservar' ).off();
-                jQuery( '.conocer-cuidador' ).unbind(); 
-                jQuery( '.conocer-cuidador' ).off(); ";
-                
-                if( $post->post_name == 'finalizar-comprar' ){
-                    $HTML .= " jQuery('.payment_method_wc-booking-gateway').css('display', 'none'); ";
-                }
-                if( $post->post_name == 'finalizar-comprar' ){
-                    $HTML .= " jQuery('.payment_method_wc-booking-gateway').css('display', 'none'); ";
-                }
-                if( $post->post_name == 'finalizar-comprar' && $_GET['key'] == '' ){ 
-                    $HTML .= " var abrir = true;
-                    jQuery(window).scroll(function() {
-                            if (jQuery(document).scrollTop() > 10) {
-                                jQuery('#vlz_modal_popup').fadeOut();
-                            }
-                        });
-                    ";
-                }
-
-        $HTML .= "}); </script>
+            <script>
+                jQuery( document ).ready(function() {";
+                    if( $post->post_name == 'finalizar-comprar' ){
+                        $HTML .= " jQuery('.payment_method_wc-booking-gateway').css('display', 'none'); ";
+                    }
+                    if( $post->post_name == 'finalizar-comprar' ){
+                        $HTML .= " jQuery('.payment_method_wc-booking-gateway').css('display', 'none'); ";
+                    }
+                    if( $post->post_name == 'finalizar-comprar' && $_GET['key'] == '' ){ 
+                        $HTML .= " var abrir = true;
+                                jQuery(window).scroll(function() {
+                                    if (jQuery(document).scrollTop() > 10) {
+                                        jQuery('#vlz_modal_popup').fadeOut();
+                                    }
+                                });
+                             </script>
+                        ";
+                    } $HTML .= "
+                });
+            </script>
             <!--[if lt IE 9]>
                 <script src='".get_home_url()."/wp-content/themes/pointfinder/js/html5shiv.js'></script>
             <![endif]-->

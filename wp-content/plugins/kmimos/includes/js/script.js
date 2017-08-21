@@ -54,24 +54,77 @@ function filecss_import(file,count){
 }
 
 //MESSAGE
+var timeMessage=0;
 function message(message){
-    console.log(message);
-    var content = 'message';
-    var element = jQuery('#'+content);
-    if(element.length==0){
-        jQuery('body').append('<div id="'+content+'"></div>');
-        element.html(message);
-        messageShow();
+    clearTimeout(timeMessage);
+    messageCreate('#message',message);
+}
+
+function messageCreate(element,message){
+    //console.log(message);
+    var action = function() {
+        jQuery(element).html(message);
+        messageShow(element);
+    }
+
+    if(jQuery(element).length==0){
+        jQuery('body').append('<div id="message"></div>');
+        action();
 
     }else{
-        element.animate({'bottom' : '-500px'}, 500,function(e){
-            element.html(message);
-            messageShow(element);
+        jQuery(element).fadeOut(500,function(){
+            //jQuery(element).remove();
+            action();
         });
     }
 }
 
+function messageInsite(element,message){
+    messageCreate(element,message);
+}
+
 function messageShow(element){
-    var height = element.height();
-    element.animate({'bottom' : '0'},500);
+    //var height = element.height();
+    jQuery(element).fadeIn(500,function(){
+        timeMessage = setTimeout(function(){
+            var callback = function(){}
+            messageClose(element, callback);
+        }, 6000);
+    });
+}
+
+function messageClose(element, callback){
+    if(jQuery(element).length>0){
+        jQuery(element).fadeOut(500,function(){
+            //jQuery(element).remove();
+            callback();
+        });
+    }
+}
+
+
+//POPUP
+function messagePopUp_Create(html){
+    var element = '#message.PopUp';
+    if(jQuery(element).length==0){
+        jQuery('body').append('<div id="message" class="popup"></div>');
+        jQuery(element).append('<div class="contain"></div>');
+    }
+
+    jQuery(element).find('.contain').html(html);
+    jQuery(element).fadeIn(500,function(){
+        /*
+         vsetTime = setTimeout(function(){
+         SubscribePopUp_Close(element);
+         }, 6000);
+         */
+    });
+}
+
+function messagePopUp_Close(element){
+    if(jQuery(element).length>0){
+        jQuery(element).fadeOut(500,function(){
+            jQuery(element).remove();
+        });
+    }
 }
