@@ -122,7 +122,7 @@
 
 	echo comprimir_styles($HTML);
 
-/*	global $wpdb;
+	global $wpdb;
 	$sql = "SELECT * FROM cuidadores";
 	$cuidadores = $wpdb->get_results($sql);
 
@@ -144,10 +144,6 @@
 				}
 			}
 		}
-
-		echo "<pre>";
-			print_r( $new_adicionales );
-		echo "</pre>";
 		$sql = "UPDATE cuidadores SET adicionales = '".serialize($new_adicionales)."' WHERE user_id = ".$cuidador->user_id.";";
 		$wpdb->query($sql);
-	}*/
+	}

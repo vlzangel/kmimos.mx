@@ -4542,11 +4542,11 @@ button.close {
     float:left;
     width:20px;
     height:9px;
-    background:url(images/new/icon/icon-hueso.svg) no-repeat center center;
+    background:url(../images/new/icon/icon-hueso.svg) no-repeat center center;
     background-size:20px 9px
 }
 .km-ranking a.active {
-    background-image:url(images/new/icon/icon-hueso-color.svg)
+    #background-image:url(images/new/icon/icon-hueso-color.svg)
 }
 .km-contenedor-descripcion-opciones::after {
     content:"";
@@ -4630,7 +4630,6 @@ button.close {
 }
 .km-resultados-grid .km-item-resultado .km-descripcion {
     padding:10px 16px;
-    min-height:125px
 }
 .km-resultados-grid .km-item-resultado .km-descripcion .km-sellos {
     padding-top:15px
