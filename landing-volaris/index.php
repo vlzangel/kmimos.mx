@@ -112,7 +112,7 @@
 
 								<strong>Reg&iacute;strate en www.kmimos.com.mx y disruta de todos nuestros servicios.</strong></p>
 
-							<div id="section-5-link" class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center pull-right">
+							<div id="section-5-link" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left pull-right">
 								<a href="https://www.kmimos.com.mx">Click aqu&iacute;</a>
 							</div>
 						</article>
