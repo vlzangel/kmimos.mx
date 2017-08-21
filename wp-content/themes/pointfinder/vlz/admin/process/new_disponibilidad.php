@@ -38,11 +38,26 @@
             if( $existe != false ){
                 $db->query("UPDATE cupos SET no_disponible = 1 WHERE servicio = '{$servicio}' AND fecha = '{$fecha}'");
             }else{
+            
+                $tipo = $db->get_var(
+                    "
+                        SELECT
+                            tipo_servicio.slug AS tipo
+                        FROM 
+                            wp_term_relationships AS relacion
+                        LEFT JOIN wp_terms as tipo_servicio ON ( tipo_servicio.term_id = relacion.term_taxonomy_id )
+                        WHERE 
+                            relacion.object_id = '{$servicio}' AND
+                            relacion.term_taxonomy_id != 28
+                    "
+                );
+
                 $sql = "
                     INSERT INTO cupos VALUES (
                         NULL,
                         '{$autor}',
                         '{$servicio}',
+                        '{$tipo}',
                         '{$fecha}',
                         '0',
                         '{$acepta}',

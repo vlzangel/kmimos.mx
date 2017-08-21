@@ -21,6 +21,7 @@
 	";
 	include("vlz_data_orden.php");
 	include("vlz_order_funciones.php");
+
 	if($booking->get_status() == "cancelled" ){
 		$msg_a_mostrar = $styles.'
 			<p>Hola <strong>'.$nom_cliente.',</strong></p>
@@ -61,9 +62,6 @@
 
 		kmimos_set_kmisaldo($cliente_id, $orden_id, $reserva_id);
 
-		$order->update_status('wc-cancelled');
-		$booking->update_status('cancelled');
-
 		$msg_cliente = $styles.'
 	    	<p><strong>Cancelación de Reserva (N°. '.$reserva_id.')</strong></p>
 			<p>Hola <strong>'.$nom_cliente.',</strong></p>
@@ -96,7 +94,9 @@
 
    		$msg_cliente = kmimos_get_email_html("Reserva Cancelada Exitosamente!", $msg_cliente, "", true, true);
 
-   		wp_mail( $cliente_email, "Cancelación de Reserva", $msg_cliente);
+   		if(  $_SESSION['admin_sub_login'] != 'YES' && $booking->get_status() != "confirmed" ){
+   			wp_mail( $cliente_email, "Cancelación de Reserva", $msg_cliente);
+   		}
 
 		$msg = $styles.'
 	    	<p><strong>Cancelación de Reserva (N°. '.$reserva_id.')</strong></p>
@@ -108,7 +108,10 @@
 			.$detalles_servicio;
 	    
    		$msg_admin = kmimos_get_email_html("Reserva Cancelada por Cliente - ".$nom_cliente, $msg, "", true, true);
-		kmimos_mails_administradores_new("Cancelación de Reserva", $msg_admin);
+
+   		if(  $_SESSION['admin_sub_login'] != 'YES' && $booking->get_status() != "confirmed" ){
+			kmimos_mails_administradores_new("Cancelación de Reserva", $msg_admin);
+		}
 
    		$msg_cuidador = $styles.'
 	    	<p><strong>Cancelación de Reserva (N°. '.$reserva_id.')</strong></p>
@@ -119,9 +122,14 @@
 			.$detalles_servicio_cuidador;
 
 
-   		$msg_cuidador = kmimos_get_email_html("Cancelación de Reserva", $msg_cuidador, "", true, true);
-		if($action !='noaction'){
-   			wp_mail( $cuidador_email, "Cancelación de Reserva", $msg_cuidador);
+   		
+   		if(  $_SESSION['admin_sub_login'] != 'YES' && $booking->get_status() != "confirmed" ){
+
+	   		$msg_cuidador = kmimos_get_email_html("Cancelación de Reserva", $msg_cuidador, "", true, true);
+			if($action !='noaction'){
+	   			wp_mail( $cuidador_email, "Cancelación de Reserva", $msg_cuidador);
+			}
+			
 		}
 
 		if($show =='noshow'){
@@ -161,6 +169,9 @@
 	    ';
 	    
    		echo $msg_cliente = kmimos_get_email_html("Reserva Cancelada Exitosamente!", $msg_a_mostrar, "", true, true);
+
+		$order->update_status('wc-cancelled');
+		$booking->update_status('cancelled');
 		
     }
 

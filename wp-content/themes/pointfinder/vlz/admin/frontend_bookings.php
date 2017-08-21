@@ -178,6 +178,23 @@
 
 					$options='<a class="theme_btn" href="'.get_home_url().'/detalle/'.$reserva->orden.'">Ver</a>';
 
+					// Modificacion Ángel Veloz
+					$options = array(
+						array(
+							'text'=>'Ver',
+							'value'=>get_home_url().'/detalle/'.$reserva->orden
+						)
+					);
+
+					if(  $_SESSION['admin_sub_login'] == 'YES' ){
+			            $options[] = array(
+							'text'=>'Confirmar',
+							'value'=>get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$reserva->orden.'&s=1'
+						);
+			        }
+
+			        $options=build_select($options);
+
 					$booking_th=array();
 					$booking_th[]=array('class'=>'','data'=>'RESERVA');
 					$booking_th[]=array('class'=>'','data'=>'CLIENTE');
@@ -203,6 +220,7 @@
 					$options='<a class="theme_btn" href="'.get_home_url().'/detalle/'.$reserva->orden.'">Ver</a>';
 					$options.='<a class="theme_btn" href="'.get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$reserva->orden.'&s=1">Confirmar</a>';
 					$options.='<a class="theme_btn cancelled" href="'.get_home_url().'/wp-content/plugins/kmimos/order.php?o='.$reserva->orden.'&s=0">Cancelar</a>';
+					
 					$options=build_select(
 						array(
 							array(

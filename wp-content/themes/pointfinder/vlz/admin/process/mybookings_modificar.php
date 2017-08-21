@@ -1,21 +1,22 @@
 <?php
 	// Modificacion Ángel Veloz
-	include("../../../../../../vlz_config.php");
 
 	extract($_GET);
 
 	session_start();
 
-	$conn = new mysqli($host, $user, $pass, $db);
 
 /*	session_destroy();
 
 	session_start();*/
 
 	if( isset($a) ){
+		include("../../../../../../vlz_config.php");
+		$conn = new mysqli($host, $user, $pass, $db);
+
 		$param = explode("_", $a);
 
-		$sql = "SELECT ID FROM wp_users WHERE md5(user_id) = '{$param[1]}'";
+		$sql = "SELECT ID FROM wp_users WHERE md5(ID) = '{$param[1]}'";
 		$usuario = $conn->query($sql);
 		if( $usuario->num_rows > 0 ){
 			$usuario = $usuario->fetch_assoc();
@@ -63,31 +64,20 @@
             if( $descuento->num_rows > 0 ){
 		        $descuento = $descuento->fetch_assoc();
 		        $descuento = $descuento['meta_value']; 
+
+		        echo $descuento."<br>";
 		    }
         }
 
         $sql = "SELECT * FROM wp_woocommerce_order_items WHERE order_id = '{$orden_id}' AND order_item_type = 'coupon' AND order_item_name NOT LIKE '%saldo-%'";
         $otros_cupones = $conn->query($sql);
-
     	while ( $cupon = $otros_cupones->fetch_assoc() ) {
 
             $cupon_id = $conn->query("SELECT ID FROM wp_posts WHERE post_title = '{$cupon['order_item_name']}'");
             $cupon_id = $cupon_id->fetch_assoc();
             $cupon_id = $cupon_id["ID"];
 
-            $limite = $conn->query("SELECT meta_value FROM wp_postmeta WHERE post_id = '{$cupon_id}' AND meta_key = 'usage_limit_per_user'");
-            $limite = $limite->fetch_assoc();
-            $limite = $limite["meta_value"];
-
-            if( $limite != "" ){
-            	$xdescuento = $conn->query("SELECT meta_value FROM wp_woocommerce_order_itemmeta WHERE order_item_id = '{$cupon['order_item_id']}' AND meta_key = 'discount_amount' ");
-	            if( $xdescuento->num_rows > 0 ){
-			        $xdescuento = $xdescuento->fetch_assoc();
-			        $xdescuento = $xdescuento['meta_value'];
-
-			        $descuento += $xdescuento;
-			    }
-            }
+            $conn->query("DELETE FROM wp_postmeta WHERE post_id = '{$cupon_id}' AND meta_key = '_used_by' AND meta_value = '{$user_id}'");
 
         }
 
@@ -98,7 +88,7 @@
 			$items[ $f['meta_key'] ] = $f['meta_value'];
 		}
 
-		if( $order['post_status'] == 'wc-on-hold' && $metas_orden['_payment_method'] == 'openpay_stores'){ }else{
+		if( $orden['post_status'] == 'unpaid' && $order['post_status'] != 'wc-partially-paid' && $metas_orden['_payment_method'] == 'openpay_stores'){ }else{
 			$deposito = unserialize( $items['_wc_deposit_meta'] );
 			$saldo = 0;
 			if( $deposito['enable'] == 'yes' ){
@@ -154,6 +144,8 @@
 		}
 
 		$parametros = array( 
+			"user_id"         => $user_id,
+			"orden_id"        => $orden_id,
 			"reserva"         => $id_reserva,
 			"servicio"        => $data['ID'],
 			"saldo"	          => $saldo+$descuento+$kmisaldo,
@@ -165,18 +157,50 @@
 		);
 
 		$_SESSION["MR_".$param[1]] = $parametros;
-		
+
 		header("location: ".$home['server']."producto/".$data['post_name']."/");
 	}
 
 	if( isset($b) ){
+
+		include("../../../../../../wp-load.php");
+
+		$conn = new mysqli($host, $user, $pass, $db);
+
+		global $wpdb;
+		foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+			$wpdb->query( "DELETE FROM wp_posts WHERE ID = ".$cart_item["booking"]["_booking_id"] );
+			$wpdb->query( "DELETE FROM wp_postmeta WHERE post_id = ".$cart_item["booking"]["_booking_id"] );
+		}
+		WC()->cart->empty_cart();
+
+		$data = "";
+		foreach ($_SESSION as $key => $value) {
+			if(	substr($key, 0, 3) == "MR_" ){
+				$data = $value;
+			}
+		}
+
+		extract($data);
+
+		$sql = "SELECT * FROM wp_woocommerce_order_items WHERE order_id = '{$orden_id}' AND order_item_type = 'coupon' AND order_item_name NOT LIKE '%saldo-%'";
+        $otros_cupones = $conn->query($sql);
+    	while ( $cupon = $otros_cupones->fetch_assoc() ) {
+            $cupon_id = $conn->query("SELECT ID FROM wp_posts WHERE post_title = '{$cupon['order_item_name']}'");
+            $cupon_id = $cupon_id->fetch_assoc();
+            $cupon_id = $cupon_id["ID"];
+
+            $conn->query("INSERT INTO wp_postmeta VALUES (NULL, '{$cupon_id}', '_used_by', '{$user_id}' )");
+        }
+
 		$home = $conn->query("SELECT option_value AS server FROM wp_options WHERE option_name = 'siteurl'"); $home = $home->fetch_assoc();
 		foreach ($_SESSION as $key => $value) {
 			if(	substr($key, 0, 3) == "MR_" ){
 				unset($_SESSION[$key]);
 			}
 		}
-		header("location: ".$home['server']."perfil-usuario/?ua=invoices&fm=_");
+
+		header("location: ".$home['server']."perfil-usuario/?ua=invoices");
 	}
 
 ?>

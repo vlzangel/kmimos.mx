@@ -65,6 +65,7 @@
 			reserva.ID 				 AS id, 
 			servicio.post_author 	 AS autor, 
 			servicio.ID 		 	 AS servicio_id, 
+			tipo.slug 		 	 	 AS servicio_tipo, 
 			servicio.post_name 		 AS servicio, 
 			startmeta.meta_value 	 AS inicio, 
 			endmeta.meta_value		 AS fin,
@@ -80,6 +81,10 @@
 		LEFT JOIN wp_postmeta as servicio_id   ON ( reserva.ID 		= servicio_id.post_id 		)
 		LEFT JOIN wp_posts    as servicio  	   ON ( servicio.ID 	= servicio_id.meta_value 	)
 		LEFT JOIN wp_postmeta as acepta  	   ON ( acepta.post_id 	= servicio.ID 				)
+
+		LEFT JOIN wp_term_relationships as relacion ON ( relacion.object_id = servicio.ID )
+		LEFT JOIN wp_terms as tipo ON ( tipo.term_id = relacion.term_taxonomy_id )
+
 		WHERE 
 			reserva.post_type  		= 'wc_booking' 				AND 
 			startmeta.meta_key   	= '_booking_start' 			AND 
@@ -93,18 +98,19 @@
 				reserva.post_status     != 	 'modified' 
 			) AND  (
 				endmeta.meta_value >= '{$actual}'
-			)
+			) AND
+			relacion.term_taxonomy_id != 28
 		GROUP BY reserva.ID
 	";
 
 	$resultados = $db->get_results($sql);
 
-/*		echo "<pre>";
+	/*  echo "<pre>";
 			echo $sql."<br><br>";
 			print_r($resultados);
-		echo "</pre>";*/
+		echo "</pre>";
+	*/
 	
-
 	foreach ($resultados as $reserva) {
 		update_cupos($reserva);
 	}
@@ -113,8 +119,6 @@
 		global $db;
 		$inicio = strtotime($reserva->inicio);
 		$fin 	= strtotime($reserva->fin);
-
-		echo "Status: ".$reserva->status."<br>";
 
 		for ($i=$inicio; $i < $fin; $i+=86400) { 
 			$fecha = date("Y-m-d H:i:s", $i);
@@ -148,10 +152,12 @@
 						NULL,
 						{$reserva->autor},
 						{$reserva->servicio_id},
+						'{$reserva->servicio_tipo}',
 						'{$fecha}',
 						{$total},
 						{$reserva->acepta},
-						{$full}			
+						{$full},
+						'0'		
 					);
 				";
 
