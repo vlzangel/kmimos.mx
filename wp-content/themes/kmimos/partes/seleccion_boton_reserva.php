@@ -1,5 +1,4 @@
 <?php
-	wp_enqueue_script( 'kmimos_bootstrap_js', get_home_url()."/panel/assets/vendor/bootstrap/dist/js/bootstrap.min.js", array("jquery"), '1.0.0', true );
 	$order = "10";
 	$order_service = [
 		'hospedaje' => [ 
@@ -61,34 +60,25 @@
 	if( count($url_servicio) > 1 ){
 
 		$content_modal .= '
-		<a href="#" class="km-btn-secondary">
+		<a href="#" id="servicios" class="km-btn-secondary">
 		  	RESERVAR
 		</a>
 
-		<div class="modal" id="selector_servicios">
-		  	<div class="modal-dialog">
-		    	<div>
-		      		<div class="modal-content">
-		        		<strong class="modal_title">Cual servicio deseas?</stronge>
-		        		<button style="float:right;" class="btn btn-default btn-sm close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		      		</div>
-		      		<div class="modal-body">
-		      			<div  class="row">';
-						    foreach($url_servicio as $url){
-								$content_modal .= '
-								<a href="'.$url['url'].'">
-									<div class="row text-left modal-items">	
-										<i class="'.$url['icon'].'"></i>
-										<span style="margin-left: 5px;">'.$url['name'].'</span>
-									</div>
-								</a>
-								';
-						    } $content_modal .= '
-			      		</div>
-		      		</div>
-		    	</div>
-		  	</div>
-		</div>';
+		<div id="modal_servicio" class="modal_login">
+	        <div class="modal_container">
+	            <div class="modal_box" style="padding: 40px 0px 20px;">
+	                <img id="close_login" src="'.getTema().'/images/closebl.png" />';
+				    foreach($url_servicio as $url){
+						$content_modal .= '
+						<a href="'.$url['url'].'" class="modal-items">
+							<i class="'.$url['icon'].'"></i>
+							<span style="margin-left: 5px;">'.$url['name'].'</span>
+						</a>
+						';
+				    } $content_modal .= '
+	            </div>
+	        </div>
+	    </div>';
 
 		$BOTON_RESERVAR .= $content_modal;
 

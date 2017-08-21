@@ -98,7 +98,7 @@ if( !$DS ){
 	.woocommerce form input, .woocommerce form select {
 	    padding: 8px 10px;
 	    outline: none !important;
-	    border: solid 1px #CCC !important;
+	    border-bottom: solid 1px #CCC !important;
 	}
 
 	.woocommerce td.product-name dl.variation dd {

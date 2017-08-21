@@ -13,26 +13,45 @@ function menu(){
 	if($(this).scrollTop() > 10) {
 		$('.bg-transparent').addClass('bg-white');
 		$('.navbar-brand img').attr('src', HOME+'/images/new/km-logos/km-logo-negro.png');
+
+
 		$('.navbar-toggle img').attr('src', HOME+'/images/new/km-navbar-mobile-negro.svg');
+		$('.nav-sesion .km-avatar').attr('src', HOME+'/images/new/km-sesion-cliente/avatar.png');
+		$('.nav-sesion .dropdown-toggle img').css('width','40px');
 		$('.nav li a').css('padding','10px 15px 8px');
+		$('.nav-sesion .dropdown-toggle').css('padding','0px');
 		$('.navbar-brand>img').css('height','40px');
 		$('.nav li:first-child a').addClass('pd-tb11');
+		$('.nav-sesion .dropdown-toggle').removeClass('pd-tb11');
 		$('.nav-login').addClass('dnone');
 		$('.navbar').css('padding-top', '15px');
+
+		$('.bg-white-secondary').css('height','40px');
+
 		if( w >= 768 ){
 			$('a.km-nav-link, .nav-login li a').css('color','black');
+			$('.bg-white-secondary a.km-nav-link, .bg-white-secondary .nav-login li a').css('color','black');
 		}
 	} else {
 		$('.bg-transparent').removeClass('bg-white');
 		$('.navbar-brand img').attr('src', HOME+'/images/new/km-logos/km-logo.png');
-		$('.navbar-toggle img').attr('src', HOME+'/images/new/km-navbar-mobile.svg');
+
+		$('.navbar-toggle img').attr('src', HOME+'/images/new/km-navbar-mobile.svg');		
+		$('.nav-sesion .km-avatar').attr('src', HOME+'/images/new/km-sesion-cliente/avatar.png');
 		$('.nav li a').css('padding','19px 15px 15px');
+		$('.nav-sesion .dropdown-toggle img').css('width','45px');
+		$('.nav-sesion .dropdown-toggle').css('padding','0px');
 		$('.navbar-brand>img').css('height','60px');
 		$('.nav li:first-child a').removeClass('pd-tb11');
 		$('.nav-login').removeClass('dnone');
 		$('.navbar').css('padding-top', '30px');
+
+		$('.bg-white-secondary').css('height','100px');
+		$('.bg-white-secondary .navbar-brand img').attr('src', HOME+'/images/new/km-logos/km-logo-negro.png');
+
 		if( w >= 768 ){
 			$('a.km-nav-link, .nav-login li a').css('color','white');
+			$('.bg-white-secondary a.km-nav-link, .bg-white-secondary .nav-login li a').css('color','black');
 		}
 	}
 }
@@ -200,7 +219,7 @@ $(document).ready(function(){
 				selectDefaultDate: true,
 				minDate: date,
 				onSelect: function(xdate) {
-
+					calcular();
 				},
 				yearRange: date.getFullYear()+':'+(parseInt(date.getFullYear())+1),
 				firstDay: 1,
@@ -211,7 +230,7 @@ $(document).ready(function(){
 				dateFormat: 'dd/mm/yyyy',
 				minDate: date,
 				onSelect: function(xdate) {
-
+					calcular();
 				},
 				yearRange: date.getFullYear()+':'+(parseInt(date.getFullYear())+1),
 				firstDay: 1,
@@ -224,6 +243,7 @@ $(document).ready(function(){
 		dateFormat: 'dd/mm/yyyy',
 		minDate: fecha,
 		onSelect: function(date1) {
+			calcular();
 			var ini = jQuery('#checkin').datepick( "getDate" );
 			var fin = jQuery('#checkout').datepick( "getDate" );
 			if( fin.length > 0 ){
@@ -250,7 +270,7 @@ $(document).ready(function(){
 		dateFormat: 'dd/mm/yyyy',
 		minDate: fecha,
 		onSelect: function(xdate) {
-
+			calcular();
 		},
 		yearRange: fecha.getFullYear()+':'+(parseInt(fecha.getFullYear())+1),
 		firstDay: 1,
@@ -267,5 +287,92 @@ $(document).ready(function(){
 		$("#buscador").submit();
 	});
 
+
+	$('.km-servicio-opcion').on('click', function(e) {
+		$(this).toggleClass('km-servicio-opcionactivo');
+	});
+
+	$(document).on("click", '.page-reservation .km-quantity .km-minus', function ( e ) {
+		e.preventDefault();
+		var el = $(this);
+		var div = el.parent();
+		var span = $(".km-number", div);
+		var input = $("input", div);
+		if ( span.html() > 0 ) {
+			var valor = parseInt(span.html()) - 1;
+			span.html( valor );
+			input.val( valor );
+		}
+
+		if ( span.html() <= 0 ) {
+			el.addClass("disabled");
+		}
+
+		calcular();
+	});
+
+	$(document).on("click", '.page-reservation .km-quantity .km-plus', function ( e ) {
+		e.preventDefault();
+		var el = $(this);
+		var div = el.parent();
+		var span = $(".km-number", div);
+		var minus = $(".km-minus", div);
+		var input = $("input", div);
+		
+		var valor = parseInt(span.html()) + 1;
+
+		span.html( valor );
+		input.val( valor );
+
+		if ( span.html() > 0 ) {
+			minus.removeClass("disabled");
+		}
+
+		calcular();
+	});
+
+	$(document).on("change", '.page-reservation .km-height-select', function ( e ) {
+		e.preventDefault();
+		var el = $(this);
+		el.removeClass("small");
+		el.removeClass("medium");
+		el.removeClass("large");
+		el.removeClass("extra-large");
+
+		el.addClass( el.val() );
+	});
+
+	$(document).on("click", '.page-reservation .optionCheckout', function ( e ) {
+		e.preventDefault();
+		var el = $(this);
+		var div = el.parent();
+		var input = $("input", div);
+		el.toggleClass("active");
+		input.toggleClass("active");
+		calcular();
+	});
+
+	$(document).on("click", '.page-reservation .km-method-paid-options .km-method-paid-option', function ( e ) {
+		e.preventDefault();
+		var el = $(this);
+		$(".km-method-paid-option", el.parent()).removeClass("active");
+
+		el.addClass("active");
+
+		$(".km-end-btn-form-disabled").hide();
+		$(".km-end-btn-form-enabled").show();
+
+		if ( el.hasClass("km-option-deposit") ) {
+			$(".page-reservation .km-detail-paid-deposit").slideDown("fast");
+		} else {
+			$(".page-reservation .km-detail-paid-deposit").slideUp("fast");
+		}
+	});
+
+	$(document).on("click", '.page-reservation .list-dropdown .km-tab-link', function ( e ) {
+		e.preventDefault();
+		var el = $(this);
+		$(".km-tab-content", el.parent()).slideToggle("fast");
+	});
 
 });

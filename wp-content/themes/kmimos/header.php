@@ -25,6 +25,12 @@
 
 	wp_head(); 
 
+	global $post;
+	$reserrvacion_page = "";
+	if( $post->post_type == 'product' ){
+		$reserrvacion_page = "page-reservation";
+	}
+
 	$HTML .= '
 		<script type="text/javascript"> 
 			var HOME = "'.getTema().'/"; 
@@ -34,7 +40,7 @@
 
 	</head>
 
-	<body class="'.join( ' ', get_body_class( $class ) ).'" >';
+	<body class="'.join( ' ', get_body_class( $class ) ).' '.$reserrvacion_page.'" >';
 
 	include_once("funciones.php");
 
@@ -115,3 +121,33 @@
 	}
 
 	echo comprimir_styles($HTML);
+
+/*	global $wpdb;
+	$sql = "SELECT * FROM cuidadores";
+	$cuidadores = $wpdb->get_results($sql);
+
+	foreach ($cuidadores as $cuidador) {
+		$adicionales = unserialize($cuidador->adicionales);
+		$new_adicionales = array();
+		foreach ($adicionales as $key => $servicio) {
+			if( is_array($servicio) ){
+				$total = 0;
+				foreach ($servicio as $key2 => $valor) {
+					$total += $valor;
+				}
+				if( $total > 0 && $key != "" ){
+					$new_adicionales[ $key ] = $servicio;
+				}
+			}else{
+				if( $servicio > 0 ){
+					$new_adicionales[ $key ] = $servicio;
+				}
+			}
+		}
+
+		echo "<pre>";
+			print_r( $new_adicionales );
+		echo "</pre>";
+		$sql = "UPDATE cuidadores SET adicionales = '".serialize($new_adicionales)."' WHERE user_id = ".$cuidador->user_id.";";
+		$wpdb->query($sql);
+	}*/

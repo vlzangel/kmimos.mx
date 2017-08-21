@@ -41,174 +41,189 @@
 		}
     }
 
-	// Modificacion Ángel Veloz
-	// echo "<pre>";
-	// 	print_r($_SESSION);
-	// echo "</pre>";
+	$busqueda = getBusqueda();
 
-	if( $id_user  == ""){
+	$servicio_id = get_the_ID();
 
-		echo "								 
-		<div id='jj_modal_ir_al_inicio' class='vlz_modal'>
-			<div class='vlz_modal_interno'>
-				<div class='vlz_modal_fondo' onclick='jQuery('#jj_modal_ir_al_inicio').css('display', 'none');'></div>
-				<div class='vlz_modal_ventana jj_modal_ventana'S>
-					<div class='vlz_modal_titulo'>¡Oops!</div>
-					<div class='vlz_modal_contenido' style='height: auto;'>
-						<h1 align='justify'>Debes iniciar sesión para poder realizar reservas.</h1>
-						<h2 align='justify'>Pícale <span id='cerrarModal' onclick=\"jQuery('#pf-login-trigger-button').click();\" style='color: #00b69d; font-weight: 600; cursor: pointer;'>Aquí</span> para acceder a kmimos.<h2>
+	$tipo = $wpdb->get_var("
+        SELECT
+            tipo_servicio.slug AS slug
+        FROM 
+            wp_term_relationships AS relacion
+        LEFT JOIN wp_terms as tipo_servicio ON ( tipo_servicio.term_id = relacion.term_taxonomy_id )
+        WHERE 
+            relacion.object_id = '{$servicio_id}' AND
+            relacion.term_taxonomy_id != 28
+    ");
+
+	$cuidador = $wpdb->get_row( "SELECT * FROM cuidadores WHERE user_id = ".$post->post_author );
+
+	$cuidador_name = $wpdb->get_var( "SELECT post_title FROM wp_posts WHERE ID = ".$cuidador->id_post );
+
+    $precios = "";
+    
+	$adicionales = unserialize($cuidador->adicionales);
+
+    if( $tipo == "hospedaje" ){
+    	$precios = getPrecios( unserialize($cuidador->hospedaje) );
+    }else{
+    	$precios = getPrecios( $adicionales[$tipo] );
+    }
+    
+	$servicios = $wpdb->get_results( "SELECT * FROM wp_posts WHERE ID = ".get_the_ID() );
+	$productos = '<div class="row">';
+	foreach ($servicios as $servicio) {
+        $tamanos = array();
+        $tamanos_servicio = $wpdb->get_results("SELECT * FROM wp_posts WHERE post_parent = '{$servicio->ID}' AND post_type = 'bookable_person' AND post_status = 'publish' ");
+        foreach ($tamanos_servicio as $tamano ) {
+        	$tamanos[] = get_tamano($tamano->post_title, "$40.00", false, $busqueda["tamanos"], "ARRAY");
+        }
+	}
+
+	$transporte = getTransporte($adicionales);
+	if( $transporte != "" ){
+		$transporte = '
+			<div class="km-service-title"> TRANSPORTACI&Oacute;N </div>
+			<div class="km-services">
+				<select id="transporte" name="transporte" class="km-input-custom"><option value="">Seleccione una opci&oacute;n</option>'.$transporte.'</select>
+			</div>
+		';
+	}
+
+	$adicionales = getAdicionales($adicionales);
+	if( $adicionales != "" ){
+		$adicionales = '
+			<div class="km-service-title"> SERVICIOS ADICIONALES </div>
+			<div id="adicionales" class="km-services">
+				'.$adicionales.'
+			</div>
+		';
+	}
+
+	$productos .= '</div>';
+
+	/*
+ 		<!--
+		<form id="reservar">
+
+			<label class="titulos_inputs">Fechas:</label>
+			<div id="fechas_container" class="inputs_container">
+				<div class="input_fechas_box">
+					<input type="text" id="checkin" name="checkin" placeholder="DESDE" value="'.$busqueda["checkin"].'" class="km-input-custom km-input-date date_from" readonly>
+				</div>
+				<div class="input_fechas_box">
+					<input type="text" id="checkout" name="checkout" placeholder="HASTA" value="'.$busqueda["checkout"].'" class="km-input-custom km-input-date date_to" readonly>
+	 			</div>
+ 			</div>
+
+			<label class="titulos_inputs">Tama&ntilde;os:</label>
+			<div class="inputs_container">
+ 				'.$precios.'
+ 			</div>
+
+			'.$transporte.'
+ 		</form>
+ 		-->
+	*/
+
+	$HTML .= '
+ 		<script> var SERVICIO_ID = "'.get_the_ID().'"; </script>
+
+
+ 		<form id="reservar" class="km-content km-content-reservation">
+			<div class="km-col-steps">
+				<div class="km-col-content">
+					<ul class="steps-numbers">
+						<li><span class="number active">1</span></li>
+						<li class="line"></li><li><span class="number">2</span></li>
+						<li class="line"></li><li><span class="number">3</span></li>
+					</ul>
+
+					<div class="km-title-step">
+						RESERVACIÓN
 					</div>
-					<div class='vlz_modal_pie' style='border-radius: 0px 0px 5px 5px!important; height: 70px;'>
-						<a href='".$referencia."' ><input type='button' style='text-align: center;' class='vlz_boton_siguiente' value='Volver'/></a>
+
+					<div class="km-sub-title-step">
+						Reserva las fechas y los servicios con tu cuidador(a) '.$cuidador_name.'
+					</div>
+
+					<div class="km-dates-step">
+						<div class="km-ficha-fechas">
+							<input type="text" id="checkin" name="checkin" placeholder="DESDE" value="'.$busqueda["checkin"].'" class="date_from" readonly>
+							<input type="text" id="checkout" name="checkout" placeholder="DESDE" value="'.$busqueda["checkout"].'" readonly>
+						</div>
+					</div>
+
+					<div class="km-content-step">
+						<div class="km-content-new-pet">
+							'.$precios.'
+							<div class="km-services-content">
+								'.$transporte.'
+								'.$adicionales.'
+							</div>
+
+							<div class="km-services-total">
+								<div class="valido">
+									<span class="km-text-total">TOTAL</span>
+									<span class="km-price-total">$0.00</span>
+								</div>
+								<div class="invalido">
+									
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="km-text-end-form">
+						* Precio final (incluye cobertura veterinaria y gastos administrativos; no incluye servicios adicionales)
+					</div>
+
+					<a href="#" class="km-end-btn-form">
+						<span>SIGUIENTE</span>
+					</a>
+
+				</div>
+			</div>
+
+			<div class="km-col-empty">
+				<br><br><br><br><br><br><br><br>
+				<img src="'.getTema().'/images/new/bg-cachorro.png" style="max-width: 100%;">
+			</div>
+		</form>
+
+		<!-- SECCIÓN BENEFICIOS -->
+		<div class="km-beneficios km-beneficios-footer" style="margin-top: 60px;">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-4">
+						<div class="km-beneficios-icon">
+							<img src="'.getTema().'/images/new/km-pago.svg">
+						</div>
+						<div class="km-beneficios-text">
+							<h5 class="h5-sub">PAGO EN EFECTIVO O CON TARJETA</h5>
+						</div>
+					</div>
+					<div class="col-xs-4 brd-lr">
+						<div class="km-beneficios-icon">
+							<img src="'.getTema().'/images/new/km-certificado.svg">
+						</div>
+						<div class="km-beneficios-text">
+							<h5 class="h5-sub">CUIDADORES CERTIFICADOS</h5>
+						</div>
+					</div>
+					<div class="col-xs-4">
+						<div class="km-beneficios-icon">
+							<img src="'.getTema().'/images/new/km-veterinaria.svg">
+						</div>
+						<div class="km-beneficios-text">
+							<h5 class="h5-sub">COBERTURA VETERINARIA</h5>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>";
-	}else{
+		</div>
+ 	';
 
-		$propietario = $D->get_var("SELECT post_author FROM wp_posts WHERE ID = ".get_the_ID() );
-		if( $propietario == $id_user ){
-
-			echo "						 
-				<div id='jj_modal_ir_al_perfil' class='vlz_modal'>
-					<div class='vlz_modal_interno'>
-						<div class='vlz_modal_fondo' onclick='jQuery('#jj_modal_ir_al_perfil').css('display', 'none');'></div>
-						<div class='vlz_modal_ventana jj_modal_ventana'S>
-							<div class='vlz_modal_titulo'>¡Oops!</div>
-							<div class='vlz_modal_contenido' style='height: auto;'>
-								<h1 align='justify'>No puedes realizarte reservas a tí mismo.</h1>
-								<h2 align='justify'>Pícale <a href='".get_home_url()."/busqueda/' style='color: #00b69d; font-weight: 600;'>Aquí</a> para buscar entre cientos de cuidadores certificados kmimos.<h2>
-							</div>
-							<div class='vlz_modal_pie' style='border-radius: 0px 0px 5px 5px!important; height: 70px;'>
-								<a href='".$referencia."' ><input type='button' style='text-align: center;' class='vlz_boton_siguiente' value='Volver'/></a>
-							</div>
-						</div>
-					</div>
-				</div>
-			";
-
-		}else{
-			$meta = get_user_meta($id_user);
-
-			if( $meta['first_name'][0] == '' ||  $meta['last_name'][0] == '' || ( $meta['user_mobile'][0] == '' ) && ( $meta['user_phone'][0] == '' )){
-
-				echo "						 
-					<div id='jj_modal_ir_al_perfil' class='vlz_modal'>
-						<div class='vlz_modal_interno'>
-							<div class='vlz_modal_fondo' onclick='jQuery('#jj_modal_ir_al_perfil').css('display', 'none');'></div>
-							<div class='vlz_modal_ventana jj_modal_ventana'S>
-								<div class='vlz_modal_titulo'>¡Oops!</div>
-								<div class='vlz_modal_contenido' style='height: auto;'>
-									<h1 align='justify'>Kmiusuario, para continuar con tu reserva debes ir a tu perfil para completar algunos datos de contacto.</h1>
-									<h2 align='justify'>Pícale <a href='".get_home_url()."/perfil-usuario/?ua=profile' target='_blank' style='color: #00b69d; font-weight: 600;'>Aquí</a> para cargar tu información.<h2>
-								</div>
-								<div class='vlz_modal_pie' style='border-radius: 0px 0px 5px 5px!important; height: 70px;'>
-									<a href='".$referencia."' ><input type='button' style='text-align: center;' class='vlz_boton_siguiente' value='Volver'/></a>
-								</div>
-							</div>
-						</div>
-					</div>
-				";
-
-			 }else{
-
-				$mascotas = $D->get_var("SELECT count(*) FROM wp_posts WHERE post_type = 'pets' AND post_author = ".$id_user );
-
-				if( $mascotas == 0 ){
-
-					echo "						 
-						<div id='jj_modal_ir_al_perfil' class='vlz_modal'>
-							<div class='vlz_modal_interno'>
-								<div class='vlz_modal_fondo' onclick='jQuery('#jj_modal_ir_al_perfil').css('display', 'none');'></div>
-								<div class='vlz_modal_ventana jj_modal_ventana'S>
-									<div class='vlz_modal_titulo'>¡Oops!</div>
-									<div class='vlz_modal_contenido' style='height: auto;'>
-										<h1 align='justify'>Debes cargar por lo menos una mascota para poder realizar una reserva.</h1>
-										<h2 align='justify'>Pícale <a href='".get_home_url()."/perfil-usuario/?ua=mypets' style='color: #00b69d; font-weight: 600;'>Aquí</a> para agregarlas.<h2>
-									</div>
-									<div class='vlz_modal_pie' style='border-radius: 0px 0px 5px 5px!important; height: 70px;'>
-										<a href='".$referencia."' ><input type='button' style='text-align: center;' class='vlz_boton_siguiente' value='Volver'/></a>
-									</div>
-								</div>
-							</div>
-						</div>
-					";
-
-				}else{
-
-					do_action( 'woocommerce_before_single_product' ); ?>
-					<div itemscope itemtype="<?php echo woocommerce_get_product_schema(); ?>" id="product-<?php the_ID(); ?>" <?php post_class(); ?>>
-						<?php do_action( 'woocommerce_before_single_product_summary' ); ?>
-						<div class="summary entry-summary">
-							<?php do_action( 'woocommerce_single_product_summary' ); ?>
-						</div>
-
-						<div style="clear: both;">
-							<?php
-								$cuidador = $wpdb->get_row( "SELECT * FROM cuidadores WHERE user_id = '".$propietario."'" );
-
-					            $lat = $cuidador->latitud;
-					            $lon = $cuidador->longitud;
-
-								$sql = "
-					                SELECT 
-					                    DISTINCT id,
-					                    ROUND ( ( 6371 * acos( cos( radians({$lat}) ) * cos( radians(latitud) ) * cos( radians(longitud) - radians({$lon}) ) + sin( radians({$lat}) ) * sin( radians(latitud) ) ) ), 2 ) as DISTANCIA,
-					                    id_post,
-					                    hospedaje_desde,
-					                    adicionales,
-					                    user_id
-					                FROM 
-					                    cuidadores
-					                WHERE
-					                    user_id != {$propietario} AND
-					                    portada = 1 AND
-					                    activo = 1
-					                ORDER BY DISTANCIA ASC
-					                LIMIT 0, 4
-					            ";
-
-								$sugeridos = $wpdb->get_results( $sql );
-								$cuidadores = array();
-    							$top_destacados = ""; $cont = 0;
-    							foreach ($sugeridos as $key => $cuidador) {
-									$data = $wpdb->get_row("SELECT post_title AS nom, post_name AS url FROM wp_posts WHERE ID = {$cuidador->id_post}");
-									$nombre = $data->nom;
-									$img_url = kmimos_get_foto($cuidador->user_id);
-									$url = get_home_url() . "/petsitters/" . $data->url;
-									$top_destacados .= "
-										<a class='vlz_destacados_contenedor' href='{$url}'>
-											<div class='vlz_destacados_contenedor_interno'>
-												<div class='vlz_destacados_img'>
-													<div class='vlz_descado_img_fondo' style='background-image: url({$img_url});'></div>
-													<div class='vlz_descado_img_normal' style='background-image: url({$img_url});'></div>
-													<div class='vlz_destacados_precio'><sub style='bottom: 0px;'>Hospedaje desde</sub><br>MXN $".($cuidador->hospedaje_desde*1.2)."</div>
-												</div>
-												<div class='vlz_destacados_data' >
-													<div class='vlz_destacados_nombre'>{$nombre}</div>
-													<div class='vlz_destacados_adicionales'>".vlz_servicios($cuidador->adicionales)."</div>
-												</div>
-											</div>
-										</a>
-									";
-									$cont++;
-								}
-
-								echo '
-									<div class="productos_titulo">Otros cuidadores recomendados</div> 
-									<div class="destacados_box">'.$top_destacados;
-							?>
-						</div>
-
-					</div>
-					</div>
-					<?php do_action( 'woocommerce_after_single_product' ); 
-
-				}
-
-			}
-
-		}
-		
-	}
+	echo comprimir_styles($HTML);
 ?>

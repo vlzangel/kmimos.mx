@@ -222,7 +222,6 @@
 		<a href='#'
 			id='btn_reservar'
 			class='km-btn-secondary' 
-			onclick=\"perfil_login('btn_reservar');\"
 		>RESERVAR</a>";
 	}
 
@@ -400,11 +399,8 @@
 						<div class="km-ficha-datos hidden-sm hidden-md hidden-lg">
 							<a href="#" class="km-btn-primary show-map-mobile">VER UBICACIÓN EN MAPA</a>
 						</div>
-
 						<p style="text-align: justify;">'.$descripcion.'</p>
-						
 						'.$galeria.'
-
 						<p class="km-tit-ficha">SERVICIOS QUE OFREZCO</p>
 						'.$productos.'
 					</div>
@@ -434,10 +430,7 @@
 
 						<a href="#" class="km-btn-comentario">ESCRIBE UN COMENTARIO</a>
 
-						<div id="comentarios_box">
-							
-						</div>
-
+						<div id="comentarios_box"> </div>
 					</div>
 				</div>
 			</div>

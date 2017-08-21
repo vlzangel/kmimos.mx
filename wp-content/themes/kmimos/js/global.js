@@ -45,16 +45,20 @@ function logear(){
 
 function show_login_modal(seccion){
 	switch(seccion){
-		case "login":
-			jQuery("#modal_login form").css("display", "none");
-			jQuery("#form_login").css("display", "block");
+        case "login":
+            jQuery("#modal_login form").css("display", "none");
+            jQuery("#form_login").css("display", "block");
+            jQuery("#modal_login").css("display", "table");
+        break;
+		case "servicios":
+			jQuery("#modal_servicio").css("display", "table");
 		break;
 		case "recuperar":
 			jQuery(".modal_login form").css("display", "none");
 			jQuery("#form_recuperar").css("display", "block");
+            jQuery("#modal_login").css("display", "table");
 		break;
 	}
-    jQuery("#modal_login").css("display", "table");
 }
 
 function close_login_modal(){
