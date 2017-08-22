@@ -2,14 +2,10 @@
 
 # Carpetas
 
-/Pruebas/
+.htaccess
+
 /wp-admin/
 /wp-includes/
-/wp-content/gallery/
-/wp-content/languages/
-/wp-content/ngg/
-/wp-content/ngg_styles/
-/wp-content/upgrade/
 /wp-content/uploads*
 /git/
 
@@ -19,30 +15,13 @@ Respaldo*
 
 # Archivos
 
-.htaccess
-favicon.ico
-/index.php
-wp-activate.php
-wp-blog-header.php
-#wp-comments-post.php
-wp-config.php
-wp-cron.php
-wp-links-opml.php
-wp-load.php
-wp-login.php
-wp-mail.php
-wp-settings.php
-wp-signup.php
-wp-trackback.php
-xmlrpc.php
 vlz_config.php
 
 # Plugins
 
-/wp-content/plugins/bwp-minify/cache/
-
+/wp-content/plugins/autoptimize/
 /wp-content/plugins/kmimos/wlabel/backend/content/export/csv/
-/wp-content/plugins/redux-framework/ReduxCore/inc/fields/typography/googlefonts.php
+
 /wp-content/w3tc-config/ 
 /wp-content/cache/
 
@@ -58,4 +37,4 @@ vlz_config.php
 .tmb/
 
 /QA/
-landing-volaris/newsletter.csv
+.htaccess

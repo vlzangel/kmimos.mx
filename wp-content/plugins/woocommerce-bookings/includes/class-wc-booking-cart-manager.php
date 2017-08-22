@@ -124,13 +124,13 @@ class WC_Booking_Cart_Manager {
 		$cart_item  = $cart[ $cart_item_key ];
 		$booking_id = isset( $cart_item['booking'] ) && ! empty( $cart_item['booking']['_booking_id'] ) ? absint( $cart_item['booking']['_booking_id'] ) : '';
 
-		if ( $booking_id ) {
-			$booking = get_wc_booking( $booking_id );
-			if ( $booking->has_status( array( 'was-in-cart', 'in-cart' ) ) ) {
-				wp_delete_post( $booking_id );
-				wp_clear_scheduled_hook( 'wc-booking-remove-inactive-cart', array( $booking_id ) );
-			}
-		}
+		// if ( $booking_id ) {
+		// 	$booking = get_wc_booking( $booking_id );
+		// 	if ( $booking->has_status( array( 'was-in-cart', 'in-cart' ) ) ) {
+		// 		wp_delete_post( $booking_id );
+		// 		wp_clear_scheduled_hook( 'wc-booking-remove-inactive-cart', array( $booking_id ) );
+		// 	}
+		// }
 	}
 
 	/**
@@ -146,8 +146,6 @@ class WC_Booking_Cart_Manager {
 			$booking    = get_wc_booking( $booking_id );
 
 			if ( $booking->has_status( 'in-cart' ) ) {
-
-				update_cupos($booking_id, "-");
 
 				$booking->update_status( 'was-in-cart' );
 				WC_Cache_Helper::get_transient_version( 'bookings', true );
@@ -196,31 +194,31 @@ class WC_Booking_Cart_Manager {
 	 * Schedule booking to be deleted if inactive
 	 */
 	public function schedule_cart_removal( $booking_id ) {
-		wp_clear_scheduled_hook( 'wc-booking-remove-inactive-cart', array( $booking_id ) );
-		wp_schedule_single_event( apply_filters( 'woocommerce_bookings_remove_inactive_cart_time', time() + ( 60 * 15 ) ), 'wc-booking-remove-inactive-cart', array( $booking_id ) );
+		// wp_clear_scheduled_hook( 'wc-booking-remove-inactive-cart', array( $booking_id ) );
+		// wp_schedule_single_event( apply_filters( 'woocommerce_bookings_remove_inactive_cart_time', time() + ( 60 * 15 ) ), 'wc-booking-remove-inactive-cart', array( $booking_id ) );
 	}
 
 	/**
 	 * Check for invalid bookings
 	 */
 	public function cart_loaded_from_session() {
-		foreach( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
-			if ( isset( $cart_item['booking'] ) ) {
-				// If the booking is gone, remove from cart!
-				$booking_id = $cart_item['booking']['_booking_id'];
-				$booking    = get_wc_booking( $booking_id );
+		// foreach( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+		// 	if ( isset( $cart_item['booking'] ) ) {
+		// 		// If the booking is gone, remove from cart!
+		// 		$booking_id = $cart_item['booking']['_booking_id'];
+		// 		$booking    = get_wc_booking( $booking_id );
 
-				if ( ! $booking || ! $booking->has_status( array( 'was-in-cart', 'in-cart', 'unpaid', 'paid' ) ) ) {
-					unset( WC()->cart->cart_contents[ $cart_item_key ] );
+		// 		if ( ! $booking || ! $booking->has_status( array( 'was-in-cart', 'in-cart', 'unpaid', 'paid' ) ) ) {
+		// 			unset( WC()->cart->cart_contents[ $cart_item_key ] );
 
-					WC()->cart->calculate_totals();
+		// 			WC()->cart->calculate_totals();
 
-					wc_add_notice( sprintf( __( 'A booking for %s has been removed from your cart due to inactivity.', 'woocommerce-bookings' ), '<a href="' . get_permalink( $cart_item['product_id'] ) . '">' . get_the_title( $cart_item['product_id'] ) . '</a>' ), 'notice' );
-				} elseif ( $booking->has_status( 'in-cart' ) ) {
-					$this->schedule_cart_removal( $cart_item['booking']['_booking_id'] );
-				}
-			}
-		}
+		// 			wc_add_notice( sprintf( __( 'A booking for %s has been removed from your cart due to inactivity.', 'woocommerce-bookings' ), '<a href="' . get_permalink( $cart_item['product_id'] ) . '">' . get_the_title( $cart_item['product_id'] ) . '</a>' ), 'notice' );
+		// 		} elseif ( $booking->has_status( 'in-cart' ) ) {
+		// 			$this->schedule_cart_removal( $cart_item['booking']['_booking_id'] );
+		// 		}
+		// 	}
+		// }
 	}
 
 	/**
@@ -246,8 +244,6 @@ class WC_Booking_Cart_Manager {
 
 		// Store in cart
 		$cart_item_meta['booking']['_booking_id'] = $new_booking->id;
-
-		update_cupos($new_booking->id, "+");
 
 		// Schedule this item to be removed from the cart if the user is inactive
 		$this->schedule_cart_removal( $new_booking->id );

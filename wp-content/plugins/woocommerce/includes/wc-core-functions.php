@@ -99,6 +99,12 @@ function wc_create_order( $args = array() ) {
 		$order_id = wp_insert_post( apply_filters( 'woocommerce_new_order_data', $order_data ), true );
 	}
 
+	// Angel Veloz -> Creacion de la orden
+	// echo "<pre>";
+	// 	print_r($order_id);
+	// 	print_r($order_data);
+	// echo "</pre>";
+
 	if ( is_wp_error( $order_id ) ) {
 		return $order_id;
 	}

@@ -41,7 +41,6 @@
                 'Vintermex'             =>  'Viajes Intermex',
                 'Amigo/Familiar'        =>  'Recomendación de amigo o familiar',
                 'Youtube'               =>  'Youtube',
-                'COW'                   =>  'COW',
                 'Otros'                 =>  'Otros'
             );
             return $opciones;
@@ -50,20 +49,20 @@
 
 	if(!function_exists('viejos_include_script')){
         function viejos_include_script(){
-            wp_enqueue_script( 'kmimos_jqueryui_script',    get_home_url().'/wp-content/plugins/kmimos/javascript/jquery-ui.min.js', array(), '1.11.1', true  );
-            wp_enqueue_script( 'kmimos_filters_script',     get_home_url().'/wp-content/plugins/kmimos/javascript/kmimos-filters.js', array(), '1.0.0', true );
-            // wp_enqueue_script( 'kmimos_script',             get_home_url().'/wp-content/plugins/kmimos/javascript/kmimos.js', array(), '1.0.0', true );
-            wp_enqueue_script( 'kmimos_fancy',              get_home_url().'/wp-content/plugins/kmimos/javascript/jquery.fancybox.pack.js', array(), '2.1.5', true );
-            wp_enqueue_style( 'kmimos_style',               get_home_url().'/wp-content/plugins/kmimos/css/kmimos.css' );
-            wp_enqueue_style( 'kmimos_filters_style',       get_home_url().'/wp-content/plugins/kmimos/css/kmimos-filters.css' );
-            wp_enqueue_style( 'kmimos_fancy_style',         get_home_url().'/wp-content/plugins/kmimos/css/jquery.fancybox.css?v=2.1.5' );
+            // wp_enqueue_script( 'kmimos_jqueryui_script',    get_home_url().'/wp-content/plugins/kmimos/javascript/jquery-ui.min.js', array(), '1.11.1', true  );
+            // wp_enqueue_script( 'kmimos_filters_script',     get_home_url().'/wp-content/plugins/kmimos/javascript/kmimos-filters.js', array(), '1.0.0', true );
+            // // wp_enqueue_script( 'kmimos_script',             get_home_url().'/wp-content/plugins/kmimos/javascript/kmimos.js', array(), '1.0.0', true );
+            // wp_enqueue_script( 'kmimos_fancy',              get_home_url().'/wp-content/plugins/kmimos/javascript/jquery.fancybox.pack.js', array(), '2.1.5', true );
+            // wp_enqueue_style( 'kmimos_style',               get_home_url().'/wp-content/plugins/kmimos/css/kmimos.css' );
+            // wp_enqueue_style( 'kmimos_filters_style',       get_home_url().'/wp-content/plugins/kmimos/css/kmimos-filters.css' );
+            // wp_enqueue_style( 'kmimos_fancy_style',         get_home_url().'/wp-content/plugins/kmimos/css/jquery.fancybox.css?v=2.1.5' );
         }
     }
 
 	if(!function_exists('viejos_include_admin_script')){
 	    function viejos_include_admin_script(){
-            wp_enqueue_script( 'kmimos_script', get_home_url().'/wp-content/plugins/kmimos/javascript/kmimos-admin.js', array(), '1.0.0', true );
-            wp_enqueue_style( 'kmimos_style', get_home_url().'/wp-content/plugins/kmimos/css/kmimos-admin.css' );
+            // wp_enqueue_script( 'kmimos_script', get_home_url().'/wp-content/plugins/kmimos/javascript/kmimos-admin.js', array(), '1.0.0', true );
+            // wp_enqueue_style( 'kmimos_style', get_home_url().'/wp-content/plugins/kmimos/css/kmimos-admin.css' );
 	    }
 	}
 
@@ -1486,45 +1485,6 @@ if(!function_exists('kmimos_get_detail_for_size')){
 
 }
 
-/**
-
- *  Devuelve la cantidad y la lista de mascotas que posee el usuario.
-
- * */
-
-if(!function_exists('kmimos_get_my_pets')){
-
-    function kmimos_get_my_pets($user_id){
-
-        global $wpdb;
-
-        
-
-        $sql  = "SELECT COUNT(*) AS count, GROUP_CONCAT(p.ID SEPARATOR ',') AS list, ";
-
-        $sql .= "GROUP_CONCAT(pn.meta_value SEPARATOR ',') AS names, ";
-
-        $sql .= "pr.nombre AS breed_name ";
-
-        $sql .= "FROM $wpdb->posts AS p  ";
-
-        $sql .= "LEFT JOIN $wpdb->postmeta AS pm ON (p.ID=pm.post_id AND pm.meta_key='owner_pet') ";
-
-        $sql .= "LEFT JOIN $wpdb->postmeta AS pn ON (p.ID=pn.post_id AND pn.meta_key='name_pet') ";
-
-        $sql .= "LEFT JOIN $wpdb->postmeta AS pb ON (p.ID=pb.post_id AND pb.meta_key='breed_pet') ";
-
-        $sql .= "LEFT JOIN razas AS pr ON pr.id=pb.meta_value ";
-
-        $sql .= "WHERE p.post_type = 'pets' AND p.post_status = 'publish' ";
-
-        $sql .= "AND pm.meta_value = ".$user_id;
-
-        return $wpdb->get_row($sql, ARRAY_A);
-
-    }
-
-}
 
 /**
 
@@ -1967,58 +1927,6 @@ if(!function_exists('vlz_actualizar_ratings')){
  *  Devuelve la valoración del cuidador.
 
  * */
-
-if(!function_exists('kmimos_petsitter_rating')){
-
-    function kmimos_petsitter_rating($post_id){
-        $html = '<div class="text-center rating">';
-        $valoracion = kmimos_petsitter_rating_and_votes($post_id);
-        $votes = $valoracion['votes'];
-        $rating = $valoracion['rating'];
-        if($votes =='' || $votes == 0 || $rating ==''){ 
-            $html .= '<div id="rating">';
-            for ($i=0; $i<5; $i++){ 
-                $html .= '<img src="'.get_home_url().'/wp-content/plugins/kmimos/assets/rating/vacio.png">';
-            }
-            $html .= '</div>';
-            $html .= '<div class="vlz_valoraciones">Este cuidador no ha sido valorado</div>';
-        } else { 
-            $html .= '<div id="rating">';
-            for ($i=0; $i<5; $i++){ 
-                if(intval($rating)>$i) { 
-                    $html .= '<img src="'.get_home_url().'/wp-content/plugins/kmimos/assets/rating/100.png">';
-                } else if(intval($rating)<$i) {
-                    $html .= '<img src="'.get_home_url().'/wp-content/plugins/kmimos/assets/rating/0.png">';
-                } else {
-                    $residuo = ($rating-$i)*100+12.5;
-                    $residuo = intval($residuo/25);
-                    switch($residuo){
-                        case 4: // 100% 
-                            $html .= '<img src="'.get_home_url().'/wp-content/plugins/kmimos/assets/rating/100.png">';
-                        break;
-                        case 3: // 75% 
-                            $html .= '<img src="'.get_home_url().'/wp-content/plugins/kmimos/assets/rating/75.png">';
-                        break;
-                        case 2: // 50% 
-                            $html .= '<img src="'.get_home_url().'/wp-content/plugins/kmimos/assets/rating/50.png">';
-                        break;
-                        case 1: // 25% 
-                            $html .= '<img src="'.get_home_url().'/wp-content/plugins/kmimos/assets/rating/25.png">';
-                        break;
-                        default: // 0% 
-                            $html .= '<img src="'.get_home_url().'/wp-content/plugins/kmimos/assets/rating/0.png">';
-                        break;
-                    }
-                }
-            }
-            $html .= '</div>';
-            $valoracion = ($votes==1)? ' Valoración':' Valoraciones';
-            $html .= '<div class="vlz_valoraciones">('. number_format($rating,2).') '.$votes .$valoracion. '</div>';
-        }
-        $html .= '</div>';
-        return $html;
-    }
-}
 
 
 

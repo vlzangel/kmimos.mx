@@ -60,13 +60,9 @@ $users = getUsers($desde, $hasta);
 			  <thead>
 			    <tr>
 			      <th>#</th>
-			      <th>Fecha Registro</th>			      
+			      <th>Fecha Registro</th>
 			      <th>Nombre y Apellido</th>
-<!-- 			  
-				  <th>Nombre</th>
-			      <th>Apellido</th>
- -->			      
- 				  <th>Email</th>
+			      <th>Email</th>
 			      <th>Teléfono</th>
 			      <th>Donde nos conocio?</th>
 			      <th>Estatus</th>
@@ -89,10 +85,6 @@ $users = getUsers($desde, $hasta);
 				    	<th class="text-center"><?php echo $row['ID']; ?></th>
 						<th><?php echo date_convert($row['user_registered'], 'd-m-Y') ; ?></th>
 						<th><?php echo $name; ?></th>
-<!-- 
-						<th><?php echo $usermeta['first_name']; ?></th>
-						<th><?php echo $usermeta['last_name']; ?></th> 
--->
 						<th>
 					  		<a href="<?php echo $link_login; ?>">
 								<?php echo $row['user_email']; ?>

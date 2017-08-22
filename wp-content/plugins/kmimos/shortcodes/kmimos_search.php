@@ -2,425 +2,161 @@
 
     //[kmimos_search]
 
-    $HOY = date("Y-m-d");
+    $data = get_data_home();
 
-    $ESTADOS = "
-        <option value=''>Seleccione un estado</option>
-        <option value='7'>Aguascalientes</option>
-        <option value='8'>Baja California</option>
-        <option value='9'>Baja California Sur</option>
-        <option value='10'>Campeche</option>
-        <option value='13'>Chiapas</option>
-        <option value='14'>Chihuahua</option>
-        <option value='1'>Ciudad de México</option>
-        <option value='11'>Coahuila de Zaragoza</option>
-        <option value='12'>Colima</option>
-        <option value='15'>Durango</option>
-        <option value='2'>Estado de México</option>
-        <option value='16'>Guanajuato</option>
-        <option value='17'>Guerrero</option>
-        <option value='18'>Hidalgo</option>
-        <option value='3'>Jalisco</option>
-        <option value='19'>Michoac&aacute;n de Ocampo</option>
-        <option value='20'>Morelos</option>
-        <option value='21'>Nayarit</option>
-        <option value='4'>Nuevo León</option>
-        <option value='22'>Oaxaca</option>
-        <option value='23'>Puebla</option>
-        <option value='24'>Queretaro</option>
-        <option value='25'>Quintana Roo</option>
-        <option value='26'>San Luis Potosi</option>
-        <option value='27'>Sinaloa</option>
-        <option value='28'>Sonora</option>
-        <option value='29'>Tabasco</option>
-        <option value='30'>Tamaulipas</option>
-        <option value='31'>Tlaxcala</option>
-        <option value='32'>Veracruz de Ignacio de la Llave</option>
-        <option value='33'>Yucatan</option>
-        <option value='34'>Zacatecas</option>
-    ";
-    $servicios = array(
-        'hospedaje'      => '<p>Hospedaje<br><sup>cuidado día y noche</sup></p>', 
-        'guarderia'      => '<p>Guardería<br><sup>cuidado durante el día</sup></p>', 
-        'paseos'         => '<p>Paseos<br><sup></sup></p>',
-        'adiestramiento' => '<p>Entrenamiento<br><sup></sup></p>'
-    ); 
-    $SERVICIOS = "";
-    foreach($servicios as $key => $value){
-        if( substr($key, 0, 14) == 'adiestramiento'){ $xkey = 'adiestramiento'; }else{ $xkey = $key; }
-        $SERVICIOS .= "
-        <div class='contenedor_servicio izquierda text-left'>
-            <div class='boton_portada boton_servicio'>
-                <input type='checkbox' name='servicios[]' id='servicio_cuidador_{$key}' class='servicio_cuidador_{$key}' value='{$key}' data-key='{$key}'>
-                <label for='servicio_cuidador_{$key}'>
-                    <i class='icon-{$key}'></i>
-                    {$value}
+    extract($data);
+
+    $home = get_home_url();
+    wp_enqueue_style('home_kmimos', $home."/wp-content/themes/pointfinder/css/home_kmimos.css", array(), '1.0.0');
+    wp_enqueue_style('home_responsive', $home."/wp-content/themes/pointfinder/css/responsive/home_responsive.css", array(), '1.0.0');
+    wp_enqueue_script('buscar_home', $home."/wp-content/plugins/kmimos/javascript/buscar.js", array(), '1.0.0');
+
+    $HTML = "
+    <script type='text/javascript'> var URL_MUNICIPIOS = '".get_bloginfo( 'template_directory', 'display' )."/vlz/ajax_municipios.php'; </script>
+
+    <div class='modal_video'>
+        <div class='modal_container'>
+            <div class='modal_box'>
+                <i id='close_video' class='fa fa-times' aria-hidden='true'></i>
+                <iframe width='100%' height='100%' src='' frameborder='0' allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <div class='modal_servicios'>
+        <div class='modal_container'>
+            <div class='modal_box'>
+                <i id='close_mas_servicios' class='fa fa-times' aria-hidden='true'></i>
+                ".$MAS_SERVICIOS."
+            </div>
+        </div>
+    </div>
+
+    <div class='slider_home' style='background-image: url({$home}/wp-content/themes/pointfinder/images/slider_home/fondo_2.png)'>
+        <div class='slider_home_container'>
+            <ul onclick='show_video();' style='width: 200%;' class='slider_home_box'>
+                <li style='background-image: url({$home}/wp-content/themes/pointfinder/images/slider_home/slider_2_1.png)'></li>
+                <li style='background-image: url({$home}/wp-content/themes/pointfinder/images/slider_home/slider_2_2.png)'></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class='buscar_box'>
+        <form id='buscador' class='container' method='POST' action='".get_home_url()."/wp-content/themes/pointfinder/vlz/buscar.php'>
+            
+            <div class='adicionales_container'>
+                <label class='titulo_buscar_label'>ESTOY BUSCANDO</label>
+                <div class='adicionales_button'>Servicios adicionales...</div>
+            </div>
+
+            <div class='servicios_container'>
+                ".$SERVICIOS."
+            </div>
+
+            <div class='selector_tipo_container'>
+                <label  for='otra-localidad' class='por_ubicacion check_select'>
+                    Otra localidad
+                    <input type='radio' name='tipo_busqueda' id='otra-localidad' value='otra-localidad' checked=''>
+                </label>
+                <label  for='mi-ubicacion' class='por_ubicacion'>
+                    Mi ubicación
+                    <input type='radio' name='tipo_busqueda' id='mi-ubicacion' value='mi-ubicacion'>
                 </label>
             </div>
-        </div>";
-    }
 
-    $extras = servicios_adicionales(); $MAS_SERVICIOS = "";
-    foreach($extras as $key => $value){
-        $MAS_SERVICIOS .= "
-        <div class='w96pc boton_extra text-center'>
-            <div class='boton_portada boton_servicio'>
-                <input type='checkbox' name='servicios[]' id='servicio_cuidador_{$key}' class='servicio_cuidador_{$key}' value='{$key}' data-key='{$key}'>
-                <label for='servicio_cuidador_{$key}'>
-                    <i class='icon-{$value['icon']}'></i>
-                    <p>{$value['label']}</p>
-                </label>
+            <div class='selects_ubicacion_container'>
+                <select id='estado_cuidador' name='estado_cuidador'> {$ESTADOS} </select>
+                <select id='municipio_cuidador' name='municipio_cuidador'> <option value=''>Seleccione primero un estado</option> </select>
             </div>
-        </div>";
-    }
 
-    $tamanos = array(
-        'pequenos' => 'Peque&ntilde;os <br><sub>0.0 cm - 25.0cm</sub>',
-        'medianos' => 'Medianos <br><sub>25.0 cm - 58.0 cm</sub>',
-        'grandes'  => 'Grandes <br><sub>58.0 cm - 73.0 cm</sub>',
-        'gigantes' => 'Gigantes <br><sub>73.0 cm - 200.0 cm</sub>',
-    );
-    $TAMANOS = "";
-    foreach($tamanos as $key => $value){
-        $TAMANOS .= "
-        <div class='jj_btn_tamanos' style='float: left; box-sizing: border-box; padding: 0px 1px; margin-bottom: 2px !important;'>
-            <div class='boton_portada boton_servicio' style='margin: 0px !important;'>
-                <input type='checkbox' name='tamanos[]' id='tamano_mascota_{$key}' value='{$key}' class='servicio_cuidador_{$key}' data-key='{$key}'>
-                <label for='tamano_mascota_{$key}' style='line-height: 12px; padding: 5px;'>
-                    <i class='icon-{$key}'></i>
-                    {$value}
-                </label>
+            <div class='servicios_container'>
+                ".$TAMANOS."
             </div>
-        </div>";
-    }
 
-    $HTML = do_shortcode("[layerslider id='1']")."
-    <style>
-        #estado_cuidador_main {
-            margin: 0px !important;
-        }
-        #grupo_fecha {
-            width: 110% !important;
-        }
-        .selector_fecha {
-            width: 50%;
-            overflow: hidden;
-        }
-        .grupo_fecha {
-            overflow: hidden;
-        }
-        .grupo_selector {
-            display: inline-block;
-            width: 50%;
-            float: left;
-            margin-top: 3px;
-        }
-        html.iOS .fecha_hasta, html.iOS .fecha_desde { width: 118px !important}
-        input[type='date'] {
-            line-height: 1.42857143;
-            margin-top: -10px;
-            height: 25px !important;
-        }
-        @media only screen and (max-width: 639px) { 
-            .grupo_selector { width: 100%; } 
-            html.iOS .selector_fecha {width: 50% !important}
-            html.iOS .fecha_desde {float: left; margin-top: 0px !important; margin-right: -16px;}
-            html.iOS .fecha_hasta {float: right; margin-top: 0px !important; margin-right: -16px;}
-            .fecha_desde {float: left;}
-            .fecha_hasta { display: block;}
-            .fecha_hasta_full { display: none;}
-        }
-        .grupo_selector .marco {
-            display: inline-block;
-            border: 1px solid #888;
-            width: 99%;
-            padding-right: 5px;
-        }
-        .grupo_selector .icono {
-            display: inline-block;
-            width: 36px;
-            height: 36px;
-            float: left;
-            padding: 5px;
-            font-size: 1.8em;
-        }
-        .grupo_selector sub {
-            top: 8px;
-            float: left;
-        }
-        .grupo_selector select, .grupo_selector input {
-            height: 25px;
-            width: 87%;
-            display: inline-block;
-            clear: right;
-            float: left;
-            border: 0px;
-            background-color: #ffffff;
-        }
-        .grupo_selector select{
-            margin-top: -10px;
-        }
-        .grupo_selector input {
-            height: 36px;
-        }
-        select.activo, .grupo_fecha input[type=date].activo { color: #00d2b7 !important; }
-        select:focus{
-            outline: 0px;
-        }
-        #pp_full_res .pp_inline p {
-            margin: 7px 0px 15px 38px;
-            text-align: left;
-        }
-    </style>
-    <div id='portada'>
-        <form id='pointfinder-search-form-manual' method='POST' action='".get_home_url()."/wp-content/themes/pointfinder/vlz/buscar.php' data-ajax='false' novalidate='novalidate'>
-            <center>
-                <div class='buscador_portada'>
-                    <div class='w100pc mt10'>
-                        <div class='mt10 izquierda'>
-                            <label id='estoy_buscando'><strong>ESTOY BUSCANDO</strong></label>
-                        </div>
-                        <div class='mt10 derecha'>
-                            <a href='#mas_servicios' class='theme_button prettyphoto' rel='more_services' id='ver_mas_servicios'>Servicios adicionales...</a>
-                        </div>
-                    </div>
-                    <div id='servicio_cuidador_main' class='w100pc'>
-                        {$SERVICIOS}
-                    </div>
-                    <div id='popup_mas_servicios' style='display:none; overflow: hidden;'>
-                        <span></span>
-                        <div id='mas_servicios'>
-                            <i id='cerrar_mas_servicios' class='fa fa-times' aria-hidden='true'></i>
-                            $MAS_SERVICIOS
-                       </div>
-                    </div>
-                    <div class='w100pc'>
-                        <div class='mt10 izquierda'>
-                            <div id='selector_tipo' class='izquierda'> 
-                                <label id='cerca_de' class='izquierda'><strong>CERCA DE </strong></label> 
-                                <input type='radio' name='tipo_busqueda' id='otra-localidad' value='otra-localidad' class='ml8' checked> 
-                                <label for='otra-localidad'> Otra localidad</label> 
-                                <input type='radio' name='tipo_busqueda' id='mi-ubicacion' value='mi-ubicacion' class='ml8' >
-                                <label for='mi-ubicacion'> Mi ubicación </label> 
-                            </div>
-                        </div>
-                    </div>
-                    <div id='estado_cuidador_main'>
-                        <div id='selector_locacion'>
-                            <div class='grupo_selector'>
-                                <div class='marco'>
-                                    <div class='icono'><i class='icon-mapa embebed'></i></div>
-                                    <sub>Estado:</sub><br>
-                                    <select id='estado_cuidador' name='estados' data-location='mx'>
-                                        $ESTADOS
-                                    </select>
-                                </div>
-                            </div>
-                            <div class='grupo_selector'>
-                                <div class='marco'>
-                                    <div class='icono'><i class='icon-mapa embebed'></i></div>
-                                    <sub>Municipio:</sub><br>
-                                    <select id='municipio_cuidador' name='municipios'>
-                                        <option value=''>Seleccione primero un estado</option>
-                                    </select>
-                                    <input type='hidden' id='municipio_cache' name='municipio_cache'>
-                                </div>
-                            </div>
-                        </div>
-                        <div id='selector_coordenadas_x' class='hide'>
-                            <input type='text' id='latitud' name='latitud'>
-                            <input type='text' id='longitud' name='longitud'>
-                        </div>
-                    </div>
-
-                    <div id='estado_cuidador_main'>
-                        <div id='selector_locacion'>
-                            <div class='grupo_selector'>
-                                <div class='marco'>
-                                    <div class='icono'><i class='icon-calendario embebed'></i></div>
-                                    <sub>Desde cuando:</sub><br>
-                                    <input type='date' id='checkin' name='checkin' class='fechas' placeholder='Check In' min='".date("Y-m-d")."'>
-                                </div>
-                            </div>
-                            <div class='grupo_selector'>
-                                <div class='marco'>
-                                    <div class='icono'><i class='icon-calendario embebed'></i></div>
-                                    <sub>Hasta cuando:</sub><br>
-                                    <input type='date' id='checkout' name='checkout' class='fechas' placeholder='Check Out' disabled>
-                                </div>
-                            </div>
-                        </div>
-                        <div id='selector_coordenadas_x' class='hide'>
-                            <input type='text' id='latitud' name='latitud'>
-                            <input type='text' id='longitud' name='longitud'>
-                        </div>
-                    </div>
-
-                    <div class='w100pc'>
-                       <div class='mt10 izquierda'>
-                            <label id='tamano_mascota'><strong>TAMAÑO DE MI MASCOTA</strong></label>
-                        </div>
-                    </div>
-                    <div id='tamano_mascota_main' style='overflow: hidden;'>
-                        {$TAMANOS}
-                    </div>
-                    <div class='w100pc text-center'>
-                        <div class='boton_buscar'>
-                            <a class='theme_button button pfsearch' id='pf-search-button-manual'><i class='pfadmicon-glyph-627'></i> Buscar Cuidador</a>
-                        </div>
-                    </div>
-                </div>
-            </center>
+            <div id='boton_buscar' class='boton_buscar'>
+                <i class='pfadmicon-glyph-627'></i>
+                Buscar Cuidador
+            </div>
         </form>
     </div>
 
-    <script type='text/javascript'>
-        var hasGPS=false;
+    <div class='beneficios_container'>
+        <h1 style='text-align: center;'><span style='color: #01d7df;'><strong>Beneficios</strong></span></h1>
+        <ul class='beneficios_home'>
+            <li>
+                <div>
+                    <p style='text-align: center;'>
+                        <img src='https://www.kmimos.com.mx/iconos/boton-1.png' alt='boton-1' />
+                    </p>
+                    <h3 style='text-align: center;'>
+                        <span style='color: #90a4ae;'>Cuidadores</span><br />
+                        <span style='color: #90a4ae;'>Certificados</span>
+                    </h3>
+                </div>
+            </li>  
 
-        (function($) {
-            'use strict';
+            <li>
+                <div>
+                    <p style='text-align: center;'>
+                        <img src='https://www.kmimos.com.mx/iconos/boton-2.png' alt='boton-2' />
+                    </p>
+                    <h3 style='text-align: center;'>
+                        <span style='color: #90a4ae;'>Fotografías</span><br />
+                        <span style='color: #90a4ae;'>y videos diarios</span>
+                    </h3>
+                </div>
+            </li>  
 
-            $('#ver_mas_servicios').on('click', function(){
-                if( $('#popup_mas_servicios').css('display') == 'none' ){
-                    $('#popup_mas_servicios').css('display', 'block');
-                }else{
-                    $('#popup_mas_servicios').css('display', 'none');
-                }
-            });
+            <li>
+                <div>
+                    <p style='text-align: center;'>
+                        <img src='https://www.kmimos.com.mx/iconos/boton-3.png' alt='boton-3' />
+                    </p>
+                    <h3 style='text-align: center;'>
+                        <span style='color: #90a4ae;'>Atención</span><br />
+                        <span style='color: #90a4ae;'>personalizada</span>
+                    </h3>
+                </div>
+            </li>  
 
-            $('#cerrar_mas_servicios').on('click', function(){
-                $('#popup_mas_servicios').css('display', 'none');
-            });
-
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(coordenadas);
-            } else {
-                $('#selector_locacion').removeClass('hide');
-                $('#selector_coordenadas').addClass('hide');
-                $('#selector_tipo').addClass('hide');
-            }
-            if(navigator.platform.substr(0, 2) == 'iP') $('html').addClass('iOS');
-            $(function(){
-                var edos = $('#estado_cuidador').val();
-                if($('#otra-localidad').prop( 'checked' )){
-                    $('#selector_locacion').removeClass('hide');
-                    $('#selector_coordenadas').addClass('hide');
-                    if( edos != ''){
-                        $('#estado_cuidador > option[value='+edos+']').attr('selected', 'selected');
-                    }
-                }
-                $('#otra-localidad').click(function(){
-                    $('#selector_locacion').removeClass('hide');
-                    $('#selector_coordenadas').addClass('hide');
-                });
-                $('#mi-ubicacion').click(function(){
-                    $('#selector_coordenadas').addClass('hide');
-                    $('#selector_locacion').addClass('hide');
-                });
-                function cargar_municipios(CB){
-                    var estado_id = jQuery('#estado_cuidador').val();       
-                    if( estado_id != '' ){
-                        jQuery.getJSON( 
-                            '".get_bloginfo( 'template_directory', 'display' )."/vlz/ajax_municipios.php', 
-                            {estado: estado_id} 
-                        ).done(
-                            function( data, textStatus, jqXHR ) {
-                                var html = \"<option value=''>Seleccione un municipio</option>\";
-                                jQuery.each(data, function(i, val) {
-                                    html += '<option value='+val.id+'>'+val.name+'</option>';
-                                });
-                                jQuery('#municipio_cuidador').html(html);
-
-                                if( CB != undefined) {
-                                    CB();
-                                }
-                            }
-                        ).fail(
-                            function( jqXHR, textStatus, errorThrown ) {
-                                console.log( 'Error: ' +  errorThrown );
-                            }
-                        );
-                    }
-                }
-                jQuery('#estado_cuidador').on('change', function(e){
-                    cargar_municipios();
-                });
-                cargar_municipios(function(){
-                    jQuery(\"#municipio_cuidador > option[value='\"+jQuery('#municipio_cache').val()+\"']\").attr('selected', 'selected');
-                });
-                jQuery('#municipio_cuidador').on('change', function(e){
-                    jQuery('#municipio_cache').attr('value', jQuery('#municipio_cuidador').val() );
-                });
-
-                $('.boton_servicio > input:checkbox').each(function(index){
-                    var servicio = $(this).attr('data-key');
-                    var activo = $(this).prop('checked');
-                    if(activo) $(this).parent().addClass('activo');
-                    else $(this).parent().removeClass('activo');
-                });
-                $('.boton_portada > input:checkbox').on('change',function(e){
-                    var servicio = $(this).attr('data-key');
-                    var activo = $(this).prop('checked');
-                    if(activo) $('.servicio_cuidador_'+servicio).parent().addClass('activo');
-                    else $('.servicio_cuidador_'+servicio).parent().removeClass('activo');
-                });
-                $('.modal').fancybox({
-                    maxWidth: 340
-                });
-
-                function seleccionar_checkin() {
-                    if( jQuery('#checkin').val() != '' ){
-                        var fecha = new Date();
-                        jQuery('#checkout').attr('disabled', false);
-
-                        var ini = String( jQuery('#checkin').val() ).split('-');
-                        var inicio = new Date( parseInt(ini[2]), parseInt(ini[1]), parseInt(ini[0]) );
-
-                        console.log( jQuery('#checkout').val() );
-
-                        var checkout = String( jQuery('#checkout').val() ).split('-');
-                        var checkout = new Date( checkout[0]+'-'+checkout[1]+'-'+checkout[2] );
-
-                        if( jQuery('#checkout').val() != '' ){
-                            if( Math.abs(checkout.getTime()) < Math.abs(inicio.getTime()) ){
-                                jQuery('#checkout').attr('value', ini[0]+'-'+ini[1]+'-'+ini[2] );
-                            }
-                        }else{
-                            jQuery('#checkout').attr('value', ini[0]+'-'+ini[1]+'-'+ini[2] );
-                        }
-                            
-                        jQuery('#checkout').attr('min', ini[0]+'-'+ini[1]+'-'+ini[2] );
-                    }else{
-                        jQuery('#checkout').val('');
-                        jQuery('#checkout').attr('disabled', true);
-                    }
-                }
-
-                jQuery('#checkin').on('change', function(e){
-                    seleccionar_checkin();
-                });
-
-                if( jQuery('#checkin').val() != '' ){
-                    seleccionar_checkin();
-                }
-
-            });
+            <li>
+                <div>
+                    <p style='text-align: center;'>
+                        <img src='https://www.kmimos.com.mx/iconos/boton-4.png' alt='boton-4' />
+                    </p>
+                    <h3 style='text-align: center;'>
+                        <span style='color: #90a4ae;'>Cobertura veterinaria</span><br />
+                        <span style='color: #90a4ae;'>para tu mascota</span>
+                    </h3>
+                </div>
+            </li> 
+        </ul> 
+    </div>
 
 
-        })(jQuery);
+    <div id='bloque_testimonios'>
+        <h1>Testimonios</h1>
+        <div class='testimonios_container'>
+            <ul style='width: {$WIDTH_SLIDER}%' class='testimonios_box'>
+                ".$TESTIMONIOS."
+            </ul>
+        </div>
+    </div>
 
-        function coordenadas(position){
-            if(position.coords.latitude != '' && position.coords.longitude != '') {
-                document.getElementById('latitud').value=position.coords.latitude;
-                document.getElementById('longitud').value=position.coords.longitude;        
-            } else {
-                var mensaje = 'No es posible leer su ubicación,\nverifique si su GPS está encendido\ny vuelva a recargar la página.'+$('#latitud').val()+','+$('#longitud').val();
-                alert(mensaje);        
-            }
-        }
-    </script>
-    
-    ";
+    <div class='slider_logos_container'>
+        <ul class='slider_logos_box'>
+            <li style='background-image: url({$home}/wp-content/uploads/2017/02/expansion-360x150.png)'></li>
+            <li style='background-image: url({$home}/wp-content/uploads/2017/02/reforma-360x150-360x150.png)'></li>
+            <li style='background-image: url({$home}/wp-content/uploads/2017/02/mural-360x150-360x150.png)'></li>
+            <li style='background-image: url({$home}/wp-content/uploads/2017/02/entrepreneur-360x150.png)'></li>
+
+            <li style='background-image: url({$home}/wp-content/uploads/2017/02/el-universal-360x150-360x150.png)'></li>
+            <li style='background-image: url({$home}/wp-content/uploads/2017/02/el-norte-360x150-360x150.png)'></li>
+            <li style='background-image: url({$home}/wp-content/uploads/2017/02/el-financiero-360x150-360x150.png)'></li>
+            <li style='background-image: url({$home}/wp-content/uploads/2017/02/expansion-360x150.png)'></li>
+            <li id='logo_solo_movil' style='background-image: url({$home}/wp-content/uploads/2017/02/expansion-360x150.png)'></li>
+        </ul>
+    </div>";
 
     echo comprimir_styles($HTML);
 ?>

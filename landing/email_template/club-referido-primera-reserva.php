@@ -23,7 +23,7 @@ $html = '
 			<img src="'.$http.$_SERVER["HTTP_HOST"].'/landing/img/logo_patitas.png" alt="" width="25%">
 			<div style="margin: auto; width: 70%; text-align: justify; padding=bottom:10px;color:#757575;">
 				<h2>¡Felicidades!</h2>
-				<p>Tu amigo  <span style="font-weight: bold; color:#00D8B5;">'. $name .'</span> ha completado su primera reservación, ahora otro perrhijo moverá su colita de felicidad, ¡y tú ganaste 150 $ MXP!</p>
+				<p>Tu amigo  <span style="font-weight: bold; color:#00D8B5;">'. $username .'</span> ha completado su primera reservación, ahora otro perrhijo moverá su colita de felicidad, ¡y tú ganaste 150 $ MXP!</p>
 				<p>Has que la familia se haga más grande, sigue compartiéndonos.</p>
 				<span>Atentamente;</span><br><br>	
 				<img src="'.$http.$_SERVER["HTTP_HOST"].'/landing/img/logo-kmimos_120x30.png" alt="">

@@ -2,8 +2,8 @@
 	
     include_once('includes/functions/vlz_functions.php');
     include_once('angel/funciones.php');
-	include_once('lib/recaptchalib.php');
-	
+	include_once('angel/admin.php');
+
 	if(!function_exists('angel_include_script')){
 	    function angel_include_script(){
 	        
@@ -55,22 +55,6 @@
                     ";
                 break;
 	        }
-
-            $current_user = wp_get_current_user();
-            if( $current_user->ID != 367 ){
-                echo kmimos_style( array("ocultar_updates_wordpress") );
-                echo kmimos_style( array("ocultar_administracion_web_master") );
-                if( $_SERVER["REQUEST_URI"] == "/wp-admin/" ){
-                    echo "
-                        <script>
-                            window.onload = function(){
-                                location.href = jQuery('#toplevel_page_kmimos > a').attr('href');
-                            };
-                        </script>
-                    ";
-                }
-            }
-                
 	    }
 	}
 
@@ -89,9 +73,7 @@
 	            "pais"      => "México",
 	            "titulo"    => "Kmimos México",
 	            "email"     => "contactomex@kmimos.la",
-                "telefono"  => "01 800 056 4667 y WhatsApp +52 (55) 6892 2182",
-                "telefono_solo"  => "01 800 056 4667",
-	            "whatsApp"  => "+52 (55) 6892 2182",
+	            "telefono"  => "+52 (55) 1791.4931<br>+52 (55) 66319264",
 	            "twitter"   => "kmimosmx",
 	            "facebook"  => "Kmimosmx",
 	            "instagram" => "kmimosmx",
@@ -101,93 +83,160 @@
 	    }
 	}
 
-    if(!function_exists('kmimos_mails_administradores_new')){       
-        function kmimos_mails_administradores_new($titulo, $mensaje){     
-      
-            // $info = kmimos_get_info_syte();        
-            // $email_admin = $info["email"];     
-      
-            // $headers_admins = array(       
-            //     'BCC: e.celli@kmimos.la',      
-            //     'BCC: a.lazaro@kmimos.la',     
-            //     'BCC: r.cuevas@kmimos.la',     
-            //     'BCC: r.gonzalez@kmimos.la',       
-            //     'BCC: m.castellon@kmimos.la',      
-            //     'BCC: a.pedroza@kmimos.la'     
-            // );     
-      
-            // wp_mail( $email_admin, $titulo, $mensaje, $headers_admins);        
-      
-            // $headers_call_center = array(      
-            //     'BCC: operador01sincola@gmail.com',        
-            //     'BCC: operador04sincola@gmail.com',        
-            //     'BCC: Operador05sincola@gmail.com',        
-            //     'BCC: Operador06sincola@gmail.com',        
-            //     'BCC: robertomadridcisneros@gmail.com',        
-            //     'BCC: jordiballarin@gmail.com',        
-            //     'BCC: supervisor01sincola@gmail.com',      
-            //     'BCC: supervisor02sincola@gmail.com'       
-              // );     
-      
-            // wp_mail( "a.veloz@kmimos.la", $titulo, $mensaje, $headers_call_center);        
-      
-        }     
-    }
+	if(!function_exists('kmimos_mails_administradores')){
+	    function kmimos_mails_administradores(){
+
+            return $headers;
+
+	    }
+	}
 
     if(!function_exists('vlz_servicios')){
-        function vlz_servicios($adicionales){
-            $r = ""; $adiestramiento = false;
-
-            $r .= '<span class="tooltip icono-servicios"><span class="tooltiptext">Hospedaje</span><i class="icon-hospedaje"></i></span>';
-
+        function vlz_servicios($adicionales, $is_data = false){
+            $r = "";
+                
             $adicionales = unserialize($adicionales);
-            
-            if( $adicionales != "" ){
-                if( count($adicionales) > 0 ){
-                    foreach($adicionales as $key => $value){
-                        switch ($key) {
-                            case 'guarderia':
-                                $r .= '<span class="tooltip icono-servicios"><span class="tooltiptext">Guardería</span><i class="icon-guarderia"></i></span>';
-                            break;
-                            case 'adiestramiento_basico':
-                                $adiestramiento = true;
-                            break;
-                            case 'adiestramiento_intermedio':
-                                $adiestramiento = true;
-                            break;
-                            case 'adiestramiento_avanzado':
-                                $adiestramiento = true;
-                            break;
-                            case 'corte':
-                                $r .= '<div class="tooltip icono-servicios"><span class="tooltiptext">Corte de pelo y uñas</span><i class="icon-peluqueria"></i></div>';
-                            break;
-                            case 'bano':
-                                $r .= '<div class="tooltip icono-servicios"><span class="tooltiptext">Baño y secado</span><i class="icon-bano"></i></div>';
-                            break;
-                            case 'transportacion_sencilla':
-                                $r .= '<div class="tooltip icono-servicios"><span class="tooltiptext">Transporte Sencillo</span><i class="icon-transporte"></i></div>';
-                            break;
-                            case 'transportacion_redonda':
-                                $r .= '<div class="tooltip icono-servicios"><span class="tooltiptext">Transporte Redondo</span><i class="icon-transporte2"></i></div>';
-                            break;
-                            case 'visita_al_veterinario':
-                                $r .= '<div class="tooltip icono-servicios"><span class="tooltiptext">Visita al Veterinario</span><i class="icon-veterinario"></i></div>';
-                            break;
-                            case 'limpieza_dental':
-                                $r .= '<div class="tooltip icono-servicios"><span class="tooltiptext">Limpieza dental</span><i class="icon-limpieza"></i></div>';
-                            break;
-                            case 'acupuntura':
-                                $r .= '<div class="tooltip icono-servicios"><span class="tooltiptext">Acupuntura</span><i class="icon-acupuntura"></i></div>';
-                            break;
+
+            if( $is_data ){
+                $data = array();
+                
+                if( $adicionales != "" ){
+                    if( count($adicionales) > 0 ){
+                        foreach($adicionales as $key => $value){
+                            switch ($key) {
+                                case 'guarderia':
+                                    // $r .= '<img src="'.getTema().'/images/new/icon/icon-guarderia.svg" height="40">';
+                                break;
+                                case 'adiestramiento_basico':
+                                    $adiestramiento = true;
+                                break;
+                                case 'adiestramiento_intermedio':
+                                    $adiestramiento = true;
+                                break;
+                                case 'adiestramiento_avanzado':
+                                    $adiestramiento = true;
+                                break;
+                                case 'corte':
+                                    if( $value > 0){
+                                        $data[] = array(
+                                            "img" => "icon-sello-4.svg",
+                                            "titulo" => "Corte de pelo y u&ntilde;as"
+                                        );
+                                    }
+                                break;
+                                case 'bano':
+                                    if( $value > 0){
+                                        $data[] = array(
+                                            "img" => "icon-sello-6.svg",
+                                            "titulo" => "Ba&ntilde;o"
+                                        );
+                                    }
+                                break;
+                                case 'transportacion_sencilla':
+                                    //$r .= '<span><i title="Transporte Sencillo" class="icon-transporte"></i></span>';
+                                break;
+                                case 'transportacion_redonda':
+                                    //$r .= '<span><i title="Transporte Redondo" class="icon-transporte2"></i></span>';
+                                break;
+                                case 'visita_al_veterinario':
+                                    if( $value > 0){
+                                        $data[] = array(
+                                            "img" => "icon-sello-1.svg",
+                                            "titulo" => "Visita al Veterinario"
+                                        );
+                                    }
+                                break;
+                                case 'limpieza_dental':
+                                    if( $value > 0){
+                                        $data[] = array(
+                                            "img" => "icon-sello-4.svg",
+                                            "titulo" => "Limpieza Dental"
+                                        );
+                                    }
+                                break;
+                                case 'acupuntura':
+                                    //$r .= '<span><i title="Acupuntura" class="icon-acupuntura"></i></span>';
+                                break;
+                                case 'paseos':
+                                    $r .= "<img src='".getTema()."/images/new/icon/icon-sello-3.svg' height='40' title='Paseos'> ";
+                                    $data[] = array(
+                                        "img" => "icon-sello-3.svg",
+                                        "titulo" => "Paseos"
+                                    );
+                                break;
+                            }
                         }
+
+                        return $data;
+                    }
+                }
+
+            }else{
+                if( $adicionales != "" ){
+                    if( count($adicionales) > 0 ){
+                        foreach($adicionales as $key => $value){
+                            switch ($key) {
+                                case 'guarderia':
+                                    // $r .= '<img src="'.getTema().'/images/new/icon/icon-guarderia.svg" height="40">';
+                                break;
+                                case 'adiestramiento_basico':
+                                    $adiestramiento = true;
+                                break;
+                                case 'adiestramiento_intermedio':
+                                    $adiestramiento = true;
+                                break;
+                                case 'adiestramiento_avanzado':
+                                    $adiestramiento = true;
+                                break;
+                                case 'corte':
+                                    if( $value > 0){
+                                        $r .= "<img src='".getTema()."/images/new/icon/icon-sello-4.svg' height='40' title='Corte de pelo y u&ntilde;as'> ";
+                                    }
+                                break;
+                                case 'bano':
+                                    if( $value > 0){
+                                        $r .= "<img src='".getTema()."/images/new/icon/icon-sello-6.svg' height='40' title='Ba&ntilde;o'> ";
+                                    }
+                                break;
+                                case 'transportacion_sencilla':
+                                    //$r .= '<span><i title="Transporte Sencillo" class="icon-transporte"></i></span>';
+                                break;
+                                case 'transportacion_redonda':
+                                    //$r .= '<span><i title="Transporte Redondo" class="icon-transporte2"></i></span>';
+                                break;
+                                case 'visita_al_veterinario':
+                                    if( $value > 0){
+                                        $r .= "<img src='".getTema()."/images/new/icon/icon-sello-1.svg' height='40' title='Visita al Veterinario'> ";
+                                    }
+                                break;
+                                case 'limpieza_dental':
+                                    if( $value > 0){
+                                        $r .= "<img src='".getTema()."/images/new/icon/icon-sello-4.svg' height='40' title='Limpieza Dental'> ";
+                                    }
+                                break;
+                                case 'acupuntura':
+                                    //$r .= '<span><i title="Acupuntura" class="icon-acupuntura"></i></span>';
+                                break;
+                                case 'paseos':
+                                    $r .= "<img src='".getTema()."/images/new/icon/icon-sello-3.svg' height='40' title='Paseos'> ";
+                                break;
+                            }
+                        }
+
+                        return $r;
                     }
                 }
             }
-            if($adiestramiento){
-                $r .= '<div class="tooltip icono-servicios" ><span class="tooltiptext">Adiestramiento de Obediencia</span><i class="icon-adiestramiento"></i></div>';
-            }
-            return $r;
+            return "";
         }
+    }
+
+    if(!function_exists('toRadian')){
+
+        function toRadian($deg) {
+            return $deg * pi() / 180;
+        };
+
     }
 
     if(!function_exists('servicios_adicionales')){
@@ -234,27 +283,41 @@
         }
     }
 
-    if(!function_exists('kmimos_get_foto_cuidador')){
-        function kmimos_get_foto_cuidador($id){
+    if(!function_exists('kmimos_get_foto')){
+        function kmimos_get_foto($user_id, $get_sub_path = false){
             global $wpdb;
-            $cuidador = $wpdb->get_row("SELECT * FROM cuidadores WHERE id = ".$id);
-            $cuidador_id = $cuidador->id;
-            $name_photo = get_user_meta($cuidador->user_id, "name_photo", true);
-            if( empty($name_photo)  ){ $name_photo = "0"; }
-            if( count(explode(".", $name_photo)) == 1 ){
-                $name_photo .= "jpg";
-            }
-            $base = path_base();
-            if( file_exists($base."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/{$name_photo}") ){
-                $img = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/{$name_photo}";
+
+            $user = new WP_User( $user_id );
+            if( $user->roles[0] == "vendor" ){
+                $id = $wpdb->get_var("SELECT id FROM cuidadores WHERE user_id = {$user_id}");
+                $sub_path = "cuidadores/avatares/miniatura/{$id}_";
             }else{
-                if( file_exists($base."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg") ){
-                    $img = get_home_url()."/wp-content/uploads/cuidadores/avatares/".$cuidador_id."/0.jpg";
+                $sub_path = "avatares_clientes/{$user_id}/";
+            }
+            
+            $name_photo = get_user_meta($user_id, "name_photo", true);
+            if( empty($name_photo)  ){ $name_photo = "0"; }
+            if( count(explode(".", $name_photo)) == 1 ){ $name_photo .= "jpg";  }
+            $base = path_base();
+
+            if( file_exists($base."/wp-content/uploads/{$sub_path}{$name_photo}") ){
+                $img = get_home_url()."/wp-content/uploads/{$sub_path}{$name_photo}";
+            }else{
+                if( file_exists($base."/wp-content/uploads/{$sub_path}0.jpg") ){
+                    $img = get_home_url()."/wp-content/uploads/{$sub_path}0.jpg";
                 }else{
-                    $img = get_home_url()."/wp-content/themes/pointfinder".'/images/noimg.png';
+                    $img = get_home_url()."/wp-content/themes/kmimos/images/noimg.png";
                 }
             }
-            return $img;
+
+            if($get_sub_path){
+                return array(
+                    "img" => $img,
+                    "sub_path" => $sub_path
+                );
+            }else{
+                return $img;
+            }
         }
     }
 
@@ -626,60 +689,12 @@
                     ";
                 }
 
-                if( in_array("ocultar_updates_wordpress", $styles) ){
-                    $salida .= "
-                        div.updated,
-                        #menu-dashboard,
-                        #dashboard-widgets-wrap,
-                        .wp-menu-separator,
-                        #wpfooter,
-                        #wp-admin-bar-updates,
-                        .plugin-update-tr{
-                            display: none;
-                        }
-                    ";
-                }
-
-                if( in_array("ocultar_updates_wordpress", $styles) ){
-                    $salida .= "
-                        #menu-posts-testimonials,
-                        #menu-appearance,
-                        #menu-plugins,
-                        #menu-tools,
-                        #toplevel_page_vc-general,
-                        #menu-settings,
-                        #menu-posts-petsitter,
-                        #menu-posts-anunciantes,
-                        #menu-posts-testimoniales,
-                        #menu-posts-pointfinderorders,
-                        #menu-posts-pointfinderinvoices,
-                        #toplevel_page_pointfinder_tools,
-                        #toplevel_page_layerslider,
-                        #toplevel_page_zopim_account_config,
-                        #toplevel_page_wpcf7,
-                        #menu-pages,
-                        #wp-admin-bar-wp-logo
-                        {
-                            display: none;
-                        }
-
-                        body #wpcontent *{
-                            font-size: 13px ;
-                        }
-                        table.dataTable tbody *{
-                            font-weight: 600 !important;
-                            font-size: 10px !important;
-                        } 
-                    ";
-                }
-
 
             $salida .= "</style>";
 
             return $salida;
             
         }
-
     }
 
 ?>

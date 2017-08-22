@@ -1,14 +1,7 @@
 <?php
-
-exit();
-
-
 $http = (isset($_SERVER['HTTPS']))? 'https://' : 'http://' ;
 
-$username = 'italo username';
-$link = '';
-$email = '';
-$name = 'italo name';
+$username = 'italo';
 
 include ("club-paticipante-referido.php");
 echo "$html.<br>";

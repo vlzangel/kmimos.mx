@@ -21,27 +21,9 @@ $html = '
 	</header>
 	<section style="text-align: center;">
 		<img src="'.$http.$_SERVER["HTTP_HOST"].'/landing/img/logo_patitas.png" alt="" width="25%">
-		<div style="margin: auto; width: 70%; text-align: justify!important; padding=bottom:10px;color:#757575;">
-			<p>El usuario <span style="font-weight: bold; color:#00D8B5;">'. $name. '</span> ya se encuentra en la base de datos de Kmimos, por lo que no formará parte de tus referidos. Sin embargo te invitamos a seguir compartiendo para que, tanto tus referidos como tú obtengan los beneficios.
+		<div style="margin: auto; width: 70%; text-align: justify; padding=bottom:10px;color:#757575;">
+			<p>El usuario <span style="font-weight: bold; color:#00D8B5;"><?php echo $username; ?></span> ya se encuentra en la base de datos de Kmimos, por lo que no formará parte de tus referidos. Sin embargo te invitamos a seguir compartiendo para que, tanto tus referidos como tú obtengan los beneficios.
 			</p>
-			<p style="text-align: center;">
-                <a  href="'.$link.'"
-                    style="
-                        padding: 10px;
-                        background: #881C9B;
-                        color: #fff;
-                        font-weight: 400;
-                        font-size: 17px;
-                        font-family: Roboto;
-                        border-radius: 3px;
-                        border: solid 0px trnasparent;
-                        display: block;
-                        max-width: 300px;
-                        margin: 0px auto;
-                        text-align: center;
-                        text-decoration: none;"
-                >Picale AQUÍ</a>
-            </p>
 			<span>Atentamente;</span><br><br>	
 			<img src="'.$http.$_SERVER["HTTP_HOST"].'/landing/img/logo-kmimos_120x30.png" alt="">
 		</div>

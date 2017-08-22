@@ -65,17 +65,12 @@ function WhiteLabel_panel_update(){
 
 
 //MENU
-function WhiteLabel_panel_menu(element){
-    var module=jQuery(element).data('module');
-    var color_alt=jQuery(element).closest('.menu').data('coloralt');
-
+function WhiteLabel_panel_menu(module){
     modules=module;
     var path=jQuery('.section .menu').data('url');
     var url=path+'content/modules/'+module+'.php';
     jQuery.get(url, function(data){
         jQuery('.section .modules').html(data);
-        jQuery('#panel .menu .item').removeClass('select').css({'background':''});
-        jQuery(element).addClass('select').css({'background':color_alt});
 
         if(module in filters){
             if(filters[module].length>0){

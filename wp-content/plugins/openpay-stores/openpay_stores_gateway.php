@@ -181,8 +181,6 @@ class Openpay_Stores extends WC_Payment_Gateway
             update_post_meta($this->order->id, '_transaction_id', $result_json->id);
             update_post_meta($this->order->id, '_key', $this->private_key);
 
-            update_post_meta($this->order->id, '_openpay_pdf', $this->pdf_url_base.'/'.$this->merchant_id.'/'.$result_json->payment_method->reference);
-            
             return true;
         } else {
             return false;

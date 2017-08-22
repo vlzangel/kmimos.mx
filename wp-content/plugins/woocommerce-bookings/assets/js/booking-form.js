@@ -94,8 +94,8 @@ function calcular_costo(){
 				$form.find('.wc-bookings-booking-cost').unblock();
 				$form.find('.single_add_to_cart_button').removeClass('xdisabled');
 
-				jQuery('.single_add_to_cart_button').css('background-color', "#f84700;"); // Continuar con tu reserva
-				jQuery('.single_add_to_cart_button').html('Ir al pago');
+				jQuery('.wc-bookings-booking-form-button').css('background-color', "#f84700;"); // Continuar con tu reserva
+				jQuery('.wc-bookings-booking-form-button').html('Ir al pago');
 			} else {
 				$form.find('.wc-bookings-booking-cost').hide();
 				$form.find('.single_add_to_cart_button').addClass('xdisabled');

@@ -53,12 +53,12 @@ $show_customer_details = is_user_logged_in() && $order->get_user_id() === get_cu
 	<tfoot>
 		<?php
 			foreach ( $order->get_order_item_totals() as $key => $total ) {
-				?>
+				if( $total['label'] == "Pague hoy" && ($total['value']+0) == 0 ){ }else{ ?>
 				<tr>
 					<th scope="row"><?php echo $total['label']; ?></th>
 					<td><?php echo $total['value']; ?></td>
-				</tr>
-				<?php
+				</tr> <?php
+				}
 			}
 		?>
 	</tfoot>
@@ -67,5 +67,5 @@ $show_customer_details = is_user_logged_in() && $order->get_user_id() === get_cu
 <?php do_action( 'woocommerce_order_details_after_order_table', $order ); ?>
 
 <?php if ( $show_customer_details ) : ?>
-	<?php wc_get_template( 'order/order-details-customer.php', array( 'order' =>  $order ) ); ?>
+	<?php //wc_get_template( 'order/order-details-customer.php', array( 'order' =>  $order ) ); ?>
 <?php endif; ?>

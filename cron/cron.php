@@ -177,8 +177,6 @@
                 ';
             }
 
-            $info = kmimos_get_info_syte();
-
             $str_sugeridos = '
                 <ol class="lista" style="padding-left: 10px;"> 
                     <li align="justify" style="font-size: 12px;">
@@ -186,13 +184,14 @@
                         <div style="overflow: hidden; text-align: center; margin: 0px auto; max-width: 600px;">'.$str_sugeridos_img.'</div>
                     </li>
                     <li align="justify" style="padding-bottom: 10px; font-size: 12px;">En caso de que alguna de estas opciones no se adecúe a tus necesidades, por favor ingresa a <strong><a style="text-decoration: none; color: #3d68b9;" href="'.get_home_url().'/busqueda">Kmimos México</a></strong> en donde podrás encontrar cientos de cuidadores que seguro te encantarán.</li>
-                    <li align="justify" style="font-size: 12px;">Para asistencia personalizada por favor márcanos a nuestros números. '.$info["telefono"].'.</li>
+                    <li align="justify" style="font-size: 12px;">Para asistencia personalizada por favor márcanos a nuestros números. +52 (55) 1791.4931.</li>
                 </ol>
             ';
 
             require('./cron_plantilla.php'); 
             $msg_cliente = kmimos_get_email_html($title, $message, '', true, true);
 
+            $info = kmimos_get_info_syte();
             add_filter( 'wp_mail_from_name', function( $name ) {
                 global $info;
                 return $info["titulo"];
@@ -225,7 +224,7 @@
                     .$str_sugeridos;
                 
                 $msg_admin = kmimos_get_email_html("Solicitud para Conocer Cuidador Cancelada por el Sistema", $msg, "", true, true);
-                kmimos_mails_administradores_new("Solicitud para Conocer Cuidador Cancelada por el Sistema", $msg_admin);
+                wp_mail( $email_admin, "Solicitud para Conocer Cuidador Cancelada por el Sistema", $msg_admin, kmimos_mails_administradores());
 
                 $msg_cuidador = $styles.'
                     <p><strong>Cancelación de Reserva (N°. '.$request->ID.')</strong></p>
@@ -259,9 +258,7 @@
                     .$str_sugeridos;
                 
                 $msg_admin = kmimos_get_email_html("Reserva Cancelada por el Sistema", $msg, "", true, true);
-                // wp_mail( $email_admin, "Reserva Cancelada por el Sistema", $msg_admin, kmimos_mails_administradores());
-                
-                kmimos_mails_administradores_new("Reserva Cancelada por el Sistema", $msg_admin);
+                wp_mail( $email_admin, "Reserva Cancelada por el Sistema", $msg_admin, kmimos_mails_administradores());
 
                 $msg_cuidador = $styles.'
                     <p><strong>Cancelación de Reserva (N°. '.$id_reserva.')</strong></p>

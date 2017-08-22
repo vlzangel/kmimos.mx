@@ -48,11 +48,11 @@
 	<br>
 	<div style="padding: 1em 2em 1em 2em!important; margin: 0 0 2em!important; position: relative; background-color: rgba(46, 234, 180, 0.6); color: #515151; border-top: 3px solid #ff8080; border-radius: 1.5px; list-style: none!important; width: auto; word-wrap: break-word; text-align: justify;">Estimado Usuario te pedimos disculpas, el módulo de pago en efectivo por tiendas de conveniencia, estará disponible a partir del  <strong>miércoles 22 de febrero, </strong> por lo que  te ofrecemos la opción de completar tu reserva a través del pago con tarjeta de crédito o débito, picándole a la opción de arriba.</div>	 -->
 </div>
- <script>
-jQuery( document ).ready(function() {
-	jQuery('input[name=woocommerce_checkout_place_order]').click(function(){
-		jQuery('#jj_modal_jauregui').css('display', 'table');	
-	});
+<script>
+// jQuery( document ).ready(function() {
+// 	jQuery('input[name=woocommerce_checkout_place_order]').click(function(){
+// 		jQuery('#jj_modal_jauregui').css('display', 'table');	
+// 	});
     
-});
+// });
 </script>

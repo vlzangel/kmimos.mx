@@ -100,7 +100,6 @@
 				endmeta.meta_value >= '{$actual}'
 			) AND
 			relacion.term_taxonomy_id != 28
-		GROUP BY reserva.ID
 	";
 
 	$resultados = $db->get_results($sql);
