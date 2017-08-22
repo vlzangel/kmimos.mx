@@ -23,6 +23,13 @@ jQuery( document ).ready(function() {
     jQuery("#form_login").submit(function(e){ 
     	logear(); 
    	});
+    /** REGISTRO USUARIO*/
+    jQuery("#form_register").on("click", function(e){ 
+        registroNuevoUsuario(); 
+    });
+    jQuery("#form_register").submit(function(e){
+        registroNuevoUsuario();
+    });
 });
 
 function logear(){
@@ -156,6 +163,64 @@ function getRealMime(file) {
 function initImg(id){
     document.getElementById(id).addEventListener("change", subirImg, false);
 }  
+
+/** VALIDACIONES REGISTRO USUARIO*/
+$(document).on("click", '.popup-registrarte-1 .km-btn-popup-registrarte-1', function ( e ) {
+    e.preventDefault();
+
+    $(".popup-registrarte-1").hide();
+    $(".popup-registrarte-nuevo-correo").fadeIn("fast");
+});
+$(document).on("click", '.popup-registrarte-nuevo-correo .km-btn-popup-registrarte-nuevo-correo', function ( e ) {
+    e.preventDefault();
+
+    $(".popup-registrarte-nuevo-correo").hide();
+    $(".popup-registrarte-datos-mascota").fadeIn("fast");
+});
+$(document).on("click", '.popup-registrarte-datos-mascota .km-btn-popup-registrarte-datos-mascota', function ( e ) {
+    e.preventDefault();
+
+    $(".popup-registrarte-datos-mascota").hide();
+    $(".popup-registrarte-final").fadeIn("fast");
+});
+    // FIN POPUP INICIAR SESIÓN
+$(document).on("click", '.popup-registro-cuidador .km-btn-popup-registro-cuidador', function ( e ) {
+    e.preventDefault();
+
+    $(".popup-registro-cuidador").hide();
+    $(".popup-registro-cuidador-correo").fadeIn("fast");
+});
+
+$(document).on("click", '.popup-registro-cuidador-correo .km-btn-popup-registro-cuidador-correo', function ( e ) {
+    e.preventDefault();
+
+    $(".popup-registro-cuidador-correo").hide();
+    $(".popup-registro-exitoso").fadeIn("fast");
+});
+$(document).on("click", '.popup-registro-exitoso .km-btn-popup-registro-exitoso', function ( e ) {
+    e.preventDefault();
+
+    $(".popup-registro-exitoso").hide();
+    $(".popup-registro-cuidador-paso1").fadeIn("fast");
+});
+$(document).on("click", '.popup-registro-cuidador-paso1 .km-btn-popup-registro-cuidador-paso1', function ( e ) {
+    e.preventDefault();
+
+    $(".popup-registro-cuidador-paso1").hide();
+    $(".popup-registro-cuidador-paso2").fadeIn("fast");
+});
+$(document).on("click", '.popup-registro-cuidador-paso2 .km-btn-popup-registro-cuidador-paso2', function ( e ) {
+    e.preventDefault();
+
+    $(".popup-registro-cuidador-paso2").hide();
+    $(".popup-registro-cuidador-paso3").fadeIn("fast");
+});
+$(document).on("click", '.popup-registro-cuidador-paso3 .km-btn-popup-registro-cuidador-paso3', function ( e ) {
+    e.preventDefault();
+
+    $(".popup-registro-cuidador-paso3").hide();
+    $(".popup-registro-exitoso-final").fadeIn("fast");
+});
 
 
 /* Procesado de imagenes */

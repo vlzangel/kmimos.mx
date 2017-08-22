@@ -42,8 +42,8 @@
 
 	if( !isset($MENU["head"]) ){
 		$menus_normal = '
-			<li><a id="login" style="padding-right: 15px">INICIAR SESIÓN</a></li>
-			<li><a href="#" style="padding-left: 15px; border-left: 1px solid white;">REGISTRARME</a></li>
+			<li><a  style="padding-right: 15px" data-toggle="modal" data-target="#popup-iniciar-sesion">INICIAR SESIÓN</a></li>
+			<li><a  style="padding-left: 15px; border-left: 1px solid white;" data-toggle="modal" data-target="#myModal">REGISTRARME</a></li>
 		';
 		$menus_movil = '
 			<li><a id="login_movil" class="km-nav-link hidden-sm hidden-md hidden-lg">INICIAR SESIÓN</a></li>
@@ -82,36 +82,38 @@
 	';
 
 	if( !is_user_logged_in() ){
-		$HTML .= "
-			<div id='modal_login' class='modal_login'>
-		        <div class='modal_container'>
-		            <div class='modal_box'>
-		                <img id='close_login' src='".getTema()."/images/closebl.png' />
+		include_once('partes/modal_login.php');
+		// $HTML .= "
+		// 	<div id='modal_login' class='modal_login'>
+		//         <div class='modal_container'>
+		//             <div class='modal_box'>
+		//                 <img id='close_login' src='".getTema()."/images/closebl.png' />
 
-						<form id='form_login'>
-		                	<div class='form_box'>
-			                	<input type='text' id='usuario' placeholder='Correo El&eacute;ctronico'>
-			                	<input type='password' id='clave' placeholder='Contraseña'>
-		                	</div>
-		                	<div class='botones_box'>
-		                		<input type='submit' value='Ingresar' style='display: none;'>
-		                		<span id='login_submit'>Ingresar</span>
-		                	</div>
-		                </form>
+		// 				<form id='form_login'>
+		//                 	<div class='form_box'>
+		// 	                	<input type='text' id='usuario' placeholder='Correo El&eacute;ctronico'>
+		// 	                	<input type='password' id='clave' placeholder='Contraseña'>
+		//                 	</div>
+		//                 	<div class='botones_box'>
+		//                 		<input type='submit' value='Ingresar' style='display: none;'>
+		//                 		<span id='login_submit'>Ingresar</span>
+		//                 	</div>
+		//                 </form>
 
-						<form id='form_recuperar'>
-		                	<div class='form_box'>
-			                	<input type='text' id='usuario' placeholder='Correo El&eacute;ctronico'>
-		                	</div>
-		                	<div class='botones_box'>
-		                		<span id='login_submit'>Recuperar</span>
-		                	</div>
-		                </form>
+		// 				<form id='form_recuperar'>
+		//                 	<div class='form_box'>
+		// 	                	<input type='text' id='usuario' placeholder='Correo El&eacute;ctronico'>
+		//                 	</div>
+		//                 	<div class='botones_box'>
+		//                 		<span id='login_submit'>Recuperar</span>
+		//                 	</div>
+		//                 </form>
 
-		            </div>
-		        </div>
-		    </div>
-		";
+		//             </div>
+		//         </div>
+		//     </div>
+		// ";
 	}
+	include_once('partes/modal_register.php');
 
 	echo comprimir_styles($HTML);
