@@ -1,6 +1,7 @@
 /*
     Modal mas servicios
 */
+<<<<<<< HEAD
     .popup-iniciar-sesion-1, .popup-registrarte-1, .popup-registrarte-nuevo-correo,
     .popup-registrarte-datos-mascota, .popup-registrarte-final{ padding: 40px;}
     .popup-tit{    
@@ -17,6 +18,9 @@
         text-align: left;
         margin: 30px 0px 20px;
     }
+=======
+
+>>>>>>> d91cc5de50f8bfa5b962648b4e40faa7989297dd
     .modal_login{
         position: fixed;
         top: 0px;
@@ -66,7 +70,11 @@
         cursor: pointer;
         width: 35px;
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> d91cc5de50f8bfa5b962648b4e40faa7989297dd
     .modal_login .form_box{
         padding: 0px 20px 0px;
     }

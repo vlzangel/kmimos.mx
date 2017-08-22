@@ -51,7 +51,10 @@ $HTML = '
     wp_enqueue_script('jquery.plugin', getTema()."/lib/datapicker/jquery.plugin.js", array("jquery"), '1.0.0');
     wp_enqueue_script('main', getTema()."/js/main.js", array("jquery"), '1.0.0');
     wp_enqueue_script('global', getTema()."/js/global.js", array("jquery"), '1.0.0');
+<<<<<<< HEAD
     wp_enqueue_script('global', getTema()."/js/registro.js", array("jquery"), '1.0.0');
+=======
+>>>>>>> d91cc5de50f8bfa5b962648b4e40faa7989297dd
 
     if(  $_SESSION['admin_sub_login'] == 'YES' ){
         $HTML .= "

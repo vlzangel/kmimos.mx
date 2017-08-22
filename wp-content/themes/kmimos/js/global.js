@@ -339,6 +339,7 @@ function validarAll(Form){
     }
 
     return submit;
+<<<<<<< HEAD
 }
 
 // POPUP INICIAR SESIÓN
@@ -676,3 +677,6 @@ var form = document.getElementById('form_nuevo_cliente');
                 break;
             }
         }
+=======
+}
+>>>>>>> d91cc5de50f8bfa5b962648b4e40faa7989297dd
