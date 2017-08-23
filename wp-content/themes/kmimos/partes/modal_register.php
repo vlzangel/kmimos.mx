@@ -34,58 +34,62 @@ $HTML .="
 				<div class='popuphide popup-registrarte-nuevo-correo'>
 					<p style='color: #979797; text-align: center;'>Regístrate por <a href='#'>Facebook</a> o <a href='#'>Google</a></a></p>
 						<h3 style='margin: 0; text-align: center;'>Completa tus datos</h3>
-					<form id='form_nuevo_cliente'  enctype='multipart/form-data' method='POST'>	
+					<form id='form_nuevo_cliente' name='form_nuevo_cliente' enctype='multipart/form-data' method='POST'>	
 						<div class='km-box-form'>
 							<div class='content-placeholder'>
 								<div class='label-placeholder'>
 									<label>Nombre</label>
-									<input type='text' name='nombre' class='input-label-placeholder'>
+									<input type='text' id='nombre' name='nombre' class='input-label-placeholder' data-charset='alf'>
 								</div>
 								<div class='label-placeholder'>
 									<label>Apellido</label>
-									<input type='text' name='apellido' class='input-label-placeholder'>
+									<input type='text' name='apellido' class='input-label-placeholder' data-charset='alf'>
 								</div>
 								<div class='label-placeholder'>
 									<label>IFE/Documento de Identidad</label>
-									<input type='text' name='dni' class='input-label-placeholder'>
+									<input type='text' name='dni' id='dni' class='input-label-placeholder' data-charset='num'>
 								</div>
 								<div class='label-placeholder'>
 									<label>Correo electrónico</label>
-									<input type='text' name='email_1' class='input-label-placeholder'>
+									<input type='mail' name='email_1' id='email_1' class='input-label-placeholder' data-charset='espalfnum'>
 								</div>
 								<div class='label-placeholder'>
 									<label>Crea tu contraseña</label>
-									<input type='password' name='clave'  class='input-label-placeholder'>
+									<input type='password' name='clave' id='clave'  class='input-label-placeholder'>
 								</div>
 								<div class='label-placeholder'>
 									<label>Teléfono</label>
-									<input type='text' name='movil' class='input-label-placeholder'>
+									<input type='text' name='movil' id='movil' class='input-label-placeholder' data-charset='num'>
 								</div>
 								<div class='km-datos-mascota'>
-									<select class='km-datos-mascota-opcion' name='genero'>
-										<option>Género</option>
-										<option>Hombre</option>
-										<option>Mujer</option>
+									<label>Género</label>
+									<select class='km-datos-mascota-opcion' name='genero' id='genero'>
+										<option value=''>Seleccione</option>
+										<option value='hombre'>Hombre</option>
+										<option value='mujer'>Mujer</option>
 									</select>
 								</div>
 								<div class='km-datos-mascota'>
-									<select class='km-datos-mascota-opcion' name='edad'>
-										<option>18-25 años</option>
-										<option>25-35 años</option>
-										<option>Mayor 46 años</option>
+									<label>Edad</label>
+									<select class='km-datos-mascota-opcion' name='edad' id='edad'>
+										<option value=''>Seleccione</option>
+										<option value='18-25'>18-25 años</option>
+										<option value='25-35'>25-35 años</option>
+										<option value='Mayor-46'>Mayor 46 años</option>
 									</select>
 								</div>
 								<div class='km-datos-mascota'>
-									<select class='km-datos-mascota-opcion' name='fumador'>
-										<option></option>
-										<option>Si</option>
-										<option>No</option>
+									<label>Es Fumador</label>
+									<select class='km-datos-mascota-opcion' name='fumador' id='fumador'>
+										<option value=''>Seleccione</option>
+										<option value='SI'>Si</option>
+										<option value='NO'>No</option>
 									</select>
 								</div>
 							</div>
 						</div>
 					</form>
-					<a href='#' class='km-btn-correo km-btn-popup-registrarte-nuevo-correo'>SIGUIENTE</a>
+					<a href='#' class='km-btn-correo km-btn-popup-registrarte-nuevo-correo' onclick='registroNuevoUsuario()'>SIGUIENTE</a>
 					<p style='color: #979797; margin-top: 20px;'>Al crear una cuenta, aceptas las condiciones del servicio y la Política de privacidad de Kmimos.</p>
 					<p><img style='width: 20px; margin-right: 5px; position: relative; top: -3px;' src='images/icon/km-redes/icon-wsp.svg'>En caso de dudas escríbenos al whatsapp</p>
 						<hr>
@@ -108,15 +112,15 @@ $HTML .="
 							<div class='content-placeholder'>
 								<div class='label-placeholder'>
 									<label>Nombre de tu mascota</label>
-									<input type='text' name=' value=' class='input-label-placeholder'>
+									<input type='text' name='nombreMascota' value='' class='input-label-placeholder'>
 								</div>
 								<div class='km-datos-mascota'>
-									<select class='km-datos-mascota-opcion' name='>
+									<select class='km-datos-mascota-opcion' name=''>
 										<option>Tipo de Mascota</option>
 										<option>Mascota A</option>
 										<option>Mascota B</option>
 									</select>
-									<select class='km-datos-mascota-opcion' name='>
+									<select class='km-datos-mascota-opcion' name=''>
 										<option>Raza de la Mascota</option>
 										<option>Mascota A</option>
 										<option>Mascota B</option>
@@ -124,13 +128,13 @@ $HTML .="
 								</div>
 								<div class='label-placeholder'>
 									<label>Color de tu mascota</label>
-									<input type='text' name=' value=' class='input-label-placeholder'>
+									<input type='text' name='colormascota' value='' class='input-label-placeholder'>
 								</div>
 								<div class='km-fecha-nacimiento'>
-									<input type='text' name=' placeholder='Fecha de Nacimiento' value=' class='date_from'>
+									<input type='text' name='fechanacmascota' placeholder='Fecha de Nacimiento' value='' class='date_from'>
 								</div>
 								<div class='km-datos-mascota'>
-									<select class='km-datos-mascota-opcion' name='>
+									<select class='km-datos-mascota-opcion' name='generomascota'>
 										<option>Género</option>
 										<option>Mascota A</option>
 										<option>Mascota B</option>

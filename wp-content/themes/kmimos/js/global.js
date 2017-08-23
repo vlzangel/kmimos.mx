@@ -32,6 +32,116 @@ jQuery( document ).ready(function() {
     });
 });
 
+$('[data-charset]').on({
+    keypress : function(e){
+            var tipo= $(this).attr('data-charset');
+            if(tipo!='undefined' || tipo!=''){
+                var cadena = "";
+
+                if(tipo.indexOf('alf')>-1 ){ cadena = cadena + "abcdefghijklmnopqrstuvwxyzáéíóúñüÁÉÍÓÚÑÜ"; }
+                if(tipo.indexOf('xlf')>-1 ){ cadena = cadena + "abcdefghijklmnopqrstuvwxyzáéíóúñüÁÉÍÓÚÑÜ "; }
+                if(tipo.indexOf('num')>-1 ){ cadena = cadena + "1234567890"; }
+                if(tipo.indexOf('cur')>-1 ){ cadena = cadena + "1234567890,."; }
+                if(tipo.indexOf('esp')>-1 ){ cadena = cadena + "-_.$%&@,/()"; }
+                if(tipo.indexOf('cor')>-1 ){ cadena = cadena + "@"; }
+                if(tipo.indexOf('rif')>-1 ){ cadena = cadena + "vjegi"; }
+
+                var key = e.which,
+                    keye = e.keyCode,
+                    tecla = String.fromCharCode(key).toLowerCase(),
+                    letras = cadena;
+                if(letras.indexOf(tecla)==-1 && keye!=9&& (key==37 || keye!=37)&& (keye!=39 || key==39) && keye!=8 && (keye!=46 || key==46) || key==161){
+                    e.preventDefault();
+                }
+            }   
+        }
+    });
+
+
+function registroNuevoUsuario(){
+    var nombre = document.form_nuevo_cliente.nombre.value;
+    var apellido = document.form_nuevo_cliente.apellido.value;
+    var dni = document.form_nuevo_cliente.dni.value;
+    var email_1 = document.form_nuevo_cliente.email_1.value;
+    var clave = document.form_nuevo_cliente.clave.value;
+    var movil = document.form_nuevo_cliente.movil.value;
+    var genero = document.getElementById("genero").selectedIndex;
+    var edad = document.getElementById("edad").selectedIndex;
+    var fumador =  document.getElementById("fumador").selectedIndex;
+
+    if (nombre.length == 0) {
+        alert('Debe ingresar su nombre');
+        nombre.focus();
+        return 0;
+    } else {
+
+        if (apellido.length == 0) {
+            alert('Debe ingresar su apellido');
+            apellido.focus();
+            return 0;
+        }else {
+            if (dni.length == 0) {
+                alert('Ingrese su DNI por favor');
+                dni.focus();
+                return 0;
+            } else {
+                if (email_1.length == 0) {
+                    alert('Ingrese un email por favor');
+                    email_1.focus();
+                    return 0;
+                } else {
+                    if (clave.length == 0) {
+                        alert('Ingrese una clave por favor');
+                        clave.focus();
+                        return 0;
+                    } else {
+                        if (movil.length == 0 && movil.length > 10) {
+                            alert('Ingrese su telefono movil por favor');
+                            movil.focus();
+                        } else {
+                            if(document.getElementsByTagName("option")[genero].value == ''){
+                                alert('selecciones si es Hombre o Mujero por favor');
+                            }else{
+                                var vGenero = document.getElementsByTagName("option")[genero].value;
+                                
+                                if (document.getElementsByTagName("option")[edad].value =='') {
+                                    alert('selecciones su rango de edad, por favor');
+                                } else {
+                                    var vEdad = document.getElementsByTagName("option")[edad].value;
+
+                                    if (document.getElementsByTagName("option")[fumador].value =='') {
+                                            alert('selecciones si es Fumador o no, por favor');
+                                    }else {
+                                        var vFumador = document.getElementsByTagName("option")[fumador].value;
+                                        
+                                        $(document).on("click", '.popup-registrarte-nuevo-correo .km-btn-popup-registrarte-nuevo-correo', 
+                                            function ( e ) {
+                                            e.preventDefault();
+
+                                            $(".popup-registrarte-nuevo-correo").hide();
+                                            $(".popup-registrarte-datos-mascota").fadeIn("fast");
+                                        });
+                                        var campos = [nombre,
+                                                      apellido,
+                                                      dni,
+                                                      email_1,
+                                                      clave,
+                                                      movil,
+                                                      vGenero,
+                                                      vEdad,
+                                                      vFumador                                                      ];
+                                        console.log(campos);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 function logear(){
     jQuery.post( 
         HOME+"/procesos/login/login.php", 
@@ -165,18 +275,18 @@ function initImg(id){
 }  
 
 /** VALIDACIONES REGISTRO USUARIO*/
+
+
+/* FIN VALIDACIONES DE REGISTRO */
+
+
 $(document).on("click", '.popup-registrarte-1 .km-btn-popup-registrarte-1', function ( e ) {
     e.preventDefault();
 
     $(".popup-registrarte-1").hide();
     $(".popup-registrarte-nuevo-correo").fadeIn("fast");
 });
-$(document).on("click", '.popup-registrarte-nuevo-correo .km-btn-popup-registrarte-nuevo-correo', function ( e ) {
-    e.preventDefault();
 
-    $(".popup-registrarte-nuevo-correo").hide();
-    $(".popup-registrarte-datos-mascota").fadeIn("fast");
-});
 $(document).on("click", '.popup-registrarte-datos-mascota .km-btn-popup-registrarte-datos-mascota', function ( e ) {
     e.preventDefault();
 
