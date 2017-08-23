@@ -76,7 +76,7 @@
 		}
 	}
 
-	function get_tamano($slug, $precio, $activo, $tamanos, $tipo_retorno = "HTML"){
+	function get_tamano($slug, $precios, $activo, $tamanos, $tipo_retorno = "HTML"){
 
 		$tamano = "";
 		preg_match_all("#Peque#", $slug, $matches);
@@ -115,13 +115,18 @@
 					"precio" => $precio
 				);
 
+				$prec = "";
+				if( is_array($precio) ){
+
+				}
+
 				$HTML = '
 				<div class="km-servicio-opcion '.$class.'">
 					<div class="km-servicio-desc">
 						<img src="'.getTema().'/images/new/icon/icon-pequenio.svg">
 						<div class="km-opcion-text"><b>PEQUEÑO</b><br>0 a 25 cm</div>
 					</div>
-					<div class="km-servicio-costo"><b>'.$precio.'</b></div>
+					<div class="km-servicio-costo"><b>$'.($precios["pequenos"]*1.2).'</b></div>
 				</div>';
 			break;
 			case 'medianos':
@@ -137,7 +142,7 @@
 						<img src="'.getTema().'/images/new/icon/icon-mediano.svg">
 						<div class="km-opcion-text"><b>MEDIANO</b><br>25 a 28 cm</div>
 					</div>
-					<div class="km-servicio-costo"><b>'.$precio.'</b></div>
+					<div class="km-servicio-costo"><b>$'.($precios["medianos"]*1.2).'</b></div>
 				</div>';
 			break;
 			case 'grandes':
@@ -153,7 +158,7 @@
 						<img src="'.getTema().'/images/new/icon/icon-grande.svg">
 						<div class="km-opcion-text"><b>GRANDE</b><br>58 a 73 cm</div>
 					</div>
-					<div class="km-servicio-costo"><b>'.$precio.'</b></div>
+					<div class="km-servicio-costo"><b>$'.($precios["grandes"]*1.2).'</b></div>
 				</div>';
 			break;
 			case 'gigantes':
@@ -169,7 +174,7 @@
 						<img src="'.getTema().'/images/new/icon/icon-gigante.svg">
 						<div class="km-opcion-text"><b>GIGANTE</b><br>73 a 200 cm</div>
 					</div>
-					<div class="km-servicio-costo"><b>'.$precio.'</b></div>
+					<div class="km-servicio-costo"><b>$'.($precios["gigantes"]*1.2).'</b></div>
 				</div>';
 			break;
 		}

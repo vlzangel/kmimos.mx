@@ -5,27 +5,27 @@ body {
 }
 @font-face {
 	font-family: 'Poetsen';
-	src: url(fonts/poetsen_one/PoetsenOne-Regular.ttf) format('truetype');
+	src: url(../fonts/poetsen_one/PoetsenOne-Regular.ttf) format('truetype');
 }
 @font-face {
 	font-family: 'Gotham-Pro-Light';
-	src: url(fonts/gotham_pro/gotham-pro-light.otf) format('opentype');
+	src: url(../fonts/gotham_pro/gotham-pro-light.otf) format('opentype');
 }
 @font-face {
 	font-family: 'Gotham-Pro-Regular';
-	src: url(fonts/gotham_pro/gotham-pro-regular.otf) format('opentype');
+	src: url(../fonts/gotham_pro/gotham-pro-regular.otf) format('opentype');
 }
 @font-face {
 	font-family: 'Gotham-Pro-Medium';
-	src: url(fonts/gotham_pro/gotham-pro-medium.otf) format('opentype');
+	src: url(../fonts/gotham_pro/gotham-pro-medium.otf) format('opentype');
 }
 @font-face {
 	font-family: 'Gotham-Pro-Bold';
-	src: url(fonts/gotham_pro/gotham-pro-bold.otf) format('opentype');
+	src: url(../fonts/gotham_pro/gotham-pro-bold.otf) format('opentype');
 }
 @font-face {
 	font-family: 'Gotham-Pro-Black';
-	src: url(fonts/gotham_pro/gotham-pro-black.otf) format('opentype');
+	src: url(../fonts/gotham_pro/gotham-pro-black.otf) format('opentype');
 }
 :focus {
 	outline: 0!important;
@@ -1731,6 +1731,7 @@ div#ubicacion_list div:hover {
 	padding: 10px;
 	margin-bottom: 30px;
 	width: 100%;
+    display: inline-block;
 }
 .km-ficha-servicio .servicio-tit {
 	color: #6B1C9B;
@@ -3169,30 +3170,6 @@ body {
     font-family:Gotham-Pro-Regular, arial, sans-serif;
     font-size:13px
 }
-@font-face {
-    font-family:Poetsen;
-    src:url(/d8336933e7532ca58d8846ca22f4cbf5c18f0914/11a7a/fonts/poetsen_one/poetsenone-regular.ttf) format('truetype')
-}
-@font-face {
-    font-family:Gotham-Pro-Light;
-    src:url(/694f58a30298c314e8c017f0942df15403025d79/01840/fonts/gotham_pro/gotham-pro-light.otf) format('opentype')
-}
-@font-face {
-    font-family:Gotham-Pro-Regular;
-    src:url(/e0be9e24ca82a66d963fa1441b8b86305fa948c3/a8c0f/fonts/gotham_pro/gotham-pro-regular.otf) format('opentype')
-}
-@font-face {
-    font-family:Gotham-Pro-Medium;
-    src:url(/72b45be29154c003741fadbd8d3a4e93173cb29e/dca95/fonts/gotham_pro/gotham-pro-medium.otf) format('opentype')
-}
-@font-face {
-    font-family:Gotham-Pro-Bold;
-    src:url(/4d6e28833345680f49aba744ca6bba1096b60a34/af375/fonts/gotham_pro/gotham-pro-bold.otf) format('opentype')
-}
-@font-face {
-    font-family:Gotham-Pro-Black;
-    src:url(/f005ef4543520c280696dfa2d95e2e194bb808f8/d6284/fonts/gotham_pro/gotham-pro-black.otf) format('opentype')
-}
 :focus {
     outline:0!important
 }
@@ -3752,7 +3729,7 @@ section {
     background-color:#fff
 }
 .km-select-wrapper:after {
-    content:url(/9fd4113b5423cede9c37b58423365142c630ef55/2586a/images/km-arrow-form.svg);
+    content:url(../images/new/km-arrow-form.svg);
     width:15px;
     height:15px;
     display:block;
@@ -3835,7 +3812,7 @@ section {
     border-radius:8px;
     margin:0;
     background:#fff;
-    background-image:url(images/new/icon/icon-calendario.svg);
+    background-image:url(../images/new/icon/icon-calendario.svg);
     background-repeat:no-repeat;
     background-position:20px center!important
 }
@@ -3847,7 +3824,7 @@ section {
     transform:translateY(0)!important
 }
 .km-fechas select {
-    background:url(images/new/icon/icon-gps.svg) no-repeat;
+    background:url(../images/new/icon/icon-gps.svg) no-repeat;
     background-position:20px;
     padding-left:45px
 }
@@ -4022,7 +3999,7 @@ section {
     margin-bottom:60px
 }
 .km-vacaciones {
-    background:url(/images/c138a662c29d74738e2496c3e73e0d57616cea29/km-vacaciones.gif) no-repeat;
+    background:url(../images/new/km-vacaciones.gif) no-repeat;
     background-size:cover;
     background-position:center center;
     color:#fff;
@@ -4116,21 +4093,7 @@ button.close {
     -moz-box-shadow:0 4px 4px 0 rgba(0, 0, 0, .25);
     box-shadow:0 4px 4px 0 rgba(0, 0, 0, .25)
 }
-.km-select-custom {
-    border:none;
-    background-color:#fff;
-    background-size:14px 13px;
-    background-repeat:no-repeat;
-    background-position:calc(100% - 9px) 50%;
-    background-image:url(/9fd4113b5423cede9c37b58423365142c630ef55/2586a/images/km-arrow-form.svg);
-    border-right:1px solid rgba(0, 0, 0, .2);
-    -webkit-border-radius:6px 0 0 6px;
-    -moz-border-radius:6px 0 0 6px;
-    border-radius:6px 0 0 6px;
-    appearance:none;
-    -moz-appearance:none;
-    -webkit-appearance:none
-}
+
 .km-search-slider {
     margin-top:0;
     margin-bottom:30px
@@ -4311,13 +4274,13 @@ button.close {
     padding-left:2.758621%;
     padding-right:13.533835%;
     border-right:1px solid rgba(0, 0, 0, .2);
-    background-image:url(images/new/icon/icon-calendario.svg)!important
+    background-image:url(../images/new/icon/icon-calendario.svg)!important
 }
 .km-div-fechas .date_to {
     width:50%;
     padding-left:2.758621%;
     padding-right:13.533835%;
-    background-image:url(images/new/icon/icon-calendario.svg)
+    background-image:url(../images/new/icon/icon-calendario.svg)
 }
 .km-submit-custom {
     margin:0;
@@ -4546,7 +4509,7 @@ button.close {
     background-size:20px 9px
 }
 .km-ranking a.active {
-    #background-image:url(images/new/icon/icon-hueso-color.svg)
+    #background-image:url(../images/new/icon/icon-hueso-color.svg)
 }
 .km-contenedor-descripcion-opciones::after {
     content:"";
@@ -4693,7 +4656,7 @@ button.close {
     margin-bottom:10px
 }
 .km-ficha-icon .km-ranking-cuidador p {
-    background:url(images/new/icon/icon-hueso.svg) no-repeat center center;
+    background:url(../images/new/icon/icon-hueso.svg) no-repeat center center;
     float:left;
     width:40px;
     height:20px;
@@ -4701,7 +4664,7 @@ button.close {
     margin-bottom:0
 }
 .km-ficha-icon .km-ranking-cuidador p.active {
-    background-image:url(images/new/icon/icon-hueso-color.svg)
+    background-image:url(../images/new/icon/icon-hueso-color.svg)
 }
 .km-ficha-info-cuidador .km-ficha-cuidador {
     text-align:center
@@ -4783,76 +4746,7 @@ button.close {
 .km-galeria-cuidador .bx-pager {
     display:none
 }
-.km-ficha-servicio {
-    background-color:#fafafa;
-    box-shadow:0 4px 4px rgba(0, 0, 0, .2);
-    padding:10px;
-    margin:10px 0 30px;
-    width:100%
-}
-.km-ficha-servicio .servicio-tit {
-    color:#6b1c9b;
-    margin-bottom:10px
-}
-.km-ficha-servicio .servicio-tit div, .km-ficha-servicio .servicio-tit img {
-    display:inline-block;
-    vertical-align:middle
-}
-.km-ficha-servicio .servicio-tit div {
-    margin-left:10px
-}
-.km-servicio-opcion {
-    border:1px solid #e5e5e5;
-    border-radius:8px;
-    padding:14px 0;
-    color:#929292;
-    font-size:11px;
-    letter-spacing:1px;
-    transition:all .2s ease-in-out;
-    -webkit-transition:all .2s ease-in-out;
-    -moz-transition:all .2s ease-in-out;
-    position:relative;
-    cursor:pointer;
-    width:100%;
-    text-align:center;
-    margin-bottom:10px
-}
-.km-servicio-opcion:before {
-    content:"";
-    border-top:6px solid #fafafa;
-    height:100%;
-    position:absolute;
-    top:0;
-    width:100%;
-    border-radius:8px;
-    left:0;
-    right:0;
-    transition:all .2s ease-in-out;
-    -webkit-transition:all .2s ease-in-out;
-    -moz-transition:all .2s ease-in-out
-}
-.km-servicio-opcionactivo {
-    transition:all .2s ease-in-out;
-    -webkit-transition:all .2s ease-in-out;
-    -moz-transition:all .2s ease-in-out;
-    box-shadow:0 4px 4px rgba(0, 0, 0, .15);
-    color:#000
-}
-.km-servicio-opcionactivo:before {
-    border-color:#33e1be;
-    top:-1px
-}
-.km-servicio-opcion img {
-    width:25px
-}
-.km-servicio-opcion .km-servicio-desc {
-    display:inline-block;
-    width:66%
-}
-.km-servicio-opcion .km-servicio-costo {
-    display:inline-block;
-    width:30%
-}
+
 .km-review {
     text-align:center;
     margin-top:30px
@@ -5172,7 +5066,7 @@ a.km-btn-comentario {
     bottom:150px;
     right:30px;
     border-radius:45px;
-    background:url(images/new/icon/icon-tip.svg) no-repeat center center;
+    background:url(../images/new/icon/icon-tip.svg) no-repeat center center;
     background-size:32px
 }
 .km-recordatorio {
@@ -5458,10 +5352,9 @@ footer .km-icon-redes {
 .page-reservation .km-content-step .km-content-new-pet {
     padding:22px 40px;
     border:1px solid rgba(0, 0, 0, .1);
-    border-bottom:0
 }
 .page-reservation .km-content-step .km-content-new-pet:first-child {
-    border-radius:5px 5px 0 0
+    border-radius:5px;
 }
 .page-reservation .km-content-step .km-content-new-pet .km-minus, .page-reservation .km-content-step .km-content-new-pet .km-number, .page-reservation .km-content-step .km-content-new-pet .km-plus {
     float:left
@@ -5499,7 +5392,6 @@ footer .km-icon-redes {
 .page-reservation .km-content-step .km-content-new-pet .km-height {
     float:right;
     width:calc(100% - 120px);
-    background-image:url(../images/new/km-reserva/arrow-select.svg);
     background-position:right center;
     background-repeat:no-repeat
 }
@@ -5538,7 +5430,7 @@ footer .km-icon-redes {
     padding-bottom:5px
 }
 .page-reservation .km-content-step .km-content-new-pet .km-services-content .km-service-title {
-    font-weight:900;
+    font-weight:700;
     font-size:13px;
     padding:24px 0 20px 0
 }
@@ -5569,12 +5461,12 @@ footer .km-icon-redes {
 .page-reservation .km-content-step .km-services-total .km-text-total {
     float:left;
     font-size:21px;
-    font-weight:900
+    font-weight:700
 }
 .page-reservation .km-content-step .km-services-total .km-price-total {
     float:right;
     font-size:26px;
-    font-weight:900
+    font-weight:700
 }
 .page-reservation .km-content-step .btn-add-new-pet {
     width:100%;
@@ -5639,7 +5531,7 @@ footer .km-icon-redes {
     text-transform:uppercase;
     color:#979797;
     font-size:17px;
-    font-weight:900
+    font-weight:700
 }
 .page-reservation .km-content-step .km-option-resume .label-resume.padding-bottom {
     display:block;
@@ -5665,7 +5557,7 @@ footer .km-icon-redes {
     font-size:17px
 }
 .page-reservation .km-content-step .km-option-resume .km-option-resume-service:first-child {
-    padding-top:15px!important
+    #padding-top:15px!important
 }
 .page-reservation .km-content-step .km-option-resume .km-option-resume-service .label-resume-service {
     float:left
@@ -5696,7 +5588,7 @@ footer .km-icon-redes {
 }
 .page-reservation .km-select-method-paid .km-method-paid-options .km-option-deposit .km-text-one {
     font-size:17px;
-    font-weight:900;
+    font-weight:700;
     margin-top:18px
 }
 .page-reservation .km-select-method-paid .km-method-paid-options .km-option-deposit .km-text-two {
@@ -5705,11 +5597,11 @@ footer .km-icon-redes {
 }
 .page-reservation .km-select-method-paid .km-method-paid-options .km-option-deposit .km-text-three {
     font-size:15px;
-    font-weight:900
+    font-weight:700
 }
 .page-reservation .km-select-method-paid .km-method-paid-options .km-option-total .km-text-one {
     font-size:17px;
-    font-weight:900;
+    font-weight:700;
     margin-top:42px
 }
 .page-reservation .km-select-method-paid .km-method-paid-options .km-method-paid-option.active {
@@ -5759,17 +5651,17 @@ footer .km-icon-redes {
 }
 .page-reservation .km-detail-paid-deposit .km-detail-paid-line-three .km-detail-label {
     font-size:22px;
-    font-weight:900
+    font-weight:700
 }
 .page-reservation .km-detail-paid-deposit .km-detail-paid-line-one .km-detail-value {
     color:#979797
 }
 .page-reservation .km-detail-paid-deposit .km-detail-paid-line-two .km-detail-value {
-    font-weight:900;
+    font-weight:700;
     color:#979797
 }
 .page-reservation .km-detail-paid-deposit .km-detail-paid-line-three .km-detail-value {
-    font-weight:900
+    font-weight:700
 }
 .page-reservation .km-detail-paid-deposit .km-detail-paid-line-one {
     padding-bottom:5px
@@ -6583,4 +6475,16 @@ input#checkout {
 .km-quantity-height .km-height span{
 	float: right;
 	font-weight: 600;
+}
+
+#step_1{
+	display: block;
+}
+
+#step_2{
+	display: none;
+}
+
+#reserva_btn_next_2{
+	cursor: pointer;
 }

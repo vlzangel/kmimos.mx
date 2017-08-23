@@ -243,7 +243,6 @@ $(document).ready(function(){
 		dateFormat: 'dd/mm/yyyy',
 		minDate: fecha,
 		onSelect: function(date1) {
-			calcular();
 			var ini = jQuery('#checkin').datepick( "getDate" );
 			var fin = jQuery('#checkout').datepick( "getDate" );
 			if( fin.length > 0 ){
@@ -260,6 +259,7 @@ $(document).ready(function(){
 				jQuery('#checkout').datepick('destroy');
 				initCheckin(date1[0], true);
 			}
+			calcular();
 		},
 		yearRange: fecha.getFullYear()+':'+(parseInt(fecha.getFullYear())+1),
 		firstDay: 1,
@@ -359,8 +359,8 @@ $(document).ready(function(){
 
 		el.addClass("active");
 
-		$(".km-end-btn-form-disabled").hide();
-		$(".km-end-btn-form-enabled").show();
+		//$(".km-end-btn-form-disabled").hide();
+		//$(".km-end-btn-form-enabled").show();
 
 		if ( el.hasClass("km-option-deposit") ) {
 			$(".page-reservation .km-detail-paid-deposit").slideDown("fast");

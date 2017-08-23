@@ -45,6 +45,14 @@
 
 	$servicio_id = get_the_ID();
 
+	$hoy = date("Y-m-d");
+
+	$cupos = $wpdb->get_results("SELECT * FROM cupos WHERE servicio = '{$servicio_id}' AND fecha >= NOW()");
+
+/*	echo "<pre>";
+		print_r();
+	echo "</pre>";*/
+
 	$tipo = $wpdb->get_var("
         SELECT
             tipo_servicio.slug AS slug
@@ -59,6 +67,7 @@
 	$cuidador = $wpdb->get_row( "SELECT * FROM cuidadores WHERE user_id = ".$post->post_author );
 
 	$cuidador_name = $wpdb->get_var( "SELECT post_title FROM wp_posts WHERE ID = ".$cuidador->id_post );
+	$servicio_name = $wpdb->get_var( "SELECT post_title FROM wp_posts WHERE ID = ".$servicio_id );
 
     $precios = "";
     
@@ -68,17 +77,7 @@
     	$precios = getPrecios( unserialize($cuidador->hospedaje) );
     }else{
     	$precios = getPrecios( $adicionales[$tipo] );
-    }
-    
-	$servicios = $wpdb->get_results( "SELECT * FROM wp_posts WHERE ID = ".get_the_ID() );
-	$productos = '<div class="row">';
-	foreach ($servicios as $servicio) {
-        $tamanos = array();
-        $tamanos_servicio = $wpdb->get_results("SELECT * FROM wp_posts WHERE post_parent = '{$servicio->ID}' AND post_type = 'bookable_person' AND post_status = 'publish' ");
-        foreach ($tamanos_servicio as $tamano ) {
-        	$tamanos[] = get_tamano($tamano->post_title, "$40.00", false, $busqueda["tamanos"], "ARRAY");
-        }
-	}
+    } 
 
 	$transporte = getTransporte($adicionales);
 	if( $transporte != "" ){
@@ -126,12 +125,16 @@
  		-->
 	*/
 
+	echo "
+	<script> 
+		var SERVICIO_ID = '".get_the_ID()."';
+		var cupos = eval('".json_encode($cupos)."'); 
+		var tipo_servicio = '".$tipo."'; 
+	</script>";
+
 	$HTML .= '
- 		<script> var SERVICIO_ID = "'.get_the_ID().'"; </script>
-
-
  		<form id="reservar" class="km-content km-content-reservation">
-			<div class="km-col-steps">
+			<div id="step_1" class="km-col-steps">
 				<div class="km-col-content">
 					<ul class="steps-numbers">
 						<li><span class="number active">1</span></li>
@@ -179,11 +182,119 @@
 						* Precio final (incluye cobertura veterinaria y gastos administrativos; no incluye servicios adicionales)
 					</div>
 
-					<a href="#" class="km-end-btn-form">
+					<a href="#" id="reserva_btn_next_1" class="km-end-btn-form">
 						<span>SIGUIENTE</span>
 					</a>
 
 				</div>
+			</div>
+
+
+			<div id="step_2" class="km-col-steps">
+
+				<div class="km-col-content">
+					<ul class="steps-numbers">
+						<li>
+							<span class="number checked">1</span>
+						</li>
+						<li class="line"></li>
+						<li>
+							<span class="number active">2</span>
+						</li>
+						<li class="line"></li>
+						<li>
+							<span class="number">3</span>
+						</li>
+					</ul>
+
+					<div class="km-title-step">
+						RESUMEN DE TU RESERVA
+					</div>
+
+					<div class="km-sub-title-step">
+						Queremos confirmar tu reservación y tu método de pago
+					</div>
+
+					<div class="km-content-step km-content-step-2">
+						<div class="km-option-resume">
+							<span class="label-resume">CUIDADOR SELECCIONADO</span>
+							<span class="value-resume">'.$cuidador_name.'</span>
+						</div>
+
+						<div class="km-option-resume">
+							<span class="label-resume">FECHA</span>
+							<span class="value-resume">
+								<span id="fecha_ini"></span>
+								&nbsp; &gt; &nbsp;
+								<span id="fecha_fin"></span>
+							</span>
+						</div>
+
+						<div class="km-option-resume">
+
+							<div class="km-option-resume-service">
+								<span class="label-resume-service">'.$servicio_name.'</span>
+							</div>
+
+							<div id="items_reservados"></div>
+
+						</div>
+
+						<div class="km-services-total">
+							<span class="km-text-total">TOTAL</span>
+							<span class="km-price-total">$420.00</span>
+						</div>
+					</div>
+
+					<div class="km-select-method-paid">
+						<div class="km-method-paid-title">
+							SELECCIONA EL MÉTODO DE PAGO
+						</div>
+
+						<div class="km-method-paid-options">
+							<div class="km-method-paid-option km-option-deposit">
+								<div class="km-text-one">
+									DEPÓSITO DEL 17 %
+								</div>
+								<div class="km-text-two">
+									Pague ahora el 17% y el restante
+								</div>
+								<div class="km-text-three">
+									AL CUIDADOR EN EFECTIVO
+								</div>
+							</div>
+
+							<div class="km-method-paid-option km-option-total">
+								<div class="km-text-one">
+									MONTO TOTAL
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="km-detail-paid-deposit">
+						<div class="km-detail-paid-line-one">
+							<span class="km-detail-label">TOTAL</span>
+							<span id="monto_total" class="km-detail-value">$975.00</span>
+						</div>
+
+						<div class="km-detail-paid-line-two">
+							<span class="km-detail-label">MONTO A PAGAR <b>EN EFECTIVO AL CUIDADOR</b></span>
+							<span id="pago_cuidador" class="km-detail-value">$809.25</span>
+						</div>
+
+						<div class="km-detail-paid-line-three">
+							<span class="km-detail-label">PAGUE AHORA</span>
+							<span id="pago_17" class="km-detail-value">$165.75</span>
+						</div>
+					</div>
+
+					<span id="reserva_btn_next_2" class="km-end-btn-form km-end-btn-form-disabled disabled">
+						<span>SIGUIENTE</span>
+					</span>
+
+				</div>
+
 			</div>
 
 			<div class="km-col-empty">
