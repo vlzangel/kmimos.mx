@@ -14,6 +14,9 @@ RewriteRule .* - [F]
 RewriteCond %{QUERY_STRING} (;|<|>|'|"|\)|%0A|%0D|%22|%27|%3C|%3E|%00)
 RewriteRule .* - [F]
 
+RewriteCond %{QUERY_STRING} ^query(.*)$
+RewriteRule ^(.*)$ https://www.kmimos.com.mx/ [R=302,L]
+
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

@@ -58,8 +58,9 @@ function calcular(){
 
 	var tranporte = jQuery('#transporte option:selected').val();
 	if( tranporte != undefined && tranporte != "" ){
+		var text_temp = String(jQuery('#transporte option:selected').text() ).split("(");
 		CARRITO[ "transportacion" ] = [
-			"Transportaci&oacute;n - "+jQuery('#transporte option:selected').text(),
+			"Transportaci&oacute;n - "+text_temp[0],
 			parseFloat(tranporte)
 		];
 	}
@@ -153,7 +154,7 @@ function calcular(){
 			error = "Ingrese la cantidad de mascotas";
 		}else{
 			cant *= parseFloat( dias );
-			jQuery(".km-price-total").html("$"+cant);
+			jQuery(".km-price-total").html("$"+numberFormat(cant));
 		}
 	}
 	
@@ -176,13 +177,13 @@ function calcular(){
 		jQuery(".valido").css("display", "block");
 		jQuery(".invalido").css("display", "none");
 
-		jQuery(".km-price-total").html("$"+cant);
+		jQuery(".km-price-total").html("$"+numberFormat(cant));
 	}
 	
 	if( error == "" ){
-		jQuery("#pago_17").html( "$" + (cant-(cant/1.2)) );
-		jQuery("#pago_cuidador").html( "$" + (cant/1.2) );
-		jQuery("#monto_total").html( "$" + cant );
+		jQuery("#pago_17").html( "$" + numberFormat(cant-(cant/1.2)) );
+		jQuery("#pago_cuidador").html( "$" + numberFormat(cant/1.2) );
+		jQuery("#monto_total").html( "$" + numberFormat(cant) );
 	}
 
 	initFactura();
@@ -190,42 +191,7 @@ function calcular(){
 }
 
 function numberFormat(numero){
-	numero = String(numero);
-    // Variable que contendra el resultado final
-    var resultado = "";
-
-    // Si el numero empieza por el valor "-" (numero negativo)
-    if(numero[0]=="-"){
-        // Cogemos el numero eliminando los posibles puntos que tenga, y sin
-        // el signo negativo
-        nuevoNumero=numero.replace(/\./g,'').substring(1);
-    }else{
-        // Cogemos el numero eliminando los posibles puntos que tenga
-        nuevoNumero=numero.replace(/\./g,'');
-    }
-
-    // Si tiene decimales, se los quitamos al numero
-    if(numero.indexOf(",")>=0){
-        nuevoNumero=nuevoNumero.substring(0,nuevoNumero.indexOf(","));
-    }
-
-    // Ponemos un punto cada 3 caracteres
-    for (var j, i = nuevoNumero.length - 1, j = 0; i >= 0; i--, j++){
-        resultado = nuevoNumero.charAt(i) + ((j > 0) && (j % 3 == 0)? ".": "") + resultado;
-    }
-
-    // Si tiene decimales, se lo añadimos al numero una vez forateado con 
-    // los separadores de miles
-    if(numero.indexOf(",")>=0){
-        resultado+=numero.substring(numero.indexOf(","));
-    }
-
-    if(numero[0]=="-"){
-        // Devolvemos el valor añadiendo al inicio el signo negativo
-        return "-"+resultado;
-    }else{
-        return resultado;
-    }
+	return parseFloat(numero).toFixed(2);
 }
 
 function verificarCupos(){
@@ -284,10 +250,8 @@ function initFactura(){
 		diaNoche = "Noche";
 	}
 
-	var plural = "";
-	if( CARRITO["cantidades"]["cantidad"] > 1 ){
+	if( CARRITO["fechas"]["duracion"] > 1 ){
 		diaNoche += "s";
-		plural += "s";
 	}
 
 	var tamanos = {
@@ -314,7 +278,7 @@ function initFactura(){
 
 			items += '<div class="km-option-resume-service">'
 			items += '	<span class="label-resume-service">'+CARRITO["cantidades"][key][0]+' Mascota'+plural+' '+tamano+plural+' x '+CARRITO["fechas"]["duracion"]+' '+diaNoche+' x $'+CARRITO["cantidades"][key][1]+' </span>'
-			items += '	<span class="value-resume-service">$'+subtotal+'</span>'
+			items += '	<span class="value-resume-service">$'+numberFormat(subtotal)+'</span>'
 			items += '</div>';
 		}
 
@@ -333,13 +297,18 @@ function initFactura(){
 		if( CARRITO["adicionales"][key] != undefined && CARRITO["adicionales"][key] != "" && CARRITO["adicionales"][key] > 0 ){
 			
 			//console.log(CARRITO["cantidades"][key]);
+			
+			var plural = "";
+			if( CARRITO["cantidades"]["cantidad"] > 1 ){
+				plural += "s";
+			}
 
 			subtotal = 	parseInt( CARRITO["cantidades"]["cantidad"] ) *
 						parseFloat( CARRITO["adicionales"][key] );
 
 			items += '<div class="km-option-resume-service">'
-			items += '	<span class="label-resume-service">'+adicional+' $'+CARRITO["adicionales"][key]+' x '+CARRITO["cantidades"]["cantidad"]+' Mascotas  </span>'
-			items += '	<span class="value-resume-service">$'+subtotal+'</span>'
+			items += '	<span class="label-resume-service">'+adicional+' - '+CARRITO["cantidades"]["cantidad"]+' Mascota'+plural+' x $'+CARRITO["adicionales"][key]+'</span>'
+			items += '	<span class="value-resume-service">$'+numberFormat(subtotal)+'</span>'
 			items += '</div>';
 		}
 
@@ -348,11 +317,11 @@ function initFactura(){
 	if( CARRITO["transportacion"] != undefined && CARRITO["transportacion"][1] > 0 ){
 		items += '<div class="km-option-resume-service">'
 		items += '	<span class="label-resume-service">'+CARRITO["transportacion"][0]+' - Precio por Grupo </span>'
-		items += '	<span class="value-resume-service">$'+CARRITO["transportacion"][1]+'</span>'
+		items += '	<span class="value-resume-service">$'+numberFormat(CARRITO["transportacion"][1])+'</span>'
 		items += '</div>';
 	}
 
-	jQuery("#items_reservados").html( items );
+	jQuery(".items_reservados").html( items );
 }
 
 jQuery(document).ready(function() { 
@@ -367,14 +336,23 @@ jQuery(document).ready(function() {
 	});
 
 	jQuery("#reserva_btn_next_1").on("click", function(e){
-		jQuery("#step_1").css("display", "none");
+		jQuery(".km-col-steps").css("display", "none");
 		jQuery("#step_2").css("display", "block");
+		jQuery(document).scrollTop(0);
 		e.preventDefault();
 	});
 
 	jQuery("#reserva_btn_next_2").on("click", function(e){
-		jQuery("#step_2").css("display", "none");
+		jQuery(".km-col-steps").css("display", "none");
+		jQuery("#step_3").css("display", "block");
+		jQuery(document).scrollTop(0);
+		e.preventDefault();
+	});
+
+	jQuery("#reserva_btn_next_3").on("click", function(e){
+		jQuery(".km-col-steps").css("display", "none");
 		jQuery("#step_1").css("display", "block");
+		jQuery(document).scrollTop(0);
 		e.preventDefault();
 	});
 

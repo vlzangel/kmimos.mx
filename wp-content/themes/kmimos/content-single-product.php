@@ -101,30 +101,6 @@
 
 	$productos .= '</div>';
 
-	/*
- 		<!--
-		<form id="reservar">
-
-			<label class="titulos_inputs">Fechas:</label>
-			<div id="fechas_container" class="inputs_container">
-				<div class="input_fechas_box">
-					<input type="text" id="checkin" name="checkin" placeholder="DESDE" value="'.$busqueda["checkin"].'" class="km-input-custom km-input-date date_from" readonly>
-				</div>
-				<div class="input_fechas_box">
-					<input type="text" id="checkout" name="checkout" placeholder="HASTA" value="'.$busqueda["checkout"].'" class="km-input-custom km-input-date date_to" readonly>
-	 			</div>
- 			</div>
-
-			<label class="titulos_inputs">Tama&ntilde;os:</label>
-			<div class="inputs_container">
- 				'.$precios.'
- 			</div>
-
-			'.$transporte.'
- 		</form>
- 		-->
-	*/
-
 	echo "
 	<script> 
 		var SERVICIO_ID = '".get_the_ID()."';
@@ -182,7 +158,7 @@
 						* Precio final (incluye cobertura veterinaria y gastos administrativos; no incluye servicios adicionales)
 					</div>
 
-					<a href="#" id="reserva_btn_next_1" class="km-end-btn-form">
+					<a href="#" id="reserva_btn_next_1" class="km-end-btn-form vlz_btn_reservar">
 						<span>SIGUIENTE</span>
 					</a>
 
@@ -264,7 +240,7 @@
 								</div>
 							</div>
 
-							<div class="km-method-paid-option km-option-total">
+							<div class="km-method-paid-option km-option-total active">
 								<div class="km-text-one">
 									MONTO TOTAL
 								</div>
@@ -289,12 +265,135 @@
 						</div>
 					</div>
 
-					<span id="reserva_btn_next_2" class="km-end-btn-form km-end-btn-form-disabled disabled">
+					<span id="reserva_btn_next_2" class="km-end-btn-form km-end-btn-form-disabled disabled vlz_btn_reservar">
 						<span>SIGUIENTE</span>
 					</span>
 
 				</div>
 
+			</div>
+
+			<div id="step_3" class="km-col-steps">
+				<div class="km-col-content">
+					<ul class="steps-numbers">
+						<li>
+							<span class="number checked">1</span>
+						</li>
+						<li class="line"></li>
+						<li>
+							<span class="number checked">2</span>
+						</li>
+						<li class="line"></li>
+						<li>
+							<span class="number active">3</span>
+						</li>
+					</ul>
+
+					<div class="km-title-step">
+						RESUMEN DE TU RESERVA
+					</div>
+
+					<div class="km-tab-content" style="display: block;">
+						<div class="km-content-step km-content-step-2">
+							<div class="km-option-resume">
+								<span class="label-resume">CUIDADOR SELECCIONADO</span>
+								<span class="value-resume">GABRIELA CASTRO</span>
+							</div>
+
+							<div class="km-option-resume">
+								<span class="label-resume">FECHA</span>
+								<span class="value-resume">
+									24/07/2017
+									&nbsp; &gt; &nbsp;
+									26/07/2017
+								</span>
+							</div>
+
+							<div class="km-option-resume">
+								<span class="label-resume padding-bottom">Mascota Pequeña</span>
+
+								<div class="km-option-resume-service">
+									<span class="label-resume-service">Hospedaje día y noce x 2 días</span>
+									<span class="value-resume-service">$300.00</span>
+								</div>
+
+								<div class="km-option-resume-service">
+									<span class="label-resume-service">Baños y secado</span>
+									<span class="value-resume-service">$120.00</span>
+								</div>
+
+								<span class="label-resume padding-top padding-bottom">mascota mediana</span>
+
+								<div class="km-option-resume-service">
+									<span class="label-resume-service">Hospedaje día y noce x 2 días</span>
+									<span class="value-resume-service">$400.00</span>
+								</div>
+
+								<div class="km-option-resume-service">
+									<span class="label-resume-service">Baños y secado</span>
+									<span class="value-resume-service">$120.00</span>
+								</div>
+
+								<div class="km-option-resume-service">
+									<span class="label-resume-service">Transporte sencillo</span>
+									<span class="value-resume-service">$35.00</span>
+								</div>
+							</div>
+
+							<div class="km-services-total">
+								<span class="km-text-total">TOTAL</span>
+								<span class="km-price-total">$420.00</span>
+							</div>
+						</div>
+					</div>
+
+					<a href="http://kmimos-web.bitballoon.com/km-reservar-03#" class="km-tab-link">MEDIO DE PAGO</a>
+					<div class="km-tab-content" style="display: block;">
+						<div class="km-content-method-paid-inputs">
+							<select class="km-select-method-paid-inputs" name="">
+								<option value="">Pago con tarjeta de crédito o débito</option>
+							</select>
+
+							<div class="label-placeholder">
+								<label>Nombre del tarjetahabitante*</label>
+								<input type="text" name="" value="" class="input-label-placeholder">
+							</div>
+
+							<div class="label-placeholder">
+								<label>Número de Tarjeta*</label>
+								<input type="number" name="tarjeta" class="input-label-placeholder" maxlength="16">
+							</div>
+
+							<div class="content-placeholder">
+								<div class="label-placeholder">
+									<label>Expira (MM/YY)</label>
+									<input type="text" name="" value="" class="input-label-placeholder">
+								</div>
+
+								<div class="label-placeholder">
+									<label>Código de seguridad (XXX)</label>
+									<input type="number" name="codigo" class="input-label-placeholder" maxlength="3">
+								</div>
+							</div>
+
+							<div class="km-msje-minimal">
+								*Recuerda que tus datos deben ser los mismos que el de tu tarjeta
+							</div>
+
+							<div class="km-term-conditions">
+								<label>
+									<input type="checkbox" name="term-conditions" value="1">
+									Acepto los términos y condiciones
+								</label>
+							</div>
+						</div>
+					</div>
+
+					<a id="reserva_btn_next_3" href="#" class="km-end-btn-form vlz_btn_reservar">
+						TERMINAR RESERVA
+					</a>
+
+				</div>
 			</div>
 
 			<div class="km-col-empty">

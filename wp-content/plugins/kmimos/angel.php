@@ -231,14 +231,6 @@
         }
     }
 
-    if(!function_exists('toRadian')){
-
-        function toRadian($deg) {
-            return $deg * pi() / 180;
-        };
-
-    }
-
     if(!function_exists('servicios_adicionales')){
         function servicios_adicionales(){
 

@@ -51,7 +51,7 @@
 			}
 			$url_servicio[ "{$order}-{$row->ID}" ] = [
 				'icon' => $icon_service, 
-				'url' =>  get_home_url().'/producto/'.$row->post_name,
+				'url' =>  get_home_url().'/reservar/'.$row->ID,
 				'name' => $row->post_title,
 			];
 		}
@@ -88,9 +88,8 @@
 				$BOTON_RESERVAR .= '<a class="km-btn-secondary" href="'.$item['url'].'">RESERVAR</a>';
 				break;
 			}
-		}
-		else{				
-			$BOTON_RESERVAR .= '<a class="km-btn-secondary" href="'.get_home_url().'/producto/'.$slug.'/'.'">RESERVAR</a>';
+		}else{				
+			$BOTON_RESERVAR .= '<a class="km-btn-secondary" href="'.get_home_url().'/reservar/'.$id_hospedaje.'/'.'">RESERVAR</a>';
 		}
 	}
 ?>

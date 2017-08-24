@@ -166,6 +166,7 @@
 	$precios_hospedaje = unserialize($cuidador->hospedaje);
 	$precios_adicionales = unserialize($cuidador->adicionales);
 
+	$id_hospedaje = 0;
 	$servicios = $wpdb->get_results("SELECT * FROM wp_posts WHERE post_author = {$cuidador->user_id} AND post_type = 'product' AND post_status = 'publish' ");
 	$productos = '<div class="row">';
 	foreach ($servicios as $servicio) {
@@ -186,6 +187,8 @@
         $precios = $precios_hospedaje;
         if( $tipo != "hospedaje" ){
         	$precios = $precios_adicionales[$tipo];
+        }else{
+        	$id_hospedaje = $servicio->ID;
         }
 
         $tamanos_servicio = $wpdb->get_results("SELECT * FROM wp_posts WHERE post_parent = '{$servicio->ID}' AND post_type = 'bookable_person' AND post_status = 'publish' ");
@@ -205,7 +208,7 @@
         }
 		$productos .= '
 		<div class="col-xs-12 col-md-6">
-			<a href="'.get_home_url().'/producto/'.$servicio->post_name.'" class="km-ficha-servicio">
+			<a href="'.get_home_url().'/reservar/'.$servicio->ID.'" class="km-ficha-servicio">
 				'.$titulo.'
 				<p>SELECCIÓN SEGÚN TAMAÑO</p>
 				'.$tamanos.'

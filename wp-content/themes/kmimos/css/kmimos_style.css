@@ -738,7 +738,7 @@ form h1 {
 	box-sizing: border-box;
 	padding: 20px;
 }
-
+/*
 input {
 	-webkit-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
 	transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
@@ -758,28 +758,7 @@ input:focus{
   box-shadow: none;
   outline: none;
   background-position: 0 0;
-}
-/*
-input:focus::-webkit-input-placeholder {
-  	color: #6B1C9B;
-  	font-size: 13px;
-  	-webkit-transform: translateY(-15px);
-		  	transform: translateY(-15px);
-  	visibility: visible !important;
-  	font-family: 'Gotham-Pro-Regular', arial, sans-serif;
-}
-
-#buscador input:focus::-webkit-input-placeholder {
-  	color: #6B1C9B;
-  	font-size: 13px;
-  	-webkit-transform: translateY(0px);
-		  	transform: translateY(0px);
-  	visibility: visible !important;
-  	font-family: 'Gotham-Pro-Regular', arial, sans-serif;
-}
-*/
-
-
+}*/
 
 
 /* SECCIÓN  - KMIMOS VACACIONES */
@@ -4035,7 +4014,7 @@ section {
     padding:30px 50px
 }
 #popup-servicios .km-opcion {
-    padding:20px 0
+    #padding:20px 0
 }
 #popup-servicios .km-btn-primary {
     line-height:18px
@@ -6466,25 +6445,4 @@ h1.maps {
 
 input#checkout {
     margin: 0px;
-}
-
-.km-quantity-height .km-height{
-	overflow: hidden;
-}
-
-.km-quantity-height .km-height span{
-	float: right;
-	font-weight: 600;
-}
-
-#step_1{
-	display: block;
-}
-
-#step_2{
-	display: none;
-}
-
-#reserva_btn_next_2{
-	cursor: pointer;
 }

@@ -85,7 +85,7 @@
 						<div class="km-div-ubicacion">
 							<div class="km-select-custom km-select-ubicacion" style="border-right: 0px; height: 47px;">
 								<img src="'.getTema().'/images/new/icon/icon-gps.svg" class="icon_left" />
-								<input type="text" id="ubicacion_txt" class="km-fechas" name="ubicacion_txt" placeholder="UBICACI&Oacute;N, ESTADO, MUNICIPIO" value="'.$busqueda["ubicacion_txt"].'" autocomplete="off" readonly />
+								<input type="text" id="ubicacion_txt" class="km-fechas" style="width: 100%;" name="ubicacion_txt" placeholder="UBICACI&Oacute;N, ESTADO, MUNICIPIO" value="'.$busqueda["ubicacion_txt"].'" autocomplete="off" readonly />
 								<input type="hidden" id="ubicacion" name="ubicacion" value="'.$busqueda["ubicacion"].'" />
 								<div id="ubicacion_list"></div>
 							</div>

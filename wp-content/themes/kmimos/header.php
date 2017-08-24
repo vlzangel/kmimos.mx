@@ -27,7 +27,7 @@
 
 	global $post;
 	$reserrvacion_page = "";
-	if( $post->post_type == 'product' ){
+	if( $post->post_name == 'reservar' ){
 		$reserrvacion_page = "page-reservation";
 	}
 
@@ -60,34 +60,36 @@
 		$menus_movil = $MENU["head_movil"].$MENU["body"].$MENU["footer"];
 	}
 
-	$HTML .= '
-		<nav class="navbar navbar-fixed-top bg-transparent">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-						<img src="'.getTema().'/images/new/km-navbar-mobile.svg" width="30">
-					</button>
-					<a class="navbar-brand" href="'.get_home_url().'"><img src="'.getTema().'/images/new/km-logos/km-logo.png" height="60"></a>
-				</div>
-				<ul class="hidden-xs nav-login">
-					'.$menus_normal.'
-				</ul>
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="'.get_home_url().'/busqueda/" class="km-nav-link">BUSCAR CUIDADOR</a></li>
-						<li><a href="km-cuidador.html" class="km-btn-primary hidden-xs">QUIERO SER CUIDADOR</a></li>
-
-						'.$menus_movil.'
-
-						<li><a href="'.get_home_url().'/busqueda/" class="km-nav-link hidden-sm hidden-md hidden-lg">BUSCAR CUIDADOR</a></li>
-						<li><a href="km-cuidador.html" class="km-btn-primary hidden-sm hidden-md hidden-lg">QUIERO SER CUIDADOR</a></li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-	';
-
 	if( !is_user_logged_in() ){
+
+		$HTML .= '
+			<script> var AVATAR = ""; </script>
+			<nav class="navbar navbar-fixed-top bg-transparent">
+				<div class="container">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+							<img src="'.getTema().'/images/new/km-navbar-mobile.svg" width="30">
+						</button>
+						<a class="navbar-brand" href="'.get_home_url().'"><img src="'.getTema().'/images/new/km-logos/km-logo.png" height="60"></a>
+					</div>
+					<ul class="hidden-xs nav-login">
+						'.$menus_normal.'
+					</ul>
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="'.get_home_url().'/busqueda/" class="km-nav-link">BUSCAR CUIDADOR</a></li>
+							<li><a href="km-cuidador.html" class="km-btn-primary hidden-xs">QUIERO SER CUIDADOR</a></li>
+
+							'.$menus_movil.'
+
+							<li><a href="'.get_home_url().'/busqueda/" class="km-nav-link hidden-sm hidden-md hidden-lg">BUSCAR CUIDADOR</a></li>
+							<li><a href="km-cuidador.html" class="km-btn-primary hidden-sm hidden-md hidden-lg">QUIERO SER CUIDADOR</a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		';
+
 		$HTML .= "
 			<div id='modal_login' class='modal_login'>
 		        <div class='modal_container'>
@@ -118,6 +120,44 @@
 		        </div>
 		    </div>
 		";
+	}else{
+		$current_user = wp_get_current_user();
+		$user_id = $current_user->ID;
+
+		$avatar = kmimos_get_foto($user_id);
+		$HTML .= '
+		<script> var AVATAR = "'.$avatar.'"; </script>
+		<nav class="navbar navbar-fixed-top bg-transparent nav-sesion">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+						<img class="km-avatar" src="'.$avatar.'" width="40">
+					</button>
+					<a class="navbar-brand" href="#"><img src="'.$avatar.'" height="60" style="height: 60px;"></a>
+				</div>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown hidden-xs">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding: 0px;"><img src="'.$avatar.'" style="width: 45px;"></a>
+							<ul class="dropdown-menu">
+								<li><a href="#" style="padding: 19px 15px 15px;">MI PERFIL</a></li>
+								<li><a href="#" style="padding: 19px 15px 15px;">MIS MASCOTAS</a></li>
+								<li><a href="#" style="padding: 19px 15px 15px;">HISTORIAL</a></li>
+								<li><a href="#" style="padding: 19px 15px 15px;">MIS SOLICITUDES</a></li>
+								<li role="separator" class="divider"></li>
+								<li><a href="'.wp_logout_url( "/" ).'" style="padding: 19px 15px 15px;">CERRAR SESIÓN</a></li>
+							</ul>
+						</li>
+						<li><a href="#" class="km-nav-link hidden-sm hidden-md hidden-lg" style="padding: 19px 15px 15px; color: white;">MI PERFIL</a></li>
+						<li><a href="#" class="km-nav-link hidden-sm hidden-md hidden-lg" style="padding: 19px 15px 15px; color: white;">MIS MASCOTAS</a></li>
+						<li><a href="#" class="km-nav-link hidden-sm hidden-md hidden-lg" style="padding: 19px 15px 15px; color: white;">HISTORIAL</a></li>
+						<li><a href="#" class="km-nav-link hidden-sm hidden-md hidden-lg" style="padding: 19px 15px 15px; color: white;">MIS SOLICITUDES</a></li>
+						<li><a href="http://kmimos-web.bitballoon.com/" class="km-nav-link hidden-sm hidden-md hidden-lg" style="padding: 19px 15px 15px; color: white;">CERRAR SESIÓN</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		';
 	}
 
 	echo comprimir_styles($HTML);

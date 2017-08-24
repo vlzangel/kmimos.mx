@@ -16,7 +16,7 @@ function menu(){
 
 
 		$('.navbar-toggle img').attr('src', HOME+'/images/new/km-navbar-mobile-negro.svg');
-		$('.nav-sesion .km-avatar').attr('src', HOME+'/images/new/km-sesion-cliente/avatar.png');
+		$('.nav-sesion .km-avatar').attr('src', AVATAR);
 		$('.nav-sesion .dropdown-toggle img').css('width','40px');
 		$('.nav li a').css('padding','10px 15px 8px');
 		$('.nav-sesion .dropdown-toggle').css('padding','0px');
@@ -37,7 +37,7 @@ function menu(){
 		$('.navbar-brand img').attr('src', HOME+'/images/new/km-logos/km-logo.png');
 
 		$('.navbar-toggle img').attr('src', HOME+'/images/new/km-navbar-mobile.svg');		
-		$('.nav-sesion .km-avatar').attr('src', HOME+'/images/new/km-sesion-cliente/avatar.png');
+		$('.nav-sesion .km-avatar').attr('src', AVATAR);
 		$('.nav li a').css('padding','19px 15px 15px');
 		$('.nav-sesion .dropdown-toggle img').css('width','45px');
 		$('.nav-sesion .dropdown-toggle').css('padding','0px');
@@ -219,7 +219,9 @@ $(document).ready(function(){
 				selectDefaultDate: true,
 				minDate: date,
 				onSelect: function(xdate) {
-					calcular();
+					if(typeof calcular === 'function') {
+						calcular();
+					}
 				},
 				yearRange: date.getFullYear()+':'+(parseInt(date.getFullYear())+1),
 				firstDay: 1,
@@ -230,7 +232,9 @@ $(document).ready(function(){
 				dateFormat: 'dd/mm/yyyy',
 				minDate: date,
 				onSelect: function(xdate) {
-					calcular();
+					if(typeof calcular === 'function') {
+						calcular();
+					}
 				},
 				yearRange: date.getFullYear()+':'+(parseInt(date.getFullYear())+1),
 				firstDay: 1,
@@ -259,7 +263,9 @@ $(document).ready(function(){
 				jQuery('#checkout').datepick('destroy');
 				initCheckin(date1[0], true);
 			}
-			calcular();
+			if(typeof calcular === 'function') {
+				calcular();
+			}
 		},
 		yearRange: fecha.getFullYear()+':'+(parseInt(fecha.getFullYear())+1),
 		firstDay: 1,
@@ -270,7 +276,9 @@ $(document).ready(function(){
 		dateFormat: 'dd/mm/yyyy',
 		minDate: fecha,
 		onSelect: function(xdate) {
-			calcular();
+			if(typeof calcular === 'function') {
+				calcular();
+			}
 		},
 		yearRange: fecha.getFullYear()+':'+(parseInt(fecha.getFullYear())+1),
 		firstDay: 1,
@@ -349,7 +357,9 @@ $(document).ready(function(){
 		var input = $("input", div);
 		el.toggleClass("active");
 		input.toggleClass("active");
-		calcular();
+		if(typeof calcular === 'function') {
+			calcular();
+		}
 	});
 
 	$(document).on("click", '.page-reservation .km-method-paid-options .km-method-paid-option', function ( e ) {
@@ -373,6 +383,16 @@ $(document).ready(function(){
 		e.preventDefault();
 		var el = $(this);
 		$(".km-tab-content", el.parent()).slideToggle("fast");
+	});
+
+	$(document).on("focus", "input.input-label-placeholder", function(){
+		$(this).parent().addClass("focus");
+	}).on("blur", "input.input-label-placeholder", function(){
+		let i = $(this);
+		if ( i.val() !== "" ) $(this).parent().addClass("focused");
+		else $(this).parent().removeClass("focused");
+
+		$(this).parent().removeClass("focus");
 	});
 
 });

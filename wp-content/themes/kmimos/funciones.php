@@ -237,7 +237,7 @@
 					if( $precio > 0 ){
 						$opciones .= '
 							<option value="'.($precio*1.2).'">
-								'.$rutas[ $ruta ].' $'.($precio*1.2).'
+								'.$rutas[ $ruta ].' ( $'.($precio*1.2).' )
 				 			</option>
 						';
 					}
