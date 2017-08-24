@@ -7,13 +7,13 @@ $HTML .="
 			<button type='button' class='close' data-dismiss='modal' aria-hidden='true'>×</button>
 					<div class='popup-registrarte-1'>
 						<p class='popup-tit'>REGISTRARME</p>
-						<a href='#' class='km-btn-fb'><img src='images/icon/km-redes/icon-fb-blanco.svg'>REGISTRARME CON FACEBOOK</a>
-						<a href='#' class='km-btn-border'><img src='images/icon/km-redes/icon-gmail.svg'>REGISTRARME CON GOOGLE</a>
+						<a href='#' class='km-btn-fb'><img src='/images/icon/km-redes/icon-fb-blanco.svg'>REGISTRARME CON FACEBOOK</a>
+						<a href='#' class='km-btn-border'><img src='/images/icon/km-redes/icon-gmail.svg'>REGISTRARME CON GOOGLE</a>
 						<div class='line-o'>
 							<p class='text-line'>o</p>
 							<div class='bg-line'></div>
 						</div>
-						<a href='#' class='km-btn-correo km-btn-popup-registrarte-1'><img src='getTema()./images/icon/km-redes/icon-mail-blanco.svg'>REGISTRARME POR CORREO ELECTRÓNICO</a>
+						<a href='#' class='km-btn-correo km-btn-popup-registrarte-1'><img src='/images/icon/km-redes/icon-mail-blanco.svg'>REGISTRARME POR CORREO ELECTRÓNICO</a>
 						<p style='color: #979797; margin-top: 20px;'>Al crear una cuenta, aceptas las condiciones del servicio y la Política de privacidad de Kmimos.</p>
 						<p><b>Dudas escríbenos</b></p>
 						<div class='row'>
@@ -51,6 +51,7 @@ $HTML .="
 								</div>
 								<div class='label-placeholder'>
 									<label>Correo electrónico</label>
+									<span id='resultado'></span>
 									<input type='mail' name='email_1' id='email_1' class='input-label-placeholder' data-charset='espalfnum'>
 								</div>
 								<div class='label-placeholder'>
@@ -89,9 +90,11 @@ $HTML .="
 							</div>
 						</div>
 					</form>
-					<a href='#' class='km-btn-correo km-btn-popup-registrarte-nuevo-correo' onclick='registroNuevoUsuario()'>SIGUIENTE</a>
+					<span id='guardando'></span>
+					<a href='#' id='siguiente' class='km-btn-correo km-btn-popup-registrarte-nuevo-correo' onclick='registroNuevoUsuario()'>SIGUIENTE</a>
+					<div id='resp'></div>
 					<p style='color: #979797; margin-top: 20px;'>Al crear una cuenta, aceptas las condiciones del servicio y la Política de privacidad de Kmimos.</p>
-					<p><img style='width: 20px; margin-right: 5px; position: relative; top: -3px;' src='images/icon/km-redes/icon-wsp.svg'>En caso de dudas escríbenos al whatsapp</p>
+					<p><img style='width: 20px; margin-right: 5px; position: relative; top: -3px;'src='images/icon/km-redes/icon-wsp.svg'>En caso de dudas escríbenos al whatsapp</p>
 						<hr>
 					<div class='row'>
 						<div class='col-xs-5'>

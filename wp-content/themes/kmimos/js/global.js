@@ -65,19 +65,14 @@ function registroNuevoUsuario(){
     var email_1 = document.form_nuevo_cliente.email_1.value;
     var clave = document.form_nuevo_cliente.clave.value;
     var movil = document.form_nuevo_cliente.movil.value;
-    var genero = document.getElementById("genero").selectedIndex;
-    var edad = document.getElementById("edad").selectedIndex;
-    var fumador =  document.getElementById("fumador").selectedIndex;
 
     if (nombre.length == 0) {
         alert('Debe ingresar su nombre');
-        nombre.focus();
         return 0;
     } else {
 
         if (apellido.length == 0) {
             alert('Debe ingresar su apellido');
-            apellido.focus();
             return 0;
         }else {
             if (dni.length == 0) {
@@ -99,38 +94,39 @@ function registroNuevoUsuario(){
                             alert('Ingrese su telefono movil por favor');
                             movil.focus();
                         } else {
-                            if(document.getElementsByTagName("option")[genero].value == ''){
+                            if($('#genero').val() == ''){
                                 alert('selecciones si es Hombre o Mujero por favor');
+                                $('#genero').parent('div').css('color', 'red');
                             }else{
-                                var vGenero = document.getElementsByTagName("option")[genero].value;
-                                
-                                if (document.getElementsByTagName("option")[edad].value =='') {
+                                var vGenero = $('#genero').val();
+                                if ($('#edad').val() =='') {
                                     alert('selecciones su rango de edad, por favor');
+                                    $('#edad').parent('div').css('color', 'red');
                                 } else {
-                                    var vEdad = document.getElementsByTagName("option")[edad].value;
-
-                                    if (document.getElementsByTagName("option")[fumador].value =='') {
+                                    var vEdad = $('#edad').val();
+                                    if ($('#fumador').val() =='') {
                                             alert('selecciones si es Fumador o no, por favor');
+                                            $('#fumador').parent('div').css('color', 'red');
                                     }else {
-                                        var vFumador = document.getElementsByTagName("option")[fumador].value;
-                                        
-                                        $(document).on("click", '.popup-registrarte-nuevo-correo .km-btn-popup-registrarte-nuevo-correo', 
-                                            function ( e ) {
-                                            e.preventDefault();
-
-                                            $(".popup-registrarte-nuevo-correo").hide();
-                                            $(".popup-registrarte-datos-mascota").fadeIn("fast");
-                                        });
-                                        var campos = [nombre,
-                                                      apellido,
-                                                      dni,
-                                                      email_1,
-                                                      clave,
-                                                      movil,
-                                                      vGenero,
-                                                      vEdad,
-                                                      vFumador                                                      ];
+                                        var vFumador = $('#fumador').val();
+                                        var campos = [nombre,apellido,dni,email_1,clave,
+                                                      movil,vGenero,vEdad,vFumador];
                                         console.log(campos);
+                                        var emial = { 'dato': campos[3]}
+                                        validaEmail(emial);
+                                         
+                                        var datos = {
+                                                'name': campos[0],
+                                                'lastname': campos[1],
+                                                'idn': campos[2],
+                                                'email': campos[3],
+                                                'password': campos[4],
+                                                'movil': campos[5],
+                                                'gender': campos[6],
+                                                'age': campos[7],
+                                                'smoker': campos[8]
+                                            }
+                                        registraUsuario(datos);     
                                     }
                                 }
                             }
@@ -142,6 +138,41 @@ function registroNuevoUsuario(){
     }
 }
 
+function validaEmail(dato){
+    $.ajax({
+        data:  dato, //datos que se envian a traves de ajax
+        url:   HOME+"/procesos/login/validate_email.php", //archivo que recibe la peticion
+        type:  'post', //método de envio
+        beforeSend: function () { // carga mientras va hacer la consulta
+                $("#resultado").html("Procesando, espere por favor...");
+                $("#resultado").css('color','green');
+        },
+        success:  function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
+                if (response == 'SI') {
+                    $("#resultado").html("Este email ya esta en uso");
+                    $("#resultado").css('color','red');
+                }else{
+                    $("#resultado").html("");
+                }
+        }
+    });
+}
+
+function registraUsuario(datos){
+    $.ajax({
+        data:  datos, //datos que se envian a traves de ajax
+        url:   HOME+"/procesos/login/registro.php", //archivo que recibe la peticion
+        type:  'post', //método de envio
+        beforeSend: function () {
+            $("#guardando").html("Guardando informacion...");
+            $("#guardando").css('color','green');
+        },
+        success:  function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
+            $("#guardando").html("Este datos se guardo "+response);
+            $("#guardando").css('color','red');
+        }
+    });
+}
 function logear(){
     jQuery.post( 
         HOME+"/procesos/login/login.php", 
