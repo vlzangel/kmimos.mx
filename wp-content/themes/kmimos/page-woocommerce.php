@@ -8,6 +8,9 @@
 
 	wp_enqueue_script('producto', getTema()."/js/producto.js", array("jquery"), '1.0.0');
 
+	wp_enqueue_script('openpay-v1', getTema()."/js/openpay.v1.min.js", array("jquery"), '1.0.0');
+	wp_enqueue_script('openpay-data', getTema()."/js/openpay-data.v1.min.js", array("jquery", "openpay-v1"), '1.0.0');
+
 	get_header();
 		
 		global $wpdb;
@@ -319,48 +322,55 @@
 								</div>
 
 								<div class="km-option-resume">
-
 									<div class="km-option-resume-service">
 										<span class="label-resume-service">'.$servicio_name.'</span>
 									</div>
-
 									<div class="items_reservados"></div>
-
 								</div>
 
 								<div class="km-services-total">
 									<span class="km-text-total">TOTAL</span>
-									<span class="km-price-total">$420.00</span>
+									<span class="km-price-total"></span>
 								</div>
 							</div>
 						</div>
 
+						<!--
+							data-openpay-card="holder_name"
+							data-openpay-card="card_number"
+							data-openpay-card="cvv2"
+							data-openpay-card="expiration_year"
+							data-openpay-card="expiration_month"
+						-->
+
 						<a href="http://kmimos-web.bitballoon.com/km-reservar-03#" class="km-tab-link">MEDIO DE PAGO</a>
 						<div class="km-tab-content" style="display: block;">
 							<div class="km-content-method-paid-inputs">
-								<select class="km-select-method-paid-inputs" name="">
-									<option value="">Pago con tarjeta de crédito o débito</option>
+								<select class="km-select-method-paid-inputs" id="tipo_pago">
+									<option value="tarjeta">Pago con tarjeta de crédito o débito</option>
+									<option value="tienda">Pago en tienda de conveniencia</option>
 								</select>
 
 								<div class="label-placeholder">
 									<label>Nombre del tarjetahabitante*</label>
-									<input type="text" name="" value="" class="input-label-placeholder">
+									<input type="text" id="nombre" name="nombre" value="" class="input-label-placeholder" data-openpay-card="holder_name">
 								</div>
 
 								<div class="label-placeholder">
 									<label>Número de Tarjeta*</label>
-									<input type="number" name="tarjeta" class="input-label-placeholder" maxlength="16">
+									<input type="text" id="numero" name="numero" class="input-label-placeholder" maxlength="16" data-openpay-card="card_number">
 								</div>
 
 								<div class="content-placeholder">
 									<div class="label-placeholder">
-										<label>Expira (MM/YY)</label>
-										<input type="text" name="" value="" class="input-label-placeholder">
+										<label>Expira (MM AA)</label>
+										<input type="text" id="mes" name="mes" class="input-label-placeholder expiration" maxlength="2" data-openpay-card="expiration_month">
+										<input type="text" id="anio" name="anio" class="input-label-placeholder expiration" maxlength="2" data-openpay-card="expiration_year">
 									</div>
 
 									<div class="label-placeholder">
 										<label>Código de seguridad (XXX)</label>
-										<input type="number" name="codigo" class="input-label-placeholder" maxlength="3">
+										<input type="text" id="codigo" name="codigo" class="input-label-placeholder" maxlength="3" data-openpay-card="cvv2">
 									</div>
 								</div>
 

@@ -76,3 +76,9 @@
 #reserva_btn_next_2{
     cursor: pointer;
 }
+
+.expiration{
+    width: calc( 50% - 10px ) !important;
+    margin: 0px 4px;
+    text-align: center;
+}

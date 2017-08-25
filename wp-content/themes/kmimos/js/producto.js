@@ -29,6 +29,25 @@ function initCarrito(){
 			"limpieza_dental" : 0,
 			"visita_al_veterinario" : 0
 		};
+
+	CARRITO["pagar"] = [];
+
+		CARRITO["pagar"] = {
+			"tipo" : "",
+			"metodo" : "completo",
+			"token" : "",
+			"deviceIdHiddenFieldName" : ""
+		};
+
+	CARRITO["tarjeta"] = [];
+
+		CARRITO["tarjeta"] = {
+			"nombre" : "",
+			"numero" : "",
+			"mes" : "",
+			"anio" : "",
+			"codigo" : ""
+		};
     
 }
 initCarrito();
@@ -350,12 +369,87 @@ jQuery(document).ready(function() {
 	});
 
 	jQuery("#reserva_btn_next_3").on("click", function(e){
-		jQuery(".km-col-steps").css("display", "none");
-		jQuery("#step_1").css("display", "block");
-		jQuery(document).scrollTop(0);
+
+		CARRITO["pagar"]["deviceIdHiddenFieldName"] = jQuery("#deviceIdHiddenFieldName").val();
+		CARRITO["pagar"]["tipo"] = jQuery("#tipo_pago").val();
+
+		//console.log( CARRITO );
+
+		OpenPay.token.extractFormAndCreate('reservar', sucess_callbak, error_callbak); 
+
 		e.preventDefault();
+	});
+
+	jQuery("#step_3 input").on("keyup", function(e){
+		if( e.key != "Backspace" ){
+			if(jQuery(this).attr("id") == "expira"){
+				var expira = jQuery(this).val();
+				if( expira.length == 2 ){
+					jQuery(this).val( expira+"/" );
+				}
+			}
+		}
+		CARRITO["tarjeta"][ jQuery(this).attr("id") ] = jQuery(this).val();
 	});
 
 	calcular();
 
+	/* Configuración Openpay */
+
+		OpenPay.setId('mbdcldmwlolrgxkd55an');
+	    OpenPay.setApiKey('pk_94d15185c54841a68c568d14e0d0debd');
+	    OpenPay.setSandboxMode(true);
+
+	    var deviceSessionId = OpenPay.deviceData.setup("reservar", "deviceIdHiddenFieldName");
+
+	    var sucess_callbak = function(response) {
+	        var token_id = response.data.id;
+	        CARRITO["pagar"]["token"] = token_id;
+	        pagarReserva();
+	    };
+
+	    var error_callbak = function(response) {
+	        var desc = response.data.description != undefined ? response.data.description : response.message;
+	        console.log("ERROR [" + response.status + "] " + desc);
+	        switch( response.status ){
+	        	case 422:
+	        		alert("Numero invalido");
+	        	break;
+	        	case 400:
+	        		switch( desc ){
+	        			case "cvv2 length must be 3 digits":
+	        				alert("Codigo invalido, debe ser de 3 digitos");
+	        			break;
+	        			case "The expiration date has already passed":
+	        				alert("Fecha de expirancion invalida");
+	        			break;
+	        		}
+	        	break;
+	        }
+	    };
+
+   	/* Fin Configuración Openpay */
+
+   	function pagarReserva(){
+
+   		var transporte = []+"===";
+   		if( CARRITO["transportacion"] != undefined && CARRITO["transportacion"][1] > 0 ){
+			transporte = JSON.stringify( CARRITO["transportacion"] )+"===";
+		}
+
+   		var json =  
+			JSON.stringify( CARRITO["pagar"] )+"==="+
+			JSON.stringify( CARRITO["tarjeta"] )+"==="+
+			JSON.stringify( CARRITO["fechas"] )+"==="+
+			JSON.stringify( CARRITO["cantidades"] )+"==="+transporte+
+			JSON.stringify( CARRITO["adicionales"] );
+
+   		jQuery.post(
+			HOME+"/procesos/reservar/pagar.php",
+			{info: json},
+			function(data){
+				console.log( data );
+			}
+		);
+   	}
 });

@@ -374,8 +374,10 @@ $(document).ready(function(){
 
 		if ( el.hasClass("km-option-deposit") ) {
 			$(".page-reservation .km-detail-paid-deposit").slideDown("fast");
+			CARRITO["pagar"]["metodo"] = "deposito";
 		} else {
 			$(".page-reservation .km-detail-paid-deposit").slideUp("fast");
+			CARRITO["pagar"]["metodo"] = "completo";
 		}
 	});
 
