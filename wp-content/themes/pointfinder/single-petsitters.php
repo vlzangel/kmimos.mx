@@ -191,8 +191,8 @@
 				<h1 class='center-white'>".get_the_title()."</h1>
 				".kmimos_petsitter_rating($post_id);
 				if(is_user_logged_in()){
-					//$HTML .= "<a id='btn_conocer' style='display:none;' class='theme_button button conocer-cuidador' href='".get_home_url()."/conocer-al-cuidador/?id=".$post_id."'>Conocer al Cuidador</a>";
-					$HTML .= "<span id='btn_conocer' class='theme_button button conocer-cuidador' onclick='PopUpknowCaregiver();'>Conocer al Cuidador</span>";
+					$HTML .= "<a id='btn_conocer' style='display:none;' class='theme_button button conocer-cuidador' href='".get_home_url()."/conocer-al-cuidador/?id=".$post_id."'>Conocer al Cuidador</a>";
+					//$HTML .= "<span id='btn_conocer' class='theme_button button conocer-cuidador' onclick='PopUpknowCaregiver();'>Conocer al Cuidador</span>";
 					include('vlz/seleccion_boton_reserva.php');
 				}else{
 					$HTML .= "
