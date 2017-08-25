@@ -269,3 +269,13 @@ $(document).ready(function(){
 
 
 });
+
+$(document).on("focus", "input.input-label-placeholder", function(){
+		$(this).parent().addClass("focus");
+	}).on("blur", "input.input-label-placeholder", function(){
+		let i = $(this);
+		if ( i.val() !== "" ) $(this).parent().addClass("focused");
+		else $(this).parent().removeClass("focused");
+
+		$(this).parent().removeClass("focus");
+	});

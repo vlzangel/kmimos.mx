@@ -59,103 +59,116 @@ $('[data-charset]').on({
 
 
 function registroNuevoUsuario(){
-    var nombre = document.form_nuevo_cliente.nombre.value;
-    var apellido = document.form_nuevo_cliente.apellido.value;
-    var dni = document.form_nuevo_cliente.dni.value;
-    var email_1 = document.form_nuevo_cliente.email_1.value;
-    var clave = document.form_nuevo_cliente.clave.value;
-    var movil = document.form_nuevo_cliente.movil.value;
+    
 
-    if (nombre.length == 0) {
-        alert('Debe ingresar su nombre');
+    if ($('#nombre').val() == "") {
+        $('#nombre').parent('div').css('color', 'red');
         return 0;
     } else {
-
-        if (apellido.length == 0) {
-            alert('Debe ingresar su apellido');
-            return 0;
-        }else {
-            if (dni.length == 0) {
-                alert('Ingrese su DNI por favor');
-                dni.focus();
-                return 0;
-            } else {
-                if (email_1.length == 0) {
-                    alert('Ingrese un email por favor');
-                    email_1.focus();
-                    return 0;
-                } else {
-                    if (clave.length == 0) {
-                        alert('Ingrese una clave por favor');
-                        clave.focus();
-                        return 0;
-                    } else {
-                        if (movil.length == 0 && movil.length > 10) {
-                            alert('Ingrese su telefono movil por favor');
-                            movil.focus();
-                        } else {
-                            if($('#genero').val() == ''){
-                                alert('selecciones si es Hombre o Mujero por favor');
-                                $('#genero').parent('div').css('color', 'red');
-                            }else{
-                                var vGenero = $('#genero').val();
-                                if ($('#edad').val() =='') {
-                                    alert('selecciones su rango de edad, por favor');
-                                    $('#edad').parent('div').css('color', 'red');
-                                } else {
-                                    var vEdad = $('#edad').val();
-                                    if ($('#fumador').val() =='') {
-                                            alert('selecciones si es Fumador o no, por favor');
-                                            $('#fumador').parent('div').css('color', 'red');
-                                    }else {
-                                        var vFumador = $('#fumador').val();
-                                        var campos = [nombre,apellido,dni,email_1,clave,
-                                                      movil,vGenero,vEdad,vFumador];
-                                        console.log(campos);
-                                        var emial = { 'dato': campos[3]}
-                                        validaEmail(emial);
-                                         
-                                        var datos = {
-                                                'name': campos[0],
-                                                'lastname': campos[1],
-                                                'idn': campos[2],
-                                                'email': campos[3],
-                                                'password': campos[4],
-                                                'movil': campos[5],
-                                                'gender': campos[6],
-                                                'age': campos[7],
-                                                'smoker': campos[8]
-                                            }
-                                        registraUsuario(datos);     
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+         $('#nombre').parent('div').css('color', 'green');
+        var nombre = $('#nombre').val();
     }
-}
+    if ($('[name="apellido"]').val() == "") {
+        
+        $('[name="apellido"]').parent('div').css('color', 'red');
+        return 0;
+    }else{
+        var apellido = $('[name="apellido"]').val();
+        $('[name="apellido"]').parent('div').css('color', 'green');
+    }
 
+    if ($('#dni').val() == "") {
+        $('#dni').parent('div').css('color', 'red');
+        return 0;
+    } else {
+        $('#dni').parent('div').css('color', 'green');
+        var dni = $('#dni').val();
+    }
+    if ($('#email_1').val() == "") {
+        $('#email_1').parent('div').css('color', 'red');
+        return 0;
+    } else {
+        $('#email_1').parent('div').css('color', 'green');
+        var email_1 = $('#email_1').val();
+    }
+
+    if ($("#pass").val() == "") {
+        $('#pass').parent('div').css('color', 'red');
+        return 0;
+    } else {
+        var clave = $('[name="pass"]').val();
+       $('#pass').parent('div').css('color', 'green'); 
+    }
+
+    if ($('#movil').val() == 0) {
+        $('#movil').parent('div').css('color', 'red');
+    } else {
+        $('#movil').parent('div').css('color', 'green');
+        var movil = $('#movil').val();
+    }
+
+    if($('#genero').val() == ''){
+        $('#genero').parent('div').css('color', 'red');
+    }else{
+        $('#genero').parent('div').css('color', 'green');
+        var vGenero = $('#genero').val();
+    }
+
+    if ($('#edad').val() =='') {
+        $('#edad').parent('div').css('color', 'red');
+    } else {
+        $('#edad').parent('div').css('color', 'green'); 
+        var vEdad = $('#edad').val();
+    }
+
+    if ($('#fumador').val() =='') {
+        $('#fumador').parent('div').css('color', 'red');
+    }else {
+        $('#fumador').parent('div').css('color', 'green');
+        var vFumador = $('#fumador').val();
+    }
+
+        var campos = [nombre,apellido,dni,email_1,clave,movil,vGenero,vEdad,vFumador];
+        
+        var datos = {
+            'name': campos[0],
+            'lastname': campos[1],
+            'idn': campos[2],
+            'email': campos[3],
+            'password': campos[4],
+            'movil': campos[5],
+            'gender': campos[6],
+            'age': campos[7],
+            'smoker': campos[8]
+        };        
+        
+        validaEmail(datos);  
+
+
+}        
 function validaEmail(dato){
     $.ajax({
         data:  dato, //datos que se envian a traves de ajax
         url:   HOME+"/procesos/login/validate_email.php", //archivo que recibe la peticion
         type:  'post', //método de envio
-        beforeSend: function () { // carga mientras va hacer la consulta
-                $("#resultado").html("Procesando, espere por favor...");
-                $("#resultado").css('color','green');
-        },
+        // beforeSend: function () { // carga mientras va hacer la consulta
+        //         $("#resultado").html("Procesando, espere por favor...");
+        //         $("#resultado").css('color','green');
+        // },
         success:  function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
                 if (response == 'SI') {
                     $("#resultado").html("Este email ya esta en uso");
                     $("#resultado").css('color','red');
                 }else{
                     $("#resultado").html("");
+                    $('.km-btn-popup-registrarte-nuevo-correo').on('click', function(e) {
+                        e.preventDefault();
+                        $(".popup-registrarte-nuevo-correo").hide();
+                        $(".popup-registrarte-datos-mascota").fadeIn("fast");
+                    });
                 }
         }
-    });
+    });  
 }
 
 function registraUsuario(datos){
@@ -169,10 +182,25 @@ function registraUsuario(datos){
         },
         success:  function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
             $("#guardando").html("Este datos se guardo "+response);
-            $("#guardando").css('color','red');
+            $("#guardando").css('color','blue');
         }
     });
 }
+function vlz_cambio_tipo(){
+    var valor = jQuery("#pet_type").val();
+    if( valor == "2605" ){
+        var opciones = jQuery("#razas_perros").html();
+        jQuery("#pet_breed").html(opciones);
+    }
+    if( valor == "2608" ){
+        var opciones = jQuery("#razas_gatos").html();
+        jQuery("#pet_breed").html(opciones);
+    }
+}
+
+
+
+
 function logear(){
     jQuery.post( 
         HOME+"/procesos/login/login.php", 

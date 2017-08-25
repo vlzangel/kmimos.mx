@@ -43,7 +43,7 @@ $HTML .="
 								</div>
 								<div class='label-placeholder'>
 									<label>Apellido</label>
-									<input type='text' name='apellido' class='input-label-placeholder' data-charset='alf'>
+									<input type='text' name='apellido' id='apellido' class='input-label-placeholder' data-charset='alf'>
 								</div>
 								<div class='label-placeholder'>
 									<label>IFE/Documento de Identidad</label>
@@ -51,38 +51,35 @@ $HTML .="
 								</div>
 								<div class='label-placeholder'>
 									<label>Correo electrónico</label>
-									<span id='resultado'></span>
 									<input type='mail' name='email_1' id='email_1' class='input-label-placeholder' data-charset='espalfnum'>
+									<span id='resultado'></span>
 								</div>
 								<div class='label-placeholder'>
 									<label>Crea tu contraseña</label>
-									<input type='password' name='clave' id='clave'  class='input-label-placeholder'>
+									<input type='password' name='pass' id='pass' min='8' max='20'  class='input-label-placeholder'>
 								</div>
 								<div class='label-placeholder'>
 									<label>Teléfono</label>
 									<input type='text' name='movil' id='movil' class='input-label-placeholder' data-charset='num'>
 								</div>
 								<div class='km-datos-mascota'>
-									<label>Género</label>
 									<select class='km-datos-mascota-opcion' name='genero' id='genero'>
-										<option value=''>Seleccione</option>
+										<option value=''>Género</option>
 										<option value='hombre'>Hombre</option>
 										<option value='mujer'>Mujer</option>
 									</select>
 								</div>
 								<div class='km-datos-mascota'>
-									<label>Edad</label>
 									<select class='km-datos-mascota-opcion' name='edad' id='edad'>
-										<option value=''>Seleccione</option>
+										<option value=''>Edad</option>
 										<option value='18-25'>18-25 años</option>
 										<option value='25-35'>25-35 años</option>
 										<option value='Mayor-46'>Mayor 46 años</option>
 									</select>
 								</div>
 								<div class='km-datos-mascota'>
-									<label>Es Fumador</label>
 									<select class='km-datos-mascota-opcion' name='fumador' id='fumador'>
-										<option value=''>Seleccione</option>
+										<option value=''>Es Fumador</option>
 										<option value='SI'>Si</option>
 										<option value='NO'>No</option>
 									</select>
@@ -115,15 +112,15 @@ $HTML .="
 							<div class='content-placeholder'>
 								<div class='label-placeholder'>
 									<label>Nombre de tu mascota</label>
-									<input type='text' name='nombreMascota' value='' class='input-label-placeholder'>
+									<input type='text' name='pet_name' value='' class='input-label-placeholder'>
 								</div>
 								<div class='km-datos-mascota'>
-									<select class='km-datos-mascota-opcion' name=''>
+									<select class='km-datos-mascota-opcion' name='pet_type' id='pet_type' onchange='vlz_cambio_tipo()'>
 										<option>Tipo de Mascota</option>
-										<option>Mascota A</option>
-										<option>Mascota B</option>
+										<option value='2605'>Perros</option>
+										<option value='2608'>Gatos</option>
 									</select>
-									<select class='km-datos-mascota-opcion' name=''>
+									<select class='km-datos-mascota-opcion' name='pet_breed' id='pet_breed'>
 										<option>Raza de la Mascota</option>
 										<option>Mascota A</option>
 										<option>Mascota B</option>

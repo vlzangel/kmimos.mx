@@ -230,6 +230,47 @@
         background: #98F0DE;
         border-radius: 50px;
     }
+    .popup-tit {
+        font-size: 22px;
+        font-family: 'Gotham-Pro-Bold';
+        margin-bottom: 20px;
+        line-height: 24px;
+    }
+    
+    .km-btn-fb {
+        background-color: #4366B4;
+        border-radius: 5px;
+        color: white;
+        text-align: center;
+        font-size: 12px;
+        display: block;
+        padding: 20px 0;
+        line-height: 100%;
+        margin-bottom: 20px;
+        transition: all .2s ease-in-out;
+        -webkit-transition: all .2s ease-in-out;
+        -moz-transition: all .2s ease-in-out;
+    }
+    .km-btn-border img, .km-btn-fb img {
+        width: 14px;
+        position: relative;
+        top: -2px;
+            left: -5px;
+    }
+    .km-btn-border {
+        border: 1px solid black;
+        border-radius: 5px;
+        color: black;
+        font-size: 12px;
+        text-align: center;
+        display: block;
+        padding: 20px 0;
+        line-height: 100%;
+        /* margin-bottom: 20px; */
+        transition: all .2s ease-in-out;
+        -webkit-transition: all .2s ease-in-out;
+        -moz-transition: all .2s ease-in-out;
+    }
     .km-checkbox input[type=checkbox] {
         visibility: hidden;
     }
@@ -249,4 +290,2267 @@
         -webkit-transition: all 0.4s ease;
         transition: all 0.4s ease;
     }
-    
+.km-btn-primary {
+    background-color: #7DD1C4;
+    border-bottom: 3px solid #33e1be;
+    color: #6B1C9B;
+    position: relative;
+    padding: 17px 0;
+    float: left;
+    border-radius: 8px;
+    font-family: 'Gotham-Pro-Bold',arial,sans-serif;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+    line-height: 21px;
+    transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    z-index: 1;
+}
+.km-btn-primary:hover {
+    background-color: #33e1be;
+    border-bottom: 3px solid #7DD1C4;
+    color: #6B1C9B;
+    text-decoration: none;
+    transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+}
+.km-btn-fb {
+    background-color: #4366B4;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+    font-size: 12px;
+    display: block;
+    padding: 20px 0;
+    line-height: 100%;
+    margin-bottom: 20px;
+    transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+}
+.km-btn-fb:hover {
+    color: white;
+    -webkit-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.13);
+    -moz-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.13);
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.13);
+    transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+}
+.km-btn-border img, .km-btn-fb img {
+    width: 14px;
+    position: relative;
+    top: -2px;
+    left: -5px;
+}
+.km-btn-correo img {
+    width: 14px;
+    position: relative;
+    top: -1px;
+    left: -5px;
+}
+.km-btn-border {
+    border: 1px solid black;
+    border-radius: 5px;
+    color: black;
+    font-size: 12px;
+    text-align: center;
+    display: block;
+    padding: 20px 0;
+    line-height: 100%;
+    /*margin-bottom: 20px;*/
+    transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+}
+.km-btn-border:hover {
+    color: black;
+    -webkit-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.13);
+    -moz-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.13);
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.13);
+    transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+}
+.km-btn-borderw {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0px 5px 0px 0px #480571;
+    color: #6B1C9B;
+    font-family: 'Gotham-Pro-Bold',arial,sans-serif;
+    font-size: 13px;
+    letter-spacing: 1px;
+    display: block;
+    margin: 50px auto 0;
+    line-height: 100%;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    max-width: 300px;
+}
+.km-btn {
+    background-color: #7DD1C4;
+    border-bottom: 3px solid #33e1be;
+    border-radius: 8px;
+    color: #6B1C9B;
+    font-family: 'Gotham-Pro-Bold',arial,sans-serif;
+    font-size: 13px;
+    letter-spacing: 1px;
+    display: block;
+    margin: auto;
+    line-height: 100%;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    max-width: 300px;
+}
+.km-btn-basic {
+    background-color: #33E1BE;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+    display: block;
+    padding: 20px 0;
+    line-height: 100%;
+    /*margin-bottom: 20px;*/
+    transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+}
+.km-btn-basic:hover {
+    color: white;
+-webkit-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.13);
+    -moz-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.13);
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.13);
+    transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+}
+.km-btn-correo {
+    background-color: #33E1BE;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+    display: block;
+    padding: 20px 0;
+    line-height: 100%;
+    margin-bottom: 20px;
+    font-size: 12px;
+    transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+}
+.km-btn-correo:hover {
+    color: white;
+    -webkit-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.13);
+    -moz-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.13);
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.13);
+    transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+}
+.km-btn-secondary {
+    background-color: #6B1C9B;
+    border-bottom: 3px solid #350850;
+    color: white;
+    display: block;
+    padding: 17px 0;
+    line-height: 100%;
+    border-radius: 8px;
+    font-family: 'Gotham-Pro-Medium',arial,sans-serif;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+}
+.km-btn-secondary:hover {
+    background-color: #5b1586;
+    border-bottom: 3px solid #350850;
+    text-decoration: none;
+    color: white;
+}
+.line-o {
+    display: block;
+    text-align: left;
+    margin: 30px 0px 20px;
+}
+.text-line {
+    display: inline-block;
+    text-align: center;
+    background-color: white;
+    padding: 0 20px;
+    left: 45%;
+    position: relative;
+}
+.bg-line {
+    width: 100%;
+    height: 1px;
+    background: #d0d0d0;
+    margin-top: -20px;
+    float: left;
+}
+.pd5 {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.km-link {
+    color: #6B1C9B;
+    text-decoration: underline;
+}
+.mtb-10 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.fixed-bottom {
+    position: fixed;
+    z-index: 99999;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+section {
+    text-align: center;
+    padding: 60px 0;
+}
+
+.km-checkbox {
+  width: 40px;
+  height: 10px;
+  position: relative;
+  background: #98F0DE;
+  border-radius: 50px;
+}
+.km-checkbox label {
+  display: block;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  cursor: pointer;
+  background: #33E1BE;
+  border-radius: 50px;
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+.km-checkbox:after {
+    content: 'RECORDARME';
+    position: absolute;
+    left: 54px;
+    top: -1px;
+}
+.km-checkbox input[type=checkbox] {
+  visibility: hidden;
+}
+.km-checkbox input[type=checkbox]:checked + label {
+  left: 30px;
+}
+
+.popuphide {
+    display: none;
+}
+.km-check-1, .km-check-2, .km-check-3, .km-check-4 {
+    width: 28px;
+    height: 28px;
+    position: relative;
+    background: #fff;
+    border-radius: 50px;
+    box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
+    float: right;
+    top: -10px;
+}
+.km-check-1 label, .km-check-2 label, .km-check-3 label, .km-check-4 label {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  background-color: #ccc;
+  border-radius: 50px;
+}
+.km-check-1 label:after, .km-check-2 label:after, .km-check-3 label:after, .km-check-4 label:after {
+    content: '';
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    background: #33e1be;
+    opacity: 0;
+    border-radius: 50px;
+}
+.km-check-1 label:hover::after, .km-check-2 label:hover::after, .km-check-3 label:hover::after, .km-check-4 label:hover::after {
+  opacity: 0.3;
+}
+.km-check-1 input[type=checkbox], .km-check-2 input[type=checkbox], .km-check-3 input[type=checkbox], .km-check-4 input[type=checkbox] {
+  visibility: hidden;
+}
+.km-check-1 input[type=checkbox]:checked + label:after, .km-check-2 input[type=checkbox]:checked + label:after, .km-check-3 input[type=checkbox]:checked + label:after, .km-check-4 input[type=checkbox]:checked + label:after {
+  opacity: 1;
+}
+.popup-tit {
+    font-size: 22px;
+    font-family: 'Gotham-Pro-Bold';
+    margin-bottom: 20px;
+    line-height: 24px;
+}
+
+/* MENÚ */
+.bg-transparent {
+    background-color: transparent;
+    transition: background-color .5s ease 0s;
+}
+.bg-white {
+    background-color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    height: 68px;
+    transition: background-color .5s ease 0s;
+}
+.bg-white-secondary {
+    background-color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    transition: background-color .5s ease 0s;
+}
+.navbar {
+    padding-top: 30px;
+    min-height: 60px;
+    z-index: 4;
+}
+.navbar .container {
+    position: relative;
+}
+.navbar-brand {
+    padding: 0;
+}
+.navbar-brand>img {
+    position: relative;
+    top: 0;
+}
+.nav>li>a {
+    line-height: 100%!important;
+}
+.nav>li>a:hover {
+    background-color: transparent;
+}
+.nav>li>a.km-btn-primary:hover {
+    background-color: #33e1be;
+}
+.navbar-toggle {
+    margin-top: 0px;
+    margin-right: 0px;
+}
+.nav-login {
+    color: white;
+    position: absolute;
+    top: -20px;
+    right: 0;
+}
+.nav-login {
+    list-style-type: none;
+}
+.nav-login li {
+    display: inline-block;
+}
+.nav-login li a {
+    color: white;
+    font-size: 10px;
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    letter-spacing: 1px;
+}
+.nav-login li a:hover {
+    color: #33E1BE!important;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+}
+.navbar-right {
+    padding-top: 3px;
+}
+.logo-img-mobile {
+    height: 30px;
+}
+.km-nav-link {
+    font-family: 'Gotham-Pro-Medium', arial, sans-serif;
+    color: white;
+    font-size: 12px;
+    text-align: center;
+    text-decoration: none;
+    transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    letter-spacing: 1px;
+}
+.km-nav-link:hover {
+    color: #33E1BE!important;
+    transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    text-decoration: none;
+}
+.datepicker--day-name {
+    color: #6B1C9B;
+    font-weight: 700;
+}
+
+.nav-sesion .navbar-toggle {
+    padding: 3px 10px 0px;
+}
+.nav-sesion ul.navbar-right li:last-child {
+    display: block;
+}
+.nav>li>a:focus {
+    text-decoration: none;
+    background-color: transparent;
+}
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
+    background-color: transparent;
+}
+/* FIN MENÚ */
+
+
+
+/* SECCIÓN 1 - KMIMOS VIDEOS */
+.km-video {
+    position: relative;
+    height: 550px;
+}
+.km-credibilidad {
+    margin-top: -270px;
+}
+.km-credibilidad-titular {
+    color: white;
+    margin: auto;
+    text-align: center;
+}
+.km-credibilidad-titular p {
+    letter-spacing: 1px
+}
+.km-credibilidad-titular h2 {
+    color: white;
+}
+.km-video-bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -100;
+}
+.km-video-bgscreen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: auto;
+    height: auto;
+    min-width: 100%;
+    min-height: 100%;
+    -webkit-transform: translate(-50%, -50%);
+       -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+}
+.km-formulario-cuidador {
+    background-color: white;
+    height: auto;
+    margin: auto;
+    margin-top: 20px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    padding: 30px 50px;
+    width: 100%;
+    max-width: 1012px;
+}
+.km-formulario-cuidador select {
+    border: 1px solid #e5e5e5;
+    color: black;
+    font-size: 11px;
+    letter-spacing: 1px;
+    transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    cursor: pointer;
+    width: 100%;
+    padding: 14px;
+    border-radius: 8px;
+}
+.km-select-wrapper {
+    position: relative;
+    display: inline-block;
+    padding: 14px;
+    margin: 0;
+    overflow: hidden;
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 8px;
+    background-color: white;
+}
+.km-select-wrapper:after {
+    content: url(../images/km-arrow-form.svg);
+    width: 15px;
+    height: 15px;
+    display: block;
+    position: absolute;
+    top: 50%;
+    margin-top: -7.5px;
+    right: 5px;
+    overflow: hidden;
+    color: red;
+    z-index: 10;
+    pointer-events: none;
+    overflow: hidden;
+}
+.km-select-select {
+    appearance: none;
+    position: relative;
+    margin: 0;
+    border-radious: 0;
+    border: none;
+    width: 104%;
+}
+.km-opcion {
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    padding: 14px 0;
+    color: black;
+    font-size: 11px;
+    letter-spacing: 1px;
+    transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+}
+.km-opcion:before {
+    content: "";
+    border-top: 6px solid #fff;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    border-radius: 8px;
+    left: 0;
+    right: 0;
+    transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+}
+.km-opcionactivo {
+    transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+}
+.km-opcionactivo:before {
+    border-color: #33e1be;
+    top: -1px;
+}
+.km-formulario-cuidador img {
+    position: relative;
+    margin-right: 6px;
+    width: 25px;
+    top: -3px;
+}
+.km-opcion-text {
+    display: inline-block;
+    text-align: left;
+    line-height: 1.3;
+    vertical-align: middle;
+}
+.km-servicios .col-sm-3, .km-fechas .col-sm-6, .km-fechas .col-sm-3,.km-tamanio .col-sm-3, .km-servicios-adicionales .col-sm-3 {
+    padding-right: 5px;
+    padding-left: 5px;
+}
+.km-fechas input {
+    width: 100%;
+    padding: 14px 0px 14px 42px;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    margin: 0;
+    background: white;
+    background-image: url(../images/icon/icon-calendario.svg);
+    background-repeat: no-repeat;
+    background-position: 20px center!important;
+}
+.km-fechas input::-webkit-input-placeholder {
+    color: #000!important;
+    font-size: 11px!important;
+    letter-spacing: 1px!important;
+    -webkit-transform: translateY(0px)!important;
+            transform: translateY(0px)!important;
+}
+.km-fechas select {
+    background: url(../images/icon/icon-gps.svg) no-repeat;
+    background-position: 20px;
+    padding-left: 45px;
+}
+.km-servicios-adicionales {
+    margin-top: 30px;
+}
+.dnone {
+    display: none;
+}
+.diblock {
+    display: inline-block;
+}
+.dblock {
+    display: block;
+}
+/* FIN SECCIÓN 1 - KMIMOS VIDEOS */
+
+
+
+
+
+/* SECCIÓN 2 - KMIMOS BENEFICIOS */
+.km-beneficios {
+    text-align: center;
+    margin: 60px 0;
+}
+.km-beneficios-footer {
+    text-align: center;
+    margin: 30px 0;
+}
+.km-beneficios-footer .km-beneficios-icon img {
+    width: 80px;
+}
+.km-bn-img {
+    width: 120px;
+    height: 120px;
+    background-color: grey;
+    margin: auto;
+}
+.km-beneficios .col-xs-12 {
+    margin-bottom: 20px;
+}
+.km-beneficios h4 {
+    margin-bottom: 40px;
+}
+.km-beneficios-text {
+    margin-top: 30px;
+}
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0,0,0,.5);
+    z-index: 2;
+}
+.km-beneficios-icon {
+    text-align: center;
+}
+.km-beneficios-icon img {
+    width: 100%;
+    max-width: 120px;
+}
+
+
+
+
+
+
+/* SECCIÓN  - KMIMOS TESTIMONIALES */
+.km-testimoniales {
+    color: white;
+    height: 600px;
+    text-align: center;
+    position: relative;
+}
+.km-testimoniales .bxslider li {
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 600px;
+    background-color: black;
+    overflow: hidden;
+    position: relative;
+}
+.km-testimoniales .bxslider li video{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: 100%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+.km-testimoniales .bx-controls-direction {
+    display: none;
+}
+.km-testimonial-text {
+    margin: auto;
+    position: relative;
+    z-index: 2;
+    margin-top: 250px;
+    width: 100%;
+    max-width: 650px;
+    top: 40%;
+    letter-spacing: 1px;
+}
+.km-testimonial {
+    font-family: 'Poetsen';
+    font-size: 22px;
+    margin: 30px 0 20px;
+    padding: 0px 10px;
+}
+.km-video-testimonial {
+    margin: auto;
+    width: 55px;
+    height: 55px;
+}
+.km-video-testimonial a img {
+    transition: all .3s ease-in-out;
+}
+.km-video-testimonial a:hover img {
+    transition: all .3s ease-in-out;
+    transform: scale(1.3);
+}
+.bx-wrapper .bx-pager {
+    z-index: 2;
+}
+.bx-wrapper .bx-pager a img {
+    border-radius: 45px;
+}
+.bx-wrapper .bx-pager a {
+    border: solid #ffffff 3px;
+    display: block;
+    margin: 0 15px;
+    border-radius: 45px;
+}
+.bx-wrapper .bx-pager a:hover,
+.bx-wrapper .bx-pager a.active {
+    border: solid #33e1be 3px;
+    border-radius: 45px;
+}
+.bx-wrapper {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: none;
+    margin: 0;
+}
+.km-autor {
+    font-size: 13px;
+    font-family: 'Gotham-Pro-Bold',arial,sans-serif;
+}
+.img-testimoniales {
+position: absolute;
+    margin: 0px;
+    padding: 0px;
+    border: none;
+    width: 100%;
+    height: 600px;
+    max-height: none;
+    max-width: none;
+    z-index: 1;
+    top: 0px;
+    object-fit: cover;
+}
+
+
+
+/* SECCIÓN  - KMIMOS CLUB */
+.km-club {
+    margin: 150px 0 100px;
+}
+.km-club .col-sm-6 {
+    text-align: center;
+}
+.km-club .col-sm-6 h4 {
+    margin-bottom: 0;
+    font-weight: 700;
+}
+.km-club .form-registro {
+    margin-top: 25px;
+}
+.km-club .form-registro fieldset {
+    margin-bottom: 30px;
+}
+.km-club .form-registro fieldset:last-child {
+    margin-bottom: 60px;
+}
+/* SECCIÓN  - KMIMOS VACACIONES */
+.km-vacaciones {
+    background: url(../images/km-vacaciones.gif) no-repeat;
+    background-size: cover;
+    background-position: center center;
+    color: white;
+    text-align: center;
+    padding: 150px 0;
+    height: 600px;
+}
+.km-vacaciones p, .km-vacaciones h2 {
+    letter-spacing: 1px;
+}
+.km-vacaciones h2 {
+    color: white;
+}
+.km-vacaciones a {
+    width: 100%;
+    background-color: white;
+    padding: 10px 0;
+    display: block;
+    border-radius: 8px;
+}
+.km-vacaciones .col-sm-6 {
+    margin: 20px 0;
+}
+
+/*POPUP SERVICIOS*/
+#popup-servicios {
+    text-align: center;
+}
+#popup-servicios .modal-dialog {
+    width: 100%;
+    padding: 10px;
+    max-width: 850px;
+}
+#popup-servicios .modal-content {
+    padding: 30px 50px;
+}
+#popup-servicios .km-opcion {
+    padding: 20px 0;
+}
+#popup-servicios .km-btn-primary {
+    line-height: 18px;
+}
+#popup-servicios .km-opcion img {
+        position: relative;
+    margin-right: 6px;
+    width: 25px;
+    top: -3px;
+}
+button.close {
+    position: absolute;
+    right: -40px;
+    top: 0;
+    font-size: 40px;
+    color: white;
+    opacity: 1;
+}
+.close:hover {
+    color: white;
+}
+
+.km-premium {
+    margin: 30px 0 50px;
+}
+.km-premium .bx-wrapper {
+    max-width: 100%!important;
+}
+
+
+
+/* SEARCH */
+.header-search{
+    width: 100%;
+    height: 320px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    z-index: -1;
+}
+
+.contentenedor-buscador-todos{
+    margin-top: -138px;
+}
+
+.km-contentido-formulario-buscador{
+    width: 100%;
+    margin: 0 auto;
+    max-width: 844px;
+}
+
+.km-formulario-buscador{
+    padding-bottom: 0;
+}
+
+.km-bloque-cajas{
+    height: 47px;
+    background: #FFF;
+    line-height: 47px;
+
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+
+    -webkit-box-shadow: 0 4px 4px 0 rgba(0,0,0,0.25);
+    -moz-box-shadow: 0 4px 4px 0 rgba(0,0,0,0.25);
+    box-shadow: 0 4px 4px 0 rgba(0,0,0,0.25);
+}
+
+.km-select-custom{
+    border: none;
+    background-color: #FFF;
+    background-size: 14px 13px;
+    background-repeat: no-repeat;
+    background-position: calc(100% - 9px) 50%;
+    background-image: url(../images/km-arrow-form.svg);
+    border-right: 1px solid rgba(0, 0, 0, .2);
+
+    -webkit-border-radius: 6px 0px 0px 6px;
+    -moz-border-radius: 6px 0px 0px 6px;
+    border-radius: 6px 0px 0px 6px;
+
+    appearance:none;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+}
+
+.km-search-slider{
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+.km-search-slider .km-search-title{
+    font-size: 11px;
+    line-height: 32px;
+}
+
+.km-search-slider .item-slide{
+    width: 100%;
+    color: #FFFFFF;
+    min-height: 220px;
+    position: relative;
+}
+
+.km-search-slider .item-slide .slide-mask{
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    opacity: 0.7;
+    position: absolute;
+    background: #333333;
+}
+
+.km-search-slider .item-slide .slide-content{
+    z-index: 1;
+    display: block;
+    min-height: 220px;
+    position: relative;
+    padding: 10px 15px;
+}
+
+.km-search-slider .item-slide .slide-content .slide-price-distance{
+    text-align: right;
+}
+
+.km-search-slider .item-slide .slide-content .slide-price-distance .slide-price{
+    font-size: 9px;
+    line-height: 20px;
+}
+
+.km-search-slider .item-slide .slide-content .slide-profile{
+    margin-top: 20px;
+}
+
+.km-search-slider .item-slide .slide-content .slide-profile .slide-profile-image{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+.km-search-slider .item-slide .slide-content .slide-name{
+    padding: 10px 0 3px 0;
+}
+
+.km-search-slider .item-slide .slide-content .slide-expertice{
+    font-size: 9px;
+}
+
+.km-search-slider .item-slide .slide-content .slide-ranking{
+    padding: 10px 0 12px 0;
+}
+
+.km-search-slider .item-slide .slide-content .slide-ranking .km-ranking a{
+    background-image: url(../images/icon/icon-hueso-yellow.svg);
+}
+
+.km-search-slider .item-slide .slide-content .slide-ranking .km-ranking a.active{
+    background-image: url(../images/icon/icon-hueso-color-yellow.svg);
+}
+
+.km-search-slider .item-slide .slide-content .slide-buttons a{
+    float: left;
+    display: block;
+    border: 1px solid #FFF;
+    width: 49%;
+    border-radius: 5px;
+    text-align: center;
+    color: #FFF;
+    font-size: 10px;
+    line-height: 25px;
+}
+
+.km-search-slider .item-slide .slide-content .slide-buttons a:last-child{
+    float: right;
+}
+
+.km-search-slider .item-slide .slide-content .slide-buttons::after{
+    clear: both;
+    content: "";
+    display: table;
+}
+
+.km-search-slider .item-slide .slide-content .slide-price-distance .slide-price span{
+    font-size: 11px;
+    font-family: 'Gotham-Pro-bold', arial, sans-serif;
+}
+
+.km-search-slider .item-slide .slide-content .slide-price-distance .slide-distance{
+    font-size: 8px;
+}
+
+.km-btn-primary-new{
+    background-color: transparent;
+    border: 1px solid #7DD1C4;
+    color: #6B1C9B;
+    position: relative;
+    float: left;
+    border-radius: 8px;
+    font-family: 'Gotham-Pro',arial,sans-serif;
+    letter-spacing: 1px;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+    transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    z-index: 1;
+
+    padding: 0;
+    height: 34px;
+    line-height: 34px;
+    font-size: 10px;
+    font-weight: 300;
+}
+
+.km-opciones .km-btn-primary-new{
+    margin-top: 9px;
+}
+
+.km-search-slider .bx-controls .bx-pager{
+    display: none;
+}
+
+.km-btn-primary-new.basic,
+.km-btn-primary-new:hover{
+    color: #FFFFFF;
+    border-color: #6B1C9B;
+    background-color: #6B1C9B;
+    text-decoration: none;
+}
+
+.km-btn-primary-new.basic:hover{
+    text-decoration: underline;
+}
+
+.km-div-ubicacion{
+    float: left;
+    width: 42.890995%;
+}
+
+.km-div-fechas{
+    float: left;
+    width: 32.938389%;
+}
+
+.km-div-enviar{
+    float: right;
+    width: 24.170616%;
+}
+
+.km-div-ubicacion select{
+    width: 100%;
+    padding-left: 6.077348%;
+    padding-right: 10.220994%;
+}
+
+.km-div-fechas:after{
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.km-input-custom{
+    margin: 0;
+    padding: 0;
+    width: auto;
+    border: none;
+    color: #000000;
+    background: #FFF;
+    display: inline-block;
+}
+.km-input-custom::-webkit-input-placeholder {
+    color: #000000!important;
+    -webkit-transform: translateY(0px)!important;
+            transform: translateY(0px)!important;
+}
+.km-input-custom::-moz-placeholder {
+    color: #000000!important;
+    -webkit-transform: translateY(0px)!important;
+            transform: translateY(0px)!important;
+}
+.km-input-custom:-ms-input-placeholder {
+    color: #000000!important;
+    -webkit-transform: translateY(0px)!important;
+            transform: translateY(0px)!important;
+}
+.km-input-custom:-moz-placeholder {
+    color: #000000!important;
+    -webkit-transform: translateY(0px)!important;
+            transform: translateY(0px)!important;
+}
+
+.km-div-fechas .date_from {
+    width: 50%;
+    padding-left: 2.758621%;
+    padding-right: 13.533835%;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    background-image: url(../images/icon/icon-calendario.svg)!important;
+}
+
+.km-div-fechas .date_to{
+    width: 50%;
+    padding-left: 2.758621%;
+    padding-right: 13.533835%;
+    background-image: url(../images/icon/icon-calendario.svg);
+}
+
+.km-submit-custom{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    border: none;
+    height: 100%;
+    display: block;
+    color: #6B1C9B;
+    background: #7DD1C4;
+
+    -webkit-border-radius: 0px 6px 6px 0px;
+    -moz-border-radius: 0px 6px 6px 0px;
+    border-radius: 0px 6px 6px 0px;
+
+    appearance:none;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+}
+
+.km-div-fechas .km-input-custom{
+    float: left;
+    background-size: 16px 17px;
+    background-repeat: no-repeat;
+    background-position: calc(100% - 18px) 50%;
+}
+
+.km-div-filtro{
+    padding-top: 41px;
+}
+
+.km-div-filtro .km-titulo-filtro{
+    color: #FFFFFF;
+    font-size: 11px;
+    font-family: 'Gotham-Pro-Medium',arial,sans-serif;
+    padding-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.km-cajas-filtro::after{
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.km-cajas-filtro .km-caja-filtro{
+    float: left;
+    height: 38px;
+    width: 23%;
+    line-height: 38px;
+    margin-right: 2.666666%;
+}
+
+.km-cajas-filtro .km-caja-filtro:last-child{
+    margin-right: 0%;
+}
+
+.km-cajas-filtro .km-caja-filtro select,
+.km-cajas-filtro .km-caja-filtro input{
+    width: 100%;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding-left: 7%;
+    -webkit-box-shadow: 0 4px 4px 0 rgba(0,0,0,0.25);
+    -moz-box-shadow: 0 4px 4px 0 rgba(0,0,0,0.25);
+    box-shadow: 0 4px 4px 0 rgba(0,0,0,0.25);
+}
+
+.km-cajas-filtro .km-caja-filtro input{
+    background-size: 18px;
+    background-repeat: no-repeat;
+    background-position: 92% 50%;
+    background-image: url(../images/km-buscador.svg);
+    padding-right: 18%;
+}
+
+.km-cajas-filtro .km-input-custom::-webkit-input-placeholder {
+    font-size: 10px!important;
+}
+.km-cajas-filtro .km-input-custom::-moz-placeholder {
+    font-size: 10px!important;
+}
+.km-cajas-filtro .km-input-custom:-ms-input-placeholder {
+    font-size: 10px!important;
+}
+.km-cajas-filtro .km-input-custom:-moz-placeholder {
+    font-size: 10px!important;
+}
+
+.km-caja-resultados{
+    padding-top: 41px;
+    padding-bottom: 20px;
+    position: relative;
+}
+
+.km-caja-resultados::after{
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.km-caja-resultados .km-columna-izq{
+    float: left;
+    width: 58.528428%;
+}
+
+.km-caja-resultados .km-columna-der{
+    float: right;
+    width: 38.879599%;
+}
+
+.km-superior-resultados::after,
+.km-opciones-resultados::after{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.km-opciones-resultados{
+    float: right;
+    /*width: 215px;*/
+}
+
+.km-texto-resultados{
+    float: left;
+    margin-top: 7px;
+}
+
+.km-opciones-resultados .km-orden-resultados{
+    float: right;
+}
+
+.km-opciones-resultados .km-orden-resultados select{
+    width: 173px;
+    font-size: 10px;
+    padding-left: 7%;
+    line-height: 30px;
+    border: 1px solid rgba(0, 0, 0, .2);
+
+    -webkit-border-radius: 6px;
+       -moz-border-radius: 6px;
+            border-radius: 6px;
+}
+
+.km-opciones-resultados .km-vista-resultados{
+    float: left;
+    margin-top: 10.5px;
+}
+
+.km-opciones-resultados .km-vista-resultados::after{
+    clear: both;
+    content: "";
+    display: table;
+}
+
+.km-opciones-resultados .km-vista-resultados a{
+    float: left;
+    width: 9px;
+    height: 9px;
+    overflow: hidden;
+    background-size: 9px;
+    text-indent: -9999px;
+    display: inline-block;
+    background-position: center;
+}
+
+.km-opciones-resultados .km-vista-resultados a:last-child{
+    margin-left: 8px;
+}
+
+.km-opciones-resultados .km-vista-resultados .view-list{
+    background-image: url(../images/icon/icon-view-list.svg);
+}
+
+.km-opciones-resultados .km-vista-resultados .view-grid{
+    background-image: url(../images/icon/icon-view-grid.svg);
+}
+
+.km-opciones-resultados .km-vista-resultados .view-list:hover,
+.km-opciones-resultados .km-vista-resultados .view-list.active{
+    background-image: url(../images/icon/icon-view-list-hover.svg);
+}
+
+.km-opciones-resultados .km-vista-resultados .view-grid:hover,
+.km-opciones-resultados .km-vista-resultados .view-grid.active{
+    background-image: url(../images/icon/icon-view-grid-hover.svg);
+}
+
+.km-item-resultado::after{
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.km-resultados-lista .km-item-resultado .km-foto,
+.km-resultados-lista .km-item-resultado .km-descripcion,
+.km-resultados-lista .km-item-resultado .km-opciones{
+    float: left;
+}
+
+.km-resultados-lista .km-item-resultado .km-foto{
+    width: 32.285714%;
+}
+
+.km-resultados-lista .km-item-resultado .km-descripcion{
+    width: 61.675127%;
+}
+
+.km-resultados-lista .km-item-resultado .km-opciones{
+    width: 38.324873%;
+}
+
+.km-item-resultado{
+    margin: 18px 0 36px;
+
+    -webkit-box-shadow: 0 4px 4px 0 rgba(0,0,0,0.10);
+    -moz-box-shadow: 0 4px 4px 0 rgba(0,0,0,0.10);
+    box-shadow: 0 4px 4px 0 rgba(0,0,0,0.10);
+}
+
+.km-foto{
+    position: relative;
+}
+
+.km-item-resultado.active .km-foto::before{
+    content: "";
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 5px;
+    z-index: 2;
+    background: #7DD1C4;
+    position: absolute;
+}
+
+.km-foto img{
+    width: 100%;
+    position: relative;
+}
+
+.km-foto .km-contenedor-favorito{
+    top: 0;
+    right: 0;
+    width: 53px;
+    height: 53px;
+    position: absolute;
+    background-image: url(../images/bg-foto-resultados.png);
+}
+
+.km-foto .km-contenedor-favorito a{
+    top: 8px;
+    right: 8px;
+    width: 16px;
+    height: 15px;
+    position: absolute;
+    background: url(../images/icon/icon-favorito.png) no-repeat center center;
+}
+
+.km-foto .km-contenedor-favorito a:hover,
+.km-foto .km-contenedor-favorito a.active{
+    background-image: url(../images/icon/icon-favorito-color.png);
+}
+
+.km-ranking::after{
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.km-ranking a{
+    float: left;
+    width: 20px;
+    height: 9px;
+    background: url(../images/icon/icon-hueso.svg) no-repeat center center;
+    background-size: 20px 9px;
+}
+
+.km-ranking a.active{
+    background-image: url(../images/icon/icon-hueso-color.svg);
+}
+.km-contenedor-descripcion-opciones::after{
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.km-contenedor-descripcion-opciones{
+    float: right;
+    width: 67.714286%;
+}
+.km-descripcion{
+    padding-top: 24px;
+    padding-left: 16px;
+}
+
+.km-descripcion h1{
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    font-family: 'Gotham-Pro-Bold',arial,sans-serif;
+}
+
+.km-descripcion p{
+    margin: 0;
+    padding: 5px 0;
+    font-size: 10px;
+}
+
+.km-sellos{
+    padding-top: 36px;
+}
+
+.km-opciones{
+    padding-top: 20px;
+    padding-bottom: 10px;
+    padding-right: 3%;
+    text-align: right;
+}
+
+.km-opciones .km-btn-primary{
+    margin-top: 9px;
+}
+
+.km-opciones .km-btn-primary.basic,
+.km-opciones .km-btn-primary.stroke{
+    padding: 0;
+    height: 34px;
+    line-height: 34px;
+    font-size: 10px;
+}
+
+.km-opciones .km-btn-primary.stroke{
+    font-weight: 400;
+    border: 1px solid #7DD1C4;
+}
+
+.km-opciones .km-btn-primary:hover{
+    text-decoration: none;
+}
+
+.km-opciones .precio{
+    color: #6A2499;
+    font-size: 17px;
+}
+
+.km-opciones .distancia{
+    font-size: 10px;
+    margin-bottom: 10px;
+}
+
+.km-titulo-mapa{
+    font-size: 12px;
+    line-height: 32px;
+}
+
+
+.km-resultados-grid::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.km-resultados-grid .km-item-resultado{
+    float: left;
+    width: 31.333333%;
+    margin-bottom: 9px;
+
+    -webkit-box-shadow: 0 4px 4px 0 rgba(0,0,0,0.10);
+    -moz-box-shadow: 0 4px 4px 0 rgba(0,0,0,0.10);
+    box-shadow: 0 4px 4px 0 rgba(0,0,0,0.10);
+}
+
+.km-resultados-grid .km-item-resultado{
+    margin-right: 3%;
+}
+
+.km-resultados-grid .km-item-resultado:nth-child(3n){
+    margin-right: 0%;
+}
+
+.km-resultados-grid .km-item-resultado .km-descripcion{
+    padding: 10px 16px;
+    min-height: 125px;
+}
+
+.km-resultados-grid .km-item-resultado .km-descripcion .km-sellos{
+    padding-top: 15px;
+}
+
+.km-resultados-grid .km-item-resultado .km-descripcion .km-buttons::after{
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.km-resultados-grid .km-item-resultado .km-descripcion .km-buttons a{
+    float: left;
+    width: 49%;
+    font-size: 10px;
+    text-align: center;
+    display: block;
+    border: 1px solid #7DD1C4;
+    line-height: 31px;
+    border-radius: 5px;
+    color: #7DD1C4;
+}
+
+.km-resultados-grid .km-item-resultado .km-descripcion .km-buttons{
+    padding-top: 15px;
+}
+
+.km-resultados-grid .km-item-resultado .km-descripcion .km-buttons a:last-child{
+    float: right;
+}
+
+.km-resultados-grid .km-item-resultado .km-descripcion .km-buttons a.active,
+.km-resultados-grid .km-item-resultado .km-descripcion .km-buttons a:hover{
+    background: #7DD1C4;
+    color: #FFFFFF;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* KM FICHA CUIDADOR */
+.showMap{
+    display: block!important;
+}
+.show-map-mobile {
+    margin: 10px 0 30px;
+}
+.km-map-close{
+    display: none;
+}
+
+.km-ficha-bg {
+    width: 100%;
+    height: 235px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    z-index: -1;
+}
+
+.km-ficha-info-cuidador {
+    margin-top: -70px;
+}
+.km-ficha-info-cuidador .container {
+    position: relative;
+}
+.km-ficha-info-cuidador .col-sm-6 {
+    margin-top: 80px;
+}
+.km-ficha-info-cuidador .km-ranking, .km-ficha-icon .km-ranking-cuidador {
+    display: inline-block;
+}
+.km-ficha-icon {
+    margin-bottom: 10px;
+}
+.km-ficha-icon .km-ranking-cuidador p {
+    background: url(../images/icon/icon-hueso.svg) no-repeat center center;
+    float: left;
+    width: 40px;
+    height: 20px;
+    background-size: 40px 17px;
+    margin-bottom: 0;
+}
+.km-ficha-icon .km-ranking-cuidador p.active{
+    background-image: url(../images/icon/icon-hueso-color.svg);
+}
+.km-ficha-info-cuidador .km-ficha-cuidador {
+    text-align: center;
+}
+.km-ficha-info-cuidador .km-ficha-cuidador img {
+    max-width: 200px;
+}
+.banner-servicio img {
+    width: 100%;
+}
+.km-ficha-info {
+    margin-top: 20px;
+}
+.km-tit-cuidador {
+    font-family: 'Gotham-Pro-Bold';
+    font-size: 25px;
+}
+.km-link-comentarios {
+    font-size: 10px;
+    color: rgb(142, 142, 142);
+    text-decoration: underline;
+    display: inline-block;
+    vertical-align: middle;
+}
+.km-tit-ficha {
+    font-size: 13px;
+    font-family: 'Gotham-Pro-Bold';
+    margin-bottom: 0;
+}
+.km-ficha-fechas {
+    margin-bottom: 10px;
+}
+.km-ficha-fechas input {
+    width: 48%;
+    padding: 14px 0px 14px 42px;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    margin: 0;
+    display: inline-block;
+    background: white;
+    background-image: url(../images/icon/icon-calendario.svg);
+    background-repeat: no-repeat;
+    background-position: 20px center!important;
+}
+.km-ficha-fechas input::-webkit-input-placeholder {
+    color: #000!important;
+    font-size: 11px!important;
+    letter-spacing: 1px!important;
+    -webkit-transform: translateY(0px)!important;
+            transform: translateY(0px)!important;
+}
+.km-ficha-fechas input::-webkit-input-placeholder {
+    color: #000!important;
+    font-size: 11px!important;
+    letter-spacing: 1px!important;
+    -webkit-transform: translateY(0px)!important;
+            transform: translateY(0px)!important;
+}
+.km-ficha-fechas input::-webkit-input-placeholder {
+    color: #000!important;
+    font-size: 11px!important;
+    letter-spacing: 1px!important;
+    -webkit-transform: translateY(0px)!important;
+            transform: translateY(0px)!important;
+}
+.km-ficha-fechas input::-webkit-input-placeholder {
+    color: #000!important;
+    font-size: 11px!important;
+    letter-spacing: 1px!important;
+    -webkit-transform: translateY(0px)!important;
+            transform: translateY(0px)!important;
+}
+
+
+.km-galeria-cuidador {
+    margin: 10px 0 30px;
+}
+.km-galeria-cuidador .bx-wrapper {
+    max-width: 100%!important;
+}
+.km-galeria-cuidador .bx-pager {
+    display: none;
+}
+.km-ficha-servicio {
+    background-color: #fafafa;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    margin: 10px 0 30px;
+    width: 100%;
+}
+.km-ficha-servicio .servicio-tit {
+    color: #6B1C9B;
+    margin-bottom: 10px;
+}
+.km-ficha-servicio .servicio-tit img, .km-ficha-servicio .servicio-tit div {
+    display: inline-block;
+    vertical-align: middle;
+}
+.km-ficha-servicio .servicio-tit div {
+    margin-left: 10px;
+}
+.km-servicio-opcion {
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    padding: 14px 0;
+    color: #929292;
+    font-size: 11px;
+    letter-spacing: 1px;
+    transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.km-servicio-opcion:before {
+    content: "";
+    border-top: 6px solid #fafafa;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    border-radius: 8px;
+    left: 0;
+    right: 0;
+    transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+}
+.km-servicio-opcionactivo {
+    transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+    color: black;
+}
+.km-servicio-opcionactivo:before {
+    border-color: #33e1be;
+    top: -1px;
+}
+.km-servicio-opcion img {
+    width: 25px;
+}
+.km-servicio-opcion .km-servicio-desc {
+    display: inline-block;
+    width: 66%;
+}
+.km-servicio-opcion .km-servicio-costo {
+    display: inline-block;
+    width: 30%;
+}
+
+
+
+.km-review {
+    text-align: center;
+    margin-top: 30px;
+}
+.km-review-categoria {
+    margin-bottom: 20px;
+}
+.km-review-categoria .col-xs-6 {
+    margin-top: 10px;
+}
+.km-review-categoria .km-ranking-usuario p {
+    background: url(../images/icon/icon-hueso.svg) no-repeat center center;
+    float: left;
+    width: 18px;
+    height: 9px;
+    background-size: 16px 9px;
+}
+.km-ranking-usuario p.active{
+    background-image: url(../images/icon/icon-hueso-color.svg);
+}
+.km-review-categoria p {
+    font-family: 'Gotham-Pro-Medium';
+    font-size: 11px;
+    margin-bottom: 0;
+}
+.km-calificacion {
+    display: inline-block;
+    font-size: 70px;
+    font-family: 'Gotham-Pro-Bold';
+    line-height: 100%;
+}
+.km-calificacion-icono {
+    display: inline-block;
+    text-align: left;
+    margin-left: 20px;
+    vertical-align: baseline;
+}
+.km-comentario {
+    margin-top: 30px;
+    border-bottom: 1px solid #929292;
+}
+.km-comentario:last-child {
+    border: none;
+}
+.km-comentario .col-xs-2 {
+    padding-right: 0;
+}
+.km-comentario .col-xs-2 .km-foto-comentario-cuidador {
+    border-radius: 100%;
+    width: 100%;
+}
+
+a.km-btn-comentario {
+    height: 45px;
+    border: 1px solid black;
+    border-radius: 8px;
+    line-height: 45px;
+    font-family: 'Gotham-Pro-Bold';
+    text-align: center;
+    display: block;
+    color: black;
+    margin: 20px 0;
+}
+.km-desc-ficha-text {
+    margin: 10px 0 20px;
+}
+.km-desc-ficha-text img {
+    display: inline-block;
+    vertical-align: baseline;
+    margin-right: 10px;
+}
+.km-desc-ficha-text .km-desc-ficha {
+    display: inline-block;
+}
+.km-desc-ficha p:first-child {
+    font-size: 9px;
+    margin: 0;
+}
+.km-desc-ficha p:last-child {
+    font-size: 15px;
+    margin: 0;
+}
+.km-costo {
+    background-color: white;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px 20px;
+    width: 300px;
+}
+.km-costo p {
+    padding-top: 10px;
+    margin: 0;
+}
+.km-tit-costo {
+    font-size: 25px;
+    font-family: 'Gotham-Pro-Bold';
+}
+
+
+/* SECCIÓN MEDIOS */
+.km-medios {
+    text-align: center;
+    padding: 40px 0;
+}
+.km-medios h4 {
+    margin-bottom: 40px;
+}
+.km-medios img {
+    width: 100%;
+    max-width: 230px;
+}
+/* FIN SECCIÓN MEDIOS */
+
+
+
+/* PÁGINA QUIERO SER CUIDADOR */
+.km-hero-bg {
+    width: 100%;
+    height: 550px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    z-index: 1;
+}
+.km-titular-cuidador {
+    color: white;
+    position: relative;
+    text-align: center;
+    top: 270px;
+    z-index: 4;
+}
+.km-titular-cuidador h2{
+    color: white;
+}
+/* SECCIÓN CÓMO SER CUIDADOR */
+.km-comosoycuidador {
+    background-color: #6B1C9B;
+    color: white;
+}
+.km-comosoycuidador h4 {
+    color: white;
+}
+/* FIN SECCIÓN CÓMO SER CUIDADOR */
+
+/* POPUPS REGISTRO */
+.popup-registro-cuidador, .popup-registro-cuidador-correo, .popup-registro-cuidador-paso1, .popup-registro-cuidador-paso2, .popup-registro-cuidador-paso3, .popup-iniciar-sesion-1, .popup-registrarte-1, .popup-registrarte-nuevo-correo, .popup-olvidaste-contrasena, .popup-registrarte-datos-mascota, .popup-registrarte-final,
+.popup-conocemas-cuidador {
+    padding: 40px;
+}
+
+.popup-content-cuidador{
+    display: none;
+}
+
+.popup-content-cuidador.active{
+    display: block;
+}
+
+.form-registro {
+    text-align: left;
+    margin-bottom: 30px;
+}
+.form-registro fieldset {
+  position: relative;
+  border: none;
+}
+
+.form-registro label {
+  position: absolute;
+  top: 30px;
+  color: rgba(0, 0, 0, 0.3);
+  -webkit-transform-origin: left;
+  -moz-transform-origin: left;
+  transform-origin: left;
+  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+}
+
+.form-registro input:focus ~ label {
+  color: #7DD1C4;
+}
+
+.form-registro input:focus ~ label, .form-registro input:valid ~ label {
+    top: 15px;
+    -webkit-transform: scale(0.7, 0.7);
+    -moz-transform: scale(0.7, 0.7);
+    transform: scale(0.7, 0.7);
+}
+
+.form-registro input {
+  font-size: 15px;
+  width: 100%;
+  border: none;
+  margin-top: 30px;
+}
+
+.form-registro input:focus {
+  outline: none;
+}
+
+.form-registro .after {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, #7DD1C4 50%, transparent 50%);
+  background-color: rgba(0, 0, 0, 0.3);
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  transition: all 0.6s ease;
+}
+
+.form-registro  input:focus ~ .after {
+  background-position: 0 0;
+}
+
+
+
+
+.datepickers-container {
+    z-index: 999999;
+}
+.km-box-form {
+    margin-bottom: 20px;
+}
+.km-box-form .label-placeholder {
+    position: relative;
+    padding-top: 16px;
+}
+
+.km-box-form .label-placeholder label{
+    left: 0;
+    top: 30px;
+    z-index: 0;
+    font-size: 15px;
+    font-weight: 300;
+    position: absolute;
+    font-family: "Gotham-Pro-Regular", Arial, serif;
+    color: #979797;
+    transition: all 0.15s ease-in;
+    margin-bottom: 0;
+    font-weight: bold;
+}
+
+.km-box-form .label-placeholder input {
+    z-index: 1;
+    position: relative;
+    width: 100%;
+    height: 40px;
+    border: none;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    background: transparent;
+    font-family: "Gotham-Pro-Regular", Arial, serif;
+    border-bottom: 1px solid #CCCCCC;
+}
+
+.km-box-form .label-placeholder.focus label,
+.km-box-form .label-placeholder.focused label {
+    top: 12px;
+    font-size: 11px;
+}
+
+.km-box-form .content-placeholder::after{
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.km-box-form .content-placeholder .label-placeholder{
+    width: 100%;
+}
+.km-fecha-nacimiento input {
+    width: 100%;
+    padding: 24px 0px 3px 25px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    margin: 0;
+    background: white;
+    background-image: url(../images/icon/icon-calendario.svg);
+    background-repeat: no-repeat;
+    background-position: 0px 22px!important;
+}
+.km-fecha-nacimiento input::-webkit-input-placeholder {
+    font-size: 15px;
+    font-family: "Gotham-Pro-Regular", Arial, serif;
+    color: #979797;
+    -webkit-transform: translateY(0px)!important;
+            transform: translateY(0px)!important;
+}
+.km-fecha-nacimiento select {
+    background: url(../images/icon/icon-gps.svg) no-repeat;
+    background-position: 20px;
+    padding-left: 45px;
+}
+
+.km-registro-checkbox {
+    margin-top: 30px;
+}
+.km-registro-checkbox-opcion {
+    width: 48%;
+    display: inline-block;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 30px;
+}
+.km-registro-checkbox .km-registro-checkbox-opcion:first-child {
+    margin-right: 15px;
+}
+.km-registro-checkbox-opcion p { 
+    font-size: 15px;
+    font-family: "Gotham-Pro-Regular", Arial, serif;
+    color: #979797;
+}
+.km-registro-checkbox-opcion p, .km-registro-checkbox-opcion .roundedOne {
+    display: inline-block;
+}
+
+.popup-registro-exitoso, .popup-registro-exitoso-final {
+    background: url(../images/km-registro/registro-exitoso.jpg) no-repeat;
+    height: 650px;
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+}
+.popup-registro-exitoso-text {
+    z-index: 3;
+    position: relative;
+    color: white;
+    text-align: center;
+    padding: 200px 10px 0;
+}
+.popup-registro-cuidador-paso1, .popup-registro-cuidador-paso2, .popup-registro-cuidador-paso3 {
+    text-align: center;
+    position: relative;
+}
+.popup-registro-cuidador-paso1 a img {
+    width: 150px;
+    margin-bottom: 30PX;
+}
+.popup-registro-cuidador-paso1 textarea {
+    width: 100%;
+    height: 200px;
+    margin: 20px 0;
+    resize: none;
+}
+.km-registro-tip {
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    bottom: 150px;
+    right: 30px;
+    border-radius: 45px;
+    background: url(../images/icon/icon-tip.svg) no-repeat center center;
+    background-size: 32px;
+}
+.km-recordatorio {
+    margin: 20px 0;
+}
+.km-cantidad {
+    background-color: transparent!important;
+}
+.km-cantidad .disabled {
+    cursor: default;
+    color: rgba(0, 0, 0, 0.2);
+    border-color: rgba(0, 0, 0, 0.2);
+}
+.km-cantidad .km-minus, .km-cantidad .km-plus{
+    width: 20px;
+    color: #33E1BE;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 50%;
+    border: 1px solid #33E1BE;
+    text-decoration: none;
+}
+.km-cantidad .km-content-step .km-content-new-pet {
+    border: none!important;
+    padding: 0!important;
+}
+.km-cantidad .km-content-step {
+    padding: 0!important;
+}
+.km-block {
+    width: 100%;
+    margin-top: 30px;
+}
+.km-block .km-block-1, .km-block .km-block-2 {
+    width: 48%;
+    display: inline-block;
+    vertical-align: middle;
+}
+.km-block .km-block-1 p {
+    margin: 0;
+    text-align: left;
+}
+.km-block .km-block-2 {
+    text-align: right;
+}
+
+textarea.popup-conoce-textarea {
+    width: 100%;
+    height: 100px;
+    margin: 20px 0;
+    resize: none;
+}
+
+/* FIN POPUPS REGISTRO */
+/* FIN PÁGINA QUIERO SER CUIDADOR */
+
+/*POPUPS REGISTRO CLIENTE*/
+.km-datos-foto {
+    text-align: center;
+    margin: 20px 0 0;
+}
+.km-datos-foto img {
+    width: 120px;
+}
+
+.km-datos-mascota::after{
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.km-datos-mascota {
+    width: 100%;
+    line-height: 38px;
+}
+
+.km-datos-mascota select {
+    width: 100%;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 0px;
+    font-size: 13px;
+    color: #b2b2b2;
+    margin-top: 15px;
+    border-bottom: 1px solid #ccc;
+    font-size: 15px;
+    font-family: "Gotham-Pro-Regular", Arial, serif;
+    color: #979797;
+}
+
+.km-datos-mascota input{
+    background-size: 18px;
+    background-repeat: no-repeat;
+    background-position: 92% 50%;
+    background-image: url(../images/km-buscador.svg);
+    padding-right: 18%;
+}
+.km-datos-mascota-opcion {
+    border: none;
+    background-color: #FFF;
+    background-size: 14px 13px;
+    background-repeat: no-repeat;
+    background-position: calc(100% - 9px) 50%;
+    background-image: url(../images/km-arrow-form.svg);
+    appearance:none;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+}
+.popup-registrarte-final {
+    text-align: center;
+} 
+.popup-registrarte-final img {
+    margin: 20px;
+    width: 150px;
+}
+/* FIN POPUPS REGISTRO CLIENTE*/
+.km-div-fechas .date_from {
+    width: 50%;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    background-image: url(../images/new/icon/icon-calendario.svg)!important;
+}

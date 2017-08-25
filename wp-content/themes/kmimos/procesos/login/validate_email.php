@@ -5,7 +5,7 @@
 	
     $errores = array();
     
-    $email = $_POST['dato'];
+    $email = $_POST['email'];
 	
     if ($conn->connect_error) {
         echo 'false';
