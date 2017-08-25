@@ -85,6 +85,5 @@
 		include_once('partes/modal_login.php');
 	}
 	include_once('partes/modal_register.php');
-	include_once('procesos/login/mascota.php');
 
 	echo comprimir_styles($HTML);

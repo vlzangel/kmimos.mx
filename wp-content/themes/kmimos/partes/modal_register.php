@@ -47,7 +47,7 @@ $HTML .="
 								</div>
 								<div class='label-placeholder'>
 									<label>IFE/Documento de Identidad</label>
-									<input type='text' name='dni' id='dni' class='input-label-placeholder' data-charset='num'>
+									<input type='text' name='dni' id='dni'  class='input-label-placeholder' data-charset='num'>
 								</div>
 								<div class='label-placeholder'>
 									<label>Correo electrónico</label>
@@ -115,15 +115,15 @@ $HTML .="
 									<input type='text' name='pet_name' value='' class='input-label-placeholder'>
 								</div>
 								<div class='km-datos-mascota'>
-									<select class='km-datos-mascota-opcion' name='pet_type' id='pet_type' onchange='vlz_cambio_tipo()'>
+									<select class='km-datos-mascota-opcion' name='pet_type' id='pet_type' onchange='cambio_tipo()'>
 										<option>Tipo de Mascota</option>
 										<option value='2605'>Perros</option>
 										<option value='2608'>Gatos</option>
 									</select>
 									<select class='km-datos-mascota-opcion' name='pet_breed' id='pet_breed'>
 										<option>Raza de la Mascota</option>
-										<option>Mascota A</option>
-										<option>Mascota B</option>
+										<option>Gatos</option>
+										<option></option>
 									</select>
 								</div>
 								<div class='label-placeholder'>

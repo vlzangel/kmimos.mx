@@ -32,175 +32,6 @@ jQuery( document ).ready(function() {
     });
 });
 
-$('[data-charset]').on({
-    keypress : function(e){
-            var tipo= $(this).attr('data-charset');
-            if(tipo!='undefined' || tipo!=''){
-                var cadena = "";
-
-                if(tipo.indexOf('alf')>-1 ){ cadena = cadena + "abcdefghijklmnopqrstuvwxyzáéíóúñüÁÉÍÓÚÑÜ"; }
-                if(tipo.indexOf('xlf')>-1 ){ cadena = cadena + "abcdefghijklmnopqrstuvwxyzáéíóúñüÁÉÍÓÚÑÜ "; }
-                if(tipo.indexOf('num')>-1 ){ cadena = cadena + "1234567890"; }
-                if(tipo.indexOf('cur')>-1 ){ cadena = cadena + "1234567890,."; }
-                if(tipo.indexOf('esp')>-1 ){ cadena = cadena + "-_.$%&@,/()"; }
-                if(tipo.indexOf('cor')>-1 ){ cadena = cadena + "@"; }
-                if(tipo.indexOf('rif')>-1 ){ cadena = cadena + "vjegi"; }
-
-                var key = e.which,
-                    keye = e.keyCode,
-                    tecla = String.fromCharCode(key).toLowerCase(),
-                    letras = cadena;
-                if(letras.indexOf(tecla)==-1 && keye!=9&& (key==37 || keye!=37)&& (keye!=39 || key==39) && keye!=8 && (keye!=46 || key==46) || key==161){
-                    e.preventDefault();
-                }
-            }   
-        }
-    });
-
-
-function registroNuevoUsuario(){
-    
-
-    if ($('#nombre').val() == "") {
-        $('#nombre').parent('div').css('color', 'red');
-        return 0;
-    } else {
-         $('#nombre').parent('div').css('color', 'green');
-        var nombre = $('#nombre').val();
-    }
-    if ($('[name="apellido"]').val() == "") {
-        
-        $('[name="apellido"]').parent('div').css('color', 'red');
-        return 0;
-    }else{
-        var apellido = $('[name="apellido"]').val();
-        $('[name="apellido"]').parent('div').css('color', 'green');
-    }
-
-    if ($('#dni').val() == "") {
-        $('#dni').parent('div').css('color', 'red');
-        return 0;
-    } else {
-        $('#dni').parent('div').css('color', 'green');
-        var dni = $('#dni').val();
-    }
-    if ($('#email_1').val() == "") {
-        $('#email_1').parent('div').css('color', 'red');
-        return 0;
-    } else {
-        $('#email_1').parent('div').css('color', 'green');
-        var email_1 = $('#email_1').val();
-    }
-
-    if ($("#pass").val() == "") {
-        $('#pass').parent('div').css('color', 'red');
-        return 0;
-    } else {
-        var clave = $('[name="pass"]').val();
-       $('#pass').parent('div').css('color', 'green'); 
-    }
-
-    if ($('#movil').val() == 0) {
-        $('#movil').parent('div').css('color', 'red');
-    } else {
-        $('#movil').parent('div').css('color', 'green');
-        var movil = $('#movil').val();
-    }
-
-    if($('#genero').val() == ''){
-        $('#genero').parent('div').css('color', 'red');
-    }else{
-        $('#genero').parent('div').css('color', 'green');
-        var vGenero = $('#genero').val();
-    }
-
-    if ($('#edad').val() =='') {
-        $('#edad').parent('div').css('color', 'red');
-    } else {
-        $('#edad').parent('div').css('color', 'green'); 
-        var vEdad = $('#edad').val();
-    }
-
-    if ($('#fumador').val() =='') {
-        $('#fumador').parent('div').css('color', 'red');
-    }else {
-        $('#fumador').parent('div').css('color', 'green');
-        var vFumador = $('#fumador').val();
-    }
-
-        var campos = [nombre,apellido,dni,email_1,clave,movil,vGenero,vEdad,vFumador];
-        
-        var datos = {
-            'name': campos[0],
-            'lastname': campos[1],
-            'idn': campos[2],
-            'email': campos[3],
-            'password': campos[4],
-            'movil': campos[5],
-            'gender': campos[6],
-            'age': campos[7],
-            'smoker': campos[8]
-        };        
-        
-        validaEmail(datos);  
-
-
-}        
-function validaEmail(dato){
-    $.ajax({
-        data:  dato, //datos que se envian a traves de ajax
-        url:   HOME+"/procesos/login/validate_email.php", //archivo que recibe la peticion
-        type:  'post', //método de envio
-        // beforeSend: function () { // carga mientras va hacer la consulta
-        //         $("#resultado").html("Procesando, espere por favor...");
-        //         $("#resultado").css('color','green');
-        // },
-        success:  function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
-                if (response == 'SI') {
-                    $("#resultado").html("Este email ya esta en uso");
-                    $("#resultado").css('color','red');
-                }else{
-                    $("#resultado").html("");
-                    $('.km-btn-popup-registrarte-nuevo-correo').on('click', function(e) {
-                        e.preventDefault();
-                        $(".popup-registrarte-nuevo-correo").hide();
-                        $(".popup-registrarte-datos-mascota").fadeIn("fast");
-                    });
-                }
-        }
-    });  
-}
-
-function registraUsuario(datos){
-    $.ajax({
-        data:  datos, //datos que se envian a traves de ajax
-        url:   HOME+"/procesos/login/registro.php", //archivo que recibe la peticion
-        type:  'post', //método de envio
-        beforeSend: function () {
-            $("#guardando").html("Guardando informacion...");
-            $("#guardando").css('color','green');
-        },
-        success:  function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
-            $("#guardando").html("Este datos se guardo "+response);
-            $("#guardando").css('color','blue');
-        }
-    });
-}
-function vlz_cambio_tipo(){
-    var valor = jQuery("#pet_type").val();
-    if( valor == "2605" ){
-        var opciones = jQuery("#razas_perros").html();
-        jQuery("#pet_breed").html(opciones);
-    }
-    if( valor == "2608" ){
-        var opciones = jQuery("#razas_gatos").html();
-        jQuery("#pet_breed").html(opciones);
-    }
-}
-
-
-
-
 function logear(){
     jQuery.post( 
         HOME+"/procesos/login/login.php", 
@@ -332,65 +163,6 @@ function getRealMime(file) {
 function initImg(id){
     document.getElementById(id).addEventListener("change", subirImg, false);
 }  
-
-/** VALIDACIONES REGISTRO USUARIO*/
-
-
-/* FIN VALIDACIONES DE REGISTRO */
-
-
-$(document).on("click", '.popup-registrarte-1 .km-btn-popup-registrarte-1', function ( e ) {
-    e.preventDefault();
-
-    $(".popup-registrarte-1").hide();
-    $(".popup-registrarte-nuevo-correo").fadeIn("fast");
-});
-
-$(document).on("click", '.popup-registrarte-datos-mascota .km-btn-popup-registrarte-datos-mascota', function ( e ) {
-    e.preventDefault();
-
-    $(".popup-registrarte-datos-mascota").hide();
-    $(".popup-registrarte-final").fadeIn("fast");
-});
-    // FIN POPUP INICIAR SESIÓN
-$(document).on("click", '.popup-registro-cuidador .km-btn-popup-registro-cuidador', function ( e ) {
-    e.preventDefault();
-
-    $(".popup-registro-cuidador").hide();
-    $(".popup-registro-cuidador-correo").fadeIn("fast");
-});
-
-$(document).on("click", '.popup-registro-cuidador-correo .km-btn-popup-registro-cuidador-correo', function ( e ) {
-    e.preventDefault();
-
-    $(".popup-registro-cuidador-correo").hide();
-    $(".popup-registro-exitoso").fadeIn("fast");
-});
-$(document).on("click", '.popup-registro-exitoso .km-btn-popup-registro-exitoso', function ( e ) {
-    e.preventDefault();
-
-    $(".popup-registro-exitoso").hide();
-    $(".popup-registro-cuidador-paso1").fadeIn("fast");
-});
-$(document).on("click", '.popup-registro-cuidador-paso1 .km-btn-popup-registro-cuidador-paso1', function ( e ) {
-    e.preventDefault();
-
-    $(".popup-registro-cuidador-paso1").hide();
-    $(".popup-registro-cuidador-paso2").fadeIn("fast");
-});
-$(document).on("click", '.popup-registro-cuidador-paso2 .km-btn-popup-registro-cuidador-paso2', function ( e ) {
-    e.preventDefault();
-
-    $(".popup-registro-cuidador-paso2").hide();
-    $(".popup-registro-cuidador-paso3").fadeIn("fast");
-});
-$(document).on("click", '.popup-registro-cuidador-paso3 .km-btn-popup-registro-cuidador-paso3', function ( e ) {
-    e.preventDefault();
-
-    $(".popup-registro-cuidador-paso3").hide();
-    $(".popup-registro-exitoso-final").fadeIn("fast");
-});
-
 
 /* Procesado de imagenes */
 
@@ -574,3 +346,229 @@ function validarAll(Form){
 
     return submit;
 }
+
+
+
+/**
+    AQUI DEJO EL CODIGO AGREGRADO PARA VALIDAR EL REGISTRO DE USUARIO
+    PRIMERA PARTE SOLO USUARIO.
+*/
+$('[data-charset]').on({
+    keypress : function(e){
+            var tipo= $(this).attr('data-charset');
+            if(tipo!='undefined' || tipo!=''){
+                var cadena = "";
+
+                if(tipo.indexOf('alf')>-1 ){ cadena = cadena + "abcdefghijklmnopqrstuvwxyzáéíóúñüÁÉÍÓÚÑÜ"; }
+                if(tipo.indexOf('xlf')>-1 ){ cadena = cadena + "abcdefghijklmnopqrstuvwxyzáéíóúñüÁÉÍÓÚÑÜ "; }
+                if(tipo.indexOf('num')>-1 ){ cadena = cadena + "1234567890"; }
+                if(tipo.indexOf('cur')>-1 ){ cadena = cadena + "1234567890,."; }
+                if(tipo.indexOf('esp')>-1 ){ cadena = cadena + "-_.$%&@,/()"; }
+                if(tipo.indexOf('cor')>-1 ){ cadena = cadena + "@"; }
+                if(tipo.indexOf('rif')>-1 ){ cadena = cadena + "vjegi"; }
+
+                var key = e.which,
+                    keye = e.keyCode,
+                    tecla = String.fromCharCode(key).toLowerCase(),
+                    letras = cadena;
+                if(letras.indexOf(tecla)==-1 && keye!=9&& (key==37 || keye!=37)&& (keye!=39 || key==39) && keye!=8 && (keye!=46 || key==46) || key==161){
+                    e.preventDefault();
+                }
+            }   
+        }
+    });
+
+
+function registroNuevoUsuario(){
+    
+
+    if ($('#nombre').val() == "") {
+        $('#nombre').parent('div').css('color', 'red');
+        return 0;
+    } else {
+         $('#nombre').parent('div').css('color', 'green');
+        var nombre = $('#nombre').val();
+    }
+    if ($('[name="apellido"]').val() == "") {
+        
+        $('[name="apellido"]').parent('div').css('color', 'red');
+        return 0;
+    }else{
+        var apellido = $('[name="apellido"]').val();
+        $('[name="apellido"]').parent('div').css('color', 'green');
+    }
+    var dni = $('#dni').val();  
+    if ($('#dni').val() == "") {
+        $('#dni').parent('div').css('color', 'red'); 
+            return false;
+    }else{
+        if (dni.length == 11) {
+            console.log(dni.length);
+            $('#dni').css('color', 'green');  
+        }else{
+            console.log(dni.length);
+            $('#dni').css('color','red');
+        }
+    }
+        
+    if ($('#email_1').val() == "") {
+        $('#email_1').parent('div').css('color', 'red');
+        return 0;
+    } else {
+        $('#email_1').parent('div').css('color', 'green');
+        var email_1 = $('#email_1').val();
+    }
+
+    if ($("#pass").val() == "") {
+        $('#pass').parent('div').css('color', 'red');
+        return 0;
+    } else {
+        var clave = $('[name="pass"]').val();
+       $('#pass').parent('div').css('color', 'green'); 
+    }
+    var movil = $('#movil').val(); 
+    if ($('#movil').val() == 0) {
+        $('#movil').parent('div').css('color', 'red');
+    } else {
+        if (movil.length == 11) {
+            $('#movil').css('color', 'green'); 
+        } else{
+            $('#movil').css('color', 'red');
+            return false;
+        }
+    }
+
+    if($('#genero').val() == ''){
+        $('#genero').parent('div').css('color', 'red');
+    }else{
+        $('#genero').parent('div').css('color', 'green');
+        var vGenero = $('#genero').val();
+    }
+
+    if ($('#edad').val() =='') {
+        $('#edad').parent('div').css('color', 'red');
+    } else {
+        $('#edad').parent('div').css('color', 'green'); 
+        var vEdad = $('#edad').val();
+    }
+
+    if ($('#fumador').val() =='') {
+        $('#fumador').parent('div').css('color', 'red');
+    }else {
+        $('#fumador').parent('div').css('color', 'green');
+        var vFumador = $('#fumador').val();
+    }
+
+        var campos = [nombre,apellido,dni,email_1,clave,movil,vGenero,vEdad,vFumador];
+        
+        var datos = {
+            'name': campos[0],
+            'lastname': campos[1],
+            'idn': campos[2],
+            'email': campos[3],
+            'password': campos[4],
+            'movil': campos[5],
+            'gender': campos[6],
+            'age': campos[7],
+            'smoker': campos[8]
+        };        
+        
+        validaEmail(datos);  
+
+
+}        
+function validaEmail(dato){
+    $.ajax({
+        data:  dato, //datos que se envian a traves de ajax
+        url:   HOME+"/procesos/login/validate_email.php", //archivo que recibe la peticion
+        type:  'post', //método de envio
+        beforeSend: function () { // carga mientras va hacer la consulta
+                $("#resultado").html("Procesando, espere por favor...");
+                $("#resultado").css('color','green');
+        },
+        success:  function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
+                if (response == 'SI') {
+                    $("#resultado").html("Este email ya esta en uso");
+                    $("#resultado").css('color','red');
+                }else{
+                    $("#resultado").html("");
+                    $('.km-btn-popup-registrarte-nuevo-correo').on('click', function(e) {
+                        e.preventDefault();
+                        $(".popup-registrarte-nuevo-correo").hide();
+                        $(".popup-registrarte-datos-mascota").fadeIn("fast");
+                    });
+                }
+        }
+    });  
+}
+
+function registraUsuario(datos){
+    $.ajax({
+        data:  datos, //datos que se envian a traves de ajax
+        url:   HOME+"/procesos/login/registro.php", //archivo que recibe la peticion
+        type:  'post', //método de envio
+        beforeSend: function () {
+            $("#guardando").html("Guardando informacion...");
+            $("#guardando").css('color','green');
+        },
+        success:  function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
+            $("#guardando").html("Este datos se guardo "+response);
+            $("#guardando").css('color','blue');
+        }
+    });
+}
+
+/**
+    AQUI LOS CODIGO JS FALTANTES PARA QUE FUNCIONARA EL REGISTRO.
+*/
+$(document).on("click", '.popup-registrarte-1 .km-btn-popup-registrarte-1', function ( e ) {
+    e.preventDefault();
+
+    $(".popup-registrarte-1").hide();
+    $(".popup-registrarte-nuevo-correo").fadeIn("fast");
+});
+
+$(document).on("click", '.popup-registrarte-datos-mascota .km-btn-popup-registrarte-datos-mascota', function ( e ) {
+    e.preventDefault();
+
+    $(".popup-registrarte-datos-mascota").hide();
+    $(".popup-registrarte-final").fadeIn("fast");
+});
+    // FIN POPUP INICIAR SESIÓN
+$(document).on("click", '.popup-registro-cuidador .km-btn-popup-registro-cuidador', function ( e ) {
+    e.preventDefault();
+
+    $(".popup-registro-cuidador").hide();
+    $(".popup-registro-cuidador-correo").fadeIn("fast");
+});
+
+$(document).on("click", '.popup-registro-cuidador-correo .km-btn-popup-registro-cuidador-correo', function ( e ) {
+    e.preventDefault();
+
+    $(".popup-registro-cuidador-correo").hide();
+    $(".popup-registro-exitoso").fadeIn("fast");
+});
+$(document).on("click", '.popup-registro-exitoso .km-btn-popup-registro-exitoso', function ( e ) {
+    e.preventDefault();
+
+    $(".popup-registro-exitoso").hide();
+    $(".popup-registro-cuidador-paso1").fadeIn("fast");
+});
+$(document).on("click", '.popup-registro-cuidador-paso1 .km-btn-popup-registro-cuidador-paso1', function ( e ) {
+    e.preventDefault();
+
+    $(".popup-registro-cuidador-paso1").hide();
+    $(".popup-registro-cuidador-paso2").fadeIn("fast");
+});
+$(document).on("click", '.popup-registro-cuidador-paso2 .km-btn-popup-registro-cuidador-paso2', function ( e ) {
+    e.preventDefault();
+
+    $(".popup-registro-cuidador-paso2").hide();
+    $(".popup-registro-cuidador-paso3").fadeIn("fast");
+});
+$(document).on("click", '.popup-registro-cuidador-paso3 .km-btn-popup-registro-cuidador-paso3', function ( e ) {
+    e.preventDefault();
+
+    $(".popup-registro-cuidador-paso3").hide();
+    $(".popup-registro-exitoso-final").fadeIn("fast");
+});
