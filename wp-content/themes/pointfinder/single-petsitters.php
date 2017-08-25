@@ -198,11 +198,10 @@
 					$HTML .= "
 					<span 
 						id='btn_conocer'
-						style='display:none;'
 						class='theme_button button conocer-cuidador' 
 						onclick=\"perfil_login('btn_conocer');\"
 					>Conocer al Cuidador</span>
-					<span id='btn_conocer' class='theme_button button conocer-cuidador' onclick='PopUpknowCaregiver();'>Conocer al Cuidador</span>
+					<span id='btn_conocer'style='display:none;' class='theme_button button conocer-cuidador' onclick='PopUpknowCaregiver();'>Conocer al Cuidador</span>
 					<span 
 						id='btn_reservar'
 						class='button reservar' 
