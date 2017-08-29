@@ -191,18 +191,17 @@
 				<h1 class='center-white'>".get_the_title()."</h1>
 				".kmimos_petsitter_rating($post_id);
 				if(is_user_logged_in()){
-					//$HTML .= "<a id='btn_conocer' style='display:none;' class='theme_button button conocer-cuidador' href='".get_home_url()."/conocer-al-cuidador/?id=".$post_id."'>Conocer al Cuidador</a>";
-					$HTML .= "<span id='btn_conocer' class='theme_button button conocer-cuidador' onclick='PopUpknowCaregiver();'>Conocer al Cuidador</span>";
+					$HTML .= "<a id='btn_conocer' class='theme_button button conocer-cuidador' href='".get_home_url()."/conocer-al-cuidador/?id=".$post_id."'>Conocer al Cuidador</a>";
+					//$HTML .= "<span id='btn_conocer' class='theme_button button conocer-cuidador' onclick='PopUpknowCaregiver();'>Conocer al Cuidador</span>";
 					include('vlz/seleccion_boton_reserva.php');
 				}else{
 					$HTML .= "
 					<span 
 						id='btn_conocer'
-						style='display:none;'
 						class='theme_button button conocer-cuidador' 
 						onclick=\"perfil_login('btn_conocer');\"
 					>Conocer al Cuidador</span>
-					<span id='btn_conocer' class='theme_button button conocer-cuidador' onclick='PopUpknowCaregiver();'>Conocer al Cuidador</span>
+					<span id='btn_conocer'style='display:none;' class='theme_button button conocer-cuidador' onclick='PopUpknowCaregiver();'>Conocer al Cuidador</span>
 					<span 
 						id='btn_reservar'
 						class='button reservar' 
@@ -348,22 +347,13 @@
 		<div class="vlz_separador"></div>
 		<h3 class="vlz_titulo">Estos son mis servicios</h3>
 		<div class="vlz_seccion">';
-			$args = array(
-				"post_type" => "product",
-		        "post_status" => "publish",
-		        "author" => $cuidador->user_id
-		    );
-
-		    $products = get_posts( $args );
-
-		    $ids = "";
-		    foreach($products as $product){
-		        if( $ids != "") $ids .= ",";
-		        $ids .= $product->ID;
+			$productos = $wpdb->get_results("SELECT ID FROM wp_posts WHERE post_author = {$cuidador->user_id} AND post_type = 'product' AND post_status = 'publish' ");
+			$xids = array();
+		    foreach ($productos as $key => $value) {
+		    	$xids[] = $value->ID;
 		    }
-
-		    if($ids != ""){
-		        $comando = "[products ids='".$ids."']";
+		    if( count($xids) > 0 ){
+		        $comando = "[products ids='". implode(",", $xids) ."'] ";
 		        $HTML .= do_shortcode($comando);
 		    } $HTML .= "
 		</div>";

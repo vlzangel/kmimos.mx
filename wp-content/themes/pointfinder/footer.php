@@ -229,7 +229,16 @@ $HTML = "</div></div>
     </script>
     -->
 
-    <script src='https://www.google.com/recaptcha/api.js?hl=es'></script>
+    <script>
+        (function(d, s){
+            $ = d.createElement(s), e = d.getElementsByTagName(s)[0];
+            $.async=!0;
+            $.setAttribute('charset','utf-8');
+            $.src='//www.google.com/recaptcha/api.js?hl=es';
+            $.type='text/javascript';
+            e.parentNode.insertBefore($, e)
+        })(document, 'script');
+    </script>
 
     <style type='text/css'>
         .wpf-container{
