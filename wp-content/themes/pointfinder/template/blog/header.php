@@ -124,7 +124,7 @@ if(array_key_exists('search',$_POST)){
         </style>
     </head>
 
-    <body>
+    <body <?php body_class(); ?>>
         <header>
             <div class="info">
                 <div class="contain">
