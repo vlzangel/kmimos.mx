@@ -10,24 +10,30 @@ function filter_woocommerce_validate_variable($variable='',$variables){
     $return='';
     if($variable!=''){
         if(array_key_exists($variable,$variables)){
-            $return = $variables[$variable];
+            $return = $variables[$variable][0];
         }
     }
     return $return;
 }
 
 
-add_filter( 'woocommerce_coupon_is_valid_for_product', 'filter_woocommerce_coupon_is_valid_for_product', 10, 4 );
+//add_filter( 'woocommerce_coupon_is_valid_for_product', 'filter_woocommerce_coupon_is_valid_for_product', 10, 4 );
 //remove_filter( 'woocommerce_coupon_is_valid_for_product', 'filter_woocommerce_coupon_is_valid_for_product', 10, 4 );
 function filter_woocommerce_coupon_is_valid_for_product( $valid, $product, $instance, $values ) {
-    return $valid;
+    var_dump($valid);
+    //var_dump($values);
+    //var_dump($product);
+    var_dump($instance);
+    return false;//$valid
 };
 
 
-add_filter('woocommerce_coupon_is_valid_for_cart', 'filter_woocommerce_coupon_is_valid_for_cart', 10, 2 );
+//add_filter('woocommerce_coupon_is_valid_for_cart', 'filter_woocommerce_coupon_is_valid_for_cart', 10, 2 );
 //remove_filter( 'woocommerce_coupon_is_valid_for_cart', 'filter_woocommerce_coupon_is_valid_for_cart', 10, 2 );
 function filter_woocommerce_coupon_is_valid_for_cart($type, $instance ) {
-    return $type;
+    var_dump($type);
+    var_dump($instance);
+    return false;//$type
 };
 
 
@@ -35,6 +41,8 @@ add_filter("woocommerce_coupon_is_valid","filter_woocommerce_coupon_is_valid",10
 //remove_filter( 'woocommerce_coupon_is_valid', 'filter_woocommerce_coupon_is_valid', 10, 2 );
 function filter_woocommerce_coupon_is_valid($result,$coupon) {
     global $wpdb;
+    //return false;
+    //var_dump($coupon);
 
     $code=$coupon->code;
     $postId = $coupon->id;
@@ -54,17 +62,27 @@ function filter_woocommerce_coupon_is_valid($result,$coupon) {
     $CouponBooking_action=filter_woocommerce_validate_variable('_booking_action',$postmeta);
     //$CouponBooking_=filter_woocommerce_validate_variable('_booking_',$postmeta);
 
+    //var_dump($code);
+    //var_dump($postmeta);
+    //var_dump($CouponBooking);
     if($CouponBooking=='Y'){
-        //Validate 1
-        if($CouponBooking_IdClient!='' && $CouponBooking_IdClient==$userId){
+        var_dump('Cupon de reserva');
 
+        //Validate 1
+        //var_dump($CouponBooking_IdClient!='');
+        //var_dump($CouponBooking_IdClient==$userId);
+        if($CouponBooking_IdClient!='' && $CouponBooking_IdClient==$userId){
+            var_dump('Validate 1');
             //Validate 2
+
             if($CouponBooking_DateStart>time() || $CouponBooking_DateFinal<time()){
+                var_dump('Validate 2');
                 return false;
             }
 
             //Validate 4
             if($CouponBooking_action=='processing'){
+                var_dump('Validate 4');
                 return false;
             }
 
@@ -78,6 +96,7 @@ function filter_woocommerce_coupon_is_valid($result,$coupon) {
                 $bookingDuration=$item['booking']['_duration'];
 
                 if($CouponBooking_NumberNights>$bookingDuration){
+                    var_dump('Validate 5');
                     return false;
                 }
             }
@@ -111,6 +130,7 @@ function filter_woocommerce_coupon_is_valid($result,$coupon) {
                 }
 
                 if(count($Bookings_validate)>$CouponBooking_NumberBookings){
+                    var_dump('Validate 6');
                     return false;
                 }
 

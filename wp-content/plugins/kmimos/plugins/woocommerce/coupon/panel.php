@@ -1,7 +1,16 @@
 <?php
-var_dump(get_current_user_id());
+//var_dump(get_current_user_id());
 function coupon_message($type = 'success', $message=''){
-    echo $message;
+
+    if($type == 'success'){
+        echo '<div class="updated">'.$message.'</div>';
+
+    }else if($type == 'updated'){
+        echo '<div class="update-nag">'.$message.'</div>';
+
+    }else if($type == 'error'){
+        echo '<div class="error">'.$message.'</div>';
+    }
 }
 
 if(isset($_POST["submit_csv_upload"])) {
@@ -41,14 +50,17 @@ if(isset($_POST["submit_csv_upload"])) {
             $row++;
         }
         fclose($fopen);
+        coupon_message('success','CSV Leido Correctamente');
 
 
     }else{
-        coupon_message('error','no es un archivo csv');
+        coupon_message('error','no es un archivo CSV');
     }
 
 
     if(count($lines)>0){
+        coupon_message('success','Extraidas '.count($lines).' Cupones del CSV');
+
         foreach($lines as $line){
             global $wpdb;
             $coupon = $line['coupon'];
@@ -79,7 +91,7 @@ if(isset($_POST["submit_csv_upload"])) {
                 update_post_meta($couponID, 'expiry_date', date('Y-m-d',$date_final));
                 update_post_meta($couponID, 'apply_before_tax', 'yes');
                 update_post_meta($couponID, 'free_shipping', 'no');
-                var_dump('creado');
+                coupon_message('success','Creado '.$coupon);
             }
 
             update_post_meta($couponID, '_booking', 'Y');
@@ -91,8 +103,10 @@ if(isset($_POST["submit_csv_upload"])) {
             update_post_meta($couponID, '_booking_number_bookings', $line['number_bookings']);
             update_post_meta($couponID, '_booking_service', $line['service']);
             update_post_meta($couponID, '_booking_action', $line['action']);
+            coupon_message('success','Actualizado '.$coupon);
 
         }
+        coupon_message('success','Proceso Terminado');
     }
 
     echo '<pre>';
