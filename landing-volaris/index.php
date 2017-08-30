@@ -245,7 +245,6 @@ foreach ($_GET as $key => $value) {
 						<a href="https://www.kmimos.com.mx/?<?php echo $query; ?>">Click aqu&iacute;</a>
 					</div>
 				</article>
-
 			</div>
 			<br>
 		</section>
