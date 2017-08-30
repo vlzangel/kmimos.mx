@@ -161,6 +161,4 @@ function woocommerce_custom_coupon_booking() {
     include_once(__DIR__.'/panel.php');
 
 }
-
-
 ?>
