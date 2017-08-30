@@ -763,14 +763,14 @@
 
 		if(typeof place === 'undefined'){
 			messageInsite('#messageDirection','Sus coordenadasno fueron reconocidas.  puede buscar su ubicacion directamente en el mapa moviendo el pin');
-			message('Sus coordenadas no fueron reconocidas.  puede buscar su ubicacion directamente en el mapa moviendo el pin');
+//			message('Sus coordenadas no fueron reconocidas.  puede buscar su ubicacion directamente en el mapa moviendo el pin');
 			return;
 
 		}else{
 			if(!place.geometry){
 				//window.alert("Autocomplete's returned place contains no geometry");
 				messageInsite('#messageDirection','El sitio Seleccionado, GoogleMap no obtiene las coordenadas');
-				message('El sitio Seleccionado, GoogleMap no obtiene las coordenadas');
+//				message('El sitio Seleccionado, GoogleMap no obtiene las coordenadas');
 				return;
 
 			}else{
@@ -778,7 +778,7 @@
 				//messageClose('#messageDirection', callback);
 				jQuery('#messageDirection').css({'display':'none'});
 				messageInsite('#messageDirection','Puede mejorar su ubicacion directamente en el mapa moviendo el pin');
-				message('Puede mejorar su ubicacion directamente en el mapa moviendo el pin');
+//				message('Puede mejorar su ubicacion directamente en el mapa moviendo el pin');
 
 				lat=place.geometry.location.lat();
 				lng=place.geometry.location.lng();
@@ -813,7 +813,7 @@
 			lng=longitude;
 			set_inputCoordMap();
 			messageInsite('#messageDirection','Seleccionaste estado');
-			message('Seleccionaste estado');
+//			message('Seleccionaste estado');
 		}
 	});
 
@@ -827,7 +827,7 @@
 			lng=longitude;
 			set_inputCoordMap();
 			messageInsite('#messageDirection','seleccionaste municipio');
-			message('seleccionaste municipio');
+//			message('seleccionaste municipio');
 		}
 	});
 
