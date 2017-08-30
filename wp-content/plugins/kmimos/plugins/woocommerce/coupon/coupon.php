@@ -69,12 +69,9 @@ function filter_woocommerce_coupon_is_valid($result,$coupon) {
         var_dump('Cupon de reserva');
 
         //Validate 1
-        //var_dump($CouponBooking_IdClient!='');
-        //var_dump($CouponBooking_IdClient==$userId);
         if($CouponBooking_IdClient!='' && $CouponBooking_IdClient==$userId){
-            var_dump('Validate 1');
-            //Validate 2
 
+            //Validate 2
             if($CouponBooking_DateStart>time() || $CouponBooking_DateFinal<time()){
                 var_dump('Validate 2');
                 return false;
@@ -140,6 +137,7 @@ function filter_woocommerce_coupon_is_valid($result,$coupon) {
 
 
         }else{
+            var_dump('Validate 1');
             return false;
         }
     }
