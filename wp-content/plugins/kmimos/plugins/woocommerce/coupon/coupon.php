@@ -72,13 +72,13 @@ function filter_woocommerce_coupon_is_valid($result,$coupon) {
 
             //Validate 2
             if($CouponBooking_DateStart>time() || $CouponBooking_DateFinal<time()){
-                $detail = wc_add_notice('Validate 2 -- reserva fuera de randgo cupon debe ser usado desde '.date('d/m/Y',$CouponBooking_DateStart).' hasta '.date('d/m/Y',$CouponBooking_DateFinal), 'notice');
+                $detail = wc_add_notice('CUPON NO CUMPLE CON LAS CONDICIONES: El cupón es aplicable a partir de '.date('d/m/Y',$CouponBooking_DateStart).', hasta '.date('d/m/Y',$CouponBooking_DateFinal), 'notice');
                 return false;
             }
 
             //Validate 4
             if($CouponBooking_action=='processing'){
-                $detail = wc_add_notice('Validate 2 -- ya  esta procesado', 'notice');
+                $detail = wc_add_notice('CUPON NO CUMPLE CON LAS CONDICIONES: El cupón esta procesado', 'notice');
                 return false;
             }
 
@@ -92,7 +92,7 @@ function filter_woocommerce_coupon_is_valid($result,$coupon) {
                 $bookingDuration=($bookingEnd-$bookingStart)/(60*60*24);
 
                 if($CouponBooking_NumberNights>=$bookingDuration){
-                    $detail = wc_add_notice('Validate 5 -- Cantidad de noches debe ser mayor a '.$CouponBooking_NumberNights, 'notice');
+                    $detail = wc_add_notice('CUPON NO CUMPLE CON LAS CONDICIONES: Las noches de reserva deben ser mayor igual a '.$CouponBooking_NumberNights, 'notice');
                     return false;
                 }
             }
@@ -128,7 +128,7 @@ function filter_woocommerce_coupon_is_valid($result,$coupon) {
                    }
 
                    if(count($Bookings_validate)>$CouponBooking_NumberBookings){
-                       $detail = wc_add_notice('Validate 6 -- Cantidad de reservas debe ser mayor a '.$CouponBooking_NumberBookings, 'notice');
+                       $detail = wc_add_notice('CUPON NO CUMPLE CON LAS CONDICIONES: El cupón es aplicable a partir de '.$CouponBooking_NumberBookings.' reservas', 'notice');
                        return false;
                    }
 
