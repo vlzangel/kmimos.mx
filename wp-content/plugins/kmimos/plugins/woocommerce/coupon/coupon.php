@@ -62,24 +62,22 @@ function filter_woocommerce_coupon_is_valid($result,$coupon) {
     $CouponBooking_action=filter_woocommerce_validate_variable('_booking_action',$postmeta);
     //$CouponBooking_=filter_woocommerce_validate_variable('_booking_',$postmeta);
 
-    //var_dump($code);
-    //var_dump($postmeta);
-    //var_dump($CouponBooking);
     if($CouponBooking=='Y'){
-        var_dump('Cupon de reserva');
+        //$detail = wc_add_notice('Cupon de Reserva', 'success');
+        $detail = wc_add_notice('Cupon de Reserva', 'notice');
 
         //Validate 1
         if($CouponBooking_IdClient!='' && $CouponBooking_IdClient==$userId){
 
             //Validate 2
             if($CouponBooking_DateStart>time() || $CouponBooking_DateFinal<time()){
-                var_dump('Validate 2');
+                $detail = wc_add_notice('Validate 2 -- reserva fuera de randgo cupon debe ser usado desde '.date('d/m/Y',$CouponBooking_DateStart).' hasta '.date('d/m/Y',$CouponBooking_DateFinal), 'error');
                 return false;
             }
 
             //Validate 4
             if($CouponBooking_action=='processing'){
-                var_dump('Validate 4');
+                $detail = wc_add_notice('Validate 2 -- ya  esta procesado', 'error');
                 return false;
             }
 
@@ -89,11 +87,11 @@ function filter_woocommerce_coupon_is_valid($result,$coupon) {
             foreach($items as $id=>$item){
                 $bookingStart=$item['booking']['_start_date'];
                 $bookingEnd=$item['booking']['_end_date'];
-                $bookingDuration=($bookingEnd-$bookingStart)/(60*60*24);
                 $bookingDuration=$item['booking']['_duration'];
+                $bookingDuration=($bookingEnd-$bookingStart)/(60*60*24);
 
-                if($CouponBooking_NumberNights>$bookingDuration){
-                    var_dump('Validate 5');
+                if($CouponBooking_NumberNights>=$bookingDuration){
+                    $detail = wc_add_notice('Validate 5 -- Cantidad de noches debe ser mayor a '.$CouponBooking_NumberNights, 'error');
                     return false;
                 }
             }
@@ -120,15 +118,15 @@ function filter_woocommerce_coupon_is_valid($result,$coupon) {
                     $Booking_postmeta = get_post_meta($Booking->ID);
                     $Booking_start=strtotime(filter_woocommerce_validate_variable('_booking_start',$Booking_postmeta));
                     $Booking_end=strtotime(filter_woocommerce_validate_variable('_booking_end',$Booking_postmeta));
-                    $Bookings_validate[]=$Booking;
-                    /*
-                                       if($Booking_start >= $CouponBooking_DateStart && $Booking_end <= $CouponBooking_DateFinal){
-                                           $Bookings_validate[]=$Booking;
-                                       }
-                   */
+
+                       $Bookings_validate[]=$Booking;
+                       if($Booking_start >= $CouponBooking_DateStart && $Booking_end <= $CouponBooking_DateFinal){
+                           //$Bookings_validate[]=$Booking;
+                       }
+
                    }
                    if(count($Bookings_validate)<$CouponBooking_NumberBookings){
-                       var_dump('Validate 6');
+                       $detail = wc_add_notice('Validate 6 -- Cantidad de reservas debe ser mayor a '.$CouponBooking_NumberBookings, 'error');
                        return false;
                    }
 
