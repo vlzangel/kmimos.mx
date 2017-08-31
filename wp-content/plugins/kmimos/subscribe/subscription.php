@@ -72,7 +72,7 @@ if(mail_validate($mail)){
 		$return['message']='Ha sido Registrado';
 		$coupon=true;
 
-		if($coupon){
+		if($coupon && !email_exists($mail)){
 			$amount=50;
 			$code = 'SUBSCRIBE'.$section.'-'.$mail;
 			$type = 'fixed_cart'; // Type: fixed_cart, percent, fixed_product, percent_product
