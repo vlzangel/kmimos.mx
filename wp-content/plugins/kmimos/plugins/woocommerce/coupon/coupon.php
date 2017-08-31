@@ -109,9 +109,9 @@ function filter_woocommerce_coupon_is_valid($result,$coupon) {
                           AND
                           (posts.post_status NOT LIKE '%cart%' AND posts.post_status != 'cancelled')
                           AND
-                          (metas.meta_key = '_booking_customer_id' AND metas.meta_value = '$userId') /*
+                          (metas.meta_key = '_booking_customer_id' AND metas.meta_value = '$userId')
                           AND
-                          (posts.post_date >= $CouponBooking_DateStart AND posts.post_date <= $CouponBooking_DateFinal)*/
+                          (posts.post_date >= $CouponBooking_DateStart AND posts.post_date <= $CouponBooking_DateFinal)
                      ";
 
                 $Bookings = $wpdb->get_results($sql);
@@ -120,32 +120,33 @@ function filter_woocommerce_coupon_is_valid($result,$coupon) {
                     $Booking_postmeta = get_post_meta($Booking->ID);
                     $Booking_start=strtotime(filter_woocommerce_validate_variable('_booking_start',$Booking_postmeta));
                     $Booking_end=strtotime(filter_woocommerce_validate_variable('_booking_end',$Booking_postmeta));
-
-                    if($Booking_start >= $CouponBooking_DateStart && $Booking_end <= $CouponBooking_DateFinal){
-                        $Bookings_validate[]=$Booking;
-                    }
-                }
-
-                if(count($Bookings_validate)<$CouponBooking_NumberBookings){
-                    var_dump('Validate 6');
-                    return false;
-                }
-
-
-            }
+                    $Bookings_validate[]=$Booking;
+                    /*
+                                       if($Booking_start >= $CouponBooking_DateStart && $Booking_end <= $CouponBooking_DateFinal){
+                                           $Bookings_validate[]=$Booking;
+                                       }
+                   */
+                   }
+                   if(count($Bookings_validate)<$CouponBooking_NumberBookings){
+                       var_dump('Validate 6');
+                       return false;
+                   }
 
 
+               }
 
-        }else{
-            var_dump('Validate 1');
-            return false;
-        }
-    }
 
-    return true;
-}
 
-/** COUPON ADMIN MENU **/
+                           }else{
+                               var_dump('Validate 1');
+                               return false;
+                           }
+                       }
+
+                       return true;
+                   }
+
+                   /** COUPON ADMIN MENU **/
 add_action('admin_menu', 'filter_woocommerce_coupon_add_menu');
 function filter_woocommerce_coupon_add_menu(){
     if(function_exists('add_menu_page')){
