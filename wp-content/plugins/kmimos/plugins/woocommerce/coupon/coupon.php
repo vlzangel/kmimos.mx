@@ -64,20 +64,21 @@ function filter_woocommerce_coupon_is_valid($result,$coupon) {
 
     if($CouponBooking=='Y'){
         //$detail = wc_add_notice('Cupon de Reserva', 'success');
-        $detail = wc_add_notice('Cupon de Reserva', 'notice');
+        //$detail = wc_add_notice('Cupon de Reserva', 'notice');
+        //$detail = wc_add_notice('Cupon de Reserva', 'error');
 
         //Validate 1
         if($CouponBooking_IdClient!='' && $CouponBooking_IdClient==$userId){
 
             //Validate 2
             if($CouponBooking_DateStart>time() || $CouponBooking_DateFinal<time()){
-                $detail = wc_add_notice('Validate 2 -- reserva fuera de randgo cupon debe ser usado desde '.date('d/m/Y',$CouponBooking_DateStart).' hasta '.date('d/m/Y',$CouponBooking_DateFinal), 'error');
+                $detail = wc_add_notice('Validate 2 -- reserva fuera de randgo cupon debe ser usado desde '.date('d/m/Y',$CouponBooking_DateStart).' hasta '.date('d/m/Y',$CouponBooking_DateFinal), 'notice');
                 return false;
             }
 
             //Validate 4
             if($CouponBooking_action=='processing'){
-                $detail = wc_add_notice('Validate 2 -- ya  esta procesado', 'error');
+                $detail = wc_add_notice('Validate 2 -- ya  esta procesado', 'notice');
                 return false;
             }
 
@@ -91,7 +92,7 @@ function filter_woocommerce_coupon_is_valid($result,$coupon) {
                 $bookingDuration=($bookingEnd-$bookingStart)/(60*60*24);
 
                 if($CouponBooking_NumberNights>=$bookingDuration){
-                    $detail = wc_add_notice('Validate 5 -- Cantidad de noches debe ser mayor a '.$CouponBooking_NumberNights, 'error');
+                    $detail = wc_add_notice('Validate 5 -- Cantidad de noches debe ser mayor a '.$CouponBooking_NumberNights, 'notice');
                     return false;
                 }
             }
@@ -125,8 +126,9 @@ function filter_woocommerce_coupon_is_valid($result,$coupon) {
                        }
 
                    }
+
                    if(count($Bookings_validate)>$CouponBooking_NumberBookings){
-                       $detail = wc_add_notice('Validate 6 -- Cantidad de reservas debe ser mayor a '.$CouponBooking_NumberBookings, 'error');
+                       $detail = wc_add_notice('Validate 6 -- Cantidad de reservas debe ser mayor a '.$CouponBooking_NumberBookings, 'notice');
                        return false;
                    }
 
