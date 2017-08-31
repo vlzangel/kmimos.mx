@@ -126,7 +126,7 @@ function filter_woocommerce_coupon_is_valid($result,$coupon) {
                     }
                 }
 
-                if(count($Bookings_validate)>$CouponBooking_NumberBookings){
+                if(count($Bookings_validate)<$CouponBooking_NumberBookings){
                     var_dump('Validate 6');
                     return false;
                 }
