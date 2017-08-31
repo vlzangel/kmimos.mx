@@ -108,7 +108,7 @@
             ";
             $conn->query( utf8_decode( $sql ) );
 
-            echo $user_id." User";
+            echo $user_id." ID User";
 
         }
         

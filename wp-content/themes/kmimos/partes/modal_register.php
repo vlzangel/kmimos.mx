@@ -1,5 +1,6 @@
 <?php 
 $HTML .="
+	
 	<!-- POPUPS REGISTRARTE -->
 <div class='modal fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true' id='myModal' style='    padding: 40px;'>
 	<div class='modal-dialog'>
@@ -47,7 +48,7 @@ $HTML .="
 								</div>
 								<div class='label-placeholder'>
 									<label>IFE/Documento de Identidad</label>
-									<input type='text' name='dni' id='dni'  class='input-label-placeholder' data-charset='num'>
+									<input type='text' name='ife' id='ife'  class='input-label-placeholder' data-charset='num'>
 								</div>
 								<div class='label-placeholder'>
 									<label>Correo electrónico</label>
@@ -88,7 +89,7 @@ $HTML .="
 						</div>
 					</form>
 					<span id='guardando'></span>
-					<a href='#' id='siguiente' class='km-btn-correo km-btn-popup-registrarte-nuevo-correo' onclick='registroNuevoUsuario()'>SIGUIENTE</a>
+					<a href='#' id='siguiente' class='km-btn-correo km-btn-popup-registrarte-nuevo-correo' onclick='guardaDatosUser()'>SIGUIENTE</a>
 					<div id='resp'></div>
 					<p style='color: #979797; margin-top: 20px;'>Al crear una cuenta, aceptas las condiciones del servicio y la Política de privacidad de Kmimos.</p>
 					<p><img style='width: 20px; margin-right: 5px; position: relative; top: -3px;'src='images/icon/km-redes/icon-wsp.svg'>En caso de dudas escríbenos al whatsapp</p>
@@ -112,62 +113,76 @@ $HTML .="
 							<div class='content-placeholder'>
 								<div class='label-placeholder'>
 									<label>Nombre de tu mascota</label>
-									<input type='text' name='pet_name' value='' class='input-label-placeholder'>
+									<input type='text' name='nombre_mascota'  id='nombre_mascota' value='' class='input-label-placeholder'>
 								</div>
 								<div class='km-datos-mascota'>
-									<select class='km-datos-mascota-opcion' name='pet_type' id='pet_type' onchange='cambio_tipo()'>
+									<select class='km-datos-mascota-opcion' name='tipo_mascota' id='tipo_mascota' onchange='cambio_tipo()'>
 										<option>Tipo de Mascota</option>
 										<option value='2605'>Perros</option>
 										<option value='2608'>Gatos</option>
 									</select>
-									<select class='km-datos-mascota-opcion' name='pet_breed' id='pet_breed'>
+									<select class='km-datos-mascota-opcion' name='raza_mascota' id='raza_mascota'>
 										<option>Raza de la Mascota</option>
-										<option>Gatos</option>
-										<option></option>
 									</select>
 								</div>
 								<div class='label-placeholder'>
 									<label>Color de tu mascota</label>
-									<input type='text' name='colormascota' value='' class='input-label-placeholder'>
+									<input type='text' name='color_mascota' id='color_mascota' value='' class='input-label-placeholder'>
 								</div>
 								<div class='km-fecha-nacimiento'>
-									<input type='text' name='fechanacmascota' placeholder='Fecha de Nacimiento' value='' class='date_from'>
+									<input type='text' name='date_from' id='date_from' placeholder='Fecha de Nacimiento' value='' class='date_from'>
 								</div>
 								<div class='km-datos-mascota'>
-									<select class='km-datos-mascota-opcion' name='generomascota'>
-										<option>Género</option>
-										<option>Mascota A</option>
-										<option>Mascota B</option>
+									<select class='km-datos-mascota-opcion' name='genero_mascota' id='genero_mascota'>
+										<option value="">Género</option>
+										<option value='macho'>Macho</option>
+										<option value='hembra'>Hembra</option>
 									</select>
 								</div>
 							</div>
 						</div>
-						<div class='row' style='margin-bottom: 20px;'>
+						<div class='row' style='margin-bottom: 20px;'  id='tamano_mascota'>
 							<div class='col-xs-6 col-sm-3'>
-								<div class='km-opcion'><img src='images/icon/icon-pequenio.svg' width='25'><br><div class='km-opcion-text'><b>PEQUEÑO</b><br>0 a 25 cm</div></div>
+								<div class='km-opcion' id='select_1' value='0' onclick='tamano('#select_1')'>
+									<img src='images/icon/icon-pequenio.svg' width='25'><br><div class='km-opcion-text'>
+										<b>PEQUEÑO</b><br>0 a 25 cm
+									</div>
+								</div>
 							</div>
 							<div class='col-xs-6 col-sm-3'>
-								<div class='km-opcion'><img src='images/icon/icon-mediano.svg' width='25'><br><div class='km-opcion-text'><b>MEDIANO</b><br>25 a 58cm</div></div>
+								<div class='km-opcion' id='select_2' value='1' onclick='tamano('#select_2')'>
+									<img src='images/icon/icon-mediano.svg' width='25'><br><div class='km-opcion-text'>
+										<b>MEDIANO</b><br>25 a 58cm
+									</div>
+								</div>
+							</div>
+							<div class='col-xs-6 col-sm-3' id='select_3' value='2' onclick='tamano('#select_3')'>
+								<div class='km-opcion'>
+									<img src='images/icon/icon-grande.svg' width='25'><br><div class='km-opcion-text'>
+										<b>GRANDE</b><br>58 a 73 cm
+									</div>
+								</div>
 							</div>
 							<div class='col-xs-6 col-sm-3'>
-								<div class='km-opcion'><img src='images/icon/icon-grande.svg' width='25'><br><div class='km-opcion-text'><b>GRANDE</b><br>58 a 73 cm</div></div>
-							</div>
-							<div class='col-xs-6 col-sm-3'>
-								<div class='km-opcion'><img src='images/icon/icon-gigante.svg' width='25'><br><div class='km-opcion-text'><b>GIGANTE</b><br>73 a 200 cm</div></div>
+								<div class='km-opcion' id='select_4' value='3' onclick='tamano('#select_4')'>
+									<img src='images/icon/icon-gigante.svg' width='25'><br><div class='km-opcion-text'>
+										<b>GIGANTE</b><br>73 a 200 cm
+									</div>
+								</div>
 							</div>
 						</div>
 						<div class='km-registro-checkbox'>
 							<div class='km-registro-checkbox-opcion'>
 								<p>Mascota Estilizada</p>
 								<div class='km-check-1'>
-									<input type='checkbox' value='None' id='km-check-1' name='check' />
+									<input type='checkbox' value='0' id='km-check-1' name='check' />
 									<label for='km-check-1'></label>
 								</div>
 							</div>
 							<div class='km-registro-checkbox-opcion'>
 								<p>Mascota Sociable</p>
 								<div class='km-check-2'>
-									<input type='checkbox' value='None' id='km-check-2' name='check' />
+									<input type='checkbox' value='0' id='km-check-2' name='check' />
 									<label for='km-check-2'></label>
 								</div>
 							</div>
@@ -176,19 +191,19 @@ $HTML .="
 							<div class='km-registro-checkbox-opcion'>
 								<p>Agresiva con Humanos</p>
 								<div class='km-check-3'>
-									<input type='checkbox' value='None' id='km-check-3' name='check' />
+									<input type='checkbox' value='0' id='km-check-3' name='check' />
 									<label for='km-check-3'></label>
 								</div>
 							</div>
 							<div class='km-registro-checkbox-opcion'>
 								<p>Agresiva con Mascotas</p>
 								<div class='km-check-4'>
-									<input type='checkbox' value='None' id='km-check-4' name='check' />
+									<input type='checkbox' value='0' id='km-check-4' name='check' />
 									<label for='km-check-4'></label>
 								</div>
 							</div>
 						</div>
-						<a href='#' class='km-btn-correo km-btn-popup-registrarte-datos-mascota'>REGISTRARME</a>
+						<a href='#' class='km-btn-correo km-btn-popup-registrarte-datos-mascota' onclick='guardaDatosPet()'>REGISTRARME</a>
 						<p style='color: #979797; margin-top: 20px;'>Al crear una cuenta, aceptas las condiciones del servicio y la Política de privacidad de Kmimos.</p>
 						<p><img style='width: 20px; margin-right: 5px; position: relative; top: -3px;' src='images/icon/km-redes/icon-wsp.svg'>En caso de dudas escríbenos al whatsapp</p>
 					</div>
