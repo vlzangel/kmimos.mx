@@ -68,3 +68,21 @@
 .km-galeria-cuidador {
     overflow: hidden;
 }
+
+.modal-items {
+    display: block;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-weight: bold;
+    max-width: 400px;
+    margin: 10px 20px;
+    text-align: left!important;
+    padding-bottom: 10px!important;
+    padding: 10px 10px 0px;
+    color: #333333;
+}
+.modal-items:hover {
+    text-decoration: none;
+    background: #0ab7a1;
+    color: #fff;
+}

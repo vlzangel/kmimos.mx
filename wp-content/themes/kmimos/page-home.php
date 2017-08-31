@@ -61,7 +61,7 @@
 							<div class="col-xs-12 col-sm-6">
 								<div class="km-select-custom km-select-ubicacion km-fechas" style="height: 48px">
 									<img src="'.getTema().'/images/new/icon/icon-gps.svg" class="icon_left" />
-									<input type="text" id="ubicacion_txt" class="km-fechas" name="ubicacion_txt" placeholder="UBICACI&Oacute;N, ESTADO, MUNICIPIO" value="'.$busqueda["ubicacion_txt"].'" autocomplete="off" readonly />
+									<input type="text" id="ubicacion_txt" class="km-fechas" style="background: transparent; border: 0px; padding: 14px 0 14px 15px;" name="ubicacion_txt" placeholder="UBICACI&Oacute;N, ESTADO, MUNICIPIO" value="'.$busqueda["ubicacion_txt"].'" autocomplete="off" readonly />
 									<input type="hidden" id="ubicacion" name="ubicacion" value="'.$busqueda["ubicacion"].'" />
 									<div id="ubicacion_list"></div>
 								</div>

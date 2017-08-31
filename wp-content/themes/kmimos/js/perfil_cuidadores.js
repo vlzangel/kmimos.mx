@@ -38,10 +38,7 @@ function initMap() {
 var comentarios_cuidador = [];
 
 function comentarios(pagina = 0){
-	console.log(pagina);
-
 	var comentario = '';
-	
 	jQuery.each(comentarios_cuidador, function( pagina, cuidador ) {
 		comentario += '	<div class="km-comentario">';
 		comentario += '			<div class="row">';
@@ -105,12 +102,30 @@ jQuery( document ).ready(function() {
 		{
 			servicio: SERVICIO_ID
 		}, function(data){
-			console.log(data);
-
 			comentarios_cuidador = data;
-
 			comentarios();
-
 		}, "json"
 	);
+
+	function perfil_login(accion){
+		//jQuery.cookie("POST_LOGIN", accion);
+		jQuery("#login").click();
+	}
+
+	jQuery( document ).ready(function() {
+	 //  	var POST_LOGIN = jQuery.cookie("POST_LOGIN");
+		// if( POST_LOGIN != undefined ){
+		// 	jQuery.removeCookie("POST_LOGIN");
+		// 	document.getElementById(POST_LOGIN).click();
+		// }
+	});
+
+    jQuery("#btn_reservar").on("click", function(e){
+        perfil_login();
+    });
+
+    jQuery("#servicios").on("click", function(e){
+        show_login_modal("servicios");
+    });
+
 });

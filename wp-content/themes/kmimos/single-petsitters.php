@@ -141,9 +141,6 @@
 	      				</div>
 	      			";
 	      		}
-	      		/*echo "<pre>";
-	      			print_r($items);
-	      		echo "</pre>";*/
 	      		$galeria = '
 	      			<p class="km-tit-ficha">MIRA MIS FOTOS Y CONÓCEME</p>
 						<div class="km-galeria-cuidador">
@@ -166,10 +163,10 @@
 
 	$busqueda = getBusqueda();
 
-	// echo "<pre>";
-	// 	print_r($busqueda);
-	// echo "</pre>";
+	$precios_hospedaje = unserialize($cuidador->hospedaje);
+	$precios_adicionales = unserialize($cuidador->adicionales);
 
+	$id_hospedaje = 0;
 	$servicios = $wpdb->get_results("SELECT * FROM wp_posts WHERE post_author = {$cuidador->user_id} AND post_type = 'product' AND post_status = 'publish' ");
 	$productos = '<div class="row">';
 	foreach ($servicios as $servicio) {
@@ -187,6 +184,12 @@
         $titulo = get_servicio_cuidador($tipo);
 
         $tamanos = '';
+        $precios = $precios_hospedaje;
+        if( $tipo != "hospedaje" ){
+        	$precios = $precios_adicionales[$tipo];
+        }else{
+        	$id_hospedaje = $servicio->ID;
+        }
 
         $tamanos_servicio = $wpdb->get_results("SELECT * FROM wp_posts WHERE post_parent = '{$servicio->ID}' AND post_type = 'bookable_person' AND post_status = 'publish' ");
         foreach ($tamanos_servicio as $tamano ) {
@@ -201,15 +204,15 @@
 	        		$activo = true;
 	        	}
         	}
-        	$tamanos .= get_tamano($tamano->post_title, "$40.00", $activo, $busqueda["tamanos"]);
+        	$tamanos .= get_tamano($tamano->post_title, $precios, $activo, $busqueda["tamanos"]);
         }
 		$productos .= '
 		<div class="col-xs-12 col-md-6">
-			<div class="km-ficha-servicio">
+			<a href="'.get_home_url().'/reservar/'.$servicio->ID.'" class="km-ficha-servicio">
 				'.$titulo.'
 				<p>SELECCIÓN SEGÚN TAMAÑO</p>
 				'.$tamanos.'
-			</div>
+			</a>
 		</div>';
 	}
 
@@ -222,7 +225,6 @@
 		<a href='#'
 			id='btn_reservar'
 			class='km-btn-secondary' 
-			onclick=\"perfil_login('btn_reservar');\"
 		>RESERVAR</a>";
 	}
 
@@ -400,11 +402,8 @@
 						<div class="km-ficha-datos hidden-sm hidden-md hidden-lg">
 							<a href="#" class="km-btn-primary show-map-mobile">VER UBICACIÓN EN MAPA</a>
 						</div>
-
 						<p style="text-align: justify;">'.$descripcion.'</p>
-						
 						'.$galeria.'
-
 						<p class="km-tit-ficha">SERVICIOS QUE OFREZCO</p>
 						'.$productos.'
 					</div>
@@ -434,10 +433,7 @@
 
 						<a href="#" class="km-btn-comentario">ESCRIBE UN COMENTARIO</a>
 
-						<div id="comentarios_box">
-							
-						</div>
-
+						<div id="comentarios_box"> </div>
 					</div>
 				</div>
 			</div>
