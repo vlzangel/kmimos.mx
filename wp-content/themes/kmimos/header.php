@@ -37,7 +37,6 @@
 			var RAIZ = "'.get_home_url().'/"; 
 			var pines = []; 
 		</script>
-
 	</head>
 
 	<body class="'.join( ' ', get_body_class( $class ) ).' '.$reserrvacion_page.'" >';
