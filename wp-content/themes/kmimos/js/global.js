@@ -1,5 +1,5 @@
 jQuery( document ).ready(function() {
-    jQuery("#close_login").on("click", function(e){
+	jQuery("#close_login").on("click", function(e){
         close_login_modal();
     });
 
@@ -7,22 +7,22 @@ jQuery( document ).ready(function() {
         show_login_modal("login");
     });
 
-    jQuery("#login_movil").on("click", function(e){
+	jQuery("#login_movil").on("click", function(e){
         show_login_modal("login");
     });
 
-    jQuery("#recuperar").on("click", function(e){
+	jQuery("#recuperar").on("click", function(e){
         show_login_modal("recuperar");
     });
 
-    jQuery("#login_submit").on("click", function(e){
-        logear();
-        e.preventDefault();
+	jQuery("#login_submit").on("click", function(e){
+		logear();
+		e.preventDefault();
     });
 
     jQuery("#form_login").submit(function(e){ 
-        logear(); 
-    });
+    	logear(); 
+   	});
 });
 
 function logear(){
@@ -44,21 +44,21 @@ function logear(){
 }
 
 function show_login_modal(seccion){
-    switch(seccion){
+	switch(seccion){
         case "login":
             jQuery("#modal_login form").css("display", "none");
             jQuery("#form_login").css("display", "block");
             jQuery("#modal_login").css("display", "table");
         break;
-        case "servicios":
-            jQuery("#modal_servicio").css("display", "table");
-        break;
-        case "recuperar":
-            jQuery(".modal_login form").css("display", "none");
-            jQuery("#form_recuperar").css("display", "block");
+		case "servicios":
+			jQuery("#modal_servicio").css("display", "table");
+		break;
+		case "recuperar":
+			jQuery(".modal_login form").css("display", "none");
+			jQuery("#form_recuperar").css("display", "block");
             jQuery("#modal_login").css("display", "table");
-        break;
-    }
+		break;
+	}
 }
 
 function close_login_modal(){
@@ -66,18 +66,18 @@ function close_login_modal(){
 }
 
 function postJSON(FORM, URL, ANTES, RESPUESTA){
-    jQuery("#"+FORM).submit(function( event ) {
-        event.preventDefault();
+	jQuery("#"+FORM).submit(function( event ) {
+	  	event.preventDefault();
         if( validarAll(FORM) ){
             ANTES();
             // jQuery.post(URL, jQuery("#"+FORM).serialize(), RESPUESTA, 'json');
             jQuery.post(URL, jQuery("#"+FORM).serialize(), RESPUESTA);
         }
-    });
+	});
 }
 
 function subirImg(evt){
-    var files = evt.target.files;
+	var files = evt.target.files;
     var padre = jQuery(this).parent().parent();
     getRealMime(this.files[0]).then(function(MIME){
         if( MIME.match("image.*") ){
@@ -108,7 +108,7 @@ function subirImg(evt){
         padre.children('.vlz_cambiar_portada').children('input').val("");
         padre.children('.vlz_img_portada_cargando').css("display", "none");
         alert("Solo se permiten imagenes");
-    });     
+    });  	
 }
 
 function getRealMime(file) {
