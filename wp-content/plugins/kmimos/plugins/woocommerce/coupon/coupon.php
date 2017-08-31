@@ -125,7 +125,7 @@ function filter_woocommerce_coupon_is_valid($result,$coupon) {
                        }
 
                    }
-                   if(count($Bookings_validate)<$CouponBooking_NumberBookings){
+                   if(count($Bookings_validate)>$CouponBooking_NumberBookings){
                        $detail = wc_add_notice('Validate 6 -- Cantidad de reservas debe ser mayor a '.$CouponBooking_NumberBookings, 'error');
                        return false;
                    }
