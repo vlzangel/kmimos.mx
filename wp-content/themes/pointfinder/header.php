@@ -19,7 +19,27 @@
         		<meta name="keywords" content="Pension perro, pensión perro, hotel perro, guarderia perro, guardería perro, pension canina, pensión canina,  hotel canino, guarderia canina, guardería canina, paseador perro, paseo perro, estancia canina, baño perro, corte de uñas perro, corte pelo perro, transporte perro, traslado perro"/>
         	';
 
-        	echo '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">';
+			$metas .= "
+				<!-- Facebook Pixel Code -->
+				<script>
+					!function(f,b,e,v,n,t,s)
+					{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+					n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+					if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+					n.queue=[];t=b.createElement(e);t.async=!0;
+					t.src=v;s=b.getElementsByTagName(e)[0];
+					s.parentNode.insertBefore(t,s)}(window,document,'script',
+					'https://connect.facebook.net/en_US/fbevents.js');
+					 fbq('init', '1947239458868599'); 
+					fbq('track', 'PageView');
+				</script>
+				<noscript>
+				 	<img height='1' width='1' src='https://www.facebook.com/tr?id=1947239458868599&ev=PageView&noscript=1'/>
+				</noscript>
+				<!-- End Facebook Pixel Code -->
+			";
+
+        	$metas .= '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">';
 
         	echo comprimir_styles($metas);
 
