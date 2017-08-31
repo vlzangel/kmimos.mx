@@ -99,7 +99,7 @@ if(mail_validate($mail)){
 			//MAIL
 			$subjet='Gracias por tu registro';
 			$message='ten tu cupon '.$code;
-			$mail=kmimos_get_email_html($asunto, $message, 'Saludos,', false, true);
+			$message=kmimos_get_email_html($asunto, $message, 'Saludos,', false, true);
 			wp_mail($mail,  $subjet, $message);
 		}
 
