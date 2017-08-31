@@ -76,7 +76,7 @@
 		}
 	}
 
-	function get_tamano($slug, $precio, $activo, $tamanos){
+	function get_tamano($slug, $precios, $activo, $tamanos, $tipo_retorno = "HTML"){
 
 		$tamano = "";
 		preg_match_all("#Peque#", $slug, $matches);
@@ -104,48 +104,171 @@
 				$class = "km-servicio-opcionactivo";
 			}
 		}
-
+  		
+  		$HTML = "";
+  		$ARRAY = array();
 		switch ( $tamano ) {
 			case 'pequenos':
-				return '
+
+				$ARRAY = array(
+					"tamano" => 'pequenos',
+					"precio" => $precio
+				);
+
+				$prec = "";
+				if( is_array($precio) ){
+
+				}
+
+				$HTML = '
 				<div class="km-servicio-opcion '.$class.'">
 					<div class="km-servicio-desc">
 						<img src="'.getTema().'/images/new/icon/icon-pequenio.svg">
 						<div class="km-opcion-text"><b>PEQUEÑO</b><br>0 a 25 cm</div>
 					</div>
-					<div class="km-servicio-costo"><b>'.$precio.'</b></div>
+					<div class="km-servicio-costo"><b>$'.($precios["pequenos"]*1.2).'</b></div>
 				</div>';
 			break;
 			case 'medianos':
-				return '
+
+				$ARRAY = array(
+					"tamano" => 'medianos',
+					"precio" => $precio
+				);
+
+				$HTML = '
 				<div class="km-servicio-opcion '.$class.'">
 					<div class="km-servicio-desc">
 						<img src="'.getTema().'/images/new/icon/icon-mediano.svg">
 						<div class="km-opcion-text"><b>MEDIANO</b><br>25 a 28 cm</div>
 					</div>
-					<div class="km-servicio-costo"><b>'.$precio.'</b></div>
+					<div class="km-servicio-costo"><b>$'.($precios["medianos"]*1.2).'</b></div>
 				</div>';
 			break;
 			case 'grandes':
-				return '
+
+				$ARRAY = array(
+					"tamano" => 'grandes',
+					"precio" => $precio
+				);
+
+				$HTML = '
 				<div class="km-servicio-opcion '.$class.'">
 					<div class="km-servicio-desc">
 						<img src="'.getTema().'/images/new/icon/icon-grande.svg">
 						<div class="km-opcion-text"><b>GRANDE</b><br>58 a 73 cm</div>
 					</div>
-					<div class="km-servicio-costo"><b>'.$precio.'</b></div>
+					<div class="km-servicio-costo"><b>$'.($precios["grandes"]*1.2).'</b></div>
 				</div>';
 			break;
 			case 'gigantes':
-				return '
+
+				$ARRAY = array(
+					"tamano" => 'gigantes',
+					"precio" => $precio
+				);
+
+				$HTML = '
 				<div class="km-servicio-opcion '.$class.'">
 					<div class="km-servicio-desc">
 						<img src="'.getTema().'/images/new/icon/icon-gigante.svg">
 						<div class="km-opcion-text"><b>GIGANTE</b><br>73 a 200 cm</div>
 					</div>
-					<div class="km-servicio-costo"><b>'.$precio.'</b></div>
+					<div class="km-servicio-costo"><b>$'.($precios["gigantes"]*1.2).'</b></div>
 				</div>';
 			break;
 		}
+
+		if( $tipo_retorno == "HTML" ){
+			return $HTML;
+		}else{
+			return $ARRAY;
+		}
+	}
+
+	function getTamanos(){
+		return array(
+			"pequenos" => "PEQUEÑO 0 a 25cm",
+			"medianos" => "MEDIANO 25 a 58cm",
+			"grandes"  => "GRANDE 58cm a 73cm",
+			"gigantes" => "GIGANTE 73cm a 200cm"
+		);
+	}
+
+	function getPrecios($data){
+		$resultado = "";
+		$tamanos = getTamanos();
+		foreach ($tamanos as $key => $value) {
+			if( isset($data[$key]) && $data[$key] > 0 ){
+				$resultado .= '
+					<div class="km-quantity-height">
+						<div class="km-quantity">
+							<a href="#" class="km-minus disabled">-</a>
+								<span class="km-number">0</span>
+								<input type="hidden" value="0" name="'.$key.'" class="tamano" data-valor="'.($data[$key]*1.2).'" />
+							<a href="#" class="km-plus">+</a>
+						</div>
+						<div class="km-height">
+							'.$tamanos[$key].'
+							<span>$'.($data[$key]*1.2).'</span>
+						</div>
+					</div>
+				';
+			}
+		}
+		return $resultado;
+	}
+
+	function getTransporte($data){
+		$resultado = "";
+		$transportes = array(
+			"transportacion_sencilla" => "Transportaci&oacute;n Sencilla",
+			"transportacion_redonda" => "Transportaci&oacute;n Redonda"
+		);
+		$rutas = array(
+			"corto" => "Rutas Cortas",
+			"medio" => "Rutas Medias",
+			"largo" => "Rutas Largas"
+		);
+		foreach ($transportes as $key => $value) {
+			if( isset($data[$key]) ){
+				$opciones = "";
+				foreach ($data[$key] as $ruta => $precio) {
+					if( $precio > 0 ){
+						$opciones .= '
+							<option value="'.($precio*1.2).'">
+								'.$rutas[ $ruta ].' ( $'.($precio*1.2).' )
+				 			</option>
+						';
+					}
+				}
+				if( $opciones != "" ){
+					$resultado .= '<optgroup label="'.$value.'">'.$opciones.'</optgroup>';
+				}
+			}
+		}
+		return $resultado;
+	}
+
+	function getAdicionales($data){
+		$resultado = "";
+		$adicionales = array(
+			"bano" => "BAÑO Y SECADO",
+			"corte" => "CORTE DE UÑAS Y PELO",
+			"limpieza_dental" => "LIMPIEA DENTAL",
+			"acupuntura" => "ACUPUNTURA",
+			"visita_al_veterinario" => "VISITA AL VETERINARIO"
+		);
+		foreach ($adicionales as $key => $value) {
+			if( isset($data[$key]) && $data[$key] > 0 ){
+				$resultado .= '
+					<div class="km-service-col">
+						<label class="optionCheckout" for="'.$key.'">'.$adicionales[$key].' ( $'.$data[$key].')</label><br>
+						<input type="checkbox" id="'.$key.'" name="'.$key.'" value="'.$data[$key].'" style="display: none;">
+					</div>
+				';
+			}
+		}
+		return $resultado;
 	}
 ?>
