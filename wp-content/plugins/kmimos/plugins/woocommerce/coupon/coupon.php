@@ -113,6 +113,7 @@ function filter_woocommerce_coupon_is_valid($result,$coupon) {
                           (posts.post_date >= '".date('Y-m-d',$CouponBooking_DateStart)."' AND posts.post_date <= '".date('Y-m-d',$CouponBooking_DateFinal)."')
                      ";
 
+                var_dump($sql);
                 $Bookings = $wpdb->get_results($sql);
                 $Bookings_validate = array();
                 foreach($Bookings as $Booking){
