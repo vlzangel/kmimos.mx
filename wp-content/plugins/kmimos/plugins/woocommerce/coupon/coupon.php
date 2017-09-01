@@ -110,7 +110,7 @@ function filter_woocommerce_coupon_is_valid($result,$coupon) {
                           AND
                           (metas.meta_key = '_booking_customer_id' AND metas.meta_value = '$userId')
                           AND
-                          (posts.post_date >= $CouponBooking_DateStart AND posts.post_date <= $CouponBooking_DateFinal)
+                          (posts.post_date >= '".date('Y-m-d',$CouponBooking_DateStart)."' AND posts.post_date <= '".date('Y-m-d',$CouponBooking_DateFinal)."')
                      ";
 
                 $Bookings = $wpdb->get_results($sql);
