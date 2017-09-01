@@ -1,253 +1,230 @@
 <?php
-	function get_menu(){
-		$defaults = array(
-		    'theme_location'  => 'pointfinder-main-menu',
-		    'menu'            => '',
-		    'container'       => '',
-		    'container_class' => '',
-		    'container_id'    => '',
-		    'menu_class'      => '',
-		    'menu_id'         => '',
-		    'echo'            => false,
-		    'fallback_cb'     => 'wp_page_menu',
-		    'before'          => '',
-		    'after'           => '',
-		    'link_before'     => '',
-		    'link_after'      => '',
-		    'items_wrap'      => '%3$s',
-		    'depth'           => 0
-		);
-		return wp_nav_menu( $defaults );
+	function getTema(){
+        return get_template_directory_uri();
+    }
+    
+	add_filter( 'show_admin_bar', '__return_false' );
+
+	add_action( 'admin_init', 'disable_autosave' );
+	function disable_autosave() {
+		wp_deregister_script( 'autosave' );
 	}
-	function getBusqueda(){
-		if( !isset($_SESSION) ){ session_start(); }
-		$busqueda = array();
-		if( isset($_SESSION["busqueda"]) ){
-			$busqueda = unserialize($_SESSION["busqueda"]);
-		}
-		return $busqueda;
+
+	add_filter( 'woocommerce_checkout_fields' , 'set_input_attrs' );
+	function set_input_attrs( $fields ) {
+		$fields['billing']['billing_address_2']['maxlength'] = 50;
+		$fields['billing']['billing_postcode']['maxlength'] = 12;
+		$fields['billing']['billing_country']['class'][] = "hide";
+	   	return $fields;
 	}
-	function get_servicio_cuidador($slug){
-		switch ($slug) {
-			case 'hospedaje':
-				return '
-					<div class="servicio-tit">
-						<img src="'.getTema().'/images/new/icon/km-servicios/icon-hospedaje.svg">
-						<div>HOSPEDAJE<br>DÍA Y NOCHE</div>
-					</div>';
-			break;
-			case 'guarderia':
-				return '
-					<div class="servicio-tit">
-						<img src="'.getTema().'/images/new/icon/km-servicios/icon-hospedaje.svg">
-						<div>GUARDERÍA<br>DÍA</div>
-					</div>';
-			break;
-			case 'paseos':
-				return '
-					<div class="servicio-tit">
-						<img src="'.getTema().'/images/new/icon/km-servicios/icon-hospedaje.svg">
-						<div>PASEOS</div>
-					</div>';
-			break;
-			case 'adiestramiento-basico':
-				return '
-					<div class="servicio-tit">
-						<img src="'.getTema().'/images/new/icon/km-servicios/icon-hospedaje.svg">
-						<div>ENTRENAMIENTO<br>B&Aacute;SICO</div>
-					</div>';
-			break;
-			case 'adiestramiento-intermedio':
-				return '
-					<div class="servicio-tit">
-						<img src="'.getTema().'/images/new/icon/km-servicios/icon-hospedaje.svg">
-						<div>ENTRENAMIENTO<br>INTERMEDIO</div>
-					</div>';
-			break;
-			case 'adiestramiento-avanzado':
-				return '
-					<div class="servicio-tit">
-						<img src="'.getTema().'/images/new/icon/km-servicios/icon-hospedaje.svg">
-						<div>ENTRENAMIENTO<br>AVANZADO</div>
-					</div>';
-			break;
-		}
+
+	remove_action ('wp_head', 'rsd_link');
+	remove_action( 'wp_head', 'wlwmanifest_link');
+	remove_action( 'wp_head', 'wp_shortlink_wp_head');
+	remove_action( 'wp_head', 'wp_generator');
+	remove_action( 'wp_head','rest_output_link_wp_head');
+	remove_action( 'wp_head','wp_oembed_add_discovery_links');
+	remove_action( 'template_redirect', 'rest_output_link_header', 11, 0 );
+	remove_action('wp_head', 'rel_canonical');
+	remove_action('wp_head', 'rel_canonical', 47);
+
+	// add_action('wp_enqueue_scripts', 'no_more_jquery');
+	// function no_more_jquery(){
+	//     wp_deregister_script('jquery');
+	// }
+
+	function move_scripts_from_head_to_footer() {
+	    remove_action( 'wp_head', 'wp_print_scripts' );
+	    remove_action( 'wp_head', 'wp_print_head_scripts', 9 );
+	    remove_action( 'wp_head', 'wp_enqueue_scripts', 1 );
+	    add_action( 'wp_footer', 'wp_print_scripts', 5);
+	    add_action( 'wp_footer', 'wp_enqueue_scripts', 5);
+	    add_action( 'wp_footer', 'wp_print_head_scripts', 5);
 	}
-	function get_tamano($slug, $precios, $activo, $tamanos, $tipo_retorno = "HTML"){
-		$tamano = "";
-		preg_match_all("#Peque#", $slug, $matches);
-		if( count( $matches[0] ) == 1 ){
-			$tamano = "pequenos";
+	add_action('wp_enqueue_scripts', 'move_scripts_from_head_to_footer');
+
+	function _remove_script_version( $src ){
+	    $parts = explode( '?ver', $src );
+        return $parts[0]."?ver=".time();
+        // return $parts[0];
+	}
+	add_filter( 'script_loader_src', '_remove_script_version', 15, 1 );
+	add_filter( 'style_loader_src', '_remove_script_version', 15, 1 );
+
+	add_filter( 'woocommerce_product_tabs', 'sb_woo_remove_reviews_tab', 98);
+	function sb_woo_remove_reviews_tab($tabs) {
+		unset($tabs['reviews']);
+		return $tabs;
+	}
+
+	add_action( 'woocommerce_after_shop_loop_item', 'mycode_remove_add_to_cart_buttons', 1 );
+	function mycode_remove_add_to_cart_buttons() {
+	    remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart' );
+	}
+
+	add_action( 'woocommerce_after_shop_loop_item', 'mycode_add_more_info_buttons', 1 );
+	function mycode_add_more_info_buttons() {
+	    add_action( 'woocommerce_after_shop_loop_item', 'mycode_more_info_button' );
+	}
+	function mycode_more_info_button() {
+		global $product;
+		echo '<a href="' . get_permalink( $product->id ) . '" class="button add_to_cart_button product_type_external">Reservar</a>';
+	}
+
+	// Woocommerce only 1 product in the cart
+	add_filter( 'woocommerce_add_cart_item_data', '_empty_cart' );
+	function _empty_cart( $cart_item_data ){
+		WC()->cart->empty_cart();
+		return $cart_item_data;
+	}
+
+	function is_cuidador(){
+		$user = wp_get_current_user();
+		if( $user->roles[0] == '' ){ return -1; }
+		if( $user->roles[0] == 'vendor' ){ return 1; }else{ return 0; }
+	}
+
+	if ( ! function_exists( 'pointfinder_setup' ) ){
+		function pointfinder_setup() {
+			add_theme_support('menus');
+		    add_theme_support('post-thumbnails');
+		    add_theme_support( 'woocommerce' );
+			add_theme_support( 'html5', array(
+				'search-form', 'comment-form', 'comment-list',
+			) );
+			register_nav_menus(array( 
+				'pointfinder-main-menu' => esc_html__('Point Finder Main Menu', 'pointfindert2d')
+		    ));
 		}
+	};
+	add_action('after_setup_theme', 'pointfinder_setup');
+
+	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+	remove_action( 'wp_print_styles', 'print_emoji_styles' );
+
+	add_filter('widget_text', 'do_shortcode'); 
+	add_filter('the_excerpt', 'do_shortcode'); 
+
+	function disable_all_feeds() {
 		
-		preg_match_all("#Medi#", $slug, $matches);
-		if( count( $matches[0] ) == 1 ){
-			$tamano = "medianos";
-		}
-		
-		preg_match_all("#Grand#", $slug, $matches);
-		if( count( $matches[0] ) == 1 ){
-			$tamano = "grandes";
-		}
-		preg_match_all("#Gigan#", $slug, $matches);
-		if( count( $matches[0] ) == 1 ){
-			$tamano = "gigantes";
-		}
-		if( is_array($tamanos) ){
-			if( $activo && in_array($tamano, $tamanos) ){
-				$class = "km-servicio-opcionactivo";
-			}
-		}
-  		
-  		$HTML = "";
-  		$ARRAY = array();
-		switch ( $tamano ) {
-			case 'pequenos':
-				$ARRAY = array(
-					"tamano" => 'pequenos',
-					"precio" => $precio
-				);
-				$prec = "";
-				if( is_array($precio) ){
-				}
-				$HTML = '
-				<div class="km-servicio-opcion '.$class.'">
-					<div class="km-servicio-desc">
-						<img src="'.getTema().'/images/new/icon/icon-pequenio.svg">
-						<div class="km-opcion-text"><b>PEQUEÑO</b><br>0 a 25 cm</div>
-					</div>
-					<div class="km-servicio-costo"><b>$'.($precios["pequenos"]*1.2).'</b></div>
-				</div>';
-			break;
-			case 'medianos':
-				$ARRAY = array(
-					"tamano" => 'medianos',
-					"precio" => $precio
-				);
-				$HTML = '
-				<div class="km-servicio-opcion '.$class.'">
-					<div class="km-servicio-desc">
-						<img src="'.getTema().'/images/new/icon/icon-mediano.svg">
-						<div class="km-opcion-text"><b>MEDIANO</b><br>25 a 28 cm</div>
-					</div>
-					<div class="km-servicio-costo"><b>$'.($precios["medianos"]*1.2).'</b></div>
-				</div>';
-			break;
-			case 'grandes':
-				$ARRAY = array(
-					"tamano" => 'grandes',
-					"precio" => $precio
-				);
-				$HTML = '
-				<div class="km-servicio-opcion '.$class.'">
-					<div class="km-servicio-desc">
-						<img src="'.getTema().'/images/new/icon/icon-grande.svg">
-						<div class="km-opcion-text"><b>GRANDE</b><br>58 a 73 cm</div>
-					</div>
-					<div class="km-servicio-costo"><b>$'.($precios["grandes"]*1.2).'</b></div>
-				</div>';
-			break;
-			case 'gigantes':
-				$ARRAY = array(
-					"tamano" => 'gigantes',
-					"precio" => $precio
-				);
-				$HTML = '
-				<div class="km-servicio-opcion '.$class.'">
-					<div class="km-servicio-desc">
-						<img src="'.getTema().'/images/new/icon/icon-gigante.svg">
-						<div class="km-opcion-text"><b>GIGANTE</b><br>73 a 200 cm</div>
-					</div>
-					<div class="km-servicio-costo"><b>$'.($precios["gigantes"]*1.2).'</b></div>
-				</div>';
-			break;
-		}
-		if( $tipo_retorno == "HTML" ){
-			return $HTML;
-		}else{
-			return $ARRAY;
-		}
 	}
-	function getTamanos(){
-		return array(
-			"pequenos" => "PEQUEÑO 0 a 25cm",
-			"medianos" => "MEDIANO 25 a 58cm",
-			"grandes"  => "GRANDE 58cm a 73cm",
-			"gigantes" => "GIGANTE 73cm a 200cm"
-		);
+
+	add_action('do_feed', 'wpb_disable_feed', 1);
+	add_action('do_feed_rdf', 'wpb_disable_feed', 1);
+	add_action('do_feed_rss', 'wpb_disable_feed', 1);
+	add_action('do_feed_rss2', 'wpb_disable_feed', 1);
+	add_action('do_feed_atom', 'wpb_disable_feed', 1);
+	add_action('do_feed_rss2_comments', 'wpb_disable_feed', 1);
+	add_action('do_feed_atom_comments', 'wpb_disable_feed', 1);
+
+	remove_action( 'wp_head', 'feed_links_extra', 3 );
+	remove_action( 'wp_head', 'feed_links', 2 );
+
+	function head_cleanup() {
+	    remove_action( 'wp_head', 'rel_canonical' ); //quita el rel canonical
+	    remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head' );//quita rel next y rel prev
+	    remove_action( 'wp_head', 'wp_shortlink_wp_head' );
 	}
-	function getPrecios($data){
-		$resultado = "";
-		$tamanos = getTamanos();
-		foreach ($tamanos as $key => $value) {
-			if( isset($data[$key]) && $data[$key] > 0 ){
-				$resultado .= '
-					<div class="km-quantity-height">
-						<div class="km-quantity">
-							<a href="#" class="km-minus disabled">-</a>
-								<span class="km-number">0</span>
-								<input type="hidden" value="0" name="'.$key.'" class="tamano" data-valor="'.($data[$key]*1.2).'" />
-							<a href="#" class="km-plus">+</a>
-						</div>
-						<div class="km-height">
-							'.$tamanos[$key].'
-							<span>$'.($data[$key]*1.2).'</span>
-						</div>
-					</div>
-				';
-			}
-		}
-		return $resultado;
+	add_action( 'init', 'head_cleanup' ); 
+
+	add_filter( 'wc_add_to_cart_message', '__return_null()' );
+
+	function modify_jquery() {
+		wp_deregister_script('jquery');
+		wp_register_script('jquery', get_template_directory_uri().'/js/jquery.js', false, '1.0.0');
+		wp_enqueue_script('jquery');
 	}
-	function getTransporte($data){
-		$resultado = "";
-		$transportes = array(
-			"transportacion_sencilla" => "Transportaci&oacute;n Sencilla",
-			"transportacion_redonda" => "Transportaci&oacute;n Redonda"
-		);
-		$rutas = array(
-			"corto" => "Rutas Cortas",
-			"medio" => "Rutas Medias",
-			"largo" => "Rutas Largas"
-		);
-		foreach ($transportes as $key => $value) {
-			if( isset($data[$key]) ){
-				$opciones = "";
-				foreach ($data[$key] as $ruta => $precio) {
-					if( $precio > 0 ){
-						$opciones .= '
-							<option value="'.($precio*1.2).'">
-								'.$rutas[ $ruta ].' ( $'.($precio*1.2).' )
-				 			</option>
-						';
-					}
-				}
-				if( $opciones != "" ){
-					$resultado .= '<optgroup label="'.$value.'">'.$opciones.'</optgroup>';
-				}
-			}
-		}
-		return $resultado;
-	}
-	function getAdicionales($data){
-		$resultado = "";
-		$adicionales = array(
-			"bano" => "BAÑO Y SECADO",
-			"corte" => "CORTE DE UÑAS Y PELO",
-			"limpieza_dental" => "LIMPIEA DENTAL",
-			"acupuntura" => "ACUPUNTURA",
-			"visita_al_veterinario" => "VISITA AL VETERINARIO"
-		);
-		foreach ($adicionales as $key => $value) {
-			if( isset($data[$key]) && $data[$key] > 0 ){
-				$resultado .= '
-					<div class="km-service-col">
-						<label class="optionCheckout" for="'.$key.'">'.$adicionales[$key].' ( $'.$data[$key].')</label><br>
-						<input type="checkbox" id="'.$key.'" name="'.$key.'" value="'.$data[$key].'" style="display: none;">
-					</div>
-				';
-			}
-		}
-		return $resultado;
-	}
+	add_action('wp_enqueue_scripts', 'modify_jquery');
+
+
+	// /**
+	// * Optimiza los scripts de WooCommerce
+	// * Quita la tag Generator de WooCommerce, estilos y scripts de páginas no WooCommerce.
+	// */
+	// add_action( 'wp_enqueue_scripts', 'child_manage_woocommerce_styles', 99 );
+
+	// function child_manage_woocommerce_styles() {
+	// //quitamos la tag generator meta
+	// remove_action( 'wp_head', array( $GLOBALS['woocommerce'], 'generator' ) );
+
+	// //Primero comprobamos si está instalado WooCommerce para evitar errores fatales
+	// if ( function_exists( 'is_woocommerce' ) ) {
+	// //y aplicamos el dequeue a scripts y estilos
+	// if ( ! is_woocommerce() && ! is_cart() && ! is_checkout() ) {
+	// wp_dequeue_style( 'woocommerce_frontend_styles' );
+	// wp_dequeue_style( 'woocommerce_fancybox_styles' );
+	// wp_dequeue_style( 'woocommerce_chosen_styles' );
+	// wp_dequeue_style( 'woocommerce_prettyPhoto_css' );
+	// wp_dequeue_script( 'wc_price_slider' );
+	// wp_dequeue_script( 'wc-single-product' );
+	// wp_dequeue_script( 'wc-add-to-cart' );
+	// wp_dequeue_script( 'wc-cart-fragments' );
+	// wp_dequeue_script( 'wc-checkout' );
+	// wp_dequeue_script( 'wc-add-to-cart-variation' );
+	// wp_dequeue_script( 'wc-single-product' );
+	// wp_dequeue_script( 'wc-cart' );
+	// wp_dequeue_script( 'wc-chosen' );
+	// wp_dequeue_script( 'woocommerce' );
+	// wp_dequeue_script( 'prettyPhoto' );
+	// wp_dequeue_script( 'prettyPhoto-init' );
+	// wp_dequeue_script( 'jquery-blockui' );
+	// wp_dequeue_script( 'jquery-placeholder' );
+	// wp_dequeue_script( 'fancybox' );
+	// wp_dequeue_script( 'jqueryui' );
+	// }
+	// }
+
+	// }
+
+
+	// function wpdm_filter_siteurl($content) {
+	// 	$current_server = $_SERVER['SERVER_NAME'];
+	//    	return "http://".$current_server."/";
+	// }
+
+	// function wpdm_filter_home($content) {
+	// 	$current_server = $_SERVER['SERVER_NAME'];
+	//    	return "http://".$current_server."/";
+	// }
+
+	// function wpdm_conv_tag($content) {
+	// 	$search = "/\[dmWpAddr\]/";
+	// 	if (preg_match($search, $content)){
+	// 		$replace = get_option('siteurl');
+	// 		$content = preg_replace ($search, $replace, $content);
+	// 	}
+	// 	$search = "/\[dmBlogAddr\]/";
+	// 	if (preg_match($search, $content)){
+	// 		$replace = get_option('home');
+	// 		$content = preg_replace ($search, $replace, $content);
+	// 	}
+	// 	$search = "/\[dmBlogTitle\]/";
+	// 	if (preg_match($search, $content)){
+	// 		$replace = get_option('blogname');
+	// 		$content = preg_replace ($search, $replace, $content);
+	// 	}
+	// 	$search = "/\[dmTagLine\]/";
+	// 	if (preg_match($search, $content)){
+	// 		$replace = get_option('blogdescription');
+	// 		$content = preg_replace ($search, $replace, $content);
+	// 	}
+	// 	return $content;
+	// }
+
+	// // Add the hooks:
+	// add_filter('option_siteurl', 'wpdm_filter_siteurl', 1);
+	// add_filter('option_home', 'wpdm_filter_home', 1);
+
+
+	// function vlz_plugins_url($path = '', $plugin = '') {
+	// 	$new_path = explode("/", $path);
+	// 	$new_path[2] = $_SERVER['SERVER_NAME'];
+	// 	return implode("/", $new_path);
+	// }
+	// add_filter('plugins_url', 'vlz_plugins_url', -10);
+
+	// add_filter('the_content', 'wpdm_conv_tag'); 
+	// add_filter('the_excerpt', 'wpdm_conv_tag'); 
+
+
 ?>
