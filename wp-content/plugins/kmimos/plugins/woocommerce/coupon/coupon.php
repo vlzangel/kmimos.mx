@@ -133,18 +133,18 @@ function filter_woocommerce_coupon_is_valid($result,$coupon) {
                }
 
 
-               }
+            }
 
 
 
-                           }else{
-                               var_dump('Validate 1');
-                               return false;
-                           }
-                       }
+       }else{
+            $detail = wc_add_notice('CUPON NO CUMPLE CON LAS CONDICIONES: El cupón no coincide con el usuario asignado', 'notice');
+            return false;
+       }
+   }
 
-                       return true;
-                   }
+   return true;
+}
 
                    /** COUPON ADMIN MENU **/
 add_action('admin_menu', 'filter_woocommerce_coupon_add_menu');
