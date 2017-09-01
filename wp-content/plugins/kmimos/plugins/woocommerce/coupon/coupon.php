@@ -98,13 +98,13 @@ function filter_woocommerce_coupon_is_valid($result,$coupon) {
             }
 
             //Validate 6
-            if($CouponBooking_Type == 2){
+            if($CouponBooking_Type == '2'){
                 $sql= "
                         SELECT *
                         FROM wp_posts as posts
                           LEFT JOIN wp_postmeta as metas ON posts.ID = metas.post_id
                         WHERE
-                          (posts.post_type >= 'wc_booking')
+                          (posts.post_type = 'wc_booking')
                           AND
                           (posts.post_status NOT LIKE '%cart%' AND posts.post_status != 'cancelled')
                           AND
@@ -120,17 +120,17 @@ function filter_woocommerce_coupon_is_valid($result,$coupon) {
                     $Booking_start=strtotime(filter_woocommerce_validate_variable('_booking_start',$Booking_postmeta));
                     $Booking_end=strtotime(filter_woocommerce_validate_variable('_booking_end',$Booking_postmeta));
 
-                       $Bookings_validate[]=$Booking;
-                       if($Booking_start >= $CouponBooking_DateStart && $Booking_end <= $CouponBooking_DateFinal){
-                           //$Bookings_validate[]=$Booking;
-                       }
-
+                   $Bookings_validate[]=$Booking;
+                   if($Booking_start >= $CouponBooking_DateStart && $Booking_end <= $CouponBooking_DateFinal){
+                       //$Bookings_validate[]=$Booking;
                    }
 
-                   if(count($Bookings_validate)>$CouponBooking_NumberBookings){
-                       $detail = wc_add_notice('CUPON NO CUMPLE CON LAS CONDICIONES: El cupón es aplicable a partir de '.$CouponBooking_NumberBookings.' reservas', 'notice');
-                       return false;
-                   }
+                }
+
+               if(count($Bookings_validate)<$CouponBooking_NumberBookings){
+                   $detail = wc_add_notice('CUPON NO CUMPLE CON LAS CONDICIONES: El cupón es aplicable a partir de '.$CouponBooking_NumberBookings.' reservas', 'notice');
+                   return false;
+               }
 
 
                }
