@@ -60,5 +60,5 @@ vlz_config.php
 /QA/
 landing-volaris/newsletter.csv
 
-/wp-content\plugins\redux-framework\ReduxCore\inc\fields\typography\googlefonts.php
-wp-content\plugins\redux-framework\ReduxCore\inc\fields\typography\googlefonts.php
+/wp-content/plugins/redux-framework/
+wp-content/plugins/redux-framework/
