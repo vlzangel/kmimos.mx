@@ -72,13 +72,13 @@ function filter_woocommerce_coupon_is_valid($result,$coupon) {
 
             //Validate 2
             if($CouponBooking_DateStart>time() || $CouponBooking_DateFinal<time()){
-                $detail = wc_add_notice('CUPON NO CUMPLE CON LAS CONDICIONES: El cupón es aplicable a partir de '.date('d/m/Y',$CouponBooking_DateStart).', hasta '.date('d/m/Y',$CouponBooking_DateFinal), 'notice');
+                $detail = wc_add_notice('CUPON NO CUMPLE CON LAS CONDICIONES: El cup&oacute;n es aplicable a partir de '.date('d/m/Y',$CouponBooking_DateStart).', hasta '.date('d/m/Y',$CouponBooking_DateFinal), 'notice');
                 return false;
             }
 
             //Validate 4
             if($CouponBooking_action=='processing'){
-                $detail = wc_add_notice('CUPON NO CUMPLE CON LAS CONDICIONES: El cupón esta procesado', 'notice');
+                $detail = wc_add_notice('CUPON NO CUMPLE CON LAS CONDICIONES: El cup&oacute;n esta procesado', 'notice');
                 return false;
             }
 
@@ -127,7 +127,7 @@ function filter_woocommerce_coupon_is_valid($result,$coupon) {
                 }
 
                if(count($Bookings)<$CouponBooking_NumberBookings){
-                   $detail = wc_add_notice('CUPON NO CUMPLE CON LAS CONDICIONES: El cupón es aplicable a partir de '.$CouponBooking_NumberBookings.' reservas', 'notice');
+                   $detail = wc_add_notice('CUPON NO CUMPLE CON LAS CONDICIONES: El cup&oacute;n es aplicable a partir de '.$CouponBooking_NumberBookings.' reservas', 'notice');
                    return false;
                }
 
@@ -137,7 +137,7 @@ function filter_woocommerce_coupon_is_valid($result,$coupon) {
 
 
        }else{
-            $detail = wc_add_notice('CUPON NO CUMPLE CON LAS CONDICIONES: El cupón no coincide con el usuario asignado', 'notice');
+            $detail = wc_add_notice('CUPON NO CUMPLE CON LAS CONDICIONES: El cup&oacute;n no coincide con el usuario asignado', 'notice');
             return false;
        }
    }
