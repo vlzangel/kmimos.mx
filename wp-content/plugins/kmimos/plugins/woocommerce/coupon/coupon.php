@@ -112,9 +112,7 @@ function filter_woocommerce_coupon_is_valid($result,$coupon) {
                           AND
                           (posts.post_date >= '".date('Y-m-d',$CouponBooking_DateStart)."' AND posts.post_date <= '".date('Y-m-d',$CouponBooking_DateFinal)."')
                      ";
-                echo '<pre>';
-                print_r($sql);
-                echo '</pre>';
+                
                 $Bookings = $wpdb->get_results($sql);
                 $Bookings_validate = array();
                 foreach($Bookings as $Booking){
@@ -122,14 +120,13 @@ function filter_woocommerce_coupon_is_valid($result,$coupon) {
                     $Booking_start=strtotime(filter_woocommerce_validate_variable('_booking_start',$Booking_postmeta));
                     $Booking_end=strtotime(filter_woocommerce_validate_variable('_booking_end',$Booking_postmeta));
 
-                   $Bookings_validate[]=$Booking;
                    if($Booking_start >= $CouponBooking_DateStart && $Booking_end <= $CouponBooking_DateFinal){
-                       //$Bookings_validate[]=$Booking;
+                       $Bookings_validate[]=$Booking;
                    }
 
                 }
 
-               if(count($Bookings_validate)<$CouponBooking_NumberBookings){
+               if(count($Bookings)<$CouponBooking_NumberBookings){
                    $detail = wc_add_notice('CUPON NO CUMPLE CON LAS CONDICIONES: El cupón es aplicable a partir de '.$CouponBooking_NumberBookings.' reservas', 'notice');
                    return false;
                }
