@@ -763,14 +763,22 @@
 
 		if(typeof place === 'undefined'){
 			messageInsite('#messageDirection','Sus coordenadasno fueron reconocidas.  puede buscar su ubicacion directamente en el mapa moviendo el pin');
+<<<<<<< HEAD
+//			message('Sus coordenadas no fueron reconocidas.  puede buscar su ubicacion directamente en el mapa moviendo el pin');
+=======
 			//message('Sus coordenadas no fueron reconocidas.  puede buscar su ubicacion directamente en el mapa moviendo el pin');
+>>>>>>> f6b0b1e5cd4e99ee7c0c091db0c26a7e7cdee1d2
 			return;
 
 		}else{
 			if(!place.geometry){
 				//window.alert("Autocomplete's returned place contains no geometry");
 				messageInsite('#messageDirection','El sitio Seleccionado, GoogleMap no obtiene las coordenadas');
+<<<<<<< HEAD
+//				message('El sitio Seleccionado, GoogleMap no obtiene las coordenadas');
+=======
 				//message('El sitio Seleccionado, GoogleMap no obtiene las coordenadas');
+>>>>>>> f6b0b1e5cd4e99ee7c0c091db0c26a7e7cdee1d2
 				return;
 
 			}else{
@@ -778,7 +786,11 @@
 				//messageClose('#messageDirection', callback);
 				jQuery('#messageDirection').css({'display':'none'});
 				messageInsite('#messageDirection','Puede mejorar su ubicacion directamente en el mapa moviendo el pin');
+<<<<<<< HEAD
+//				message('Puede mejorar su ubicacion directamente en el mapa moviendo el pin');
+=======
 				//message('Puede mejorar su ubicacion directamente en el mapa moviendo el pin');
+>>>>>>> f6b0b1e5cd4e99ee7c0c091db0c26a7e7cdee1d2
 
 				lat=place.geometry.location.lat();
 				lng=place.geometry.location.lng();
@@ -813,7 +825,11 @@
 			lng=longitude;
 			set_inputCoordMap();
 			messageInsite('#messageDirection','Seleccionaste estado');
+<<<<<<< HEAD
+//			message('Seleccionaste estado');
+=======
 			//message('Seleccionaste estado');
+>>>>>>> f6b0b1e5cd4e99ee7c0c091db0c26a7e7cdee1d2
 		}
 	});
 
@@ -827,7 +843,11 @@
 			lng=longitude;
 			set_inputCoordMap();
 			messageInsite('#messageDirection','seleccionaste municipio');
+<<<<<<< HEAD
+//			message('seleccionaste municipio');
+=======
 			//message('seleccionaste municipio');
+>>>>>>> f6b0b1e5cd4e99ee7c0c091db0c26a7e7cdee1d2
 		}
 	});
 

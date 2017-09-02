@@ -82,12 +82,22 @@
     function SubscribeSite(){
         clearTimeout(SubscribeTime);
 
+        <?php
+            $PopUpSection='home';
+            $bodyClass=get_body_class();
+            if(in_array('page-template-blog',$bodyClass)){
+                $PopUpSection='PopUpBlog';
+            }else if(in_array('single-post',$bodyClass)){
+                $PopUpSection='PopUpBlogPost';
+            }
+        ?>
+
         var dog = '<img height="70" align="bottom" src="https://www.kmimos.com.mx/wp-content/uploads/2017/07/propuestas-banner-09.png">' +
             '<img height="20" align="bottom" src="https://www.kmimos.com.mx/wp-content/uploads/2017/07/propuestas-banner-10.png">';
 
         var html='<div id="PageSubscribe"><i class="exit fa fa-times" aria-hidden="true" onclick="SubscribePopUp_Close(\'#message.Msubscribe\')"></i>' +
             '<div class="section section1"><span>G&aacute;nate <strong>$50</strong> pesos en tu primera reserva</span><br>&#8216;&#8216;Aplica para clientes nuevos&#8217;&#8217;<div class="images">'+dog+'</div></div>' +
-            '<div class="section section2"><span><strong>&#161;SUSCR&Iacute;BETE!</strong> y recibe el Newsletter con nuestras <strong>PROMOCIONES, TIPS DE CUIDADOS PARA MASCOTAS,</strong> etc.!</span><?php echo subscribe_input('home'); ?></div>' +
+            '<div class="section section2"><span><strong>&#161;SUSCR&Iacute;BETE!</strong> y recibe el Newsletter con nuestras <strong>PROMOCIONES, TIPS DE CUIDADOS PARA MASCOTAS,</strong> etc.!</span><?php echo subscribe_input($PopUpSection); ?></div>' +
             '<div class="section section3">*Dentro de 48 hrs. Te enviaremos v&iacute;a email tu c&uacute;pon de descuento</div>' +
             '</div>';
 
@@ -104,7 +114,8 @@
         }
     ?>
     jQuery(document).ready(function(e){
-        if(jQuery('body').hasClass('home') && checkparam){
+        var body= jQuery('body');
+        if((body.hasClass('home') && checkparam) || (body.hasClass('page-template-blog') || body.hasClass('single-post'))){
             SubscribeTime = setTimeout(function(){
                 SubscribeSite();
             }, 7400);
@@ -186,7 +197,7 @@ $HTML = "</div></div>
                     <h2>Navega</h2>
                     <ul>
                         <li><a href='#'>Nosotros</a></li>
-                        <li><a href='".get_home_url()."/blog/'>Blog</a></li>
+                        <li><a href='".get_home_url()."/blog/' target='_blank'>Blog</a></li>
                         <li><a href='#'>Preguntas y Respuestas</a></li>
                         <li><a href='#'>Cobertura Veterinaria</a></li>
                         <li><a href='#'>Comunicados de prensa</a></li>

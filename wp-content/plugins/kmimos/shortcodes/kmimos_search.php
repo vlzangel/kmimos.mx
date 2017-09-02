@@ -95,6 +95,7 @@
     }
 
     $HTML = do_shortcode("[layerslider id='1']")."
+    <h1 style='font-size: 0px;'>No somos pensión para perros ni hotel para perros. Somos mucho mejor porque tenemos cuidadores certificados para perros.</h1>
     <style>
         #estado_cuidador_main {
             margin: 0px !important;
