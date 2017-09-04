@@ -11,7 +11,7 @@
         $user = $data['user'];
         $caregiver_checkin=strtotime('1-1-2017 '.$data['checkin']);
         $caregiver_checkout=strtotime('1-1-2017 '.$data['checkout']);
-        
+
         for($i=$caregiver_checkin; $i <= $caregiver_checkout; $i=$i+(60*30)){
             $ihour=date('g:i:s',$i);
             $hour[$ihour]=array(
