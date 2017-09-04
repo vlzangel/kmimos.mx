@@ -308,6 +308,22 @@
 
 	$stylos = kmimos_style( array("form_errores") );
 
+	$entrada = "<select class='input' name='checkin'>";
+	for ($i=6; $i < 19; $i++) {
+		if( $i < 10){ $i = "0$i"; }
+		$entrada .= "<option value='{$i}:00:00' ".selected($cuidador->check_in, $i.':00:00', false).">{$i}:00</option>";
+		$entrada .= "<option value='{$i}:30:00' ".selected($cuidador->check_in, $i.':30:00', false).">{$i}:30</option>";
+	}
+	$entrada .= "</select>";
+
+	$salida = "<select class='input' name='checkout'>";
+	for ($i=6; $i < 19; $i++) {
+		if( $i < 10){ $i = "0$i"; }
+		$salida .= "<option value='{$i}:00:00' ".selected($cuidador->check_out, $i.':00:00', false).">{$i}:00</option>";
+		$salida .= "<option value='{$i}:30:00' ".selected($cuidador->check_out, $i.':30:00', false).">{$i}:30</option>";
+	}
+	$salida .= "</select>";
+
 	$this->FieldOutput .= $stylos."
 		<style>
 			.alertas{
@@ -346,6 +362,22 @@
     	</style>
     	<input type='hidden' name='user_id' value='{$user_id}'>
     	<div>
+    		<div class='vlz_seccion'>
+    			<div class='vlz_titulo_seccion'>Horarios</div>
+    			<div class='vlz_seccion_interna' id='check_in'>
+					<div class='vlz_celda_25'>
+						<label>CheckIn</label>
+						".$entrada."
+					</div>
+
+					<div class='vlz_celda_25''>
+						<label>CheckOut</label>
+						".$salida."
+					</div>
+    			</div>
+				<div class='no_error' id='error_check_in'>Debe seleccionar hora  de CheckIn</div>
+				<div class='no_error' id='error_check_out'>Debe seleccionar hora  de CheckOut</div>
+    		</div>
     		<div class='vlz_seccion'>
     			<div class='vlz_titulo_seccion'>Tamaños de Mascotas</div>
     			<div class='vlz_seccion_interna'>

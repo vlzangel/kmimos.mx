@@ -147,7 +147,7 @@
 
     $addons = "";
 
-	$sql = "UPDATE cuidadores SET adicionales = '".serialize($adicionales)."', hospedaje = '".serialize($hospedaje)."', hospedaje_desde = '".$base_hospedaje."' WHERE user_id = ".$user_id.";";
+	$sql = "UPDATE cuidadores SET check_in='".$checkin."', check_out='".$checkout."', adicionales = '".serialize($adicionales)."', hospedaje = '".serialize($hospedaje)."', hospedaje_desde = '".$base_hospedaje."' WHERE user_id = ".$user_id.";";
 	$db->query($sql);
 
 	$cuidador = $db->get_row("SELECT * FROM cuidadores WHERE user_id = {$user_id}");
@@ -191,6 +191,8 @@
   		}
 
         $adicionales['comision'] = 1.2;
+        $adicionales['checkin'] = $checkin;
+        $adicionales['checkout'] = $checkout;
         $addons = ( sql_addons($adicionales) );
 
         $db->query("UPDATE wp_postmeta SET meta_value = '{$addons}' WHERE post_id = {$hospedaje} AND meta_key = '_product_addons';");
