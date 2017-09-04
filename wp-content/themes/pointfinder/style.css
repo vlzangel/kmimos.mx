@@ -32,7 +32,19 @@
 
 \*------------------------------------*/
 
-
+.content-link-header a{
+    color:#fff!important;
+    font-weight: bold;
+}
+.content-link-header a img{
+	width: 75%;
+}
+.content-link-header{
+	float: left;
+    margin-left: -25px;
+    margin-top: 3px;
+    margin-bottom: 10px;
+}
 
 	/* global box-sizing */
 

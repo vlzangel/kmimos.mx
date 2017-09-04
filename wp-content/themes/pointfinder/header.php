@@ -89,17 +89,32 @@
 				</a>
 				<div class="pf-container pf-megamenu-container">
 						<div class="pf-row col-md-2 col-lg-2">';
-
-					if( $post->post_name == 'quiero-ser-cuidador-certificado-de-perros' ){ $HTML .= '
+ 
+					if( array_key_exists('app_visitor', $_GET) ){ 
+						if( $_GET['app_visitor'] == 'true' ){
+							$HTML .= '
+							<div class="content-link-header hidden-xl hidden-lg hidden-md">
+								<a href="javascript:history.back()" class="pull-left hidden-md hidden-lg hidden-xl">
+									<img src="'.get_home_url().'/wp-content/uploads/2017/09/app_atras.png">
+								</a>
+								<a class="pull-left hidden-md hidden-lg hidden-xl">|</a>
+								<a href="'.get_home_url().'/?app_visitor=true" class="pull-left hidden-md hidden-lg hidden-xl">
+									<img src="'.get_home_url().'/wp-content/uploads/2017/09/app_inicio.png">
+								</a>
+							</div>';
+			 			} 
+		 			}else{
+						if( $post->post_name == 'quiero-ser-cuidador-certificado-de-perros' ){ $HTML .= '
 						<div id="btn-instrucciones-header" class="hidden-xl hidden-lg hidden-md">
 							<a class="btn-instrucciones-header pull-left hidden-md hidden-lg hidden-xl" onclick="jQuery(\'#modal_instrucciones\').css(\'display\', \'block\');">
 								Instrucciones
 							</a>
 						</div>';
-		 			}else{
-		 			$HTML .= '
-						<a class="pf-logo-container hidden-xs hidden-sm" href="'.get_home_url().'"></a>';
-		 			} 
+		 				}else{
+		 					$HTML .= '
+							<a class="pf-logo-container hidden-xs hidden-sm" href="'.get_home_url().'"></a>';
+		 				}
+					}
 		 			$HTML .= '				
 						</div>
 						<div class="col-lg-10 col-md-10" id="pfmenucol1">
