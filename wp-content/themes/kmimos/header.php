@@ -35,7 +35,8 @@
 		<script type="text/javascript"> 
 			var HOME = "'.getTema().'/"; 
 			var RAIZ = "'.get_home_url().'/"; 
-			var pines = []; 
+			var pines = [];
+			var AVATAR = "";
 		</script>
 	</head>
 
@@ -47,12 +48,12 @@
 
 	if( !isset($MENU["head"]) ){
 		$menus_normal = '
-			<li><a id="login" style="padding-right: 15px">INICIAR SESIÓN</a></li>
-			<li><a href="#" style="padding-left: 15px; border-left: 1px solid white;">REGISTRARME</a></li>
+			<li><a style="padding-right: 15px" data-toggle="modal" data-target="#popup-iniciar-sesion">INICIAR SESIÓN</a></li>
+			<li><a  style="padding-left: 15px; border-left: 1px solid white;" data-toggle="modal" data-target="#myModal">REGISTRARME</a></li>
 		';
 		$menus_movil = '
-			<li><a id="login_movil" class="km-nav-link hidden-sm hidden-md hidden-lg">INICIAR SESIÓN</a></li>
-			<li><a href="#" class="km-nav-link hidden-sm hidden-md hidden-lg">REGISTRARME</a></li>
+			<li><a class="km-nav-link hidden-sm hidden-md hidden-lg" data-toggle="modal" data-target="#popup-iniciar-sesion">INICIAR SESIÓN</a></li>
+			<li><a href="#" class="km-nav-link hidden-sm hidden-md hidden-lg" data-toggle="modal" data-target="#myModal">REGISTRARME</a></li>
 		';
 	}else{
 		$menus_normal = $MENU["head"].$MENU["body"].$MENU["footer"];
@@ -62,63 +63,64 @@
 	if( !is_user_logged_in() ){
 
 		$HTML .= '
-			<script> var AVATAR = ""; </script>
+			
 			<nav class="navbar navbar-fixed-top bg-transparent">
 				<div class="container">
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
 							<img src="'.getTema().'/images/new/km-navbar-mobile.svg" width="30">
 						</button>
-						<a class="navbar-brand" href="'.get_home_url().'"><img src="'.getTema().'/images/new/km-logos/km-logo.png" height="60"></a>
+						
 					</div>
 					<ul class="hidden-xs nav-login">
 						'.$menus_normal.'
 					</ul>
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav navbar-right">
-							<li><a href="'.get_home_url().'/busqueda/" class="km-nav-link">BUSCAR CUIDADOR</a></li>
-							<li><a href="km-cuidador.html" class="km-btn-primary hidden-xs">QUIERO SER CUIDADOR</a></li>
+							<li><a href="'.get_home_url().'"/busqueda/" class="km-nav-link">BUSCAR CUIDADOR</a></li>
+							<li><a href="km-cuidador.html" class="km-btn-primary hidden-xs" data-toggle="modal" data-target="#cuidador">QUIERO SER CUIDADOR</a></li>
 
 							'.$menus_movil.'
 
-							<li><a href="'.get_home_url().'/busqueda/" class="km-nav-link hidden-sm hidden-md hidden-lg">BUSCAR CUIDADOR</a></li>
-							<li><a href="km-cuidador.html" class="km-btn-primary hidden-sm hidden-md hidden-lg">QUIERO SER CUIDADOR</a></li>
+							<li><a href="'.get_home_url().'"/busqueda/" class="km-nav-link hidden-sm hidden-md hidden-lg">BUSCAR CUIDADOR</a></li>
+							<li><a href="km-cuidador.html" class="km-btn-primary hidden-sm hidden-md hidden-lg" data-toggle="modal" data-target="#cuidador">QUIERO SER CUIDADOR</a></li>
 						</ul>
 					</div>
 				</div>
 			</nav>
 		';
 
-		$HTML .= "
-			<div id='modal_login' class='modal_login'>
-		        <div class='modal_container'>
-		            <div class='modal_box'>
-		                <img id='close_login' src='".getTema()."/images/closebl.png' />
+		// $HTML .= "
+		// 	<div id='modal_login' class='modal_login'>
+		//         <div class='modal_container'>
+		//             <div class='modal_box'>
+		//                 <img id='close_login' src='".getTema()."/images/closebl.png' />
 
-						<form id='form_login'>
-		                	<div class='form_box'>
-			                	<input type='text' id='usuario' placeholder='Correo El&eacute;ctronico'>
-			                	<input type='password' id='clave' placeholder='Contraseña'>
-		                	</div>
-		                	<div class='botones_box'>
-		                		<input type='submit' value='Ingresar' style='display: none;'>
-		                		<span id='login_submit'>Ingresar</span>
-		                	</div>
-		                </form>
+		// 				<form id='form_login'>
+		//                 	<div class='form_box'>
+		// 	                	<input type='text' id='usuario' placeholder='Correo El&eacute;ctronico'>
+		// 	                	<input type='password' id='clave' placeholder='Contraseña'>
+		//                 	</div>
+		//                 	<div class='botones_box'>
+		//                 		<input type='submit' value='Ingresar' style='display: none;'>
+		//                 		<span id='login_submit'>Ingresar</span>
+		//                 	</div>
+		//                 </form>
 
-						<form id='form_recuperar'>
-		                	<div class='form_box'>
-			                	<input type='text' id='usuario' placeholder='Correo El&eacute;ctronico'>
-		                	</div>
-		                	<div class='botones_box'>
-		                		<span id='login_submit'>Recuperar</span>
-		                	</div>
-		                </form>
+		// 				<form id='form_recuperar'>
+		//                 	<div class='form_box'>
+		// 	                	<input type='text' id='usuario' placeholder='Correo El&eacute;ctronico'>
+		//                 	</div>
+		//                 	<div class='botones_box'>
+		//                 		<span id='login_submit'>Recuperar</span>
+		//                 	</div>
+		//                 </form>
 
-		            </div>
-		        </div>
-		    </div>
-		";
+		//             </div>
+		//         </div>
+		//     </div>
+		// ";
+		include_once('partes/modal_login.php');
 	}else{
 		$current_user = wp_get_current_user();
 		$user_id = $current_user->ID;
@@ -158,7 +160,8 @@
 		</nav>
 		';
 	}
-
+	include_once('partes/modal_register.php');
+	include_once('partes/modal_cuidador.php');
 	echo comprimir_styles($HTML);
 /*
 	global $wpdb;
