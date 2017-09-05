@@ -77,6 +77,9 @@ a.checkout-button.button.alt.wc-forward {
 .woocommerce-message a{
 	display: none;
 }
+#coupon_code {
+    color: black !important;
+}
 
 /*CG
 .actions .coupon.original{display: none;}
