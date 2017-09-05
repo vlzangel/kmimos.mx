@@ -24,7 +24,7 @@ function filter_woocommerce_coupon_is_valid_for_product( $valid, $product, $inst
     //var_dump($values);
     //var_dump($product);
     var_dump($instance);
-    return false;//$valid
+    return $valid;
 };
 
 
@@ -33,7 +33,7 @@ function filter_woocommerce_coupon_is_valid_for_product( $valid, $product, $inst
 function filter_woocommerce_coupon_is_valid_for_cart($type, $instance ) {
     var_dump($type);
     var_dump($instance);
-    return false;//$type
+    return $type;
 };
 
 
@@ -130,11 +130,7 @@ function filter_woocommerce_coupon_is_valid($result,$coupon) {
                    $detail = wc_add_notice('CUPON NO CUMPLE CON LAS CONDICIONES: El cup&oacute;n es aplicable a partir de '.$CouponBooking_NumberBookings.' reservas', 'notice');
                    return false;
                }
-
-
             }
-
-
 
        }else{
             $detail = wc_add_notice('CUPON NO CUMPLE CON LAS CONDICIONES: El cup&oacute;n no coincide con el usuario asignado', 'notice');
@@ -145,7 +141,7 @@ function filter_woocommerce_coupon_is_valid($result,$coupon) {
    return true;
 }
 
-                   /** COUPON ADMIN MENU **/
+/** COUPON ADMIN MENU **/
 add_action('admin_menu', 'filter_woocommerce_coupon_add_menu');
 function filter_woocommerce_coupon_add_menu(){
     if(function_exists('add_menu_page')){
@@ -158,5 +154,32 @@ function filter_woocommerce_coupon_add_menu(){
 function woocommerce_custom_coupon_booking() {
     include_once(__DIR__.'/panel.php');
 
+}
+
+
+
+
+
+
+//Available Coupon
+//add_filter("woocommerce_coupon_is_valid","amount_woocommerce_coupon_is_valid",10,2);
+//remove_filter( 'woocommerce_coupon_is_valid', 'filter_woocommerce_coupon_is_valid', 10, 2 );
+function amount_woocommerce_coupon_is_valid($result,$coupon) {
+    global $wpdb;
+    //return false;
+
+    $code=$coupon->code;
+    var_dump($result);
+    var_dump($code);
+    var_dump($coupon);
+    $coupon->individual_use=false;
+
+    if (strpos($code, 'saldo') !== false) {
+        var_dump('es de saldo');
+        return true;
+    }
+
+
+    return $result;
 }
 ?>
