@@ -13,7 +13,7 @@
         $caregiver_checkout=strtotime('1-1-2017 '.$data['checkout']);
 
         for($i=$caregiver_checkin; $i <= $caregiver_checkout; $i=$i+(60*30)){
-            $ihour=date('g:i:s',$i);
+            $ihour=date('g:i',$i);//:s
             $hour[$ihour]=array(
                 'label' => $ihour,
                 'price' => '',
@@ -25,7 +25,7 @@
 
         $checkin = array(
             'name' => 'CheckIn',
-            'description' => 'Fecha de ingreso de tu mascota',
+            'description' => 'Hora de ingreso de tu mascota',
             'type' => 'select',
             'position' => 0,
             'options' => $hour,
@@ -36,7 +36,7 @@
 
         $checkout = array(
             'name' => 'CheckOut',
-            'description' => 'Fecha de ingreso de tu mascota',
+            'description' => 'Hora de salida de tu mascota',
             'type' => 'select',
             'position' => 0,
             'options' => $hour,

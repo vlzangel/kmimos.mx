@@ -193,4 +193,106 @@ function update_image_service(){
 	}
 }
 
+
+
+//UPDATE Addons Services
+function update_addons_service(){
+	global $wpdb;
+
+	$user=0;
+	$sql = "SELECT * FROM wp_posts WHERE post_name LIKE 'hospedaje-%' AND post_type = 'product'";
+	$services = $wpdb->get_results($sql);
+
+	foreach ($services as $service){
+		$postID =  $service->ID;
+		$postAUTHOR =  $service->post_author;
+		$sql = "SELECT * FROM wp_postmeta WHERE meta_key = '_product_addons' AND post_id = '{$postID}'";
+		$result = $wpdb->get_results($sql);
+
+
+		//CREATE SELECT OPTIONS
+		$sql = "SELECT * FROM cuidadores WHERE user_id = '{$postAUTHOR}'";
+		$caregivers = $wpdb->get_results($sql);
+		$hour=array();
+
+		foreach ($caregivers as $caregiver){
+			$caregiver_checkin=strtotime('1-1-2017 '.$caregiver->check_in);
+			$caregiver_checkout=strtotime('1-1-2017 '.$caregiver->check_out);
+
+			for($i=$caregiver_checkin; $i <= $caregiver_checkout; $i=$i+(60*30)){
+				$ihour=date('g:i',$i);//:s
+				$hour[$ihour]=array(
+					'label' => $ihour,
+					'price' => '',
+					'min' => '',
+					'max' => ''
+				);
+			}
+		}
+
+		$SELECTcheckin = array(
+			'name' => 'CheckIn',
+			'description' => 'Hora de ingreso de tu mascota',
+			'type' => 'select',
+			'position' => 0,
+			'options' => $hour,
+			'required' => 0,
+			'wc_booking_person_qty_multiplier' => 0,
+			'wc_booking_block_qty_multiplier' => 0
+		);
+
+		$SELECTcheckout = array(
+			'name' => 'CheckOut',
+			'description' => 'Hora de Salida de tu mascota',
+			'type' => 'select',
+			'position' => 0,
+			'options' => $hour,
+			'required' => 0,
+			'wc_booking_person_qty_multiplier' => 0,
+			'wc_booking_block_qty_multiplier' => 0
+		);
+
+		foreach ($result as $row){
+			$ID =  $row->meta_id;
+			$addons =  $row->meta_value;
+			$addons =  unserialize($addons);
+			$checkin = 0;
+			$checkout = 0;
+
+			foreach($addons as $index => $addon){
+				if($addon['name']=='CheckIn'){
+					$checkin = $index;
+				}else if($addon['name']=='CheckOut'){
+					$checkout = $index;
+				}
+
+			}
+
+			if($checkin!=0){
+				$addons[$checkin]=$SELECTcheckin;
+			}else{
+				$addons[]=$SELECTcheckin;
+			}
+
+			if($checkout!=0){
+				$addons[$checkout]=$SELECTcheckout;
+			}else{
+				$addons[]=$SELECTcheckout;
+			}
+
+			/*
+			if($postAUTHOR=='8631'){
+				echo '<pre>';
+				var_dump($addons);
+				echo '</pre>';
+			}
+			*/
+			$addons =  utf8_decode(serialize($addons));
+			$sql = "UPDATE wp_postmeta SET meta_value = '$addons' WHERE meta_id = '$ID';";
+			$wpdb->query($sql);
+			//var_dump($sql);
+		}
+	}
+}
+
 ?>
