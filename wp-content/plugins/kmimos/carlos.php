@@ -258,7 +258,7 @@ function update_addons_service(){
 			$addons =  unserialize($addons);
 			$checkin = 0;
 			$checkout = 0;
-			
+
 			foreach($addons as $index => $addon){
 				if($addon['name']=='CheckIn'){
 					$checkin = $index;
