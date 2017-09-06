@@ -1,26 +1,26 @@
 <?php 
 $HTML .='
 	<!-- POPUPS REGISTRARTE -->
-<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="myModal" style="    padding: 40px;">
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="myModal" style="padding: 40px;">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 					<div class="popup-registrarte-1">
 						<p class="popup-tit">REGISTRARME</p>
-						<a href="#" class="km-btn-fb"><img src="'.getTema().'"/images/icons/km-redes/icon-fb-blanco.svg">REGISTRARME CON FACEBOOK</a>
+						<a href="#" class="km-btn-fb"><img src="'.getTema().'/images/icons/km-redes/icon-fb-blanco.svg">REGISTRARME CON FACEBOOK</a>
 						
-						<a href="#" class="km-btn-border"><img src="'.getTema().'"/images/icons/km-redes/icon-gmail.svg">REGISTRARME CON GOOGLE</a>
+						<a href="#" class="km-btn-border"><img src="'.getTema().'/images/icons/km-redes/icon-gmail.svg">REGISTRARME CON GOOGLE</a>
 						<div class="line-o">
 							<p class="text-line">o</p>
 							<div class="bg-line"></div>
 						</div>
-						<a href="#" class="km-btn-correo km-btn-popup-registrarte-1"><img src="'.getTema().'"/images/icons/km-redes/icon-mail-blanco.svg">REGISTRARME POR CORREO ELECTRÓNICO</a>
+						<a href="#" class="km-btn-correo km-btn-popup-registrarte-1"><img src="'.getTema().'/images/icons/km-redes/icon-mail-blanco.svg">REGISTRARME POR CORREO ELECTRÓNICO</a>
 						<p style="color: #979797; margin-top: 20px;">Al crear una cuenta, aceptas las condiciones del servicio y la Política de privacidad de Kmimos.</p>
 						<p><b>Dudas escríbenos</b></p>
 						<div class="row">
-							<div class="col-xs-6 col-sm-4"><p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'"images/icons/km-redes/icon-wsp.svg">Whatsapp</p></div>
-							<div class="col-xs-6 col-sm-4"><p><a href="#"><img style="width: 15px; margin-right: 5px; position: relative; top: -1px;" src="'.getTema().'"images/icons/km-redes/icon-mail.svg">a.vera@kmimos.la</a></p></div>
-							<div class="col-xs-12 col-sm-4"><p><img style="width: 12px; margin-right: 5px; position: relative; top: -1px;" src="'.getTema().'"images/icons/km-redes/icon-cel.svg">(55) 6178 0320</p></div>
+							<div class="col-xs-6 col-sm-4"><p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/icons/km-redes/icon-wsp.svg">Whatsapp</p></div>
+							<div class="col-xs-6 col-sm-4"><p><a href="#"><img style="width: 15px; margin-right: 5px; position: relative; top: -1px;" src="'.getTema().'/images/icons/km-redes/icon-mail.svg">a.vera@kmimos.la</a></p></div>
+							<div class="col-xs-12 col-sm-4"><p><img style="width: 12px; margin-right: 5px; position: relative; top: -1px;" src="'.getTema().'/images/icons/km-redes/icon-cel.svg">(55) 6178 0320</p></div>
 						</div>
 						<hr>
 						<div class="row">
@@ -28,7 +28,7 @@ $HTML .='
 								<p>¿Ya tienes una cuenta?</p>
 							</div>
 							<div class="col-xs-7">
-								<a href="#" class="km-btn-border"><b>INICIAR SESIÓN</b></a>
+								<a href="#" class="km-btn-border" data-toggle="modal" data-target="#popup-iniciar-sesion"><b>INICIAR SESIÓN</b></a>
 							</div>
 						</div>
 					</div>
@@ -48,7 +48,7 @@ $HTML .='
 								</div>
 								<div class="label-placeholder">
 									<label>IFE/Documento de Identidad</label>
-									<input type="text" name="ife" id="ife" class="input-label-placeholder" data-charset="num" maxlength="11">
+									<input type="text" name="ife" id="ife" class="input-label-placeholder" data-charset="num" maxlength="11" value="20328502003">
 								</div>
 								<div class="label-placeholder">
 									<label>Correo electrónico</label>
@@ -65,14 +65,14 @@ $HTML .='
 								</div>
 								<div class="km-datos-mascota">
 									<select class="km-datos-mascota-opcion" name="genero" id="genero">
-										<option value=">Género</option>
+										<option value="">Género</option>
 										<option value="hombre">Hombre</option>
 										<option value="mujer">Mujer</option>
 									</select>
 								</div>
 								<div class="km-datos-mascota">
 									<select class="km-datos-mascota-opcion" name="edad" id="edad">
-										<option value=">Edad</option>
+										<option value="">Edad</option>
 										<option value="18-25">18-25 años</option>
 										<option value="25-35">25-35 años</option>
 										<option value="Mayor-46">Mayor 46 años</option>
@@ -80,7 +80,7 @@ $HTML .='
 								</div>
 								<div class="km-datos-mascota">
 									<select class="km-datos-mascota-opcion" name="fumador" id="fumador">
-										<option value=">Es Fumador</option>
+										<option value="">Es Fumador</option>
 										<option value="SI">Si</option>
 										<option value="NO">No</option>
 									</select>
@@ -89,10 +89,10 @@ $HTML .='
 						</div>
 					</form>
 					<span id="guardando"></span>
-					<a href="#" id="siguiente" class="km-btn-correo km-btn-popup-registrarte-nuevo-correo" onclick="guardaDatosUser()">SIGUIENTE</a>
+					<a href="#" id="siguiente" class="km-btn-correo km-btn-popup-registrarte-nuevo-correo">SIGUIENTE</a>
 					<div id="resp"></div>
 					<p style="color: #979797; margin-top: 20px;">Al crear una cuenta, aceptas las condiciones del servicio y la Política de privacidad de Kmimos.</p>
-					<p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;"src="'.getTema().'"images/icons/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp</p>
+					<p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;"src="'.getTema().'/images/icons/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp</p>
 						<hr>
 					<div class="row">
 						<div class="col-xs-5">
@@ -107,7 +107,8 @@ $HTML .='
 						<h3 style="margin: 0; text-align: center;">Datos de tus Mascotas</h3>
 						<p style="text-align: center;">Queremos conocer más sobre tus mascotas, llena los campos</p>
 						<div class="km-datos-foto">
-							<a href="#"><img src="'.getTema().'"images/popups/registro-cuidador-foto.svg"></a>
+							<a href="#" id="click_img"><img src="'.getTema().'/images/popups/registro-cuidador-foto.svg"></a>
+							<input type="file" class="hidden-lg hidden-md hidden-sm hidden-xs" id="carga_foto" accept="image/*">
 						</div>
 						<div class="km-box-form">
 							<div class="content-placeholder">
@@ -134,7 +135,7 @@ $HTML .='
 								</div>
 								<div class="km-datos-mascota">
 									<select class="km-datos-mascota-opcion" name="genero_mascota" id="genero_mascota">
-										<option value=">Género</option>
+										<option value="">Género</option>
 										<option value="macho">Macho</option>
 										<option value="hembra">Hembra</option>
 									</select>
@@ -143,8 +144,8 @@ $HTML .='
 						</div>
 						<div class="row" style="margin-bottom: 20px;">
 							<div class="col-xs-6 col-sm-3">
-								<div class="km-opcion" id="select_1" value="0" onclick="tamano("#select_1")">	
-									<img src="'.getTema().'"images/icons/icon-pequenio.svg" width="25">
+								<div class="km-opcion" id="select_1" value="0">
+									<img src="'.getTema().'/images/icons/icon-pequenio.svg" width="25">
 								<br>
 									<div class="km-opcion-text">
 										<b>PEQUEÑO</b><br> 0 a 25 cm
@@ -152,8 +153,8 @@ $HTML .='
 								</div>
 							</div>
 							<div class="col-xs-6 col-sm-3">
-								<div class="km-opcion" id="select_2" value="1" onclick="tamano("#select_2")">
-									<img src="'.getTema().'"images/icons/icon-mediano.svg" width="25">
+								<div class="km-opcion" id="select_2" value="1">
+									<img src="'.getTema().'/images/icons/icon-mediano.svg" width="25">
 								<br>
 									<div class="km-opcion-text">
 										<b>MEDIANO</b><br> 25 a 58 cm
@@ -161,16 +162,16 @@ $HTML .='
 								</div>
 							</div>
 							<div class="col-xs-6 col-sm-3">
-								<div class="km-opcion" id="select_3" value="2" onclick="tamano("#select_3")">
-									<img src="'.getTema().'"images/icons/icon-grande.svg" width="25">
+								<div class="km-opcion" id="select_3" value="2">
+									<img src="'.getTema().'/images/icons/icon-grande.svg" width="25">
 								<br>
 									<div class="km-opcion-text">
 										<b>GRANDE</b><br> 58 a 73 cm</div>
 									</div>
 							</div>
 							<div class="col-xs-6 col-sm-3">
-								<div class="km-opcion" id="select_4" value="3" onclick="tamano("#select_4")">
-									<img src="'.getTema().'"images/icons/icon-gigante.svg" width="25">
+								<div class="km-opcion" id="select_4" value="3">
+									<img src="'.getTema().'/images/icons/icon-gigante.svg" width="25">
 								<br>
 									<div class="km-opcion-text"><b>
 										GIGANTE</b><br> 73 a 200 cm
@@ -210,13 +211,13 @@ $HTML .='
 								</div>
 							</div>
 						</div>
-						<a href="#" class="km-btn-correo km-btn-popup-registrarte-datos-mascota" onclick="guardaDatosPet()">REGISTRARME</a>
+						<a href="#" class="km-btn-correo km-btn-popup-registrarte-datos-mascota">REGISTRARME</a>
 						<p style="color: #979797; margin-top: 20px;">Al crear una cuenta, aceptas las condiciones del servicio y la Política de privacidad de Kmimos.</p>
-						<p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'"images/icons/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp</p>
+						<p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/icons/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp</p>
 					</div>
 					<div class="popuphide popup-registrarte-final">
 						<h3 style="margin: 0; text-align: center;">¡FELICIDADES MARÍA,<br>TU REGISTRO SE REALIZÓ CON ÉXITO!</h3>
-						<img src="'.getTema().'"images/popups/km-registro-exitoso.png">
+						<img src="'.getTema().'/images/popups/km-registro-exitoso.png">
 						<a href="index-sesion.html" class="km-btn-correo">REGRESAR AL INICIO</a>
 					</div>
 				</div>

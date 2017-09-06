@@ -51,7 +51,7 @@
 								<p>REGÍSTRATE AHORA - Es Gratis</p>
 							</div>
 							<div class="col-xs-12 col-sm-7">
-								<a href="#myModal" class="km-btn-border"><b>REGÍSTRATE</b></a>
+								<a href="#myModal" class="km-btn-border" data-toggle="modal" data-target="#myModal"><b>REGÍSTRATE</b></a>
 							</div>
 						</div>
 					</div>

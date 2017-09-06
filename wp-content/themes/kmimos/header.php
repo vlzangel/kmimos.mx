@@ -78,12 +78,12 @@
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav navbar-right">
 							<li><a href="'.get_home_url().'"/busqueda/" class="km-nav-link">BUSCAR CUIDADOR</a></li>
-							<li><a href="km-cuidador.html" class="km-btn-primary hidden-xs" data-toggle="modal" data-target="#cuidador">QUIERO SER CUIDADOR</a></li>
+							<li><a href="km-cuidador.html" class="km-btn-primary hidden-xs">QUIERO SER CUIDADOR</a></li>
 
 							'.$menus_movil.'
 
 							<li><a href="'.get_home_url().'"/busqueda/" class="km-nav-link hidden-sm hidden-md hidden-lg">BUSCAR CUIDADOR</a></li>
-							<li><a href="km-cuidador.html" class="km-btn-primary hidden-sm hidden-md hidden-lg" data-toggle="modal" data-target="#cuidador">QUIERO SER CUIDADOR</a></li>
+							<li><a href="km-cuidador.html" class="km-btn-primary hidden-sm hidden-md hidden-lg" >QUIERO SER CUIDADOR</a></li>
 						</ul>
 					</div>
 				</div>
@@ -161,7 +161,6 @@
 		';
 	}
 	include_once('partes/modal_register.php');
-	include_once('partes/modal_cuidador.php');
 	echo comprimir_styles($HTML);
 /*
 	global $wpdb;
