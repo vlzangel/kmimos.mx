@@ -93,7 +93,7 @@
 
 
 
-	if(!function_exists('get_metaUser')){
+/*	if(!function_exists('get_metaUser')){
 	    function get_metaUser($user_id=0, $condicion=''){
 	        global $wpdb;
 	        $sql = "
@@ -108,7 +108,7 @@
 	        //$result = execute($sql);
 	        return $result;
 	    }
-	}
+	}*/
 
 	if(!function_exists('GETmetaUSER')){
 	    function GETmetaUSER($user_id=0){

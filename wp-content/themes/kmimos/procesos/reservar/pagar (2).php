@@ -1,127 +1,110 @@
 <?php
-	$raiz = dirname(dirname(dirname(dirname(dirname(__DIR__)))));
-	include_once($raiz."/vlz_config.php");
-	include_once("../funciones/db.php");
+	$path = dirname(dirname(__DIR__));
 
-	include_once("reservar.php");
-
-	$xdb = $db;
-	$db = new db( new mysqli($host, $user, $pass, $db) );
+	include( $path."/app/config.php");
+	include( $path."/app/db.php");
+	include( $path."/app/servicios/reservar.php");
+	include( $path."/app/lib/openpay/Openpay.php");
 
 	extract($_POST);
 
-	$info = explode("===", $info);
-
-	// print_r( $info );
-
-	$parametros_label = array(
-		"pagar",
-		"tarjeta",
-		"fechas",
-		"cantidades",
-		"transporte",
-		"adicionales",
-	);
-
-	$parametros = array();
-
-	foreach ($info as $key => $value) {
-		$parametros[ $parametros_label[ $key ] ] = json_decode($value);
+	$data = explode("===", $_POST["carrito"]);
+	$info = array();
+	foreach ($data as $key => $value) {
+		$info[] = json_decode($value);
 	}
 
-	extract($parametros);
+	extract($info);
+	extract($data);
 
-	$informacion = serialize($parametros);
-
-	$num_mascotas = $cantidades->cantidad;
+	$num_mascotas = 0;
+	foreach ($info[2] as $key => $value) {
+		if( count($value) > 0 ){
+			$num_mascotas += $value[0];
+		}		
+	}
 
 	$time = time();
     $hoy = date("Y-m-d H:i:s", $time);
     $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
-    $inicio = strtotime( $fechas->inicio );
-    $fecha_formato = date('d', $inicio)." ".$meses[date('n', $inicio)-1]. ", ".date('Y', $inicio) ;
+    $inicio = strtotime( $info[1]->inicio );
+    $hoy_f = date('d', $inicio)." ".$meses[date('n', $inicio)-1]. ", ".date('Y', $inicio) ;
 
-    if( $pagar->metodo != "deposito" ){
+    if( $tipo_pago != "deposito" ){
 	    $deposito = array(
 			"enable" => "no"
 	    );
     }else{
 	    $deposito = array(
-	    	"deposit" => ( $pagar->total - ( $pagar->total / 1.2) ),
+	    	"deposit" => ( $info[0]->total - ( $info[0]->total / 1.2) ),
 			"enable" => "yes",
 			"ratio" => 1,
-			"remaining" => ( $pagar->total / 1.2),
-			"total" => $pagar->total
+			"remaining" => ( $info[0]->total / 1.2),
+			"total" => $info[0]->total
 	    );
     }
 
+    // $deposito = unserialize( 'a:5:{s:6:"enable";s:3:"yes";s:7:"deposit";i:0;s:9:"remaining";i:960;s:5:"total";i:960;s:5:"ratio";d:1;}' );
     $tamanos = array(
     	"pequenos" => "Pequeñas",
     	"medianos" => "Medianas",
     	"grandes"  => "Grandes",
     	"gigantes" => "Gigantes"
     );
-
     $mascotas = array();
-    foreach ($cantidades as $key => $value) {
-    	if( $key != "cantidad" ){
-	    	if( is_array($value) ){
-	    		if( $value[0] > 0 ){
-	    			$mascotas[ "Mascotas ".$tamanos[ $key ] ] = $value[0];
-	    		}
-	    	}
+
+    foreach ($info[2] as $key => $value) {
+    	if( is_array($value) ){
+    		if( $value[0] > 0 ){
+    			$mascotas[ "Mascotas ".$tamanos[ $key ] ] = $value[0];
+    		}
     	}
     }
 
-    $diaNoche = "d&iacute;a";
-	if( $pagar->tipo_servicio == "hospedaje" ){
-		$diaNoche = "Noche";
-	}
-
-    if( $fechas->duracion > 1 ){
-    	$fechas->duracion .= " ".$diaNoche."s";
+    if( $info[1]->duracion > 1 ){
+    	$info[1]->duracion .= " Noches";
     }else{
-    	$fechas->duracion .= " ".$diaNoche;
+    	$info[1]->duracion .= " Noche";
     }
 
-    $data_reserva = array(
-		"servicio" 				=> $pagar->servicio,
-		"titulo_servicio" 		=> $pagar->name_servicio,
-		"cliente" 				=> $pagar->cliente,
-		"cuidador" 				=> $pagar->cuidador,
+	$data_reserva = array(
+		"servicio" 				=> $info[0]->servicio,
+		"titulo_servicio" 		=> $info[0]->titulo,
+		"cliente" 				=> $info[0]->cliente,
+		"cuidador" 				=> $info[0]->cuidador,
 		"hoy" 					=> $hoy,
-		"fecha_formato" 		=> $fecha_formato,
+		"fecha_formato" 		=> $hoy_f,
 		"token" 				=> time(),
-		"inicio" 				=> date("Ymd", strtotime( $fechas->inicio ) ),
-		"fin" 					=> date("Ymd", strtotime( $fechas->fin ) ),
-		"monto" 				=> $pagar->total,
+		"inicio" 				=> date("Ymd", strtotime( $info[1]->inicio ) ),
+		"fin" 					=> date("Ymd", strtotime( $info[1]->fin ) ),
+		"monto" 				=> $info[0]->total,
 		"num_mascotas" 			=> $num_mascotas,
-		"metodo_pago" 			=> $pagar->tipo,
-		"metodo_pago_titulo" 	=> $pagar->tipo,
+		"metodo_pago" 			=> $metodo_pago,
+		"metodo_pago_titulo" 	=> $metodo_pago,
 		"moneda" 				=> "MXN",
-		"duracion_formato" 		=> $fechas->duracion,
+		"duracion_formato" 		=> $info[1]->duracion,
 		"mascotas" 				=> $mascotas,
 		"deposito" 				=> $deposito,
 		"status_reserva" 		=> "unpaid",
 		"status_orden" 			=> "wc-pending"
 	);
 
-    //print_r($data_reserva);
-    //print_r($parametros);
+	$reservar = new Reservas($db, $data_reserva);
 
-    $reservar = new Reservas($db, $data_reserva);
+	$id_orden = $reservar->new_reserva();
 
-    $id_orden = $reservar->new_reserva();
-
-    print_r(array(
+	echo json_encode(array(
+		"post"  => $_POST,
+		"info"  => $info,
 		"array"  => $data_reserva,
 		"id_orden"  => $id_orden,
-		"conexion" => "$host, $user, $pass, $xdb",
 		"sql" => $reservar->sql
 	));
 
-    /*
+	/*
 	if( $deviceIdHiddenFieldName != "" ){
+
+		
 
 		$openpay = Openpay::getInstance($MERCHANT_ID, $OPENPAY_KEY_SECRET);
 
@@ -266,5 +249,5 @@
 		));
 	}
 	*/
-	
+
 ?>

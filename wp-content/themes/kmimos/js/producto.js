@@ -33,6 +33,7 @@ function initCarrito(){
 	CARRITO["pagar"] = [];
 
 		CARRITO["pagar"] = {
+			"total" : "",
 			"tipo" : "",
 			"metodo" : "completo",
 			"token" : "",
@@ -203,6 +204,8 @@ function calcular(){
 		jQuery("#pago_17").html( "$" + numberFormat(cant-(cant/1.2)) );
 		jQuery("#pago_cuidador").html( "$" + numberFormat(cant/1.2) );
 		jQuery("#monto_total").html( "$" + numberFormat(cant) );
+
+		CARRITO["pagar"]["total"] = cant;
 	}
 
 	initFactura();
@@ -263,6 +266,12 @@ function verificarCupos(){
 }
 
 function initFactura(){
+
+	CARRITO["pagar"]["servicio"] = SERVICIO_ID;
+	CARRITO["pagar"]["tipo_servicio"] = tipo_servicio;
+	CARRITO["pagar"]["name_servicio"] = name_servicio;
+	CARRITO["pagar"]["cliente"] = cliente;
+	CARRITO["pagar"]["cuidador"] = cuidador;
 
 	diaNoche = "d&iacute;a";
 	if( tipo_servicio == "hospedaje" ){
@@ -343,6 +352,30 @@ function initFactura(){
 	jQuery(".items_reservados").html( items );
 }
 
+
+function pagarReserva(){
+
+	var transporte = []+"===";
+	if( CARRITO["transportacion"] != undefined && CARRITO["transportacion"][1] > 0 ){
+		transporte = JSON.stringify( CARRITO["transportacion"] )+"===";
+	}
+
+	var json =  
+		JSON.stringify( CARRITO["pagar"] )+"==="+
+		JSON.stringify( CARRITO["tarjeta"] )+"==="+
+		JSON.stringify( CARRITO["fechas"] )+"==="+
+		JSON.stringify( CARRITO["cantidades"] )+"==="+transporte+
+		JSON.stringify( CARRITO["adicionales"] );
+
+	jQuery.post(
+		HOME+"/procesos/reservar/pagar.php",
+		{info: json},
+		function(data){
+			console.log( data );
+		}
+	);
+}
+
 jQuery(document).ready(function() { 
 	// activar_continuar(); 
 
@@ -405,12 +438,18 @@ jQuery(document).ready(function() {
 	    var sucess_callbak = function(response) {
 	        var token_id = response.data.id;
 	        CARRITO["pagar"]["token"] = token_id;
+	        jQuery(".errores_box").css("display", "none");
 	        pagarReserva();
 	    };
 
 	    var error_callbak = function(response) {
+
 	        var desc = response.data.description != undefined ? response.data.description : response.message;
+
 	        console.log("ERROR [" + response.status + "] " + desc);
+
+	        jQuery(".errores_box").css("display", "block");
+
 	        switch( response.status ){
 	        	case 422:
 	        		alert("Numero invalido");
@@ -430,26 +469,4 @@ jQuery(document).ready(function() {
 
    	/* Fin Configuración Openpay */
 
-   	function pagarReserva(){
-
-   		var transporte = []+"===";
-   		if( CARRITO["transportacion"] != undefined && CARRITO["transportacion"][1] > 0 ){
-			transporte = JSON.stringify( CARRITO["transportacion"] )+"===";
-		}
-
-   		var json =  
-			JSON.stringify( CARRITO["pagar"] )+"==="+
-			JSON.stringify( CARRITO["tarjeta"] )+"==="+
-			JSON.stringify( CARRITO["fechas"] )+"==="+
-			JSON.stringify( CARRITO["cantidades"] )+"==="+transporte+
-			JSON.stringify( CARRITO["adicionales"] );
-
-   		jQuery.post(
-			HOME+"/procesos/reservar/pagar.php",
-			{info: json},
-			function(data){
-				console.log( data );
-			}
-		);
-   	}
 });
