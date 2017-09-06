@@ -117,6 +117,9 @@
 			var SERVICIO_ID = '".get_the_ID()."';
 			var cupos = eval('".json_encode($cupos)."'); 
 			var tipo_servicio = '".$tipo."'; 
+			var name_servicio = '".$servicio_name."'; 
+			var cliente = '".$id_user."'; 
+			var cuidador = '".$cuidador->id_post."'; 
 		</script>";
 
 		$HTML .= '
@@ -343,7 +346,11 @@
 							data-openpay-card="expiration_month"
 						-->
 
-						<a href="http://kmimos-web.bitballoon.com/km-reservar-03#" class="km-tab-link">MEDIO DE PAGO</a>
+						<div class="errores_box">
+							Datos de la tarjeta invalidos
+						</div>
+
+						<a href="#" class="km-tab-link">MEDIO DE PAGO</a>
 						<div class="km-tab-content" style="display: block;">
 							<div class="km-content-method-paid-inputs">
 								<select class="km-select-method-paid-inputs" id="tipo_pago">
