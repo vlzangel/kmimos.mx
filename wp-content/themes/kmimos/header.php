@@ -27,7 +27,10 @@
 
 	global $post;
 	$reserrvacion_page = "";
-	if( $post->post_name == 'reservar' ){
+	if( 
+		$post->post_name == 'reservar' ||
+		$post->post_name == 'finalizar'
+	){
 		$reserrvacion_page = "page-reservation";
 	}
 
