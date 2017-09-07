@@ -1732,7 +1732,13 @@ class WC_Cart {
 
 			// If its individual use then remove other coupons
 			if ( $the_coupon->individual_use == 'yes' ) {
-				$this->applied_coupons = apply_filters( 'woocommerce_apply_individual_use_coupon', array(), $the_coupon, $this->applied_coupons );
+				//$this->applied_coupons = apply_filters( 'woocommerce_apply_individual_use_coupon', array(), $the_coupon, $this->applied_coupons );
+				foreach ( $this->applied_coupons as $key => $code ) {
+					$pos = strpos($code, "saldo");
+					if ($pos === false) {
+						unset($this->applied_coupons[$key]);
+					}
+				}
 			}
 
 			if ( $this->applied_coupons ) {
