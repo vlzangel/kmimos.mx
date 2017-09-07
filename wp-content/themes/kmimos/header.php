@@ -23,8 +23,9 @@
 
 	wp_enqueue_style( 'jquery.datepick', getTema()."/lib/datapicker/jquery.datepick.css", array(), "1.0.0" );
 
-	wp_head(); 
-
+	wp_head();
+	include_once("partes/head/script_facebook_auth.php");
+	include_once("partes/head/script_google_auth.php");
 	global $post;
 	$reserrvacion_page = "";
 	if( 

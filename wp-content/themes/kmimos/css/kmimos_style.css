@@ -4360,13 +4360,7 @@ button.close {
     -webkit-transform:translateY(0)!important;
     transform:translateY(0)!important
 }
-.km-div-fechas .date_from {
-    width:50%;
-    padding-left:2.758621%;
-    padding-right:13.533835%;
-    border-right:1px solid rgba(0, 0, 0, .2);
-    background-image:url(../images/new/icon/icon-calendario.svg)!important
-}
+
 .km-div-fechas .date_to {
     width:50%;
     padding-left:2.758621%;
@@ -5212,12 +5206,16 @@ textarea.popup-conoce-textarea {
     resize:none
 }
 .km-datos-foto {
-    text-align:center;
-    margin:20px 0 0
+    text-align: center;
+    /* margin: 20px 0 0; */
+    width: 200px;
+    background: url(https://mx.kmimos.la/wp-content/themes/kmimos/images/popups/registro-cuidador-foto.svg) no-repeat center;
+    height: 200px;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0 auto;
 }
-.km-datos-foto img {
-    width:120px
-}
+
 .km-datos-mascota::after {
     content:"";
     clear:both;
@@ -7845,14 +7843,6 @@ button.close {
             transform: translateY(0px)!important;
 }
 
-.km-div-fechas .date_from {
-    width: 50%;
-    padding-left: 2.758621%;
-    padding-right: 13.533835%;
-    border-right: 1px solid rgba(0, 0, 0, 0.2);
-    background-image: url(../images/icons/icon-calendario.svg)!important;
-}
-
 .km-div-fechas .date_to{
     width: 50%;
     padding-left: 2.758621%;
@@ -8768,29 +8758,6 @@ a.km-btn-comentario {
 .km-box-form .content-placeholder .label-placeholder{
     width: 100%;
 }
-.km-fecha-nacimiento input {
-    width: 100%;
-    padding: 24px 0px 3px 25px;
-    border: none;
-    border-bottom: 1px solid #ccc;
-    margin: 0;
-    background: white;
-    background-image: url(../images/icons/icon-calendario.svg);
-    background-repeat: no-repeat;
-    background-position: 0px 22px!important;
-}
-.km-fecha-nacimiento input::-webkit-input-placeholder {
-    font-size: 15px;
-    font-family: "Gotham-Pro-Regular", Arial, serif;
-    color: #979797;
-    -webkit-transform: translateY(0px)!important;
-            transform: translateY(0px)!important;
-}
-.km-fecha-nacimiento select {
-    background: url(../images/icon/icon-gps.svg) no-repeat;
-    background-position: 20px;
-    padding-left: 45px;
-}
 
 .km-registro-checkbox {
     margin-top: 30px;
@@ -8910,13 +8877,6 @@ textarea.popup-conoce-textarea {
 /* FIN PÁGINA QUIERO SER CUIDADOR */
 
 /*POPUPS REGISTRO CLIENTE*/
-.km-datos-foto {
-    text-align: center;
-    margin: 20px 0 0;
-}
-.km-datos-foto img {
-    width: 120px;
-}
 
 .km-datos-mascota::after{
     content: "";
@@ -8967,29 +8927,6 @@ textarea.popup-conoce-textarea {
 .popup-registrarte-final img {
     margin: 20px;
     width: 150px;
-}
-.km-fecha-nacimiento input {
-	width: 100%;
-    padding: 24px 0px 3px 25px;
-    border: none;
-    border-bottom: 1px solid #ccc;
-    margin: 0;
-    background: white;
-    background-image: url(../images/icons/icon-calendario.svg);
-    background-repeat: no-repeat;
-    background-position: 0px 22px!important;
-}
-.km-fecha-nacimiento input::-webkit-input-placeholder {
-	font-size: 15px;
-	font-family: "Gotham-Pro-Regular", Arial, serif;
-	color: #979797;
-	-webkit-transform: translateY(0px)!important;
-			transform: translateY(0px)!important;
-}
-.km-fecha-nacimiento select {
-	background: url(../images/icon/icon-gps.svg) no-repeat;
-	background-position: 20px;
-	padding-left: 45px;
 }
 
 textarea.vlz_input {

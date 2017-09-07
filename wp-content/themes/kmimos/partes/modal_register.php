@@ -7,9 +7,16 @@ $HTML .='
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 					<div class="popup-registrarte-1">
 						<p class="popup-tit">REGISTRARME</p>
-						<a href="#" class="km-btn-fb"><img src="'.getTema().'/images/icons/km-redes/icon-fb-blanco.svg">REGISTRARME CON FACEBOOK</a>
+						<a href="#" class="km-btn-fb" onclick="login_facebook();">
+							<img src="'.getTema().'/images/icons/km-redes/icon-fb-blanco.svg">
+							REGISTRARME CON FACEBOOK
+						</a>
 						
-						<a href="#" class="km-btn-border"><img src="'.getTema().'/images/icons/km-redes/icon-gmail.svg">REGISTRARME CON GOOGLE</a>
+						<a href="#" class="km-btn-border" id="customBtn1">
+							<img src="'.getTema().'/images/icons/km-redes/icon-gmail.svg">
+							REGISTRARME CON GOOGLE
+						</a>
+						<script>startApp();</script>
 						<div class="line-o">
 							<p class="text-line">o</p>
 							<div class="bg-line"></div>
@@ -33,11 +40,13 @@ $HTML .='
 						</div>
 					</div>
 				<div class="popuphide popup-registrarte-nuevo-correo">
-					<p style="color: #979797; text-align: center;">Regístrate por <a href="#">Facebook</a> o <a href="#">Google</a></a></p>
+					<p style="color: #979797; text-align: center;">Regístrate por <a href="#" onclick="login_facebook();">Facebook</a> o <a href="#" id="customBtn2">Google</a></a></p>
 						<h3 style="margin: 0; text-align: center;">Completa tus datos</h3>
 					<form id="form_nuevo_cliente" name="form_nuevo_cliente" enctype="multipart/form-data" method="POST">	
 						<div class="km-box-form">
 							<div class="content-placeholder">
+								<input type="text" id="id_login_face" name="id_login_face" class="hidden">
+								<input type="text" id="id_login_gmail" name="id_login_gmail" class="hidden">
 								<div class="label-placeholder">
 									<label>Nombre</label>
 									<input type="text" id="nombre" name="nombre" class="input-label-placeholder" data-charset="alf">
@@ -48,7 +57,7 @@ $HTML .='
 								</div>
 								<div class="label-placeholder">
 									<label>IFE/Documento de Identidad</label>
-									<input type="text" name="ife" id="ife" class="input-label-placeholder" data-charset="num" maxlength="11" value="20328502003">
+									<input type="text" name="ife" id="ife" class="input-label-placeholder" data-charset="num" maxlength="11">
 								</div>
 								<div class="label-placeholder">
 									<label>Correo electrónico</label>
@@ -106,10 +115,9 @@ $HTML .='
 				<div class="popuphide popup-registrarte-datos-mascota">
 						<h3 style="margin: 0; text-align: center;">Datos de tus Mascotas</h3>
 						<p style="text-align: center;">Queremos conocer más sobre tus mascotas, llena los campos</p>
-						<div class="km-datos-foto">
-							<a href="#" id="click_img"><img src="'.getTema().'/images/popups/registro-cuidador-foto.svg"></a>
-							<input type="file" class="hidden-lg hidden-md hidden-sm hidden-xs" id="carga_foto" accept="image/*">
+						<div class="km-datos-foto" id="km-datos-foto">
 						</div>
+						<input type="file" class="hidden" id="carga_foto" accept="image/*">
 						<div class="km-box-form">
 							<div class="content-placeholder">
 								<div class="label-placeholder">
@@ -123,7 +131,7 @@ $HTML .='
 										<option value="2608">Gatos</option>
 									</select>
 									<select class="km-datos-mascota-opcion" name="raza_mascota" id="raza_mascota">
-										<option>Raza de la Mascota</option>
+										<option value="0">Raza de la Mascota</option>
 									</select>
 								</div>
 								<div class="label-placeholder">
