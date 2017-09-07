@@ -14,151 +14,151 @@
             text-decoration:none;
         }
         #lp-pom-image-106-holder {
-            background-image:url(//d9hhrg4mnvzow.cloudfront.net/www.kmimos.com.mx/guarderia-perro/1k130tf-logo_06r01o06r01o000000.png);
+            background-image:url(image/Logo.png);
             position:absolute;
             left:-1000000;
             visibility:none;
         }
         #lp-pom-image-117-holder {
-            background-image:url(//d9hhrg4mnvzow.cloudfront.net/www.kmimos.com.mx/guarderia-perro/c4503acc-shape-1.png);
+            background-image:url(image/shape-1.png);
             position:absolute;
             left:-1000000;
             visibility:none;
         }
         #lp-pom-image-122-holder {
-            background-image:url(//d9hhrg4mnvzow.cloudfront.net/www.kmimos.com.mx/guarderia-perro/3f131893-shape-3.png);
+            background-image:url(image/shape-3.png);
             position:absolute;
             left:-1000000;
             visibility:none;
         }
         #lp-pom-image-127-holder {
-            background-image:url(//d9hhrg4mnvzow.cloudfront.net/www.kmimos.com.mx/guarderia-perro/84a7bed8-shape-4.png);
+            background-image:url(image/shape-4.png);
             position:absolute;
             left:-1000000;
             visibility:none;
         }
         #lp-pom-image-129-holder {
-            background-image:url(//d9hhrg4mnvzow.cloudfront.net/www.kmimos.com.mx/guarderia-perro/15enslp-arrow.png);
+            background-image:url(image/arrow.png);
             position:absolute;
             left:-1000000;
             visibility:none;
         }
         #lp-pom-image-130-holder {
-            background-image:url(//d9hhrg4mnvzow.cloudfront.net/www.kmimos.com.mx/guarderia-perro/15enslp-arrow.png);
+            background-image:url(image/arrow.png);
             position:absolute;
             left:-1000000;
             visibility:none;
         }
         #lp-pom-image-131-holder {
-            background-image:url(//d9hhrg4mnvzow.cloudfront.net/www.kmimos.com.mx/guarderia-perro/15enslp-arrow.png);
+            background-image:url(image/arrow.png);
             position:absolute;
             left:-1000000;
             visibility:none;
         }
         #lp-pom-image-132-holder {
-            background-image:url(//d9hhrg4mnvzow.cloudfront.net/www.kmimos.com.mx/guarderia-perro/15enslp-arrow.png);
+            background-image:url(image/arrow.png);
             position:absolute;
             left:-1000000;
             visibility:none;
         }
         #lp-pom-image-143-holder {
-            background-image:url(//d9hhrg4mnvzow.cloudfront.net/www.kmimos.com.mx/guarderia-perro/5826b23b-icon-1.png);
+            background-image:url(image/icon-1.png);
             position:absolute;
             left:-1000000;
             visibility:none;
         }
         #lp-pom-image-144-holder {
-            background-image:url(//d9hhrg4mnvzow.cloudfront.net/www.kmimos.com.mx/guarderia-perro/c44f297f-icon-2.png);
+            background-image:url(image/icon-2.png);
             position:absolute;
             left:-1000000;
             visibility:none;
         }
         #lp-pom-image-145-holder {
-            background-image:url(//d9hhrg4mnvzow.cloudfront.net/www.kmimos.com.mx/guarderia-perro/77b7c3f0-icon-3.png);
+            background-image:url(image/icon-3.png);
             position:absolute;
             left:-1000000;
             visibility:none;
         }
         #lp-pom-image-146-holder {
-            background-image:url(//d9hhrg4mnvzow.cloudfront.net/www.kmimos.com.mx/guarderia-perro/40f147e1-icon-4.png);
+            background-image:url(image/icon-4.png);
             position:absolute;
             left:-1000000;
             visibility:none;
         }
         #lp-pom-image-147-holder {
-            background-image:url(//d9hhrg4mnvzow.cloudfront.net/www.kmimos.com.mx/guarderia-perro/737201de-icon-5.png);
+            background-image:url(image/icon-5.png);
             position:absolute;
             left:-1000000;
             visibility:none;
         }
         #lp-pom-image-152-holder {
-            background-image:url(//d9hhrg4mnvzow.cloudfront.net/www.kmimos.com.mx/guarderia-perro/e2d9do-7.png);
+            background-image:url(image/do-7.png);
             position:absolute;
             left:-1000000;
             visibility:none;
         }
         #lp-pom-image-153-holder {
-            background-image:url(//d9hhrg4mnvzow.cloudfront.net/www.kmimos.com.mx/guarderia-perro/q2mmfl-line_0po0030pk003000000.png);
+            background-image:url(image/line.png);
             position:absolute;
             left:-1000000;
             visibility:none;
         }
         #lp-pom-image-154-holder {
-            background-image:url(//d9hhrg4mnvzow.cloudfront.net/www.kmimos.com.mx/guarderia-perro/q2mmfl-line_0q10020pk002000000.png);
+            background-image:url(image/line.png);
             position:absolute;
             left:-1000000;
             visibility:none;
         }
         #lp-pom-image-155-holder {
-            background-image:url(//d9hhrg4mnvzow.cloudfront.net/www.kmimos.com.mx/guarderia-perro/q2mmfl-line_0pj0020pj002000000.png);
+            background-image:url(image/line.png);
             position:absolute;
             left:-1000000;
             visibility:none;
         }
         #lp-pom-image-156-holder {
-            background-image:url(//d9hhrg4mnvzow.cloudfront.net/www.kmimos.com.mx/guarderia-perro/qf87fp-shadow_0fs01j0fr01j000000.png);
+            background-image:url(image/shadow.png);
             position:absolute;
             left:-1000000;
             visibility:none;
         }
         #lp-pom-image-158-holder {
-            background-image:url(//d9hhrg4mnvzow.cloudfront.net/www.kmimos.com.mx/guarderia-perro/e2d9do-7.png);
+            background-image:url(image/do-7.png);
             position:absolute;
             left:-1000000;
             visibility:none;
         }
         #lp-pom-image-159-holder {
-            background-image:url(//d9hhrg4mnvzow.cloudfront.net/www.kmimos.com.mx/guarderia-perro/1k130tf-logo_06r01o06r01o000000.png);
+            background-image:url(image/Logo.png);
             position:absolute;
             left:-1000000;
             visibility:none;
         }
         #lp-pom-image-173-holder {
-            background-image:url(//d9hhrg4mnvzow.cloudfront.net/www.kmimos.com.mx/guarderia-perro/9d9b262d-shape-2.png);
+            background-image:url(image/shape-2.png);
             position:absolute;
             left:-1000000;
             visibility:none;
         }
         #lp-pom-image-175-holder {
-            background-image:url(//d9hhrg4mnvzow.cloudfront.net/www.kmimos.com.mx/guarderia-perro/30a7ec0f-character-1_04f06s04f06r000000.png);
+            background-image:url(image/character-1.png);
             position:absolute;
             left:-1000000;
             visibility:none;
         }
         #lp-pom-image-176-holder {
-            background-image:url(//d9hhrg4mnvzow.cloudfront.net/www.kmimos.com.mx/guarderia-perro/32626d5c-character-2_02s09202s092000000.png);
+            background-image:url(image/character-2.png);
             position:absolute;
             left:-1000000;
             visibility:none;
         }
         #lp-pom-image-177-holder {
-            background-image:url(//d9hhrg4mnvzow.cloudfront.net/www.kmimos.com.mx/guarderia-perro/31bb71c5-character-4_03e03h03e03h000000.png);
+            background-image:url(image/character-4.png);
             position:absolute;
             left:-1000000;
             visibility:none;
         }
         #lp-pom-image-185-holder {
-            background-image:url(//d9hhrg4mnvzow.cloudfront.net/www.kmimos.com.mx/guarderia-perro/111182c1-character-3.png);
+            background-image:url(image/character-3.png);
             position:absolute;
             left:-1000000;
             visibility:none;
@@ -201,7 +201,7 @@
         #lp-pom-block-8 {
             display:block;
             background:rgba(54,27,29,0);
-            background-image:url(//d9hhrg4mnvzow.cloudfront.net/www.kmimos.com.mx/guarderia-perro/1cce8100-background-1-1.jpg);
+            background-image:url(image/Background-1-1.jpg);
             background-repeat:no-repeat;
             background-position:center top;
             -webkit-background-size:cover;
@@ -583,7 +583,7 @@
         #lp-pom-block-98 {
             display:block;
             background:rgba(255,255,255,0);
-            background-image:url(//d9hhrg4mnvzow.cloudfront.net/www.kmimos.com.mx/guarderia-perro/bc48f6a7-background-2-1.jpg);
+            background-image:url(image/Background-2-1.jpg);
             background-repeat:no-repeat;
             background-position:center center;
             -webkit-background-size:cover;
@@ -1210,25 +1210,25 @@
                 visibility:none;
             }
             #lp-pom-image-152-holder {
-                background-image:url(//d9hhrg4mnvzow.cloudfront.net/www.kmimos.com.mx/guarderia-perro/e2d9do-7.png);
+                background-image:url(image/do-7.png);
                 position:absolute;
                 left:-1000000;
                 visibility:none;
             }
             #lp-pom-image-153-holder {
-                background-image:url(//d9hhrg4mnvzow.cloudfront.net/www.kmimos.com.mx/guarderia-perro/q2mmfl-line_0ao00108w001000000.png);
+                background-image:url(image/line.png);
                 position:absolute;
                 left:-1000000;
                 visibility:none;
             }
             #lp-pom-image-154-holder {
-                background-image:url(//d9hhrg4mnvzow.cloudfront.net/www.kmimos.com.mx/guarderia-perro/q2mmfl-line_0ao00108w001000000.png);
+                background-image:url(image/line.png);
                 position:absolute;
                 left:-1000000;
                 visibility:none;
             }
             #lp-pom-image-155-holder {
-                background-image:url(//d9hhrg4mnvzow.cloudfront.net/www.kmimos.com.mx/guarderia-perro/q2mmfl-line_0ao00108w001000000.png);
+                background-image:url(image/line.png);
                 position:absolute;
                 left:-1000000;
                 visibility:none;
@@ -1240,7 +1240,7 @@
                 visibility:none;
             }
             #lp-pom-image-158-holder {
-                background-image:url(//d9hhrg4mnvzow.cloudfront.net/www.kmimos.com.mx/guarderia-perro/e2d9do-7.png);
+                background-image:url(image/do-7.png);
                 position:absolute;
                 left:-1000000;
                 visibility:none;
