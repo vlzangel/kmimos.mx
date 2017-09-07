@@ -5747,7 +5747,9 @@ footer .km-icon-redes {
     padding:10px 0 20px 0
 }
 .page-reservation .km-term-conditions {
-    color:#979797
+    color:#979797;
+    margin-top: 20px;
+    font-size: 16px;
 }
 .page-reservation .km-term-conditions label {
     font-weight:400
