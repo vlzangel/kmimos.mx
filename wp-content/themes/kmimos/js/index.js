@@ -196,8 +196,9 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 
 $("#popup-registrarte-datos-mascota").ready(function(){
 	
-	$("#click_img").on('click', function(){
+	$(".km-datos-foto").on('click', function(){
 		$("#carga_foto").trigger("click");
+		document.addEventListener('change',cargaImagen, false);
 	});
 	
 	$("#nombre_mascota").blur(function(){
@@ -237,14 +238,14 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 		}
 	});
 
-	$("#select_mascota").blur(function(){
-		if($("#select_mascota").val().length == 0){		
-			$("#select_mascota").parent('div').css('color','red');
-			$("#select_mascota").after('<span name="sp-color">Seleccione la raza de su mascota</span>').css('color','red');
-			$("#select_mascota").focus(function() { $("[name='sp-color']").hide(); });
+	$("#raza_mascota").blur(function(){
+		if($("#raza_mascota").val() == 0){		
+			$("#raza_mascota").parent('div').css('color','red');
+			$("#raza_mascota").after('<span name="sp-color">Seleccione la raza de su mascota</span>').css('color','red');
+			$("#raza_mascota").focus(function() { $("[name='sp-color']").hide(); });
 		}else{
-			$("#select_mascota").css('color','green');
-			$("#select_mascota").parent('div').css('color','green');
+			$("#raza_mascota").css('color','green');
+			$("#raza_mascota").parent('div').css('color','green');
 			$("[name='sp-color']").hide();
 		}
 	});
@@ -362,7 +363,7 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 
 		var nombre_mascota = $("#nombre_mascota").val(),
 			tipo_mascota =$("#tipo_mascota").val(),
-			select_mascota = $("#select_mascota").val(),
+			raza_mascota = $("#raza_mascota").val(),
 			color_mascota = $("#color_mascota").val(),
 			date_from = $("#date_from").val(),
 			genero_mascota = $("#genero_mascota").val(),
@@ -372,10 +373,10 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 			aggresive_humans = $("#km-check-3").val(),
 			aggresive_pets = $("#km-check-4").val();
 	
-		var campos_pet =[nombre_mascota,tipo_mascota,select_mascota,color_mascota,
+		var campos_pet =[nombre_mascota,tipo_mascota,raza_mascota,color_mascota,
 					date_from,genero_mascota,tamano_mascota,pet_sterilized,
 					pet_sociable,aggresive_humans,aggresive_pets];
-		if (nombre_mascota != "" && tipo_mascota != "" && select_mascota != "" && color_mascota !="" 
+		if (nombre_mascota != "" && tipo_mascota != "" && raza_mascota != "" && color_mascota !="" 
         	&& date_from != "" && genero_mascota != "" && tamano_mascota != "") {
         		$(".popup-registrarte-datos-mascota").hide();
 				$(".popup-registrarte-final").fadeIn("fast");
@@ -393,8 +394,8 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 		            'aggresive_pets': campos_pet[10],
 		            'userid': globalData
 		        };
-		    console.log(datos);  
-		    // getGlobalData('/procesos/login/registro_pet.php','post', datos);
+		    // console.log(datos);  
+		    getGlobalData('/procesos/login/registro_pet.php','post', datos);
         }else {
         	alert("Revise sus datos por favor, debe llenar todos los campos");
         }
@@ -424,7 +425,6 @@ function getGlobalData(url,method, datos){
 		url: HOME+url,
 		async:false,
 		success: function(data){
-			alert("Datos almacenados"+data);
             $("#guardando").html("Este dato se guardo "+data);
             $("#guardando").css('color','blue');
 			return data;
@@ -472,6 +472,28 @@ $('[data-charset]').on({
 		$(".popup-registrarte-1").hide();
 		$(".popup-registrarte-nuevo-correo").fadeIn("fast");
 	});
-	
-	
 // FIN POPUP INICIAR SESIÓN
+
+function cargaImagen(evt){
+	var files = evt.target.files;
+
+	// obtenemos la imagen del campo file
+	for (var i = 0, f; f = files[i]; i++) {         
+           //Solo admitimos imágenes.
+           if (!f.type.match('image.*')) {
+                continue;
+           }
+		 var reader = new FileReader();
+
+		 reader.onload = (function(theFile){
+		 	return function(e){
+		 	//Creamos la imagen.
+		 	$("#km-datos-foto").css("background-image", "url("+e.target.result+")");
+		 	$("#km-datos-foto").addClass("img-circle");
+		 	//document.getElementById("list").innerHTML = ['<img class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
+		 	};
+		 })(f);
+
+		 reader.readAsDataURL(f);
+	}
+}

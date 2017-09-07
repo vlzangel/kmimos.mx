@@ -1,4 +1,4 @@
-<?php
+<?php	
 	$HTML .='
 		<!-- POPUP INICIAR SESIÓN -->
 		<div id="popup-iniciar-sesion" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -39,11 +39,19 @@
 							<p class="text-line">o</p>
 							<div class="bg-line"></div>
 						</div>
-						<a href="#" class="km-btn-fb"><img src="'.getTema().'"images/icons/km-redes/icon-fb-blanco.svg">CONÉCTATE CON FACEBOOK</a>
-						<a href="#" class="km-btn-border"><img src="'.getTema().'"images/icons/km-redes/icon-gmail.svg">CONÉCTATE CON GOOGLE</a>
+						<a href="#" class="km-btn-fb" onclick="login_facebook();">
+							<img src="'.getTema().'/images/icons/km-redes/icon-fb-blanco.svg">
+							CONÉCTATE CON FACEBOOK
+						</a>
+						<a href="#" class="km-btn-border" id="customBtn">
+							<img src="'.getTema().'/images/icons/km-redes/icon-gmail.svg">
+							CONÉCTATE CON GOOGLE
+						</a>
+						<script>startApp();</script>
+						
 						
 						<p style="color: #979797; margin-top: 20px;">Al crear una cuenta, aceptas las condiciones del servicio y la Política de privacidad de Kmimos.</p>
-						<p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'"images/icons/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp</p>
+						<p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/icons/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp</p>
 						<hr>
 						<div class="row">
 							<div class="col-xs-12 col-sm-5">
