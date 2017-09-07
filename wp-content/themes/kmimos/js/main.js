@@ -192,11 +192,7 @@ $(document).ready(function(){
 	    slideMargin: 10
 	});
 
-	$('.km-opcion').on('click', function(e) {
-		$(this).toggleClass('km-opcionactivo');
-        $(this).children("input:checkbox").prop("checked", !$(this).children("input").prop("checked"));
-	});
-
+	
 	$('.km-servicio-opcion').on('click', function(e) {
 		//$(this).toggleClass('km-servicio-opcionactivo');
 	});
