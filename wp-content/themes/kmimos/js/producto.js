@@ -206,6 +206,12 @@ function calcular(){
 		jQuery("#monto_total").html( "$" + numberFormat(cant) );
 
 		CARRITO["pagar"]["total"] = cant;
+
+		jQuery("#reserva_btn_next_1").removeClass("km-end-btn-form-disabled");
+		jQuery("#reserva_btn_next_1").removeClass("disabled");
+	}else{
+		jQuery("#reserva_btn_next_1").addClass("km-end-btn-form-disabled");
+		jQuery("#reserva_btn_next_1").addClass("disabled");
 	}
 
 	initFactura();
@@ -372,7 +378,8 @@ function pagarReserva(){
 		{info: json},
 		function(data){
 			console.log( data );
-		}
+			location.href = RAIZ+"/finalizar/"+data.order_id;
+		}, "json"
 	);
 }
 
@@ -388,9 +395,13 @@ jQuery(document).ready(function() {
 	});
 
 	jQuery("#reserva_btn_next_1").on("click", function(e){
-		jQuery(".km-col-steps").css("display", "none");
-		jQuery("#step_2").css("display", "block");
-		jQuery(document).scrollTop(0);
+		if( jQuery(this).hasClass("disabled") ){
+
+		}else{
+			jQuery(".km-col-steps").css("display", "none");
+			jQuery("#step_2").css("display", "block");
+			jQuery(document).scrollTop(0);
+		}
 		e.preventDefault();
 	});
 
@@ -402,14 +413,17 @@ jQuery(document).ready(function() {
 	});
 
 	jQuery("#reserva_btn_next_3").on("click", function(e){
+		if( jQuery(this).hasClass("disabled") ){
 
-		CARRITO["pagar"]["deviceIdHiddenFieldName"] = jQuery("#deviceIdHiddenFieldName").val();
-		CARRITO["pagar"]["tipo"] = jQuery("#tipo_pago").val();
-
-		//console.log( CARRITO );
-
-		OpenPay.token.extractFormAndCreate('reservar', sucess_callbak, error_callbak); 
-
+		}else{
+			CARRITO["pagar"]["deviceIdHiddenFieldName"] = jQuery("#deviceIdHiddenFieldName").val();
+			CARRITO["pagar"]["tipo"] = jQuery("#tipo_pago").val();
+			if( CARRITO["pagar"]["tipo"] == "tarjeta" ){
+				OpenPay.token.extractFormAndCreate('reservar', sucess_callbak, error_callbak); 
+			}else{
+				pagarReserva();
+			}
+		}
 		e.preventDefault();
 	});
 
@@ -425,12 +439,20 @@ jQuery(document).ready(function() {
 		CARRITO["tarjeta"][ jQuery(this).attr("id") ] = jQuery(this).val();
 	});
 
+	jQuery("#tipo_pago").on("change", function(e){
+		jQuery(".metodos_container").css("display", "none");
+		jQuery("#"+jQuery(this).val()+"_box").css("display", "block");
+		if( jQuery(this).val() != "tarjeta" ){
+			jQuery(".errores_box").css("display", "none");
+		}
+	});
+
 	calcular();
 
 	/* Configuración Openpay */
 
-		OpenPay.setId('mbdcldmwlolrgxkd55an');
-	    OpenPay.setApiKey('pk_94d15185c54841a68c568d14e0d0debd');
+		OpenPay.setId('mae56tbxscnuqozgio7b');
+	    OpenPay.setApiKey('pk_ade086de44594d1187aeab6e824b2ffd');
 	    OpenPay.setSandboxMode(true);
 
 	    var deviceSessionId = OpenPay.deviceData.setup("reservar", "deviceIdHiddenFieldName");
@@ -443,13 +465,8 @@ jQuery(document).ready(function() {
 	    };
 
 	    var error_callbak = function(response) {
-
 	        var desc = response.data.description != undefined ? response.data.description : response.message;
-
-	        console.log("ERROR [" + response.status + "] " + desc);
-
 	        jQuery(".errores_box").css("display", "block");
-
 	        switch( response.status ){
 	        	case 422:
 	        		alert("Numero invalido");

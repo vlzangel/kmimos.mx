@@ -28,7 +28,10 @@
 	include_once("partes/head/script_google_auth.php");
 	global $post;
 	$reserrvacion_page = "";
-	if( $post->post_name == 'reservar' ){
+	if( 
+		$post->post_name == 'reservar' ||
+		$post->post_name == 'finalizar'
+	){
 		$reserrvacion_page = "page-reservation";
 	}
 

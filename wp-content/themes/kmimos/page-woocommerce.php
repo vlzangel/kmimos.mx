@@ -172,7 +172,7 @@
 							* Precio final (incluye cobertura veterinaria y gastos administrativos; no incluye servicios adicionales)
 						</div>
 
-						<a href="#" id="reserva_btn_next_1" class="km-end-btn-form vlz_btn_reservar">
+						<a href="#" id="reserva_btn_next_1" class="km-end-btn-form km-end-btn-form-disabled disabled vlz_btn_reservar">
 							<span>SIGUIENTE</span>
 						</a>
 
@@ -279,7 +279,7 @@
 							</div>
 						</div>
 
-						<span id="reserva_btn_next_2" class="km-end-btn-form km-end-btn-form-disabled disabled vlz_btn_reservar">
+						<span id="reserva_btn_next_2" class="km-end-btn-form vlz_btn_reservar">
 							<span>SIGUIENTE</span>
 						</span>
 
@@ -338,14 +338,6 @@
 							</div>
 						</div>
 
-						<!--
-							data-openpay-card="holder_name"
-							data-openpay-card="card_number"
-							data-openpay-card="cvv2"
-							data-openpay-card="expiration_year"
-							data-openpay-card="expiration_month"
-						-->
-
 						<div class="errores_box">
 							Datos de la tarjeta invalidos
 						</div>
@@ -358,31 +350,40 @@
 									<option value="tienda">Pago en tienda de conveniencia</option>
 								</select>
 
-								<div class="label-placeholder">
-									<label>Nombre del tarjetahabitante*</label>
-									<input type="text" id="nombre" name="nombre" value="" class="input-label-placeholder" data-openpay-card="holder_name">
-								</div>
+								<div id="tarjeta_box" class="metodos_container">
 
-								<div class="label-placeholder">
-									<label>Número de Tarjeta*</label>
-									<input type="text" id="numero" name="numero" class="input-label-placeholder" maxlength="16" data-openpay-card="card_number">
-								</div>
-
-								<div class="content-placeholder">
 									<div class="label-placeholder">
-										<label>Expira (MM AA)</label>
-										<input type="text" id="mes" name="mes" class="input-label-placeholder expiration" maxlength="2" data-openpay-card="expiration_month">
-										<input type="text" id="anio" name="anio" class="input-label-placeholder expiration" maxlength="2" data-openpay-card="expiration_year">
+										<label>Nombre del tarjetahabitante*</label>
+										<input type="text" id="nombre" name="nombre" value="" class="input-label-placeholder" data-openpay-card="holder_name">
 									</div>
 
 									<div class="label-placeholder">
-										<label>Código de seguridad (XXX)</label>
-										<input type="text" id="codigo" name="codigo" class="input-label-placeholder" maxlength="3" data-openpay-card="cvv2">
+										<label>Número de Tarjeta*</label>
+										<input type="text" id="numero" name="numero" class="input-label-placeholder" maxlength="16" data-openpay-card="card_number">
 									</div>
+
+									<div class="content-placeholder">
+										<div class="label-placeholder">
+											<label>Expira (MM AA)</label>
+											<input type="text" id="mes" name="mes" class="input-label-placeholder expiration" maxlength="2" data-openpay-card="expiration_month">
+											<input type="text" id="anio" name="anio" class="input-label-placeholder expiration" maxlength="2" data-openpay-card="expiration_year">
+										</div>
+
+										<div class="label-placeholder">
+											<label>Código de seguridad (XXX)</label>
+											<input type="text" id="codigo" name="codigo" class="input-label-placeholder" maxlength="3" data-openpay-card="cvv2">
+										</div>
+									</div>
+									<!--
+									<div class="km-msje-minimal">
+										*Recuerda que tus datos deben ser los mismos que el de tu tarjeta
+									</div>
+									-->
 								</div>
 
-								<div class="km-msje-minimal">
-									*Recuerda que tus datos deben ser los mismos que el de tu tarjeta
+								<div id="tienda_box" class="metodos_container">
+									<img src="'.get_template_directory_uri().'/images/tiendas.png" />
+									<img src="'.get_template_directory_uri().'/images/pasos.png" />
 								</div>
 
 								<div class="km-term-conditions">
