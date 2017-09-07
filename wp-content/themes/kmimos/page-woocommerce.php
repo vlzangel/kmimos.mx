@@ -374,11 +374,11 @@
 											<input type="text" id="codigo" name="codigo" class="input-label-placeholder" maxlength="3" data-openpay-card="cvv2">
 										</div>
 									</div>
-
+									<!--
 									<div class="km-msje-minimal">
 										*Recuerda que tus datos deben ser los mismos que el de tu tarjeta
 									</div>
-
+									-->
 								</div>
 
 								<div id="tienda_box" class="metodos_container">
