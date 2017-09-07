@@ -71,6 +71,8 @@ function getReservas($desde="", $hasta=""){
 			and p.ID > 0
 			and r.post_status = 'confirmed'
 			{$filtro_adicional}
+		ORDER BY
+			p.ID DESC
 		;";
 
 	$reservas = $wpdb->get_results($sql);
@@ -456,8 +458,8 @@ function Get_SumCouponCode($order_id,$coupon_code,$total=0) {
 			if($coupon['discount_type'] != 'percent'){
 				$coupon_amount = $coupon['coupon_amount'];
 
-			}else if($coupon['discount_type'] != 'percent'){
-				$coupon_amount = $total*$coupon['coupon_amount'];
+			}else{
+				$coupon_amount = $total*($coupon['coupon_amount']/100);
 			}
 
 			$amount = $amount+$coupon_amount;
