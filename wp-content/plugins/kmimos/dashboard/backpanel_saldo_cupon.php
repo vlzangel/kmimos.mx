@@ -92,14 +92,13 @@ $reservas = getReservas($desde, $hasta);
 					<th># Reserva</th>
 					<th>Cuidador ID</th>
 					<th>Cuidador</th>
-					<th>Total a Pagar</th>
-					<th>Pagado</th>
+					<th>Total a pagar</th>
+					<th>Monto Pagado</th>
+					<th>Pago de Cuidador</th>
 					<th>Saldo a favor</th>
 					<th>Cupon Kmimos</th>
 					<th>Cupon Cuidador</th>
-					<th>Otro 1</th>
-					<th>Otro 2</th>
-					<th>Cupones</th>
+					<th>Otros Cupones</th>
 					<th>Reembolso</th>
 			    </tr>
 			  </thead>
@@ -194,21 +193,51 @@ $reservas = getReservas($desde, $hasta);
 						<th><?php echo $reserva->nro_reserva; ?></th>
 						<th><?php echo 'UC'.$reserva->cuidador_id; ?></th>
 						<th><?php echo $meta_cuidador['first_name'] . ' ' . $meta_cuidador['last_name']; ?></th>
+						<th><?php echo currency_format($meta_reserva['_booking_cost']); ?></th>
+						<th><?php echo currency_format($meta_Pedido['_order_total']); ?></th>
 						<th><?php echo $pago_cuidador; ?></th>
-						<th></th>
-						<th><?php echo Get_SumCouponCode($reserva->nro_pedido,'saldo-'); ?></th>
-						<th><?php echo Get_SumCouponCode($reserva->nro_pedido,'kmimos-'); ?></th>
-						<th><?php echo Get_SumCouponCode($reserva->nro_pedido,'cuidador-'); ?></th>
-						<th><?php echo Get_SumCouponCode($reserva->nro_pedido,'otro1-');?></th>
-						<th><?php echo Get_SumCouponCode($reserva->nro_pedido,'otro2-');?>					</th>
+						<th>
+							<small class="btn btn-xs btn-default" style="color: #555;background-color: #eee;border: 1px solid #ccc;">
+					  			<?php echo Get_SumCouponCode($reserva->nro_pedido,'saldo-'); ?>
+								<span class="badge" style="background:#fff;color:#000;">
+									<?php echo Get_NameCouponCode($reserva->nro_pedido,'saldo-'); ?>
+								</span>
+							</small>
+						</th>
+						<th>
+							<small class="btn btn-xs btn-default" style="color: #555;background-color: #eee;border: 1px solid #ccc;">
+					  			<?php echo Get_SumCouponCode($reserva->nro_pedido,'kmimos-'); ?>
+								<span class="badge" style="background:#fff;color:#000;">
+									<?php echo Get_NameCouponCode($reserva->nro_pedido,'kmimos-'); ?>
+								</span>
+							</small>
+						<th>
+							<small class="btn btn-xs btn-default" style="color: #555;background-color: #eee;border: 1px solid #ccc;">
+					  			<?php echo Get_SumCouponCode($reserva->nro_pedido,'cuidador-'); ?>
+								<span class="badge" style="background:#fff;color:#000;">
+									<?php echo Get_NameCouponCode($reserva->nro_pedido,'cuidador-'); ?>
+								</span>
+							</small>
 						<th>
 							<?php
-								echo Get_NameCouponCode($reserva->nro_pedido,'');
-								//echo Get_SumCouponCode($reserva->nro_pedido,'');
 								$coupons = Get_CouponCode($reserva->nro_pedido,'');
-								//var_dump($coupons);
+								if(count($coupons)){
+									foreach($coupons as $coupon){
+										$name = $coupon['coupon_name'];
+										if(strpos($name,'saldo-')===false && strpos($name,'kmimos-')===false && strpos($name,'cuidador-')===false){
+											?>
+												<small class="btn btn-xs btn-default" style="color: #555;background-color: #eee;border: 1px solid #ccc;">
+													<?php echo $coupon['coupon_amount']; ?>
+													<span class="badge" style="background:#fff;color:#000;">
+														<?php echo $coupon['coupon_name']; ?>
+													</span>
+												</small>
+											<?php
+										}
+									}
+								}
 							?>
-						</th>
+
 						<th><?php echo ($pago_cuidador-Get_SumCouponCode($reserva->nro_pedido,'cuidador-')); ?></th>
 				    </tr>
 			   	<?php } ?>
