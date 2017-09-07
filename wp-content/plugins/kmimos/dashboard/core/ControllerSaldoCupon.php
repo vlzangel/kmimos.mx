@@ -447,14 +447,20 @@ function Get_CouponCode($order_id,$coupon_code) {
 }
 
 
-function Get_SumCouponCode($order_id,$coupon_code) {
+function Get_SumCouponCode($order_id,$coupon_code,$total=0) {
 	$coupons = Get_CouponCode($order_id,$coupon_code);
 	$amount = 0;
 
 	if(count($coupons)){
 		foreach($coupons as $coupon){
-			$amount = $amount+$coupon['coupon_amount'];
+			if($coupon['discount_type'] != 'percent'){
+				$coupon_amount = $coupon['coupon_amount'];
 
+			}else if($coupon['discount_type'] != 'percent'){
+				$coupon_amount = $total*$coupon['coupon_amount'];
+			}
+
+			$amount = $amount+$coupon_amount;
 		}
 	}
 	return $amount;

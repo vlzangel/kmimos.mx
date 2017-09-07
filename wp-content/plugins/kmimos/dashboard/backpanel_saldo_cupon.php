@@ -206,14 +206,14 @@ $reservas = getReservas($desde, $hasta);
 						</th>
 						<th>
 							<small class="btn btn-xs btn-default" style="color: #555;background-color: #eee;border: 1px solid #ccc;">
-					  			<?php echo Get_SumCouponCode($reserva->nro_pedido,'kmimos-'); ?>
+					  			<?php echo Get_SumCouponCode($reserva->nro_pedido,'kmimos-',$meta_reserva['_booking_cost']); ?>
 								<span class="badge" style="background:#fff;color:#000;">
 									<?php echo Get_NameCouponCode($reserva->nro_pedido,'kmimos-'); ?>
 								</span>
 							</small>
 						<th>
 							<small class="btn btn-xs btn-default" style="color: #555;background-color: #eee;border: 1px solid #ccc;">
-					  			<?php echo Get_SumCouponCode($reserva->nro_pedido,'cuidador-'); ?>
+					  			<?php echo Get_SumCouponCode($reserva->nro_pedido,'cuidador-',$meta_reserva['_booking_cost']); ?>
 								<span class="badge" style="background:#fff;color:#000;">
 									<?php echo Get_NameCouponCode($reserva->nro_pedido,'cuidador-'); ?>
 								</span>
@@ -238,7 +238,7 @@ $reservas = getReservas($desde, $hasta);
 								}
 							?>
 
-						<th><?php echo ($pago_cuidador-Get_SumCouponCode($reserva->nro_pedido,'cuidador-')); ?></th>
+						<th><?php echo ($pago_cuidador-Get_SumCouponCode($reserva->nro_pedido,'cuidador-',$meta_reserva['_booking_cost'])); ?></th>
 				    </tr>
 			   	<?php } ?>
 			  </tbody>
