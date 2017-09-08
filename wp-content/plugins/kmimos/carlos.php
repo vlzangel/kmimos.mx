@@ -220,7 +220,7 @@ function update_addons_service(){
 			$caregiver_checkout=strtotime('1-1-2017 '.$caregiver->check_out);
 
 			for($i=$caregiver_checkin; $i <= $caregiver_checkout; $i=$i+(60*30)){
-				$ihour=date('g:i',$i);//:s
+				$ihour=date('g:i A',$i);//:s
 				$hour[$ihour]=array(
 					'label' => $ihour,
 					'price' => '',

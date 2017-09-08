@@ -902,6 +902,16 @@
                 $pagado_con = "";
             }
 
+            $HTMLcheckin = '';
+            if($checkin!=''){
+                $HTMLcheckin = '<tr> <td> <strong>CheckIn:</strong> </td> <td> '.$checkin.' </td> </tr>';
+            }
+
+            $HTMLcheckout = '';
+            if($checkin!=''){
+                $HTMLcheckout = '<tr> <td> <strong>CheckOut:</strong> </td> <td> '.$checkout.' </td> </tr>';
+            }
+
             $detalles_servicio = '
                 <table>
                     <tr>
@@ -916,12 +926,8 @@
                     <tr>
                         <td> <strong>Duración:</strong> </td> <td> '.$dias.' '.$dias_noches.' </td>
                     </tr>
-                    <tr>
-                        <td> <strong>CheckIn:</strong> </td> <td> '.$checkin.' </td>
-                    </tr>
-                    <tr>
-                        <td> <strong>CheckOut:</strong> </td> <td> '.$checkout.' </td>
-                    </tr>
+                    '.$HTMLcheckin.'
+                    '.$HTMLcheckout.'
                     '.$pagado_con.'
                 </table>
             ';
