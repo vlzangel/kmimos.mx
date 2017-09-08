@@ -322,6 +322,43 @@
     }
 
     function sql_addons($data){
+        $hour=array();
+        $user = $data['user'];
+        $caregiver_checkin=strtotime('1-1-2017 '.$data['checkin']);
+        $caregiver_checkout=strtotime('1-1-2017 '.$data['checkout']);
+
+        for($i=$caregiver_checkin; $i <= $caregiver_checkout; $i=$i+(60*30)){
+            $ihour=date('g:i',$i);//:s
+            $hour[$ihour]=array(
+                'label' => $ihour,
+                'price' => '',
+                'min' => '',
+                'max' => ''
+            );
+        }
+
+
+        $checkin = array(
+            'name' => 'CheckIn',
+            'description' => 'Hora de ingreso de tu mascota',
+            'type' => 'select',
+            'position' => 0,
+            'options' => $hour,
+            'required' => 0,
+            'wc_booking_person_qty_multiplier' => 0,
+            'wc_booking_block_qty_multiplier' => 0
+        );
+
+        $checkout = array(
+            'name' => 'CheckOut',
+            'description' => 'Hora de salida de tu mascota',
+            'type' => 'select',
+            'position' => 0,
+            'options' => $hour,
+            'required' => 0,
+            'wc_booking_person_qty_multiplier' => 0,
+            'wc_booking_block_qty_multiplier' => 0
+        );
 
         $transporte = array(
             'name' => 'Servicios de Transportación (precio por grupo)',
@@ -425,7 +462,9 @@
 
         $addons = array(
             '0'=>$transporte,
-            '1'=>$adicionales
+            '1'=>$adicionales,
+            '2'=>$checkin,
+            '3'=>$checkout,
         );
 
         $comision = $data["comision"];
