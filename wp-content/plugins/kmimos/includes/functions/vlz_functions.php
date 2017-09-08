@@ -536,6 +536,8 @@
         function kmimos_desglose_reserva($id, $is_mail = false){
 
             global $wpdb;
+            $checkin = '';
+            $checkout = '';
 
             /* Reserva y Orden */
                 $reserva = $wpdb->get_row("SELECT * FROM $wpdb->posts WHERE post_type = 'wc_booking' AND post_parent = '".$id."'");
@@ -622,6 +624,18 @@
                     case 'Acupuntura (precio por mascota)':
                         $adicionales_array[] = kmimos_format_adicionales($value->meta_key, 'Acupuntura');
                     break;
+
+                }
+
+                switch ($value->meta_key) {
+
+                    case 'CheckIn':
+                        $checkin = $value->meta_value;
+                        break;
+
+                    case 'CheckOut':
+                        $checkout = $value->meta_value;
+                        break;
 
                 }
             }
@@ -902,6 +916,12 @@
                     <tr>
                         <td> <strong>Duración:</strong> </td> <td> '.$dias.' '.$dias_noches.' </td>
                     </tr>
+                    <tr>
+                        <td> <strong>CheckIn:</strong> </td> <td> '.$checkin.' </td>
+                    </tr>
+                    <tr>
+                        <td> <strong>CheckOut:</strong> </td> <td> '.$checkout.' </td>
+                    </tr>
                     '.$pagado_con.'
                 </table>
             ';
@@ -916,6 +936,7 @@
                     <th style="'.$styles_celdas_right.'">  </th>';
             }
 
+            $detalles_factura = '';
             $detalles_factura .= '
                 <table style="width:100%" cellspacing=0 cellpadding=0>
                     <tr>
