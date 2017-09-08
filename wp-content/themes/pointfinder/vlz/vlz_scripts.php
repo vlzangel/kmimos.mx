@@ -143,7 +143,7 @@
 		            icon: "'.get_home_url().'/wp-content/themes/pointfinder/vlz/js/images/n2.png"
 		        });
 		        infos[index] = new google.maps.InfoWindow({ 
-		            content: \'<a class="mini_map" href="\'+cuidador.url+\'" target="_blank"> <img src="\'+cuidador.img+\'" style="max-width: 200px; max-height: 230px;"> <div>\'+cuidador.nom+\'</div> </a>\'
+		            content: \'<a class="mini_map" href="\'+cuidador.url+\'" target="_blank"> <div>\'+cuidador.nom+\'</div> </a>\'
 		        });
 		        markers[index].addListener("click", function(e) { 
 		            infos[this.vlz_index].open(map, this);
@@ -169,34 +169,7 @@
 			$.type="text/javascript";
 			e.parentNode.insertBefore($, e)
 		})(document,"script");
-/*
-		function seleccionar_checkin() {
-	        if( jQuery("#checkin").val() != "" ){
-	            var fecha = new Date();
-	            jQuery("#checkout").attr("disabled", false);
-	            var ini = String( jQuery("#checkin").val() ).split("-");
-	            var inicio = new Date( parseInt(ini[0]), parseInt(ini[1])-1, parseInt(ini[2]) );
-	            var checkout = String( jQuery("#checkout").val() ).split("-");
-	            if( jQuery("#checkout").val() != "" ){
-	            	var checkout = new Date( checkout[0]+"-"+checkout[1]+"-"+checkout[2] );
-	                if( Math.abs(checkout.getTime()) < Math.abs(inicio.getTime()) ){
-	                    jQuery("#checkout").attr("value", ini[0]+"-"+ini[1]+"-"+ini[2] );
-	                }
-	            }else{
-	                jQuery("#checkout").attr("value", ini[0]+"-"+ini[1]+"-"+ini[2] );
-	            }
-	                
-	            jQuery("#checkout").attr("min", ini[0]+"-"+ini[1]+"-"+ini[2] );
-	        }else{
-	            jQuery("#checkout").val("");
-	            jQuery("#checkout").attr("disabled", true);
-	        }
-	    }
 
-	    jQuery("#checkin").on("change", function(e){
-	        seleccionar_checkin();
-	    });
-*/
 	</script>';
 
 	$SCRIPTS = comprimir_styles($scripts);
