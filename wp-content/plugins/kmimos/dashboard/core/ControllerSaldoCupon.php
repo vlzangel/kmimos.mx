@@ -408,20 +408,26 @@ function Get_CouponCode($order_id,$coupon_code) {
 
 	$query = "SELECT DISTINCT
         wc_items.order_item_name AS coupon_name,
+        wc_itemmeta.meta_value AS coupon_discount_amount,
         postmeta.*
 
         FROM
         {$wpdb->prefix}woocommerce_order_items AS wc_items
+		LEFT JOIN
+        {$wpdb->prefix}woocommerce_order_itemmeta AS wc_itemmeta ON wc_items.order_item_id = wc_itemmeta.order_item_id
         LEFT JOIN
         {$wpdb->prefix}posts AS post ON post.post_title = wc_items.order_item_name
         LEFT JOIN
         {$wpdb->prefix}postmeta AS postmeta ON post.ID = postmeta.post_id
+
         WHERE
         wc_items.order_id = '{$order_id}' AND
         wc_items.order_item_type = 'coupon' AND
-        wc_items.order_item_name LIKE '%{$coupon_code}%'";
+        wc_items.order_item_name LIKE '%{$coupon_code}%' AND
+		wc_itemmeta.meta_key = 'discount_amount' ";
+/*
 
-
+	*/
 	$coupons = $wpdb->get_results($query);
 
 	if (!empty($coupons)) {
@@ -435,6 +441,7 @@ function Get_CouponCode($order_id,$coupon_code) {
 				}
 				$return[$coupon_name]['coupon_name'] = $coupon_name;
 				$return[$coupon_name]['coupon_amount'] = $coupon->meta_value;
+				//$return[$coupon_name]['coupon_amount'] = $coupon->meta_value;
 
 			}else if($coupon->meta_key=='discount_type'){
 				if(!array_key_exists($coupon_name,$return)){
@@ -443,8 +450,13 @@ function Get_CouponCode($order_id,$coupon_code) {
 
 				$return[$coupon_name]['discount_type'] = $coupon->meta_value;
 			}
+
+			//AMOUNT DISCOUNT
+			$return[$coupon_name]['coupon_amount'] = $coupon->coupon_discount_amount;
 		}
 	}
+
+	//var_dump($return);
 	return $return;
 }
 
@@ -462,6 +474,7 @@ function Get_SumCouponCode($order_id,$coupon_code,$total=0) {
 				$coupon_amount = $total*($coupon['coupon_amount']/100);
 			}
 
+			$coupon_amount = $coupon['coupon_amount'];
 			$amount = $amount+$coupon_amount;
 		}
 	}
