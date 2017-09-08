@@ -235,6 +235,8 @@ $reservas = getReservas($desde, $hasta);
 														}else{
 															$coupon_amount = $meta_reserva['_booking_cost']*($coupon['coupon_amount']/100);
 														}
+
+														$coupon_amount = $coupon['coupon_amount'];
 														echo currency_format($coupon_amount);
 													?>
 													<span class="badge" style="background:#fff;color:#000;">
