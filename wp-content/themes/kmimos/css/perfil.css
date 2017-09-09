@@ -5,7 +5,7 @@
 }
 .menu_perfil{
 	float: left;
-	width: 300px;
+	width: 220px;
 	box-sizing: border-box;
 	padding: 5px;
 }
@@ -45,9 +45,9 @@
 }
 .main{
 	float: left;
-	width: calc( 100% - 300px );
+	width: calc( 100% - 220px );
 	box-sizing: border-box;
-	padding: 5px;
+	padding: 5px 0px 5px 15px;
 }
 
 /* Contenedores */
@@ -66,17 +66,19 @@
 	}
 
 	.lbl-text{
-	    display: block;
-	    font-size: 14px;
-	    padding: 5px 0px;
-	    font-weight: 400;
+		display: block;
+	    font-size: 12px;
+	    padding: 5px 4px 0px;
+	    font-weight: 600;
 	    color: #444;
+	    text-align: left;
+	    margin: 0px;
 	}
 
 	.lbl-ui{
 	    display: block;
 	    box-sizing: border-box;
-	    padding: 0px 0px 5px;
+	    padding: 0px 2px 5px;
 	    position: relative;
 	}
 
@@ -84,10 +86,16 @@
 	.lbl-ui select,
 	.lbl-ui textarea
 	{
-	    width: 100%;
+		width: calc( 100% - 4px );
 	    padding: 10px;
 	    outline: none !important;
 	    resize: none;
+	    height: 42px;
+	    background: #FFF;
+	    border: solid 1px #CCC;
+	    font-weight: 400;
+	    border-radius: 5px;
+	    margin: 2px;
 	}
 
 	.lbl-ui input:focus,
@@ -111,21 +119,16 @@
 
 	.container_btn{
 	    overflow: hidden;
-	    padding: 10px 0px;
-	    margin: 10px 5px 0px;
-	    border-top: solid 2px #a9a9a9;
+	    padding: 0px 0px;
+	    margin: 0px 5px 0px;
 	}
 
 	.container_btn input{
-    	float: right;
-	    padding: 10px;
-	    font-family: Open Sans;
-	    font-size: 13px;
-	    border: solid 1px #a9a9a9;
-	    min-width: 200px;
-	    background: #fefe78;
-	    font-weight: 600;
-	    cursor: pointer;
+	    float: right !important;
+	    width: auto !important;
+	    border: 0px;
+	    padding: 12px 30px;
+	    border-bottom: 3px solid #7DD1C4;
 	}
 
 	.perfil_cargando{
@@ -138,4 +141,14 @@
 		background-position: center; 
 		background-repeat: no-repeat; 
 		background-color: transparent;
+	}
+
+	section {
+	    text-align: center;
+	    padding: 0px !important;
+	}
+
+	form h1 {
+    	font-size: 24px;
+	    padding: 5px 0px !important;
 	}

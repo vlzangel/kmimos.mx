@@ -290,6 +290,11 @@
                             "icono" => "33"
                         ),
                         array(
+                            "url"   => get_home_url()."/perfil-usuario/solicitudes",
+                            "name"  => "Mis Solicitudes",
+                            "icono" => "33"
+                        ),
+                        array(
                             "url"   => $salir,
                             "name"  => "Cerrar Sesión",
                             "icono" => "476"
@@ -317,6 +322,11 @@
                             "icono" => "33"
                         ),
                         array(
+                            "url"   => get_home_url()."/perfil-usuario/solicitudes",
+                            "name"  => "Mis Solicitudes",
+                            "icono" => "33"
+                        ),
+                        array(
                             "url"   => get_home_url()."/wp-admin/",
                             "name"  => "Panel de Control",
                             "icono" => "421"
@@ -330,7 +340,7 @@
                 );
 
                 $MENU["head"] = '<li><a href="#" class="km-nav-link"> <i class="pfadmicon-glyph-632"></i> '.$user->data->display_name.' </a></li>';
-                $MENU["head_movil"] = '<li><a href="#" class="km-nav-link hidden-sm hidden-md hidden-lg"> <i class="pfadmicon-glyph-632"></i> '.$user->data->display_name.' </a></li>';
+                $MENU["head_movil"] = '<li><a href="#" class="km-nav-link"> <i class="pfadmicon-glyph-632"></i> '.$user->data->display_name.' </a></li>';
                 $MENU["body"] = "";
 
                 if( $MENUS[ $user->roles[0] ] != "" ){
@@ -339,7 +349,7 @@
                         if( isset($value["icono_2"]) ){ $icono = '<i class="'.$value["icono_2"].'"></i> '; }
                         $MENU["body"] .=
                             '<li>
-                                <a href="'.$value["url"].'" class="km-nav-link hidden-sm hidden-md hidden-lg">
+                                <a href="'.$value["url"].'" class="">
                                     '.$icono.'
                                     '.$value["name"].'
                                 </a>

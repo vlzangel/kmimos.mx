@@ -4,14 +4,15 @@
 	line-height: 15px; 
 }
 .vlz_seccion{
-	position: relative;
+    position: relative;
     margin-bottom: 20px;
-    border: solid 1px #b1b1b1;
+    border: solid 1px #e3e3e3;
     box-sizing: border-box;
     padding: 5px;
     border-radius: 0px 3px 3px 3px;
-	font-weight: 600;
-	background-color: rgb(249, 249, 249)
+    font-weight: 600;
+    background-color: rgb(249, 249, 249);
+    box-shadow: 1px 1px 1px #CCC;
 }
 .vlz_seccion label{
 	display: block;
@@ -20,7 +21,7 @@
     margin: 3px 0px;
 }
 .vlz_titulo_seccion {
-    border-bottom: solid 2px #59c9a8;
+    border-bottom: solid 2px #6a6a6a;
     color: #000000;
     padding: 8px 0px;
     border-radius: 0px 3px 0px 0px;
@@ -38,6 +39,7 @@
     padding: 5px 10px;
     border-radius: 3px;
     border: solid 1px #d0d0d0;
+    font-weight: 400;
 }
 .vlz_celda_20 {
     width: 20%;
@@ -76,7 +78,8 @@
     padding: 2px 5px;
     background: #59c9a8;
     color: #FFF !important;
-    font-weight: 600;
+    font-weight: 400;
+    font-size: 12px;
 }
 
 .vlz_desactivado{
@@ -85,7 +88,8 @@
     padding: 2px 5px;
     background: #c95959;
     color: #FFF !important;
-    font-weight: 600;
+    font-weight: 400;
+    font-size: 12px;
 }
 .alertas{
 	padding: 10px;

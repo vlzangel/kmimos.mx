@@ -120,7 +120,7 @@
 										</div>
 										<div style="padding:10px;">
 											<div>
-												<strong>Estatus</strong>:';
+												<strong>Estatus</strong>: ';
 													if($solicitud->Estatus == 'draft'){
 														$CONTENIDO .= 'Cancelado';
 													}else if($solicitud->Estatus=='publish'){

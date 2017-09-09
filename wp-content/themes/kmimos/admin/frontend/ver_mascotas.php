@@ -110,7 +110,7 @@
         <section>
             <label for="pet_birthdate" class="lbl-text">'.esc_html__('Fecha de nacimiento','kmimos').':</label>
             <label class="lbl-ui">
-                <input type="date" name="pet_birthdate" min="'.date("Y-m-d", strtotime('Now -30 years')).'" max="'.date("Y-m-d", strtotime('Now -1 day')).'" class="input datepicker" value="'.$current_pet['birthdate'].'" />
+                <input type="date" name="pet_birthdate" min="'.date("Y-m-d", strtotime('Now -30 years')).'" max="'.date("Y-m-d", strtotime('Now -1 day')).'" class="input" value="'.$current_pet['birthdate'].'" />
             </label>
         </section>
     </div>

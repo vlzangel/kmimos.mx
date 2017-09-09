@@ -1,7 +1,7 @@
 <?php
 	function redimencionar($base, $subpath, $img){
 		
-		if( file_exists($base."miniatura/".$subpath."_".$img) ){
+		if( file_exists($base."miniatura/".$subpath."/".$img) ){
 			echo $base.$subpath."/".$img."<br>";
 		}else{
 			$sExt = @mime_content_type( $base.$subpath."/".$img );
@@ -27,7 +27,8 @@
 		    $aSize = @getImageSize( $base.$subpath."/".$img );
 
 		    if( $aSize[0] == 0 ){
-		    	unlink($base.$subpath."/".$img);
+		    	//@unlink($base.$subpath."/".$img);
+		    	echo $base.$subpath."/".$img." ==> Tamaño en cero (0)<br>";
 		    }else{
 			    if( $aSize[0] > $aSize[1] ){
 			        $nHeight = @round( ( $aSize[1] * $nWidth ) / $aSize[0] );
@@ -39,11 +40,11 @@
 
 			    @imageCopyResampled( $aThumb, $aImage, 0, 0, 0, 0, $nWidth, $nHeight, $aSize[0], $aSize[1] );
 
-			    if( !file_exists($base."miniatura/") ){
-			    	mkdir($base."miniatura/");
+			    if( !file_exists($base."avatares_new/".$subpath."/") ){
+			    	@mkdir($base."avatares_new/".$subpath."/");
 			    }
 
-			    @imagejpeg( $aThumb, $base."miniatura/".$subpath."_".$img );
+			    @imagejpeg( $aThumb, $base."avatares_new/".$subpath."/".$img );
 
 			    @imageDestroy( $aImage );
 			    @imageDestroy( $aThumb );
@@ -53,12 +54,11 @@
 		}
 	}
 
-	function reducir($id){
-		$base = "wp-content/uploads/cuidadores/avatares/";
+	function reducir($base, $id){
 		if( is_dir($base) ){
-	    	if ($dh = opendir($base.$id)) { 
+	    	if ($dh = opendir($base."avatares/".$id)) { 
 		        while (($file = readdir($dh)) !== false) { 
-		            if ( $file!="." && $file != ".." && $file != "miniatura" ){ 
+		            if ( $file!="." && $file != ".." ){ 
 	            		redimencionar($base, $id, $file);
 		            } 
 		        } 
@@ -67,13 +67,17 @@
 	    }
 	}
 
-	$base = "wp-content/uploads/cuidadores/avatares/";
+	$base = "wp-content/uploads/cuidadores/";
+
+	if( !file_exists($base."avatares_new/") ){
+    	mkdir($base."avatares_new/");
+    }
 
     if( is_dir($base) ){
-    	if ($dh = opendir($base)) { 
+    	if ($dh = opendir($base."avatares/")) { 
 	        while (($file = readdir($dh)) !== false) { 
-	            if ( $file!="." && $file != ".." && $file != "miniatura" ){ 
-	            	reducir($file);
+	            if ( $file!="." && $file != ".."){ 
+	            	reducir($base, $file);
 	            } 
 	        } 
 	      	closedir($dh);

@@ -5,6 +5,7 @@
 
     wp_enqueue_style('perfil', getTema()."/css/perfil.css", array(), '1.0.0');
 	wp_enqueue_style('perfil_responsive', getTema()."/css/responsive/perfil_responsive.css", array(), '1.0.0');
+	wp_enqueue_script('perfil_global', getTema()."/js/perfil_global.js", array("jquery", "global_js"), '1.0.0');
 
 	$btn_txt = "Actualizar";
 	$mostrar_btn = true;
@@ -66,7 +67,7 @@
 		case 'historial':
 		    wp_enqueue_style('historial', getTema()."/css/historial.css", array(), '1.0.0');
 			wp_enqueue_style('historial_responsive', getTema()."/css/responsive/historial_responsive.css", array(), '1.0.0');
-			wp_enqueue_script('historial', getTema()."/js/historial.js", array("jquery", "global_js"), '1.0.0');
+			wp_enqueue_script('historial_js', getTema()."/js/historial.js", array("jquery", "global_js"), '1.0.0');
 		break;
 		case 'descripcion':
 		    wp_enqueue_style('descripcion', getTema()."/css/descripcion.css", array(), '1.0.0');
@@ -208,14 +209,14 @@
 		if( $mostrar_btn ){
 			$HTML_BTN = '
 			<div class="container_btn">
-				<input type="submit" id="btn_actualizar" value="'.$btn_txt.'">
+				<input type="submit" id="btn_actualizar" class="km-btn-primary" value="'.$btn_txt.'">
 				<div class="perfil_cargando" style="background-image: url('.getTema().'/images/cargando.gif);" ></div>
 			</div>';
 		}
 
 		$HTML = '
 			<script> var RUTA_IMGS = "'.get_home_url().'/imgs"; </script>
-			<div class="body">
+			<div class="body km-content-reservation">
 				<div class="menu_perfil">
 					<div class="vlz_img_portada">
 						<div class="vlz_img_portada_fondo" style="background-image: url('.$avatar.'); filter:blur(2px);" ></div>
