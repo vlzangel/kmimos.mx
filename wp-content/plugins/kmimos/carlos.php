@@ -91,8 +91,8 @@
 
 	//UPDATE Additional Services
 	function update_additional_service(){
-
 		global $wpdb;
+
 		$sql = "SELECT * FROM cuidadores";
 		$cuidadores = $wpdb->get_results($sql);
 		foreach ($cuidadores as $cuidador) {
@@ -168,6 +168,7 @@ function update_additional_service_postname(){
 
 //UPDATE Image Services
 function update_image_service(){
+	global $wpdb;
 	$imgs_product = array(
 		"paseos"   => array("1111x","11009"),
 		"hospedaje"         => array("55477","55477"),
@@ -177,7 +178,6 @@ function update_image_service(){
 		"adiestramiento_avanzado"   => array("55479","55479"),
 	);
 
-	global $wpdb;
 	foreach($imgs_product as $service => $imag){
 		$img_old=$imag[0];
 		$img_new=$imag[1];
@@ -285,10 +285,13 @@ function update_addons_service(){
 				echo '<pre>';
 				var_dump($addons);
 				echo '</pre>';
+				exit();
 			}
 			*/
+
 			$addons =  utf8_decode(serialize($addons));
-			$sql = "UPDATE wp_postmeta SET meta_value = '$addons' WHERE meta_id = '$ID';";
+			//$wpdb->update('wp_postmeta', array( 'meta_value' => $addons),array('meta_id'=>$ID));
+			$sql = "UPDATE wp_postmeta SET meta_value = '{$addons}' WHERE meta_id = '{$ID}';";
 			$wpdb->query($sql);
 			//var_dump($sql);
 		}

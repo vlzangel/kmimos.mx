@@ -115,10 +115,17 @@
     ?>
     jQuery(document).ready(function(e){
         var body= jQuery('body');
-        if((body.hasClass('home') && checkparam) || (body.hasClass('page-template-blog') || body.hasClass('single-post'))){
+
+        if(body.hasClass('home') && checkparam){
             SubscribeTime = setTimeout(function(){
                 SubscribeSite();
             }, 7400);
+        }
+
+        if(body.hasClass('page-template-blog') || body.hasClass('single-post')){
+            SubscribeTime = setTimeout(function(){
+                SubscribeSite();
+            }, 12000);
         }
     });
 
