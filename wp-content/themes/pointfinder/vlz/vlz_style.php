@@ -203,10 +203,7 @@
 		display: block;
 	}
 	.mini_map div{
-		position: absolute;
 	    z-index: 1000;
-	    bottom: 0px;
-	    left: 0px;
 	    width: 100%;
 	    box-sizing: border-box;
 	    padding: 5px;
