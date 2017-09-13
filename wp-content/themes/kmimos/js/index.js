@@ -185,7 +185,7 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 					'age': campos[7],
 					'smoker': campos[8]};
 
-			globalData = getGlobalData('/procesos/login/registro.php','post', datos); 
+			// globalData = getGlobalData('/procesos/login/registro.php','post', datos); 
 			// console.log(globalData);
 		}else {
          	alert("Revise sus datos por favor, debe llenar todos los campos");
@@ -193,12 +193,12 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 	});
 });
 
- var formData;
+
 $("#popup-registrarte-datos-mascota").ready(function(){
 	
 	$(".km-datos-foto").on('click', function(){
 		$("#carga_foto").trigger("click");
-		$("#carga_foto").on('change',cargaImagen);
+		document.addEventListener('change',cargaImagen, false);
 	});
 	
 	$("#nombre_mascota").blur(function(){
@@ -360,7 +360,7 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 		}else{
 			console.log("La variable Valor esta vacia");
 		}
-		formData = new FormData($("#form_pet_cliente")[0]);
+
 		var nombre_mascota = $("#nombre_mascota").val(),
 			tipo_mascota =$("#tipo_mascota").val(),
 			raza_mascota = $("#raza_mascota").val(),
@@ -375,17 +375,27 @@ $("#popup-registrarte-datos-mascota").ready(function(){
 	
 		var campos_pet =[nombre_mascota,tipo_mascota,raza_mascota,color_mascota,
 					date_from,genero_mascota,tamano_mascota,pet_sterilized,
-					pet_sociable,aggresive_humans,aggresive_pets,formData];
+					pet_sociable,aggresive_humans,aggresive_pets];
 		if (nombre_mascota != "" && tipo_mascota != "" && raza_mascota != "" && color_mascota !="" 
         	&& date_from != "" && genero_mascota != "" && tamano_mascota != "") {
         		$(".popup-registrarte-datos-mascota").hide();
 				$(".popup-registrarte-final").fadeIn("fast");
         		var datos = {
+		      		'name_pet': campos_pet[0],
+		            'type_pet': campos_pet[1],
+		            'race_pet': campos_pet[2],
+		            'colour_pet': campos_pet[3],
+		            'date_birth': campos_pet[4],
+		            'gender_pet': campos_pet[5],
+		            'size_pet': campos_pet[6],
+		            'pet_sterilized': campos_pet[7],
+		            'pet_sociable': campos_pet[8],
+		            'aggresive_humans': campos_pet[9],
+		            'aggresive_pets': campos_pet[10],
 		            'userid': globalData
-        			}
 		        };
 		    // console.log(datos);  
-		registraPet($("#form_pet_cliente").serialize(), datos);
+		    getGlobalData('/procesos/login/registro_pet.php','post', datos);
         }else {
         	alert("Revise sus datos por favor, debe llenar todos los campos");
         }
@@ -420,18 +430,6 @@ function getGlobalData(url,method, datos){
 			return data;
 		}
 	}).responseText;
-}
-
-function registraPet(datos,id){
-    $.ajax({
-        data: , //datos que se envian a traves de ajax
-        url:   HOME+"/procesos/login/registro_pet.php", //archivo que recibe la peticion
-        type:  'post', //método de envio
-        success:  function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
-            console.log("Resultado "+response);
-            // $("#guardando").css('color','blue');
-        }
-    });
 }
 
 $('[data-charset]').on({
@@ -481,19 +479,21 @@ function cargaImagen(evt){
 
 	// obtenemos la imagen del campo file
 	for (var i = 0, f; f = files[i]; i++) {         
-       //Solo admitimos imágenes.
-        if (!f.type.match('image.*')) {
-            continue;
-        }
-		var reader = new FileReader();
+           //Solo admitimos imágenes.
+           if (!f.type.match('image.*')) {
+                continue;
+           }
+		 var reader = new FileReader();
 
-		reader.onload = (function(theFile){
-			return function(e){
-				//Creamos la imagen.
-				$("#km-datos-foto").css("background-image", "url("+e.target.result+")");
-				$("#km-datos-foto").addClass("img-circle");
-			};
-		})(f);
-		reader.readAsDataURL(f);
+		 reader.onload = (function(theFile){
+		 	return function(e){
+		 	//Creamos la imagen.
+		 	$("#km-datos-foto").css("background-image", "url("+e.target.result+")");
+		 	$("#km-datos-foto").addClass("img-circle");
+		 	//document.getElementById("list").innerHTML = ['<img class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
+		 	};
+		 })(f);
+
+		 reader.readAsDataURL(f);
 	}
 }

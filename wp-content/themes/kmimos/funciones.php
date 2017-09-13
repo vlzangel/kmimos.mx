@@ -263,8 +263,8 @@
 			if( isset($data[$key]) && $data[$key] > 0 ){
 				$resultado .= '
 					<div class="km-service-col">
-						<label class="optionCheckout" for="'.$key.'">'.$adicionales[$key].' ( $'.$data[$key].')</label><br>
-						<input type="checkbox" id="'.$key.'" name="'.$key.'" value="'.$data[$key].'" style="display: none;">
+						<label class="optionCheckout" for="'.$key.'">'.$adicionales[$key].' ( $'.($data[$key]*1.2).')</label><br>
+						<input type="checkbox" id="'.$key.'" name="'.$key.'" value="'.($data[$key]*1.2).'" style="display: none;">
 					</div>
 				';
 			}

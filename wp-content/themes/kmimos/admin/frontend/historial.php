@@ -1,80 +1,8 @@
 <?php
-	$CONTENIDO = '
-	<div class="kmisaldo">
-		<strong>'.kmimos_saldo_titulo().':</strong> MXN $'.kmimos_get_kmisaldo().'
-	</div>';
-
-		// if( isset($_GET["fm"]) ){
-		// 	global $wpdb;
-		// 	foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
-		// 		$wpdb->query( "DELETE FROM wp_posts WHERE ID = ".$cart_item["booking"]["_booking_id"] );
-		// 		$wpdb->query( "DELETE FROM wp_postmeta WHERE post_id = ".$cart_item["booking"]["_booking_id"] );
-		// 	}
-		// 	WC()->cart->empty_cart();
-		// }
 
 	global $wpdb;
 	$sql = "SELECT * FROM $wpdb->posts WHERE post_type = 'wc_booking' AND post_author = {$user_id} AND post_status NOT LIKE '%cart%' ORDER BY id DESC";
 	$reservas = $wpdb->get_results($sql);
-
-	//CART
-	$items = WC()->cart->get_cart();
-
-	if(count($items) > 0){
-		$CONTENIDO .= '
-		<h1 class="theme_tite theme_table_title">Reservas Por Completar</h1>
-		<table class="vlz_tabla table table-striped table-responsive">
-			<tr>
-				<th class="product-name">Servicio</th>
-				<th class="product-service">Detalle</th>
-				<th class="product-subtotal">Total</th>
-				<th>Acciones</th>
-			</tr>';
-
-			foreach($items as $cart_item_key => $cart_item){
-				$_product     = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
-				$product_id   = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
-				$CONTENIDO .= '
-				<tr>
-					<td class="product-name" data-title="Servicio">';
-						if ( ! $_product->is_visible() ) {
-							$CONTENIDO .= apply_filters( 'woocommerce_cart_item_name', $_product->get_title(), $cart_item, $cart_item_key ) . '&nbsp;';
-						} else {
-							$CONTENIDO .= apply_filters( 'woocommerce_cart_item_name', sprintf( '<a href="%s">%s</a>', esc_url( $_product->get_permalink( $cart_item ) ), $_product->get_title() ), $cart_item, $cart_item_key );
-						} $CONTENIDO .= '
-					</td>
-					<td class="product-service" data-title="Servicio">'
-						.WC()->cart->get_item_data( $cart_item );
-						if ( $_product->backorders_require_notification() && $_product->is_on_backorder( $cart_item['quantity'] ) ) {
-							$CONTENIDO .= '<p class="backorder_notification">' . esc_html__( 'Available on backorder', 'woocommerce' ) . '</p>';
-						}
-						$CONTENIDO .= '
-					</td>
-					<td class="product-subtotal" data-title="Total">
-						'.apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key ).'
-					</td>
-					<td style="text-align: right; width: 166px;">'.
-						build_select(
-							array(
-								array(
-									'text'=>'Ver',
-									'value'=>esc_url( WC()->cart->get_cart_url())
-								),
-								array(
-									'text'=>'Pagar',
-									'value'=>esc_url( WC()->cart->get_checkout_url())
-								),
-								array(
-									'text'=>'Eliminar',
-									'value'=>esc_url( WC()->cart->get_remove_url($cart_item_key))
-								)
-							)).'
-					</td>
-				</tr>';
-			}
-			$CONTENIDO .= '
-		</table>';
-	}
 
 	if( count($reservas) > 0 ){
 
@@ -185,7 +113,7 @@
 
 					$booking_td=array();
 					$booking_td[]=array('class'=>'','data'=>$reserva->ID);
-					$booking_td[]=array('class'=>'','data'=>'<a href="'.get_home_url().'/producto/'.$pedido->post_name.'" target="_blank" >'.$pedido->post_title.'</a>');
+					$booking_td[]=array('class'=>'','data'=>'<a href="'.get_home_url().'/reservar/'.$pedido->ID.'" target="_blank" >'.$pedido->post_title.'</a>');
 					//$booking_td[]=array('class'=>'','data'=>$reserva->post_status);
 					$booking_td[]=array('class'=>'td_responsive','data'=>date_boooking($_metas_reserva['_booking_start'][0]));
 					$booking_td[]=array('class'=>'td_responsive','data'=>date_boooking($_metas_reserva['_booking_end'][0]));
@@ -224,7 +152,7 @@
 
 					$booking_td=array();
 					$booking_td[]=array('class'=>'','data'=>$reserva->ID);
-					$booking_td[]=array('class'=>'','data'=>'<a href="'.get_home_url().'/producto/'.$pedido->post_name.'" target="_blank" >'.$pedido->post_title.'</a>');
+					$booking_td[]=array('class'=>'','data'=>'<a href="'.get_home_url().'/reservar/'.$pedido->ID.'" target="_blank" >'.$pedido->post_title.'</a>');
 					//$booking_td[]=array('class'=>'','data'=>$reserva->post_status);
 					$booking_td[]=array('class'=>'td_responsive','data'=>date_boooking($_metas_reserva['_booking_start'][0]));
 					$booking_td[]=array('class'=>'td_responsive','data'=>date_boooking($_metas_reserva['_booking_end'][0]));
@@ -262,7 +190,7 @@
 
 					$booking_td=array();
 					$booking_td[]=array('class'=>'','data'=>$reserva->ID);
-					$booking_td[]=array('class'=>'','data'=>'<a href="'.get_home_url().'/producto/'.$pedido->post_name.'" target="_blank" >'.$pedido->post_title.'</a>');
+					$booking_td[]=array('class'=>'','data'=>'<a href="'.get_home_url().'/reservar/'.$pedido->ID.'" target="_blank" >'.$pedido->post_title.'</a>');
 					//$booking_td[]=array('class'=>'','data'=>$reserva->post_status);
 					$booking_td[]=array('class'=>'td_responsive','data'=>date_boooking($_metas_reserva['_booking_start'][0]));
 					$booking_td[]=array('class'=>'td_responsive','data'=>date_boooking($_metas_reserva['_booking_end'][0]));
@@ -292,7 +220,7 @@
 
 					$booking_td=array();
 					$booking_td[]=array('class'=>'','data'=>$reserva->ID);
-					$booking_td[]=array('class'=>'','data'=>'<a href="'.get_home_url().'/producto/'.$pedido->post_name.'" target="_blank" >'.$pedido->post_title.'</a>');
+					$booking_td[]=array('class'=>'','data'=>'<a href="'.get_home_url().'/reservar/'.$pedido->ID.'" target="_blank" >'.$pedido->post_title.'</a>');
 					//$booking_td[]=array('class'=>'','data'=>$reserva->post_status);
 					$booking_td[]=array('class'=>'td_responsive','data'=>date_boooking($_metas_reserva['_booking_start'][0]));
 					$booking_td[]=array('class'=>'td_responsive','data'=>date_boooking($_metas_reserva['_booking_end'][0]));
@@ -322,7 +250,7 @@
 
 					$booking_td=array();
 					$booking_td[]=array('class'=>'','data'=>$reserva->ID);
-					$booking_td[]=array('class'=>'','data'=>'<a href="'.get_home_url().'/producto/'.$pedido->post_name.'" target="_blank" >'.$pedido->post_title.'</a>');
+					$booking_td[]=array('class'=>'','data'=>'<a href="'.get_home_url().'/reservar/'.$pedido->ID.'" target="_blank" >'.$pedido->post_title.'</a>');
 					$booking_td[]=array('class'=>'td_responsive','data'=>date_boooking($_metas_reserva['_booking_start'][0]));
 					$booking_td[]=array('class'=>'td_responsive','data'=>date_boooking($_metas_reserva['_booking_end'][0]));
 					$booking_td[]=array('class'=>'','data'=>$options);
@@ -360,7 +288,7 @@
 
 					$booking_td=array();
 					$booking_td[]=array('class'=>'','data'=>$reserva->ID);
-					$booking_td[]=array('class'=>'','data'=>'<a href="'.get_home_url().'/producto/'.$pedido->post_name.'" target="_blank" >'.$pedido->post_title.'</a>');
+					$booking_td[]=array('class'=>'','data'=>'<a href="'.get_home_url().'/reservar/'.$pedido->ID.'" target="_blank" >'.$pedido->post_title.'</a>');
 					//$booking_td[]=array('class'=>'','data'=>$reserva->post_status);
 					$booking_td[]=array('class'=>'td_responsive','data'=>date_boooking($_metas_reserva['_booking_start'][0]));
 					$booking_td[]=array('class'=>'td_responsive','data'=>date_boooking($_metas_reserva['_booking_end'][0]));
@@ -401,8 +329,12 @@
 		
 
 		//BUILD TABLE
-		$CONTENIDO .= '<h1 style="margin: 0px; padding: 0px;">Mi Historial de Reservas</h1><hr style="margin: 5px 0px 10px;">'.build_table($booking_coming);
-
+		$CONTENIDO .= '
+			<h1 style="margin: 0px; padding: 0px;">Mi Historial de Reservas</h1><hr style="margin: 5px 0px 10px;">
+			<div class="kmisaldo">
+			<strong>'.kmimos_saldo_titulo().':</strong> MXN $'.kmimos_get_kmisaldo().'
+		</div>'.
+		build_table($booking_coming);
 	}else{
 		$CONTENIDO .= "<h1 style='line-height: normal;'>Usted aún no tiene reservas.</h1><hr>";
 	}

@@ -15,7 +15,7 @@
 	box-sizing: border-box;
 	padding: 10px;
 	width: 100%;
-	height: 280px;
+	height: 290px;
 }
 .mascotas_item a.mascotas_content{
 	position: absolute;
@@ -35,6 +35,7 @@
 }
 .mascotas_data h3{
     margin: 0px;
+    font-size: 20px;
 }
 .mascotas_item a.mascotas_content:hover h3{
 	color: #59c9a8;

@@ -265,37 +265,6 @@
         </section> 
     </div>
            
-    <div class="inputs_containers row_2" style="padding-bottom: 0px;">       	    
-                   	     
-       <section> 
-          <label for="estado" class="lbl-text">'.esc_html__('Estado','kmimos').':</label>
-            <label class="lbl-ui">
-	            <select id="estado" id="estado" name="estado" class="input">
-	                '.$estados.'
-	            </select>
-            </label> 
-       </section>  
-
-	    <section>
-	        <label for="delegacion" class="lbl-text">'.esc_html__('Delegación','kmimos').':</label>
-            <label class="lbl-ui">
-		        <select id="delegacion" name="delegacion" class="input">
-		            '.$muni.'
-		        </select>
-            </label> 
-	    </section> 
-
-    </div>
-           
-    <div class="inputs_containers row_1" style="padding-bottom: 0px;">  
-       <section> 
-          	<label for="ages_accepted" class="lbl-text">'.esc_html__('Dirección','kmimos').':</label>
-            <label class="lbl-ui">
-            	<input  type="text" id="direccion" name="direccion" class="input" value="'.$cuidador->direccion.'" />
-            </label> 
-       </section>
-    </div>
-           
     <div class="inputs_containers row_4" style="padding-bottom: 0px;"> 
 
 	    <section>
@@ -325,6 +294,35 @@
 	          	'.$edades_aceptadas_str.'     
             </label>
 	   </section>
+
+    </div>
+           
+    <div class="inputs_containers row_3" style="padding-bottom: 0px;">            
+                         
+       <section> 
+            <label for="estado" class="lbl-text">'.esc_html__('Estado','kmimos').':</label>
+            <label class="lbl-ui">
+                <select id="estado" id="estado" name="estado" class="input">
+                  '.$estados.'
+                </select>
+            </label> 
+       </section>  
+
+        <section>
+        <label for="delegacion" class="lbl-text">'.esc_html__('Delegación','kmimos').':</label>
+            <label class="lbl-ui">
+            <select id="delegacion" name="delegacion" class="input">
+                '.$muni.'
+            </select>
+            </label> 
+        </section>  
+
+        <section> 
+            <label for="ages_accepted" class="lbl-text">'.esc_html__('Dirección','kmimos').':</label>
+            <label class="lbl-ui">
+              <input  type="text" id="direccion" name="direccion" class="input" value="'.$cuidador->direccion.'" />
+            </label> 
+        </section>
 
     </div>';
 ?>

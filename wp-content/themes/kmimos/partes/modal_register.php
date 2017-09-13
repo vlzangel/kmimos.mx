@@ -16,7 +16,7 @@ $HTML .='
 							<img src="'.getTema().'/images/icons/km-redes/icon-gmail.svg">
 							REGISTRARME CON GOOGLE
 						</a>
-						<script>startApp();</script>
+						<script>//startApp();</script>
 						<div class="line-o">
 							<p class="text-line">o</p>
 							<div class="bg-line"></div>
@@ -115,11 +115,9 @@ $HTML .='
 				<div class="popuphide popup-registrarte-datos-mascota">
 						<h3 style="margin: 0; text-align: center;">Datos de tus Mascotas</h3>
 						<p style="text-align: center;">Queremos conocer más sobre tus mascotas, llena los campos</p>
-					<form id="form_pet_cliente" name="form_pet_cliente" enctype="multipart/form-data" method="POST">
 						<div class="km-datos-foto" id="km-datos-foto">
 						</div>
-						
-						<input type="file" class="hidden" id="carga_foto" name="carga_foto" accept="image/*">
+						<input type="file" class="hidden" id="carga_foto" accept="image/*">
 						<div class="km-box-form">
 							<div class="content-placeholder">
 								<div class="label-placeholder">
@@ -222,7 +220,6 @@ $HTML .='
 							</div>
 						</div>
 						<a href="#" class="km-btn-correo km-btn-popup-registrarte-datos-mascota">REGISTRARME</a>
-					</form>
 						<p style="color: #979797; margin-top: 20px;">Al crear una cuenta, aceptas las condiciones del servicio y la Política de privacidad de Kmimos.</p>
 						<p><img style="width: 20px; margin-right: 5px; position: relative; top: -3px;" src="'.getTema().'/images/icons/km-redes/icon-wsp.svg">En caso de dudas escríbenos al whatsapp</p>
 					</div>
