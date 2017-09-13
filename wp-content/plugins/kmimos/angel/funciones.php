@@ -490,8 +490,7 @@
                                 '.vlz_servicios($cuidador->adicionales).'
                             </div>
                             <div class="km-buttons">
-                                <!--<a href="'.get_home_url()."/petsitters/".$cuidador->slug.'" >CONÓCELO +</a>  role="button" data-toggle="modal" -->
-                                <a href="#" role="button" data-toggle="modal" data-target="#popup-conoce-cuidador">CONÓCELO +</a>
+                                <a href="'.get_home_url()."/petsitters/".$cuidador->slug.'" >CONÓCELO +</a> <!-- role="button" data-toggle="modal" -->
                                 <a href="'.get_home_url()."/petsitters/".$cuidador->slug.'" class="active">RESERVAR</a>
                             </div>
                         </div>
