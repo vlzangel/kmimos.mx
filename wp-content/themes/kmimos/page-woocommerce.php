@@ -112,6 +112,8 @@
 
 		$productos .= '</div>';
 
+		$email = $wpdb->get_var("SELECT user_email FROM wp_users WHERE ID = {$id_user}");
+
 		echo "
 		<script> 
 			var SERVICIO_ID = '".get_the_ID()."';
@@ -120,6 +122,7 @@
 			var name_servicio = '".$servicio_name."'; 
 			var cliente = '".$id_user."'; 
 			var cuidador = '".$cuidador->id_post."'; 
+			var email = '".$email."'; 
 		</script>";
 
 		$HTML .= '

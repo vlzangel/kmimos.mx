@@ -142,9 +142,15 @@
 
 		$openpay = Openpay::getInstance($MERCHANT_ID, $OPENPAY_KEY_SECRET);
 
+		foreach ($data_cliente as $key => $value) {
+			if( $data_cliente[$key] == "" ){
+				$data_cliente[$key] = "_";
+			}
+		}
+
 		$nombre 	= $data_cliente["first_name"];
 		$apellido 	= $data_cliente["last_name"];
-		$email 		= "vlzangel91@gmail.com";
+		$email 		= $pagar->email;
 		$telefono 	= $data_cliente["user_mobile"];
 		$direccion 	= $data_cliente["billing_address_1"];
 		$estado 	= $data_cliente["billing_state"];
@@ -204,10 +210,7 @@
 					if( count($cardList) == 0 ){
 						try {
 				            $card = $customer->cards->add($cardDataRequest);
-				        } catch (Exception $e) {
-				          	print_r("Entro 1");
-				          	print_r($e);
-				        }
+				        } catch (Exception $e) { }
 					}else{
 						$no_existe = true;
 						$card_num = substr($card_number, 0, 6)."XXXXXX".substr($card_number, -4);
@@ -219,10 +222,7 @@
 						if( $no_existe ){
 							try {
 					            $card = $customer->cards->add($cardDataRequest);
-					        } catch (Exception $e) {
-				          		print_r("Entro 2");
-					          	print_r($e);
-					        }
+					        } catch (Exception $e) { }
 						}
 					}
 
@@ -239,10 +239,7 @@
 
 					try {
 			            $charge = $customer->charges->create($chargeData);
-			        } catch (Exception $e) {
-		          		print_r("Entro 3");
-			          	print_r($e);
-			        }
+			        } catch (Exception $e) { }
 					
 	   				echo json_encode(array(
 	   					"openpay_customer_id" => $customer->id,

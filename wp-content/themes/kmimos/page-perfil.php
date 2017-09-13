@@ -3,6 +3,10 @@
         Template Name: Perfil
     */
 
+    if( !is_user_logged_in() ){
+    	header( "location: ".get_home_url() );
+    }
+
     wp_enqueue_style('perfil', getTema()."/css/perfil.css", array(), '1.0.0');
 	wp_enqueue_style('perfil_responsive', getTema()."/css/responsive/perfil_responsive.css", array(), '1.0.0');
 	wp_enqueue_script('perfil_global', getTema()."/js/perfil_global.js", array("jquery", "global_js"), '1.0.0');

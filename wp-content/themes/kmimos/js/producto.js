@@ -278,6 +278,7 @@ function initFactura(){
 	CARRITO["pagar"]["name_servicio"] = name_servicio;
 	CARRITO["pagar"]["cliente"] = cliente;
 	CARRITO["pagar"]["cuidador"] = cuidador;
+	CARRITO["pagar"]["email"] = email;
 
 	diaNoche = "d&iacute;a";
 	if( tipo_servicio == "hospedaje" ){
@@ -361,6 +362,9 @@ function initFactura(){
 
 function pagarReserva(){
 
+	jQuery("#reserva_btn_next_3").html("Procesando");
+	jQuery("#reserva_btn_next_3").addClass("disabled");
+
 	var transporte = []+"===";
 	if( CARRITO["transportacion"] != undefined && CARRITO["transportacion"][1] > 0 ){
 		transporte = JSON.stringify( CARRITO["transportacion"] )+"===";
@@ -416,6 +420,7 @@ jQuery(document).ready(function() {
 		if( jQuery(this).hasClass("disabled") ){
 
 		}else{
+			console.log("Entro");
 			CARRITO["pagar"]["deviceIdHiddenFieldName"] = jQuery("#deviceIdHiddenFieldName").val();
 			CARRITO["pagar"]["tipo"] = jQuery("#tipo_pago").val();
 			if( CARRITO["pagar"]["tipo"] == "tarjeta" ){
