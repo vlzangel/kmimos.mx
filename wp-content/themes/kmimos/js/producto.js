@@ -360,7 +360,7 @@ function initFactura(){
 }
 
 
-function pagarReserva(){
+function pagarReserva(id_invalido = false){
 
 	jQuery("#reserva_btn_next_3").html("Procesando");
 	jQuery("#reserva_btn_next_3").addClass("disabled");
@@ -379,12 +379,19 @@ function pagarReserva(){
 
 	jQuery.post(
 		HOME+"/procesos/reservar/pagar.php",
-		{info: json},
+		{
+			info: json,
+			id_invalido: id_invalido
+		},
 		function(data){
 			console.log( data );
 			location.href = RAIZ+"/finalizar/"+data.order_id;
 		}, "json"
-	);
+	).fail(function(e) {
+    	console.log( "Error" );
+    	console.log( e );
+    	pagarReserva(true);
+  	});
 }
 
 jQuery(document).ready(function() { 

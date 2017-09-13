@@ -159,6 +159,8 @@
 
 		$cliente_openpay = $data_cliente["_openpay_customer_id"];
 
+		if( $id_invalido ){ $cliente_openpay = ""; }
+
 	   	if( $cliente_openpay != "" ){
 	   		$customer = $openpay->customers->get( $cliente_openpay );
 	   	}else{
@@ -178,7 +180,7 @@
 		   	);
 		   	$customer = $openpay->customers->add($customerData);
 
-		   	$db->query("INSERT INTO wp_usermeta VALUES (NULL, '{$pagar->cliente}', '_openpay_customer_id', '{$customer->id}')");
+		   	update_user_meta($pagar->cliente, '_openpay_customer_id', $customer->id);
 	   	}
 
 	   	switch ( $pagar->tipo ) {
