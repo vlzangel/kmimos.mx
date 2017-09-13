@@ -243,7 +243,7 @@
 			            $charge = $customer->charges->create($chargeData);
 			        } catch (Exception $e) { }
 					
-					if ($result_json != false) {
+					if ($charge != false) {
 
 						if( $deposito["enable"] == "yes" ){
 							$db->query("UPDATE wp_posts SET post_status = 'wc-partially-paid' WHERE ID = {$id_orden};");
