@@ -243,10 +243,26 @@
 			            $charge = $customer->charges->create($chargeData);
 			        } catch (Exception $e) { }
 					
-	   				echo json_encode(array(
-	   					"openpay_customer_id" => $customer->id,
-						"order_id" => $id_orden
-					));
+					if ($result_json != false) {
+
+						if( $deposito["enable"] == "yes" ){
+							$wpdb->query("UPDATE wp_posts SET post_status = 'wc-partially-paid' WHERE ID = {$id_orden};");
+						}else{
+							$wpdb->query("UPDATE wp_posts SET post_status = 'paid' WHERE post_parent = {$id_orden} AND post_type = 'wc_booking';");
+							$wpdb->query("UPDATE wp_posts SET post_status = 'wc-completed' WHERE ID = {$id_orden};");
+						}
+
+			            echo json_encode(array(
+		   					"openpay_customer_id" => $customer->id,
+							"order_id" => $id_orden
+						));
+			        }else{
+			            echo json_encode(array(
+		   					"openpay_customer_id" => $customer->id,
+							"order_id" => $id_orden,
+							"status" => "Error, pago fallido"
+						));
+			        }
 
 	   			}else{
 	   				echo json_encode(array(
