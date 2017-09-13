@@ -130,15 +130,18 @@ class Reservas {
 
     function create_metas_order(){
         extract($this->data);
-       
+        
+        $remanente = "";
         if( $deposito["enable"] == "yes" ){
             $total = $deposito["deposit"];
+            $remanente = "(NULL, '{$id_order}', '_wc_deposits_remaining', '{$deposito["remaining"]}'),";
         }else{
             $total = $monto;
         }
-        
+
         $sql = "
             INSERT INTO wp_postmeta VALUES
+            {$remanente}
             (NULL, '{$id_order}', '_customer_user',                         '{$cliente}'),
             (NULL, '{$id_order}', '_order_total',                           '{$total}'),
             (NULL, '{$id_order}', '_order_key',                             'wc_order_{$token}'),
