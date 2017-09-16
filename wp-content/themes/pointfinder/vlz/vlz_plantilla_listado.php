@@ -1,6 +1,7 @@
 <?php
 	
 	function get_ficha_cuidador($cuidador, $i, $favoritos){
+		$home		= get_home_url();
 		$img 		= kmimos_get_foto_cuidador($cuidador->id);
 		$anios_exp 	= $cuidador->experiencia; if( $anios_exp > 1900 ){ $anios_exp = date("Y")-$anios_exp; }
 		$url		= $home."/petsitters/".$cuidador->slug;

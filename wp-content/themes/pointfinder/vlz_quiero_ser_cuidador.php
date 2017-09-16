@@ -246,6 +246,7 @@
 										<input type="hidden" class="geolocation" id="latitud" name="latitud" placeholder="Latitud" step="any" value="" />
 										<input type="hidden" class="geolocation" id="longitud" name="longitud" placeholder="Longitud" step="any" value="" />
 									</div>
+									<div id="messageDirection" class="message"></div>
 									<div id="map"></div>
 
 								</div>
@@ -656,7 +657,7 @@
 						</ul>
 						<div class="clearfix"></div>
 						<p style="color: #de7212;font-weight: bold;font-size: 15px;">
-							*En caso de que algunos de estos pasos no sea completado, el perfil no podra ser activado
+							*En caso de que algunos de estos pasos no sea completado, el perfil no podr&aacute; ser activado
 						</p>
 					</div>
 				</div>
@@ -671,7 +672,7 @@
 								<span></span>
 								<p>¡Hola! Soy Valentina, tengo 25 años y me encantan los animales, 
 									Trabajo en casa asi que estare 100% al cuidado de tu perrito, 
-									lo consentir&eacute; y recibiras fotos diarias de su estancia conmigo. 
+									lo consentir&eacute; y recibirás fotos diarias de su estancia conmigo. 
 									Mis hu&eacute;spedes peludos duermen de casa y pueden andar libremente 
 									SIN JAULAS NI ENCIERROS...
 								</p>
@@ -758,15 +759,31 @@
 
 	function fillAutocomplete(){
 		var place = autocomplete.getPlace();
-		//console.log(place.geometry.location.lat);
+		//console.log(place);
 
-		if(!place.geometry){
-			window.alert("Autocomplete's returned place contains no geometry");
+		if(typeof place === 'undefined'){
+			messageInsite('#messageDirection','Sus coordenadasno fueron reconocidas.  puede buscar su ubicacion directamente en el mapa moviendo el pin');
+			message('Sus coordenadas no fueron reconocidas.  puede buscar su ubicacion directamente en el mapa moviendo el pin');
 			return;
+
 		}else{
-			lat=place.geometry.location.lat();
-			lng=place.geometry.location.lng();
-			set_inputCoordMap();
+			if(!place.geometry){
+				//window.alert("Autocomplete's returned place contains no geometry");
+				messageInsite('#messageDirection','El sitio Seleccionado, GoogleMap no obtiene las coordenadas');
+				message('El sitio Seleccionado, GoogleMap no obtiene las coordenadas');
+				return;
+
+			}else{
+				var callback = function(){}
+				//messageClose('#messageDirection', callback);
+				jQuery('#messageDirection').css({'display':'none'});
+				messageInsite('#messageDirection','Puede mejorar su ubicacion directamente en el mapa moviendo el pin');
+				message('Puede mejorar su ubicacion directamente en el mapa moviendo el pin');
+
+				lat=place.geometry.location.lat();
+				lng=place.geometry.location.lng();
+				set_inputCoordMap();
+			}
 		}
 	}
 
@@ -774,7 +791,7 @@
 		$ = d.createElement(s), e = d.getElementsByTagName(s)[0];
 		$.async=!0;
 		$.setAttribute('charset','utf-8');
-		$.src='//maps.googleapis.com/maps/api/js?v=3&key=AIzaSyD-xrN3-wUMmJ6u2pY_QEQtpMYquGc70F8&libraries=places&callback=initMap';
+		$.src='//maps.googleapis.com/maps/api/js?v=3&libraries=places&key=AIzaSyD-xrN3-wUMmJ6u2pY_QEQtpMYquGc70F8&callback=initMap';
 		$.type='text/javascript';
 		e.parentNode.insertBefore($, e)
 	})(document,'script');
@@ -795,6 +812,8 @@
 			lat=latitude;
 			lng=longitude;
 			set_inputCoordMap();
+			messageInsite('#messageDirection','Seleccionaste estado');
+			message('Seleccionaste estado');
 		}
 	});
 
@@ -807,6 +826,8 @@
 			lat=latitude;
 			lng=longitude;
 			set_inputCoordMap();
+			messageInsite('#messageDirection','seleccionaste municipio');
+			message('seleccionaste municipio');
 		}
 	});
 
@@ -844,6 +865,12 @@
 		jQuery('input[name="address"]').val(value);//.focus();
 
 
+	});
+
+
+	//ADDRESS ACTION
+	jQuery(document).on('focusout', 'input[name="direccion"]', function(e){
+		fillAutocomplete();
 	});
 
 	function set_inputCoord(){

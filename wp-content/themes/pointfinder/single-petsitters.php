@@ -61,11 +61,10 @@
 	}
 
 	/* Galeria */
-/*
+
 	$id_cuidador = ($cuidador->id)-5000;
 	$path_galeria = "wp-content/uploads/cuidadores/galerias/".$id_cuidador."/";
 
-	echo "<div class='hola_xxx' style='display: none;'>".$path_galeria."</div>";
 	if( is_dir($path_galeria) ){
 
 		if ($dh = opendir($path_galeria)) { 
@@ -113,9 +112,6 @@
 	      	}
   		} 
 	}
-*/
-
-
 
 	include("vlz/vlz_style_perfil.php");
 
@@ -135,43 +131,22 @@
 				<h1 class='center-white'>".get_the_title()."</h1>
 				".kmimos_petsitter_rating($post_id);
 				if(is_user_logged_in()){
-					$HTML .= "<a class='theme_button button conocer-cuidador' href='".get_home_url()."/conocer-al-cuidador/?id=".$post_id."'>Conocer al Cuidador</a>";
+					$HTML .= "<a id='btn_conocer' class='theme_button button conocer-cuidador' href='".get_home_url()."/conocer-al-cuidador/?id=".$post_id."'>Conocer al Cuidador</a>";
 					include('vlz/seleccion_boton_reserva.php');
 				}else{
 					$HTML .= "
 					<span 
+						id='btn_conocer'
 						class='theme_button button conocer-cuidador' 
-						onclick=\"jQuery('#pf-login-trigger-button').click();\"
+						onclick=\"perfil_login('btn_conocer');\"
 					>Conocer al Cuidador</span>
 					<span 
+						id='btn_reservar'
 						class='button reservar' 
-						onclick=\"jQuery('#pf-login-trigger-button').click();\"
+						onclick=\"perfil_login('btn_reservar');\"
 					>Reservar</span>";
 				} $HTML .= "
 			</div>
-		</div>
-		<div class='vlz_separador'></div>
-		<h3 class='vlz_titulo'>Estos son mis servicios</h3>
-		<div class='vlz_seccion'>";
-
-			$args = array(
-				'post_type' => 'product',
-		        'post_status' => 'publish',
-		        'author' => $cuidador->user_id
-		    );
-
-		    $products = get_posts( $args );
-
-		    $ids = '';
-		    foreach($products as $product){
-		        if( $ids != '') $ids .= ',';
-		        $ids .= $product->ID;
-		    }
-
-		    if($ids != ''){
-		        $comando = '[products ids="'.$ids.'"]';
-		        $HTML .= do_shortcode($comando);
-		    } $HTML .= "
 		</div>";
 
 		if( $descripcion != "" ){
@@ -186,7 +161,7 @@
 			$HTML .= '<div class="vlz_separador"></div>
 			<h3 class="vlz_titulo">Mi Galería</h3>
 			<div class="vlz_seccion vlz_descripcion">
-				$galeria;
+				'.$galeria.'
 			</div>';
 		}
 
@@ -305,13 +280,34 @@
 		<h3 class="vlz_titulo">Mi Ubicaci&oacute;n</h3>
 		<div class="vlz_seccion">
 			<iframe id="petsitter-map" src="'.get_home_url().'/wp-content/plugins/kmimos/mapa.php?lat='.$latitud.'&lng='.$longitud.'" width="100%" height="300" style="border:none"></iframe>
-		</div>';
+		</div>
+
+		<div class="vlz_separador"></div>
+		<h3 class="vlz_titulo">Estos son mis servicios</h3>
+		<div class="vlz_seccion">';
+			$args = array(
+				"post_type" => "product",
+		        "post_status" => "publish",
+		        "author" => $cuidador->user_id
+		    );
+
+		    $products = get_posts( $args );
+
+		    $ids = "";
+		    foreach($products as $product){
+		        if( $ids != "") $ids .= ",";
+		        $ids .= $product->ID;
+		    }
+
+		    if($ids != ""){
+		        $comando = "[products ids='".$ids."']";
+		        $HTML .= do_shortcode($comando);
+		    } $HTML .= "
+		</div>";
 
 		if( $atributos['video_youtube'][0] != ''){
-
 			$video = $atributos['video_youtube'];
 			preg_match_all('#v=(.*?)#', $video, $encontrados);
-
 			$HTML .= '
 				<div class="vlz_separador"></div>
 				<h3 class="vlz_titulo">Este es el video que el cuidador subió a Youtube.</h3>
@@ -320,19 +316,36 @@
 				</div>
 			';
 		}
-			/*
+
+		echo comprimir_styles($HTML);
+			
 			$comments = count( get_comments('post_id='.$post->ID) );
-			//if( $comments > 0 ){ ?>
+			if( $comments > 0 ){ ?>
 				<div class="vlz_separador"></div>
 				<h3 class="vlz_titulo">Valoraciones</h3>
 				<div class="vlz_seccion">
 					<?php  comments_template(); ?>
 				</div> <?php
-			//}
-			*/
-	$HTML .= '</div>';
+			}
+			
+		echo '</div>
 
-	echo comprimir_styles($HTML);
+		<script>
+			function perfil_login(accion){
+				jQuery.cookie("POST_LOGIN", accion);
+				jQuery("#pf-login-trigger-button").click();
+			}
+
+			jQuery( document ).ready(function() {
+			  	var POST_LOGIN = jQuery.cookie("POST_LOGIN");
+				if( POST_LOGIN != undefined ){
+					jQuery.removeCookie("POST_LOGIN");
+					document.getElementById(POST_LOGIN).click();
+				}
+			});
+		</script>';
+
+	
 
 	get_footer(); 
 ?>
