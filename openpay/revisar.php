@@ -64,12 +64,6 @@
 						if( $fec < $hoy ){
 							$status_transaccion = "cancelled";
 						}else{
-							if( ($fec - $hoy) <= 86400 ){
-								$notificacion = $wpdb->get_var("SELECT meta_value FROM wp_postmeta WHERE post_id = '{$value->order_id}' AND meta_key = 'notificacion'");
-								if( $notificacion != "si" ){
-									include("notificar.php");
-								}
-							}
 							$status_transaccion = "pending";
 						}
 					}

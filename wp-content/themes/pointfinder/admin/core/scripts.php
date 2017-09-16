@@ -34,12 +34,7 @@ function pf_styleandscripts(){
 		wp_enqueue_script('jquery-effects-slide');
 		wp_enqueue_script('jquery-ui-dialog');
 		wp_enqueue_script('jquery-ui-autocomplete');
-
-		wp_enqueue_script('jquery.cookie.js');
-
 		wp_deregister_script('wpb_composer_front_js');
-
-
 		// wp_register_script( 'wpb_composer_front_js', get_home_url()."/wp-content/themes/pointfinder" .'/js/js_composer_front.min.js', array( 'jquery' ), '4.9.1.1', true );
 
 		/*------------------------------------*\

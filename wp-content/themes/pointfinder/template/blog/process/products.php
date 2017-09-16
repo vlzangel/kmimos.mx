@@ -40,7 +40,6 @@ foreach ($featureds as $featured){
 
 
     $img=str_replace('http://kmimos.dev.mx/','https://kmimos.com.mx/',$img);
-    $img=str_replace('http://kmimosmx.sytes.net/QA1/','https://kmimos.com.mx/',$img);
 
     $html.='<div class="product scroll_animate" data-position="self" data-scale="small">';
     $html.='<div class="image easyload" data-original="'.$img.'" style="background-image:url();"></div>';
@@ -51,7 +50,7 @@ foreach ($featureds as $featured){
     $html.='<div class="button">VER MAS</div>';
     $html.='</div>';
 
-    $html.='<a class="absolute" href="'.$url.'" target="_blank" title="'.$data->nom.'"></a>';
+    $html.='<a class="absolute" href="'.$url.'" title="'.$data->nom.'"></a>';
     $html.='</div>';
 }
 

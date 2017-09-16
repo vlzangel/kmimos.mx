@@ -1,92 +1,4 @@
 <?php
-
-    if(!function_exists('angel_log')){
-        function angel_log($salida){
-            global $wpdb;
-            $wpdb->query("INSERT INTO log VALUES(NULL, \"".$salida."\")");
-        }
-    }
-
-    if(!function_exists('get_data_booking')){
-        function get_data_booking($id){
-            global $wpdb;
-
-            $metas      = get_post_meta($id);
-            $servicio   = $metas['_booking_product_id'][0];
-            $mascotas   = unserialize($metas['_booking_persons'][0]);
-
-            $cantidad_mascotas = 0;
-            if( $mascotas != "" && count($mascotas) > 0 ){
-                foreach ($mascotas as $key => $value) {
-                    $cantidad_mascotas += $value;
-                }
-            }
-
-            return array(
-                "inicio"   => strtotime($metas['_booking_start'][0]),
-                "fin"      => strtotime($metas['_booking_end'][0]),
-                "servicio" => $servicio,
-                "mascotas" => $cantidad_mascotas,
-                "acepta"   => get_post_meta($servicio, "_wc_booking_qty", true),
-                "autor"    => $wpdb->get_var("SELECT post_author FROM wp_posts WHERE ID = {$servicio}")
-            );
-        }
-    }
-    
-    if(!function_exists('update_cupos')){
-        function update_cupos($id, $accion){
-            global $wpdb;
-            $data = get_data_booking($id);
-            extract($data);
-
-            for ($i=$inicio; $i < $fin; $i+=86400) { 
-                $fecha = date("Y-m-d", $i);
-                $full = 0;
-
-                $existe = $wpdb->get_var("SELECT * FROM cupos WHERE servicio = '{$servicio}' AND fecha = '{$fecha}'");
-
-                if( isset($existe) ){
-                    $wpdb->query("UPDATE cupos SET cupos = cupos {$accion} {$mascotas} WHERE servicio = '{$servicio}' AND fecha = '{$fecha}' ");
-                    $wpdb->query("UPDATE cupos SET full = 1 WHERE servicio = '{$servicio}' AND ( fecha = '{$fecha}' AND cupos >= acepta )");
-                    $wpdb->query("UPDATE cupos SET full = 0 WHERE servicio = '{$servicio}' AND ( fecha = '{$fecha}' AND cupos < acepta )");
-                }else{
-
-                    $tipo = $db->get_var(
-                        "
-                            SELECT
-                                tipo_servicio.slug AS tipo
-                            FROM 
-                                wp_term_relationships AS relacion
-                            LEFT JOIN wp_terms as tipo_servicio ON ( tipo_servicio.term_id = relacion.term_taxonomy_id )
-                            WHERE 
-                                relacion.object_id = '{$servicio}' AND
-                                relacion.term_taxonomy_id != 28
-                        "
-                    );
-
-                    if( $mascotas >= $acepta ){ $full = 1; }
-                    $sql = "
-                        INSERT INTO cupos VALUES (
-                            NULL,
-                            '{$autor}',
-                            '{$servicio}',
-                            '{$tipo}',
-                            '{$fecha}',
-                            '{$mascotas}',
-                            '{$acepta}',
-                            '{$full}',        
-                            '0'        
-                        );
-                    ";
-                    $wpdb->query($sql);
-
-                }
-
-            }
-
-        }
-    }
-
 	if(!function_exists('vlz_get_paginacion')){
         function vlz_get_paginacion($t, $pagina){
             $paginacion = ""; $h = 15; $inicio = $pagina*$h; 
@@ -95,7 +7,7 @@
                 $ps = ceil($t/$h);
                 for( $i=0; $i<$ps; $i++){
                     $active = ( $pagina == $i ) ? "class='vlz_activa'" : "";
-                    $paginacion .= "<a href='".get_home_url()."/busqueda/".($i)."' ".$active.">".($i+1)."</a>";
+                    $paginacion .= "<a href='".$home."/busqueda/".($i)."' ".$active.">".($i+1)."</a>";
                 }
             }
             $w = 40*$ps;
@@ -119,7 +31,7 @@
                 $data = $wpdb->get_row("SELECT post_title AS nom, post_name AS url FROM wp_posts WHERE ID = {$cuidador->id_post}");
                 $nombre = $data->nom;
                 $img_url = kmimos_get_foto_cuidador($value->cuidador);
-                $url = get_home_url() . "/petsitters/" . $data->url;
+                $url = $home . "/petsitters/" . $data->url;
                 $top_destacados .= "
                     <a class='vlz_destacados_contenedor' href='{$url}'>
                         <div class='vlz_destacados_contenedor_interno'>
@@ -190,6 +102,10 @@
                 $user = new WP_User( $user_id );
                 $salir = wp_logout_url( home_url() );
 
+                // echo "<pre>";
+                //     print_r($user->data->display_name);
+                // echo "</pre>";
+
                 $MENU["head"] = '
                     <li class="pf-my-account pfloggedin"></li>
                     <li class="pf-my-account pfloggedin" style="min-width: 200px; text-align: right;">
@@ -229,11 +145,6 @@
                             "url"   => get_home_url()."/perfil-usuario/?ua=myservices",
                             "name"  => "Mis Servicios",
                             "icono" => "453"
-                        ),
-                        array(
-                            "url"   => get_home_url()."/perfil-usuario/?ua=disponibilidad",
-                            "name"  => "Disponibilidad",
-                            "icono" => "28"
                         ),
                         array(
                             "url"   => get_home_url()."/perfil-usuario/?ua=mypictures",

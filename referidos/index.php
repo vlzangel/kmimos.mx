@@ -1,7 +1,7 @@
 <?php  
 
 require_once("../vlz_config.php");
-global $host, $user, $db, $pass, $url_base;
+global $host, $user, $db, $pass;
 date_default_timezone_set('America/Mexico_City');
 
 // Validar si existe referencia de usuario
@@ -103,68 +103,7 @@ if( isset($_GET['r']) ){
 		  crossorigin="anonymous">  
 		</script>		
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-		<script type="text/javascript">
-			$(function(){
-				var url = "<?php echo $url_base; ?>";
-
-				$('#frm').on('submit', function(e){
-				  e.preventDefault(e);
-				  _registerLanding();
-				});
-
-				$('#send').on('click', function(e){
-				  _registerLanding();
-				});
-
-				$("input").change(function(){
-				  if( $(this).val() != "" ){
-				    $('msg').html("");
-				  }
-				});
-
-				function _registerLanding(){
-
-					  if( $('#email').val() == "" || $('#name').val() == "" ){
-					    $('#msg').html('Debe completar los datos');
-					    return;
-					  }
-
-
-
-					  $('#loading').removeClass('hidden');
-					  $('#msg').html('Registrando Usuario.');
-					  $.ajax( url+"landing/registro-usuario.php?email="+$('#email').val()+"&name="+$('#name').val()+"&referencia="+$('#referencia').val() )
-					  .done(function() {
-					    $('#msg').html('Generando url.');
-					  })
-					  .fail(function() {
-					    $('#msg').html(' ');
-					    $('#loading').addClass('hidden');
-					  });  
-
-
-
-					  $('#loading').removeClass('hidden');
-					  $('#msg').html('Enviando...');
-					  $.ajax( url+"landing/list-subscriber.php?source=kmimos-mx-clientes-referidos&email="+$('#email').val() )
-					  .done(function() {
-					    $('#loading').addClass('hidden');
-					    $('#msg').html('Guardando referencia.');
-
-					    //window.open($('#temp').attr('action')+$('#email').val(), '_system');
-					    window.location.href = $('#temp').attr('action')+$('#email').val();
-					  })
-					  .fail(function() {
-					    //$('#msg').html('Referencia: No pudimos completar su solicitud, intente nuevamente');
-					    //$('#loading').addClass('hidden');
-					  });  
-
-				}
-
-			});
-		</script>
-
+		<script src="js/main.js"></script>
 
 	    
 	</body>

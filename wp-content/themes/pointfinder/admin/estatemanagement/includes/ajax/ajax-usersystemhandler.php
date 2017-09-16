@@ -42,23 +42,22 @@ function pf_ajax_usersystemhandler(){
     $wpreferurl = esc_url(home_url());
   }
 
-switch($formtype){
-	case 'login':
+	switch($formtype){
+		case 'login':
+      if (is_array($vars)) {
+        $redirectpage = (isset($vars['redirectpage']))? $vars['redirectpage']:0;
 
-        if (is_array($vars)) {
-            //$redirectpage = (isset($vars['redirectpage']))? $vars['redirectpage']:0;
-            $pfrechecklg = PFRECIssetControl('setupreCaptcha_general_login_status','','0');
+        $pfrechecklg = PFRECIssetControl('setupreCaptcha_general_login_status','','0');
 
-            $redirectpage = get_home_url().$_SERVER["REQUEST_URI"];
-            
-            if(in_array('rem', $vars)){
-                $rememberme = ($vars['rem'] == 'on') ? true : false ;
-            }else{
-                $rememberme = false;
-            }
-
+        if(in_array('rem', $vars)){
+          $rememberme = ($vars['rem'] == 'on') ? true : false ;
+        }else{
+          $rememberme = false;
+        }
             $info = array();
+
             $username = sanitize_user($vars['username'], true);
+
             $user = get_user_by( 'email', $username );
             if ( isset( $user, $user->user_login, $user->user_status ) && 0 == (int) $user->user_status ){
                 $username = $user->user_login;
@@ -70,46 +69,36 @@ switch($formtype){
             $info['user_password'] = sanitize_text_field($vars['password']);
             $info['remember'] = $rememberme;
 
-            if ( $pfrecheck == 1 && $pfrechecklg == 1) {
-                if (isset($vars['g-recaptcha-response'])) {
-                    $pfReResult = PFCGreCaptcha($vars['g-recaptcha-response']);
-                    if ($pfReResult == 1) {
-
-                        $user_signon = wp_signon( $info, true );
-                        if ( is_wp_error( $user_signon )) {
-
-                            echo json_encode( array( 'login'=>false, 'mes'=>esc_html__( 'Wrong username or password!','pointfindert2d' )));
-                        } else {
-
-                            wp_set_auth_cookie($user_signon->ID);
-                            echo json_encode( 
-                                array( 
-                                    'login'=>true, 
-                                    'mes'=>esc_html__('Login successful, redirecting...','pointfindert2d' ),
-                                    'referurl' => $wpreferurl,
-                                    'redirectpage' => $redirectpage
-                                )
-                            );
-                        }
-
-                    }else{
-                      echo json_encode( array( 'login'=>false, 'mes'=>esc_html__('Wrong reCaptcha. Please verify first.','pointfindert2d' )));
-                    }
-                }else{
-                    echo json_encode( array( 'login'=>false, 'mes'=>esc_html__( 'Please enter reCaptcha!','pointfindert2d' )));
-                }
+        if ( $pfrecheck == 1 && $pfrechecklg == 1) {
+          if (isset($vars['g-recaptcha-response'])) {
+            $pfReResult = PFCGreCaptcha($vars['g-recaptcha-response']);
+            if ($pfReResult == 1) {
+              $user_signon = wp_signon( $info, true );
+              if ( is_wp_error( $user_signon )) {
+                  echo json_encode( array( 'login'=>false, 'mes'=>esc_html__( 'Wrong username or password!','pointfindert2d' )));
+              } else {
+                  wp_set_auth_cookie($user_signon->ID);
+                  echo json_encode( array( 'login'=>true, 'mes'=>esc_html__('Login successful, redirecting...','pointfindert2d' ),'referurl' => $wpreferurl,'redirectpage' => $redirectpage));
+              }
             }else{
-                $user_signon = wp_signon( $info, true );
-                if ( is_wp_error( $user_signon )) {
-                    echo json_encode( array( 'login'=>false, 'mes'=>esc_html__( 'Wrong username or password!','pointfindert2d' )));
-                } else {
-                    wp_set_auth_cookie($user_signon->ID);
-                    echo json_encode( array( 'login'=>true, 'mes'=>esc_html__('Login successful, redirecting...','pointfindert2d' ),'referurl' => $wpreferurl,'redirectpage' => $redirectpage));
-                }
+              echo json_encode( array( 'login'=>false, 'mes'=>esc_html__('Wrong reCaptcha. Please verify first.','pointfindert2d' )));
             }
-            
+          }else{
+            echo json_encode( array( 'login'=>false, 'mes'=>esc_html__( 'Please enter reCaptcha!','pointfindert2d' )));
+          }
+        }else{
+          $user_signon = wp_signon( $info, true );
+
+          if ( is_wp_error( $user_signon )) {
+              echo json_encode( array( 'login'=>false, 'mes'=>esc_html__( 'Wrong username or password!','pointfindert2d' )));
+          } else {
+              wp_set_auth_cookie($user_signon->ID);
+              echo json_encode( array( 'login'=>true, 'mes'=>esc_html__('Login successful, redirecting...','pointfindert2d' ),'referurl' => $wpreferurl,'redirectpage' => $redirectpage));
+          }
         }
-    break;
+        
+      }
+		break;
     case 'register':
       $pfrechecklg = PFRECIssetControl('setupreCaptcha_general_reg_status','','0');
       if ( $pfrecheck == 1 && $pfrechecklg == 1) {
@@ -146,6 +135,13 @@ switch($formtype){
             echo json_encode( array( 'status'=>01, 'mes'=>$message));
             exit;
         }
+         // Validar formato de usuario
+        /*if( !preg_match("/^([a-z]+[0-9]{0,4}){3,12}$/", $username) ){
+            $message = sprintf(esc_html__("Nombre de usuario invalido. Solo admite minimo 3 caracteres alfabeticos y hasta 4 caracteres numericos. Ejemplo: Ali18","pointfindert2d"),'<br/>');
+            echo json_encode( array( 'status'=>01, 'mes'=>$message));
+            exit;
+        }*/
+        // Validar formato de email
         $isAlliasMail = preg_match("/[\+]{1,}/", $email);
         if( !filter_var($email, FILTER_VALIDATE_EMAIL) || $isAlliasMail ){
             $message = sprintf(esc_html__("Verifique el formato del Correo electrónico. Ejemplo: usuario@dominio.com","pointfindert2d"),'<br/>');
@@ -156,7 +152,9 @@ switch($formtype){
         $user_exist = username_exists( $username );
         $user_email_exist = email_exists( $email );
         
+       
         if ( $user_exist || $user_email_exist ) {
+
             $message = sprintf(esc_html__("Oops! There appears to be an account already with that name and/or email. %s Please change username and/or email.","pointfindert2d"),'<br/>');
             echo json_encode( array( 'status'=>01, 'mes'=>$message));
             exit;

@@ -38,9 +38,6 @@ class WC_Booking_Cron_Manager {
 	 */
 	public function remove_inactive_booking_from_cart( $booking_id ) {
 		if ( $booking_id && ( $booking = get_wc_booking( $booking_id ) ) && $booking->has_status( 'in-cart' ) ) {
-
-			update_cupos($booking_id, "-");
-			
 			wp_delete_post( $booking_id );
 		}
 	}

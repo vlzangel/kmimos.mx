@@ -55,29 +55,24 @@ include_once(__DIR__.'/blog/header.php');
     #last .section{width: 50%;}
     #last .section.aside{}
     #last .section.news{width: 100%; padding:0 0 0 20px; border-left: 15px solid #6dd700;}
-    #last .section.news .title{font-size: 20px; padding: 20px 0;}
     #last .section.news .action{position: relative; overflow: hidden;}
     #last .section.news .action .icon.arrow{float: right;}
     #last .section.news .post{position:relative; margin: 0 0 20px 0; padding: 20px;  background: #FFF;  box-shadow: 15px 15px 20px -10px #CCC; display: none;  flex-flow: wrap;}
     #last .section.news .post.show{display: flex !important;}
-    #last .section.news .post.loadfirst{display: none !important;}
     #last .section.news .post .image{float:right;  width:40%;  margin: 10px 5%;  background:center/cover no-repeat;}
     #last .section.news .post .detail{width: 50%;}
     #last .section.news .post .category{display: none;}
     #last .section.news .post .title {padding: 15px 0;  font-size: 17px;  font-weight: bold;}
-    #last .section.news .post .content{padding: 0 0 50px 0; text-align: justify;}
+    #last .section.news .post .content{padding: 0 0 50px 0;}
     #last .section.news .post .content:before {content: "+";  position: absolute;  width: 50px;  height: 50px;      padding: 5px 8px;  right: 0;  bottom: 0; color: #FFF;  font-size: 25px; font-weight: bold; text-align: right;  align-items: flex-end;  justify-content: flex-end; background: linear-gradient(135deg, transparent 50%, #900fa2 50%);  display: flex;  }
     #last .section.news .post .button.more{display:none;}
 
     #last .section.aside{}
     #last .section.aside .register{margin: 0 40px 0 0; padding: 40px; color: #FFF; font-size: 17px; border-radius: 20px; background: #900fa2;}
     #last .section.aside .register span{padding: 10px;  display: block;}
-    #last .section.aside .register .message{padding: 0; text-align: center; opacity:0; visible:hidden; transition: all .3s;}
-    #last .section.aside .register .message.show{opacity:1; visible:visible;}
-    #last .section.aside .register .message .icon{padding: 10px;}
-    #last .section.aside .register form{margin: 0; display:flex;}
+    #last .section.aside .register form{display:flex;}
     #last .section.aside .register input,
-    #last .section.aside .register button{width: 100%; max-width: calc(100% - 60px); margin: 5px; padding: 5px 10px; color: #CCC; font-size: 15px; border-radius: 20px;  border: none; background: #FFF; }
+    #last .section.aside .register button{width: 100%; margin: 5px; padding: 5px 10px; color: #CCC; font-size: 15px; border-radius: 20px;  border: none; background: #FFF; }
     #last .section.aside .register button {padding: 10px;  width: 40px;}
 
     @media screen and (max-width:768px), screen and (max-device-width:768px){
@@ -127,37 +122,45 @@ include_once(__DIR__.'/blog/header.php');
     }
 
     /*FEATURED*/
-    #featured{padding-bottom: 40px; background: #900fa2;}
+    #featured{background: #900fa2;}
     #featured .info{padding: 25px 0;  color: #FFF; font-size: 30px; text-align: center; line-height:1.3; background: #900fa2; }
     #featured .caregiver{position:relative; overflow: hidden;}
     #featured .caregiver .action{position:absolute; width:100%; height:100%;}
     #featured .caregiver .action .icon{position:absolute; width:25px; top:calc(50% - 12px); right:0; font-size:15px;}
     #featured .caregiver .action .icon[data-direction="prev"]{left:0; right: auto;}
     #featured .group{width:calc(100% - 80px); margin:0 auto; display: flex; flex-flow: wrap;}
-    #featured .post{ width:calc(50% - 40px); margin:20px; border:2px solid #8f8f8f; border-radius:20px; display: flex; flex-flow: wrap; overflow: hidden;}
-    #featured .post .data{width: 50px; padding: 10px; overflow:hidden;}
-    #featured .post .data .bone{ width: 30px; height: 30px; margin: 0 auto; background: center/contain no-repeat;}
-    #featured .post .data .rating{margin:0; color: #FFF; font-size: 20px; font-weight: bold; text-align: center; }
-    #featured .post .data .rating:before{content: "+";}
-    #featured .post .image{width: 150px; padding: 10px; background: #FFF; overflow:hidden;}
-    #featured .post .image .img{width: 90%; padding-top: 90%; margin: 0 auto; border-radius: 50%; background: #EEE center/cover no-repeat;}
-    #featured .post .detail{width: calc(100% - 200px); padding: 20px; background: #FFF; overflow:hidden;}
-    #featured .post .detail .title{padding: 10px 0; color: #888; font-size: 25px;}
-    #featured .post .detail .content{margin:10px 0; color: #888; font-size: 15px; text-align:left;}
-    #featured .post .detail .content.price{color: #900fa2;}
+    #featured .post{width: calc(50% - 20px); margin: 40px 10px; border:2px solid #8f8f8f; border-radius:20px; overflow:hidden; display: flex; flex-flow: wrap;}
+    #featured .post .image{width: 150px; padding: 20px; /*background: #ff8700;*/ overflow:hidden;}
+    #featured .post .image .img{width: 90%; padding-top: 90%; margin: 10px auto; border-radius: 50%; background: #CCC center/cover no-repeat;}
+    #featured .post .image .bone{ width: 50px; height: 40px; margin: 0 auto; background: center/contain no-repeat;}
+    #featured .post .image .rating{color: #FFF; font-size: 20px; font-weight: bold; text-align: center; }
+    #featured .post .image .rating:before{content: "+";}
+    #featured .post .detail{width: calc(100% - 150px); padding: 20px; background: #FFF; overflow:hidden;}
+    #featured .post .detail .title{color: #888; font-size: 30px;}
+    #featured .post .detail .content{margin:30px 0; color: #888; font-size: 20px;}
     #featured .icon.arrow{color: #900fa2; background: #FFF;}
 
     @media screen and (max-width:768px), screen and (max-device-width:768px){
-        #featured .post{width: calc(50% - 40px); display: block;}
-        #featured .post .data{width: 100%;}
-        #featured .post .image{width: 100%;}
-        #featured .post .image .img{width: 150px; padding-top: 150px;}
-        #featured .post .detail{width: 100%; text-align: left;}
+        #featured .group{display: block;}
+        #featured .post{width: calc(100% - 20px);}
     }
     @media screen and (max-width:480px), screen and (max-device-width:480px){
+        /*
+        #featured .post{display: block;}
+        #featured .post .image{width: auto; border-radius: 20px 20px 0 0;}
+        #featured .post .image .img{width: 100px; padding-top: 100px;}
+        #featured .post .detail{width: auto; border-left-width: 2px; border-top-width: 0; border-radius: 0 0 20px 20px; text-align: center;}
+        #featured .post .detail .title{font-size: 20px;}
+        #featured .post .detail .content{margin:10px 0; font-size: 15px;}
+        */
+        /* RESPONSIVE SUGERIDO */
         #featured .info{font-size: 20px;}
-        #featured .post {width: 100%;}
         #featured .post:nth-child(2){display: none;}
+        #featured .post .image{width: 100px; padding: 5px;}
+        #featured .post .detail{width: calc(100% - 100px);}
+        #featured .post .detail .title{font-size: 20px;}
+        #featured .post .detail .content{margin:10px 0; font-size: 15px;}
+
     }
 
 
@@ -198,7 +201,7 @@ include_once(__DIR__.'/blog/header.php');
 <section id="blog_viewed">
     <div class="contain">
         <div class="action">
-            <span class="blog_title">LO MÁS LE&Iacute;DO</span>
+            <span class="blog_title">LO MAS LEIDO</span>
         </div>
         <div class="section viewed">
             <?php
@@ -224,14 +227,14 @@ if($page<=0){
     <div class="group contain">
         <div class="section aside">
             <div class="register">
-                <span>Te interesaron nuestros artículos?</span>
-                <span><strong>SUSCR&Iacute;BETE!</strong> y recibe el Newsletter con nuestras <strong>PROMOCIONES, TIPS DE CUIDADOS PARA MASCOTAS,</strong> etc.!</span>
-                <?php echo subscribe_input('blog'); ?>
+                <span>Te interesaron nuestros Articulos?</span>
+                <span><strong>SUSCRIBETE?</strong> y recibe el Newsletter con lo mejor de nuestros post!</span>
+                <?php echo subscribe_input(); ?>
             </div>
         </div>
         <div class="section news">
             <div class="action">
-                <span class="blog_title">LO MÁS NUEVO</span>
+                <span class="blog_title">LO MAS NUEVO</span>
                 <i class="icon arrow fa fa-caret-right" data-direction="next"><a class="absolute"  href="<?php echo $pageNEXT;?>"></a></i>
                 <i class="icon arrow fa fa-caret-left" data-direction="prev"><a class="absolute"  href="<?php echo $pagePREV;?>"></a></i>
             </div>
@@ -265,7 +268,7 @@ if($page<=0){
             news_post.removeClass('show');
             var direction = jQuery(element).data('direction');
             var show = news_show;
-            var action = false;
+            var back = false;
 
             if(direction=='prev'){
                 show=show-(news_navigate*news_count);
@@ -274,20 +277,8 @@ if($page<=0){
             for(var news=1; news<=news_count; news++){
                 var post=show+news+(news_navigate-news_count);//
 
-                if(post>0 && news_post.eq(post).hasClass('loadfirst')){
-                    action=false;
-                    post=-1;
-
-                }else if(post<0 && news_post.closest('.section.news').find('loadfirst').length>0){
-                    action=false;
-                    post=0;
-
-                }else if(post<0 && direction=='prev'){
-                    action=true;
-
-                }else if(post>0 && news_post.eq(post).hasClass('redirect')){
-                    action=true;
-
+                if(post<0 && direction=='prev'){
+                    back=true;
                 }
 
                 if(post<0){
@@ -295,14 +286,15 @@ if($page<=0){
 
                 }else if(post==(news-news_count) && news<=news_count){
                     post++;
+
                 }
 
                 //console.log(post);
-                if(news_show_display(post) && !action){
+                if(news_show_display(post) && !back){//
                     news_show=post;
 
                 }else{
-                    if(news_post.closest('.news').find('.post.show').length<=news_count || action){
+                    if(news_post.closest('.news').find('.post.show').length<=news_count || back){
                         news_action = true;
                         jQuery(element).find('a').trigger('click');
                         break;
@@ -332,7 +324,7 @@ if($page<=0){
     </div>
     <div class="title info">
         <div class="contain">
-            Da un vistazo a nuestros cuidadores certificados que cuidarán de nuestras mascotas.
+            Da un vistazo a nuestros cuidadores certificados que cuidaran de nuestras mascotas.
             <strong>Libre de jaulas y encierros</strong>
         </div>
     </div>
@@ -349,7 +341,7 @@ if($page<=0){
             <div class="logo"></div>
             <div class="title">Conoce  y elige el plan que <br>mejor te convenga</div>
             <div class="content">Regalale un detalle al consentido de tu hogar!</div>
-            <a href="<?php echo site_url(); ?>/kmibox"><div class="button">Quiero mi KmiBOX</div></a>
+            <a href="http://kmimosmx.sytes.net/kmibox/"><div class="button">Quiero mi KmiBOX</div></a>
         </div>
     </div>
 </section>

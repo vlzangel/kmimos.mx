@@ -147,8 +147,6 @@ class WC_Booking_Cart_Manager {
 
 			if ( $booking->has_status( 'in-cart' ) ) {
 
-				update_cupos($booking_id, "-");
-
 				$booking->update_status( 'was-in-cart' );
 				WC_Cache_Helper::get_transient_version( 'bookings', true );
 				wp_clear_scheduled_hook( 'wc-booking-remove-inactive-cart', array( $booking_id ) );
@@ -246,8 +244,6 @@ class WC_Booking_Cart_Manager {
 
 		// Store in cart
 		$cart_item_meta['booking']['_booking_id'] = $new_booking->id;
-
-		update_cupos($new_booking->id, "+");
 
 		// Schedule this item to be removed from the cart if the user is inactive
 		$this->schedule_cart_removal( $new_booking->id );

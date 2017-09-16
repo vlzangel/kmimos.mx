@@ -1,137 +1,127 @@
 <?php
-/*
-$mensaje_mail = '<style>
-					p{
-                                text-align: justify;		
-                            }		
-                            a:hover{		
-                                background: #038063;		
-                            }
-
-                                .vlz_modal_ventana{max-width: 800px;}
-                            	.vlz_modal_contenido{padding: 20px !important;}
-                        </style>		
-                        <h1>¡Gracias por unirte a nuestra familia Kmimos!</h1>		
-                        <p>Hola <strong>'.$nombres.' '.$apellidos.'</strong>,</p>		
-		
-                        <p style="text-align: justify;">		
-                            Estimado Kmiamigo, tu perfil ha sido creado con éxito.  El mismo permanecerá inactivo en la página hasta que completes los siguientes pasos listados abajo"		
-                        </p>		
-                        <p style="text-align: justify;">		
-                            "Dichos pasos han sido diseñados para cumplir con un estricto perfil de seguridad, que garantice que cualquier persona que se convierta en Cuidador asociado Kmimos presente un perfil apto para cuidar y apapachar a nuestros peludos amigos"		
-                        </p>		
-                        <p style="text-align: justify;">		
-                            <strong>Siguientes Pasos para activar tu perfil</strong>		
-                        </p>		
-                        <p style="text-align: justify;">		
-                            <ul style="text-align: justify;">
-                                <li>Compártenos por Mensaje Directo a nuestro Facebook @Kmimosmx tu nombre y apellido completo, email, teléfono de casa y celular</li>		
-                                <li>Una vez que nos envíes dichos datos, en menos de 24 horas recibirás en el correo que registraste las Pruebas Psicométricas y Pruebas de Conceptos Veterinarios básicos.  Por favor respóndelas, y nos llegará a nosotros un mensaje de completadas.</li>		
-                                <li>En menos de 24 horas después de completadas las pruebas recibirás un correo por parte de Certificación Kmimos, notificando tus resultados.  NO TE OLVIDES DE CHECAR SIEMPRE LA BANDEJA DE ENTRADA O EL CORREO NO DESEADO, ya que a veces llegan allí los correos.</li>		
-                                <li>En caso de haber aprobado, lee el archivo adjunto al correo que te muestra las políticas operativas.</li>		
-                                <li>Por último, recibirás una llamada para entrevista telefónica y notificación para la auditoría a tu hogar.</li>		
-                            </ul>		
-                        </p>		
-                        <p style="text-align: justify;">		
-                            <strong>Abajo encontrarás tus credenciales para que tengas acceso como cuidador a Kmimos, estos mismos los deberás usar en la plataforma de certificación.</strong>		
-                        </p>		
-                        <p>		
-                            <table>		
-                                <tr> <td> <strong>Usuario:</strong> </td><td>'.$username.'</td> </tr>		
-                                <tr> <td> <strong>Contraseña:</strong> </td><td>La clave que ingresaste</td> </tr>		
-                            </table>		
-                        </p>		
-                        <p style="text-align: center;">		
-                            <a 		
-                                href="https://kmimos.ilernus.com"
-                                style="		
-                                    padding: 10px;		
-                                    background: #59c9a8;		
-                                    color: #fff;		
-                                    font-weight: 400;		
-                                    font-size: 17px;		
-                                    font-family: Roboto;		
-                                    border-radius: 3px;		
-                                    border: solid 1px #1f906e;		
-                                    display: block;		
-                                    max-width: 300px;		
-                                    margin: 0px auto;		
-                                    text-align: center;		
-                                    text-decoration: none;		
-                                "		
-                            >Iniciar Sesión</a>		
-                        </p>		
-                    ';//'.get_home_url().'/?a=inicio
-
-*/
 
 $mensaje_mail = '
-<style>
-    p{
-        text-align: justify;
-    }
-    a:hover{
-        background: #038063;
-    }
-    .vlz_modal_ventana{max-width: 800px;}
-    .vlz_modal_contenido{padding: 20px !important;}
-</style>
-<h1>¡Gracias por unirte a nuestra familia Kmimos!</h1>
-<p>Hola <strong>'.$nombres.' '.$apellidos.'</strong>,</p>
+<div style="width: 600px;  margin:auto auto; font-size: 18px;	">
 
-<p style="text-align: justify;">
-    Estimado Kmiamigo, tu perfil ha sido creado con éxito.  El mismo permanecerá <strong>INACTIVO</strong>  en la página hasta que completes tu proceso de certificación que consta:
-</p>
-<p style="text-align: justify;">
-    <ul style="text-align: justify;">
-        <li><strong>Pruebas de conocimiento veterinario.</strong></li>
-        <li><strong>Pruebas Psicométricas.</strong></li>
-        <li><strong>Documentación (IFE, Comprobante de domicilio y Datos Bancarios).</strong></li>
-    </ul>
-</p>
-<p style="text-align: justify;">
-   <strong>Link para continuar es: http://kmimos.ilernus.com</strong>
-</p>
-<p style="text-align: justify;">
-    Dicho proceso ha sido diseñado por expertos veterinarios para seleccionar a las personas más adecuadas para recibir, cuidar y apapachar a nuestros peludos amigos.
-</p>
-<p style="text-align: justify;">
-    Guarda el siguiente link, ahí puedes continuar con las pruebas en caso de no terminarlas por algún imprevisto y/o para cargar documentos.
-</p>
-<p style="text-align: justify; color: #f00;">
-    <strong>INGRESA CON EL NOMBRE DE USUARIO Y CONTRASEÑA:</strong>
-</p>
-<p>
-    <table>
-        <tr> <td> <strong>Usuario:</strong> </td><td>'.$username.'</td> </tr>
-        <tr> <td> <strong>Contraseña:</strong> </td><td>'.$clave.'</td> </tr>
-    </table>
-</p>
+	<div style="text-align: center;background:#00d8b5; color: #fff; width: 100%; padding: 10px 0px 10px 0px; text-align: left;">
+		<span style="font-weight:bold;padding-left:10px;font-size: 50px; ">¡Felicidades!</span>
+		<img src="'.get_home_url().'/wp-content/uploads/2017/02/logo-kmimos.png" alt="logo-kmimos" style="float: right;margin-right:15px;">
+	</div>
 
-<p>
-    Revisa tu correo, ahí te llegarán las segundas pruebas, PRUEBAS PSICOMETRICAS.
-</p>
-<p>
-    ¡EXITO!
-</p>
-<p style="text-align: center;">
-    <a
-        href="https://kmimos.ilernus.com"
-        style="
-            padding: 10px;
-            background: #59c9a8;
-            color: #fff;
-            font-weight: 400;
-            font-size: 17px;
-            font-family: Roboto;
-            border-radius: 3px;
-            border: solid 1px #1f906e;
-            display: block;
-            max-width: 300px;
-            margin: 0px auto;
-            text-align: center;
-            text-decoration: none;
-        "
-    >CONTINUAR</a>
-</p>
+	<div style="height:670px; background-size: cover!important; width: 100%;padding:0px; margin:0px;background: url(/landing/img/backgroud.jpg) center bottom;">
+		<div style="color:#9c9c9c;width: 370px; float:left; padding:5px 5px 5px 5px; font-size: 14px; text-align: justify;">
+			<p>
+				<strong>
+					La familia Kmimos te informa que 
+					<span style="color:#67a842;"> has aprobado </span> tus pruebas
+				</strong>
+				<br>
+				Est&aacute;s a unos pasos de convertirte en un cuidador certificado Kmimos!
+			</p>
+			<p>
+				Continuando con el proceso de certificaci&oacute;n, un e-mail te ser&aacute; enviado con 3 fechas posibles para agendar una visita a tu hogar; despu&eacute;s, un miembro de la familia Kmimos te contactar&aacute; para confirmar la fecha y hora que elegiste.
+			</p>
+			<p>
+				<strong>
+					Ahora competa tu perfil. Estos son los 4 tipos de fotograf&iacute;as recomendadas para un perfil ideal:
+				</strong>
+			</p>
+
+			<div style="clear: both; width: 100%;">				
+				<div  style="float:left; width: 100px; text-align:center; padding: 0px; margin:0px;">
+					<img style="margin:auto;" width="60%" src="'.get_home_url().'/landing/img/persona.jpg">
+				</div>
+				<p style="float:right; width: 250px;">
+						<strong>Fotograf&iacute;as de frente a la c&aacute;mara:</strong> Sonr&iacute;e! Es momento de que te presentes al mundo! Subir fotograf&iacute;as
+				</p>
+			</div>
+
+			<div style="clear: both; width: 100%;">				
+				<div  style="float:left; width: 100px; text-align:center; padding: 0px; margin:0px;">
+					<img style="margin:auto;" width="60%" src="'.get_home_url().'/landing/img/arbol.jpg">
+				</div>
+				<p style="float:right; width: 250px;">
+					<strong>Fotograf&iacute;as de &aacute;reas verdes,</strong> jardines o parques cercanos a su hogar en donde te la estaras pasando incre&iacute;ble con tus hu&eacute;spedes peludos.
+				</p>
+			</div>
+
+			<div style="clear: both; width: 100%;">				
+				<div  style="float:left; width: 100px; text-align:center; padding: 0px; margin:0px;">
+					<img style="margin:auto;" width="60%" src="'.get_home_url().'/landing/img/perro.jpg">
+				</div>
+				<p style="float:right; width: 250px;">
+					<strong>Fotograf&iacute;as de &aacute;reas donde duermen tus perritos </strong> y que compartir&iacute;an con tus nuevos invitados. (Dormitorios, sof&aacute;s, camitas).
+				</p>
+			</div>
+
+			<div style="clear: both; width: 100%;">				
+				<div  style="float:left; width: 100px; text-align:center; padding: 0px; margin:0px;">
+					<img style="margin:auto;" width="60%" src="'.get_home_url().'/landing/img/perro2.jpg">
+				</div>
+				<p style="float:right; width: 250px;">
+					<strong>Fotograf&iacute;as de &aacute;reas donde juegan </strong>y conviven tus perritos con nuevos visitantes (sala, comedor, etc).
+				</p>
+			</div>
+
+		</div>
+	</div>
+	
+	<div style="clear:both;"></div>
+
+	<div style="max-height: 83vh; padding:0px;">
+		
+		<div style="height: auto; background: #fdfdaa; padding: 20px;">
+
+			<div style="text-align: center; ">
+				<ul class="list-inline " style="color: #737272;font-weight: 700;">
+					<li style="list-style:none;width: 25%;float:left;position: relative;min-height: 1px;">
+						<img class="hidden-sm hidden-xs" src="'.get_home_url().'/wp-content/themes/pointfinder/images/1_complado.png" class="img-responsive" style="margin:auto;" width="150px">
+						<br><span>Registrarte y describirte<span><br><br>
+					</li>
+					<li style="list-style:none;width: 25%;float:left;position: relative;min-height: 1px;" >
+						<img class="hidden-sm hidden-xs" src="'.get_home_url().'/wp-content/themes/pointfinder/images/2_complado.png" class="img-responsive" style="margin:auto;" width="150px">
+						<br><span>Enviar documentos<span><br><br>
+					</li>
+					<li style="list-style:none;width: 25%;float:left;position: relative;min-height: 1px;">
+						<img class="hidden-sm hidden-xs" src="'.get_home_url().'/wp-content/themes/pointfinder/images/3_complado.png" class="img-responsive" style="margin:auto;" width="150px">
+						<br><span>Realizar tus pruebas<span><br><br>
+					</li>
+					<li style="list-style:none;width: 25%;float:left;position: relative;min-height: 1px;">
+						<img class="hidden-sm hidden-xs" src="'.get_home_url().'/wp-content/themes/pointfinder/images/4_complado.png" class="img-responsive" style="margin:auto;" width="150px">
+						<br><span>Completar tu perfil<span><br><br>
+					</li>
+				</ul>
+				<p style="color: #de7212;font-weight: bold;font-size: 15px;">
+					*En caso de que algunos de estos pasos no sea completado, el perfil no podra ser activado
+				</p>
+			</div>
+		</div>
+		<div style="text-align: center;padding-bottom:20px;">
+			<h3 style="font-weight: bold;font-size: 15px;">
+				AQU&Iacute; TE DEJAMOS UNA SUGERENCIA PARA MEJORAR TU DESCRIPCI&Oacute;N
+			</h3>
+			<div style="border-radius:10px; border:1px solid #ccc;width: 87%;margin: auto;">
+				<ul class="list-inline">
+					<li style="list-style:none;width: 150px;float:left;position: relative;" >
+						<img src="'.get_home_url().'/wp-content/themes/pointfinder/images/girl.png" class="img-responsive" width="150px"	>
+					</li>
+					<li style="list-style:none;width: 300px;text-align: left;float:left;position: relative;font-size:14px;padding-left:10px;">
+						<h2 style="margin-top:0px!important;">Valentina Gutierrez</h2>
+						<p>¡Hola! Soy Valentina, tengo 25 años y me encantan los animales, 
+							Trabajo en casa asi que estare 100% al cuidado de tu perrito, 
+							lo consentir&eacute; y recibiras fotos diarias de su estancia conmigo. 
+							Mis hu&eacute;spedes peludos duermen de casa y pueden andar libremente 
+							SIN JAULAS NI ENCIERROS...
+						</p>
+					</li>
+				</ul>
+				<dir style="clear:both;"></dir>
+			</div>
+		</div>
+		
+	</div>
+
+
+</div>
+
 ';

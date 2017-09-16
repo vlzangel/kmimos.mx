@@ -253,7 +253,7 @@ $reservas = getReservas($_desde, $_hasta);
 							if( !empty($meta_reserva['modificacion_de']) ){
 								echo 'Saldo a favor' ; 
 							}else{
-								echo 'Saldo a favor y/o cupones'; 
+								echo 'Manual'; 
 							}
 						} ?>
 					</th>

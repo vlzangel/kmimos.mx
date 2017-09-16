@@ -1,7 +1,4 @@
 <?php
-require_once("../../vlz_config.php");
-global $url_base;
-
 $url="";
 $ssl =  ($_SERVER['SERVER_PORT']==443)? 's':'' ;
 if(isset($_GET['e'])){
@@ -23,7 +20,6 @@ if(isset($_GET['e'])){
         <link rel="stylesheet" href="css/fontawesome/css/font-awesome.min.css">
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/kmimos.css">
-        <link rel="stylesheet" href="css/animate.css">
 
 		<meta property="og:url"           content="<?php echo $url; ?>" />
 		<meta property="og:type"          content="website" />
@@ -40,7 +36,6 @@ if(isset($_GET['e'])){
 		  ga('send', 'pageview');
 		</script>
 
-
 	</head>
 	<body>
 		<!-- Load Facebook SDK for JavaScript -->
@@ -53,7 +48,7 @@ if(isset($_GET['e'])){
 		  fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));</script>
 
-		<div id="contenidos"></div>
+		<div id="contenido"></div>
 		<div class="container">
 
 			<header class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2">
@@ -71,12 +66,11 @@ if(isset($_GET['e'])){
 						<span class="resaltar">150$</span> acumulables hasta  <span class="resaltar">750$</span> y tu amigo gana otros <span class="resaltar">150$</span>
 						</span>
 					</section>
-					<section class="col-xs-12 col-sm-12 col-md-12 wow">
-						<h2 class="text-center" style="font-size: 1.8em; color: #881c9b;font-weight: bold;">Picale 
-						AQU&Iacute; y <label id="label-animated" class="animated flip"> comparte </label> con tus amigos</h2>
+					<section class="col-xs-12 col-sm-12 col-md-12 ">
+						<h2 class="text-center" style="font-size: 1.8em; color: #881c9b;font-weight: bold;">Picale AQU&Iacute; y comparte con tus amigos</h2>
 					</section>
 					<div class="col-xs-12 col-sm-12 col-md-12 text-center">
-						<section id="shared" class="text-center row animated bounceIn">
+						<section id="shared" class="text-center row">
 							<?php if(!empty($url)){ ?>
 								<span id="twitter_shared" data-target="1" class="button-shared" >
 									<img src="img/btntwitter.png" width="50px">
@@ -176,7 +170,7 @@ if(isset($_GET['e'])){
 				<h2 class="text-center" style="font-size: 1.8em; color: #881c9b;font-weight: bold;">¡Sigue ganando!</h2>
 			</aside>
 
-			<button class="btn-cerrar hidden" id="close"><i class="fa fa-close"></i> </button>
+			<button class="btn-cerrar" id="close"><i class="fa fa-close"></i> </button>
 
 		</div>
 	
@@ -186,11 +180,9 @@ if(isset($_GET['e'])){
 		  src="https://code.jquery.com/jquery-2.2.4.min.js?<?php echo time(); ?>"
 		  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
 		  crossorigin="anonymous"></script>
-
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 		<script>
-		var url = "<?php echo $url_base; ?>";
 		var click_action = 0;
 		$(document).ready(function(){
 
@@ -239,22 +231,22 @@ if(isset($_GET['e'])){
 				click_action = 1;
 		    });
 			
-			// $("#close").on('click', function(){
-			// 	if(click_action==1){
-			// 		window.close();
-			// 	}else{
-			// 		$('#contenido').append(
-			// 			$('<div id="alert-warning" role="alert"style="position:absolute;top:0px;z-index:999;margin-bottom:0px!important;width:100%;"class="alert alert-warning fade in"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Hola!</strong> Hemos detectado que no compartiste tu link, debes hacerlo para ganar mas referidos.</div>')
-			// 		);
-			// 	}
-			// });
+			$("#close").on('click', function(){
+				if(click_action==1){
+					window.close();
+				}else{
+					$('#contenido').append(
+						$('<div id="alert-warning" role="alert"style="position:absolute;top:0px;z-index:999;margin-bottom:0px!important;width:100%;"class="alert alert-warning fade in"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Hola!</strong> Hemos detectado que no compartiste tu link, debes hacerlo para ganar mas referidos.</div>')
+					);
+				}
+			});
 
-			// window.onbeforeunload = function(e) {
-			//    $("#close").click();
-			// };
+			window.onbeforeunload = function(e) {
+			   $("#close").click();
+			};
 
 			function send_track(email, option){
-				$.ajax( url+"landing/list-subscriber-tracking.php?email="+email+"&option="+option )
+				$.ajax( "/landing/list-subscriber-tracking.php?email="+email+"&option="+option )
 				.done(function() {
 					console.log( 'success track: '+option );
 				})
@@ -263,22 +255,6 @@ if(isset($_GET['e'])){
 				});  
 			}
 
-			function testAnim(x) {
-				$('#label-animated').removeClass().addClass(x + ' animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
-					$(this).removeClass();
-				});
-			};
-			
-			var id = setInterval(frame, 10);
-			var width = 0;
-			function frame() {
-				if (width == 100) {
-					clearInterval(id);
-				} else {
-					testAnim( 'flip' );
-					width++;
-				}
-			}
 		});
 		</script>
 

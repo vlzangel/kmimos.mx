@@ -276,6 +276,7 @@ class WC_Coupon {
 		if ( $this->id ) {
 			$this->usage_count++;
 			update_post_meta( $this->id, 'usage_count', $this->usage_count );
+
 			if ( $used_by ) {
 				add_post_meta( $this->id, '_used_by', strtolower( $used_by ) );
 			}

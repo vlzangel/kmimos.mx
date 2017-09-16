@@ -345,15 +345,10 @@ if(isset($ua_action)){
                             $services = kmimos_get_my_services($current_user->ID);
                             if ($_GET['ua']=='myservices'){
                                 $pfmenu_output .= '<li class="selected_option"><a href="#" onclick="return false;"><i class="pfadmicon-glyph-453"></i> '. $setup29_dashboard_contents_vendor_shop_menuname.'<span class="pfbadge">'.$services['count'].'</span></li>';
-                            } else {
+                            }
+                            else {
                                 $class = ($_GET['ua']=='myservice' || $_GET['ua']=='newservice')? ' class="selected_option"':'';
                                 $pfmenu_output .= '<li'.$class.'><a href="'.$setup4_membersettings_dashboard_link.$pfmenu_perout.'ua=myservices"><i class="pfadmicon-glyph-453"></i> '. $setup29_dashboard_contents_vendor_shop_menuname.'<span class="pfbadge">'.$services['count'].'</span></a></li>';
-                            }
-
-                            if ($_GET['ua']=='disponibilidad'){
-                                $pfmenu_output .= '<li class="selected_option"><a href="#" onclick="return false;"><i class="pfadmicon-glyph-28"></i> Disponibilidad <span class="pfbadge"> </span></li>';
-                            } else {
-                                $pfmenu_output .= '<li'.$class.'><a href="?ua=disponibilidad"><i class="pfadmicon-glyph-28"></i> Disponibilidad <span class="pfbadge"> </span></a></li>';
                             }
                             
                             /* 
@@ -581,11 +576,11 @@ if(isset($ua_action)){
 										);
 										$atributos = serialize($atributos);
 
-										/*
 										$coordenadas = unserialize( $wpdb->get_var("SELECT valor FROM kmimos_opciones WHERE clave = 'municipio_{$delegacion}' ") );
+
 						                $latitud  = $coordenadas["referencia"]->lat;
 						                $longitud = $coordenadas["referencia"]->lng;
-										*/
+
 										$sql = "
                                                 UPDATE
                                                     cuidadores
@@ -663,23 +658,6 @@ if(isset($ua_action)){
 							
                         case 'myservices':
 							include("./wp-content/themes/pointfinder/vlz/admin/process/myservices.php");
-                        break;						
-							
-                        case 'disponibilidad':
-							$output = new PF_Frontend_Fields(
-								array(
-									'formtype' => 'disponibilidad',
-									'current_user' => $user_id
-								)
-							);
-
-							echo $output->FieldOutput;
-							echo '<script type="text/javascript">
-                                    '.$output->ScriptOutput.'
-                                </script>';
-							unset($output);
-							
-							echo $output->FieldOutput;
                         break;
 
                         case 'mybookings':

@@ -42,11 +42,6 @@
 	            	<textarea id="comment" name="comment" class="textarea" placeholder="' . esc_html__( 'Your comment','pointfindert2d' ) . '"></textarea>
 	            </label>                          
 	        </section>
-			<section>
-	            <label class="lbl-ui">
-	            	<div class="g-recaptcha" data-sitekey="6LeQPysUAAAAAKKvSp_e-dXSj9cUK2izOe9vGnfC"></div>
-	            </label>                          
-	        </section>
 		'
 	);
 
@@ -55,9 +50,7 @@
 	$output_cmform = ob_get_contents();
 	ob_end_clean();
     $output_cmform = str_replace('class="comment-form"','class="comment-form golden-forms"',$output_cmform);
-    //echo $output_cmform;
-
-    include(dirname(__FILE__)."/form_comment.php");
+    echo $output_cmform;
 
 	if (have_comments()){ ?>
 		<ul>
