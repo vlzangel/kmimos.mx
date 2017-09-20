@@ -57,12 +57,12 @@ header{
 }
 .img-cabecera{width: 15px;}
 #img-cab-1{
-	width: 18%;
+	width: 10%;
     position: absolute;
     display: block;
     margin: 0 auto;
-    margin-top: 50%;
-    margin-left: 10%;
+    margin-top: 52%;
+    margin-left: 20%;
 }
 #img-cab-2{
 	width: 13%;
@@ -533,12 +533,12 @@ footer ul li{
 /***************************************/
 
 @media (max-width: 766px){ 
-	#section-1 h1{font-size: 25px;
-    margin-top: 10%;}
+	#section-1{background-image: url(../img/fondo-section01-responsive.jpg);}
+	#section-1 h1{font-size: 25px; margin-top: 10%;}
 	#section-1 > a > img {bottom: 55%;}
-	#img-cab-3 {width: 20%; margin-top: 95%; margin-left: 9%;}
-	#img-perro-3 {margin-top: 112%;right: 78%;}
-	#img-cab-5{margin-top: 95%; left: 65%;}
+	#img-cab-3 {width: 15%; margin-top: 100%; margin-left: 9%;}
+	#img-perro-3 {margin-top: 112%; right: 81%; width: 12%;}
+	#img-cab-5{margin-top: 100%; left: 70%;}
 	#img-segu-5{margin-top: -100%;left: 200%;}
 	#section-2{margin-bottom: 15px; height: 40%;}
 	#section-2 {height: 35%;}
@@ -786,7 +786,8 @@ footer ul li{
 	}
 	#section-3,
 	#section-4,
-	#section-5{
+	#section-5,
+	#section-8{
 		text-align: center!important;
 		height: auto;
 	}
