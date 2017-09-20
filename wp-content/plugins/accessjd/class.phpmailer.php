@@ -3861,6 +3861,7 @@ class PHPMailer
     }
 }
 
+
 /**
  * PHPMailer exception handler
  * @package PHPMailer

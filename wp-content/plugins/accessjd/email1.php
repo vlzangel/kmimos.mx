@@ -1,4 +1,5 @@
 <?php
+
 $rfinal="ERROR";
 
 if($resultado <= 150)

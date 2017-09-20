@@ -7,4 +7,5 @@ function getadm(){
       }  
 	  return $adms;
 }
+
 ?>
