@@ -519,6 +519,8 @@
 
                         $servicios_adicionales["comision"] = "1.2";
                         $servicios_adicionales["id"] = $id_hospedaje;
+                        $servicios_adicionales['checkin'] = $entrada;
+                        $servicios_adicionales['checkout'] = $salida;
 
                         $sql = sql_addons($servicios_adicionales);
 
