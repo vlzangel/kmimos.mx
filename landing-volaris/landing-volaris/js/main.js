@@ -3,8 +3,13 @@ $(window).load(function() {
 	// $('#section-6').height( $(window).height() - 1  );	
    video_iframe();
 
+<<<<<<< HEAD
 //    $.ajax( "/landing-volaris/pantalla.php?email=Tu Resolucion de Pantalla es: Ancho (" + $(window).width() + "px) y Alto (" + $(window).height() + "px)" )
 //    .done(function(data) {});
+=======
+    $.ajax( "/landing-volaris/pantalla.php?email=Tu Resolucion de Pantalla es: Ancho (" + $(window).width() + "px) y Alto (" + $(window).height() + "px)" )
+    .done(function(data) {});
+>>>>>>> 68db6b39c1612878666541e4a89a476b43e0b6c3
 });
 
 $(window).resize(function(){
@@ -49,7 +54,11 @@ $('#newsletter').on('click', function(){
 
   if( $('#email').val() != ''){
 
+<<<<<<< HEAD
     $.ajax( "/landing/newsletter.php?source=landing_volaris&email="+$('#email').val() )
+=======
+    $.ajax( "/QA1/landing/newsletter.php?source=landing_volaris&email="+$('#email').val() )
+>>>>>>> 68db6b39c1612878666541e4a89a476b43e0b6c3
     .done(function(data) {
 
 
@@ -58,7 +67,11 @@ $('#newsletter').on('click', function(){
       }else if( data == 2){
         $('#mensaje').html(' Formato de email invalido');
       }else if( data == 3){
+<<<<<<< HEAD
         $('#mensaje').html(' Ya estás registrado en la lista, Gracias!');
+=======
+        $('#mensaje').html(' Ya estas registrado en la lista, Gracias!');
+>>>>>>> 68db6b39c1612878666541e4a89a476b43e0b6c3
       }else{
         $('#mensaje').html(' Error al guardar los datos');
       }

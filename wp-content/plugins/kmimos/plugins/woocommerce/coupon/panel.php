@@ -35,8 +35,8 @@ if(isset($_POST["submit_csv_upload"])) {
 
     if(strtolower(array_pop($file_detail)) == 'csv'){
         $fopen = fopen($file_tempfile, 'r');
+        coupon_message('success','Iniciando lectura del CSV');
         while(($data = fgetcsv($fopen, 1000, $separator)) !== FALSE){
-            coupon_message('success','Iniciando lectura del CSV');
 
             if($row==0){
                 foreach($data as $index=>$name){
@@ -108,7 +108,8 @@ if(isset($_POST["submit_csv_upload"])) {
                     update_post_meta($couponID, 'individual_use', 'no');
                     update_post_meta($couponID, 'product_ids', '');
                     update_post_meta($couponID, 'exclude_product_ids', '');
-                    update_post_meta($couponID, 'usage_limit', '');
+                    update_post_meta($couponID, 'usage_limit', '1');
+                    update_post_meta($couponID, 'usage_limit_per_user', '1');
                     update_post_meta($couponID, 'expiry_date', date('Y-m-d', $date_final));
                     update_post_meta($couponID, 'apply_before_tax', 'yes');
                     update_post_meta($couponID, 'free_shipping', 'no');

@@ -172,94 +172,15 @@
     <body id="waypoint">       
        	<div class="col-sm-12">
 
-    	   	<div class="row">       		
-				<section id="section-4" class="col-xs-12">
-					<div class="container">
-						<!-- <article class="col-xs-6 col-sm-6 col-md-4 text-right pull-right">
-							<img src="img/logo.png" class="img-responsive" id="section4-logo">
-						</article> -->
-						<!-- <article class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-							<h2>
-								Promoci&oacute;n por ser cliente<br>
-								<span class="color-volaris">VOLARIS</span>, si te suscribes HOY:
-							</h2>
-						</article> -->
-						<article id="tu-mascota" class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-							<p>Tu mascota regresa feliz</p>
-						</article> 
-						
-						<article id="section-4-cuadro" class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-							<p class="hidden-xs">Promoci&oacute;n por ser <br> cliente <span style="color: #a1126d;">VOLARIS</span>, si <br> te suscribes HOY:</p>
-							<p class="hidden-lg hidden-sm hidden-md">Promoci&oacute;n por ser cliente <span style="color: #a1126d; font-size: 12px!important;">VOLARIS</span>, si te suscribes HOY:</p>
-							<h2 class="color-volaris">Obt&eacute;n</h2>
-							<h2 class="monto">$150</h2>
-							<!-- <h3 class="color-volaris">DE DESCUENTO</h3> -->
-							<!-- <span>En tu primera reserva</span> -->
-						</article>
 
-					</div>
-				</section>
-				<section id="section-5" class="col-sm-12 bg-volaris" style="padding-right: 0px;">
-					<dir class="bg-transparent container">
-						<article class="title col-xs-12 col-sm-6 col-md-8 col-lg-8">
-							Para obtener tu cup&oacute;n de descuento, debes hacer uno de estos sencillos pasos
-						</article>
-					</dir>
-					<div class="row" style="margin:0px;">
-						<article class="col-xs-12 col-sm-12 col-md-6 col-lg-6 move">
-							<label class="col-xs-offset-2 col-xs-1 col-md-1 text-right">
-								1.</label>
-							<p class="col-xs-9 col-md-10">
-
-							¡SUSCR&Iacute;BETE
-							y recibe el Newsletter con nuestras <strong>Promociones</strong>, <strong>Tips de cuidado para mascotas</strong>, etc.!</p>
-
-							<div id="section-5-form" class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-md-offset-2 col-lg-offset-2 text-left pull-left">
-								<input type="text" value="" name="email" id="email" placeholder="Introduce tu correo aqu&iacute;">
-								<button id="newsletter" style="border:0px; background: transparent; "><img src="img/flecha.png" width="52px"></button>
-								<br>
-								<div id="msg-content" class="text-left" style="
-									padding: 10px;
-								    background: transparent;
-								    border-radius: 50px;
-								    width: 90%;
-								    border: 1px solid #fff;
-								    margin-top: 10px;
-								    text-align: center;
-								    display: none;">	
-									<span id="mensaje"></span>
-								</div>
-							</div>
-            				<span class="o xs col-xs-12 ">&oacute;</span></p>
-						</article>
-						<span class="o lg"><strong><i>&oacute;</i></strong></span>
-						<article class="col-xs-12 col-sm-12 col-md-6 col-lg-6 move1">
-							<label class="col-xs-offset-2 col-xs-1 col-md-1 text-right hidden-xs">
-								2.</label>
-							<label class="col-xs-offset-2 col-xs-1 col-md-1 text-right hidden-lg hidden-md hidden-sm" style="font-size: 33px!important;">
-								2.</label>
-							<p class="col-xs-9 col-md-10">
-								Reg&iacute;strate en www.kmimos.com.mx y disruta de todos nuestros servicios.
-							</p>
-							<div id="section-5-link" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left pull-right">
-								<a href="https://www.kmimos.com.mx/?<?php echo $query; ?>">Click aqu&iacute;</a>
-							</div>
-						</article>
-
-					</div>
-					<br>
-				</section> 
-	       	</div>
-			<div class="clearfix"></div>
-			
-			<section class="row text-center" id="section-1">
-	       	 	<article id="top-content" class="col-xs-12 col-sm-12 col-md-offset-3 col-lg-offset-3 col-md-6 col-lg-6">
+			<section class="row" id="section-1">
+	       	 	<article id="top-content" class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 					<h1>¿Te vas de viaje?</h1>
-					<h2>Deja a tu mascota con un CUIDADOR <br> CERTIFICADO. <strong>Libre de jaulas y encierros.</strong></h2>
+					<h2>Deja a tu mascota con un CUIDADOR CERTIFICADO. <strong>Libre de jaulas y encierros.</strong></h2>
 	       	 	</article>
-				<!-- <article id="top-image" class="col-md-12">
+				<article id="top-image" class="col-md-12">
 					<img src="img/bg-section1a.jpg" width="100%">
-				</article> -->
+				</article>
 			</section>
 			<div class="clearfix"></div>
 
@@ -278,47 +199,111 @@
 				<div class="row" id="section-content">
 
 					<section id="section-3" class="col-xs-12 bg-white">
-			       	 	<article class="row">
-			       	 		<div class="col-xs-12 col-sm-12 col-md-4 text-center">
-			       	 			<img src="img/s1.png" class="img-responsive">
-			       	 		</div>
-			       	 		<div class="col-xs-12 col-sm-12 col-md-8">
-				       	 		<p><br>Tu perro ser&aacute; un huesped dentro de la casa del cuidador certificado que escojas.</p>
-			       	 		</div>
-			       	 	</article>
-			       	 	<article class="row">
-			       	 		<div class="col-xs-12 col-sm-12 col-md-4 text-center">
-			       	 			<img src="img/s2.png" class="img-responsive">
-			       	 		</div>
-			       	 		<div class="col-xs-12 col-sm-12 col-md-8">
-			       	 			<p><br>Dormir&aacute; como un rey en salas, sof&aacute; y a veces ¡hasta en la cama del cuidador!</p>
-			       	 		</div>
-			       	 	</article>
-			       	 	<article class="row">
-			       	 		<div class="col-xs-12 col-sm-12 col-md-4 text-center">
-			       	 			<img src="img/s3.png" class="img-responsive">
-			       	 		</div>
-			       	 		<div class="col-xs-12 col-sm-12 col-md-8">
-			       	 			<p><br>¡Tu amigo estar&aacute; protegido por una cobertura de servicios veterinarios <br> durante su estad&iacute;a!</p>
-			       	 		</div>
-			       	 	</article>
-			       	 	<article class="row">
-			       	 		<div class="col-xs-12 col-sm-12 col-md-4 text-center">
-			       	 			<img src="img/s4.png" class="img-responsive">
-			       	 		</div>
-			       	 		<div class="col-xs-12 col-sm-12 col-md-8">
-			       	 			<p class="hidden-xs">El tamaño de tu perro y el cuidador que elijas determinar&aacute; el costo del servicio.<br>
-			       	 			Por ejemplo: para un perro chico la estad&iacute;a costar&aacute entre 100 a 200 pesos</p>
-			       	 			<p class="hidden-lg hidden-sm hidden-md">El tamaño de tu perro y el cuidador que elijas determinar&aacute; el costo del servicio.<br>
-			       	 			Por ejemplo: para un perro chico la estad&iacute;a costar&aacute entre <br> (100 a 200 pesos)</p>
-			       	 		</div>
-			       	 	</article>
+ 
+				       	 	<article class="row">
+				       	 		<div class="col-xs-12 col-sm-12 col-md-4 text-center">
+				       	 			<img src="img/s1.png" class="img-responsive">
+				       	 		</div>
+				       	 		<div class="col-xs-12 col-sm-12 col-md-8">
+					       	 		<p><br>Tu perro ser&aacute; un huesped dentro de la casa del cuidador certificado que escojas.</p>
+				       	 		</div>
+				       	 	</article>
+				       	 	<article class="row">
+				       	 		<div class="col-xs-12 col-sm-12 col-md-4 text-center">
+				       	 			<img src="img/s2.png" class="img-responsive">
+				       	 		</div>
+				       	 		<div class="col-xs-12 col-sm-12 col-md-8">
+				       	 			<p><br>Dormir&aacute; como un rey en salas, sof&aacute; y a veces ¡hasta en la cama del cuidador!</p>
+				       	 		</div>
+				       	 	</article>
+				       	 	<article class="row">
+				       	 		<div class="col-xs-12 col-sm-12 col-md-4 text-center">
+				       	 			<img src="img/s3.png" class="img-responsive">
+				       	 		</div>
+				       	 		<div class="col-xs-12 col-sm-12 col-md-8">
+				       	 			<p><br>¡Tu amigo estar&aacute; protegido por una cobertura de servicios veterinarios durante su estad&iacute;a!</p>
+				       	 		</div>
+				       	 	</article>
+				       	 	<article class="row">
+				       	 		<div class="col-xs-12 col-sm-12 col-md-4 text-center">
+				       	 			<img src="img/s4.png" class="img-responsive">
+				       	 		</div>
+				       	 		<div class="col-xs-12 col-sm-12 col-md-8">
+				       	 			<p>El tamaño de tu perro y el cuidador que elijas determinar&aacute; el costo del servicio.<br>
+				       	 		Por ejemplo: para un perro chico la estad&iacute;a costar&aacute entre 100 a 200 pesos</p>
+				       	 		</div>
+				       	 	</article>
 					</section>
-					
-					<article id="proceso-reserva" class="bg-volaris col-xs-12 text-center">
-						<h1 style="font-family: 'PoetsenOne', sans-serif; font-size: 2.5em; ">¿Cómo es el proceso para reservar?</h1>
-					</article>
 
+					<section id="section-4" class="col-xs-12">
+						<dir class="container">
+
+							<article class="col-xs-6 col-sm-6 col-md-4 text-right pull-right">
+								<img src="img/logo.png" class="img-responsive" id="section4-logo">
+							</article>
+							<article class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+								<h2>
+									Promoci&oacute;n por ser cliente<br>
+									<span class="color-volaris">VOLARIS</span>, si te suscribes HOY:
+								</h2>
+							</article>
+							<article id="avion" class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+								<img src="img/avion.png" class="img-responsive">
+							</article>
+							<article id="section-4-cuadro" class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+								<h2 class="color-volaris">Obt&eacute;n</h2>
+								<h2 class="monto">$150</h2>
+								<h3 class="color-volaris">DE DESCUENTO</h3>
+								<span>En tu primera reserva</span>
+							</article>
+
+						</dir>
+					</section>
+
+					<section id="section-5" class="col-sm-12 bg-volaris">
+						<dir class="bg-transparent container">
+							<article class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+								<label class="col-xs-3">
+									1.</label>
+								<p class="col-xs-9">
+									<strong>¡SUSCR&Iacute;BETE</strong> 
+									y recibe el Newsletter con lo mejor de nuestros posts! &oacute;</p>
+							</article>
+							<article class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+								<label class="col-xs-3">
+									2.</label>
+								<p class="col-xs-9">
+									Entra a www.kmimos.com.mx y reg&iacute;strate.</p>
+							</article>
+							<article id="section-5-paso3" class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+								<label class="col-xs-3">
+									3.</label>
+								<p class="col-xs-9">
+									Una vez que hayas hecho cualquiera de las dos, en el transcurso del d&iacute;a recibir&aacute;s tu cup&oacute;n de descuento en tu correo.</p>
+							</article>
+							<article id="section-5-form" class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-right">
+								<input type="text" value="" name="email" id="email">
+								<button id="newsletter" style="border:0px; background: transparent; "><img src="img/flecha.png" width="52px"></button>
+								<br>
+								<div id="msg-content" class="text-left" style="
+									padding: 10px;
+								    background: transparent;
+								    border-radius: 50px;
+								    width: 90%;
+								    border: 1px solid #fff;
+								    margin-top: 10px;
+								    text-align: center;
+								    display: none;
+								">	
+									<span id="mensaje"></span>
+								</div>
+							</article>
+							<article class="col-xs-12 text-center">
+								<h1>¿Cómo es tu proceso para reservar?</h1>
+							</article>
+						</dir>
+					</section>
+ 
 					<section class="col-sm-12" id="section-7">
 						<div class="container">
 							<div class="col-sm-4">
@@ -328,7 +313,8 @@
 							<div class="col-sm-8">
 								<article class="col-sm-6">
 									<img src="img/img2.png" class="img-responsive">
-									<p class="section-7-secundario">Una vez que escojas a tu cuidador, p&iacute;cale a reservar</p>
+ 
+									<p class="section-7-secundario">Una vez que escojas a tu cuidador, p&iacute;cale a "RESERVAR"</p> 
 								</article>
 								<article class="col-sm-6">
 									<img src="img/img3.png" class="img-responsive">
@@ -350,8 +336,8 @@
 						<div class="row">
 							<section id="section-6" class="text-center">
 								<div class="col-xs-12 col-sm-6 col-sm-offset-3 text-center color-volaris">
-									<h1 class="hidden-xs" style="width: 53%;">P&iacute;cale al video de abajo, te va a encantar <br> la nueva alianza VOLARIS - KMIMOS</h1>
-									<h1 class="hidden-lg hidden-sm hidden-md" style="width: 100%;">P&iacute;cale al video de abajo, te va a encantar la nueva alianza VOLARIS - KMIMOS</h1>
+ 
+									<h1>P&iacute;cale al video de abajo, te va a encantar la nueva alianza VOLARIS - KMIMOS</h1> 
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3" id="video">
 									<iframe src="https://www.youtube.com/embed/8T_yhObrq3s" 
@@ -361,8 +347,10 @@
 							<section id="section-6-action" class="bg-volaris text-center col-sm-12">
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<span>
-										NUESTRA PROMESA:<br>
-										¡Tu mascota regresa feliz!
+ 
+										<strong>NUESTRA PROMESA:</strong><br>
+										Tu mascota regresa feliz
+ 
 									</span>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-6">
@@ -374,12 +362,13 @@
 					</div>
 
 					<section id="contactos" class="col-sm-12">
-						<div class="container bg-black hidden-xs">
+ 
+						<div class="container bg-black">
 							<article class="col-xs-12 col-sm-6" style="margin-top:10px;margin-bottom:10px;">
 								<span>Cont&aacute;ctanos a:</span> 
-								<!-- <span>(01)55 4742 3162</span> -->
-								<span> 01 8000 564667 (KMIMOS)</span>
-								<!-- <span>Whatsapp: (55) 6892 2182 </span>-->
+								<span>01 800 056 4667 </span>
+								<span>Whatsapp: (55) 6892 2182 </span>
+ 
 								<br>
 								<span>contactomex@kmimos.la</span>
 							</article>
@@ -388,21 +377,12 @@
 								<img src="img/logo-volaris.png" class="img-responsive logo-volaris" width="150px">
 							</article>
 						</div>
-						<div class="container bg-black hidden-md hidden-sm hidden-lg">
-							<article class="col-xs-12 col-sm-6" style="margin-top:10px;margin-bottom:10px;">
-								<span>Cont&aacute;ctanos a:</span> 
-								<!-- <span>(01)55 4742 3162</span> -->
-								<!-- <span> 01 8000 564667 (KMIMOS)</span> -->
-								<!-- <span>Whatsapp: (55) 6892 2182 </span>-->
-								<span>contactomex@kmimos.la</span>
-								<img src="img/logo.png" class="img-responsive logo-kmimos"  >
-								<img src="img/logo-volaris.png" class="img-responsive logo-volaris" >
-							</article>
-						</div>
+ 
 					</section>
 
 				</div>
 				<div class="clearfix"></div>
+ 
 			</section> 
 
 
@@ -413,6 +393,8 @@
 		  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
 		  crossorigin="anonymous"></script>
 	    <script src="js/wow.js  "></script>
-	    <script src="js/main.js?v=1.0.0"></script>
+ 
+	    <script src="js/main.js?"></script>
+     
     </body>
 </html>

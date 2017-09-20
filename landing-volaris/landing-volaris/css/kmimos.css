@@ -29,9 +29,15 @@ strong{
 	font-weight: 900;
 }
 
+<<<<<<< HEAD
 /*.container{
 	background: #fff;
 }*/
+=======
+.container{
+	background: #fff;
+}
+>>>>>>> 68db6b39c1612878666541e4a89a476b43e0b6c3
 
 #waypoint{
 /*	background: #00D9AE;
@@ -53,7 +59,11 @@ strong{
 	color: #fff!important;
 	text-align: center;
 	font-size: 35pt;
+<<<<<<< HEAD
 	/*padding:10px;*/
+=======
+	padding:10px;
+>>>>>>> 68db6b39c1612878666541e4a89a476b43e0b6c3
 	margin-top: 0px!important;
 	margin-bottom: 0px!important;
 }
@@ -187,7 +197,11 @@ strong{
 #section-1{
 	color: #fff;
 	font-weight: lighter;
+<<<<<<< HEAD
 	height: 34vh;
+=======
+	height: 76vh;
+>>>>>>> 68db6b39c1612878666541e4a89a476b43e0b6c3
 }
 #section-1 .pull-right{
 	align-items: right;
@@ -236,6 +250,10 @@ strong{
 
 #section-1 > article{
 	margin-right: 60px;
+<<<<<<< HEAD
+=======
+	float: right;
+>>>>>>> 68db6b39c1612878666541e4a89a476b43e0b6c3
 }
 
 #section1-footer h3{
@@ -281,7 +299,10 @@ strong{
 	font-weight: bold;
 	margin-top: 10px;
 	margin-bottom: 4px;
+<<<<<<< HEAD
 	font-family: 'PoetsenOne', sans-serif;
+=======
+>>>>>>> 68db6b39c1612878666541e4a89a476b43e0b6c3
 }
 
 
@@ -304,6 +325,7 @@ strong{
 #section-4 > article{
 	margin: 0px!important;
 }
+<<<<<<< HEAD
 /*#section-4 .container{
 	background: #ccc!important;
 }*/
@@ -326,11 +348,22 @@ strong{
     margin-top: -40%;
     margin-left: 879px;
 }
+=======
+#section-4 .container{
+	background: #ccc!important;
+}
+#section-4{
+	background: #ccc!important;
+	padding: 30px 0px 30px 0px;
+	font-family: 'PoetsenOne', sans-serif;
+}
+>>>>>>> 68db6b39c1612878666541e4a89a476b43e0b6c3
 #section-4 h2{
 	font-weight: bold;
 	font-size: 40px;
 }
 #section-4-cuadro{
+<<<<<<< HEAD
 	width: 22%;
 	background: #fff;
     border-radius: 30px;
@@ -345,6 +378,14 @@ strong{
 	font-size: 20px!important;
     color: #969191;
 }
+=======
+	background: #fff;
+	border-radius: 30px;
+	padding: 23px;
+	text-align: center;
+
+}
+>>>>>>> 68db6b39c1612878666541e4a89a476b43e0b6c3
 #section-4-cuadro h2{
 	font-size: 80px!important;
 	margin:0px;
@@ -392,6 +433,7 @@ strong{
 	margin: 0px;
 }
 #section-5 p{
+<<<<<<< HEAD
 	font-size: 21px; 
 	/*margin: 0px 0px 15px 0px;*/
 }
@@ -401,6 +443,15 @@ strong{
     font-weight: normal;
     padding-right:0px!important;
     padding-left:0px!important;
+=======
+	font-size: 25px; 
+	margin: 0px 0px 15px 0px;
+}
+#section-5 label{
+    font-size: 40px!important;
+    font-family: "PoetsenOne";
+    font-weight: normal;
+>>>>>>> 68db6b39c1612878666541e4a89a476b43e0b6c3
 }
 
 #section-5 img{
@@ -411,8 +462,13 @@ strong{
 	border:0px;
 	border-radius: 50px;
 	height: 50px;
+<<<<<<< HEAD
 	padding: 10px 20px 10px 20px ;    
   width: calc(100% - 90px);
+=======
+	padding: 10px 20px 10px 20px ;
+	width: 75%;
+>>>>>>> 68db6b39c1612878666541e4a89a476b43e0b6c3
 	color:black;
 	margin-right: 20px;
 }
@@ -427,6 +483,7 @@ strong{
 	float: right;
 }
 
+<<<<<<< HEAD
 #section-5-link {
 	padding: 20px 0px 40px 0px;
 }
@@ -453,6 +510,12 @@ strong{
 	font-size: 20px;
 	padding: 20px;
 }
+=======
+#section-5-form{
+	padding: 40px 30px 20px 0px;
+}
+
+>>>>>>> 68db6b39c1612878666541e4a89a476b43e0b6c3
 /***************************************/
 /*  Section-6                          */
 /***************************************/
@@ -575,6 +638,7 @@ footer aside{
 	padding-bottom: 30px;
 }
 
+<<<<<<< HEAD
 
 
 
@@ -607,6 +671,8 @@ footer aside{
 
 
 
+=======
+>>>>>>> 68db6b39c1612878666541e4a89a476b43e0b6c3
 /***************************************/
 /*  Media                              */
 /***************************************/
@@ -670,7 +736,10 @@ footer aside{
 	.circulo{
 		background: transparent;
 	}
+<<<<<<< HEAD
 	
+=======
+>>>>>>> 68db6b39c1612878666541e4a89a476b43e0b6c3
 }
 @media (max-width: 768px){ 
 	#top-image img{
@@ -679,7 +748,11 @@ footer aside{
 	#section-1{
 		float: none!important;
 		margin-top:20px;
+<<<<<<< HEAD
 	    height: 30vh;
+=======
+	    height: 69vh;
+>>>>>>> 68db6b39c1612878666541e4a89a476b43e0b6c3
 	}
 	#section-1 h1{
 		font-size: 27pt;
@@ -699,6 +772,7 @@ footer aside{
 	}
 
 	p{ font-size: 16px;  }
+<<<<<<< HEAD
 	
 	#section-4{
 	    padding-top: 100%;
@@ -726,6 +800,17 @@ footer aside{
 	#section-4-cuadro .monto{
 		font-size: 33px!important; 
 	}
+=======
+
+	#section-4{
+		padding: 15px 0px 15px 0px;
+	}
+
+	#section-4 h2{
+		font-size: 19px;
+	}
+	
+>>>>>>> 68db6b39c1612878666541e4a89a476b43e0b6c3
 	#section4-logo{
 		width: 100px!important;
 	}	
@@ -733,10 +818,14 @@ footer aside{
 	#section-5{
 		margin: 0 auto;
 	}
+<<<<<<< HEAD
 	#section-5 .title{
 		font-size: 16px;
 		margin-left: 2%;
 	}
+=======
+
+>>>>>>> 68db6b39c1612878666541e4a89a476b43e0b6c3
 	#section-5 input{
 		padding: 16px!important;
 		margin-right: 0px!important;
@@ -745,13 +834,18 @@ footer aside{
 		width: 50px!important;
 	}
 	#section-5-form{
+<<<<<<< HEAD
     	padding: 10px 0px 20px 0px;
+=======
+    	padding: 40px 0px 20px 0px;
+>>>>>>> 68db6b39c1612878666541e4a89a476b43e0b6c3
 	}
 
 	#section-5 h1 {
 		margin-top: 0px;
 	    font-size: 26px!important;
 	}
+<<<<<<< HEAD
 	#section-5 label {
 	    font-size: 43px!important;
 	}
@@ -760,6 +854,13 @@ footer aside{
 	}
 	.move{margin-left: 8%;}
 	.move1{margin-left: 4%;}
+=======
+
+	#section-5 p {
+	    font-size: 21px;
+	}
+
+>>>>>>> 68db6b39c1612878666541e4a89a476b43e0b6c3
 	.btn-kmimos-inverso{
 		font-size: 18px;
 	}
@@ -775,6 +876,7 @@ footer aside{
 		margin-top:10px;
 	}
 	#contactos .container{
+<<<<<<< HEAD
 		padding: 15px;
 		height: auto;
 	}
@@ -782,6 +884,12 @@ footer aside{
 		margin: 10px;
     	width: 80%;
     	padding: 4%;
+=======
+		padding: 0px;
+	}
+	#contactos img{
+		margin: 0px;
+>>>>>>> 68db6b39c1612878666541e4a89a476b43e0b6c3
 	}
 	#contactos{
 		font-size: 18px;
@@ -833,6 +941,7 @@ footer aside{
 		max-width:100%;
 		height:100%;
 	}
+<<<<<<< HEAD
   #section-5 span.o.lg{
   	display: none;
   }
@@ -842,6 +951,8 @@ footer aside{
     position: relative;
     margin-left: -10%;
   }
+=======
+>>>>>>> 68db6b39c1612878666541e4a89a476b43e0b6c3
 }
 @media (min-width: 298px) and (max-width: 322px){
 	#section-1 h1 {
@@ -878,7 +989,11 @@ footer aside{
 	    font-size: 9pt;
 	}
 	#section-5 input {
+<<<<<<< HEAD
 	    width: 77%;
+=======
+	    width: 70%;
+>>>>>>> 68db6b39c1612878666541e4a89a476b43e0b6c3
 	}
 	#top-image img {
     	margin-top: 40vh;
