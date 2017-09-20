@@ -75,9 +75,9 @@ function date_convert( $str_date, $format = 'd-m-Y H:i:s', $totime=true ){
 	return $fecha;
 }
 
-function currency_format( $str, $signo="$ " ){
+function currency_format( $str, $signo="$ ", $signo_decimal=",", $signo_miles="." ){
 	if(!empty($str)){
-		$str = $signo.number_format($str, 2, ',', '.');
+		$str = $signo.number_format($str, 2, $signo_decimal, $signo_miles);
 	}else{
 		$str = $signo."0";
 	}

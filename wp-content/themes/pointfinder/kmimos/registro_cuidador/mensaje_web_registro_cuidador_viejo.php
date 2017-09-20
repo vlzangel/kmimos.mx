@@ -89,13 +89,16 @@ $mensaje_web = '
     </ul>
 </p>
 <p style="text-align: justify;">
-   <strong>Link para continuar es: http://kmimos.ilernus.com</strong>
-</p>
-<p style="text-align: justify;">
     Dicho proceso ha sido diseñado por expertos veterinarios para seleccionar a las personas más adecuadas para recibir, cuidar y apapachar a nuestros peludos amigos.
 </p>
 <p style="text-align: justify;">
+    Ahora serás dirigido a hacia el paso 1, PRUEBAS DE CONOCIMIENTO VETERINARIO.
+</p>
+<p style="text-align: justify;">
     Guarda el siguiente link, ahí puedes continuar con las pruebas en caso de no terminarlas por algún imprevisto y/o para cargar documentos.
+</p>
+<p style="text-align: justify;">
+   <strong>Link para continuar es: http://kmimos.ilernus.com</strong>
 </p>
 <p style="text-align: justify; color: #f00;">
     <strong>INGRESA CON EL NOMBRE DE USUARIO Y CONTRASEÑA:</strong>
@@ -107,9 +110,6 @@ $mensaje_web = '
     </table>
 </p>
 
-<p>
-    Revisa tu correo, ahí te llegarán las segundas pruebas, PRUEBAS PSICOMETRICAS.
-</p>
 <p>
     ¡EXITO!
 </p>

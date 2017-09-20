@@ -163,7 +163,7 @@
 													data-title="Ingresa una descripción de al menos 50 caracteres incluyendo los espacios." 
 													data-help='"Cuentanos sobre ti, tus cualidades y porque deberían permitirte cuidar sus perritos"'
 													class='vlz_input jj_desc' id='descripcion' name='descripcion' placeholder='Preséntate con la comunidad Kmimos' required minlength="50"
-												>¡Hola! Soy ________, tengo ___ años y me encantan los animales. Estaré 100% al cuidado de tu perrito, lo consentiré y recibirás fotos diarias de su estancia conmigo. Mis huéspedes peludos duermen dentro de casa SIN JAULAS NI ENCERRADOS. Cuento con _______ para que jueguen, además cerca de casa hay varios parques donde los saco a pasear diariamente. En su estancia tu perrito contará con seguro de gastos veterinarios, que en caso de emergencia se encuentra a dentro d mi colonia, muy cerca de mi casa. Cualquier duda que tengas no dudes en contactarme.</textarea>
+												>¡Hola! Soy ________, tengo ___ años y me encantan los animales. Estaré 100% al cuidado de tu perrito, lo consentiré y recibirás fotos diarias de su estancia conmigo. Mis huéspedes peludos duermen dentro de casa SIN JAULAS NI ENCERRADOS. Cuento con _______ para que jueguen, además cerca de casa hay varios parques donde los saco a pasear diariamente. En su estancia tu perrito contará con cobertura de gastos veterinarios, que en caso de emergencia se encuentra a dentro d mi colonia, muy cerca de mi casa. Cualquier duda que tengas no dudes en contactarme.</textarea>
 											</div>
 										</div>
 
@@ -763,14 +763,14 @@
 
 		if(typeof place === 'undefined'){
 			messageInsite('#messageDirection','Sus coordenadasno fueron reconocidas.  puede buscar su ubicacion directamente en el mapa moviendo el pin');
-			message('Sus coordenadas no fueron reconocidas.  puede buscar su ubicacion directamente en el mapa moviendo el pin');
+			//message('Sus coordenadas no fueron reconocidas.  puede buscar su ubicacion directamente en el mapa moviendo el pin');
 			return;
 
 		}else{
 			if(!place.geometry){
 				//window.alert("Autocomplete's returned place contains no geometry");
 				messageInsite('#messageDirection','El sitio Seleccionado, GoogleMap no obtiene las coordenadas');
-				message('El sitio Seleccionado, GoogleMap no obtiene las coordenadas');
+				//message('El sitio Seleccionado, GoogleMap no obtiene las coordenadas');
 				return;
 
 			}else{
@@ -778,7 +778,7 @@
 				//messageClose('#messageDirection', callback);
 				jQuery('#messageDirection').css({'display':'none'});
 				messageInsite('#messageDirection','Puede mejorar su ubicacion directamente en el mapa moviendo el pin');
-				message('Puede mejorar su ubicacion directamente en el mapa moviendo el pin');
+				//message('Puede mejorar su ubicacion directamente en el mapa moviendo el pin');
 
 				lat=place.geometry.location.lat();
 				lng=place.geometry.location.lng();
@@ -813,7 +813,7 @@
 			lng=longitude;
 			set_inputCoordMap();
 			messageInsite('#messageDirection','Seleccionaste estado');
-			message('Seleccionaste estado');
+			//message('Seleccionaste estado');
 		}
 	});
 
@@ -827,7 +827,7 @@
 			lng=longitude;
 			set_inputCoordMap();
 			messageInsite('#messageDirection','seleccionaste municipio');
-			message('seleccionaste municipio');
+			//message('seleccionaste municipio');
 		}
 	});
 

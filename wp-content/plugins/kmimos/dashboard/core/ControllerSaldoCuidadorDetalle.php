@@ -9,10 +9,13 @@ require_once('GlobalFunction.php');
 function calculo_pago_cuidador( $id_reserva, $total, $pago, $remanente ){
 
 	$saldo_cuidador = 0;
-
-	$pago_kmimos = ceil (( 16.666666666 * $total )/100 );
-	$pago_cuidador_real = $total - $pago_kmimos;
-	$saldo_cuidador = $pago_cuidador_real - $remanente;
+	
+	$dif = $remanente + $pago;
+	if( $dif != $total || ($remanente == 0 && $dif == $total) ){
+	        $pago_cuidador_real = ($total / 1.2);
+	        $pago_kmimos = $total - $pago_cuidador_real;
+	        $saldo_cuidador = $pago_cuidador_real - $remanente;
+	}
 
 	return $saldo_cuidador;
 }

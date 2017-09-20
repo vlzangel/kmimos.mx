@@ -147,6 +147,7 @@
         cuidadores.longitud,
         cuidadores.latitud,
         cuidadores.adicionales,
+        cuidadores.atributos,
         (cuidadores.hospedaje_desde*1.2) AS precio,
         cuidadores.experiencia,
         post_cuidador.post_name AS slug,

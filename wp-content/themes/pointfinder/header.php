@@ -6,18 +6,47 @@
 			if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== false)){
         		header('X-UA-Compatible: IE=edge,chrome=1');
         	}
+
 			if ( is_page() ){
 				global $post;
 				$descripcion = get_post_meta($post->ID, 'kmimos_descripcion', true);
         		if( $descripcion != ""){
         			echo "<meta name='description' content='{$descripcion}'>";
-        		}else{ ?> <meta name="description" content="<?php esc_html(bloginfo('description')); ?>"> <?php }
-        	}else{ ?> <meta name="description" content="<?php esc_html(bloginfo('description')); ?>"> <?php }
-        	echo '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">';
+        		}
+        	}
+
+			$metas = '
+        		<meta name="keywords" content="Pension perro, pensión perro, hotel perro, guarderia perro, guardería perro, pension canina, pensión canina,  hotel canino, guarderia canina, guardería canina, paseador perro, paseo perro, estancia canina, baño perro, corte de uñas perro, corte pelo perro, transporte perro, traslado perro"/>
+        	';
+
+			$metas .= "
+				<!-- Facebook Pixel Code -->
+				<script>
+					!function(f,b,e,v,n,t,s)
+					{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+					n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+					if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+					n.queue=[];t=b.createElement(e);t.async=!0;
+					t.src=v;s=b.getElementsByTagName(e)[0];
+					s.parentNode.insertBefore(t,s)}(window,document,'script',
+					'https://connect.facebook.net/en_US/fbevents.js');
+					 fbq('init', '1947239458868599'); 
+					fbq('track', 'PageView');
+				</script>
+				<noscript>
+				 	<img height='1' width='1' src='https://www.facebook.com/tr?id=1947239458868599&ev=PageView&noscript=1'/>
+				</noscript>
+				<!-- End Facebook Pixel Code -->
+			";
+
+        	$metas .= '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">';
+
+        	echo comprimir_styles($metas);
 
 			wp_enqueue_style( 'vlz', get_home_url()."/wp-content/themes/pointfinder/css/vlz.css?v=1.0.0" );
 
 			wp_head(); 
+			
 		?>
 	</head>
 	<body <?php body_class(); ?> > <?php 
@@ -60,17 +89,32 @@
 				</a>
 				<div class="pf-container pf-megamenu-container">
 						<div class="pf-row col-md-2 col-lg-2">';
-
-					if( $post->post_name == 'quiero-ser-cuidador-certificado-de-perros' ){ $HTML .= '
+ 
+					if( array_key_exists('app_visitor', $_GET) ){ 
+						if( $_GET['app_visitor'] == 'true' ){
+							$HTML .= '
+							<div class="content-link-header hidden-xl hidden-lg hidden-md">
+								<a href="javascript:history.back()" class="pull-left hidden-md hidden-lg hidden-xl">
+									<img src="'.get_home_url().'/wp-content/uploads/2017/09/app_atras.png">
+								</a>
+								<a class="pull-left hidden-md hidden-lg hidden-xl">|</a>
+								<a href="'.get_home_url().'/?app_visitor=true" class="pull-left hidden-md hidden-lg hidden-xl">
+									<img src="'.get_home_url().'/wp-content/uploads/2017/09/app_inicio.png">
+								</a>
+							</div>';
+			 			} 
+		 			}else{
+						if( $post->post_name == 'quiero-ser-cuidador-certificado-de-perros' ){ $HTML .= '
 						<div id="btn-instrucciones-header" class="hidden-xl hidden-lg hidden-md">
 							<a class="btn-instrucciones-header pull-left hidden-md hidden-lg hidden-xl" onclick="jQuery(\'#modal_instrucciones\').css(\'display\', \'block\');">
 								Instrucciones
 							</a>
 						</div>';
-		 			}else{
-		 			$HTML .= '
-						<a class="pf-logo-container hidden-xs hidden-sm" href="'.get_home_url().'"></a>';
-		 			} 
+		 				}else{
+		 					$HTML .= '
+							<a class="pf-logo-container hidden-xs hidden-sm" href="'.get_home_url().'"></a>';
+		 				}
+					}
 		 			$HTML .= '				
 						</div>
 						<div class="col-lg-10 col-md-10" id="pfmenucol1">

@@ -1,4 +1,9 @@
-<?php 
+<?php
+global $post; 
+if( $post == "" ){
+	exit;
+}
+
 get_header();
 
 if (is_home() && (get_option('show_on_front') == 'posts' || get_option('show_on_front') == 'page')) {
