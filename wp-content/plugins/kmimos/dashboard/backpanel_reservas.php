@@ -257,9 +257,9 @@ $reservas = getReservas($_desde, $_hasta);
 							}
 						} ?>
 					</th>
-					<th><?php echo currency_format($meta_reserva['_booking_cost']); ?></th>
-					<th><?php echo currency_format($meta_Pedido['_order_total']); ?></th>
-					<th><?php echo currency_format($meta_Pedido['_wc_deposits_remaining']); ?></th>
+					<th><?php echo currency_format($meta_reserva['_booking_cost'], ""); ?></th>
+					<th><?php echo currency_format($meta_Pedido['_order_total'], ""); ?></th>
+					<th><?php echo currency_format($meta_Pedido['_wc_deposits_remaining'], ""); ?></th>
 					<th><?php echo $reserva->nro_pedido; ?></th>
 					<th><?php echo $estatus['sts_largo']; ?></th>
 

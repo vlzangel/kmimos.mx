@@ -156,6 +156,16 @@
 	                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
 	        );
 
+			$menus[] = array(
+				'title'=>'Saldo de Cupones',
+				'short-title'=>'Saldo de Cupones',
+				'parent'=>'kmimos',
+				'slug'=>'bp_saldo_cupon',
+				'access'=>'manage_options',
+				'page'=>'backpanel_saldo_cupon',
+				'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
+			);
+
 	        return $menus;
 
 	    }
@@ -238,6 +248,12 @@
             include_once('wlabel/admin/backpanel.php');
         }
     }
+
+	if(!function_exists('backpanel_saldo_cupon')){
+		function backpanel_saldo_cupon(){
+			include_once('dashboard/backpanel_saldo_cupon.php');
+		}
+	}
 
 
 ?>

@@ -95,6 +95,7 @@
     }
 
     $HTML = do_shortcode("[layerslider id='1']")."
+    <h1 style='font-size: 0px;'>No somos pensión para perros ni hotel para perros. Somos mucho mejor porque tenemos cuidadores certificados para perros.</h1>
     <style>
         #estado_cuidador_main {
             margin: 0px !important;
@@ -121,15 +122,6 @@
             margin-top: -10px;
             height: 25px !important;
         }
-        @media only screen and (max-width: 639px) { 
-            .grupo_selector { width: 100%; } 
-            html.iOS .selector_fecha {width: 50% !important}
-            html.iOS .fecha_desde {float: left; margin-top: 0px !important; margin-right: -16px;}
-            html.iOS .fecha_hasta {float: right; margin-top: 0px !important; margin-right: -16px;}
-            .fecha_desde {float: left;}
-            .fecha_hasta { display: block;}
-            .fecha_hasta_full { display: none;}
-        }
         .grupo_selector .marco {
             display: inline-block;
             border: 1px solid #888;
@@ -150,14 +142,17 @@
         }
         .grupo_selector select, .grupo_selector input {
             height: 25px;
-            width: 87%;
+            width: calc(100% - 50px) !important;
+            min-width: calc(100% - 50px);
             display: inline-block;
             clear: right;
             float: left;
             border: 0px;
             background-color: #ffffff;
         }
+
         .grupo_selector select{
+            width: calc(100% - 40px) !important;
             margin-top: -10px;
         }
         .grupo_selector input {
@@ -171,7 +166,40 @@
             margin: 7px 0px 15px 38px;
             text-align: left;
         }
+        @media only screen and (max-width: 639px) { 
+            .grupo_selector { width: 100%; } 
+            html.iOS .selector_fecha {width: 50% !important}
+            html.iOS .fecha_desde {float: left; margin-top: 0px !important; margin-right: -16px;}
+            html.iOS .fecha_hasta {float: right; margin-top: 0px !important; margin-right: -16px;}
+            .fecha_desde {float: left;}
+            .fecha_hasta { display: block;}
+            .fecha_hasta_full { display: none;}
+        }
+
+
+        .marco{
+            position: relative;
+        }
+        .no_error {
+            display: none;
+        }
+        .error {
+            position: relative;
+            border: solid 1px #cf6666;
+            margin: 0px 2px 0px 1px;
+            border-top: 0px;
+            background: #cf6666;
+            color: #FFF;
+            border-radius: 0px 0px 3px 3px;
+            font-size: 12px;
+        }
+
+        input.fechas {
+            margin-top: 0;
+            height: 35px !important;
+        } 
     </style>
+
     <div id='portada'>
         <form id='pointfinder-search-form-manual' method='POST' action='".get_home_url()."/wp-content/themes/pointfinder/vlz/buscar.php' data-ajax='false' novalidate='novalidate'>
             <center>
@@ -238,15 +266,30 @@
                             <div class='grupo_selector'>
                                 <div class='marco'>
                                     <div class='icono'><i class='icon-calendario embebed'></i></div>
+                                    <!--
                                     <sub>Desde cuando:</sub><br>
-                                    <input type='date' id='checkin' name='checkin' class='fechas' placeholder='Check In' min='".date("Y-m-d")."'>
+                                    <input type='text' placeholder='Desde' id='checkin' name='checkin' class='fechas' min='".date("Y-m-d")."'>
+                                    -->
+                                    <input type='text' id='checkin' name='checkin' placeholder='DESDE' value='' class='date_from' readonly>
+                                 </div>
+
+                                <div id='val_error_fecha_ini' class='no_error'>
+                                    Debe ingresar la fecha de inicio
                                 </div>
+
                             </div>
                             <div class='grupo_selector'>
                                 <div class='marco'>
                                     <div class='icono'><i class='icon-calendario embebed'></i></div>
+                                    <!--
                                     <sub>Hasta cuando:</sub><br>
-                                    <input type='date' id='checkout' name='checkout' class='fechas' placeholder='Check Out' disabled>
+                                    <input type='text' placeholder='Hasta' id='checkout' name='checkout' class='fechas' disabled>
+                                    -->
+                                    <input type='text' id='checkout' name='checkout' placeholder='HASTA' value='' class='date_to' readonly>
+                                </div>
+
+                                <div id='val_error_fecha_fin' class='no_error'>
+                                    Debe ingresar la fecha de finalización
                                 </div>
                             </div>
                         </div>
@@ -368,6 +411,16 @@
                     maxWidth: 340
                 });
 
+                function error_home_2(error, id){
+                    if(error){
+                        jQuery('#'+id).removeClass('no_error');
+                        jQuery('#'+id).addClass('error');
+                    }else{
+                        jQuery('#'+id).removeClass('error');
+                        jQuery('#'+id).addClass('no_error');
+                    }
+                }
+
                 function seleccionar_checkin() {
                     if( jQuery('#checkin').val() != '' ){
                         var fecha = new Date();
@@ -390,7 +443,11 @@
                         }
                             
                         jQuery('#checkout').attr('min', ini[0]+'-'+ini[1]+'-'+ini[2] );
+
+                        error_home_2(false, 'val_error_fecha_ini');
+                        error_home_2(false, 'val_error_fecha_fin');
                     }else{
+                        error_home_2(true, 'val_error_fecha_ini');
                         jQuery('#checkout').val('');
                         jQuery('#checkout').attr('disabled', true);
                     }
@@ -398,6 +455,14 @@
 
                 jQuery('#checkin').on('change', function(e){
                     seleccionar_checkin();
+                });
+
+                jQuery('#checkout').on('change', function(e){
+                    if( jQuery('#checkout').val() != '' ){
+                        error_home_2(false, 'val_error_fecha_fin');
+                    }else{
+                        error_home_2(true, 'val_error_fecha_fin');
+                    }
                 });
 
                 if( jQuery('#checkin').val() != '' ){
@@ -425,3 +490,83 @@
     echo comprimir_styles($HTML);
 ?>
 
+<script type="text/javascript">
+    var fecha = new Date();
+    jQuery(document).ready(function(){
+        function initCheckin(date, actual){
+            if(actual){
+                jQuery('#checkout').datepick({
+                    dateFormat: 'dd/mm/yyyy',
+                    defaultDate: date,
+                    selectDefaultDate: true,
+                    minDate: date,
+                    onSelect: function(xdate) {
+
+                    },
+                    yearRange: date.getFullYear()+':'+(parseInt(date.getFullYear())+1),
+                    firstDay: 1,
+                    onmonthsToShow: [1, 1]
+                });
+                // jQuery('#checkout').focus();
+            }else{
+                jQuery('#checkout').datepick({
+                    dateFormat: 'dd/mm/yyyy',
+                    minDate: date,
+                    onSelect: function(xdate) {
+
+                    },
+                    yearRange: date.getFullYear()+':'+(parseInt(date.getFullYear())+1),
+                    firstDay: 1,
+                    onmonthsToShow: [1, 1]
+                });
+                // jQuery('#checkout').focus();
+            }
+        }
+
+        jQuery('#checkin').datepick({
+            dateFormat: 'dd/mm/yyyy',
+            minDate: fecha,
+            onSelect: function(date1) {
+                var ini = jQuery('#checkin').datepick( "getDate" );
+                var fin = jQuery('#checkout').datepick( "getDate" );
+                if( fin.length > 0 ){
+                    var xini = ini[0].getTime();
+                    var xfin = fin[0].getTime();
+                    if( xini > xfin ){
+                        jQuery('#checkout').datepick('destroy');
+                        initCheckin(date1[0], true);
+                    }else{
+                        jQuery('#checkout').datepick('destroy');
+                        initCheckin(date1[0], false);
+                    }
+                }else{
+                    jQuery('#checkout').datepick('destroy');
+                    initCheckin(date1[0], true);
+                }
+            },
+            yearRange: fecha.getFullYear()+':'+(parseInt(fecha.getFullYear())+1),
+            firstDay: 1,
+            onmonthsToShow: [1, 1]
+        });
+
+        jQuery('#checkout').datepick({
+            dateFormat: 'dd/mm/yyyy',
+            minDate: fecha,
+            onSelect: function(xdate) {
+
+            },
+            yearRange: fecha.getFullYear()+':'+(parseInt(fecha.getFullYear())+1),
+            firstDay: 1,
+            onmonthsToShow: [1, 1]
+        });
+    });
+
+
+/*
+    jQuery(document).on('click','input[type=\'text\'].fechas',function(event){
+        jQuery(this).blur();
+        jQuery(this).attr('type','date');
+        jQuery(this).focus();
+    });
+*/
+</script>

@@ -539,8 +539,9 @@ footer ul li{
 /***************************************/
 
 @media (max-width: 766px){ 
+	#section-1{background-image: url(../img/fondo-cabecera-responsive.jpg); padding-bottom: 20px;}
 	#section-1 h1{
-	    font-size: 22px;
+	    font-size: 15px;
 	    margin-top: 6%;
 	    width: 100%;
 	    margin-left: -1%;
@@ -548,11 +549,11 @@ footer ul li{
 	#section-1 p {
 	    text-align: center;
 	    width: 90%;
-	    font-size: 20px;
+	    font-size: 15px;
 	    margin-left: 6%;
 	    margin-top: 13%;
 	}
-	#section-1 > a > img {bottom: 35%; width: 95%;}
+	#section-1 > a > img {bottom: auto; width: 70%; position: relative;}
 	#img-cab-3 {width: 20%; margin-top: 95%; margin-left: 9%;}
 	#img-perro-3 {margin-top: 112%;right: 78%;}
 	#img-cab-5{margin-top: 95%; left: 65%;}
@@ -688,7 +689,7 @@ footer ul li{
 	.fondo-logo{background-image: url(../img/fondo-logo.jpg); height: 10%;}
 	.logo{width: 40%;}
 	.img-kmimos{width: 80%; padding:20px;}
-	.container-fluid {overflow: hidden;height: 100%;}
+	.container-fluid {overflow: hidden;height: auto;}
 	
 	.img-req{
 		width: 165px;

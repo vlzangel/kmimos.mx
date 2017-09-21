@@ -43,6 +43,9 @@
 	foreach ($adicionales['transportacion_sencilla'] as $key => $value) {
 		if( $_POST["transportacion_sencilla_".$key]+0 > 0 ){
 			$transportacion_sencilla = true;
+
+            //ADDITIONAL STATUS
+            $adicionales['status_transportacion_sencilla'] = "1";
 		}
 		$adicionales['transportacion_sencilla'][$key] = $_POST["transportacion_sencilla_".$key]+0;
 	}
@@ -54,8 +57,11 @@
         "largo" => "Largas"
     );
 	foreach ($adicionales['transportacion_redonda'] as $key => $value) {
-		if( $_POST["transportacion_sencilla_".$key]+0 > 0 ){
+		if( $_POST["transportacion_redonda_".$key]+0 > 0 ){
 			$transportacion_redonda = true;
+
+            //ADDITIONAL STATUS
+            $adicionales['status_transportacion_redonda'] = "1";
 		}
 		$adicionales['transportacion_redonda'][$key] = $_POST["transportacion_redonda_".$key]+0;
 	}
@@ -72,6 +78,9 @@
     foreach ($adicionales_extra as $key => $value) {
     	if( $value+0 > 0 ){
     		$adicionales[$key] = $value+0;
+
+            //ADDITIONAL STATUS
+            $adicionales['status_'.$key] = "1";
     	}
     }
 	
@@ -138,7 +147,7 @@
 
     $addons = "";
 
-	$sql = "UPDATE cuidadores SET adicionales = '".serialize($adicionales)."', hospedaje = '".serialize($hospedaje)."', hospedaje_desde = '".$base_hospedaje."' WHERE user_id = ".$user_id.";";
+	$sql = "UPDATE cuidadores SET check_in='".$checkin."', check_out='".$checkout."', adicionales = '".serialize($adicionales)."', hospedaje = '".serialize($hospedaje)."', hospedaje_desde = '".$base_hospedaje."' WHERE user_id = ".$user_id.";";
 	$db->query($sql);
 
 	$cuidador = $db->get_row("SELECT * FROM cuidadores WHERE user_id = {$user_id}");
@@ -182,6 +191,8 @@
   		}
 
         $adicionales['comision'] = 1.2;
+        $adicionales['checkin'] = $checkin;
+        $adicionales['checkout'] = $checkout;
         $addons = ( sql_addons($adicionales) );
 
         $db->query("UPDATE wp_postmeta SET meta_value = '{$addons}' WHERE post_id = {$hospedaje} AND meta_key = '_product_addons';");

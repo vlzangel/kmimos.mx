@@ -99,7 +99,7 @@ function pf_styleandscripts(){
 		// if ($usemin == 1) {$script_file_1n = "theme-scripts.min.js";}else{$script_file_1n = "theme-scripts.js";}
 		if ($usemin == 1) {$script_file_1n = "theme-scripts-jauregui.js";}else{$script_file_1n = "theme-scripts-jauregui.js";}
 
-		wp_register_script('theme-scriptspf', get_home_url()."/wp-content/themes/pointfinder" . '/js/'.$script_file_1n, array('jquery','jquery-ui-core','jquery-ui-draggable','jquery-ui-tooltip','jquery-effects-core','pftheme-minified-package','jquery-ui-slider','jquery-effects-fade','jquery-effects-slide','jquery-ui-dialog','pftheme-minified-package'), '1.0.2', true); 
+		wp_register_script('theme-scriptspf', get_home_url()."/wp-content/themes/pointfinder" . '/js/'.$script_file_1n, array('jquery','jquery-ui-core','jquery-ui-draggable','jquery-ui-tooltip','jquery-effects-core','pftheme-minified-package','jquery-ui-slider','jquery-effects-fade','jquery-effects-slide','jquery-ui-dialog','pftheme-minified-package'), '1.0.3', true); 
         wp_enqueue_script('theme-scriptspf'); 
         wp_localize_script( 'theme-scriptspf', 'theme_scriptspf', array( 
 			'ajaxurl' => get_home_url()."/wp-content/themes/pointfinder".'/admin/core/pfajaxhandler.php',

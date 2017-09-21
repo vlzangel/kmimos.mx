@@ -3,16 +3,11 @@
 		<h3 id="reply-title" class="comment-reply-title">
 			Deja un comentario
 		</h3>				
-		<form action="http://kmimosmx.sytes.net/QA1/wp-comments-post.php" method="post" id="commentform" class="comment-form golden-forms">
+		<form action="<?php echo get_home_url(); ?>/wp-comments-post.php" method="post" id="commentform" class="comment-form golden-forms">
 			<p class="comment-notes"><span id="email-notes">Tu dirección de correo electrónico no será publicada.</span> Los campos necesarios están marcados <span class="required">*</span></p>
 			<section>
 	            <label class="lbl-ui">
 	            	<textarea id="comment" name="comment" class="textarea" placeholder="Tu comentario" required></textarea>
-	            </label>                          
-	        </section>
-			<section>
-	            <label class="lbl-ui">
-	            	<div class="g-recaptcha" data-sitekey="6LeQPysUAAAAAKKvSp_e-dXSj9cUK2izOe9vGnfC"></div>
 	            </label>                          
 	        </section>
 		
@@ -32,6 +27,12 @@
 	                </div>
 	            </div>                       
 	        </section> 
+	        
+			<section>
+	            <label class="lbl-ui">
+	            	<div class="g-recaptcha" data-sitekey="6LeQPysUAAAAAKKvSp_e-dXSj9cUK2izOe9vGnfC"></div>
+	            </label>                          
+	        </section>
 			
 			<p class="form-submit">
 				<input name="submit" type="submit" id="submit" class="submit button" value="Publicar comentario">
@@ -48,7 +49,7 @@
 			event.preventDefault();
 			alert( "Debes validar el CAPTCHA para continuar." );
 		}
-		
+
 	});
 </script>
     

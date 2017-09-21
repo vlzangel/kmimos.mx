@@ -47,6 +47,55 @@ wc_print_notices();
 
 do_action( 'woocommerce_before_cart' ); ?>
 
+<!-- Modificacion Ángel Veloz -->
+<style type="text/css">
+ tbody .product-subtotal,
+ .cart-subtotal td,
+ .cart-discount td,
+ .order-total td,
+ .order-paid td,
+ .vlz_totales td,
+ .order-remaining td {
+	 text-align: right !important;
+ }
+.woocommerce .cart-collaterals .cross-sells, .woocommerce-page .cart-collaterals .cross-sells, .woocommerce .cart-collaterals .cart_totals, .woocommerce-page .cart-collaterals .cart_totals {
+	width: 100% !important;
+}
+a.checkout-button.button.alt.wc-forward {
+	margin-top: 10px;
+	max-width: 300px;
+	float: right;
+}
+.woocommerce-cart .cart-collaterals .cart_totals table th {
+	width: auto;
+}
+.woocommerce .cart .button,
+.woocommerce .cart .button:hover
+{
+	background-color: #59c9a8;
+}
+.woocommerce-message a{
+	display: none;
+}
+#coupon_code {
+    color: black !important;
+}
+
+/*CG
+.actions .coupon.original{display: none;}
+ */
+</style>
+
+<script type="text/javascript">
+	jQuery(document).on('click','.woocommerce .actions .coupon.logic input',function(e){
+		e.preventDefault();
+		e.stopPropagation();
+		e.stopImmediatePropagation();
+
+
+	});
+</script>
+
 <form action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
 
 <?php do_action( 'woocommerce_before_cart_table' ); ?>
@@ -155,12 +204,18 @@ do_action( 'woocommerce_before_cart' ); ?>
 		?>
 		<tr>
 			<td colspan="6" class="actions">
-
 				<?php if ( wc_coupons_enabled() ) { ?>
-					<div class="coupon">
-
-						<label for="coupon_code"><?php _e( 'Coupon', 'woocommerce' ); ?>:</label> <input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="<?php esc_attr_e( 'Coupon code', 'woocommerce' ); ?>" /> <input type="submit" class="button" name="apply_coupon" value="<?php esc_attr_e( 'Apply Coupon', 'woocommerce' ); ?>" />
-
+					<!--
+					<div class="coupon kmimos">
+						<label for="coupon_code"><?php _e( 'Coupon', 'woocommerce' ); ?>:</label>
+						<input type="text" name="kmimos_code" class="input-text" id="kmimos_code" value="" placeholder="<?php esc_attr_e( 'Coupon code', 'woocommerce' ); ?>" />
+						<input type="submit" class="button" name="kmimos_coupon" value="<?php esc_attr_e( 'Apply Coupon', 'woocommerce' ); ?>" />
+					</div>
+					-->
+					<div class="coupon original">
+						<label for="coupon_code"><?php _e( 'Coupon', 'woocommerce' ); ?>:</label>
+						<input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="<?php esc_attr_e( 'Coupon code', 'woocommerce' ); ?>" />
+						<input type="submit" class="button" name="apply_coupon" value="<?php esc_attr_e( 'Apply Coupon', 'woocommerce' ); ?>" />
 						<?php do_action( 'woocommerce_cart_coupon' ); ?>
 					</div>
 				<?php } ?>
@@ -185,35 +240,3 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 <?php do_action( 'woocommerce_after_cart' ); ?>
 
-
-<!-- Modificacion Ángel Veloz -->
-<style>
-	tbody .product-subtotal,
-	.cart-subtotal td,
-	.cart-discount td,
-	.order-total td,
-	.order-paid td,
-	.vlz_totales td,
-	.order-remaining td {
-		text-align: right !important;
-	}
-	.woocommerce .cart-collaterals .cross-sells, .woocommerce-page .cart-collaterals .cross-sells, .woocommerce .cart-collaterals .cart_totals, .woocommerce-page .cart-collaterals .cart_totals {
-	    width: 100% !important;
-	}
-	a.checkout-button.button.alt.wc-forward {
-	    margin-top: 10px;
-	    max-width: 300px;
-	    float: right;
-	}
-	.woocommerce-cart .cart-collaterals .cart_totals table th {
-	    width: auto;
-	}
-	.woocommerce .cart .button,
-	.woocommerce .cart .button:hover
-	{
-	    background-color: #59c9a8;
-	}
-	.woocommerce-message a{
-		display: none;
-	}
-</style>

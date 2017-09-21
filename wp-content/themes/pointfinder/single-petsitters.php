@@ -1,3 +1,63 @@
+<style type="text/css">
+	#knowCaregiver{position:relative; max-width: 700px;  margin: 0 auto; top: 75px; border-radius: 20px;  background: #a8d432;  overflow: hidden; display: flex; align-items: flex-end;}
+	#knowCaregiver .exit{position: absolute; top: 0; right: 0; margin: 10px; font-size: 20px; font-style: inherit; cursor: pointer; z-index: 1;}
+	#knowCaregiver .section{position: relative; width: 60%; padding: 10px 0; float: left; font-size: 17px; text-align: left;}
+	#knowCaregiver .section.section1{width: 40%; min-width:250px;}
+	#knowCaregiver .section.section1:before{content:""; position:absolute; width:100%; height:40px; bottom: 0; background:#80ae08;}
+	#knowCaregiver .section.section1:after{content:""; position: absolute; width: 40%; height: 25px; top: 10px; right:10px; background: url(https://kmimos.com.mx/wp-content/uploads/2017/02/logo-kmimos.png)center/contain no-repeat;}
+	#knowCaregiver .section.section1 .images{position: relative; margin: 0 40px; display: flex; justify-content: flex-start; align-items: baseline;}
+	#knowCaregiver .section.section2{padding:20px; font-size: 14px; text-align: justify; background: #61a6af;}
+	#knowCaregiver .section.section2 button{padding: 5px 10px; color: #FFF; font-size: 15px; border-radius: 5px;  border: none; background: #ff416d; }
+	#knowCaregiver .section.section2:before{content: ""; position: absolute; width: 40px; height: 40px; left: -20px; top: calc(50% - 20px); border-radius: 50%; background: #61a6af;}
+
+	@media screen and (max-width:480px), screen and (max-device-width:480px) {
+		#knowCaregiver {top: 15px; display: block;}
+		#knowCaregiver .exit {right: 5px;}
+		#knowCaregiver .section{ width: 100%; padding: 10px 0; font-size: 12px;}
+		#knowCaregiver .section.section1{width: 100%; margin: 25px 0;}
+		#knowCaregiver .section.section1:after{top: 20px; right: 0px;}
+		#knowCaregiver .section.section1 .images{justify-content: flex-start;}
+		#knowCaregiver .section.section2{text-align: center;}
+		#knowCaregiver .section.section2:before{top: -20px; left: calc(50% - 20px);}
+	}
+</style>
+
+<script type='text/javascript'>
+	//knowCaregiver
+	function PopUpknowCaregiver(){
+		var dog = '<img height="120" style="z-index: 1;" align="bottom" src="https://www.kmimos.com.mx/wp-content/uploads/2017/08/Botón-conocer-cuidador-07.png">' +
+				'<img height="80" style="position:relative; margin-left:-6px; top: 5px;" align="bottom" src="https://www.kmimos.com.mx/wp-content/uploads/2017/08/Botón-conocer-cuidador-08.png">';
+
+		var html='<div id="knowCaregiver">' +
+			//'<i class="exit fa fa-times" aria-hidden="true" onclick="messagePopUp_Close(\'#message.PopUp\')"></i>' +
+			'<i class="exit" onclick="messagePopUp_Close(\'#message.PopUp\')">X</i>' +
+			'<div class="section section1"><div class="images">'+dog+'</div></div>' +
+			'<div class="section section2"><span>Te invitamos a realizar tu <button onclick="PopUpknowCaregiverBooking()">Reserva</button><br>Podr&aacute;s conocer a tu cuidador en cualquier momento antes de la entrada de tu perrito, en su casa o cualquier punto en el que acuerden. Los datos para conocerse vendr&aacute;n en el correo que recibir&aacute;s al completar la solicitud de Reserva.</span></div>' +
+			'</div>';
+
+		messagePopUp_Create(html);
+
+
+		if(jQuery('#iframeUpknowCaregiver').length==0){
+			jQuery('body').append('<iframe id="iframeUpknowCaregiver"></iframe>');
+		}
+		jQuery('#iframeUpknowCaregiver').css({'display':'none'}).attr('src','kmimos.com.mx/?utm_source=kmimospage&utm_medium=boton&utm_campaign=conocer_cuidador');
+	}
+
+	function PopUpknowCaregiverBooking(){
+		messagePopUp_Close('#message.PopUp');
+
+		var href = jQuery('#btn_reservar').attr('href');
+		if(typeof href ==='undefined'){
+			jQuery('#btn_reservar').trigger("click");//.click();
+		}else{
+			window.location.href = href;
+		}
+	}
+
+
+</script>
+
 <?php
 
 	get_header();
@@ -132,6 +192,7 @@
 				".kmimos_petsitter_rating($post_id);
 				if(is_user_logged_in()){
 					$HTML .= "<a id='btn_conocer' class='theme_button button conocer-cuidador' href='".get_home_url()."/conocer-al-cuidador/?id=".$post_id."'>Conocer al Cuidador</a>";
+					//$HTML .= "<span id='btn_conocer' class='theme_button button conocer-cuidador' onclick='PopUpknowCaregiver();'>Conocer al Cuidador</span>";
 					include('vlz/seleccion_boton_reserva.php');
 				}else{
 					$HTML .= "
@@ -140,6 +201,7 @@
 						class='theme_button button conocer-cuidador' 
 						onclick=\"perfil_login('btn_conocer');\"
 					>Conocer al Cuidador</span>
+					<span id='btn_conocer'style='display:none;' class='theme_button button conocer-cuidador' onclick='PopUpknowCaregiver();'>Conocer al Cuidador</span>
 					<span 
 						id='btn_reservar'
 						class='button reservar' 
@@ -279,28 +341,19 @@
 
 		<h3 class="vlz_titulo">Mi Ubicaci&oacute;n</h3>
 		<div class="vlz_seccion">
-			<iframe id="petsitter-map" src="'.get_home_url().'/wp-content/plugins/kmimos/mapa.php?lat='.$latitud.'&lng='.$longitud.'" width="100%" height="300" style="border:none"></iframe>
+			<div id="mapa" style="height: 300px;"></div>
 		</div>
 
 		<div class="vlz_separador"></div>
 		<h3 class="vlz_titulo">Estos son mis servicios</h3>
 		<div class="vlz_seccion">';
-			$args = array(
-				"post_type" => "product",
-		        "post_status" => "publish",
-		        "author" => $cuidador->user_id
-		    );
-
-		    $products = get_posts( $args );
-
-		    $ids = "";
-		    foreach($products as $product){
-		        if( $ids != "") $ids .= ",";
-		        $ids .= $product->ID;
+			$productos = $wpdb->get_results("SELECT ID FROM wp_posts WHERE post_author = {$cuidador->user_id} AND post_type = 'product' AND post_status = 'publish' ");
+			$xids = array();
+		    foreach ($productos as $key => $value) {
+		    	$xids[] = $value->ID;
 		    }
-
-		    if($ids != ""){
-		        $comando = "[products ids='".$ids."']";
+		    if( count($xids) > 0 ){
+		        $comando = "[products ids='". implode(",", $xids) ."'] ";
 		        $HTML .= do_shortcode($comando);
 		    } $HTML .= "
 		</div>";
@@ -319,16 +372,13 @@
 
 		echo comprimir_styles($HTML);
 			
-			$comments = count( get_comments('post_id='.$post->ID) );
-			if( $comments > 0 ){ ?>
+			$comments = count( get_comments('post_id='.$post->ID) ); ?>
 				<div class="vlz_separador"></div>
 				<h3 class="vlz_titulo">Valoraciones</h3>
 				<div class="vlz_seccion">
 					<?php  comments_template(); ?>
-				</div> <?php
-			}
-			
-		echo '</div>
+				</div> <?php			
+		$HTML = '</div>
 
 		<script>
 			function perfil_login(accion){
@@ -343,9 +393,37 @@
 					document.getElementById(POST_LOGIN).click();
 				}
 			});
+
+			var map;
+			function initMap() {
+				var latitud = '.$latitud.';
+				var longitud = '.$longitud.';
+				map = new google.maps.Map(document.getElementById("mapa"), {
+					zoom: 10,
+					center:  new google.maps.LatLng(latitud, longitud), 
+					mapTypeId: google.maps.MapTypeId.ROADMAP
+				});
+				marker = new google.maps.Marker({
+					map: map,
+					draggable: false,
+					animation: google.maps.Animation.DROP,
+					position: new google.maps.LatLng(latitud, longitud),
+					icon: "https://www.kmimos.com.mx/wp-content/themes/pointfinder/vlz/img/pin.png"
+				});
+			}
+
+			(function(d, s){
+				$ = d.createElement(s), e = d.getElementsByTagName(s)[0];
+				$.async=!0;
+				$.setAttribute("charset","utf-8");
+				$.src="//maps.googleapis.com/maps/api/js?v=3&key=AIzaSyD-xrN3-wUMmJ6u2pY_QEQtpMYquGc70F8&callback=initMap";
+				$.type="text/javascript";
+				e.parentNode.insertBefore($, e)
+			})(document, "script");
+
 		</script>';
 
-	
+		echo comprimir_styles($HTML);
 
 	get_footer(); 
 ?>
