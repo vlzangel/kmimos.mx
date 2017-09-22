@@ -1,11 +1,12 @@
 @font-face { font-family: Poetsen One; src: url(../fonts/PoetsenOne-Regular.ttf);}
+@font-face {font-family: 'Calibri Light'; font-style: normal; font-weight: normal; src: local('Calibri Light'), url('../fonts/calibril.woff') format('woff');}
 @import url('https://fonts.googleapis.com/css?family=Bree+Serif');
 @import url('https://fonts.googleapis.com/css?family=Lato:700');
 body{background: #49C9B0; 	color: #3a3a3a; font-family: Poetsen One;}
 strong{font-weight: 900;}
 
 html,body{margin:0px; 	height:100%; }
-.container-fluid{ overflow: hidden; height: 100%;}
+.container-fluid{height: 100%;}
 
 /***************************************/
 /*  CABECERA Y Section-1               */
@@ -39,7 +40,9 @@ header{
 	height: 100%;
 }
 #section-1 h1{
-	margin-top: 5%;
+	font-family: 'Calibri Light';
+	margin-top: 3%;
+	margin-bottom: 3%;
     margin-left: 15%;
     font-size: 40px;
     width: 65%;
@@ -47,87 +50,69 @@ header{
 }
 #section-1 > a > img{
 	position: absolute;
-	bottom: 50%;
+	bottom: 46%;
 	width: 90%;
-	max-width: 470px;
+	max-width: 565px;
 	left: 0;
 	right: 0;
 	margin:0 auto;
 }
-.img-cabecera{width: 15px;}
+
 #img-cab-1{
-	width: 10%;
+	width: 120%;
     position: absolute;
     display: block;
     margin: 0 auto;
-    margin-top: 52%;
-    margin-left: 20%;
+    margin-top: 20%;
+    margin-left: -27%;
 }
-#img-cab-2{
-	width: 13%;
-    position: absolute;
-    display: block;
-    margin: 0 auto;
-    margin-top: 70%;
-    margin-left: 28%;
-}
-
 #img-cab-3{
-	width: 17%;
+	width: 88%;
     position: absolute;
     display: block;
     margin: 0 auto;
-    margin-top: 73%;
-    margin-left: 0%;
-}
-#img-perro-3{
-	width: 15%;
-    position: absolute;
-    display: block;
-    margin: 0 auto;
-    margin-top: 88%;
-    right: 90%;
-}
-
-#img-pelota-4{
-	width: 5%;
-    position: absolute;
-    display: block;
-    margin: 0 auto;
-    margin-top: 88%;
-    left: -33%;
+    margin-top: 44%;
+    margin-left: -53%;
 }
 #img-cab-4{
-	width: 17%;
+	width: 90%;
     position: absolute;
     display: block;
     margin: 0 auto;
-    margin-top: 65%;
-    right: 140%;
-}
-#img-perro-4{
-	width: 15%;
-    position: absolute;
-    display: block;
-    margin: 0 auto;
-    margin-top: 86%;
-    right: 105%;
+    margin-top: 40%;
+    right: 90%;
 }
 #img-cab-5{
-	width: 25%;
+	width: 70%;
     position: absolute;
     display: block;
     margin: 0 auto;
-    margin-top: 68%;
-    left: 240%;
+    margin-top: 50%;
+    left: 235%;
 }
-#img-segu-5{
-	width: 14%;
-    position: absolute;
-    display: block;
-    margin: 0 auto;
-    margin-top: 69%;
-    left: 265%;
+
+.controll-pagination{
+	text-align:center;
+	margin-top:10px;
+	font-size: 24px;
+	bottom: -431px;
+    position: relative;	
+}
+.back-green{
+	color: #49c9b0;
+	border-radius: 75%;
+	padding-left: 8px; 
+	padding-right: 8px; 
+	border: 2px solid #49c9b0;
+	margin-top: 10px;
+}
+.back-white{
+	margin-top: 10px;
+	color:#fff;
+	border-radius: 75%;
+	padding-left: 8px; 
+	padding-right: 8px; 
+	border: 2px solid #fff;
 }
 /***************************************/
 /*  Section-2                          */
@@ -137,7 +122,7 @@ header{
 	width: 100%;
 	height: 80%;
 	overflow: hidden;
-	background: #D8E6EE;
+	background: #edeef0;
 }
 .img-galeria {
 	display: block;
@@ -157,7 +142,7 @@ header{
 #section-2  article {
 	display: block;
 	width: 100%;
-	margin-top: 3%;
+	margin-top: 10%;
 	margin-left: 15%;	
 }
 #section-2 > article:first{
@@ -180,7 +165,6 @@ iframe {
 	position:relative;
 	padding-bottom:0%;
 	padding-top:60%;
-	height:0;
 	overflow:hidden;
 }
 .video-container iframe, 
@@ -198,32 +182,33 @@ iframe {
 #section-3{
 	font-family: Poetsen One;
 	color: #fff;
-	padding-top:45px;
-	padding-bottom: 45px;
+	padding-top:30px;
+/*	padding-bottom: 45px;*/
 	background: #D8E6EE;
-	height: 68%;
+	height: 50%;
 	margin: 0 auto;
 	overflow: hidden;
 }
 .lista-3{
 	color:#fff!important;
-	font-size: 20px;
+	font-size: 15px;
 	font-family: 'Lato', sans-serif; 
 	font-weight: bold;
 	margin-left: 10%;
-    margin-top: 4%;
+    margin-top: 3%;
+    list-style: none;
 }
 .row-1{
 	margin-left: -20px;
 }
 .morado{
 	background-color: #AB07A0;
-	padding: 5px;
-	height: 350px;
+	padding: 10px;
+	height: 260px;
 	margin-left: 0px;
 }
 .morado > h2{
-	font-size: 3em!important;
+	font-size: 2em!important;
 	margin-left: 13%;
 	color: #fff;
 }
@@ -233,28 +218,11 @@ iframe {
 }
 #img-ventaja{
 	display: block;
-    width: 40%;
-    height: 280px;
+    width: 70%;
     position: absolute;
     margin: 0 auto;
-    margin-top: 15%;
-    margin-left: 27%;
-}
-#img-perro{
-	width: 25%;
-    position: absolute;
-    display: block;
-    margin: 0 auto;
-    margin-top: 46%;
-    margin-left: 12%;
-}
-#img-pelota{
-	display: block;
-    width: 7%;
-    position: absolute;
-    margin: 0 auto;
-    margin-top: 55%;
-    margin-left: 36%;
+    margin-top: 7%;
+    margin-left: 7%;
 }
 
 /***************************************/
@@ -265,34 +233,36 @@ iframe {
 	font-family: Poetsen One;
 	margin: 0 auto;
     background: #fff;
-    height: 80%;
+    height: 51%;
     overflow: hidden;
-    margin-bottom: 5%;
+    margin-bottom: 0.5%;
 }
-
+.letra{color: #867d7d; text-align: center; font-size: 15px; font-family: 'Lato', sans-serif; font-weight: bold;}
 .conte-serv-ind{
-	padding: 15px;
+	padding: 45px;
 	margin:0 auto;
-	width: 100%;
+	width: 90%;
     color: #867d7d;
 }
 .baja{top:35px;}
 #h2{
-	font-size: 3em!important;
+	font-size: 2.5em!important;
 	text-align: center;
 	color: #1D8DD3;
-	margin-bottom: 30px;
+	margin-bottom: -35px;
 }
 #section-4 article{
 	padding-top:1%;
 	padding-bottom:1%;
 }
 .img-servicio{
-	width: 65%;
+	width: 50%;
     margin: 0 auto;
     margin-bottom: 5%;
-    margin-left: 15%;
+    margin-left: 22%;
 }
+.m1{margin-top: -1%;}
+.m2{margin-top: -3%;}
 /***************************************/
 /*  Section-5                          */
 /***************************************/
@@ -302,7 +272,7 @@ iframe {
 	width: 100%;
 	height: auto;
 	color: #fff;
-	background-color: #D99D04;
+	background-color: #edbe32;
 	font-weight: lighter;
 	overflow: hidden;
 }
@@ -349,11 +319,11 @@ iframe {
 #h2-req{
 	font-size: 3em!important;
     text-align: center;
-    color: #D99D04;
+    color: #ff960e;
 	/*margin-bottom: 30px;*/
 }
 .imgpru{margin-top: -31px;}
-.letra{color: #867d7d; text-align: center; font-size: 20px; font-family: 'Lato', sans-serif; font-weight: bold;}
+
 .centrate{
 	margin:0 auto;
 	margin-left: 120px;
@@ -527,20 +497,23 @@ footer ul li{
 	height: 15%;
 	margin-bottom: 5px;
 }
+.banderas{
+		width: 100%;
+    	margin-top: -10%;
+   	 	margin-bottom: -10%;
+	}
 /***************************************/
 /*  Media                              */
 /***************************************/
 
 @media (max-width: 766px){ 
 	#section-1{background-image: url(../img/fondo-section01-responsive.jpg);}
-	#section-1 h1{font-size: 25px; margin-top: 10%;}
-	#section-1 > a > img {bottom: 55%;}
-	#img-cab-3 {width: 15%; margin-top: 100%; margin-left: 9%;}
-	#img-perro-3 {margin-top: 112%; right: 81%; width: 12%;}
-	#img-cab-5{margin-top: 100%; left: 70%;}
-	#img-segu-5{margin-top: -100%;left: 200%;}
+	#section-1 h1{font-size: 22px; margin-top: 10%;}
+	#section-1 > a > img {bottom: 40%;}
+	#img-cab-3 {width: 85%; margin-top: 50%; margin-left: -35%;}
+	#img-cab-5{margin-top: 60%; left: 70%; width: 30%;}
 	#section-2{margin-bottom: 15px; height: 40%;}
-	#section-2 {height: 35%;}
+	#section-2 {height: auto;}
 	#section-2  article {margin-top: 3%;margin-left: 16%;}
 	#section-2 h2{margin-top:0px!important;margin-bottom:0px!important;color: #fff;font-size: 1em;}
 	.video-container {
@@ -670,7 +643,7 @@ footer ul li{
 	.fondo-logo{background-image: url(../img/fondo-logo.jpg); height: 10%;}
 	.logo{width: 40%;}
 	.img-kmimos{width: 80%; padding:20px;}
-	.container-fluid {overflow: hidden;height: 100%;}
+	.container-fluid {overflow: hidden;height: auto;}
 	
 	.img-req{
 		width: 165px;
