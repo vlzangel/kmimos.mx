@@ -26,7 +26,7 @@ header{
 }
 
 .ancho{
-	padding-bottom: 300px;
+	padding-bottom: 25%;
 }
 #section-1{
 	background-image: url(../img/fondo-cabecera.jpg);
@@ -37,6 +37,7 @@ header{
 	color: #fff;
 	font-weight: lighter;
 }
+
 #section-1 h1{
 	font-family: 'Calibri Light';
 	margin-top: 3%;
@@ -68,7 +69,7 @@ header{
 	text-align:center;
 	margin-top:10px;
 	font-size: 30px;
-	bottom: -280px;
+	bottom: -310px;
     position: relative;	
 }
 .back-green{
@@ -725,8 +726,8 @@ footer p a:hover{
     	margin-right: -1%;
 	}
 }
-@media (min-width: 360px) {
-	#section-1{padding-bottom: 0px;}
+@media (min-width: 360px) and (max-width: 765px) {
+	.ancho {padding-bottom: 10%;}
 	.redes {
 	    margin-left: 60%;
 	    margin-top: -85%;
@@ -741,11 +742,19 @@ footer p a:hover{
 	    margin-top: 10%;
 	    margin-left: 16%;
 	}
+	#section-2 {
+	    margin-bottom: 15px;
+	    height: 45%;
+	}
+	#section-2 article {
+	    margin-top: 15%;
+	}
 	footer {
     	height: 70%;
 	}
 }
-@media (min-width: 320px){
+@media (min-width: 320px) and (max-width:359px){
+	.ancho {padding-bottom: 0%;}
 	.contactanos{margin-left: 14%;}
 	#img-ventaja {
 	    margin-top: -18%;
