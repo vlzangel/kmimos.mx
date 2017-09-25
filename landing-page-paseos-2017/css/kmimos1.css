@@ -274,7 +274,7 @@ iframe {
 }
 .letra-req{
 	color: #867d7d; 
-	margin-left: 15px; 
+	margin-left: 25%; 
 	font-family: 'Lato', 
 	sans-serif; 
 	font-size: 16px; 
@@ -498,7 +498,7 @@ footer p a:hover{
 /***************************************/
 
 @media (max-width: 766px){ 
-	#section-1{background-image: url(../img/fondo-cabecera-responsive.jpg); height:auto;}
+	#section-1{background-image: url(../img/fondo-cabecera-responsive.jpg); height:auto; background-size: 100%;}
 	#section-1 h1{
 	    font-size: 25px;
 	    margin-top: 6%;
@@ -508,14 +508,14 @@ footer p a:hover{
 	#section-1 p {
 		text-align: center;
 	    width: 90%;
-	    font-size: 20px;
+	    font-size: 14px;
 	    margin-left: 6%;
 	    margin-top: 4%;
 	    margin-bottom: 4%;
 	}
 	.controll-pagination {
-    	font-size: 20px;
-    	bottom: -1px;
+    	font-size: 15px;
+    	bottom: 5px;
 	}
 	#section-1 > a > img {bottom: 10px; width: 70%; position: relative;}
 	#img-cab-3 {width: 20%; margin-top: 95%; margin-left: 9%;}
