@@ -26,7 +26,7 @@ header{
 }
 
 .ancho{
-	padding-bottom: 300px;
+	padding-bottom: 395px;
 }
 #section-1{
 	background-image: url(../img/fondo-section01.png);
@@ -37,11 +37,10 @@ header{
 	overflow: hidden;
 	color: #fff;
 	font-weight: lighter;
-	height: 100%;
 }
 #section-1 h1{
 	font-family: 'Calibri Light';
-	margin-top: 3%;
+	margin-top: 2%;
 	margin-bottom: 3%;
     margin-left: 15%;
     font-size: 40px;
@@ -50,52 +49,61 @@ header{
 }
 #section-1 > a > img{
 	position: absolute;
-	bottom: 46%;
+	bottom: 48%;
 	width: 90%;
-	max-width: 565px;
+	max-width: 490px;
 	left: 0;
 	right: 0;
 	margin:0 auto;
 }
 
 #img-cab-1{
-	width: 120%;
+	width: 25%;
     position: absolute;
     display: block;
-    margin: 0 auto;
-    margin-top: 20%;
-    margin-left: -27%;
+    margin-top: 6%;
+}
+#img-cab-1 img {
+	width: 120%;
 }
 #img-cab-3{
-	width: 88%;
+	width: 25%;
     position: absolute;
     display: block;
-    margin: 0 auto;
-    margin-top: 44%;
-    margin-left: -53%;
+    margin-top: 15%;
+    margin-left: 15%;
+}
+#img-cab-3 img {
+	width: 100%;
 }
 #img-cab-4{
-	width: 90%;
+	width: 25%;
     position: absolute;
     display: block;
     margin: 0 auto;
-    margin-top: 40%;
-    right: 90%;
+    margin-top: 15%;
+    margin-left: 35%;
+}
+#img-cab-4 img {
+	width: 100%;
 }
 #img-cab-5{
-	width: 70%;
+	width: 25%;
     position: absolute;
     display: block;
     margin: 0 auto;
-    margin-top: 50%;
-    left: 235%;
+    right: 0%;
+    margin-top: 15%;
+}
+#img-cab-5 img {
+	width: 90%;
 }
 
 .controll-pagination{
 	text-align:center;
 	margin-top:10px;
-	font-size: 24px;
-	bottom: -431px;
+	font-size: 26px;
+    bottom: -390px;
     position: relative;	
 }
 .back-green{
@@ -120,18 +128,10 @@ header{
 #section-2{
 	background: #fff;
 	width: 100%;
-	height: 80%;
 	overflow: hidden;
 	background: #edeef0;
 }
-.img-galeria {
-	display: block;
-	margin: 0 auto 0 auto;
-	width: 280px;
-	height: 280px;
-	max-width: 300px;
-	padding-bottom: 25px;
-}
+
 .espace{
 	margin-right: -10%;
 }
@@ -142,7 +142,7 @@ header{
 #section-2  article {
 	display: block;
 	width: 100%;
-	margin-top: 10%;
+	margin-top: 17%;
 	margin-left: 15%;	
 }
 #section-2 > article:first{
@@ -220,7 +220,6 @@ iframe {
 	display: block;
     width: 70%;
     position: absolute;
-    margin: 0 auto;
     margin-top: 7%;
     margin-left: 7%;
 }
@@ -408,6 +407,10 @@ iframe {
 /*  footer                             */
 /***************************************/
 
+/***************************************/
+/*  footer                             */
+/***************************************/
+
 footer{
 	background-image: url(../img/fondo-footer-2.jpg);
 	color: #676565;
@@ -420,16 +423,26 @@ footer{
 .sp{
 	margin-right: -18%;
 }
-footer p{
+footer h4{
 	color: #fff;
-	font-size: 20px;
-	left: 14%;
+	font-size: 25px;
     position: relative;
 }
-footer ul li{
+footer p{
+	font-size: 15px;
+	margin-bottom:0px;
 	list-style: none;
 	color: #fff;
 }
+footer p a{
+	list-style: none;
+	color: #fff;
+}
+footer p a:hover{
+	list-style: none;
+	color: #fff;
+}
+
 .fondo-logo{background-image: url(../img/fondo-logo.jpg); padding: 1%;}
 .tama-footer{
 	font-size: 40%;
@@ -460,7 +473,6 @@ footer ul li{
 }
 .img-redes{
 	width: 40%;
-    left: 40%;
     position: relative;
     margin-bottom: 15px;
 }
@@ -506,89 +518,46 @@ footer ul li{
 /*  Media                              */
 /***************************************/
 
-@media (max-width: 766px){ 
+@media (min-width: 766px) and (max-width: 1279px){ 
 	#section-1{background-image: url(../img/fondo-section01-responsive.jpg);}
-	#section-1 h1{font-size: 22px; margin-top: 10%;}
-	#section-1 > a > img {bottom: 40%;}
-	#img-cab-3 {width: 85%; margin-top: 50%; margin-left: -35%;}
-	#img-cab-5{margin-top: 60%; left: 70%; width: 30%;}
+	#section-1 h1{font-size: 220%; margin-top: 3%;}
+	#section-1 > a > img {bottom: 66%; max-width: 30%;}
+	.ancho{padding-bottom: 37%;}
+	
+	#img-cab-3 {width: 50%; margin-top: 18%; margin-left: 5%;}
+	#img-cab-3 img {width: 55%;}
+	#img-cab-5{margin-top: 17%; left: 63%; width: 50%;}
+	#img-cab-5 img {width: 50%;}
+	#img-cab-1{visibility: hidden;}
+	#img-cab-1 img {width: 120%;}
+	#img-cab-4{visibility: hidden;}
+	#img-cab-4 img {width: 100%;}
 	#section-2{margin-bottom: 15px; height: 40%;}
 	#section-2 {height: auto;}
 	#section-2  article {margin-top: 3%;margin-left: 16%;}
 	#section-2 h2{margin-top:0px!important;margin-bottom:0px!important;color: #fff;font-size: 1em;}
-	.video-container {
-		position:relative;
-		padding-bottom: 20%;
-		padding-top:45%;
-		height:0;
-		overflow:hidden;
-	}
+	.video-container {position:relative; padding-bottom: 20%; padding-top:45%; height:0; overflow:hidden;}
 	.video-container iframe, 
 	.video-container object, 
 	.video-container embed {position:absolute; top:0; left:0; width:100%; height:100%;}
-	.img-servicio{margin-left: 10%;width: 45%;margin: 0 auto;margin-bottom: 5%;}
-	#img-ventaja{
-	    display: block;
-	    width: 80%;
-	    height: 140px;
-	    position: absolute;
-	    margin: 0 auto;
-	    margin-top: -39%;
-	    margin-left: 130%;
-	}
-	#img-perro{
-	    width: 55%;
-	    position: absolute;
-	    display: block;
-	    margin: 0 auto;
-	    margin-top: 23px;
-	    margin-left: 98%;
-	}
-	#img-pelota{
-		display: block;
-	    width: 14%;
-	    position: absolute;
-	    margin: 0 auto;
-	    margin-top: 48px;
-	    margin-left: 152%;
-	}
-	.radius {
-	    border: 1px solid;
-	    border-radius: 25px 25px 0px 0px;
-	}
-	.morado{
-		background-color: #AB07A0;
-	    padding: 10px;
-	    height: 15%;
-	    margin-left: 50px;
-	    margin-top: 120px;
-	    margin-bottom: -45px;
-	}
-	.morado > h2{
-		font-size: 17px!important;
-		margin-left: 5%;
-		text-align: center;
-		color: #fff;
-	}
-	.lista-3{
-		font-size: 14px;
-    	margin-left: -10px;
-	}
-	.content-color{
-		background-color: #fff;
-		margin: 0 auto;
-		margin-left: 47px;
-	}
-	.img-requisitos{
-		width: 140px;
-	    height: 140px;
-	    margin: 0 auto;
-	    padding: 5px;
-	    margin-bottom: 10px;
-	    margin-left: -42px;
-	}
-	.indi{margin-left: -27%;width: 15%;}
+	#h2 {font-size: 2em!important; margin-bottom: -17px;}
+	.img-servicio{margin-left: 10%;width: 25%;margin: 0 auto;margin-bottom: 5%;}
+	#img-ventaja{display: block;width: 70%; position: absolute;
+				margin-top: 10%; margin-left: 20%;}
+	#section-3{height: 60%;}
+	.radius {border: 1px solid;border-radius: 0px 25px 25px 0px;}
+	.morado {background-color: #AB07A0; padding: 10px;height: 260px; margin-left: 0px;}
+	.morado > h2{font-size: 17px!important;	margin-left: 5%;text-align: center;color: #fff;}
+	.lista-3{font-size: 14px;margin-left: -10px;}
+	
+	.move{margin-left: 0%;}
+	#h2-req{font-size: 1.5em!important; color: #ff960e; margin-bottom: 30px;}
+	.content-color{background-color: #fff;margin: 0 auto;margin-left: 47px;}
+	.centrate{margin:0 auto;text-align: center;margin-top: 10px;}
+	.img-requisitos{width: 140px;height: 140px;margin: 0 auto;padding: 5px;
+	    			margin-bottom: 10px;margin-left: -42px;}
 	.letra-req{color: #867d7d; margin-left: -40px; font-family: 'Lato', sans-serif; font-size: 16px; font-weight: bold;}
+	
 	.img-arg{
 		position: relative;
 		width: 95px;
@@ -628,20 +597,29 @@ footer ul li{
     	margin-top: -164px;
     	margin-left: 101px;
 	}
-	.contactanos{margin-top: 290px;}
+	#section-7 > a > img {margin-bottom: 1%;}
+	.img-perros-footer2{width: 20%;position: absolute;line-height: 55px;padding: 20px;
+	    				left: 65%;margin-top: -15%;}
+	.img-perros-footer{width: 15%;position: absolute;line-height: 55px;padding: 20px;
+						left: 2%;margin-top: -11%;}
+	.img-pelota-footer{width: 6%;position: absolute;line-height: 55px;padding: 20px;
+	    				left: 14%;margin-top: 0%;}
+
+	.contactanos{margin-top: 0px;}
 	.conta-p{margin-left: 50px;}
 	.conta-u{font-size: 18px;}
-	.navega{margin-top: -400px;margin-left: -36px; font-size: 18px;}
+	.navega{margin-top: 0%;margin-left: 5%; font-size: 18px;}
 	.nav-p{font-size: 28px; margin-left: -8px;}
-	.redes{margin-left: 60%;margin-top: -50%;}
-	.img-redes{
-		width: 80%;
-    	left: 40%;
-    	position: relative;
-    	margin-bottom: 15px;
-	}
+	.redes{margin-left: 70%;margin-top: -16%;}
+	.img-redes{width: 75%;left: -20%;position: relative;margin-bottom: 15px;}
+	.sp {margin-right: -8%;}
+	.logo-foot{width: 25%;margin-top: 0%;}
+	footer{height: 65%;}
+
+
+
 	.fondo-logo{background-image: url(../img/fondo-logo.jpg); height: 10%;}
-	.logo{width: 40%;}
+	.logo{width: 17%;}
 	.img-kmimos{width: 80%; padding:20px;}
 	.container-fluid {overflow: hidden;height: auto;}
 	
@@ -654,10 +632,6 @@ footer ul li{
 	    margin-left: 45px;
 	}
 	
-	#h2{
-	font-size: 28px!important;
-    color: #167ac6;
-	}
 	.conte-serv-ind{
 		padding: 20px;
 		margin:0 auto;
@@ -672,47 +646,6 @@ footer ul li{
 	    height: 65%;
 	}
 
-	#h2-req{
-		font-size: 1.5em!important;
-		color: #49c9b0;
-		margin-bottom: 30px;
-	}
-	.centrate{
-		margin:0 auto;
-		text-align: center;
-	    margin-top: 10px;
-	}
-	
-	.img-perros-footer{
-		width: 28%;
-	    position: absolute;
-	    line-height: 55px;
-	    padding: 20px;
-	    left: 2%;
-	    margin-top: -20%;
-	}
-	.img-pelota-footer{
-		width: 16%;
-	    position: absolute;
-	    line-height: 55px;
-	    padding: 20px;
-	    left: 18%;
-	    margin-top: -5%;
-	}
-	.img-perros-footer2{
-		width: 36%;
-	    position: absolute;
-	    line-height: 55px;
-	    padding: 20px;
-	    left: 65%;
-	    margin-top: -24%;
-	}
-	.logo-foot{
-		width: 35%;
-    	margin-top: 5%;
-	}
-	.move{margin-left: 20%;}
-	
 	.h2-foot{
 		font-size: 1.5em!important;
 		text-align: center;
@@ -730,9 +663,7 @@ footer ul li{
 	#section-7{
   		background-size: 150% 155%;
   	}
-	footer{
-		height: 80%;
-	}
+	
 	.tama-footer{
 		font-size: 5%;
 	}
@@ -756,7 +687,7 @@ footer ul li{
 	#close{
 		visibility: hidden;
 	}
-	#section-3,
+	
 	#section-4,
 	#section-5,
 	#section-8{
@@ -764,33 +695,124 @@ footer ul li{
 		height: auto;
 	}
 }
-@media (min-width: 767px) and (max-width: 991px){ 
-	#section-1 h1{
-		font-size: 25px;
-	}
-	
-	.img-kmimos{
-		width: 70%;
-		padding:10px;
-	}
-	
-	.text-right{
-		text-align: center!important;
-	}
-	#section-2,
-	#section-4{
-		text-align: center;
-	}
+@media (min-width: 410px) and (max-width: 765px){
+	#section-1{background-image: url(../img/fondo-section01-responsive.jpg);}
+	#section-1 h1{font-size: 240%; margin-top: 3%;}
+	#section-1 > a > img {bottom: 50%; max-width: 50%;}
+	.container-fluid {height: auto;}
+	.ancho{padding-bottom: 50%;}
+	.logo {width: 18%;}
+	#img-cab-3 {width: 50%; margin-top: 26%; margin-left: -8%;}
+	#img-cab-3 img {width: 85%;}
+	#img-cab-5{margin-top: 18%; left: 45%; width: 50%;}
+	#img-cab-5 img {width: 40%;}
+	.controll-pagination {bottom: -235px;}
+
+	#h2 {font-size: 2em!important; margin-bottom: -17px;}
+	#section-4 {height: auto;}
+	.img-servicio {width: 40%;margin-left: 30%;}
+	.letra {font-size: 135%;}
+	.radius {border: 1px solid;border-radius: 25px 25px 0px 0px;}
+	.morado {background-color: #AB07A0;padding: 0px;height: 15%;
+	    	margin-left: 12%; margin-top: 20%;margin-bottom: -1px;}
+	.morado > h2{font-size: 15px!important;margin-left: 19%;color: #fff;}
+	#section-3 {height: auto;}
+	.lista-3 {color: #fff!important;font-size: 91%;margin-left: 7%;}
+	#img-ventaja {width: 65%; margin-top: 1%;margin-left: 105%;}
+
+	.content-color {height: 100%;margin-left: 11%;width: 80%!important;}
+	#h2-req {font-size: 1.5em!important;}
+	.img-requisitos {width: 35%;margin-bottom: 3%;margin-left: 35%;}
+	.letra-req {margin-left: 4%;font-size: 100%;}
+	.centrate {margin-left: 0;}
+
+	.nav-p{font-size: 25px; margin-left: -8px; margin-top: -3%;}
+	.contactanos {margin-top: 4%;margin-left: 20%;}
+	.conta-p {margin-left: 19%; font-size: 150%;}
+	.redes {margin-left: 75%;margin-top: -60%;}
+	.img-redes {width: 68%;}
+	.sp {margin-right: 0%;}
+	.img-perros-footer2{width: 25%;position: absolute;line-height: 55px;padding: 20px;
+	    				left: 65%;margin-top: -17%;}
+	.img-perros-footer{width: 22%;position: absolute;line-height: 55px;padding: 20px;
+						left: 2%;margin-top: -17%;}
+	.img-pelota-footer{width: 13%;position: absolute;line-height: 55px;padding: 20px;
+	    				left: 14%;margin-top: -5%;}
+	footer{height: 50%;}
 }
-@media (min-width: 992px) { 
+@media (min-width: 280px) and (max-width: 409px){
+	#section-1{background-image: url(../img/fondo-section01-responsive.jpg);}
+	#section-1 h1{font-size: 145%; margin-top: 3%;}
+	#section-1 > a > img {bottom: 50%; max-width: 50%;}
+	.container-fluid {height: auto;}
+	.ancho{padding-bottom: 50%;}
+	.logo {width: 18%;}
+	#img-cab-3 {width: 50%; margin-top: 25%; margin-left: -3%;}
+	#img-cab-3 img {width: 100%;}
+	#img-cab-5{margin-top: 17%; left: 45%; width: 50%;}
+	#img-cab-5 img {width: 45%;}
+	.controll-pagination {bottom: -235px;}
 
-	.img-kmimos{
-		width: 80%;
-	}
-	
+	#h2 {font-size: 24px!important; margin-bottom: -17px;}
+	#section-4 {height: auto;}
+	.img-servicio {width: 90%;margin-left: 5%;}
+	.letra {font-size: 100%;}
+	.radius {border: 1px solid;border-radius: 25px 25px 0px 0px;}
+	.morado{background-color: #AB07A0;padding: 10px;height: 15%;margin-left: 50px;
+	 		margin-top: 120px;margin-bottom: -45px;width: 85%!important;}
+	.morado > h2{font-size: 15px!important;margin-left: 19%;color: #fff;}
+	#section-3 {height: auto;}
+	#img-ventaja {width: 125%; margin-top: -15%; margin-left: 83%;}
+	.lista-3 {color: #fff!important;font-size: 91%;margin-left: 7%; margin-bottom: 15%;}
 
+	.content-color {margin-left: 12%;width: 80%!important;}
+	#h2-req {font-size: 1.5em!important;}
+	.img-requisitos {width: 35%;margin-bottom: 3%;margin-left: 35%;}
+	.letra-req {margin-left: 4%;font-size: 100%;}
+	.centrate {margin-left: 0;}
+
+	.nav-p{font-size: 20px; margin-left: -8px; margin-top: -3%;}
+	.contactanos {margin-top: 3%;margin-left: 12%;}
+	.conta-p {margin-left: 14%; font-size: 150%;}
+	.redes {margin-left: 70%;margin-top: -75%;}
+	.img-redes {width: 125%;}
+	.sp {margin-right: 0%;}
+	.img-perros-footer2{width: 29%;position: absolute;line-height: 55px;padding: 20px;
+	    				left: 65%;margin-top: -20%;}
+	.img-perros-footer{width: 26%;position: absolute;line-height: 55px;padding: 20px;
+						left: 2%;margin-top: -20%;}
+	.img-pelota-footer{width: 17%;position: absolute;line-height: 55px;padding: 20px;
+	    				left: 16%;margin-top: -8%;}
+	footer{height: 55%;}
+	.fondo-logo {padding: 3%;}
 }
-@media (min-width: 1200px) { 
-
-
+@media (min-width: 1280px) { 
+	#img-cab-1{
+		margin-top: 7%;
+	}
+	#img-cab-3{
+		margin-top: 15%;
+	    margin-left: 15%;
+	}
+	#img-cab-4{
+		margin-left: 35%;
+	}
+	#img-cab-5{
+		margin-top: 17%;
+	}
+	#section-2  article {
+		display: block;
+		width: 100%;
+		margin-top: 17%;
+		margin-left: 15%;	
+	}
+	#section-3 {height: 60%;}
+	.img-perros-footer2 {
+	    width: 14%;
+	    position: absolute;
+	    line-height: 55px;
+	    padding: 30px;
+	    left: 65%;
+	    margin-top: -9%;
+	}
 }
