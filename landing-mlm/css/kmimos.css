@@ -67,9 +67,9 @@ strong{font-weight: 900;}
     background:#7cd2c5!important;
 }
 #section-2 h1{
-	font-size: 30pt;
+	font-size: 26pt;
     margin-top: 6%;
-    margin-left: 8%;
+    text-align: center;
     text-shadow: -3px 1px 3px #5F5C57;
 }
 
@@ -231,7 +231,15 @@ strong{font-weight: 900;}
     position: absolute;
     margin-left: -5%;
 }
-#section-6 img{
+.flecha{
+	position: absolute;
+    top: 45%;
+    right: 30%;
+}
+.bajando{
+	margin-top: 2%;
+}
+.diagrama{
 	width: 50%;
     margin-top: 5%;
     margin-left: 20%;
@@ -262,7 +270,7 @@ strong{font-weight: 900;}
 	color: #7b179d!important;
 	font-size: 25px;
 	padding: 10px 20px 10px 20px ;    
-  	width: calc(30% - 90px);
+  	width: calc(43% - 90px);
   	border-radius: 15px 15px 15px 15px;
 }
 
@@ -291,7 +299,7 @@ header{
 /*  Media                              */
 /***************************************/
 @media (min-width: 1280px){
-	#section-2 h1 {font-size: 36pt; margin-top: 4%; margin-left: 12%;}
+	#section-2 h1 {font-size: 30pt; text-align: center;}
 
 	#section-5 h3 {margin-left: 15%;}
 	.move-lg{margin-left: -5%;}
@@ -299,78 +307,128 @@ header{
 	.baja-lg{margin-top: 1%;}
 	#section-4 img {margin-top: 2%;margin-left: 80%;}
 	#section-4 p {margin-top: -3%;}
+	.btn-footer {width: calc(43% - 90px);}
 }
 @media (min-width: 766px) and (max-width: 999px){
-	#section-1{padding-top: 50%;}
-	.logo-negro{width: 25%;}
+	#section-1{background-image: url(../img/fondo-sc4-responsive.jpg);}
+	#section-1{padding-top: 55%;}
+	.logo-negro{width: 25%; visibility: hidden;}
 	#section-2{width: 100%;	height: 100px;}
-	#section-2 h1 {font-size: 20pt; margin-left: 3%;margin-top: 4%;}
+	#section-2 h1 {font-size: 24pt; margin-top: 4%; text-align: center;}
 	#section-3 {padding: 4%;}
 	.title {font-size: 25pt;}
 	.title-label {font-size: 17px;}
-	#section-3 input {    width: calc(100% - 100px);margin-left: -15%;}
+	#section-3 input { width: calc(100% - 100px);margin-left: -15%;}
 	.btn-inscribirme {font-size: 22px;}
 	#section-4 h3 {font-size: 26pt;}
 	#section-4 img {margin-left: 50%;}
-	#section-4 h4 {font-size: 16pt;margin-left: 25%;}
-	#section-4 p {font-size: 14pt;margin-top: -5%;margin-left: 20%;}
+	#section-4 h4 {font-size: 18pt;margin-left: -18%;}
+	#section-4 p {font-size: 14pt;margin-top: -10%;margin-left: -1%;}
 	#section-5 h3 {font-size: 18pt;	margin-bottom: 5%;}
 	.cuadrado {width: 90%;}
 	.sp {margin-left: -3%;}
 	#section-5 span {font-size: 39px;top: 12%; left: 93%;}
 	.cuadrado {margin-bottom: 29%;}
 	.verde {padding: 4%; margin-top: -6%; margin-left: -2%;}
-	.circulo-verde {padding: 9%; margin-top: 0%;margin-left: -3%;}
-	#section-6 h1 {left: 4%;font-size: 14pt;}
-	#section-6 img {width: 75%; margin-top: 10%; margin-left: 10%;}
+	.circulo-verde {padding: 9%; margin-top: 0%;margin-left: -3%; visibility: hidden;}
+	#section-6 h1 {left: 4%;font-size: 18pt;text-align: center;}
+	.diagrama {width: 75%; margin-top: 10%; margin-left: 10%;}
 	#section-7 h1 {font-size: 15pt;}
 	.btn-footer {font-size: 15px;width: calc(90% - 90px);}
+	#linea{width: 100%;}
+	.diagrama {width: 75%; margin-top: 10%; margin-left: 10%;}
+	#section-7 h1 {font-size: 15pt;}
+	.btn-footer {width: calc(45% - 10px);}
 }
-@media (min-width: 410px) and (max-width: 765px){
-	#section-1{padding-top: 50%;}
+@media (min-width: 581px) and (max-width: 765px){
+	#section-1{background-image: url(../img/fondo-sc4-responsive.jpg);}
+	#section-1{padding-top: 55%;}
+	.logo-negro{width: 25%; visibility: hidden;}
+	#section-2{width: 100%;	height: 100px;}
+	#section-2 h1 {font-size: 24pt; margin-top: 4%; text-align: center;}
+	#section-5 h3 {font-size: 18pt;	margin-bottom: 15%;margin-left: 0%; text-align: center;}
+	#section-5 span {font-size: 39px;top: 100%; left: 42%;}
+	.cuadrado {margin-bottom: 29%;}
+	.verde {padding: 4%; margin-top: -6%; margin-left: -2%;}
+	#section-6 h1 {left: 4%;font-size: 16pt; text-align: center;}
+	.circulo-verde {padding: 15%; margin-top: 1%;margin-left: -8%; visibility: hidden;}
+	#linea{width: 100%;}
+	.diagrama {width: 75%; margin-top: 10%; margin-left: 10%;}
+	#section-7 h1 {font-size: 15pt;}
+	.btn-footer {width: calc(45% - 10px);}
+}
+@media (min-width: 481px) and (max-width: 580px){
+	#section-1{background-image: url(../img/fondo-sc4-responsive.jpg);}
+	#section-1{padding-top: 55%;}
+	.logo-negro{width: 25%; visibility: hidden;}
+	#section-2{width: 100%;	height: 100px;}
+	#section-2 h1 {font-size: 24pt; margin-top: 4%; text-align: center;}
+	#section-4 img {margin-left: 37%; width: 45%;}
+	#section-4 h4 {font-size: 115%;margin-left: -20%;}
+	#section-4 p {font-size: 105%;margin-top: -15%;margin-left: -5%;}
+	#section-5 h3 {font-size: 18pt;	margin-bottom: 15%;margin-left: 0%; text-align: center;}
+	#section-5 span {font-size: 39px;top: 100%; left: 42%;}
+	.cuadrado {margin-bottom: 29%;}
+	.verde {padding: 4%; margin-top: -6%; margin-left: -2%;}
+	#section-6 h1 {left: 4%;font-size: 14pt; text-align: center;}
+	.btn-footer {width: calc(45% - 10px);}
+	.circulo-verde {padding: 15%; margin-top: 1%;margin-left: -8%; visibility: hidden;}
+	#linea{width: 100%;}
+	.diagrama {width: 75%; margin-top: 10%; margin-left: 10%;}
+	#section-7 h1 {font-size: 15pt;}
+}
+
+@media (min-width: 381px) and (max-width: 480px){
+	#section-1{background-image: url(../img/fondo-sc4-responsive.jpg);}
+	#section-1{padding-top: 55%;}
 	.logo-negro{width: 25%;}
 	#section-2{width: 100%;	height: 100px;}
-	#section-2 h1 {font-size: 16pt; margin-left: 3%;margin-top: 8%;}
+	#section-2 h1 {font-size: 100%; margin-top: 6%; text-align: center;}
 	#section-3 {padding: 4%;}
 	.title {font-size: 25pt;}
 	.title-label {font-size: 17px;}
-	#section-3 input {width: calc(100% - 1px);}
+	#section-3 input {width: calc(80% - 45px); margin-left: 20%;}
 	.btn-inscribirme {font-size: 22px;}
 	#section-4 h3 {font-size: 26pt;}
-	#section-4 img {margin-left: 50%;}
-	#section-4 h4 {font-size: 16pt;margin-left: 25%;}
-	#section-4 p {font-size: 14pt;margin-top: -5%;margin-left: 20%;}
-	#section-5 h3 {font-size: 18pt;	margin-bottom: 15%;}
+	#section-4 img {margin-left: 25%; width: 50%;}
+	#section-4 h4 {font-size: 115%;margin-left: -20%;}
+	#section-4 p {font-size: 105%;margin-top: -15%;margin-left: -5%;}
+	#section-5 h3 {font-size: 18pt;	margin-bottom: 15%;margin-left: 0%; text-align: center;}
 	#section-5 span {font-size: 39px;top: 100%; left: 42%;}
 	.cuadrado {margin-bottom: 29%;}
 	.verde {padding: 4%; margin-top: -6%; margin-left: -2%;}
-	.circulo-verde {padding: 15%; margin-top: 1%;margin-left: -8%;}
-	#section-6 h1 {left: 4%;font-size: 14pt;}
-	#section-6 img {width: 75%; margin-top: 10%; margin-left: 10%;}
+	.circulo-verde {padding: 15%; margin-top: 1%;margin-left: -8%; visibility: hidden;}
+	#section-6 h1 {left: 4%;font-size: 14pt; text-align: center;}
+	.btn-footer {width: calc(45% - 10px);}
+	#linea{width: 100%;}
+	.diagrama {width: 75%; margin-top: 10%; margin-left: 10%;}
 	#section-7 h1 {font-size: 15pt;}
 	.btn-footer {font-size: 15px;width: calc(90% - 90px);}
 }
-@media (min-width: 280px) and (max-width: 409px){
-	#section-1{padding-top: 50%;}
+@media (min-width: 280px) and (max-width: 380px){
+	#section-1{background-image: url(../img/fondo-sc4-responsive.jpg);}
+	#section-1{padding-top: 55%;}
 	.logo-negro{width: 24%;}
 	#section-2{width: 100%;	height: 100px;}
-	#section-2 h1 {font-size: 12pt; margin-left: 3%;margin-top: 8%;}
+	#section-2 h1 {font-size: 80%; margin-top: 8%; text-align: center;}
 	#section-3 {padding: 4%;}
 	.title {font-size: 25pt;}
 	.title-label {font-size: 17px;}
 	#section-3 input {width: calc(100% - 1px);}
 	.btn-inscribirme {font-size: 22px;}
 	#section-4 h3 {font-size: 26pt;}
-	#section-4 img {margin-left: 45%;}
-	#section-4 h4 {font-size: 16pt;margin-left: 25%;}
-	#section-4 p {font-size: 14pt;margin-top: -10%;margin-left: 19%;}
-	#section-5 h3 {font-size: 18pt;	margin-bottom: 15%;}
+	#section-4 img {margin-left: 25%; width: 40%;}
+	#section-4 h4 {font-size: 13pt;margin-left: -30%;}
+	#section-4 p {font-size: 10pt;margin-top: -21%;margin-left: -24%;}
+	#section-5 h3 {font-size: 14pt;	margin-bottom: 15%; margin-left: 0%; text-align: center;}
 	#section-5 span {font-size: 39px;top: 100%; left: 42%;}
 	.cuadrado {margin-bottom: 29%;}
-	.verde {padding: 4%; margin-top: -6%; margin-left: -2%;}
-	.circulo-verde {padding: 21%; margin-top: 4%;margin-left: -6%;}
-	#section-6 h1 {left: 4%;font-size: 14pt;}
-	#section-6 img {width: 75%; margin-top: 10%; margin-left: 10%;}
+	.verde {padding: 4%; margin-top: -7%; margin-left: -2%;}
+	.circulo-verde {padding: 21%; margin-top: 4%;margin-left: -6%; visibility: hidden;}
+	#section-6 h1 {left: 4%;font-size: 14pt; text-align: center;}
+	#section-6 p {font-size: 14pt;}
+	#linea{width: 100%;}
+	.diagrama{width: 80%; margin-top: 10%; margin-left: 10%;}
 	#section-7 h1 {font-size: 15pt;}
 	.btn-footer {font-size: 15px;width: calc(90% - 90px);}
 }
