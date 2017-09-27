@@ -305,8 +305,10 @@ header{
 	.move-lg{margin-left: -5%;}
 	.sp {margin-bottom: 3%;margin-left: 15%;}
 	.baja-lg{margin-top: 1%;}
-	#section-4 img {margin-top: 2%;margin-left: 80%;}
-	#section-4 p {margin-top: -3%;}
+	#section-3 input { width: calc(75% - 100px); margin-left: 0%;}
+	#section-4 img {margin-top: 2%;margin-left: 48%;}
+	#section-4 p {margin-top: -3%; margin-left: -30%;}
+	#section-4 h4{font-size: 17pt;margin-left: -35%;}
 	.btn-footer {width: calc(43% - 90px);}
 }
 @media (min-width: 766px) and (max-width: 999px){
@@ -318,7 +320,7 @@ header{
 	#section-3 {padding: 4%;}
 	.title {font-size: 25pt;}
 	.title-label {font-size: 17px;}
-	#section-3 input { width: calc(100% - 100px);margin-left: -15%;}
+	#section-3 input { width: calc(100% - 100px); margin-left: 20%;}
 	.btn-inscribirme {font-size: 22px;}
 	#section-4 h3 {font-size: 26pt;}
 	#section-4 img {margin-left: 50%;}
