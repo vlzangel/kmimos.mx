@@ -517,6 +517,14 @@ footer p a:hover{
     	font-size: 20px;
     	bottom: 5px;
 	}
+	.ytp-title-text {
+		font-size: 12px;
+		white-space: normal;
+	}
+	#iframe{
+		font-size: 12px;
+	}
+
 	#section-1 > a > img {bottom: 10px; width: 70%; position: relative;}
 	#img-cab-3 {width: 20%; margin-top: 95%; margin-left: 9%;}
 	#img-perro-3 {margin-top: 112%;right: 78%;}
