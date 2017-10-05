@@ -93,7 +93,10 @@ $url_base = '../landing/';
 					  }else{
 					  	$('#loading').removeClass('hidden');
 					  	$('#msg').html('Enviando email.');
-					  	var result = getGlobalData(url+"landing/mailing.php",'POST', $('#email').val());  
+					  	var mail= $('#email').val();
+					  	alert(mail);
+					  	var email = {'email': mail}
+					  	var result = getGlobalData(url+"landing/mailing.php",'POST', email );  
 					  	alert(result);
 					  }
 					  
