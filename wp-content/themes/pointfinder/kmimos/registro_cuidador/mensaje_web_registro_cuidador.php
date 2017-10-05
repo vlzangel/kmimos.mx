@@ -1,185 +1,111 @@
  <?php
 $mensaje_web = ' 
-<html> 
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-		<link href="https://fonts.googleapis.com/css?family=Lato:700,900" rel="stylesheet">
-		<style>
-			@font-face {
-				font-family: "PoetsenOne";
-				src: url("../font/PoetsenOne-Regular.ttf")format("truetype");}
+<style type="text/css">
+	.content{
+		width: 80%;
+	}
+	section{
+		padding: 20px;
+	}
+	.col-4{
+		width: 39%;
+	}
+	.col-8{
+		width: 49%;
+	}
 
-			body{
-				background: #00d9ae;
-				color: #3a3a3a;
-				font-family: "Lato", sans-serif;
-				font-weight: 900!important;
-				word-wrap: break-word;
-			}
-			section{clear: both;}
+	.col-row{
+		margin-left: 5px;
+		margin-right: 5px;
+	}
+	.list-inline{
+		padding: 0px;
+	}
+	.list-inline li{
+		display: inline-block;
+		list-style: none;
+		padding:5px;
+		min-width: 124px!important; 
+	}
+</style>
 
-			strong{font-weight: 900;}
-			.col6{width: 50%;}
-			.col12{width: 100%;}
-			[class*="col"]{
-				float: left;
-			}
-			/***************************************/
-			/*  CABECERA                           */
-			/***************************************/
-			.container-fluid{padding: 0px!important; margin: 0px!important;width: 100%!important;}
-			#top-kmimos{padding-right: 11px; padding-top: 7px; width: 21%;}
-			#top-volaris{padding-right: 8px; width: 30%;}
-			.contenido {background: #9c2a81!important;width: 100%;height: 650px;}
-			.contenido p {font-size: 30pt;color: #fff;text-align: right;top: 30%; position: relative;right: 5%;}
-			.btn-reserva{width: 35%; position: relative; left: 60%;margin-top: 30%;}
-			/***************************************/
-			/*  Section-1                          */
-			/***************************************/
-			#section-1{background: #fff;color: #000;font-weight: lighter;height: 100%;overflow: hidden}
-			#section-1 h1{margin-bottom: 10px;font-size: 50pt;margin-top: 3%;}
-			#section-1 h2{margin-bottom: 10px;font-size: 27pt;margin-top: 12%;}
-			#section-1 img{width: 35%; margin-bottom: 15%;}
-			
-			#top-content p {font-size: 25pt; text-align: center; margin-bottom: 3%;}
-			/***************************************/
-			/*  Section-2                          */
-			/***************************************/
-			#section-2{background: #fff;color: #000;font-weight: lighter;height: 80%;overflow: hidden}
-			#section-2 h1{margin-bottom: 10px;font-size: 30pt;margin-top: 3%;}
-			#section-2 h2{margin-bottom: 10px;font-size: 27pt;margin-top: 12%;}
-			#section-2 img{width: 60%;margin-bottom: 10%;margin-top: 6%;margin-left: 20%;}
-			#section-2 p {font-size: 25pt; text-align: center;margin-top: -6%;margin-bottom: 5%;}
-			.clas-o{position: relative; left: 51%; color: #a92382; font-size: 30pt;margin-top: -7%;}
-			/***************************************/
-			/*  Section-content                    */
-			/***************************************/
-			#section-content{background: #fff;}
-
-			/***************************************/
-			/*  Section-3                          */
-			/***************************************/
-			#section-3{background: #fff;color: #000;font-weight: lighter;height: 80%;overflow: hidden}
-			#section-3 h1{margin-bottom: 10px;font-size: 30pt;margin-top: 3%;}
-			#section-3 h2{margin-bottom: 10px;font-size: 27pt;margin-top: 12%;}
-			#section-3 img{width: 60%;margin-bottom: 10%;margin-top: 6%;margin-left: 20%;}
-			#section-3 p {font-size: 25pt; text-align: center; color: #000;}
-		
-
-			
-			#contactos {
-				background: black;
-				color: #fff;
-			}
-			#contactos img{
-				display: inline-block;
-				text-align: right;
-				margin: 10px; 
-			}
-
-			/***************************************/
-			/*  Media                              */
-			/***************************************/
-
-			/*@media (min-width: 2560px) {*/
-			@media (orientation: landscape) {
-				#article-1-button{
-					margin-top: 20px;
-				}
-			}
-			
-		</style>
-    </head>
-    <body>
-    	<div style="background:#000;padding-left: 0px;padding-right: 0px;">
-	    	<div style="padding-left: 0px;padding-right: 0px;">
-	    		<img id="top-volaris" src="img/logo-top-volaris.jpg">
-	    	</div>
-	    	<div class="clearfix"></div>
-    	</div>
-       	<div class="container-fluid">       		
-    	   	<div>       		
-				<div class="col6">
-					<img src="img/Image-1.jpg" style="width: 105%;margin-left: -3%;">
-				</div>
-				<div class="col6" >
-					<div class="contenido">
-	    				<p>Viaja tranquilo <br> deja a tu perro seguro <br> en el hogar de una <br>verdadera familia</p>
-	    				<img src="img/Button-2.jpg" alt="boton 1" class="btn-reserva">
-	    			</div>
-				</div>
-			</div>
-		</div>			
-		<section class="text-center" id="section-1">
-       	 	<article id="top-content" class="col12">
-				<h1><span style="color: #a92382;">+1000</span> Cuidadores Certificados</h1>
-				<p>Conoce Kmimos, una red de <span style="color: #a92382;">Cuidadores Certificados que <br> hospedan a tu mascota</span> en su hogar para que t&uacute; viajes tranquilo</p>
-       	 	</article>
-			<article class="col6">
-				<h2>Kmimos te ofrece:</h2>
-			</article>
-			<article class="col6">
-				<div class="col12">
-					<div class="col6">
-						<img src="img/Icon-1.png" alt="">
-					</div>
-					<div class="col6" style=" font-size: 19pt;">
-						<p>Cuidadores Certificados <br> que pasaron por pruebas <br>psicom&eacute;tricas y de <br> conocimiento veterinario</p>
-					</div>
-				</div>
-				<div class="col12" style=" margin-top: 5%;">
-					<div class="col6">
-						<img src="img/Icon-2.png" alt="">
-					</div>
-					<div class="col6" style=" font-size: 19pt;">
-						<p>Cobertura de serv&iacute;cios <br> veterinarios durante <br> toda su estad&iacute;a</p>
-					</div>
-				</div>
-			</article>
-		</section>
-		<section class="content" id="section-2">
-			<div id="section-content">
-				<article id="proceso-reserva" class="bg-volaris col12 text-center">
-					<h1>¡Reserva con Kmimos al viaja con Volaris!</h1>
-				</article>
-			</div>
-			<div class="col12">
-				<div class="col6">
-					<img src="img/Image-2.jpg" style="margin-left: 40%;">
-					<p style="margin-left: 36%;">D&eacute;jalo en tu ciudad <br> de origen</p>
-				</div>
-				<div class="col6">
-					<img src="img/Image-3.jpg" style="margin-left: 7%;">
-					<p style="margin-left: -25%;">Que lo apapache un <br>cuidador en tu destino</p>
-				</div>
-				<div class="clas-o col12">&Oacute;</div>
-			</div>
-		</section>
-		<section class="content" id="section-3">
-			<div class="col12">
-				<p><span style="color: #a92382;">¡Aprovecha nuestras promociones de </span>noviembre y diciembre<span style="color: #a92382;">!</span></p>
-				<p><span style="color: #a92382;">¡Disfruta de tu viaje. Tu mejor amigo estar&aacute; en buenas manos!</span></p>
-			</div>
-			<div class="col12">
-				<div class="col6">
-					<img src="img/Button-1.jpg" alt="">
-				</div>
-				<div class="col6">
-					<img src="img/Button-2.jpg" alt="">
-				</div>
-			</div>
-		</section>
-		<section id="contactos" class="col12">
-			<div class="container bg-black hidden-xs">
-				<article class="text-right">
-					<img src="img/Logo-Kmimos.png" class="img-responsive logo-kmimos" width="150px" >
-				</article>
-			</div>
-		</section>
-    </body>
-</html>
+	<div style="max-width: 600px; margin:auto; padding:20px;">
+		<p style="text-align: left; font-weight: bold;">
+			Para continuar con el proceso de certificación,
+			<br> por favor enviar la siguiente documentación:
+		</p>
+		<div class="" style="width: 150px;display: inline;">
+			<img src="'.get_home_url().'/wp-content/themes/pointfinder/images/list.png" widht="150px" style="
+		    width: 80px;">
+		</div>
+		<div class="col-6" style="width: 70%;text-align: left;display: inline-block;padding: 5px;">
+			<ul style="padding-left: 20px!important;">
+				<li>Identificación oficial ( IFE o INE, Pasaporte, etc. )</li>
+				<li>Comprobante de domicilio</li>
+				<li>Datos para depositarte el dinero de tus reservaciones (datos bancarios):</li>
+			</ul>
+		</div>
+		<div style="width:max-width: 600px; text-align:left;">
+			<p style="text-align: left;">
+					Banco asociado de la cuenta del cuidador o familiar<br>
+					Nombre completo del titular de la cuenta<br>
+					N&uacute;mero de cuenta interbancaria(CLABE)<br>
+			</p>
+			<strong>Enviar la documentación a cualquiera de las siguientes opciones:</strong>
+			<br>
+			<i class="fa fa-envelope-o" style="margin:5px;background: #5a5a5a;color: #fff;padding: 7px 6px 7px 7px;border-radius: 50px;margin-bottom: 5px;"></i>certificacion@kmimos.la<br>
+			<i class="fa fa-facebook" style="margin:5px;background: #5a5a5a;color: #fff;padding: 7px 10px 6px 10px;border-radius: 50px;"></i>Kmimosmx<br>
+		</div>	
+	</div>
+	<div style="height: auto; background: #fdfdaa; padding: 20px;">
+		<div style="text-align: center; ">
+			<h3>Te informamos que para activar tu perfil debes seguir estos pasos:</h3>
+			<ul class="list-inline instrucciones-items col-md-11 col-md-offset-1" style="color: #737272;font-weight: 700;">
+				<li class="col-xs-12 col-sm-6 col-md-3" >
+					<img class="hidden-sm hidden-xs" src="'.get_home_url().'/wp-content/themes/pointfinder/images/1.png" class="img-responsive" style="margin:auto;" width="150px">
+					<img class="hidden-md hidden-lg hidden-xl" src="'.get_home_url().'/wp-content/themes/pointfinder/images/1_m.png" class="img-responsive" style="margin:auto;" width="150px">
+					<br><span>Registrarte y <br> describirte<span><br><br>
+				</li>
+				<li  class="col-xs-12 col-sm-6 col-md-3"  >
+					<img class="hidden-sm hidden-xs" src="'.get_home_url().'/wp-content/themes/pointfinder/images/2.png" class="img-responsive" style="margin:auto;" width="150px">
+					<img  class="hidden-md hidden-lg hidden-xl" src="'.get_home_url().'/wp-content/themes/pointfinder/images/2_m.png" class="img-responsive" style="margin:auto;" width="150px">
+					<br><span>Enviar <br> documentos<span><br><br>
+				</li>
+				<li  class="col-xs-12 col-sm-6 col-md-3" >
+					<img class="hidden-sm hidden-xs" src="'.get_home_url().'/wp-content/themes/pointfinder/images/3.png" class="img-responsive" style="margin:auto;" width="150px">
+					<img class="hidden-md hidden-lg hidden-xl" src="'.get_home_url().'/wp-content/themes/pointfinder/images/3_m.png" class="img-responsive" style="margin:auto;" width="150px">
+					<br><span>Realizar <br> tus pruebas<span><br><br>
+				</li>
+				<li  class="col-xs-12 col-sm-6 col-md-3" >
+					<img class="hidden-sm hidden-xs" src="'.get_home_url().'/wp-content/themes/pointfinder/images/4.png" class="img-responsive" style="margin:auto;" width="150px">
+					<img class="hidden-md hidden-lg hidden-xl" src="'.get_home_url().'/wp-content/themes/pointfinder/images/4_m.png" class="img-responsive" style="margin:auto;" width="150px">
+					<br><span>Completar <br> tu perfil<span><br><br>
+				</li>
+			</ul>
+			<div class="clearfix"></div>
+			<p style="color: #de7212;font-weight: bold;font-size: 15px;">
+				*En caso de que algunos de estos pasos no sea completado, el perfil no podr&aacute; ser activado
+			</p>
+		</div>
+	</div>
+	<div style="text-align: center;padding:20px;">
+		<h3>AQU&Iacute; TE DEJAMOS UNA SUGERENCIA PARA MEJORAR TU DESCRIPCI&Oacute;N</h3>
+		<div style="padding:10px; margin: auto; border: 1px solid #ccc;display: inline-block;border-radius: 20px;">
+			<ul class="list-inline">
+				<li style="min-width: 100px; max-width: 200px;">
+					<img src="'.get_home_url().'/wp-content/themes/pointfinder/images/girl.png" class="img-responsive" width="150px"></li>
+				<li style="min-width: 200px; max-width: 400px;text-align: left;">
+					<h2 style="margin-top:0px!important;">Valentina Gutierrez</h2>
+					<span></span>
+					<p>¡Hola! Soy Valentina, tengo 25 años y me encantan los animales, 
+						Trabajo en casa asi que estare 100% al cuidado de tu perrito, 
+						lo consentir&eacute; y recibirás fotos diarias de su estancia conmigo. 
+						Mis hu&eacute;spedes peludos duermen de casa y pueden andar libremente 
+						SIN JAULAS NI ENCIERROS...
+					</p>
+				</li>
+			</ul>
+		</div>
+	</div>
 	
 ';
