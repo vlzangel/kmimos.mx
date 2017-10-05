@@ -90,42 +90,29 @@ $url_base = '../landing/';
 					  if( $('#email').val() == "" || $('#name').val() == "" ){
 					    $('#msg').html('Debe completar los datos');
 					    return;
+					  }else{
+					  	$('#loading').removeClass('hidden');
+					  	$('#msg').html('Enviando email.');
+					  	var result = getGlobalData(url+"landing/mailing.php",'POST', $('#email').val());  
+					  	alert(result);
 					  }
+					  
+				}
 
-
-
-					  $('#loading').removeClass('hidden');
-					  $('#msg').html('Enviando email.');
-					  $.ajax( url+"landing/mailing.php?email="+$('#email').val())
-					  .done(function() {
-					    $('#msg').html('Generando url.');
-					  })
-					  .fail(function() {
-					    $('#msg').html(' ');
-					    $('#loading').addClass('hidden');
-					  });  
-
-
-
-					  // $('#loading').removeClass('hidden');
-					  // $('#msg').html('Enviando...');
-					  // $.ajax( url+"landing/list-subscriber.php?source=kmimos-mx-clientes-referidos&email="+$('#email').val() )
-					  // .done(function() {
-					  //   $('#loading').addClass('hidden');
-					  //   $('#msg').html('Guardando referencia.');
-
-					  //   //window.open($('#temp').attr('action')+$('#email').val(), '_system');
-					  //   window.location.href = $('#temp').attr('action')+$('#email').val();
-					  // })
-					  // .fail(function() {
-					  //   //$('#msg').html('Referencia: No pudimos completar su solicitud, intente nuevamente');
-					  //   //$('#loading').addClass('hidden');
-					  // });  
+				function getGlobalData(url,method, datos){
+					return $.ajax({
+						data: datos,
+						type: method,
+						url: url,
+						async:false,
+						success: function(data){
+				            //alert(data);
+				            // $("#guardando").css('color','#fff');
+							return data;
+						}
+					}).responseText;
 				}
 			});
 		</script>
-
-
-	    
 	</body>
 </html>
