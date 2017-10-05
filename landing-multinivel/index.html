@@ -58,15 +58,18 @@
 					<br> dinero haciendo lo que más te gusta</label>
 			</article>
 			<article class="centrar">
-				<div class="col-sm-offset-4 col-sm-8">
-					<input type="text" placeholder="Nombres y Apellidos">
-				</div>
-				<div class="col-sm-offset-4 col-sm-8">
-					<input type="text" placeholder="Correo electr&oacute;nico">
-				</div>
-				<div class="col-sm-offset-4 col-sm-8">
-					<input type="submit" value="Quiero Inscribirme" class="btn-inscribirme">
-				</div>
+				<form method="POST" enctype="multipart/form-data">
+					<div class="col-sm-offset-4 col-sm-8">
+						<input type="text" placeholder="Nombres y Apellidos" name="nomap" id="nomap" data-charset="alfxlf">
+					</div>
+					<div class="col-sm-offset-4 col-sm-8">
+						<input type="email" placeholder="Correo electr&oacute;nico" name="email" id="email" data-charset="corxlf">
+					</div>
+					<div class="col-sm-offset-4 col-sm-8">
+						<input type="submit" value="Quiero Inscribirme" class="btn-inscribirme" id="btn-inscribirme" onclick="validateDate()">
+					</div>
+					<span id="guardando" class="text-center"></span>
+				</form>
 			</article>
 		</div>
 		<br>
@@ -175,7 +178,7 @@
 		</div>
 		<div class="container">
 			<article class="">
-				<input type="submit" value="Inscr&iacute;bete aqui" class="btn-footer">
+				<a href="#section-3"><input type="submit" value="Inscr&iacute;bete aqui" class="btn-footer"></a>
 			</article>
 		</div>
 		<br>
@@ -192,6 +195,106 @@
 	  crossorigin="anonymous"></script>
     <script src="js/wow.js  "></script>
     <script src="js/main.js?v=1.0.0"></script>
-    <script src="js/scroll/scroll_visible/scroll-visible.js"></script>
+    <script>
+    	// REGISTRO
+    	var globalData = ""; 
+    	var nombres, email;
+        $(document).on("click", '#btn-inscribirme', function ( e ) {
+
+			if ($("#nomap").val() != "" && $("#email").val() != "" ) {
+				if($("#email").val().indexOf('@', 0) == -1 || $("#email").val().indexOf('.', 0) == -1) {
+            		$("#email").parent('div').css('color','red');
+		          	$("#email").after('<span name="sp-name">Email incorrecto</span>').css('color','red');
+		          	$("#email").focus(function() { $("[name='sp-name']").hide(); });
+            		return false;
+        		}else{
+        			nombres = $("#nomap").val();
+					email = $("#email").val();
+        			var data = {'email': email};
+					globalData = getGlobalData('main.php','POST', data);
+					if (globalData == 'SI') {
+	                	$("#email").after('<br><span name="sp-email">Este E-mail ya esta en uso</span>').css('color','red');
+	                    $("#email").parent('div').css('color','red');
+	                    $("#email").css('color','red');
+	                    e.preventDefault();
+	                }else{
+	                    var datos = {'nombres': nombres, 'email': email};
+						var Data = getGlobalData('date.php','POST', datos);
+						alert(Data);
+	                }
+        		}      	
+			}else{
+				alert("Verifique que los datos ingresados sean correctos");
+				if($("#nomap").val().length == 0){ 
+		          	$("#nomap").parent('div').css('color','red');
+		          	$("#nomap").after('<br><span name="sp-name">Ingrese su Nombre y su Apellido</span>').css('color','red');
+		          	$("#nomap").focus(function() { $("[name='sp-name']").hide(); });
+		        }else{
+		          	$("#nomap").css('color','green');
+		          	$("#nomap").parent('div').css('color','green');
+		          	$("[name='sp-name']").hide();
+		        }
+		        if($("#email").val().length == 0){ 
+		          	$("#email").parent('div').css('color','red');
+		          	$("#email").after('<br><span name="sp-email">Ingrese su Email</span>').css('color','red');
+		          	$("#email").focus(function() { $("[name='sp-email']").hide(); });
+		        }else{
+		          	$("#email").css('color','green');
+		          	$("#email").parent('div').css('color','green');
+		          	$("[name='sp-email']").hide();
+		        }
+				e.preventDefault();
+			}
+        });
+
+      // Validar tipos e datos en los campos
+    jQuery( document ).on('keypress', '[data-charset]', function(e){
+
+        var tipo= $(this).attr('data-charset');
+
+        if(tipo!='undefined' || tipo!=''){
+            var cadena = "";
+
+            if(tipo.indexOf('alf')>-1 ){ cadena = cadena + "abcdefghijklmnopqrstuvwxyzáéíóúñüÁÉÍÓÚÑÜ"; }
+            if(tipo.indexOf('xlf')>-1 ){ cadena = cadena + "abcdefghijklmnopqrstuvwxyzáéíóúñüÁÉÍÓÚÑÜ "; }
+            if(tipo.indexOf('mlf')>-1 ){ cadena = cadena + "abcdefghijklmnopqrstuvwxyz"; }
+            if(tipo.indexOf('num')>-1 ){ cadena = cadena + "1234567890"; }
+            if(tipo.indexOf('cur')>-1 ){ cadena = cadena + "1234567890,."; }
+            if(tipo.indexOf('esp')>-1 ){ cadena = cadena + "-_.$%&@,/()"; }
+            if(tipo.indexOf('cor')>-1 ){ cadena = cadena + ".-_@"; }
+            if(tipo.indexOf('rif')>-1 ){ cadena = cadena + "vjegi"; }
+            if(tipo.indexOf('dir')>-1 ){ cadena = cadena + ","; }
+
+            var key = e.which,
+                keye = e.keyCode,
+                tecla = String.fromCharCode(key).toLowerCase(),
+                letras = cadena;
+
+            if(letras.indexOf(tecla)==-1 && keye!=9&& (key==37 || keye!=37)&& (keye!=39 || key==39) && keye!=8 && (keye!=46 || key==46) || key==161){
+                e.preventDefault();
+            }
+        }
+
+      mensaje( $(this).attr('name'), '', true );
+       
+    });
+
+      
+    function getGlobalData(url,method, datos){
+		return $.ajax({
+			data: datos,
+			type: method,
+			url: url,
+			async:false,
+			success: function(data){
+	            //alert(data);
+	            // $("#guardando").css('color','#fff');
+				return data;
+			}
+		}).responseText;
+	}
+	
+
+    </script>
 </body>
 </html>

@@ -1,5 +1,4 @@
- <?php
-$mensaje_web = ' 
+<!DOCTYPE html>
 <html> 
     <head>
         <meta charset="utf-8">
@@ -9,13 +8,13 @@ $mensaje_web = '
 		<link href="https://fonts.googleapis.com/css?family=Lato:700,900" rel="stylesheet">
 		<style>
 			@font-face {
-				font-family: "PoetsenOne";
-				src: url("../font/PoetsenOne-Regular.ttf")format("truetype");}
+				font-family: 'PoetsenOne';
+				src: url('../font/PoetsenOne-Regular.ttf')format('truetype');}
 
 			body{
 				background: #00d9ae;
 				color: #3a3a3a;
-				font-family: "Lato", sans-serif;
+				font-family: 'Lato', sans-serif;
 				font-weight: 900!important;
 				word-wrap: break-word;
 			}
@@ -181,5 +180,3 @@ $mensaje_web = '
 		</section>
     </body>
 </html>
-	
-';
