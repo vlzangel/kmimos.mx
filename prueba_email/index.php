@@ -2,42 +2,19 @@
 
 require_once("../vlz_config.php");
 global $host, $user, $db, $pass, $url_base;
-date_default_timezone_set('America/Mexico_City');
 
 // Validar si existe referencia de usuario
 $hidden = "";
 $email = '';
-$name = '';
-$referencia = '';
-if( isset($_GET['r']) ){
-	$referencia = $_GET['r'];
-}else{
-	// Activar campos Name / Email
-	if( isset($_GET['e']) ){
-		// buscar usuario
-		$email = strip_tags($_GET['e']);
-
-		$cnn = new mysqli($host, $user, $pass, $db);
-		if($cnn){
-			$sql = "select * from wp_users where user_email = '".$email."'";
-			$r = $cnn->query( $sql );
-			$row = mysqli_fetch_all($r,MYSQLI_ASSOC);
-			if( count($row)>0 ){
-				$hidden = "hidden";
-				$name = $row[0]['user_nicename'];
-			}
-		}
-	}
-}
+$url_base = '../landing/';
 
 ?>
-
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Kmimos - Suma huellas a nuestro club y gana descuentos</title>
+        <title>Prueba MAiling</title>
 
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -64,38 +41,23 @@ if( isset($_GET['r']) ){
 			
 			<section class="col-xs-12 col-sm-12 col-md-3 col-lg-3" style="z-index:9999!important;">
 
-				<header ><img id="img-text" src="img/20titular1.png"></header>
-
-				<article><img src="img/11logopatitas.png" class="img-responsive"></article>
-
 				<footer class="text-center">
 					<div id='footer-content' class="col-md-12">
-						<h1>¡Inscribete!</h1>
-						<h2>gana descuentos</h2>
-						<h2>para ti y tus amigos</h2>
+						<h2>Prueba de Email Mailing</h2>
 						<form id="frm">
 							<div class="<?php echo $hidden; ?>">
 								<input type="hidden" id="referencia" name="referencia" class="form-control" value="<?php echo $referencia; ?>">
-								<input type="text"   id="name"  name="name" class="form-control " value="<?php echo $name; ?>" placeholder="Nombre y Apellido">
 								<input type="email"  id="email" name="email" class="form-control" value="<?php echo $email; ?>" placeholder="Correo electr&oacute;nico" required>
 							</div>
-							<button type="button" id="send" class="btn-kmimos btn">¡Quiero participar!</button>
+							<button type="button" id="send" class="btn-kmimos btn">Enviar</button>
 							<span id="msg" style="padding-top:3px;color:#fff;"></span>
 						</form>
-						<form action="compartir/?e=" method="post" id="temp"></form>
+						<!-- <form action="compartir/?e=" method="post" id="temp"></form> -->
 					</div>
 				</footer>
 
 			</section>
-			
-			<section class="col-xs-12 col-sm-12 col-md-8 col-lg-8 hidden-sm hidden-xs">
-				<img src="img/1backgroundfoto.jpg" class="img-responsive" width="98%">
-			</section>
-			<section class="col-xs-12 col-sm-12 col-md-8 col-lg-8 hidden-md hidden-lg" >
-				<img src="img/bg-movil.jpg" class="img-responsive img-rounded" style="border-radius: 20px;" width="98%">
-			</section>
-			<br>
-			<br>
+
 		</div>
 		<script
 		  src="https://code.jquery.com/jquery-2.2.4.min.js?<?php echo time(); ?>"
@@ -107,7 +69,7 @@ if( isset($_GET['r']) ){
 		<script type="text/javascript">
 			$(function(){
 				var url = "<?php echo $url_base; ?>";
-				alert(url);
+				
 				$('#frm').on('submit', function(e){
 				  e.preventDefault(e);
 				  _registerLanding();
@@ -133,8 +95,8 @@ if( isset($_GET['r']) ){
 
 
 					  $('#loading').removeClass('hidden');
-					  $('#msg').html('Registrando Usuario.');
-					  $.ajax( url+"landing/registro-usuario.php?email="+$('#email').val()+"&name="+$('#name').val()+"&referencia="+$('#referencia').val() )
+					  $('#msg').html('Enviando email.');
+					  $.ajax( url+"landing/mailing.php?email="+$('#email').val())
 					  .done(function() {
 					    $('#msg').html('Generando url.');
 					  })
@@ -145,23 +107,21 @@ if( isset($_GET['r']) ){
 
 
 
-					  $('#loading').removeClass('hidden');
-					  $('#msg').html('Enviando...');
-					  $.ajax( url+"landing/list-subscriber.php?source=kmimos-mx-clientes-referidos&email="+$('#email').val() )
-					  .done(function() {
-					    $('#loading').addClass('hidden');
-					    $('#msg').html('Guardando referencia.');
+					  // $('#loading').removeClass('hidden');
+					  // $('#msg').html('Enviando...');
+					  // $.ajax( url+"landing/list-subscriber.php?source=kmimos-mx-clientes-referidos&email="+$('#email').val() )
+					  // .done(function() {
+					  //   $('#loading').addClass('hidden');
+					  //   $('#msg').html('Guardando referencia.');
 
-					    //window.open($('#temp').attr('action')+$('#email').val(), '_system');
-					    window.location.href = $('#temp').attr('action')+$('#email').val();
-					  })
-					  .fail(function() {
-					    //$('#msg').html('Referencia: No pudimos completar su solicitud, intente nuevamente');
-					    //$('#loading').addClass('hidden');
-					  });  
-
+					  //   //window.open($('#temp').attr('action')+$('#email').val(), '_system');
+					  //   window.location.href = $('#temp').attr('action')+$('#email').val();
+					  // })
+					  // .fail(function() {
+					  //   //$('#msg').html('Referencia: No pudimos completar su solicitud, intente nuevamente');
+					  //   //$('#loading').addClass('hidden');
+					  // });  
 				}
-
 			});
 		</script>
 
