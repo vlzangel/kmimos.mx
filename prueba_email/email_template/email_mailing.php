@@ -60,19 +60,106 @@ $html .='
 			#section-3 h2{margin-bottom: 10px;font-size: 27pt;margin-top: 12%;}
 			#section-3 img{width: 70%;margin-bottom: 10%;margin-top: 6%;margin-left: 20%;}
 			#section-3 p {font-size: 15pt; text-align: center; color: #000;}
-		
+			#contactos {background: black;	color: #fff;}
+			#contactos img{display: inline-block;text-align: right;	margin: 10px;margin-left: 70%;}
 
-			
-			#contactos {
-				background: black;
-				color: #fff;
-			}
-			#contactos img{
-				display: inline-block;
-				text-align: right;
-				margin: 10px;
-				margin-left: 70%; 
-			}
+			/***************************************/		
+ -			/*  Media                              */		
+ -			/***************************************/
+
+			/*@media (min-width: 2560px) {*/
+					
+ -			@media (min-width: 1280px){}		
+ -			@media (min-width: 766px) and (max-width: 999px){		
+ -				#top-volaris {width: 48%;}		
+ -				.contenido p {font-size: 25pt;top: 10%;}		
+ -				.btn-reserva {width: 65%;left: 30%;margin-top: 10%;}		
+ -				.contenido {height: 154px;}		
+ -				#section-1 h1 {font-size: 25pt;}		
+ -				.sp {margin-left: -10%;}		
+ -				#top-content p {font-size: 16pt;}		
+ -				#section-1 h2 {font-size: 13pt;margin-top: 55%;}		
+ -				.parr {font-size: 10pt!important;}		
+ -				#section-1 img {width: 60%;}		
+ -				#section-2 h1 {font-size: 16pt;}		
+ -				#section-2 p {font-size: 14pt;}		
+ -				.clas-o {left: 50%; font-size: 13pt;margin-top: -10%;}		
+ -				#section-3 p {font-size: 16pt;}		
+ -				#section-3 img {width: 75%;margin-left: 15%;}		
+ -				.logo-kmimos {max-width: 25%;}		
+ -			}		
+ -			@media (min-width: 581px) and (max-width: 765px){		
+ -				#top-volaris {width: 48%;}		
+ -				.contenido p {font-size: 17pt;top: 3%;}		
+ -				.btn-reserva {width: 65%;left: 30%;margin-top: 10%;}		
+ -				.contenido {height: 154px;}		
+ -				#section-1 h1 {font-size: 25pt;}		
+ -				.sp {margin-left: -10%;}		
+ -				#top-content p {font-size: 16pt;}		
+ -				#section-1 h2 {font-size: 13pt;margin-top: 55%;}		
+ -				.parr {font-size: 10pt!important;}		
+ -				#section-1 img {width: 60%;}		
+ -				#section-2 h1 {font-size: 16pt;}		
+ -				#section-2 p {font-size: 14pt;}		
+ -				.clas-o {left: 50%; font-size: 13pt;margin-top: -10%;}		
+ -				#section-3 p {font-size: 16pt;}		
+ -				#section-3 img {width: 75%;margin-left: 15%;}		
+ -				.logo-kmimos {max-width: 25%;}		
+ -			}		
+ -			@media (min-width: 481px) and (max-width: 580px){		
+ -				#top-volaris {width: 48%;}		
+ -				.contenido p {font-size: 10pt;top: 3%;}		
+ -				.btn-reserva {width: 65%;left: 30%;margin-top: 10%;}		
+ -				.contenido {height: 154px;}		
+ -				#section-1 h1 {font-size: 25pt;}		
+ -				.sp {margin-left: -10%;}		
+ -				#top-content p {font-size: 16pt;}		
+ -				#section-1 h2 {font-size: 13pt;margin-top: 55%;}		
+ -				.parr {font-size: 10pt!important;}		
+ -				#section-1 img {width: 60%;}		
+ -				#section-2 h1 {font-size: 16pt;}		
+ -				#section-2 p {font-size: 10pt;}		
+ -				.clas-o {left: 50%; font-size: 6pt;margin-top: -10%;}		
+ -				#section-3 p {font-size: 16pt;}		
+ -				#section-3 img {width: 75%;margin-left: 15%;}		
+ -				.logo-kmimos {max-width: 25%;}		
+  			}		  			
+ -			@media (min-width: 381px) and (max-width: 480px){		
+ -				#top-volaris {width: 48%;}		
+ -				.contenido p {font-size: 10pt;top: 3%;}		
+ -				.btn-reserva {width: 65%;left: 30%;margin-top: 10%;}		
+ -				.contenido {height: 154px;}		
+ -				#section-1 h1 {font-size: 25pt;}		
+ -				.sp {margin-left: -10%;}		
+ -				#top-content p {font-size: 16pt;}		
+ -				#section-1 h2 {font-size: 13pt;margin-top: 55%;}		
+ -				.parr {font-size: 10pt!important;}		
+ -				#section-1 img {width: 60%;}		
+ -				#section-2 h1 {font-size: 16pt;}		
+ -				#section-2 p {font-size: 10pt;}		
+ -				.clas-o {left: 50%; font-size: 6pt;margin-top: -10%;}		
+ -				#section-3 p {font-size: 16pt;}		
+ -				#section-3 img {width: 75%;margin-left: 15%;}		
+ -				.logo-kmimos {max-width: 25%;}		
+ -			}		
+ -			@media (min-width: 280px) and (max-width: 380px){		
+ -				#top-volaris {width: 48%;}		
+ -				.contenido p {font-size: 10pt;top: 3%;}		
+ -				.btn-reserva {width: 65%;left: 30%;margin-top: 10%;}		
+ -				.contenido {height: 154px;}		
+ -				#section-1 h1 {font-size: 25pt;}		
+ -				.sp {margin-left: -10%;}		
+ -				#top-content p {font-size: 16pt;}		
+ -				#section-1 h2 {font-size: 13pt;margin-top: 55%;}		
+ -				.parr {font-size: 10pt!important;}		
+ -				#section-1 img {width: 60%;}		
+ -				#section-2 h1 {font-size: 16pt;}		
+ -				#section-2 p {font-size: 10pt;}		
+ -				.clas-o {left: 50%; font-size: 6pt;margin-top: -10%;}		
+ -				#section-3 p {font-size: 16pt;}		
+ -				#section-3 img {width: 75%;margin-left: 15%;}		
+ -				.logo-kmimos {max-width: 25%;}		
+ -			}
 		</style>
     </head>
     <body style="width: 600px; margin:auto auto; font-size: 18px;">
