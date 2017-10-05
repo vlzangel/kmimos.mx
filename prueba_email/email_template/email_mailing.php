@@ -1,5 +1,5 @@
 <?php 
- $html = '
+$html .='
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -79,7 +79,7 @@
     	<div style="background:#000;padding-left: 0px;padding-right: 0px;">
 	    	<div style="padding-left: 0px;padding-right: 0px;">
 	    		<!-- <img id="top-volaris" src="http://mx.kmimos.dev/landing/landing/img/logo-top-volaris.jpg"> -->
-	    		<img id="top-volaris" src="'.$http.$_SERVER["HTTP_HOST"].'/landing/img/logo-top-volaris.jpg">
+	    		<img id="top-volaris" src="http://mx.kmimos.dev/landing/img/logo-top-volaris.jpg">
 	    	</div>
 	    	<div class="clearfix"></div>
     	</div>
@@ -87,7 +87,7 @@
     	   	<div>       		
 				<div class="col6">
 					<!-- <a href="#"><img src="https://kmimos.com.mx/landing/img/Image-1.jpg" style="width: 100%;margin-left: -3%;"></a> -->
-					<img src="'.$http.$_SERVER["HTTP_HOST"].'/landing/img/Image-1.jpg" style="width: 100%;margin-left: 0%;height: 45%;">
+					<img src="http://mx.kmimos.dev/landing/img/Image-1.jpg" style="width: 100%;margin-left: 0%;height: 45%;">
 				</div>
 				<div class="col6" >
 					<div class="contenido">
@@ -110,7 +110,7 @@
 				<div class="col12 sp">
 					<div class="col6">
 						<!-- <img src="https://kmimos.com.mx/landing/img/Icon-1.png" alt="" style="margin-top: 37%;"> -->
-						<img src="'.$http.$_SERVER["HTTP_HOST"].'/landing/img/Icon-1.png" alt="" style="margin-top: 37%;">
+						<img src="http://mx.kmimos.dev/landing/img/Icon-1.png" alt="" style="margin-top: 37%;">
 					</div>
 					<div class="col6" style="font-size: 12pt;">
 						<p class="parr">Cuidadores Certificados <br> que pasaron por pruebas <br>psicom&eacute;tricas y de <br> conocimiento veterinario</p>
@@ -119,7 +119,7 @@
 				<div class="col12 sp" style=" margin-top: 4%;">
 					<div class="col6">
 						<!-- <img src="https://kmimos.com.mx/landing/img/Icon-2.png" alt=""> -->
-						<img src='.$http.$_SERVER["HTTP_HOST"].'/landing/img/Icon-2.png" alt="">
+						<img src="http://mx.kmimos.dev/landing/img/Icon-2.png" alt="">
 					</div>
 					<div class="col6" style=" font-size: 12pt;">
 						<p class="parr">Cobertura de serv&iacute;cios <br> veterinarios durante <br> toda su estad&iacute;a</p>
@@ -136,12 +136,12 @@
 			<div class="col12">
 				<div class="col6">
 					<!-- <img src="https://kmimos.com.mx/landing/img/Image-2.jpg" style="margin-left: 26%;"> -->
-					<img src="'.$http.$_SERVER["HTTP_HOST"].'/landing/img/Image-2.jpg" style="margin-left: 26%;">
+					<img src="http://mx.kmimos.dev/landing/img/Image-2.jpg" style="margin-left: 26%;">
 					<p style="margin-left: 30%;">D&eacute;jalo en tu ciudad <br> de origen</p>
 				</div>
 				<div class="col6">
 					<!-- <img src="https://kmimos.com.mx/landing/img/Image-3.jpg" style="margin-left: 8%;"> -->
-					<img src="'.$http.$_SERVER["HTTP_HOST"].'/landing/img/Image-3.jpg" style="margin-left: 8%;">
+					<img src="http://mx.kmimos.dev/landing/img/Image-3.jpg" style="margin-left: 8%;">
 					<p style="margin-left: -22%;">Que lo apapache un <br>cuidador en tu destino</p>
 				</div>
 				<div class="clas-o col12">&Oacute;</div>
@@ -155,7 +155,7 @@
 			<div class="col12">
 				<div class="col6">
 					<!-- <a href="#"><img src="https://kmimos.com.mx/landing/img/Button-1.jpg" alt=""></a> -->
-					<a href="#"><img src="'.$http.$_SERVER["HTTP_HOST"].'/landing/img/Button-1.jpg" alt=""></a>
+					<a href="#"><img src="http://mx.kmimos.dev/landing/img/Button-1.jpg" alt=""></a>
 				</div>
 				<div class="col6">
 					<!-- <a href="#"><img src="https://kmimos.com.mx/landing/img/Button-2.jpg" alt=""></a> -->
@@ -167,7 +167,7 @@
 			<div class="container bg-black">
 				<article class="text-right">
 					<!-- <img src="https://kmimos.com.mx/landing/img/Logo-Kmimos.png" class="img-responsive logo-kmimos" width="150px" > -->
-					<img src="'.$http.$_SERVER["HTTP_HOST"].'/landing/img/Logo-Kmimos.png" class="img-responsive logo-kmimos" width="150px" >
+					<img src="http://mx.kmimos.dev/landing/img/Logo-Kmimos.png" class="img-responsive logo-kmimos" width="150px" >
 				</article>
 			</div>
 		</section>
