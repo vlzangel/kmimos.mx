@@ -29,10 +29,10 @@
 			/***************************************/
 			/*  CABECERA                           */
 			/***************************************/
-			.container-fluid{padding: 0px!important; margin: 0px!important;width: 100%!important;}
+			.container-fluid{padding: 0px!important; margin: 0px!important;width: 100%!important;background:#9c2a81!important;}
 			#top-kmimos{padding-right: 11px; padding-top: 7px; width: 21%;}
 			#top-volaris{padding-right: 8px; width: 30%;}
-			.contenido {background: #9c2a81!important;width: 100%;height: 650px;}
+			.contenido {background: #9c2a81!important;width: 100%;}
 			.contenido p {font-size: 30pt;color: #fff;text-align: right;top: 30%; position: relative;right: 5%;}
 			.btn-reserva{width: 35%; position: relative; left: 60%;margin-top: 30%;}
 			/***************************************/
@@ -84,10 +84,96 @@
 			/***************************************/
 
 			/*@media (min-width: 2560px) {*/
-			@media (orientation: landscape) {
-				#article-1-button{
-					margin-top: 20px;
-				}
+			@media (min-width: 1280px){}
+			@media (min-width: 766px) and (max-width: 999px){
+				#top-volaris {width: 48%;}
+				.contenido p {font-size: 25pt;top: 10%;}
+				.btn-reserva {width: 65%;left: 30%;margin-top: 10%;}
+				.contenido {height: 154px;}
+				#section-1 h1 {font-size: 25pt;}
+				.sp {margin-left: -10%;}
+				#top-content p {font-size: 16pt;}
+				#section-1 h2 {font-size: 13pt;margin-top: 55%;}
+				.parr {font-size: 10pt!important;}
+				#section-1 img {width: 60%;}
+				#section-2 h1 {font-size: 16pt;}
+				#section-2 p {font-size: 14pt;}
+				.clas-o {left: 50%; font-size: 13pt;margin-top: -10%;}
+				#section-3 p {font-size: 16pt;}
+				#section-3 img {width: 75%;margin-left: 15%;}
+				.logo-kmimos {max-width: 25%;}
+			}
+			@media (min-width: 581px) and (max-width: 765px){
+				#top-volaris {width: 48%;}
+				.contenido p {font-size: 17pt;top: 3%;}
+				.btn-reserva {width: 65%;left: 30%;margin-top: 10%;}
+				.contenido {height: 154px;}
+				#section-1 h1 {font-size: 25pt;}
+				.sp {margin-left: -10%;}
+				#top-content p {font-size: 16pt;}
+				#section-1 h2 {font-size: 13pt;margin-top: 55%;}
+				.parr {font-size: 10pt!important;}
+				#section-1 img {width: 60%;}
+				#section-2 h1 {font-size: 16pt;}
+				#section-2 p {font-size: 14pt;}
+				.clas-o {left: 50%; font-size: 13pt;margin-top: -10%;}
+				#section-3 p {font-size: 16pt;}
+				#section-3 img {width: 75%;margin-left: 15%;}
+				.logo-kmimos {max-width: 25%;}
+			}
+			@media (min-width: 481px) and (max-width: 580px){
+				#top-volaris {width: 48%;}
+				.contenido p {font-size: 10pt;top: 3%;}
+				.btn-reserva {width: 65%;left: 30%;margin-top: 10%;}
+				.contenido {height: 154px;}
+				#section-1 h1 {font-size: 25pt;}
+				.sp {margin-left: -10%;}
+				#top-content p {font-size: 16pt;}
+				#section-1 h2 {font-size: 13pt;margin-top: 55%;}
+				.parr {font-size: 10pt!important;}
+				#section-1 img {width: 60%;}
+				#section-2 h1 {font-size: 16pt;}
+				#section-2 p {font-size: 10pt;}
+				.clas-o {left: 50%; font-size: 6pt;margin-top: -10%;}
+				#section-3 p {font-size: 16pt;}
+				#section-3 img {width: 75%;margin-left: 15%;}
+				.logo-kmimos {max-width: 25%;}
+			}
+			@media (min-width: 381px) and (max-width: 480px){
+				#top-volaris {width: 48%;}
+				.contenido p {font-size: 10pt;top: 3%;}
+				.btn-reserva {width: 65%;left: 30%;margin-top: 10%;}
+				.contenido {height: 154px;}
+				#section-1 h1 {font-size: 25pt;}
+				.sp {margin-left: -10%;}
+				#top-content p {font-size: 16pt;}
+				#section-1 h2 {font-size: 13pt;margin-top: 55%;}
+				.parr {font-size: 10pt!important;}
+				#section-1 img {width: 60%;}
+				#section-2 h1 {font-size: 16pt;}
+				#section-2 p {font-size: 10pt;}
+				.clas-o {left: 50%; font-size: 6pt;margin-top: -10%;}
+				#section-3 p {font-size: 16pt;}
+				#section-3 img {width: 75%;margin-left: 15%;}
+				.logo-kmimos {max-width: 25%;}
+			}
+			@media (min-width: 280px) and (max-width: 380px){
+				#top-volaris {width: 48%;}
+				.contenido p {font-size: 10pt;top: 3%;}
+				.btn-reserva {width: 65%;left: 30%;margin-top: 10%;}
+				.contenido {height: 154px;}
+				#section-1 h1 {font-size: 25pt;}
+				.sp {margin-left: -10%;}
+				#top-content p {font-size: 16pt;}
+				#section-1 h2 {font-size: 13pt;margin-top: 55%;}
+				.parr {font-size: 10pt!important;}
+				#section-1 img {width: 60%;}
+				#section-2 h1 {font-size: 16pt;}
+				#section-2 p {font-size: 10pt;}
+				.clas-o {left: 50%; font-size: 6pt;margin-top: -10%;}
+				#section-3 p {font-size: 16pt;}
+				#section-3 img {width: 75%;margin-left: 15%;}
+				.logo-kmimos {max-width: 25%;}
 			}
 			
 		</style>
@@ -102,7 +188,7 @@
        	<div class="container-fluid">       		
     	   	<div>       		
 				<div class="col6">
-					<img src="img/Image-1.jpg" style="width: 105%;margin-left: -3%;">
+					<a href="#"><img src="img/Image-1.jpg" style="width: 100%;margin-left: -3%;"></a>
 				</div>
 				<div class="col6" >
 					<div class="contenido">
@@ -121,20 +207,20 @@
 				<h2>Kmimos te ofrece:</h2>
 			</article>
 			<article class="col6">
-				<div class="col12">
+				<div class="col12 sp">
 					<div class="col6">
 						<img src="img/Icon-1.png" alt="">
 					</div>
-					<div class="col6" style=" font-size: 19pt;">
-						<p>Cuidadores Certificados <br> que pasaron por pruebas <br>psicom&eacute;tricas y de <br> conocimiento veterinario</p>
+					<div class="col6" style="font-size: 19pt;">
+						<p class="parr">Cuidadores Certificados <br> que pasaron por pruebas <br>psicom&eacute;tricas y de <br> conocimiento veterinario</p>
 					</div>
 				</div>
-				<div class="col12" style=" margin-top: 5%;">
+				<div class="col12 sp" style=" margin-top: 5%;">
 					<div class="col6">
 						<img src="img/Icon-2.png" alt="">
 					</div>
 					<div class="col6" style=" font-size: 19pt;">
-						<p>Cobertura de serv&iacute;cios <br> veterinarios durante <br> toda su estad&iacute;a</p>
+						<p class="parr">Cobertura de serv&iacute;cios <br> veterinarios durante <br> toda su estad&iacute;a</p>
 					</div>
 				</div>
 			</article>
@@ -164,15 +250,15 @@
 			</div>
 			<div class="col12">
 				<div class="col6">
-					<img src="img/Button-1.jpg" alt="">
+					<a href="#"><img src="img/Button-1.jpg" alt=""></a>
 				</div>
 				<div class="col6">
-					<img src="img/Button-2.jpg" alt="">
+					<a href="#"><img src="img/Button-2.jpg" alt=""></a>
 				</div>
 			</div>
 		</section>
 		<section id="contactos" class="col12">
-			<div class="container bg-black hidden-xs">
+			<div class="container bg-black">
 				<article class="text-right">
 					<img src="img/Logo-Kmimos.png" class="img-responsive logo-kmimos" width="150px" >
 				</article>
