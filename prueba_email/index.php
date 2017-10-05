@@ -6,7 +6,6 @@ global $host, $user, $db, $pass, $url_base;
 // Validar si existe referencia de usuario
 $hidden = "";
 $email = '';
-$url_base = '../landing/';
 
 ?>
 <!DOCTYPE html>
@@ -96,7 +95,7 @@ $url_base = '../landing/';
 					  	var mail= $('#email').val();
 					  	alert(mail);
 					  	var email = {'email': mail}
-					  	var result = getGlobalData(url+"landing/mailing.php",'POST', email );  
+					  	var result = getGlobalData("mailing.php",'POST', email );  
 					  	alert(result);
 					  }
 					  
