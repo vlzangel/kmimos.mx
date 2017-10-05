@@ -20,4 +20,4 @@
 		$html
 	);
     # ********************************************
-    echo "<scritp>alert('Enviado email a '+".$email.");</scritp>";
+    echo "Email recibido y enviado se supone ".$email;
