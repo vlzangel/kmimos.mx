@@ -134,17 +134,17 @@
 	                'page'=>'backpanel_mascotas',
 	                'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
 	        );
-/*
-          $menus[] = array(
-            'title'=>'Subscriptores',
-            'short-title'=>'Subscriptores',
-            'parent'=>'kmimos',
-            'slug'=>'subscribe',
-            'access'=>'manage_options',
-            'page'=>'subscribe_download',
-            'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
-          );
-*/
+
+	          $menus[] = array(
+	            'title'=>'Listado Multinivel',
+	            'short-title'=>'Listado Multinivel',
+	            'parent'=>'kmimos',
+	            'slug'=>'bp_multinivel',
+	            'access'=>'manage_options',
+	            'page'=>'backpanel_multinivel',
+	            'icon'=>plugins_url('/assets/images/icon.png', __FILE__)
+	          );
+
         
 	        $menus[] = array(
 	                'title'=>'Newsletter',
@@ -252,6 +252,12 @@
 	if(!function_exists('backpanel_saldo_cupon')){
 		function backpanel_saldo_cupon(){
 			include_once('dashboard/backpanel_saldo_cupon.php');
+		}
+	}
+
+	if(!function_exists('backpanel_multinivel')){
+		function backpanel_multinivel(){
+			include_once('dashboard/backpanel_multinivel.php');
 		}
 	}
 

@@ -72,9 +72,9 @@ $subscribe = getMultinivel();
 			  	<?php foreach ($subscribe['rows'] as $row) { ?>
 				    <tr>
 				    	<th class="text-center"><?php echo ++$count; ?></th>
-						<th><?php echo $row['name'];  ?></th>
+						<th><?php echo $row['nombres'];  ?></th>
 						<th><?php echo $row['email']; ?></th>
-						<th><?php echo date('Y-m-d g:i:s A',strtotime($row['time'])-(60*60*5)); ?></th>
+						<th><?php echo date('Y-m-d g:i:s A',strtotime($row['fecha_registro'])-(60*60*5)); ?></th>
 				    </tr>
 			   	<?php } ?>
 			  </tbody>

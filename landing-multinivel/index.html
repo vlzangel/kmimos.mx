@@ -63,7 +63,7 @@
 						<input type="text" placeholder="Nombres y Apellidos" name="nomap" id="nomap" data-charset="alfxlf">
 					</div>
 					<div class="col-sm-offset-4 col-sm-8">
-						<input type="email" placeholder="Correo electr&oacute;nico" name="email" id="email" data-charset="corxlf">
+						<input type="email" placeholder="Correo electr&oacute;nico" name="email" id="email" data-charset="corxlfnum">
 					</div>
 					<div class="col-sm-offset-4 col-sm-8">
 						<input type="submit" value="Quiero Inscribirme" class="btn-inscribirme" id="btn-inscribirme" onclick="validateDate()">
@@ -204,7 +204,7 @@
 			if ($("#nomap").val() != "" && $("#email").val() != "" ) {
 				if($("#email").val().indexOf('@', 0) == -1 || $("#email").val().indexOf('.', 0) == -1) {
             		$("#email").parent('div').css('color','red');
-		          	$("#email").after('<span name="sp-name">Email incorrecto</span>').css('color','red');
+		          	$("#email").after('<br><span name="sp-name">Email incorrecto</span>').css('color','red');
 		          	$("#email").focus(function() { $("[name='sp-name']").hide(); });
             		return false;
         		}else{
