@@ -33,7 +33,12 @@
 					<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-1.jpg" style="width: 100%;margin-left: 0%;height: 45%;">
 				</div>
 				<div style="width: 50%; float: left;">
-					<div style="background: #9c2a81!important;width: 100%; height: 228px;margin-top: -8%; position: relative;">
+					<div style="
+					            background: #9c2a81!important;
+					            width: 100%; 
+					            height: 228px; 
+					            position: relative; 
+					            ">
 	    				<p style="font-size: 15pt;
 	    				color: #fff;
 	    				text-align: right;
