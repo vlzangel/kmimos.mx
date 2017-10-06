@@ -6,7 +6,7 @@
 		<link href="https://fonts.googleapis.com/css?family=Lato:700,900" rel="stylesheet">
 		<style>
 			body{
-				background: #9c2a81;
+				background: #fff;
 				color: #3a3a3a;
 				font-family: "Lato", sans-serif;
 				font-weight: 900!important;
@@ -33,10 +33,10 @@
 					<img src="img/Image-1.jpg" style="width: 100%;margin-left: 0%;height: 45%;">
 				</div>
 				<div style="width: 50%; float: left;">
-					<div style="background: #9c2a81!important;width: 100%; height: 45%;margin-top: 5%;">
+					<div style="background: #9c2a81!important;width: 100%; height: 228px;margin-top: -8%; position: relative;">
 	    				<p style="font-size: 15pt;color: #fff;text-align: right;top: 10%; position: relative;right: 5%;">Viaja tranquilo <br> deja a tu perro seguro <br> en el hogar de una verdadera familia</p>
 	    				<!-- <img src="https://kmimos.com.mx/landing/img/Button-2.jpg" alt="boton 1" class="btn-reserva"> -->
-	    				<a href="https://www.kmimos.com.mx/?wlabel=volaris"><img src="img/Button-2.jpg" alt="boton 1" style="width: 55%; position: relative; left: 35%;margin-top: 0%;"></a>
+	    				<a href="https://www.kmimos.com.mx/?wlabel=volaris"><img src="img/Button-2.jpg" alt="boton 1" style="width: 55%; position: relative; left: 35%;margin-top: 5%;"></a>
 	    			</div>
 				</div>
 			</div>
@@ -91,10 +91,10 @@
 			</div>
 			<div style="width: 100%;">
 				<div style="width: 50%; float: left;">
-					<a href="#"><img src="img/Button-1.jpg" style="width: 70%;margin-bottom: 10%;margin-top: 8%;margin-left: 14%;"></a>
+					<a href="https://www.kmimos.com.mx/?wlabel=volaris"><img src="img/Button-1.jpg" style="width: 70%;margin-bottom: 10%;margin-top: 8%;margin-left: 14%;"></a>
 				</div>
 				<div style="width: 50%; float: left;">
-					<a href="#"><img src="img/Button-2.jpg" style="width: 70%;margin-bottom: 10%;margin-top: 8%;margin-left: 14%;"></a>
+					<a href="https://www.kmimos.com.mx/?wlabel=volaris"><img src="img/Button-2.jpg" style="width: 70%;margin-bottom: 10%;margin-top: 8%;margin-left: 14%;"></a>
 				</div>
 			</div>
 		</section>
