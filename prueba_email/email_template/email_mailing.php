@@ -6,7 +6,7 @@ $html .='
 		<link href="https://fonts.googleapis.com/css?family=Lato:700,900" rel="stylesheet">
 		<style>
 			body{
-				background: #fff;
+				background: #9c2a81;
 				color: #3a3a3a;
 				font-family: "Lato", sans-serif;
 				font-weight: 900!important;
@@ -15,246 +15,93 @@ $html .='
 			section{clear: both;}
 
 			strong{font-weight: 900;}
-			.col6{width: 50%;}
-			.col12{width: 100%;}
-			[class*="col"]{
-				float: left;
-			}
-			/***************************************/
-			/*  CABECERA                           */
-			/***************************************/
 			.container-fluid{padding: 0px!important; margin: 0px!important;width: 100%!important;background:#9c2a81!important;}
-			#top-kmimos{padding-right: 11px; padding-top: 7px; width: 21%;}
-			#top-volaris{padding-right: 8px; width: 30%;}
-			.contenido {background: #9c2a81!important;width: 100%; height: 45%;margin-top: -7%;}
-			.contenido p {font-size: 16pt;color: #fff;text-align: right;top: 10%; position: relative;right: 10%;}
-			.btn-reserva{width: 45%; position: relative; left: 45%;margin-top: 10%;}
-			/***************************************/
-			/*  Section-1                          */
-			/***************************************/
-			#section-1{background: #fff;color: #000;font-weight: lighter;height: 75%;overflow: hidden}
-			#section-1 h1{margin-bottom: 10px;font-size: 30pt;margin-top: 3%;margin-left: 4%;}
-			#section-1 h2{margin-bottom: 10px;font-size: 20pt;margin-top: 45%; margin-left: 7%;}
-			#section-1 img{width: 50%; margin-top: 8%;}
-			.sp {margin-left: -10%;}
-			#top-content p {font-size: 15pt; text-align: center; margin-bottom: 3%;}
-			/***************************************/
-			/*  Section-2                          */
-			/***************************************/
-			#section-2{background: #fff;color: #000;font-weight: lighter;height: 70%;overflow: hidden}
-			#section-2 h1{font-size: 22pt;margin-left: 5%;}
-			#section-2 h2{margin-bottom: 10px;font-size: 27pt;margin-top: 12%;}
-			#section-2 img{width: 70%;margin-bottom: 10%;margin-top: 6%;margin-left: 20%;}
-			#section-2 p {font-size: 14pt; text-align: center;margin-top: -6%;margin-bottom: 5%;}
-			.clas-o{position: relative; left: 49%; color: #a92382; font-size: 17pt;margin-top: -9%;}
-			/***************************************/
-			/*  Section-content                    */
-			/***************************************/
-			#section-content{background: #fff;}
-
-			/***************************************/
-			/*  Section-3                          */
-			/***************************************/
-			#section-3{background: #fff;color: #000;font-weight: lighter;height: 40%;overflow: hidden}
-			#section-3 h1{margin-bottom: 10px;font-size: 30pt;margin-top: 3%;}
-			#section-3 h2{margin-bottom: 10px;font-size: 27pt;margin-top: 12%;}
-			#section-3 img{width: 70%;margin-bottom: 10%;margin-top: 6%;margin-left: 20%;}
-			#section-3 p {font-size: 15pt; text-align: center; color: #000;}
-			#contactos {background: black;	color: #fff;}
-			#contactos img{display: inline-block;text-align: right;	margin: 10px;margin-left: 70%;}
-
-			/***************************************/		
- 			/*  Media                              */		
- 			/***************************************/
-
-			/*@media (min-width: 2560px) {*/
-
- 			@media (min-width: 1280px){}		
- 			@media (min-width: 766px) and (max-width: 999px){		
- 				#top-volaris {width: 48%;}		
- 				.contenido p {font-size: 25pt;top: 10%;}		
- 				.btn-reserva {width: 65%;left: 30%;margin-top: 10%;}		
- 				.contenido {height: 154px;}		
-				#section-1 h1 {font-size: 25pt;}		
-				.sp {margin-left: -10%;}		
-				#top-content p {font-size: 16pt;}		
-				#section-1 h2 {font-size: 13pt;margin-top: 55%;}		
-				.parr {font-size: 10pt!important;}		
-				#section-1 img {width: 60%;}		
-				#section-2 h1 {font-size: 16pt;}		
-				#section-2 p {font-size: 14pt;}		
-				.clas-o {left: 50%; font-size: 13pt;margin-top: -10%;}		
-				#section-3 p {font-size: 16pt;}		
-				#section-3 img {width: 75%;margin-left: 15%;}		
-				.logo-kmimos {max-width: 25%;}		
-			}		
-			@media (min-width: 581px) and (max-width: 765px){		
-				#top-volaris {width: 48%;}		
-				.contenido p {font-size: 17pt;top: 3%;}		
-				.btn-reserva {width: 65%;left: 30%;margin-top: 10%;}		
-				.contenido {height: 154px;}		
-				#section-1 h1 {font-size: 25pt;}		
-				.sp {margin-left: -10%;}		
-				#top-content p {font-size: 16pt;}		
-				#section-1 h2 {font-size: 13pt;margin-top: 55%;}		
-				.parr {font-size: 10pt!important;}		
-				#section-1 img {width: 60%;}		
-				#section-2 h1 {font-size: 16pt;}		
-				#section-2 p {font-size: 14pt;}		
-				.clas-o {left: 50%; font-size: 13pt;margin-top: -10%;}		
-				#section-3 p {font-size: 16pt;}		
-				#section-3 img {width: 75%;margin-left: 15%;}		
-				.logo-kmimos {max-width: 25%;}		
-			}		
-			@media (min-width: 481px) and (max-width: 580px){		
-				#top-volaris {width: 48%;}		
-				.contenido p {font-size: 10pt;top: 3%;}		
-				.btn-reserva {width: 65%;left: 30%;margin-top: 10%;}		
-				.contenido {height: 154px;}		
-				#section-1 h1 {font-size: 25pt;}		
-				.sp {margin-left: -10%;}		
-				#top-content p {font-size: 16pt;}		
-				#section-1 h2 {font-size: 13pt;margin-top: 55%;}		
-				.parr {font-size: 10pt!important;}		
-				#section-1 img {width: 60%;}		
-				#section-2 h1 {font-size: 16pt;}		
-				#section-2 p {font-size: 10pt;}		
-				.clas-o {left: 50%; font-size: 6pt;margin-top: -10%;}		
-				#section-3 p {font-size: 16pt;}		
-				#section-3 img {width: 75%;margin-left: 15%;}		
-				.logo-kmimos {max-width: 25%;}		
-			}		  			
-			@media (min-width: 381px) and (max-width: 480px){		
-				#top-volaris {width: 48%;}		
-				.contenido p {font-size: 10pt;top: 3%;}		
-				.btn-reserva {width: 65%;left: 30%;margin-top: 10%;}		
-				.contenido {height: 154px;}		
-				#section-1 h1 {font-size: 25pt;}		
-				.sp {margin-left: -10%;}		
-				#top-content p {font-size: 16pt;}		
-				#section-1 h2 {font-size: 13pt;margin-top: 55%;}		
-				.parr {font-size: 10pt!important;}		
-				#section-1 img {width: 60%;}		
-				#section-2 h1 {font-size: 16pt;}		
-				#section-2 p {font-size: 10pt;}		
-				.clas-o {left: 50%; font-size: 6pt;margin-top: -10%;}		
-				#section-3 p {font-size: 16pt;}		
-				#section-3 img {width: 75%;margin-left: 15%;}		
-				.logo-kmimos {max-width: 25%;}		
-			}		
-			@media (min-width: 280px) and (max-width: 380px){		
-				#top-volaris {width: 48%;}		
-				.contenido p {font-size: 10pt;top: 3%;}		
-				.btn-reserva {width: 65%;left: 30%;margin-top: 10%;}		
-				.contenido {height: 154px;}		
-				#section-1 h1 {font-size: 25pt;}		
-				.sp {margin-left: -10%;}		
-				#top-content p {font-size: 16pt;}		
-				#section-1 h2 {font-size: 13pt;margin-top: 55%;}		
-				.parr {font-size: 10pt!important;}		
-						#section-1 img {width: 60%;}		
-						#section-2 h1 {font-size: 16pt;}		
-						#section-2 p {font-size: 10pt;}		
-						.clas-o {left: 50%; font-size: 6pt;margin-top: -10%;}		
-						#section-3 p {font-size: 16pt;}		
-						#section-3 img {width: 75%;margin-left: 15%;}		
-						.logo-kmimos {max-width: 25%;}		
-					}
+			.sp {margin-left: -10%;}	
 		</style>
     </head>
-    <body style="width: 600px; margin:auto auto; font-size: 18px;">
-    	<div style="background:#000;padding-left: 0px;padding-right: 0px;">
+    <body style="width: 500px; margin:auto auto;">
+    	<div style="background:#000;margin-top: 1px;">
 	    	<div style="padding-left: 0px;padding-right: 0px;">
-	    		<!-- <img id="top-volaris" src="http://mx.kmimos.dev/prueba_email/img/logo-top-volaris.jpg"> -->
-	    		<img id="top-volaris" src="http://kmimosmx.sytes.net/QA1/prueba_email/img/logo-top-volaris.jpg">
+	    		<!-- <img id="top-volaris" src="http://mx.kmimos.dev/landing/landing/img/logo-top-volaris.jpg"> -->
+	    		<img id="top-volaris" src="kmimosmx.sytes.net/QA1/prueba_email/img/logo-top-volaris.jpg" style="width: 45%;">
 	    	</div>
 	    	<div class="clearfix"></div>
     	</div>
        	<div class="container-fluid">       		
     	   	<div>       		
-				<div class="col6">
-					<!-- <a href="#"><img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-1.jpg" style="width: 100%;margin-left: -3%;"></a> -->
-					<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-1.jpg" style="width: 100%;margin-left: 0%;height: 45%;">
+				<div style="width: 50%; float: left;">
+					<img src="kmimosmx.sytes.net/QA1/prueba_email/img/Image-1.jpg" style="width: 100%;margin-left: 0%;height: 45%;">
 				</div>
-				<div class="col6" >
-					<div class="contenido">
-	    				<p>Viaja tranquilo <br> deja a tu perro seguro <br> en el hogar de una <br>verdadera familia</p>
-	    				<!-- <img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Button-2.jpg" alt="boton 1" class="btn-reserva"> -->
-	    				<a href="https://www.kmimos.com.mx/"><img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Button-2.jpg" alt="boton 1" class="btn-reserva"></a>
+				<div style="width: 50%; float: left;">
+					<div style="background: #9c2a81!important;width: 100%; height: 45%;margin-top: 5%;">
+	    				<p style="font-size: 15pt;color: #fff;text-align: right;top: 10%; position: relative;right: 5%;">Viaja tranquilo <br> deja a tu perro seguro <br> en el hogar de una verdadera familia</p>
+	    				<!-- <img src="https://kmimos.com.mx/landing/kmimosmx.sytes.net/QA1/prueba_email/img/Button-2.jpg" alt="boton 1" class="btn-reserva"> -->
+	    				<a href="https://www.kmimos.com.mx/?wlabel=volaris"><img src="kmimosmx.sytes.net/QA1/prueba_email/img/Button-2.jpg" alt="boton 1" style="width: 55%; position: relative; left: 35%;margin-top: 0%;"></a>
 	    			</div>
 				</div>
 			</div>
 		</div>			
-		<section class="text-center" id="section-1">
+		<section style="background: #fff;color: #000;font-weight: lighter;height: 75%;overflow: hidden">
        	 	<article id="top-content" class="col12">
-				<h1><span style="color: #a92382;">+1000</span> Cuidadores Certificados</h1>
-				<p>Conoce Kmimos, una red de <span style="color: #a92382;">Cuidadores Certificados que <br> hospedan a tu mascota</span> en su hogar para que t&uacute; viajes tranquilo</p>
+				<h1 style="margin-bottom: 10px;font-size: 23pt;margin-top: 3%;margin-left: 4%;"><span style="color: #a92382;">+1000</span> Cuidadores Certificados</h1>
+				<p style="font-size: 13pt; text-align: center; margin-bottom: 3%;">Conoce Kmimos, una red de <span style="color: #a92382;">Cuidadores Certificados que <br> hospedan a tu mascota</span> en su hogar para que t&uacute; viajes tranquilo</p>
        	 	</article>
-			<article class="col6">
-				<h2>Kmimos te ofrece:</h2>
+			<article style="width: 50%; float: left;">
+				<h2 style="margin-bottom: 10px;font-size: 14pt;margin-top: 32%; margin-left: 7%;">Kmimos te ofrece:</h2>
 			</article>
-			<article class="col6">
-				<div class="col12 sp">
-					<div class="col6">
-						<!-- <img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Icon-1.png" alt="" style="margin-top: 37%;"> -->
-						<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Icon-1.png" alt="" style="margin-top: 37%;">
+			<article style="width: 50%; float: left;">
+				<div style="width:100%;">
+					<div style="width: 50%; float: left; margin-left: -5%;">
+						<img src="kmimosmx.sytes.net/QA1/prueba_email/img/Icon-1.png" style="width: 70%;margin-bottom: 10%;margin-top: 5%;">
 					</div>
-					<div class="col6" style="font-size: 12pt;">
-						<p class="parr">Cuidadores Certificados <br> que pasaron por pruebas <br>psicom&eacute;tricas y de <br> conocimiento veterinario</p>
+					<div style="width: 50%; float: left; font-size: 12pt; margin-top: 7%;margin-left: -5%;">
+						<p style="font-size: 8pt; text-align: center;margin-top: -6%;margin-bottom: 5%;">Cuidadores Certificados que pasaron por pruebas psicom&eacute;tricas y de conocimiento veterinario</p>
 					</div>
 				</div>
-				<div class="col12 sp" style=" margin-top: 4%;">
-					<div class="col6">
-						<!-- <img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Icon-2.png" alt=""> -->
-						<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Icon-2.png" alt="">
+				<div style="width: 100%; margin-top: 4%; float: left;margin-left: -5%;">
+					<div style="width: 50%; float: left;">
+						<img src="kmimosmx.sytes.net/QA1/prueba_email/img/Icon-2.png" style="width: 70%;margin-bottom: 10%;margin-top: 5%;margin-left: -5%;">
 					</div>
-					<div class="col6" style=" font-size: 12pt;">
-						<p class="parr">Cobertura de serv&iacute;cios <br> veterinarios durante <br> toda su estad&iacute;a</p>
+					<div style=" font-size: 12pt; width: 50%; float: left; margin-top: 7%;margin-left: -5%;">
+						<p style="font-size: 8pt; text-align: center;margin-top: -6%;margin-bottom: 5%;">Cobertura de serv&iacute;cios veterinarios durante toda su estad&iacute;a</p>
 					</div>
 				</div>
 			</article>
 		</section>
-		<section class="content" id="section-2">
-			<div id="section-content">
-				<article id="proceso-reserva" class="bg-volaris col12 text-center">
-					<h1>¡Reserva con Kmimos al viaja con Volaris!</h1>
-				</article>
-			</div>
-			<div class="col12">
-				<div class="col6">
-					<!-- <img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-2.jpg" style="margin-left: 26%;"> -->
-					<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-2.jpg" style="margin-left: 26%;">
-					<p style="margin-left: 30%;">D&eacute;jalo en tu ciudad <br> de origen</p>
+		<section style="background: #fff;color: #000;font-weight: lighter;height: 70%;overflow: hidden">
+			<article>
+				<h1 style="font-size: 17pt;margin-left: 8%;">¡Reserva con Kmimos al viaja con Volaris!</h1>
+			</article>
+			<div style="width: 100%; margin-left:-2%;margin-top: -8%;">
+				<div style="width: 50%;float: left;">
+					<img src="kmimosmx.sytes.net/QA1/prueba_email/img/Image-2.jpg" style="width: 70%;margin-bottom: 10%;margin-top: 20%;margin-left: 30%;">
+					<p style="margin-left: 35%;margin-top: -5%;text-align: center;">D&eacute;jalo en tu ciudad <br> de origen</p>
 				</div>
-				<div class="col6">
-					<!-- <img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-3.jpg" style="margin-left: 8%;"> -->
-					<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-3.jpg" style="margin-left: 8%;">
-					<p style="margin-left: -22%;">Que lo apapache un <br>cuidador en tu destino</p>
+				<div style="width: 50%; float: left;">
+					<img src="kmimosmx.sytes.net/QA1/prueba_email/img/Image-3.jpg" style="width: 70%;margin-bottom: 10%;margin-top: 20%;margin-left: 10%;">
+					<p style="margin-left: -8%;text-align: center;margin-top: -5%;">Que lo apapache un <br>cuidador en tu destino</p>
 				</div>
-				<div class="clas-o col12">&Oacute;</div>
+				<div style="position: absolute;left: 49.5%;color: #a92382;font-size: 14pt;margin-top: 21%;">&Oacute;</div>
 			</div>
 		</section>
-		<section class="content" id="section-3">
-			<div class="col12">
-				<p><span style="color: #a92382;">¡Aprovecha nuestras promociones de </span>noviembre y diciembre<span style="color: #a92382;">!</span></p>
-				<p><span style="color: #a92382;">¡Disfruta de tu viaje. Tu mejor amigo estar&aacute; en buenas manos!</span></p>
+		<section style="background: #fff;color: #000;font-weight: lighter;height: 40%;overflow: hidden">
+			<div style="width: 100%;">
+				<p style="font-size: 13pt;text-align: center;color: #000;"><span style="color: #a92382;">¡Aprovecha nuestras promociones de </span>noviembre y diciembre<span style="color: #a92382;">!</span></p>
+				<p style="font-size: 13pt;text-align: center;color: #000;"><span style="color: #a92382;">¡Disfruta de tu viaje. Tu mejor amigo estar&aacute; en buenas manos!</span></p>
 			</div>
-			<div class="col12">
-				<div class="col6">
-					<!-- <a href="#"><img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Button-1.jpg" alt=""></a> -->
-					<a href="#"><img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Button-1.jpg" alt=""></a>
+			<div style="width: 100%;">
+				<div style="width: 50%; float: left;">
+					<a href="#"><img src="kmimosmx.sytes.net/QA1/prueba_email/img/Button-1.jpg" style="width: 70%;margin-bottom: 10%;margin-top: 8%;margin-left: 14%;"></a>
 				</div>
-				<div class="col6">
-					<!-- <a href="#"><img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Button-2.jpg" alt=""></a> -->
-					<a href="#"><img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Button-2.jpg" alt=""></a>
+				<div style="width: 50%; float: left;">
+					<a href="#"><img src="kmimosmx.sytes.net/QA1/prueba_email/img/Button-2.jpg" style="width: 70%;margin-bottom: 10%;margin-top: 8%;margin-left: 14%;"></a>
 				</div>
 			</div>
 		</section>
-		<section id="contactos" class="col12">
-			<div class="container bg-black">
-				<article class="text-right">
-					<!-- <img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Logo-Kmimos.png" class="img-responsive logo-kmimos" width="150px" > -->
-					<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Logo-Kmimos.png" class="img-responsive logo-kmimos" width="150px" >
+		<section style="background: black;color: #fff; width: 100%;">
+			<div>
+				<article>
+					<img src="kmimosmx.sytes.net/QA1/prueba_email/img/Logo-Kmimos.png" style="display: inline-block;text-align: right;margin: 10px;margin-left: 70%; width: 25%;">
 				</article>
 			</div>
 		</section>
