@@ -6,10 +6,9 @@ $html .='
 		<link href="https://fonts.googleapis.com/css?family=Lato:700,900" rel="stylesheet">
 		<style>
 			body{
-				/*background: #9c2a81;*/
 				background: #fff;
 				color: #3a3a3a;
-				font-family: "Lato", sans-serif;
+				
 				font-weight: 900!important;
 				word-wrap: break-word;
 			}
@@ -20,7 +19,7 @@ $html .='
 			.sp {margin-left: -10%;}	
 		</style>
     </head>
-    <body style="width: 500px; margin:auto auto;">
+    <body style="width: 500px; margin:auto auto; font-family: "Lato", sans-serif;">
     	<div style="background:#000; margin-top: 1px;">
 	    	<div style="padding-left: 0px; padding-right: 0px;">
 	    		<!-- <img id="top-volaris" src="http://mx.kmimos.dev/landing/landing/img/logo-top-volaris.jpg"> -->
@@ -29,12 +28,12 @@ $html .='
 	    	<div class="clearfix"></div>
     	</div>
        	<div class="container-fluid">       		     		
-				<div style="width: 50%; float: left;">
-					<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-1.jpg" style="width: 100%;margin-left: 0%;height: 45%;">
-				</div>
+			<div style="width: 50%; float: left;">
+				<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-1.jpg" style="width:100%; margin-left: 0%; height: 45%;">
+			</div>
 				<div style="width: 50%; float: left;">
 					<div style="background: #9c2a81!important; width: 100%; height: 228px; margin-top: 0px!important;">
-	    				<p style="font-size: 15pt; color: #fff; text-align: right; margin-top: 0px!important; position: relative; right: 5%; padding-top: 27px; font-family: "Lato", sans-serif;">
+	    				<p style="font-size: 15pt; color: #fff; text-align: right; margin-top: 0px!important; position: relative; right: 5%; padding-top: 27px;>
 	    				Viaja tranquilo <br> deja a tu perro seguro <br> en el hogar de una verdadera familia
 	    				</p>
 	    				<!-- <img src="https://kmimos.com.mx/landing/img/Button-2.jpg" alt="boton 1" class="btn-reserva"> -->
@@ -49,12 +48,7 @@ $html .='
 		</div>			
 		<section style="background: #fff; color: #000; font-weight: lighter; height: 75%; overflow: hidden">
        	 	<article id="top-content" class="col12">
-				<h1 style="
-				    argin-bottom: 10px; 
-				    font-size: 23pt; 
-				    margin-top: 3%; 
-				    margin-left: 4%;
-				    font-family: "Lato", sans-serif;">
+				<h1 style="margin-bottom: 10px; font-size: 23pt; margin-top: 3%; margin-left: 4%;">
 				    <span style="color: #a92382;">+1000</span> Cuidadores Certificados</h1>
 				<p style="
 				        font-size: 13pt; 
