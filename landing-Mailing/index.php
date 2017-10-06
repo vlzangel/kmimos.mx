@@ -37,9 +37,11 @@
 	    				<p style="font-size: 15pt;
 	    				color: #fff;
 	    				text-align: right;
-	    				margin-top: 8%; 
+	    				margin-top: 0px!important; 
 	    				position: relative;
-	    				right: 5%;">Viaja tranquilo <br> deja a tu perro seguro <br> en el hogar de una verdadera familia</p>
+	    				right: 5%;">
+	    				Viaja tranquilo <br> deja a tu perro seguro <br> en el hogar de una verdadera familia
+	    				</p>
 	    				<!-- <img src="https://kmimos.com.mx/landing/img/Button-2.jpg" alt="boton 1" class="btn-reserva"> -->
 	    				<a href="https://www.kmimos.com.mx/?wlabel=volaris"><img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Button-2.jpg" alt="boton 1" style="
 	    				width: 55%; 
