@@ -23,24 +23,24 @@ $html .='
     	<div style="background:#000;margin-top: 1px;">
 	    	<div style="padding-left: 0px;padding-right: 0px;">
 	    		<!-- <img id="top-volaris" src="http://mx.kmimos.dev/landing/landing/img/logo-top-volaris.jpg"> -->
-	    		<img id="top-volaris" src="kmimosmx.sytes.net/QA1/prueba_email/img/logo-top-volaris.jpg" style="width: 45%;">
+	    		<img id="top-volaris" src="http://kmimosmx.sytes.net/QA1/prueba_email/img/logo-top-volaris.jpg" style="width: 45%;">
 	    	</div>
 	    	<div class="clearfix"></div>
     	</div>
        	<div class="container-fluid">       		
     	   	<div>       		
 				<div style="width: 50%; float: left;">
-					<img src="kmimosmx.sytes.net/QA1/prueba_email/img/Image-1.jpg" style="width: 100%;margin-left: 0%;height: 45%;">
+					<img src="img/Image-1.jpg" style="width: 100%;margin-left: 0%;height: 45%;">
 				</div>
 				<div style="width: 50%; float: left;">
-					<div style="background: #9c2a81!important;width: 100%; height: 45%;margin-top: 5%;">
+					<div style="background: #9c2a81!important;width: 100%; height: 228px;margin-top: -8%; position: relative;">
 	    				<p style="font-size: 15pt;color: #fff;text-align: right;top: 10%; position: relative;right: 5%;">Viaja tranquilo <br> deja a tu perro seguro <br> en el hogar de una verdadera familia</p>
-	    				<!-- <img src="https://kmimos.com.mx/landing/kmimosmx.sytes.net/QA1/prueba_email/img/Button-2.jpg" alt="boton 1" class="btn-reserva"> -->
-	    				<a href="https://www.kmimos.com.mx/?wlabel=volaris"><img src="kmimosmx.sytes.net/QA1/prueba_email/img/Button-2.jpg" alt="boton 1" style="width: 55%; position: relative; left: 35%;margin-top: 0%;"></a>
+	    				<!-- <img src="https://kmimos.com.mx/landing/img/Button-2.jpg" alt="boton 1" class="btn-reserva"> -->
+	    				<a href="https://www.kmimos.com.mx/?wlabel=volaris"><img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Button-2.jpg" alt="boton 1" style="width: 55%; position: relative; left: 35%;margin-top: 5%;"></a>
 	    			</div>
 				</div>
 			</div>
-		</div>			
+		</div>				
 		<section style="background: #fff;color: #000;font-weight: lighter;height: 75%;overflow: hidden">
        	 	<article id="top-content" class="col12">
 				<h1 style="margin-bottom: 10px;font-size: 23pt;margin-top: 3%;margin-left: 4%;"><span style="color: #a92382;">+1000</span> Cuidadores Certificados</h1>
@@ -91,10 +91,10 @@ $html .='
 			</div>
 			<div style="width: 100%;">
 				<div style="width: 50%; float: left;">
-					<a href="#"><img src="kmimosmx.sytes.net/QA1/prueba_email/img/Button-1.jpg" style="width: 70%;margin-bottom: 10%;margin-top: 8%;margin-left: 14%;"></a>
+					<a href="https://www.kmimos.com.mx/?wlabel=volaris"><img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Button-1.jpg" style="width: 70%;margin-bottom: 10%;margin-top: 8%;margin-left: 14%;"></a>
 				</div>
 				<div style="width: 50%; float: left;">
-					<a href="#"><img src="kmimosmx.sytes.net/QA1/prueba_email/img/Button-2.jpg" style="width: 70%;margin-bottom: 10%;margin-top: 8%;margin-left: 14%;"></a>
+					<a href="https://www.kmimos.com.mx/?wlabel=volaris"><img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Button-2.jpg" style="width: 70%;margin-bottom: 10%;margin-top: 8%;margin-left: 14%;"></a>
 				</div>
 			</div>
 		</section>
