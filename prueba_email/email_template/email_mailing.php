@@ -34,7 +34,7 @@ $html .='
 					<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-1.jpg" style="width: 100%;margin-left: 0%;height: 45%;">
 				</div>
 				<div style="width: 50%; float: left;">
-					<div style="background: #9c2a81!important;width: 100%; height: 228px;margin-top: -8%; position: relative;">
+					<div style="background: #9c2a81!important;width: 100%; height: 228px;margin-top: -12%; position: relative;">
 	    				<p style="font-size: 15pt;color: #fff;text-align: right;top: 10%; position: relative;right: 5%;">Viaja tranquilo <br> deja a tu perro seguro <br> en el hogar de una verdadera familia</p>
 	    				<!-- <img src="https://kmimos.com.mx/landing/img/Button-2.jpg" alt="boton 1" class="btn-reserva"> -->
 	    				<a href="https://www.kmimos.com.mx/?wlabel=volaris"><img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Button-2.jpg" alt="boton 1" style="width: 55%; position: relative; left: 35%;margin-top: 5%;"></a>
@@ -75,14 +75,14 @@ $html .='
 			</article>
 			<div style="width: 100%; margin-left:-2%;margin-top: -8%;">
 				<div style="width: 50%;float: left;">
-					<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-2.jpg" style="width: 70%;margin-bottom: 10%;margin-top: 20%;margin-left: 30%;">
+					<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-2.jpg" style="width: 70%;margin-bottom: 10%;margin-top: 10%;margin-left: 30%;">
 					<p style="margin-left: 35%;margin-top: -5%;text-align: center;">D&eacute;jalo en tu ciudad <br> de origen</p>
 				</div>
 				<div style="width: 50%; float: left;">
-					<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-3.jpg" style="width: 70%;margin-bottom: 10%;margin-top: 20%;margin-left: 10%;">
+					<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-3.jpg" style="width: 70%;margin-bottom: 10%;margin-top: 10%;margin-left: 10%;">
 					<p style="margin-left: -8%;text-align: center;margin-top: -5%;">Que lo apapache un <br>cuidador en tu destino</p>
 				</div>
-				<div style="position: absolute;left: 49.5%;color: #a92382;font-size: 14pt;margin-top: 21%;">&Oacute;</div>
+				<div style="position: absolute;left: 55.5%;color: #a92382;font-size: 14pt;margin-top: 18%;">&Oacute;</div>
 			</div>
 		</section>
 		<section style="background: #fff;color: #000;font-weight: lighter;height: 40%;overflow: hidden">
