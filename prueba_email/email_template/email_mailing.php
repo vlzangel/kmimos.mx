@@ -33,20 +33,8 @@ $html .='
 					<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-1.jpg" style="width: 100%;margin-left: 0%;height: 45%;">
 				</div>
 				<div style="width: 50%; float: left;">
-					<div style="
-					            background: #9c2a81!important;
-					            width: 100%; 
-					            height: 228px; 
-					            margin-top: 0px!important; 
-					            ">
-	    				<p style="font-size: 15pt;
-	    				color: #fff;
-	    				text-align: right;
-	    				margin-top: 0px!important; 
-	    				position: relative;
-	    				right: 5%;
-	    				padding-top: 27px;
-	    				font-family: "Lato", sans-serif;">
+					<div style="background: #9c2a81!important; width: 100%; height: 228px; margin-top: 0px!important;">
+	    				<p style="font-size: 15pt; color: #fff; text-align: right; margin-top: 0px!important; position: relative; right: 5%; padding-top: 27px; font-family: "Lato", sans-serif;">
 	    				Viaja tranquilo <br> deja a tu perro seguro <br> en el hogar de una verdadera familia
 	    				</p>
 	    				<!-- <img src="https://kmimos.com.mx/landing/img/Button-2.jpg" alt="boton 1" class="btn-reserva"> -->
