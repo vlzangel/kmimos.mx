@@ -18,7 +18,7 @@ $html .='
 			.sp {margin-left: -10%;}	
 		</style>
     </head>
-    <body style="width: 500px; margin:auto auto;">
+    <body style="width: 500px; margin:auto auto; font-family: "Lato", sans-serif;">
     	<div style="background:#000; margin-top: 1px;">
 	    	<div style="padding-left: 0px; padding-right: 0px;">
 	    		<img id="top-volaris" src="http://kmimosmx.sytes.net/QA1/prueba_email/img/logo-top-volaris.jpg" style="width: 45%;">
@@ -30,8 +30,8 @@ $html .='
 				<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-1.jpg" style="width:100%; margin-left: 0%; height: 45%;">
 			</div>
 				<div style="width: 50%; float: left;">
-					<div style="background: #9c2a81!important; width: 100%; height: 577px; margin-top: 0px!important;">
-	    				<p style="font-size: 15pt; color: #fff; text-align: right; margin-top: 0px!important; position: relative; right: 5%; padding-top:27px; font-family: "Lato", sans-serif;">Viaja tranquilo <br> deja a tu perro seguro <br> en el hogar de una <br> verdadera familia</p>
+					<div style="background: #9c2a81!important; width: 100%; height: 288px; margin-top: 0px!important;">
+	    				<p style="font-size: 15pt; color: #fff; text-align: right; margin-top: 0px!important; position: relative; right: 5%; padding-top:27px;">Viaja tranquilo <br> deja a tu perro seguro <br> en el hogar de una <br> verdadera familia</p>
 	    				
 	    				<a href="https://www.kmimos.com.mx/?wlabel=volaris">
 	    					<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Button-2.jpg" alt="boton 1" style="width: 55%; position: relative; margin-left: 85px; margin-top: 5%;"></a>
