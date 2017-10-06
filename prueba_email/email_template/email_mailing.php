@@ -30,8 +30,8 @@ $html .='
 				<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-1.jpg" style="width:100%; margin-left: 0%; height: 45%;">
 			</div>
 				<div style="width: 50%; float: left;">
-					<div style="background: #9c2a81!important; width: 100%; height: 288px; margin-top: 0px!important;">
-	    				<p style="font-size: 15pt; color: #fff; text-align: right; margin-top: 0px!important; position: relative; right: 5%; padding-top:27px;">Viaja tranquilo <br> deja a tu perro seguro <br> en el hogar de una <br> verdadera familia</p>
+					<div style="background: #9c2a81!important; width: 100%; height: 284px; margin-top: 0px!important;">
+	    				<p style="font-size: 17pt; color: #fff; text-align: right; margin-top: 0px!important; position: relative; right: 5%; padding-top:27px; padding-right:20px;">Viaja tranquilo <br> deja a tu perro seguro <br> en el hogar de una <br> verdadera familia</p>
 	    				
 	    				<a href="https://www.kmimos.com.mx/?wlabel=volaris">
 	    					<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Button-2.jpg" alt="boton 1" style="width: 55%; position: relative; margin-left: 85px; margin-top: 5%;"></a>
