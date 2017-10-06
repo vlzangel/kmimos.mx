@@ -6,7 +6,8 @@ $html .='
 		<link href="https://fonts.googleapis.com/css?family=Lato:700,900" rel="stylesheet">
 		<style>
 			body{
-				background: #9c2a81;
+				/*background: #9c2a81;*/
+				background: #fff;
 				color: #3a3a3a;
 				font-family: "Lato", sans-serif;
 				font-weight: 900!important;
@@ -30,7 +31,7 @@ $html .='
        	<div class="container-fluid">       		
     	   	<div>       		
 				<div style="width: 50%; float: left;">
-					<img src="img/Image-1.jpg" style="width: 100%;margin-left: 0%;height: 45%;">
+					<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-1.jpg" style="width: 100%;margin-left: 0%;height: 45%;">
 				</div>
 				<div style="width: 50%; float: left;">
 					<div style="background: #9c2a81!important;width: 100%; height: 228px;margin-top: -8%; position: relative;">
@@ -52,7 +53,7 @@ $html .='
 			<article style="width: 50%; float: left;">
 				<div style="width:100%;">
 					<div style="width: 50%; float: left; margin-left: -5%;">
-						<img src="kmimosmx.sytes.net/QA1/prueba_email/img/Icon-1.png" style="width: 70%;margin-bottom: 10%;margin-top: 5%;">
+						<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Icon-1.png" style="width: 70%;margin-bottom: 10%;margin-top: 5%;">
 					</div>
 					<div style="width: 50%; float: left; font-size: 12pt; margin-top: 7%;margin-left: -5%;">
 						<p style="font-size: 8pt; text-align: center;margin-top: -6%;margin-bottom: 5%;">Cuidadores Certificados que pasaron por pruebas psicom&eacute;tricas y de conocimiento veterinario</p>
@@ -60,7 +61,7 @@ $html .='
 				</div>
 				<div style="width: 100%; margin-top: 4%; float: left;margin-left: -5%;">
 					<div style="width: 50%; float: left;">
-						<img src="kmimosmx.sytes.net/QA1/prueba_email/img/Icon-2.png" style="width: 70%;margin-bottom: 10%;margin-top: 5%;margin-left: -5%;">
+						<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Icon-2.png" style="width: 70%;margin-bottom: 10%;margin-top: 5%;margin-left: -5%;">
 					</div>
 					<div style=" font-size: 12pt; width: 50%; float: left; margin-top: 7%;margin-left: -5%;">
 						<p style="font-size: 8pt; text-align: center;margin-top: -6%;margin-bottom: 5%;">Cobertura de serv&iacute;cios veterinarios durante toda su estad&iacute;a</p>
@@ -74,11 +75,11 @@ $html .='
 			</article>
 			<div style="width: 100%; margin-left:-2%;margin-top: -8%;">
 				<div style="width: 50%;float: left;">
-					<img src="kmimosmx.sytes.net/QA1/prueba_email/img/Image-2.jpg" style="width: 70%;margin-bottom: 10%;margin-top: 20%;margin-left: 30%;">
+					<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-2.jpg" style="width: 70%;margin-bottom: 10%;margin-top: 20%;margin-left: 30%;">
 					<p style="margin-left: 35%;margin-top: -5%;text-align: center;">D&eacute;jalo en tu ciudad <br> de origen</p>
 				</div>
 				<div style="width: 50%; float: left;">
-					<img src="kmimosmx.sytes.net/QA1/prueba_email/img/Image-3.jpg" style="width: 70%;margin-bottom: 10%;margin-top: 20%;margin-left: 10%;">
+					<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-3.jpg" style="width: 70%;margin-bottom: 10%;margin-top: 20%;margin-left: 10%;">
 					<p style="margin-left: -8%;text-align: center;margin-top: -5%;">Que lo apapache un <br>cuidador en tu destino</p>
 				</div>
 				<div style="position: absolute;left: 49.5%;color: #a92382;font-size: 14pt;margin-top: 21%;">&Oacute;</div>
