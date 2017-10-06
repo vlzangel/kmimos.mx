@@ -8,7 +8,6 @@ $html .='
 			body{
 				background: #fff;
 				color: #3a3a3a;
-				
 				font-weight: 900!important;
 				word-wrap: break-word;
 			}
@@ -22,7 +21,6 @@ $html .='
     <body style="width: 500px; margin:auto auto; font-family: "Lato", sans-serif;">
     	<div style="background:#000; margin-top: 1px;">
 	    	<div style="padding-left: 0px; padding-right: 0px;">
-	    		<!-- <img id="top-volaris" src="http://mx.kmimos.dev/landing/landing/img/logo-top-volaris.jpg"> -->
 	    		<img id="top-volaris" src="http://kmimosmx.sytes.net/QA1/prueba_email/img/logo-top-volaris.jpg" style="width: 45%;">
 	    	</div>
 	    	<div class="clearfix"></div>
@@ -34,15 +32,10 @@ $html .='
 				<div style="width: 50%; float: left;">
 					<div style="background: #9c2a81!important; width: 100%; height: 228px; margin-top: 0px!important;">
 	    				<p style="font-size: 15pt; color: #fff; text-align: right; margin-top: 0px!important; position: relative; right: 5%; padding-top: 27px;>
-	    				Viaja tranquilo <br> deja a tu perro seguro <br> en el hogar de una verdadera familia
-	    				</p>
-	    				<!-- <img src="https://kmimos.com.mx/landing/img/Button-2.jpg" alt="boton 1" class="btn-reserva"> -->
+	    				Viaja tranquilo <br> deja a tu perro seguro <br> en el hogar de una verdadera familia</p>
+	    				
 	    				<a href="https://www.kmimos.com.mx/?wlabel=volaris">
-	    					<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Button-2.jpg" alt="boton 1" style="
-	    				width: 55%; 
-	    				position: relative; 
-	    				margin-left: 85px;
-	    				margin-top: 5%;"></a>
+	    					<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Button-2.jpg" alt="boton 1" style="width: 55%; position: relative; margin-left: 85px; margin-top: 5%;"></a>
 	    			</div>
 				</div>
 		</div>			
@@ -50,109 +43,45 @@ $html .='
        	 	<article id="top-content" class="col12">
 				<h1 style="margin-bottom: 10px; font-size: 23pt; margin-top: 3%; margin-left: 4%;">
 				    <span style="color: #a92382;">+1000</span> Cuidadores Certificados</h1>
-				<p style="
-				        font-size: 13pt; 
-				        text-align: center; 
-				        margin-bottom: 3%;
-				        font-family: "Lato", sans-serif;
-				        ">Conoce Kmimos, una red de <span style="color: #a92382;">Cuidadores Certificados que <br> hospedan a tu mascota</span> en su hogar para que t&uacute; viajes tranquilo</p>
+				<p style="font-size: 13pt; text-align: center; margin-bottom: 3%;">Conoce Kmimos, una red de <span style="color: #a92382;">Cuidadores Certificados que <br> hospedan a tu mascota</span> en su hogar para que t&uacute; viajes tranquilo</p>
        	 	</article>
 			<article style="width: 50%; float: left;">
-				<h2 style="
-				           margin-bottom: 10px; 
-				           font-size: 14pt; 
-				           margin-top: 32%; 
-				           margin-left: 7%;
-				           font-family: "Lato", sans-serif;">Kmimos te ofrece:</h2>
+				<h2 style="margin-bottom: 10px; font-size: 14pt; margin-top: 32%; margin-left: 7%;">Kmimos te ofrece:</h2>
 			</article>
 			<article style="width: 50%; float: left;">
 				<div style="width:100%;">
 					<div style="width: 50%; float: left; margin-left: -5%;">
-						<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Icon-1.png" style="width: 70%;margin-bottom: 10%;margin-top: 5%;">
+						<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Icon-1.png" style="width:70%;margin-bottom: 10%;margin-top: 5%;">
 					</div>
-					<div style="
-					           width: 50%; 
-					           float: left; 
-					           font-size: 12pt; 
-					           margin-top: 7%;
-					           margin-left: -5%;">
-						<p style="
-						        font-size: 8pt; 
-						        text-align: center;
-						        margin-top: -6%;
-						        margin-bottom: 5%;
-						        font-family: "Lato", sans-serif;">Cuidadores Certificados que pasaron por pruebas psicom&eacute;tricas y de conocimiento veterinario</p>
+					<div style="width: 50%; float: left; font-size: 12pt; margin-top: 7%; margin-left: -5%;">
+						<p style="font-size: 8pt; text-align: center; margin-top: -6%; margin-bottom: 5%;">Cuidadores Certificados que pasaron por pruebas psicom&eacute;tricas y de conocimiento veterinario</p>
 					</div>
 				</div>
-				<div style="
-				            width: 100%; 
-				            margin-top: 4%; 
-				            float: left;
-				            margin-left: -5%;">
-					<div style="
-					           width: 50%; 
-					           float: left;">
+				<div style="width: 100%; margin-top: 4%; float: left; margin-left: -5%;">
+					<div style="width: 50%; float: left;">
 						<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Icon-2.png" 
-						style="
-						width: 70%;
-						margin-bottom: 10%;
-						margin-top: 5%;
-						margin-left: -5%;">
+						style="width: 70%; margin-bottom: 10%; margin-top: 5%; margin-left: -5%;">
 					</div>
-					<div style=" 
-					          font-size: 12pt; 
-					          width: 50%; 
-					          float: left; 
-					          margin-top: 7%;
-					          margin-left: -5%;">
-						<p style="
-						        font-size: 8pt; 
-						        text-align: center;
-						        margin-top: -6%;
-						        margin-bottom: 5%;
-						        ">Cobertura de serv&iacute;cios veterinarios durante toda su estad&iacute;a</p>
+					<div style="font-size: 12pt; width: 50%; float: left; margin-top: 7%; margin-left: -5%;">
+						<p style="font-size: 8pt; text-align: center; margin-top: -6%; margin-bottom: 5%;">Cobertura de serv&iacute;cios veterinarios durante toda su estad&iacute;a</p>
 					</div>
 				</div>
 			</article>
 		</section>
-		<section style="
-		                background: #fff;
-		                color: #000;
-		                font-weight: lighter;
-		                height: 70%;
-		                overflow: hidden">
+		<section style="background: #fff; color: #000; font-weight: lighter; height: 70%; overflow: hidden">
 			<article>
-				<h1 style="
-				        font-size: 17pt;
-				        margin-left: 8%;
-				        ">¡Reserva con Kmimos al viaja con Volaris!</h1>
+				<h1 style="font-size: 17pt; margin-left: 8%;">¡Reserva con Kmimos al viaja con Volaris!</h1>
 			</article>
 			<div style="width: 100%; margin-left:-2%; margin-top: -8%;">
 				<div style="width: 50%; float: left;">
 					<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-2.jpg" 
-					    style="
-					          width: 70%;
-					          margin-bottom: 10%;
-					           margin-top: 25px;
-					          margin-left: 30%;">
-					<p style="
-					          margin-left: 35%;
-					          margin-top: -5%;
-					          text-align: center;
-					          ">D&eacute;jalo en tu ciudad <br> de origen</p>
+					    style="width: 70%; margin-bottom: 10%; margin-top: 25px; margin-left: 30%;">
+					<p style="margin-left: 35%; margin-top: -5%; text-align: center;">D&eacute;jalo en tu ciudad <br> de origen</p>
 				</div>
 				<div style="width: 50%; float: left;">
 					<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-3.jpg" 
-					        style="
-					            width: 70%;
-					            margin-bottom: 10%;
-					            margin-top: 25px;
-					            margin-left: 10%;">
-					<p style="
-					       margin-left: -8%;
-					       text-align: center;
-					       margin-top: -5%;
-					       ">Que lo apapache un <br>cuidador en tu destino</p>
+					        style="width: 70%; margin-bottom: 10%; margin-top: 25px; margin-left: 10%;">
+					<p style="margin-left: -8%; text-align: center; margin-top: -5%;">Que lo apapache un <br>cuidador en tu destino</p>
 				</div>
 				<div style="position: absolute;left: 55.5%;color: #a92382;font-size: 14pt;margin-top: 18%;">&Oacute;</div>
 			</div>
