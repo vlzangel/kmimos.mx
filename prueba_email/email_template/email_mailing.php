@@ -73,11 +73,11 @@ $html .='
 			</article>
 			<div style="width: 100%;">
 				<div style="width: 50%; float: left;">
-					<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-2.jpg" style="width: 70%; margin-bottom: 10px!important; margin-left: 93px!important; position: absolute; margin-top: -20px!important;">
+					<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-2.jpg" style="width: 70%; margin-bottom: 10px!important; margin-left: 93px!important; position: absolute!important; margin-top: -20px!important;">
 					<p style="margin-left: 70px!important; text-align: center; margin-top: 245px!important; font-size: 14pt!important;">D&eacute;jalo en tu ciudad <br> de origen</p>
 				</div>
 				<div style="width: 50%; float: left;">
-					<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-3.jpg" style="width: 70%; margin-bottom: 10px!important; margin-left: 40px!important; position: absolute; margin-top: -20px!important;">
+					<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-3.jpg" style="width: 70%; margin-bottom: 10px!important; margin-left: 40px!important; position: absolute!important; margin-top: -20px!important;">
 					<p style="font-size: 14pt!important; text-align: center; margin-top: 245px!important; margin-left: -18px!important;">Que lo apapache un <br>cuidador en tu destino</p>
 				</div>
 				<div style="color: #a92382; font-size: 14pt; position: absolute!important; margin-top: 245px!important; margin-left: 317px!important;">&Oacute;</div>
