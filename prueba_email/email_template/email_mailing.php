@@ -80,7 +80,7 @@ $html .='
 				</p>
 			</div>
 			<div style="width: 10%; float: left;">
-				<span style="color: #a92382; font-size: 14pt; margin-left: 320px!important;">&Oacute;</span>
+				<span style="color: #a92382; font-size: 14pt; margin-left: 45px!important;">&Oacute;</span>
 			</div>
 			<div style="width: 45%; float: left;">
 				<p style="font-size: 14pt!important; text-align: center; margin-top: 10px!important; margin-left: -18px!important;">Que lo apapache un <br>cuidador en tu destino</p>
