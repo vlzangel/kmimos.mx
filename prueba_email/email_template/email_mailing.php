@@ -71,16 +71,13 @@ $html .='
 			<article>
 				<h1 style="font-size: 20pt; margin-left: 8%;">¡Reserva con Kmimos al viaja con Volaris!</h1>
 			</article>
-			<div style="width: 100%; margin-left:-2%; margin-top: -20px;">
+			<div style="width: 100%;">
 				<div style="width: 50%; float: left;">
-					<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-2.jpg" 
-					    style="width: 35%; margin-bottom: 10px!important; margin-left: 93px!important; position: absolute; margin-top: -20px!important;">
+					<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-2.jpg" style="width: 70%; margin-bottom: 10px!important; margin-left: 93px!important; position: absolute; margin-top: -20px!important;">
 					<p style="margin-left: 70px!important; text-align: center; margin-top: 245px!important; font-size: 14pt!important;">D&eacute;jalo en tu ciudad <br> de origen</p>
 				</div>
-				
 				<div style="width: 50%; float: left;">
-					<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-3.jpg" 
-					        style="width: 35%; margin-bottom: 10px!important; margin-left: 40px!important; position: absolute; margin-top: -20px!important;">
+					<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-3.jpg" style="width: 70%; margin-bottom: 10px!important; margin-left: 40px!important; position: absolute; margin-top: -20px!important;">
 					<p style="font-size: 14pt!important; text-align: center; margin-top: 245px!important; margin-left: -18px!important;">Que lo apapache un <br>cuidador en tu destino</p>
 				</div>
 				<div style="color: #a92382; font-size: 14pt; position: absolute!important; margin-top: 245px!important; margin-left: 317px!important;">&Oacute;</div>
@@ -89,7 +86,7 @@ $html .='
 		<section style="background: #fff;color: #000;font-weight: lighter;height: 40%;overflow: hidden">
 			<div style="width: 100%;">
 				<p style="font-size: 16pt;text-align: center;color: #000;"><span style="color: #a92382;">¡Aprovecha nuestras promociones de </span>noviembre y diciembre<span style="color: #a92382;">!</span></p>
-				<p style="font-size: 16pt;text-align: center;color: #000;"><span style="color: #a92382;">¡Disfruta de tu viaje. Tu mejor amigo estar&aacute; en buenas manos!</span></p>
+				<p style="font-size: 16pt; text-align: center; color: #000;"><span style="color: #a92382;">¡Disfruta de tu viaje. Tu mejor amigo estar&aacute; en buenas manos!</span></p>
 			</div>
 			<div style="width: 100%;">
 				<div style="width: 50%; float: left;">
