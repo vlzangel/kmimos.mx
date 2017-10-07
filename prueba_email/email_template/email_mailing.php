@@ -27,7 +27,7 @@ $html .='
     	</div>
        	<div class="container-fluid">       		     		
 			<div style="width: 50%; float: left;">
-				<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-1.jpg" style="width:100%; margin-left: 0%; height: 45%;">
+				<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-1.jpg" style="width:100%; margin-left: 0%; height: 284px;">
 			</div>
 				<div style="width: 50%; float: left;">
 					<div style="background: #9c2a81!important; width: 100%; height: 283.5px; margin-top: 0px!important;">
@@ -40,9 +40,9 @@ $html .='
 		</div>			
 		<section style="background: #fff; color: #000; font-weight: lighter; height: 75%; overflow: hidden">
        	 	<article id="top-content" class="col12">
-				<h1 style="margin-bottom: 10px; font-size: 25pt; margin-top: 3%; margin-left: 7%;">
+				<h1 style="margin-bottom: 10px; font-size: 25pt; margin-top: 3%; margin-left: 65px;">
 				    <span style="color: #a92382;">+1000</span> Cuidadores Certificados</h1>
-				<p style="font-size: 13pt; text-align: center; margin-bottom: 3%;">Conoce Kmimos, una red de <span style="color: #a92382;">Cuidadores Certificados que <br> hospedan a tu mascota</span> en su hogar para que t&uacute; viajes tranquilo</p>
+				<p style="font-size: 15pt; text-align: center; margin-bottom: 3%;">Conoce Kmimos, una red de <span style="color: #a92382;">Cuidadores Certificados que <br> hospedan a tu mascota</span> en su hogar para que t&uacute; viajes tranquilo</p>
        	 	</article>
 			<article style="width: 50%; float: left;">
 				<h2 style="margin-bottom: 10px; font-size: 14pt; margin-top: 32%; margin-left: 15%;">Kmimos te ofrece:</h2>
@@ -52,8 +52,8 @@ $html .='
 					<div style="width: 50%; float: left; margin-left: -5%;">
 						<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Icon-1.png" style="width:70%;margin-bottom: 10%;margin-top: 5%;">
 					</div>
-					<div style="width: 50%; float: left; font-size: 12pt; margin-top: 7%; margin-left: -5%;">
-						<p style="font-size: 13pt; text-align: center; margin-top: -6%; margin-bottom: 5%;">Cuidadores Certificados que pasaron por pruebas psicom&eacute;tricas y de conocimiento veterinario</p>
+					<div style="width: 50%; float: left; font-size: 12pt; margin-left: -5%;">
+						<p style="font-size: 12pt; text-align: center; margin-top: -6%; margin-bottom: 5%;">Cuidadores Certificados que pasaron por pruebas psicom&eacute;tricas y de conocimiento veterinario</p>
 					</div>
 				</div>
 				<div style="width: 100%; margin-top: 4%; float: left; margin-left: -5%;">
@@ -69,21 +69,21 @@ $html .='
 		</section>
 		<section style="background: #fff; color: #000; font-weight: lighter; height: 70%; overflow: hidden">
 			<article>
-				<h1 style="font-size: 17pt; margin-left: 8%;">¡Reserva con Kmimos al viaja con Volaris!</h1>
+				<h1 style="font-size: 20pt; margin-left: 8%;">¡Reserva con Kmimos al viaja con Volaris!</h1>
 			</article>
 			<div style="width: 100%; margin-left:-2%; margin-top: -20px;">
 				<div style="width: 50%; float: left;">
 					<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-2.jpg" 
-					    style="width: 70%; margin-bottom: 10%; margin-top: 25px; margin-left: 30%;">
+					    style="width: 70%; margin-bottom: 10%; margin-top: -70px; margin-left: 30%;">
 					<p style="margin-left: 35%; margin-top: -5%; text-align: center;">D&eacute;jalo en tu ciudad <br> de origen</p>
 				</div>
-				<div style="position: absolute;left: 50px;color: #a92382;font-size: 14pt;margin-top: 18%;">&Oacute;</div>
+				
 				<div style="width: 50%; float: left;">
 					<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-3.jpg" 
-					        style="width: 70%; margin-bottom: 10%; margin-top: 25px; margin-left: 10%;">
+					        style="width: 70%; margin-bottom: 10%; margin-top: -92px; margin-left: 10%;">
 					<p style="margin-left: -8%; text-align: center; margin-top: -5%;">Que lo apapache un <br>cuidador en tu destino</p>
 				</div>
-				
+				<div style="position: absolute;left: 50px;color: #a92382;font-size: 14pt;margin-top: 18%;">&Oacute;</div>
 			</div>
 		</section>
 		<section style="background: #fff;color: #000;font-weight: lighter;height: 40%;overflow: hidden">
