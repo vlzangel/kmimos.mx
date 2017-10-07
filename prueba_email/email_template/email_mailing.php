@@ -74,13 +74,13 @@ $html .='
 			<div style="width: 100%; margin-left:-2%; margin-top: -20px;">
 				<div style="width: 50%; float: left;">
 					<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-2.jpg" 
-					    style="width: 70%; margin-bottom: 10%; margin-top: -70px; margin-left: 30%;">
+					    style="width: 70%; margin-bottom: 10%; margin-top: -70px!important; margin-left: 30%;">
 					<p style="margin-left: 35%; margin-top: -5%; text-align: center;">D&eacute;jalo en tu ciudad <br> de origen</p>
 				</div>
 				
 				<div style="width: 50%; float: left;">
 					<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-3.jpg" 
-					        style="width: 70%; margin-bottom: 10%; margin-top: -92px; margin-left: 10%;">
+					        style="width: 70%; margin-bottom: 10%; margin-top: -92px!important; margin-left: 10%;">
 					<p style="margin-left: -8%; text-align: center; margin-top: -5%;">Que lo apapache un <br>cuidador en tu destino</p>
 				</div>
 				<div style="position: absolute;left: 50px;color: #a92382;font-size: 14pt;margin-top: 18%;">&Oacute;</div>
