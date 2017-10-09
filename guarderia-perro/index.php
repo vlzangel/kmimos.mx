@@ -2372,7 +2372,7 @@
                 text-align: left;
                 color: white;
                 font-size: 18px;
-                font-family: 'lato;
+                font-family: 'lato';
             font-weight: bold;
             }
             .customText2 {

@@ -20,6 +20,13 @@ $html .='
 			#img-1{width:100%; margin-left: 0%; height: 284px;}
 			#contenedor-1{background: #9c2a81!important; width: 100%; height: 283.5px; margin-top: 0px!important;}
 			#p-contenedor-1{font-size: 17pt; color: #fff; text-align: right; margin-top: 0px!important; position: relative; right: 5%; padding-top:27px; padding-right:20px;}
+
+			@media (min-width: 1280px){}
+			@media (min-width: 766px) and (max-width: 999px){}
+			@media (min-width: 581px) and (max-width: 765px){}
+			@media (min-width: 481px) and (max-width: 580px){}
+			@media (min-width: 381px) and (max-width: 480px){}
+			@media (min-width: 280px) and (max-width: 380px){}
 		</style>
     </head>
     <body style="min-width: 500px; max-width: 500px; margin:auto auto;">
