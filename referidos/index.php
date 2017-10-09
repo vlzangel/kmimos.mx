@@ -73,7 +73,7 @@ if( isset($_GET['r']) ){
 			#message{position: fixed; width: 100%; height: 100%; bottom: 0; left: 0; padding: 20px; text-align: center; box-shadow: 0 0 3px #CCC; background: rgba(0, 0, 0, 0.8); z-index: 2;}
 			#message.Msubscribe .contain{position: relative; width: 95%; max-width: 100%; margin: 0 auto;}
 			#PageSubscribe{position:relative; max-width: 700px;  margin: 0 auto;  padding: 25px;  top: 75px; color: #FFF; border-radius: 20px; /* background:#00bc00;*/
-				background: #ba2287;  overflow: hidden;}
+				background: #ba2287;  overflow: hidden; margin-top: 5%; margin-left: 34%;}
 			#PageSubscribe .exit{float: right; cursor: pointer;}
 			#PageSubscribe .section{ width: 50%; padding: 10px; float: left; font-size: 17px; text-align: left;}
 			#PageSubscribe .section.section1{font-size: 20px;}
@@ -247,7 +247,6 @@ if( isset($_GET['r']) ){
 		<script type="text/javascript">
 			$(function(){
 				var url = "<?php echo $url_base; ?>";
-				alert(url);
 				$('#frm').on('submit', function(e){
 				  e.preventDefault(e);
 				  _registerLanding();
@@ -269,7 +268,6 @@ if( isset($_GET['r']) ){
 					    $('#msg').html('Debe completar los datos');
 					    return;
 					  }
-
 
 
 					  $('#loading').removeClass('hidden');

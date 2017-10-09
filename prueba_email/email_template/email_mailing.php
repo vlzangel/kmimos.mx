@@ -19,14 +19,40 @@ $html .='
 			#top-volaris{width: 45%;}
 			#img-1{width:100%; margin-left: 0%; height: 284px;}
 			#contenedor-1{background: #9c2a81!important; width: 100%; height: 283.5px; margin-top: 0px!important;}
-			#p-contenedor-1{font-size: 17pt; color: #fff; text-align: right; margin-top: 0px!important; position: relative; right: 5%; padding-top:27px; padding-right:20px;}
+			#p-contenedor-1{font-size: 17pt; color: #fff; text-align: right; margin-top: 0px!important; position: relative; right: 0%; padding-top:27px; padding-right:20px;}
+			#btn-img{width: 55%; position: relative; margin-left: 85px; margin-top: 5%;}
 
 			@media (min-width: 1280px){}
-			@media (min-width: 766px) and (max-width: 999px){}
-			@media (min-width: 581px) and (max-width: 765px){}
-			@media (min-width: 481px) and (max-width: 580px){}
-			@media (min-width: 381px) and (max-width: 480px){}
-			@media (min-width: 280px) and (max-width: 380px){}
+			@media (min-width: 766px) and (max-width: 999px){
+				#img-1{width:100%; margin-left: 0%; height: 284px;}
+				#contenedor-1{background: #9c2a81!important; width: 100%; height: 283.5px; margin-top: 0px!important;}
+				#p-contenedor-1{font-size: 14pt; color: #fff; text-align: right; margin-top: 0px!important; position: relative; right: 0%; padding-top:27px; padding-right:20px;}
+				#btn-img{width: 55%; position: relative; margin-left: 85px; margin-top: 0%;}
+			}
+			@media (min-width: 581px) and (max-width: 765px){
+				#img-1{width:100%; margin-left: 0%; height: 284px;}
+				#contenedor-1{background: #9c2a81!important; width: 100%; height: 283.5px; margin-top: 0px!important;}
+				#p-contenedor-1{font-size: 14pt; color: #fff; text-align: right; margin-top: 0px!important; position: relative; right: 0%; padding-top:27px; padding-right:20px;}
+				#btn-img{width: 55%; position: relative; margin-left: 85px; margin-top: 0%;}
+			}
+			@media (min-width: 481px) and (max-width: 580px){
+				#img-1{width:100%; margin-left: 0%; height: 284px;}
+				#contenedor-1{background: #9c2a81!important; width: 100%; height: 283.5px; margin-top: 0px!important;}
+				#p-contenedor-1{font-size: 14pt; color: #fff; text-align: right; margin-top: 0px!important; position: relative; right: 0%; padding-top:27px; padding-right:20px;}
+				#btn-img{width: 55%; position: relative; margin-left: 85px; margin-top: 0%;}
+			}
+			@media (min-width: 381px) and (max-width: 480px){
+				#img-1{width:100%; margin-left: 0%; height: 284px;}
+				#contenedor-1{background: #9c2a81!important; width: 100%; height: 283.5px; margin-top: 0px!important;}
+				#p-contenedor-1{font-size: 14pt; color: #fff; text-align: right; margin-top: 0px!important; position: relative; right: 0%; padding-top:27px; padding-right:20px;}
+				#btn-img{width: 55%; position: relative; margin-left: 85px; margin-top: 0%;}
+			}
+			@media (min-width: 280px) and (max-width: 380px){
+				#img-1{width:100%; margin-left: 0%; height: 284px;}
+				#contenedor-1{background: #9c2a81!important; width: 100%; height: 283.5px; margin-top: 0px!important;}
+				#p-contenedor-1{font-size: 14pt; color: #fff; text-align: right; margin-top: 0px!important; position: relative; right: 0%; padding-top:27px; padding-right:20px;}
+				#btn-img{width: 55%; position: relative; margin-left: 85px; margin-top: 0%;}
+			}
 		</style>
     </head>
     <body style="min-width: 500px; max-width: 500px; margin:auto auto;">
@@ -45,7 +71,7 @@ $html .='
 	    				<p id="p-contenedor-1">Viaja tranquilo <br> deja a tu perro seguro <br> en el hogar de una <br> verdadera familia</p>
 	    				
 	    				<a href="https://www.kmimos.com.mx/?wlabel=volaris">
-	    					<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Button-2.jpg" alt="boton 1" style="width: 55%; position: relative; margin-left: 85px; margin-top: 5%;"></a>
+	    					<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Button-2.jpg" alt="boton 1" id="btn-img"></a>
 	    			</div>
 				</div>
 		</div>			
@@ -81,10 +107,10 @@ $html .='
 		<section style="background: #fff; color: #000; font-weight: lighter; height: 70%;">
 			<h1 style="font-size: 20pt; margin-left: 8%;">¡Reserva con Kmimos al viaja con Volaris!</h1>
 			<div style="width: 50%; float: left;">
-				<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-2.jpg" style="width: 70%; margin-bottom: 10px!important; margin-left: 93px!important; position: absolute!important; margin-top: -20px!important;">
+				<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-2.jpg" style="width: 70%; margin-bottom: 10px!important; margin-left: 93px!important;">
 			</div>
 			<div style="width: 50%; float: left;">
-				<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-3.jpg" style="width: 70%; margin-bottom: 10px!important; margin-left: 40px!important; position: absolute!important; margin-top: -20px!important;">
+				<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-3.jpg" style="width: 70%; margin-bottom: 10px!important; margin-left: 40px!important;">
 			</div>
 			<div style="width: 45%; float: left;">
 				<p style="margin-left: 70px!important; text-align: center; margin-top: -8px!important; font-size: 14pt!important;">D&eacute;jalo en tu ciudad <br> de origen
