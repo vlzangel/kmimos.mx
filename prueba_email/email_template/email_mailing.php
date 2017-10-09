@@ -9,29 +9,40 @@ $html .='
 				background: #fff;
 				color: #3a3a3a;
 				font-weight: 900!important;
-				word-wrap: break-word;
+				font-family: "Lato", sans-serif;
 			}
 			section{clear: both;}
-
+	
 			strong{font-weight: 900;}
-			.container-fluid{padding: 0px!important; margin: 0px!important;width: 100%!important;background:#9c2a81!important;}
-			.sp {margin-left: -10%;}	
+			.container-fluid{padding: 0px!important; margin: 0px!important;width:100%!important; background:#9c2a81!important;}
+			.sp {margin-left: -10%;}
+			#top-volaris{width: 45%;}
+			#img-1{width:100%; margin-left: 0%; height: 284px;}
+			#contenedor-1{background: #9c2a81!important; width: 100%; height: 283.5px; margin-top: 0px!important;}
+			#p-contenedor-1{font-size: 17pt; color: #fff; text-align: right; margin-top: 0px!important; position: relative; right: 5%; padding-top:27px; padding-right:20px;}
+
+			@media (min-width: 1280px){}
+			@media (min-width: 766px) and (max-width: 999px){}
+			@media (min-width: 581px) and (max-width: 765px){}
+			@media (min-width: 481px) and (max-width: 580px){}
+			@media (min-width: 381px) and (max-width: 480px){}
+			@media (min-width: 280px) and (max-width: 380px){}
 		</style>
     </head>
-    <body style="min-width: 500px; max-width: 500px; margin:auto auto; font-family: "Lato", sans-serif;">
+    <body style="min-width: 500px; max-width: 500px; margin:auto auto;">
     	<div style="background:#000; margin-top: 1px;">
 	    	<div style="padding-left: 0px; padding-right: 0px;">
-	    		<img id="top-volaris" src="http://kmimosmx.sytes.net/QA1/prueba_email/img/logo-top-volaris.jpg" style="width: 45%;">
+	    		<img id="top-volaris" src="http://kmimosmx.sytes.net/QA1/prueba_email/img/logo-top-volaris.jpg">
 	    	</div>
 	    	<div class="clearfix"></div>
     	</div>
        	<div class="container-fluid">       		     		
 			<div style="width: 50%; float: left;">
-				<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-1.jpg" style="width:100%; margin-left: 0%; height: 284px;">
+				<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-1.jpg" id="img-1">
 			</div>
 				<div style="width: 50%; float: left;">
-					<div style="background: #9c2a81!important; width: 100%; height: 283.5px; margin-top: 0px!important;">
-	    				<p style="font-size: 17pt; color: #fff; text-align: right; margin-top: 0px!important; position: relative; right: 5%; padding-top:27px; padding-right:20px;">Viaja tranquilo <br> deja a tu perro seguro <br> en el hogar de una <br> verdadera familia</p>
+					<div id="contenedor-1">
+	    				<p id="p-contenedor-1">Viaja tranquilo <br> deja a tu perro seguro <br> en el hogar de una <br> verdadera familia</p>
 	    				
 	    				<a href="https://www.kmimos.com.mx/?wlabel=volaris">
 	    					<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Button-2.jpg" alt="boton 1" style="width: 55%; position: relative; margin-left: 85px; margin-top: 5%;"></a>
