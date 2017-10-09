@@ -27,7 +27,7 @@ $html .='
 			#h2-1{margin-bottom: 10px; font-size: 14pt; margin-top: 32%; margin-left: 15%;}
 			#img-contenedor-2{width:70%;margin-bottom: 10%;margin-top: 5%;}
 			#p2-contenedor-2{font-size: 12pt; text-align: center; margin-top: -6%; margin-bottom: 5%;}
-			
+			#h1-3{font-size: 17pt; margin-left: 5%;}
 			@media (min-width: 1280px){}
 			@media (min-width: 766px) and (max-width: 999px){
 				#body-top{min-width: 500px; max-width: 500px; margin:auto auto;}
@@ -134,7 +134,7 @@ $html .='
 			</article>
 		</section>
 		<section style="background: #fff; color: #000; font-weight: lighter; height: 70%;">
-			<h1 style="font-size: 20pt; margin-left: 8%;">¡Reserva con Kmimos al viaja con Volaris!</h1>
+			<h1 id="h1-3">¡Reserva con Kmimos al viaja con Volaris!</h1>
 			<div style="width: 50%; float: left;">
 				<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-2.jpg" style="width: 70%; margin-bottom: 10px!important; margin-left: 93px!important;">
 			</div>
