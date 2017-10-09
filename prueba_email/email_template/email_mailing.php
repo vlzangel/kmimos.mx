@@ -38,8 +38,8 @@ $html .='
 	    			</div>
 				</div>
 		</div>			
-		<section style="background: #fff; color: #000; font-weight: lighter; height: 75%; overflow: hidden">
-       	 	<article id="top-content" class="col12">
+		<section style="background: #fff; color: #000; font-weight: lighter; height: 75%;">
+       	 	<article id="top-content" style="width:100%;">
 				<h1 style="margin-bottom: 10px; font-size: 25pt; margin-top: 3%; margin-left: 65px;">
 				    <span style="color: #a92382;">+1000</span> Cuidadores Certificados</h1>
 				<p style="font-size: 15pt; text-align: center; margin-bottom: 3%;">Conoce Kmimos, una red de <span style="color: #a92382;">Cuidadores Certificados que <br> hospedan a tu mascota</span> en su hogar para que t&uacute; viajes tranquilo</p>
