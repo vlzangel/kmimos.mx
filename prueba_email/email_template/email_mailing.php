@@ -17,26 +17,31 @@ $html .='
 			.container-fluid{padding: 0px!important; margin: 0px!important;width:100%!important; background:#9c2a81!important;}
 			.sp {margin-left: -10%;}
 			#top-volaris{width: 45%;}
+			#body-top{min-width: 500px; max-width: 500px; margin:auto auto;}
 			#img-1{width:100%; margin-left: 0%; height: 284px;}
 			#contenedor-1{background: #9c2a81!important; width: 100%; height: 283.5px; margin-top: 0px!important;}
 			#p-contenedor-1{font-size: 17pt; color: #fff; text-align: right; margin-top: 0px!important; position: relative; right: 0%; padding-top:27px; padding-right:20px;}
 			#btn-img{width: 55%; position: relative; margin-left: 85px; margin-top: 5%;}
-			#h1-1{margin-bottom: 10px; font-size: 22pt; margin-top: 3%; margin-left: 65px;}
+			#h1-1{margin-bottom: 10px; font-size: 22pt; margin-top: 3%; margin-left: 35px;}
 			#p-contenedor-2{font-size: 15pt; text-align: center; margin-bottom: 3%;}
 			#h2-1{margin-bottom: 10px; font-size: 14pt; margin-top: 32%; margin-left: 15%;}
 			#img-contenedor-2{width:70%;margin-bottom: 10%;margin-top: 5%;}
 			#p2-contenedor-2{font-size: 12pt; text-align: center; margin-top: -6%; margin-bottom: 5%;}
+			
 			@media (min-width: 1280px){}
 			@media (min-width: 766px) and (max-width: 999px){
+				#body-top{min-width: 500px; max-width: 500px; margin:auto auto;}
 				#img-1{width:100%; margin-left: 0%; height: 284px;}
 				#contenedor-1{background: #9c2a81!important; width: 100%; height: 283.5px; margin-top: 0px!important;}
 				#p-contenedor-1{font-size: 14pt; color: #fff; text-align: right; margin-top: 0px!important; position: relative; right: 0%; padding-top:27px; padding-right:20px;}
 				#btn-img{width: 55%; position: relative; margin-left: 85px; margin-top: 0%;}
-				#h1-1{margin-bottom: 10px; font-size: 18pt; margin-top: 3%; margin-left: 15px;}
+				#h1-1{margin-bottom: 10px; font-size: 18pt; margin-top: 3%; margin-left: 60px;}
 				#p-contenedor-2{font-size: 13pt; text-align: center; margin-bottom: 3%;}
 				#h2-1{margin-bottom: 10px; font-size: 14pt; margin-top: 32%; margin-left: 15%;}
+
 			}
 			@media (min-width: 581px) and (max-width: 765px){
+				#body-top{min-width: 500px; max-width: 500px; margin:auto auto;}
 				#img-1{width:100%; margin-left: 0%; height: 284px;}
 				#contenedor-1{background: #9c2a81!important; width: 100%; height: 283.5px; margin-top: 0px!important;}
 				#p-contenedor-1{font-size: 14pt; color: #fff; text-align: right; margin-top: 0px!important; position: relative; right: 0%; padding-top:27px; padding-right:20px;}
@@ -46,6 +51,7 @@ $html .='
 				#h2-1{margin-bottom: 10px; font-size: 12pt; margin-top: 32%; margin-left: 15%;}
 			}
 			@media (min-width: 481px) and (max-width: 580px){
+				#body-top{min-width: 500px; max-width: 580px; margin:auto auto;}
 				#img-1{width:100%; margin-left: 0%; height: 284px;}
 				#contenedor-1{background: #9c2a81!important; width: 100%; height: 283.5px; margin-top: 0px!important;}
 				#p-contenedor-1{font-size: 14pt; color: #fff; text-align: right; margin-top: 0px!important; position: relative; right: 0%; padding-top:27px; padding-right:20px;}
@@ -55,6 +61,7 @@ $html .='
 				#h2-1{margin-bottom: 10px; font-size: 12pt; margin-top: 32%; margin-left: 15%;}
 			}
 			@media (min-width: 381px) and (max-width: 480px){
+				#body-top{min-width: 380px; max-width: 480px; margin:auto auto;}
 				#img-1{width:100%; margin-left: 0%; height: 284px;}
 				#contenedor-1{background: #9c2a81!important; width: 100%; height: 283.5px; margin-top: 0px!important;}
 				#p-contenedor-1{font-size: 14pt; color: #fff; text-align: right; margin-top: 0px!important; position: relative; right: 0%; padding-top:27px; padding-right:20px;}
@@ -64,6 +71,7 @@ $html .='
 				#h2-1{margin-bottom: 10px; font-size: 11pt; margin-top: 32%; margin-left: 15%;}
 			}
 			@media (min-width: 280px) and (max-width: 380px){
+				#body-top{min-width: 280px; max-width: 380px; margin:auto auto;}
 				#img-1{width:100%; margin-left: 0%; height: 284px;}
 				#contenedor-1{background: #9c2a81!important; width: 100%; height: 283.5px; margin-top: 0px!important;}
 				#p-contenedor-1{font-size: 14pt; color: #fff; text-align: right; margin-top: 0px!important; position: relative; right: 0%; padding-top:27px; padding-right:20px;}
@@ -76,7 +84,7 @@ $html .='
 			}
 		</style>
     </head>
-    <body style="min-width: 500px; max-width: 500px; margin:auto auto;">
+    <body id="body-top">
     	<div style="background:#000; margin-top: 1px;">
 	    	<div style="padding-left: 0px; padding-right: 0px;">
 	    		<img id="top-volaris" src="http://kmimosmx.sytes.net/QA1/prueba_email/img/logo-top-volaris.jpg">
