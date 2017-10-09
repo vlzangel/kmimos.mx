@@ -37,33 +37,33 @@
 		</script>
 
 		<style type="text/css">
-		#message{position: fixed; width: 100%; height: 100%; bottom: 0; padding: 20px; text-align: center; box-shadow: 0 0 3px #CCC; background: rgba(0, 0, 0, 0.8); z-index: 2;}
-		#message.Msubscribe .contain{position: relative; width: 95%; max-width: 100%; margin: 0 auto;}
-		#PageSubscribe{position:relative; max-width: 700px;  margin: 0 auto;  padding: 25px;  top: 75px; color: #FFF; border-radius: 20px; /* background:#00bc00;*/
-			background: #ba2287;  overflow: hidden;}
-		#PageSubscribe .exit{float: right; cursor: pointer;}
-		#PageSubscribe .section{ width: 50%; padding: 10px; float: left; font-size: 17px; text-align: left;}
-		#PageSubscribe .section.section1{font-size: 20px;}
-		#PageSubscribe .section.section1 span{font-size: 25px; font-weight: 400;}
-		#PageSubscribe .section.section1 .images{padding:10px 0; text-align: center;}
-		#PageSubscribe .section.section3{width: 100%; font-size: 17px; font-weight: bold; text-align: center;}
-		#PageSubscribe .section.section2{}
-		#PageSubscribe .section.section2 .message{font-size: 15px; border: none; background: none; opacity:0; visibility: : hidden; transition: all .3s;}
-		#PageSubscribe .section.section2 .message.show{opacity:1; visibility: :visible;}
-		#PageSubscribe .section.section2 .icon{width: 30px; padding: 5px 0;}
-		#PageSubscribe .section.section2 .subscribe {margin: 20px 0;  }
-		#PageSubscribe .section.section2 form{margin: 0; display:flex;}
-		#PageSubscribe .section.section2 input,
-		#PageSubscribe .section.section2 button{width: 100%; max-width: calc(100% - 60px); margin: 5px; padding: 5px 10px; color: #CCC; font-size: 15px; border-radius: 20px;  border: none; background: #FFF; }
-		#PageSubscribe .section.section2 button {padding: 10px;  width: 40px;}
+			#message{position: fixed; width: 100%; height: 100%; bottom: 0; padding: 20px; text-align: center; box-shadow: 0 0 3px #CCC; background: rgba(0, 0, 0, 0.8); z-index: 2;}
+			#message.Msubscribe .contain{position: relative; width: 95%; max-width: 100%; margin: 0 auto;}
+			#PageSubscribe{position:relative; max-width: 700px;  margin: 0 auto;  padding: 25px;  top: 75px; color: #FFF; border-radius: 20px; /* background:#00bc00;*/
+				background: #ba2287;  overflow: hidden;}
+			#PageSubscribe .exit{float: right; cursor: pointer;}
+			#PageSubscribe .section{ width: 50%; padding: 10px; float: left; font-size: 17px; text-align: left;}
+			#PageSubscribe .section.section1{font-size: 20px;}
+			#PageSubscribe .section.section1 span{font-size: 25px; font-weight: 400;}
+			#PageSubscribe .section.section1 .images{padding:10px 0; text-align: center;}
+			#PageSubscribe .section.section3{width: 100%; font-size: 17px; font-weight: bold; text-align: center;}
+			#PageSubscribe .section.section2{}
+			#PageSubscribe .section.section2 .message{font-size: 15px; border: none; background: none; opacity:0; visibility: : hidden; transition: all .3s;}
+			#PageSubscribe .section.section2 .message.show{opacity:1; visibility: :visible;}
+			#PageSubscribe .section.section2 .icon{width: 30px; padding: 5px 0;}
+			#PageSubscribe .section.section2 .subscribe {margin: 20px 0;  }
+			#PageSubscribe .section.section2 form{margin: 0; display:flex;}
+			#PageSubscribe .section.section2 input,
+			#PageSubscribe .section.section2 button{width: 100%; max-width: calc(100% - 60px); margin: 5px; padding: 5px 10px; color: #CCC; font-size: 15px; border-radius: 20px;  border: none; background: #FFF; }
+			#PageSubscribe .section.section2 button {padding: 10px;  width: 40px;}
 
-		@media screen and (max-width:480px), screen and (max-device-width:480px) {
-			#PageSubscribe { top: 15px;}
-			#PageSubscribe .section{ width: 100%; padding: 10px 0; font-size: 12px;}
-			#PageSubscribe .section.section1 {font-size: 15px;}
-			#PageSubscribe .section.section1 span {font-size: 20px;}
-			#PageSubscribe .section.section3 {font-size: 12px;}
-		}
+			@media screen and (max-width:480px), screen and (max-device-width:480px) {
+				#PageSubscribe { top: 15px;}
+				#PageSubscribe .section{ width: 100%; padding: 10px 0; font-size: 12px;}
+				#PageSubscribe .section.section1 {font-size: 15px;}
+				#PageSubscribe .section.section1 span {font-size: 20px;}
+				#PageSubscribe .section.section3 {font-size: 12px;}
+			}
 	</style>
 
 	<script type='text/javascript'>
@@ -120,7 +120,7 @@
 			var subscribe = jQuery(element).closest('.subscribe');
 			var message = subscribe.find('.message');
 			var email = subscribe.find('input[name="mail"]').val();
-			var url = '../landing/newsletter.php?source=nuevo-aspirante-norte&email='+email;
+			var url = '../../landing/newsletter.php?source=nuevo-aspirante-norte&email='+email;
 			if(email!=''){
 				jQuery.post(url, jQuery(element).serialize(),function(data){
 					//console.log(data);
