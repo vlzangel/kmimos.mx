@@ -1,4 +1,15 @@
-<!DOCTYPE html>
+<?php
+
+	$query = '';
+	foreach ($_GET as $key => $value) {
+		$separador = (!empty($query))? '&' : '' ;
+		if( $key == 'utm_campaign'){
+			$value = 'landing_' . $_GET['utm_campaign']; 
+		}
+		$query .= $separador.$key.'='.$value;
+	}
+
+?><!DOCTYPE html>
 <html> 
     <head>
         <meta charset="utf-8">
@@ -39,8 +50,8 @@
 		#PageSubscribe .section.section1 .images{padding:10px 0; text-align: center;}
 		#PageSubscribe .section.section3{width: 100%; font-size: 17px; font-weight: bold; text-align: center;}
 		#PageSubscribe .section.section2{}
-		#PageSubscribe .section.section2 .message{font-size: 15px; border: none; background: none; opacity:0; visible: hidden; transition: all .3s;}
-		#PageSubscribe .section.section2 .message.show{opacity:1; visible:visible;}
+		#PageSubscribe .section.section2 .message{font-size: 15px; border: none; background: none; opacity:0; visibility: : hidden; transition: all .3s;}
+		#PageSubscribe .section.section2 .message.show{opacity:1; visibility: :visible;}
 		#PageSubscribe .section.section2 .icon{width: 30px; padding: 5px 0;}
 		#PageSubscribe .section.section2 .subscribe {margin: 20px 0;  }
 		#PageSubscribe .section.section2 form{margin: 0; display:flex;}
@@ -111,7 +122,7 @@
 			var subscribe = jQuery(element).closest('.subscribe');
 			var message = subscribe.find('.message');
 			var email = subscribe.find('input[name="mail"]').val();
-			var url = '/landing/newsletter.php?source=cuidadores-animados&email='+email;
+			var url = '../landing/newsletter.php?source=cuidadores-animados&email='+email;
 			if(email!=''){
 				jQuery.post(url, jQuery(element).serialize(),function(data){
 					//console.log(data);
