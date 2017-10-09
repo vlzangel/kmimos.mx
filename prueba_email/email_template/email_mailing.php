@@ -18,7 +18,7 @@ $html .='
 			.sp {margin-left: -10%;}	
 		</style>
     </head>
-    <body style="width: 500px; margin:auto auto; font-family: "Lato", sans-serif;">
+    <body style="min-width: 500px; max-width: 500px; margin:auto auto; font-family: "Lato", sans-serif;">
     	<div style="background:#000; margin-top: 1px;">
 	    	<div style="padding-left: 0px; padding-right: 0px;">
 	    		<img id="top-volaris" src="http://kmimosmx.sytes.net/QA1/prueba_email/img/logo-top-volaris.jpg" style="width: 45%;">
