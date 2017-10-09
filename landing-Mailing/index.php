@@ -17,26 +17,34 @@
 			.container-fluid{padding: 0px!important; margin: 0px!important;width:100%!important; background:#9c2a81!important;}
 			.sp {margin-left: -10%;}
 			#top-volaris{width: 45%;}
+			#body-top{min-width: 500px; max-width: 500px; margin:auto auto;}
 			#img-1{width:100%; margin-left: 0%; height: 284px;}
 			#contenedor-1{background: #9c2a81!important; width: 100%; height: 283.5px; margin-top: 0px!important;}
 			#p-contenedor-1{font-size: 17pt; color: #fff; text-align: right; margin-top: 0px!important; position: relative; right: 0%; padding-top:27px; padding-right:20px;}
 			#btn-img{width: 55%; position: relative; margin-left: 85px; margin-top: 5%;}
-			#h1-1{margin-bottom: 10px; font-size: 22pt; margin-top: 3%; margin-left: 65px;}
+			#h1-1{margin-bottom: 10px; font-size: 22pt; margin-top: 3%; margin-left: 35px;}
 			#p-contenedor-2{font-size: 15pt; text-align: center; margin-bottom: 3%;}
 			#h2-1{margin-bottom: 10px; font-size: 14pt; margin-top: 32%; margin-left: 15%;}
 			#img-contenedor-2{width:70%;margin-bottom: 10%;margin-top: 5%;}
 			#p2-contenedor-2{font-size: 12pt; text-align: center; margin-top: -6%; margin-bottom: 5%;}
+			#h1-3{font-size: 17pt; margin-left: 5%;}
+			#img-3-1{width: 70%; margin-bottom: 10px!important; margin-left: 93px!important;}
+			#img-3-1{width: 70%; margin-bottom: 10px!important; margin-left: 40px!important;}
+			#p-contenedor-3{font-size: 16pt;text-align: center;color: #000;}
 			@media (min-width: 1280px){}
 			@media (min-width: 766px) and (max-width: 999px){
+				#body-top{min-width: 500px; max-width: 500px; margin:auto auto;}
 				#img-1{width:100%; margin-left: 0%; height: 284px;}
 				#contenedor-1{background: #9c2a81!important; width: 100%; height: 283.5px; margin-top: 0px!important;}
 				#p-contenedor-1{font-size: 14pt; color: #fff; text-align: right; margin-top: 0px!important; position: relative; right: 0%; padding-top:27px; padding-right:20px;}
 				#btn-img{width: 55%; position: relative; margin-left: 85px; margin-top: 0%;}
-				#h1-1{margin-bottom: 10px; font-size: 18pt; margin-top: 3%; margin-left: 15px;}
+				#h1-1{margin-bottom: 10px; font-size: 18pt; margin-top: 3%; margin-left: 60px;}
 				#p-contenedor-2{font-size: 13pt; text-align: center; margin-bottom: 3%;}
 				#h2-1{margin-bottom: 10px; font-size: 14pt; margin-top: 32%; margin-left: 15%;}
+
 			}
 			@media (min-width: 581px) and (max-width: 765px){
+				#body-top{min-width: 500px; max-width: 500px; margin:auto auto;}
 				#img-1{width:100%; margin-left: 0%; height: 284px;}
 				#contenedor-1{background: #9c2a81!important; width: 100%; height: 283.5px; margin-top: 0px!important;}
 				#p-contenedor-1{font-size: 14pt; color: #fff; text-align: right; margin-top: 0px!important; position: relative; right: 0%; padding-top:27px; padding-right:20px;}
@@ -46,37 +54,45 @@
 				#h2-1{margin-bottom: 10px; font-size: 12pt; margin-top: 32%; margin-left: 15%;}
 			}
 			@media (min-width: 481px) and (max-width: 580px){
+				#body-top{min-width: 500px; max-width: 580px; margin:auto auto;}
 				#img-1{width:100%; margin-left: 0%; height: 284px;}
 				#contenedor-1{background: #9c2a81!important; width: 100%; height: 283.5px; margin-top: 0px!important;}
 				#p-contenedor-1{font-size: 14pt; color: #fff; text-align: right; margin-top: 0px!important; position: relative; right: 0%; padding-top:27px; padding-right:20px;}
 				#btn-img{width: 55%; position: relative; margin-left: 85px; margin-top: 0%;}
-				#h1-1{margin-bottom: 10px; font-size: 18pt; margin-top: 3%; margin-left: 35px;}
+				#h1-1{margin-bottom: 10px; font-size: 16pt; margin-top: 3%; margin-left: 30px;}
 				#p-contenedor-2{font-size: 13pt; text-align: center; margin-bottom: 3%;}
 				#h2-1{margin-bottom: 10px; font-size: 12pt; margin-top: 32%; margin-left: 15%;}
+				#p-contenedor-3{font-size: 13pt;text-align: center;color: #000;}
 			}
 			@media (min-width: 381px) and (max-width: 480px){
+				#body-top{min-width: 380px; max-width: 480px; margin:auto auto;}
 				#img-1{width:100%; margin-left: 0%; height: 284px;}
 				#contenedor-1{background: #9c2a81!important; width: 100%; height: 283.5px; margin-top: 0px!important;}
-				#p-contenedor-1{font-size: 14pt; color: #fff; text-align: right; margin-top: 0px!important; position: relative; right: 0%; padding-top:27px; padding-right:20px;}
-				#btn-img{width: 55%; position: relative; margin-left: 85px; margin-top: 0%;}
-				#h1-1{margin-bottom: 10px; font-size: 18pt; margin-top: 3%; margin-left: 25px;}
+				#p-contenedor-1{font-size: 12pt; color: #fff; text-align: right; margin-top: 0px!important; position: relative; right: 0%; padding-top:27px; padding-right:20px;}
+				#btn-img{width: 55%; position: relative; margin-left: 60px; margin-top: 0%;}
+				#h1-1{margin-bottom: 10px; font-size: 16pt; margin-top: 3%; margin-left: 20px;}
 				#p-contenedor-2{font-size: 13pt; text-align: center; margin-bottom: 3%;}
 				#h2-1{margin-bottom: 10px; font-size: 11pt; margin-top: 32%; margin-left: 15%;}
+				#p-contenedor-3{font-size: 12pt;text-align: center;color: #000;}
 			}
 			@media (min-width: 280px) and (max-width: 380px){
+				#body-top{min-width: 280px; max-width: 380px; margin:auto auto;}
 				#img-1{width:100%; margin-left: 0%; height: 284px;}
 				#contenedor-1{background: #9c2a81!important; width: 100%; height: 283.5px; margin-top: 0px!important;}
-				#p-contenedor-1{font-size: 14pt; color: #fff; text-align: right; margin-top: 0px!important; position: relative; right: 0%; padding-top:27px; padding-right:20px;}
-				#btn-img{width: 55%; position: relative; margin-left: 85px; margin-top: 0%;}
-				#h1-1{margin-bottom: 10px; font-size: 18pt; margin-top: 3%; margin-left: 25px;}
+				#p-contenedor-1{font-size: 12pt; color: #fff; text-align: right; margin-top: 0px!important; position: relative; right: 0%; padding-top:27px; padding-right:20px;}
+				#btn-img{width: 55%; position: relative; margin-left: 60px; margin-top: 0%;}
+				#h1-1{margin-bottom: 10px; font-size: 16pt; margin-top: 3%; margin-left: 20px;}
 				#p-contenedor-2{font-size: 13pt; text-align: center; margin-bottom: 3%;}
 				#h2-1{margin-bottom: 10px; font-size: 11pt; margin-top: 32%; margin-left: 15%;}
 				#img-contenedor-2{width:70%;margin-bottom: 10%;margin-top: 5%;}
 				#p2-contenedor-2{font-size: 12pt; text-align: center; margin-top: -6%; margin-bottom: 5%;}
+				#img-3-1{width: 70%; margin-bottom: 10px!important; margin-left: 70px!important;}
+				#img-3-1{width: 70%; margin-bottom: 10px!important; margin-left: 45px!important;}
+				#p-contenedor-3{font-size: 12pt;text-align: center;color: #000;}
 			}
 		</style>
     </head>
-    <body style="min-width: 500px; max-width: 500px; margin:auto auto;">
+    <body id="body-top">
     	<div style="background:#000; margin-top: 1px;">
 	    	<div style="padding-left: 0px; padding-right: 0px;">
 	    		<img id="top-volaris" src="http://kmimosmx.sytes.net/QA1/prueba_email/img/logo-top-volaris.jpg">
@@ -126,12 +142,12 @@
 			</article>
 		</section>
 		<section style="background: #fff; color: #000; font-weight: lighter; height: 70%;">
-			<h1 style="font-size: 20pt; margin-left: 8%;">¡Reserva con Kmimos al viaja con Volaris!</h1>
+			<h1 id="h1-3">¡Reserva con Kmimos al viaja con Volaris!</h1>
 			<div style="width: 50%; float: left;">
-				<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-2.jpg" style="width: 70%; margin-bottom: 10px!important; margin-left: 93px!important;">
+				<img id="img-3-1" src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-2.jpg">
 			</div>
 			<div style="width: 50%; float: left;">
-				<img src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-3.jpg" style="width: 70%; margin-bottom: 10px!important; margin-left: 40px!important;">
+				<img id="img-3-2" src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-3.jpg">
 			</div>
 			<div style="width: 45%; float: left;">
 				<p style="margin-left: 70px!important; text-align: center; margin-top: -8px!important; font-size: 14pt!important;">D&eacute;jalo en tu ciudad <br> de origen
@@ -146,8 +162,8 @@
 		</section>
 		<section style="background: #fff;color: #000;font-weight: lighter;height: 40%;">
 			<div style="width: 100%;">
-				<p style="font-size: 16pt;text-align: center;color: #000;"><span style="color: #a92382;">¡Aprovecha nuestras promociones de </span>noviembre y diciembre<span style="color: #a92382;">!</span></p>
-				<p style="font-size: 16pt; text-align: center; color: #000;"><span style="color: #a92382;">¡Disfruta de tu viaje. Tu mejor amigo estar&aacute; en buenas manos!</span></p>
+				<p id="p-contenedor-3"><span style="color: #a92382;">¡Aprovecha nuestras promociones de </span>noviembre y diciembre<span style="color: #a92382;">!</span></p>
+				<p id="p-contenedor-3"><span style="color: #a92382;">¡Disfruta de tu viaje. Tu mejor amigo estar&aacute; en buenas manos!</span></p>
 			</div>
 			<div style="width: 100%;">
 				<div style="width: 50%; float: left;">
