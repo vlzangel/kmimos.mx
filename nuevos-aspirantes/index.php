@@ -63,6 +63,7 @@
 			#PageSubscribe .section.section1 {font-size: 15px;}
 			#PageSubscribe .section.section1 span {font-size: 20px;}
 			#PageSubscribe .section.section3 {font-size: 12px;}
+			#PageSubscribe .section.section2 input, #PageSubscribe .section.section2 button {font-size: 12px;}
 		}
 	</style>
 
