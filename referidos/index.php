@@ -97,6 +97,9 @@ if( isset($_GET['r']) ){
 				#PageSubscribe .section.section1 span {font-size: 20px;}
 				#PageSubscribe .section.section3 {font-size: 12px;}
 			}
+			@media screen and (min-width:1280px) {
+				#PageSubscribe {margin-top: 10%; margin-left: 40%;}
+			}
 		</style>
 
 	<script type='text/javascript'>
