@@ -20,17 +20,19 @@ $html .='
 			#body-top{min-width: 500px; max-width: 500px; margin:auto auto;}
 			#img-1{width:100%; margin-left: 0%; height: 284px;}
 			#contenedor-1{background: #9c2a81!important; width: 100%; height: 283.5px; margin-top: 0px!important;}
-			#p-contenedor-1{font-size: 17pt; color: #fff; text-align: right; margin-top: 0px!important; position: relative; right: 0%; padding-top:27px; padding-right:20px;}
+			#p-contenedor-1{font-size: 14pt; color: #fff; text-align: right; margin-top: 0px!important; position: relative; right: 0%; padding-top:27px; padding-right:20px;}
 			#btn-img{width: 55%; position: relative; margin-left: 85px; margin-top: 5%;}
 			#h1-1{margin-bottom: 10px; font-size: 22pt; margin-top: 3%; margin-left: 35px;}
-			#p-contenedor-2{font-size: 15pt; text-align: center; margin-bottom: 3%;}
+			#p-contenedor-2{font-size: 14pt; text-align: center; margin-bottom: 3%;}
 			#h2-1{margin-bottom: 10px; font-size: 14pt; margin-top: 32%; margin-left: 15%;}
 			#img-contenedor-2{width:70%;margin-bottom: 10%;margin-top: 5%;}
 			#p2-contenedor-2{font-size: 12pt; text-align: center; margin-top: -6%; margin-bottom: 5%;}
 			#h1-3{font-size: 17pt; margin-left: 5%;}
 			#img-3-1{width: 70%; margin-bottom: 10px!important; margin-left: 93px!important;}
 			#img-3-1{width: 70%; margin-bottom: 10px!important; margin-left: 40px!important;}
-			#p-contenedor-3{font-size: 16pt;text-align: center;color: #000;}
+			#span-o{color: #a92382; font-size: 14pt; margin-left: 24px!important;}
+			#p-contenedor-3{font-size: 13pt; text-align: center;}
+			#p-contenedor-4{font-size: 16pt;text-align: center;color: #000;}
 			@media (min-width: 1280px){}
 			@media (min-width: 766px) and (max-width: 999px){
 				#body-top{min-width: 500px; max-width: 500px; margin:auto auto;}
@@ -62,7 +64,9 @@ $html .='
 				#h1-1{margin-bottom: 10px; font-size: 16pt; margin-top: 3%; margin-left: 30px;}
 				#p-contenedor-2{font-size: 13pt; text-align: center; margin-bottom: 3%;}
 				#h2-1{margin-bottom: 10px; font-size: 12pt; margin-top: 32%; margin-left: 15%;}
-				#p-contenedor-3{font-size: 13pt;text-align: center;color: #000;}
+				#p-contenedor-3{font-size: 13pt; text-align: center;}
+				#span-o{color: #a92382; font-size: 14pt; margin-left: 24px!important;}
+				#p-contenedor-4{font-size: 13pt;text-align: center;color: #000;}
 			}
 			@media (min-width: 381px) and (max-width: 480px){
 				#body-top{min-width: 380px; max-width: 480px; margin:auto auto;}
@@ -73,7 +77,9 @@ $html .='
 				#h1-1{margin-bottom: 10px; font-size: 16pt; margin-top: 3%; margin-left: 20px;}
 				#p-contenedor-2{font-size: 13pt; text-align: center; margin-bottom: 3%;}
 				#h2-1{margin-bottom: 10px; font-size: 11pt; margin-top: 32%; margin-left: 15%;}
-				#p-contenedor-3{font-size: 12pt;text-align: center;color: #000;}
+				#p-contenedor-3{font-size: 13pt; text-align: center;}
+				#span-o{color: #a92382; font-size: 14pt; margin-left: 24px!important;}
+				#p-contenedor-4{font-size: 12pt;text-align: center;color: #000;}
 			}
 			@media (min-width: 280px) and (max-width: 380px){
 				#body-top{min-width: 280px; max-width: 380px; margin:auto auto;}
@@ -88,7 +94,9 @@ $html .='
 				#p2-contenedor-2{font-size: 12pt; text-align: center; margin-top: -6%; margin-bottom: 5%;}
 				#img-3-1{width: 70%; margin-bottom: 10px!important; margin-left: 70px!important;}
 				#img-3-1{width: 70%; margin-bottom: 10px!important; margin-left: 45px!important;}
-				#p-contenedor-3{font-size: 12pt;text-align: center;color: #000;}
+				#p-contenedor-3{font-size: 13pt; text-align: center;}
+				#span-o{color: #a92382; font-size: 14pt; margin-left: 24px!important;}
+				#p-contenedor-4{font-size: 12pt;text-align: center;color: #000;}
 			}
 		</style>
     </head>
@@ -150,20 +158,20 @@ $html .='
 				<img id="img-3-2" src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-3.jpg">
 			</div>
 			<div style="width: 45%; float: left;">
-				<p style="margin-left: 70px!important; text-align: center; margin-top: -8px!important; font-size: 14pt!important;">D&eacute;jalo en tu ciudad <br> de origen
+				<p id="p-contenedor-3" style="margin-left: 70px!important; margin-top: -8px!important;">D&eacute;jalo en tu ciudad <br> de origen
 				</p>
 			</div>
 			<div style="width: 10%; float: left;">
-				<span style="color: #a92382; font-size: 14pt; margin-left: 45px!important;">&Oacute;</span>
+				<span id="span-o">&Oacute;</span>
 			</div>
 			<div style="width: 45%; float: left;">
-				<p style="font-size: 14pt!important; text-align: center; margin-top: 10px!important; margin-left: -18px!important;">Que lo apapache un <br>cuidador en tu destino</p>
+				<p id="p-contenedor-3" style="margin-top: 10px!important; margin-left: -18px!important;">Que lo apapache un <br>cuidador en tu destino</p>
 			</div>
 		</section>
 		<section style="background: #fff;color: #000;font-weight: lighter;height: 40%;">
 			<div style="width: 100%;">
-				<p id="p-contenedor-3"><span style="color: #a92382;">¡Aprovecha nuestras promociones de </span>noviembre y diciembre<span style="color: #a92382;">!</span></p>
-				<p id="p-contenedor-3"><span style="color: #a92382;">¡Disfruta de tu viaje. Tu mejor amigo estar&aacute; en buenas manos!</span></p>
+				<p id="p-contenedor-4"><span style="color: #a92382;">¡Aprovecha nuestras promociones de </span>noviembre y diciembre<span style="color: #a92382;">!</span></p>
+				<p id="p-contenedor-4"><span style="color: #a92382;">¡Disfruta de tu viaje. Tu mejor amigo estar&aacute; en buenas manos!</span></p>
 			</div>
 			<div style="width: 100%;">
 				<div style="width: 50%; float: left;">
