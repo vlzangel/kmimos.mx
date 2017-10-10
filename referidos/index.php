@@ -91,14 +91,15 @@ if( isset($_GET['r']) ){
 			#PageSubscribe .section.section2 button {padding: 10px;  width: 40px;}
 
 			@media screen and (max-width:480px), screen and (max-device-width:480px) {
-				#PageSubscribe { top: 15px;}
+				#PageSubscribe { top: 15px; margin-left: 0%;}
 				#PageSubscribe .section{ width: 100%; padding: 10px 0; font-size: 12px;}
 				#PageSubscribe .section.section1 {font-size: 15px;}
 				#PageSubscribe .section.section1 span {font-size: 20px;}
 				#PageSubscribe .section.section3 {font-size: 12px;}
+				#PageSubscribe .section.section2 input, #PageSubscribe .section.section2 button {font-size: 10px;}
 			}
 			@media screen and (min-width:1280px) {
-				#PageSubscribe {margin-top: 10%; margin-left: 40%;}
+				#PageSubscribe {margin-top: 5%; margin-left: 40%;}
 			}
 		</style>
 
@@ -205,7 +206,7 @@ if( isset($_GET['r']) ){
 
 		<div  class="col-md-offset-1">
 			
-			<section class="col-xs-12 col-sm-12 col-md-3 col-lg-3" style="z-index:9999!important;">
+			<section class="col-xs-12 col-sm-12 col-md-3 col-lg-3" >
 
 				<header ><img id="img-text" src="img/20titular1.png"></header>
 
