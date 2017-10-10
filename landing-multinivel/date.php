@@ -41,7 +41,7 @@
                     NULL,
                     '".$nombres."',
                     '".$email."',
-                    '".$hoy."'
+                    now()
                 );
             ";
 
