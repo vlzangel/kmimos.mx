@@ -61,12 +61,18 @@
 				<form method="POST" enctype="multipart/form-data">
 					<div class="col-sm-offset-4 col-sm-8">
 						<input type="text" placeholder="Nombres y Apellidos" name="nomap" id="nomap" data-charset="alfxlf">
+						<br>
+						<span name="sp-name" class="span-name-hide">Ingrese su Nombre y su Apellido</span>
 					</div>
 					<div class="col-sm-offset-4 col-sm-8">
 						<input type="email" placeholder="Correo electr&oacute;nico" name="email" id="email" data-charset="corxlfnum">
+						<br>
+						<span name="sp-email" class="span-email-hide">Ingrese su Email</span>
+						<span name="sp-email-uso" class="span-email-hide">Este E-mail ya esta en uso</span>
+						<span name="sp-name-inc" class="span-email-hide">Email incorrecto</span>
 					</div>
 					<div class="col-sm-offset-4 col-sm-8">
-						<input type="submit" value="Quiero Inscribirme" class="btn-inscribirme" id="btn-inscribirme" onclick="validateDate()">
+						<input type="submit" value="Quiero Inscribirme" class="btn-inscribirme" id="btn-inscribirme">
 					</div>
 					<span id="guardando" class="text-center"></span>
 				</form>
@@ -202,10 +208,13 @@
         $(document).on("click", '#btn-inscribirme', function ( e ) {
 
 			if ($("#nomap").val() != "" && $("#email").val() != "" ) {
+				
 				if($("#email").val().indexOf('@', 0) == -1 || $("#email").val().indexOf('.', 0) == -1) {
-            		$("#email").parent('div').css('color','red');
-		          	$("#email").after('<br><span name="sp-name">Email incorrecto</span>').css('color','red');
-		          	$("#email").focus(function() { $("[name='sp-name']").hide(); });
+            		$("[name='sp-email']").removeClass('span-email-show');
+		        	$("[name='sp-email']").addClass('span-email-hide');
+            		$("[name='sp-name-inc']").removeClass('span-email-hide');
+		        	$("[name='sp-name-inc']").addClass('span-email-show');
+		          	$("[name='sp-name-inc']").css('color','red');
             		return false;
         		}else{
         			nombres = $("#nomap").val();
@@ -213,9 +222,13 @@
         			var data = {'email': email};
 					globalData = getGlobalData('main.php','POST', data);
 					if (globalData == 'SI') {
-	                	$("#email").after('<br><span name="sp-email">Este E-mail ya esta en uso</span>').css('color','red');
-	                    $("#email").parent('div').css('color','red');
-	                    $("#email").css('color','red');
+						$("[name='sp-email']").removeClass('span-email-show');
+		        		$("[name='sp-email']").addClass('span-email-hide');
+		        		$("[name='sp-name-inc']").removeClass('span-email-show');
+		        		$("[name='sp-name-inc']").addClass('span-email-hide');
+	                	$("[name='sp-email-uso']").removeClass('span-email-hide');
+		        		$("[name='sp-email-uso']").addClass('span-email-show');
+	                    $("[name='sp-email-uso']").css('color','red');
 	                    e.preventDefault();
 	                }else{
 	                    var datos = {'nombres': nombres, 'email': email};
@@ -224,20 +237,23 @@
 	                }
         		}      	
 			}else{
-				alert("Verifique que los datos ingresados sean correctos");
-				if($("#nomap").val().length == 0){ 
-		          	$("#nomap").parent('div').css('color','red');
-		          	$("#nomap").after('<br><span name="sp-name">Ingrese su Nombre y su Apellido</span>').css('color','red');
-		          	$("#nomap").focus(function() { $("[name='sp-name']").hide(); });
+				alert("Verifique que los datos ingresados sean correctos");		
+				
+				if($("#nomap").val().length == 0){
+					$("[name='sp-name']").removeClass('span-name-hide');
+					$("[name='sp-name']").addClass('span-name-show');
+		          	$("[name='sp-name']").css('color','red');
+		          	// $("#nomap").focus(function() { $("[name='sp-name']").hide(); });
 		        }else{
 		          	$("#nomap").css('color','green');
 		          	$("#nomap").parent('div').css('color','green');
 		          	$("[name='sp-name']").hide();
 		        }
-		        if($("#email").val().length == 0){ 
-		          	$("#email").parent('div').css('color','red');
-		          	$("#email").after('<br><span name="sp-email">Ingrese su Email</span>').css('color','red');
-		          	$("#email").focus(function() { $("[name='sp-email']").hide(); });
+		        if($("#email").val().length == 0){
+		        	$("[name='sp-email']").removeClass('span-email-hide');
+		        	$("[name='sp-email']").addClass('span-email-show');
+		          	$("[name='sp-email']").css('color','red');
+		          	// $("#email").focus(function() { $("[name='sp-email']").hide(); });
 		        }else{
 		          	$("#email").css('color','green');
 		          	$("#email").parent('div').css('color','green');
