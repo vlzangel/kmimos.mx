@@ -118,7 +118,10 @@ strong{font-weight: 900;}
 	font-size: 25px;
 	font-weight: 700;
 }
-
+.span-name-show{display: list-item; }
+.span-name-hide{ display: none; }
+.span-email-show{ display: list-item; }
+.span-email-hide{ display: none; }
 /***************************************/
 /*  Section-4                          */
 /***************************************/
