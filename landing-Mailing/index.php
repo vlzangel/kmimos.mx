@@ -26,13 +26,15 @@
 			#p-contenedor-2{font-size: 14pt; text-align: center; margin-bottom: 3%;}
 			#h2-1{margin-bottom: 10px; font-size: 14pt; margin-top: 32%; margin-left: 15%;}
 			#img-contenedor-2{width:70%;margin-bottom: 10%;margin-top: 5%;}
-			#p2-contenedor-2{font-size: 12pt; text-align: center; margin-top: -6%; margin-bottom: 5%;}
+			#p2-contenedor-2{font-size: 10pt; text-align: center; margin-top: -6%; margin-bottom: 5%;}
 			#h1-3{font-size: 17pt; margin-left: 5%;}
-			#img-3-1{width: 70%; margin-bottom: 10px!important; margin-left: 93px!important;}
-			#img-3-1{width: 70%; margin-bottom: 10px!important; margin-left: 40px!important;}
+			#img-3-1{width: 70%; margin-bottom: 10px!important; margin-left: 60px!important;}
+			#img-3-2{width: 70%; margin-bottom: 10px!important; margin-left: 30px!important;}
 			#span-o{color: #a92382; font-size: 14pt; margin-left: 24px!important;}
-			#p-contenedor-3{font-size: 13pt; text-align: center;}
+			#p-contenedor-3-1{font-size: 13pt; text-align: center; margin-left: 70px!important;}
+			#p-contenedor-3-2{font-size: 13pt; text-align: center; margin-top: 10px!important; margin-left: -20%;}
 			#p-contenedor-4{font-size: 16pt;text-align: center;color: #000;}
+			#logo{display: inline-block;text-align: right;margin: 10px;margin-left: 70%; width: 25%;}
 			@media (min-width: 1280px){}
 			@media (min-width: 766px) and (max-width: 999px){
 				#body-top{min-width: 500px; max-width: 500px; margin:auto auto;}
@@ -47,56 +49,83 @@
 			}
 			@media (min-width: 581px) and (max-width: 765px){
 				#body-top{min-width: 500px; max-width: 500px; margin:auto auto;}
-				#img-1{width:100%; margin-left: 0%; height: 284px;}
-				#contenedor-1{background: #9c2a81!important; width: 100%; height: 283.5px; margin-top: 0px!important;}
-				#p-contenedor-1{font-size: 14pt; color: #fff; text-align: right; margin-top: 0px!important; position: relative; right: 0%; padding-top:27px; padding-right:20px;}
-				#btn-img{width: 55%; position: relative; margin-left: 85px; margin-top: 0%;}
-				#h1-1{margin-bottom: 10px; font-size: 18pt; margin-top: 3%; margin-left: 15px;}
-				#p-contenedor-2{font-size: 13pt; text-align: center; margin-bottom: 3%;}
-				#h2-1{margin-bottom: 10px; font-size: 12pt; margin-top: 32%; margin-left: 15%;}
+				#img-1{width:100%; margin-left: 0%; height: 198px;}
+				#contenedor-1{background: #9c2a81!important; width: 100%; height: 197.5px; margin-top: 0px!important;}
+				#p-contenedor-1{font-size: 12pt; color: #fff; text-align: right; margin-top: 0px!important; position: relative; right: 0%; padding-top:27px; padding-right:20px;}
+				#btn-img{width: 60%; position: relative; margin-left: 50px; margin-top: 5%;}
+				#h1-1{margin-bottom: 10px; font-size: 15pt; margin-top: 3%; margin-left: 120px;}
+				#p-contenedor-2{font-size: 12pt; text-align: center; margin-bottom: 3%;}
+				#h2-1{margin-bottom: 10px; font-size: 11pt; margin-top: 25%; margin-left: 25%;}
+				#img-contenedor-2{width:55%;margin-bottom: 10%; margin-top: 5%;}
+				#p2-contenedor-2{font-size: 10pt; text-align: center; margin-top: -6%; margin-bottom: 5%; padding-bottom:8px;}
+				#h1-3{font-size: 15pt; margin-top:5px; margin-left: 17%;}
+				#img-3-1{width: 70%; margin-bottom: 10px!important; margin-left: 50px!important;}
+				#img-3-2{width: 70%; margin-bottom: 10px!important; margin-left: 15px!important;}
+				#p-contenedor-3-1{font-size: 10pt; text-align: center; margin-left: 35px!important;}
+				#p-contenedor-3-2{font-size: 10pt; text-align: center; margin-top:0px;}
+				#span-o{color: #a92382; font-size: 11pt; margin-left: 14px!important;}
+				#p-contenedor-4{font-size: 10pt;text-align: center;color: #000;}
+				#logo{display: inline-block;text-align: right;margin: 10px; margin-left: 70%; width: 25%;}
 			}
 			@media (min-width: 481px) and (max-width: 580px){
 				#body-top{min-width: 500px; max-width: 580px; margin:auto auto;}
-				#img-1{width:100%; margin-left: 0%; height: 284px;}
-				#contenedor-1{background: #9c2a81!important; width: 100%; height: 283.5px; margin-top: 0px!important;}
-				#p-contenedor-1{font-size: 14pt; color: #fff; text-align: right; margin-top: 0px!important; position: relative; right: 0%; padding-top:27px; padding-right:20px;}
-				#btn-img{width: 55%; position: relative; margin-left: 85px; margin-top: 0%;}
-				#h1-1{margin-bottom: 10px; font-size: 16pt; margin-top: 3%; margin-left: 30px;}
-				#p-contenedor-2{font-size: 13pt; text-align: center; margin-bottom: 3%;}
-				#h2-1{margin-bottom: 10px; font-size: 12pt; margin-top: 32%; margin-left: 15%;}
-				#p-contenedor-3{font-size: 13pt; text-align: center;}
-				#span-o{color: #a92382; font-size: 14pt; margin-left: 24px!important;}
-				#p-contenedor-4{font-size: 13pt;text-align: center;color: #000;}
+				#img-1{width:100%; margin-left: 0%; height: 198px;}
+				#contenedor-1{background: #9c2a81!important; width: 100%; height: 197.5px; margin-top: 0px!important;}
+				#p-contenedor-1{font-size: 12pt; color: #fff; text-align: right; margin-top: 0px!important; position: relative; right: 0%; padding-top:27px; padding-right:20px;}
+				#btn-img{width: 60%; position: relative; margin-left: 50px; margin-top: 5%;}
+				#h1-1{margin-bottom: 10px; font-size: 15pt; margin-top: 3%; margin-left: 120px;}
+				#p-contenedor-2{font-size: 12pt; text-align: center; margin-bottom: 3%;}
+				#h2-1{margin-bottom: 10px; font-size: 11pt; margin-top: 25%; margin-left: 25%;}
+				#img-contenedor-2{width:55%;margin-bottom: 10%; margin-top: 5%;}
+				#p2-contenedor-2{font-size: 10pt; text-align: center; margin-top: -6%; margin-bottom: 5%; padding-bottom:8px;}
+				#h1-3{font-size: 15pt; margin-top:5px; margin-left: 17%;}
+				#img-3-1{width: 70%; margin-bottom: 10px!important; margin-left: 50px!important;}
+				#img-3-2{width: 70%; margin-bottom: 10px!important; margin-left: 15px!important;}
+				#p-contenedor-3-1{font-size: 10pt; text-align: center; margin-left: 35px!important;}
+				#p-contenedor-3-2{font-size: 10pt; text-align: center; margin-top:0px;}
+				#span-o{color: #a92382; font-size: 11pt; margin-left: 14px!important;}
+				#p-contenedor-4{font-size: 10pt;text-align: center;color: #000;}
+				#logo{display: inline-block;text-align: right;margin: 10px; margin-left: 70%; width: 25%;}
 			}
 			@media (min-width: 381px) and (max-width: 480px){
 				#body-top{min-width: 380px; max-width: 480px; margin:auto auto;}
-				#img-1{width:100%; margin-left: 0%; height: 284px;}
-				#contenedor-1{background: #9c2a81!important; width: 100%; height: 283.5px; margin-top: 0px!important;}
-				#p-contenedor-1{font-size: 12pt; color: #fff; text-align: right; margin-top: 0px!important; position: relative; right: 0%; padding-top:27px; padding-right:20px;}
-				#btn-img{width: 55%; position: relative; margin-left: 60px; margin-top: 0%;}
-				#h1-1{margin-bottom: 10px; font-size: 16pt; margin-top: 3%; margin-left: 20px;}
-				#p-contenedor-2{font-size: 13pt; text-align: center; margin-bottom: 3%;}
-				#h2-1{margin-bottom: 10px; font-size: 11pt; margin-top: 32%; margin-left: 15%;}
-				#p-contenedor-3{font-size: 13pt; text-align: center;}
-				#span-o{color: #a92382; font-size: 14pt; margin-left: 24px!important;}
-				#p-contenedor-4{font-size: 12pt;text-align: center;color: #000;}
+				#img-1{width:100%; margin-left: 0%; height: 198px;}
+				#contenedor-1{background: #9c2a81!important; width: 100%; height: 197.5px; margin-top: 0px!important;}
+				#p-contenedor-1{font-size: 11pt; color: #fff; text-align: right; margin-top: 0px!important; position: relative; right: 0%; padding-top:27px; padding-right:20px;}
+				#btn-img{width: 60%; position: relative; margin-left: 30px; margin-top: 10%;}
+				#h1-1{margin-bottom: 10px; font-size: 15pt; margin-top: 3%; margin-left: 70px;}
+				#p-contenedor-2{font-size: 11pt; text-align: center; margin-bottom: 3%;}
+				#h2-1{margin-bottom: 10px; font-size: 11pt; margin-top: 40%; margin-left: 10%;}
+				#img-contenedor-2{width:55%;margin-bottom: 10%; margin-top: 5%;}
+				#p2-contenedor-2{font-size: 8pt; text-align: center; margin-top: -6%; margin-bottom: 5%; padding-bottom:8px;}
+				#h1-3{font-size: 13pt; margin-top:5px; margin-left: 11%;}
+				#img-3-1{width: 70%; margin-bottom: 10px!important; margin-left: 35px!important;}
+				#img-3-2{width: 70%; margin-bottom: 10px!important; margin-left: 15px!important;}
+				#p-contenedor-3-1{font-size: 8pt; text-align: center; margin-left: 35px!important;}
+				#p-contenedor-3-2{font-size: 8pt; text-align: center; margin-top:0px;}
+				#span-o{color: #a92382; font-size: 11pt; margin-left: 14px!important;}
+				#p-contenedor-4{font-size: 10pt;text-align: center;color: #000;}
+				#logo{display: inline-block;text-align: right;margin: 10px; margin-left: 70%; width: 25%;}
 			}
 			@media (min-width: 280px) and (max-width: 380px){
 				#body-top{min-width: 280px; max-width: 380px; margin:auto auto;}
-				#img-1{width:100%; margin-left: 0%; height: 284px;}
-				#contenedor-1{background: #9c2a81!important; width: 100%; height: 283.5px; margin-top: 0px!important;}
-				#p-contenedor-1{font-size: 12pt; color: #fff; text-align: right; margin-top: 0px!important; position: relative; right: 0%; padding-top:27px; padding-right:20px;}
-				#btn-img{width: 55%; position: relative; margin-left: 60px; margin-top: 0%;}
-				#h1-1{margin-bottom: 10px; font-size: 16pt; margin-top: 3%; margin-left: 20px;}
-				#p-contenedor-2{font-size: 13pt; text-align: center; margin-bottom: 3%;}
-				#h2-1{margin-bottom: 10px; font-size: 11pt; margin-top: 32%; margin-left: 15%;}
-				#img-contenedor-2{width:70%;margin-bottom: 10%;margin-top: 5%;}
-				#p2-contenedor-2{font-size: 12pt; text-align: center; margin-top: -6%; margin-bottom: 5%;}
-				#img-3-1{width: 70%; margin-bottom: 10px!important; margin-left: 70px!important;}
-				#img-3-1{width: 70%; margin-bottom: 10px!important; margin-left: 45px!important;}
-				#p-contenedor-3{font-size: 13pt; text-align: center;}
-				#span-o{color: #a92382; font-size: 14pt; margin-left: 24px!important;}
-				#p-contenedor-4{font-size: 12pt;text-align: center;color: #000;}
+				#img-1{width:100%; margin-left: 0%; height: 198px;}
+				#contenedor-1{background: #9c2a81!important; width: 100%; height: 197.5px; margin-top: 0px!important;}
+				#p-contenedor-1{font-size: 10pt; color: #fff; text-align: right; margin-top: 0px!important; position: relative; right: 0%; padding-top:27px; padding-right:20px;}
+				#btn-img{width: 60%; position: relative; margin-left: 30px; margin-top: 10%;}
+				#h1-1{margin-bottom: 10px; font-size: 14pt; margin-top: 3%; margin-left: 39px;}
+				#p-contenedor-2{font-size: 10pt; text-align: center; margin-bottom: 3%;}
+				#h2-1{margin-bottom: 10px; font-size: 11pt; margin-top: 40%; margin-left: 10%;}
+				#img-contenedor-2{width:70%;margin-bottom: 10%; margin-top: 5%;}
+				#p2-contenedor-2{font-size: 7pt; text-align: center; margin-top: -6%; margin-bottom: 5%; padding-bottom:8px;}
+				#h1-3{font-size: 12pt; margin-top:5px; margin-left: 5%;}
+				#img-3-1{width: 70%; margin-bottom: 10px!important; margin-left: 35px!important;}
+				#img-3-2{width: 70%; margin-bottom: 10px!important; margin-left: 15px!important;}
+				#p-contenedor-3-1{font-size: 8pt; text-align: center; margin-left: 35px!important;}
+				#p-contenedor-3-2{font-size: 8pt; text-align: center; margin-top:0px;}
+				#span-o{color: #a92382; font-size: 11pt; margin-left: 14px!important;}
+				#p-contenedor-4{font-size: 10pt;text-align: center;color: #000;}
+				#logo{display: inline-block;text-align: right;margin: 10px; margin-left: 70%; width: 25%;}
 			}
 		</style>
     </head>
@@ -135,7 +164,7 @@
 						<img id="img-contenedor-2" src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Icon-1.png">
 					</div>
 					<div style="width: 50%; float: left; font-size: 12pt; margin-left: -5%;">
-						<p id="p2-contenedor-2">Cuidadores Certificados que pasaron por pruebas psicom&eacute;tricas y de conocimiento veterinario</p>
+						<p id="p2-contenedor-2">Cuidadores Certificados que pasaron por pruebas psicom&eacute;tricas <br> y de conocimiento veterinario</p>
 					</div>
 				</div>
 				<div style="width: 100%; margin-top: 4%; float: left; margin-left: -5%;">
@@ -158,14 +187,14 @@
 				<img id="img-3-2" src="http://kmimosmx.sytes.net/QA1/prueba_email/img/Image-3.jpg">
 			</div>
 			<div style="width: 45%; float: left;">
-				<p id="p-contenedor-3" style="margin-left: 70px!important; margin-top: -8px!important;">D&eacute;jalo en tu ciudad <br> de origen
+				<p id="p-contenedor-3-1">D&eacute;jalo en tu ciudad <br> de origen
 				</p>
 			</div>
 			<div style="width: 10%; float: left;">
 				<span id="span-o">&Oacute;</span>
 			</div>
 			<div style="width: 45%; float: left;">
-				<p id="p-contenedor-3" style="margin-top: 10px!important; margin-left: -18px!important;">Que lo apapache un <br>cuidador en tu destino</p>
+				<p id="p-contenedor-3-2">Que lo apapache un <br>cuidador en tu destino</p>
 			</div>
 		</section>
 		<section style="background: #fff;color: #000;font-weight: lighter;height: 40%;">
@@ -185,7 +214,8 @@
 		<section style="background: black;color: #fff; width: 100%;">
 			<div>
 				<article>
-					<img src="kmimosmx.sytes.net/QA1/prueba_email/img/Logo-Kmimos.png" style="display: inline-block;text-align: right;margin: 10px;margin-left: 70%; width: 25%;">
+					<!-- <img id="logo" src="kmimosmx.sytes.net/QA1/prueba_email/img/Logo-Kmimos.png"> -->
+					<img id="logo" src="img/Logo-Kmimos.png">
 				</article>
 			</div>
 		</section>
