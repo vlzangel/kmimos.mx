@@ -57,8 +57,9 @@
     			<label class="hidden-lg hidden-sm hidden-md">Comparte el mensaje y gana 
 					<br> dinero haciendo lo que más te gusta</label>
 			</article>
+			
 			<article class="centrar">
-				<form method="POST" enctype="multipart/form-data">
+				<!-- <form method="POST" enctype="multipart/form-data"> -->
 					<div class="col-sm-offset-4 col-sm-8">
 						<input type="text" placeholder="Nombres y Apellidos" name="nomap" id="nomap" data-charset="alfxlf">
 						<br>
@@ -72,10 +73,11 @@
 						<span name="sp-name-inc" class="span-email-hide">Email incorrecto</span>
 					</div>
 					<div class="col-sm-offset-4 col-sm-8">
-						<input type="submit" value="Quiero Inscribirme" class="btn-inscribirme" id="btn-inscribirme">
+						<button class="btn-inscribirme" id="btn-inscribirme">Quiero Inscribirme</button>
 					</div>
-					<span id="guardando" class="text-center"></span>
-				</form>
+				<!-- </form> -->
+				<span id="guardando" class="text-center span-name-hide">¡Se registro exitosamente!</span>
+				<span id="guardando-err" class="text-center span-name-hide">¡Problemas con el  registro!</span>
 			</article>
 		</div>
 		<br>
@@ -195,6 +197,7 @@
 			<img src="img/Logo-white.png" alt="logo-kmimos">
 		</header>
 	</section>
+
 	<script
 	  src="https://code.jquery.com/jquery-2.2.4.min.js"
 	  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
@@ -202,19 +205,21 @@
     <script src="js/wow.js  "></script>
     <script src="js/main.js?v=1.0.0"></script>
     <script>
+    	
     	// REGISTRO
     	var globalData = ""; 
     	var nombres, email;
         $(document).on("click", '#btn-inscribirme', function ( e ) {
-
+        	
 			if ($("#nomap").val() != "" && $("#email").val() != "" ) {
-				
+				$("[name='sp-name']").removeClass('span-name-show');
+				$("[name='sp-name']").addClass('span-name-hide');
 				if($("#email").val().indexOf('@', 0) == -1 || $("#email").val().indexOf('.', 0) == -1) {
             		$("[name='sp-email']").removeClass('span-email-show');
 		        	$("[name='sp-email']").addClass('span-email-hide');
             		$("[name='sp-name-inc']").removeClass('span-email-hide');
 		        	$("[name='sp-name-inc']").addClass('span-email-show');
-		          	$("[name='sp-name-inc']").css('color','red');
+		          	$("[name='sp-name-inc']").css('color','#fff');
             		return false;
         		}else{
         			nombres = $("#nomap").val();
@@ -228,89 +233,95 @@
 		        		$("[name='sp-name-inc']").addClass('span-email-hide');
 	                	$("[name='sp-email-uso']").removeClass('span-email-hide');
 		        		$("[name='sp-email-uso']").addClass('span-email-show');
-	                    $("[name='sp-email-uso']").css('color','red');
+	                    $("[name='sp-email-uso']").css('color','#fff');
 	                    e.preventDefault();
 	                }else{
 	                    var datos = {'nombres': nombres, 'email': email};
 						var Data = getGlobalData('date.php','POST', datos);
-						alert(Data);
+						if (Data === 'SI') {
+							$('#guardando').removeClass('span-name-hide');
+							$('#guardando').addClass('span-name-show');
+							$("[name='sp-email']").addClass('span-email-hide');
+							$("[name='sp-name-inc']").addClass('span-email-hide');
+							$("[name='sp-email-uso']").addClass('span-email-hide');
+							$("[name='sp-email']").removeClass('span-email-show');
+							$("[name='sp-name-inc']").removeClass('span-email-show');
+							$("[name='sp-email-uso']").removeClass('span-email-show');
+						}else{
+							$('#guardando').removeClass('span-name-show');
+							$('#guardando').append('span-name-hide');
+							$('#guardando-err').removeClass('span-name-hide');
+							$('#guardando-err').append('span-name-show');
+						}
 	                }
         		}      	
-			}else{
-				alert("Verifique que los datos ingresados sean correctos");		
+			}else{		
 				
 				if($("#nomap").val().length == 0){
 					$("[name='sp-name']").removeClass('span-name-hide');
 					$("[name='sp-name']").addClass('span-name-show');
-		          	$("[name='sp-name']").css('color','red');
+		          	$("[name='sp-name']").css('color','#fff');
 		          	// $("#nomap").focus(function() { $("[name='sp-name']").hide(); });
 		        }else{
-		          	$("#nomap").css('color','green');
-		          	$("#nomap").parent('div').css('color','green');
 		          	$("[name='sp-name']").hide();
 		        }
 		        if($("#email").val().length == 0){
 		        	$("[name='sp-email']").removeClass('span-email-hide');
 		        	$("[name='sp-email']").addClass('span-email-show');
-		          	$("[name='sp-email']").css('color','red');
+		          	$("[name='sp-email']").css('color','#fff');
 		          	// $("#email").focus(function() { $("[name='sp-email']").hide(); });
 		        }else{
-		          	$("#email").css('color','green');
-		          	$("#email").parent('div').css('color','green');
 		          	$("[name='sp-email']").hide();
 		        }
 				e.preventDefault();
 			}
         });
 
-      // Validar tipos e datos en los campos
-    jQuery( document ).on('keypress', '[data-charset]', function(e){
+      	// Validar tipos e datos en los campos
+	    jQuery( document ).on('keypress', '[data-charset]', function(e){
 
-        var tipo= $(this).attr('data-charset');
+	        var tipo= $(this).attr('data-charset');
 
-        if(tipo!='undefined' || tipo!=''){
-            var cadena = "";
+	        if(tipo!='undefined' || tipo!=''){
+	            var cadena = "";
 
-            if(tipo.indexOf('alf')>-1 ){ cadena = cadena + "abcdefghijklmnopqrstuvwxyzáéíóúñüÁÉÍÓÚÑÜ"; }
-            if(tipo.indexOf('xlf')>-1 ){ cadena = cadena + "abcdefghijklmnopqrstuvwxyzáéíóúñüÁÉÍÓÚÑÜ "; }
-            if(tipo.indexOf('mlf')>-1 ){ cadena = cadena + "abcdefghijklmnopqrstuvwxyz"; }
-            if(tipo.indexOf('num')>-1 ){ cadena = cadena + "1234567890"; }
-            if(tipo.indexOf('cur')>-1 ){ cadena = cadena + "1234567890,."; }
-            if(tipo.indexOf('esp')>-1 ){ cadena = cadena + "-_.$%&@,/()"; }
-            if(tipo.indexOf('cor')>-1 ){ cadena = cadena + ".-_@"; }
-            if(tipo.indexOf('rif')>-1 ){ cadena = cadena + "vjegi"; }
-            if(tipo.indexOf('dir')>-1 ){ cadena = cadena + ","; }
+	            if(tipo.indexOf('alf')>-1 ){ cadena = cadena + "abcdefghijklmnopqrstuvwxyzáéíóúñüÁÉÍÓÚÑÜ"; }
+	            if(tipo.indexOf('xlf')>-1 ){ cadena = cadena + "abcdefghijklmnopqrstuvwxyzáéíóúñüÁÉÍÓÚÑÜ "; }
+	            if(tipo.indexOf('mlf')>-1 ){ cadena = cadena + "abcdefghijklmnopqrstuvwxyz"; }
+	            if(tipo.indexOf('num')>-1 ){ cadena = cadena + "1234567890"; }
+	            if(tipo.indexOf('cur')>-1 ){ cadena = cadena + "1234567890,."; }
+	            if(tipo.indexOf('esp')>-1 ){ cadena = cadena + "-_.$%&@,/()"; }
+	            if(tipo.indexOf('cor')>-1 ){ cadena = cadena + ".-_@"; }
+	            if(tipo.indexOf('rif')>-1 ){ cadena = cadena + "vjegi"; }
+	            if(tipo.indexOf('dir')>-1 ){ cadena = cadena + ","; }
 
-            var key = e.which,
-                keye = e.keyCode,
-                tecla = String.fromCharCode(key).toLowerCase(),
-                letras = cadena;
+	            var key = e.which,
+	                keye = e.keyCode,
+	                tecla = String.fromCharCode(key).toLowerCase(),
+	                letras = cadena;
 
-            if(letras.indexOf(tecla)==-1 && keye!=9&& (key==37 || keye!=37)&& (keye!=39 || key==39) && keye!=8 && (keye!=46 || key==46) || key==161){
-                e.preventDefault();
-            }
-        }
+	            if(letras.indexOf(tecla)==-1 && keye!=9&& (key==37 || keye!=37)&& (keye!=39 || key==39) && keye!=8 && (keye!=46 || key==46) || key==161){
+	                e.preventDefault();
+	            }
+	        }
 
-      mensaje( $(this).attr('name'), '', true );
-       
-    });
-
-      
-    function getGlobalData(url,method, datos){
-		return $.ajax({
-			data: datos,
-			type: method,
-			url: url,
-			async:false,
-			success: function(data){
-	            //alert(data);
-	            // $("#guardando").css('color','#fff');
-				return data;
-			}
-		}).responseText;
-	}
-	
-
+	      mensaje( $(this).attr('name'), '', true );
+	       
+	    });
+		// FUNCION GLOBAL PARA ENVIAR POR AJAX      
+	    function getGlobalData(url,method, datos){
+			return $.ajax({
+				data: datos,
+				type: method,
+				url: url,
+				async:false,
+				success: function(data){
+		            //alert(data);
+		            // $("#guardando").css('color','#fff');
+					return data;
+				}
+			}).responseText;
+		}
     </script>
 </body>
 </html>
