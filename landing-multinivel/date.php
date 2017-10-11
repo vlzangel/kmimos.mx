@@ -47,7 +47,7 @@
 
             $conn->query( utf8_decode( $new_user ) );
           
-            echo "¡Se registro exitosamente!";
+            echo "SI";
 
         }
         

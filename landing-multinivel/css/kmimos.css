@@ -102,6 +102,16 @@ strong{font-weight: 900;}
     position: relative;
     margin-bottom: 2%;
 }
+#section-3 button{
+	font-family: 'CaviarDreams';
+	border-radius: 8px 8px 8px 8px;
+	height: 50px;
+	padding: 10px 20px 10px 20px ;    
+  	width: calc(75% - 100px);
+	color:#000;
+	margin-left: -5%;
+	margin-top: 2%;
+}
 #section-3 input{
 	font-family: 'CaviarDreams';
 	border-radius: 8px 8px 8px 8px;
@@ -118,10 +128,11 @@ strong{font-weight: 900;}
 	font-size: 25px;
 	font-weight: 700;
 }
-.span-name-show{display: list-item; }
+.span-name-show{display: block; }
 .span-name-hide{ display: none; }
-.span-email-show{ display: list-item; }
+.span-email-show{ display: block; }
 .span-email-hide{ display: none; }
+
 /***************************************/
 /*  Section-4                          */
 /***************************************/
@@ -429,7 +440,10 @@ header{
 	.title {font-size: 25pt;}
 	.title-label {font-size: 17px;}
 	#section-3 input {width: calc(100% - 1px);}
+	#section-3 button{width: calc(100% - 0px); margin-left: 0%;}
 	.btn-inscribirme {font-size: 22px;}
+	span[name='sp-name']{margin-left: 10%; padding: 2%;}
+	span[name='sp-email']{margin-left: 10%; padding: 2%;}
 	#section-4 h3 {font-size: 26pt;}
 	#section-4 img {margin-left: 25%; width: 40%;}
 	#section-4 h4 {font-size: 13pt;margin-left: -30%;}
