@@ -139,6 +139,8 @@
             ";
             $conn->query( utf8_decode( $sql ) );
 
+            $_SESSION["nuevo_registro"] = "YES";
+
             echo $user_id;
 
         }

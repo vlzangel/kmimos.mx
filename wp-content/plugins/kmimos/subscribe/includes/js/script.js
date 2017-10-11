@@ -25,7 +25,7 @@ function form_subscribe(element){
                     message_subscribe(message);
                 }, 5000);
                 if( data['message'] == "Ha sido Registrado" ){
-                    fbq('track', 'ViewContent', {
+                    fbq('track', 'Suscripcion', {
                         content_name: 'Registro popup México'
                     });
                 }
