@@ -24,6 +24,11 @@ function form_subscribe(element){
                 vsetTime = setTimeout(function(){
                     message_subscribe(message);
                 }, 5000);
+                if( data['message'] == "Ha sido Registrado" ){
+                    fbq('track', 'Suscripcion', {
+                        content_name: 'Registro popup México'
+                    });
+                }
             }
 
         }else{

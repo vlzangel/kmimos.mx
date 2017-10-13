@@ -84,6 +84,21 @@
         $ref_str .= '<option value="'.$key.'"'.$selected.'>'.$value.'</option>';
     }
 
+    if (!isset($_SESSION)) { session_start(); }
+    if( $_SESSION["nuevo_registro"] == "YES" ){
+
+        $pixel = "
+            fbq('track', 'Registro', {
+                content_name: 'Nuevo Registro de Cliente'
+            });
+        ";
+
+        $_SESSION["nuevo_registro"] = "";
+        unset($_SESSION["nuevo_registro"]);
+    }else{
+        $pixel = "";
+    }
+
     $this->FieldOutput .= '
         <style>
             .cell50 {width: 50%; margin-right: -5px !important; padding-right: 10px !important; display: inline-block !important;}
@@ -214,6 +229,9 @@
         </div>
 
         <script>
+
+            '.$pixel.'
+
             function vista_previa(evt) {
                 var files = evt.target.files;
                 for (var i = 0, f; f = files[i]; i++) {
