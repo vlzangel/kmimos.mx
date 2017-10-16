@@ -128,9 +128,9 @@ strong{font-weight: 900;}
 	font-size: 25px;
 	font-weight: 700;
 }
-.span-name-show{display: block; }
-.span-name-hide{ display: none; }
-.span-email-show{ display: block; }
+.span-name-show{display: block; margin-left: 15%;}
+.span-name-hide{ display: none;  }
+.span-email-show{ display: block; margin-left: 20%;}
 .span-email-hide{ display: none; }
 
 /***************************************/
@@ -329,6 +329,9 @@ header{
 	.sp {margin-bottom: 3%;margin-left: 15%;}
 	.baja-lg{margin-top: 1%;}
 	#section-3 input { width: calc(75% - 100px); margin-left: -5%;}
+	#section-3 button{width: calc(75% - 100px); margin-left: -5%;}
+	.span-name-show{display: block; margin-left: 10%;}
+	.span-email-show{ display: block; margin-left: 15%;}
 	#section-4 img {margin-top: 2%;margin-left: 48%;}
 	#section-4 p {margin-top: -3%; margin-left: -30%;}
 	#section-4 h4{font-size: 17pt;margin-left: -35%;}
@@ -343,8 +346,10 @@ header{
 	#section-3 {padding: 4%;}
 	.title {font-size: 25pt;}
 	.title-label {font-size: 17px;}
-	#section-3 input {width: calc(80% - 45px); margin-left: 15%;}
-	#section-3 button{width: calc(73% - 0px); margin-left: 15%;}
+	#section-3 input {width: calc(100% - 0px); margin-left: -25%;}
+	#section-3 button{width: calc(100% - 0px); margin-left: -25%;}
+	.span-name-show{display: block; margin-left: 5%;}
+	.span-email-show{ display: block; margin-left: 17%;}
 	.btn-inscribirme {font-size: 22px;}
 	#section-4 h3 {font-size: 26pt;}
 	#section-4 img {margin-left: 50%;}
@@ -374,6 +379,8 @@ header{
 	#section-2 h1 {font-size: 24pt; margin-top: 4%; text-align: center;}
 	#section-3 input {width: calc(80% - 45px); margin-left: 15%;}
 	#section-3 button{width: calc(73% - 0px); margin-left: 15%;}
+	.span-name-show{display: block; margin-left: 38%;}
+	.span-email-show{ display: block; margin-left: 46%;}
 	#section-5 h3 {font-size: 18pt;	margin-bottom: 15%;margin-left: 0%; text-align: center;}
 	#section-5 span {font-size: 39px;top: 100%; left: 42%;}
 	.cuadrado {margin-bottom: 29%;}
@@ -393,6 +400,8 @@ header{
 	#section-2 h1 {font-size: 24pt; margin-top: 4%; text-align: center;}
 	#section-3 input {width: calc(80% - 45px); margin-left: 20%;}
 	#section-3 button{width: calc(70% - 0px); margin-left: 20%;}
+	.span-name-show{display: block; margin-left: 22%;}
+	.span-email-show{ display: block; margin-left: 38%;}
 	#section-4 img {margin-left: 37%; width: 45%;}
 	#section-4 h4 {font-size: 115%;margin-left: -20%;}
 	#section-4 p {font-size: 105%;margin-top: -15%;margin-left: -5%;}
@@ -419,6 +428,8 @@ header{
 	.title-label {font-size: 17px;}
 	#section-3 input {width: calc(80% - 45px); margin-left: 20%;}
 	#section-3 button{    width: calc(90% - 70px); margin-left: 19%; font-size: 18px;}
+	.span-name-show{display: block; margin-left: 22%;}
+	.span-email-show{ display: block; margin-left: 38%;}
 	.btn-inscribirme {font-size: 22px;}
 	#section-4 h3 {font-size: 26pt;}
 	#section-4 img {margin-left: 25%; width: 50%;}
@@ -447,9 +458,9 @@ header{
 	.title-label {font-size: 17px;}
 	#section-3 input {width: calc(100% - 1px);}
 	#section-3 button{width: calc(100% - 0px); margin-left: 0%;}
+	.span-name-show{display: block; margin-left: 10%;}
+	.span-email-show{ display: block; margin-left: 30%;}
 	.btn-inscribirme {font-size: 22px;}
-	span[name='sp-name']{margin-left: 10%; padding: 2%;}
-	span[name='sp-email']{margin-left: 10%; padding: 2%;}
 	#section-4 h3 {font-size: 26pt;}
 	#section-4 img {margin-left: 25%; width: 40%;}
 	#section-4 h4 {font-size: 13pt;margin-left: -30%;}
