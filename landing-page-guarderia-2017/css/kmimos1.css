@@ -454,7 +454,7 @@ footer{
 	.conte-serv-3 p {font-size: 18pt;}
 	.img-servicio { width: 55%; margin-top: 30%; margin-left: 40%;  position: absolute;}
 	#section-3 h2 {font-size: 30pt!important; color: #fff; margin-top: 5%;}
-	#section-3 { height: auto; padding-bottom: 15%;}
+	#section-3 { height: auto; padding-bottom: 15%; background-size: cover;}
 	.color1 {font-size: 20pt;padding: 25px; width: 90%!important; border-radius: 115px 115px 0px 0px; height: 145px!important;}
 	.color2 {font-size: 20pt; width: 90%!important; height: 145px!important;}
 	.color3 {font-size: 20pt; width: 90%!important; height: 170px!important;}
@@ -486,7 +486,7 @@ footer{
 	.conte-serv-3 p {font-size: 15pt;}
 	.img-servicio { width: 70%; margin-top: 35%; margin-left: 25%;  position: absolute;}
 	#section-3 h2 {font-size: 20pt!important; color: #fff; margin-top: 5%;}
-	#section-3 { height: auto; padding-bottom: 15%;}
+	#section-3 { height: auto; padding-bottom: 15%; background-size: cover;}
 	.color1 {font-size: 17pt;padding: 25px; width: 90%!important; border-radius: 115px 115px 0px 0px; height: 130px!important;}
 	.color2 {font-size: 17pt; width: 90%!important; height: 130px!important;}
 	.color3 {font-size: 17pt; width: 90%!important; height: 142px!important;}
@@ -517,7 +517,7 @@ footer{
 	.conte-serv-3 p {font-size: 15pt;}
 	.img-servicio { width: 70%; margin-top: 35%; margin-left: 25%;  position: absolute;}
 	#section-3 h2 {font-size: 20pt!important; color: #fff; margin-top: 5%;}
-	#section-3 { height: auto; padding-bottom: 15%;}
+	#section-3 { height: auto; padding-bottom: 20%; background-size: cover;}
 	.color1 {font-size: 17pt;padding: 25px; width: 90%!important; border-radius: 115px 115px 0px 0px; height: 130px!important;}
 	.color2 {font-size: 17pt; width: 90%!important; height: 130px!important;}
 	.color3 {font-size: 17pt; width: 90%!important; height: 142px!important;}
@@ -546,9 +546,9 @@ footer{
 	.conte-serv-2 p {font-size: 13pt;margin-left: 7%;}
 	.conte-serv-3 {padding: 10px; margin-top: -10%; margin-bottom: 35px; width: 78%;}
 	.conte-serv-3 p {font-size: 13pt;}
-	.img-servicio { width: 70%; margin-top: 53%; margin-left: 25%;  position: absolute;}
+	.img-servicio { width: 70%; margin-top: 50%; margin-left: 25%;  position: absolute;}
 	#section-3 h2 {font-size: 17pt!important; color: #fff; margin-top: 5%;}
-	#section-3 { height: auto; padding-bottom: 15%;}
+	#section-3 { height: auto; padding-bottom: 20%; background-size: cover;}
 	.color1 {font-size: 17pt;padding: 25px; width: 90%!important; border-radius: 115px 115px 0px 0px; height: 130px!important;}
 	.color2 {font-size: 17pt; width: 90%!important; height: 130px!important;}
 	.color3 {font-size: 17pt; width: 90%!important; height: 142px!important;}
