@@ -6,7 +6,7 @@ body{background: #49C9B0; 	color: #3a3a3a; font-family: Poetsen One;}
 strong{font-weight: 900;}
 
 html,body{margin:0px; 	height:100%; }
-.container-fluid{height: 100%;}
+.container-fluid{height: auto;}
 
 /***************************************/
 /*  CABECERA Y Section-1               */
