@@ -222,7 +222,7 @@
 				</div>
 			</article>
 			<article class="col-sm-offset-6 col-sm-6 hidden-sm hidden-lg hidden-md">
-		  		<img src="img/perro-servi.jpg" alt="perro-servi" class="img-servicio">
+		  		<img src="img/perro-servi.png" alt="perro-servi" class="img-servicio">
 		  	</article>
 			<article class="col-sm-12 col-md-12">
 	    		<div class="conte-serv-1">
@@ -236,7 +236,7 @@
 	    		</div>
 		  	</article>
 		  	<article class="col-sm-offset-6 col-sm-6  hidden-xs">
-		  		<img src="img/perro-servi.jpg" alt="perro-servi" class="img-servicio">
+		  		<img src="img/perro-servi.png" alt="perro-servi" class="img-servicio">
 		  	</article>
 		</section>
 	<!-- Ventajas de dejarlo con un cuidador certificado -->
