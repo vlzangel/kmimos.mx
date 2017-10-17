@@ -103,7 +103,8 @@
                 }else{
                     var mail= jQuery('#fieldEmail').val();
                     var datos = {'source': 'lan-cl-med', 'email': mail}
-                    var result = getGlobalData("../../../landing/newsletter.php?source=guarderia-perro&email="+mail,'GET', null);
+                    var result = 2;
+                    // getGlobalData("../../../landing/newsletter.php?source=guarderia-perro&email="+mail,'GET', null);
                         console.log(result);
                     if (result == 1) {
                         jQuery("#msg-vacio").removeClass('span-email-show');
@@ -117,7 +118,7 @@
                         var datos = {'campo':'cm-vydldy-vydldy',
                                      'email': mail,
                                      'lista': 'http://kmimos.intaface.com/t/j/s/vydldy/'}
-                        var resp = getGlobalData('https://www.kmimos.com.mx/landing-volaris/suscribir_lista.php','POST', datos);
+                        // var resp = getGlobalData('https://www.kmimos.com.mx/landing-volaris/suscribir_lista.php','POST', datos);
                     }else if (result == 2){
                         jQuery("#msg-vacio").removeClass('span-email-show');
                         jQuery('#msg-error').removeClass('span-email-show');
@@ -208,7 +209,7 @@
 		<section class="container" id="section-2">
 			<div class="col-sm-8 col-sm-offset-2">
 				<article class="video video-container container-iframe">
-					<iframe width="560" height="315" src="https://www.youtube.com/embed/cl1y_ruBMrQ?rel=0" frameborder="0" allowfullscreen></iframe>
+					<iframe src="https://www.youtube.com/embed/R7dintFA61s?rel=0&amp;controls=0" frameborder="0" allowfullscreen></iframe>
 				</article>
 			</div>
 		</section>
