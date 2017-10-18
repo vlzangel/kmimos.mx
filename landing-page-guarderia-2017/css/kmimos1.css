@@ -543,7 +543,7 @@ footer{
 	
 	#section-5 {height: auto;}
 	#h2-req {font-size: 20pt!important;margin-right: -20%;}
-	.img-requisitos {width: 110%;}
+	.img-requisitos {width: 110%;margin-left: 0%;}
 	.letra-req {color: #262424;margin-left: 0px;font-size: 22px;}
 
 	.h2-foot {font-size: 18pt!important;line-height: 100%;}

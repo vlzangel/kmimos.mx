@@ -249,8 +249,11 @@
 	   	 		<article class="col-sm-12 col-xs-12  colores">
 	   	 			<div class="col-sm-3 col-xs-12  color1">Cobertura de <br> servicios <br>veterinarios</div>
 	   	 			<div class="col-sm-3 col-xs-12 color2">Tu Mejor amigo se <br>queda en la casa del <br>cuidador.</div>
-	   	 			<div class="col-sm-3 col-xs-12 color3">Jugar&aacute; como un <br>Rey en sof&aacute;s, salas o <br>en la cama <br>del cuidador.  </div>
-	   	 			<div class="col-sm-3 col-xs-12 color4">Lo mimamr&aacute;n y <br>cuidar&aacute;n como  en <br>su propia casa.</div>
+	   	 			<div class="col-sm-3 col-xs-12 color3">
+	   	 				<span class="hidden-xs">Jugar&aacute; como un <br>Rey en sof&aacute;s, salas o <br>en la cama <br>del cuidador.</span>
+	   	 				<span class="hidden-md hidden-sm hidden-lg">Jugar&aacute; como un <br>Rey en sof&aacute;s, salas<br> o en la cama <br>del cuidador.</span>
+	   	 			</div>
+	   	 			<div class="col-sm-3 col-xs-12 color4">Lo mimar&aacute;n y <br>cuidar&aacute;n como  en <br>su propia casa.</div>
 	   	 		</article>
    	 		</div>
 		</section>  
