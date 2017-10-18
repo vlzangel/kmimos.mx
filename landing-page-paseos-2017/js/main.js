@@ -5,7 +5,7 @@ $(window).load(function() {
 	
 });
 
-#(window).resize(function(){
-	$('iframe').width( ($(window).width() * 25) / 100 );
-	$('iframe').height( ($(window).height() * 25) / 100 );
-})
+// #(window).resize(function(){
+// 	$('iframe').width( ($(window).width() * 25) / 100 );
+// 	$('iframe').height( ($(window).height() * 25) / 100 );
+// })
