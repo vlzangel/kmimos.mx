@@ -565,7 +565,7 @@ footer{
 	.conte-serv-3 {padding: 10px; margin-top: -10%; margin-bottom: 35px; width: 78%;}
 	.conte-serv-3 p {font-size: 13pt; line-height: 21px; margin-left: 20%;}
 	.img-servicio { width: 65%; margin-top: 50%; margin-left: 25%;  position: absolute;}
-	#section-3 h2 {font-size: 17pt!important; color: #fff; margin-top: 5%;}
+	#section-3 h2 {font-size: 17pt!important; color: #fff; margin-top: 5%; line-height: 110%;}
 	#section-3 { height: auto; padding-bottom: 20%; background-size: cover;}
 	.color1 {font-size: 17pt;padding: 10%; width: 80%!important; border-radius: 115px 115px 0px 0px; height: 130px!important; margin-left: 10%;}
 	.color2 {font-size: 17pt; width: 80%!important; height: 130px!important; margin-left: 10%; padding: 7%;}
