@@ -226,7 +226,8 @@
 		  	</article>
 			<article class="col-sm-12 col-md-12">
 	    		<div class="conte-serv-1">
-	        		<p>Olv&iacute;date de dejar a tu perrhijo solo en casa o con un cuidador en un <br>parque a la intemperie. Los cuidamos dentro de un hogar.</p>
+	        		<p class="hidden-xs">Olv&iacute;date de dejar a tu perrhijo solo en casa o con un cuidador en un <br>parque a la intemperie. Los cuidamos dentro de un hogar.</p>
+	        		<p class="hidden-lg hidden-md hidden-sm">Olv&iacute;date de dejar a tu perr- <br>hijo solo en casa o con un <br>cuidador en un parque a la <br>intemperie. Los cuidamos <br>dentro de un hogar.</p>
 	    		</div>
 	    		<div class="conte-serv-2">
 	        		<p>Estar&aacute; seguro con <br>cuidadores certificados.</p>  
