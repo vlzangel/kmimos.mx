@@ -341,7 +341,7 @@ iframe {
 #section-5{
 	font-family: Poetsen One;
 	width: 100%;
-	height: 100%;	
+	height: auto;	
 	color: #fff;
 	background-color: #fff;
 	font-weight: lighter;
@@ -349,11 +349,11 @@ iframe {
 }
 
 .img-requisitos{
-    width: 110%;
-    /*height: 180px;*/
+    width: 140%;
     margin: 0 auto;
     padding: 5px;
     margin-bottom: 10px;
+    margin-left: -15%;
 }
 .letra-req{
 	color: #262424; 
@@ -567,14 +567,14 @@ footer{
 	.img-servicio { width: 65%; margin-top: 50%; margin-left: 25%;  position: absolute;}
 	#section-3 h2 {font-size: 17pt!important; color: #fff; margin-top: 5%;}
 	#section-3 { height: auto; padding-bottom: 20%; background-size: cover;}
-	.color1 {font-size: 17pt;padding: 25px; width: 80%!important; border-radius: 115px 115px 0px 0px; height: 130px!important; margin-left: 10%;}
-	.color2 {font-size: 17pt; width: 80%!important; height: 130px!important; margin-left: 10%;}
-	.color3 {font-size: 17pt; width: 80%!important; height: 142px!important; margin-left: 10%;}
-	.color4 {font-size: 17pt; width: 80%!important;border-radius: 0px 0px 115px 115px;height: 146px!important; margin-left: 10%;}
+	.color1 {font-size: 17pt;padding: 10%; width: 80%!important; border-radius: 115px 115px 0px 0px; height: 130px!important; margin-left: 10%;}
+	.color2 {font-size: 17pt; width: 80%!important; height: 130px!important; margin-left: 10%; padding: 7%;}
+	.color3 {font-size: 17pt; width: 80%!important; height: 142px!important; margin-left: 10%; padding: 5%;}
+	.color4 {font-size: 17pt; width: 80%!important;border-radius: 0px 0px 115px 115px;height: 146px!important; margin-left: 10%; padding: 5%;}
 	
 	#section-5 {height: auto;}
 	#h2-req {font-size: 20pt!important;margin-right: -20%;}
-	.img-requisitos {width: 110%;}
+	.img-requisitos {width: 130%;margin-left: -17%;}
 	.letra-req {color: #262424;margin-left: 0px;font-size: 17px;}
 
 	.h2-foot {font-size: 18pt!important;line-height: 100%;}
