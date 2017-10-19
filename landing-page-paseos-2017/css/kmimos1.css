@@ -106,19 +106,24 @@ header{
 /*  Section-2                          */
 /***************************************/
 #section-2{
-    width: 85%;
+    width: 100%;
     overflow: hidden;
-    margin-top: -10%;
+    /*margin-top: -10%;*/
     background: #ffffff;
     margin-bottom: 10%;
 }
 .morado{
 	width: 100%;
 	height: 20%;
-	padding: 5%;
-	background-image: url(../img/conte.png);
+	padding-left: 10%;
+	background:#871c9a;
     background-position: center;
 
+}
+.blanco{
+	background: #fff;
+    width: 90%;
+    padding: 3%;
 }
 #section-2 h1 {
     text-align: center;
@@ -135,7 +140,7 @@ header{
 	display: block;
 	width: 100%;
 	margin-top: 15%;
-	margin-left: 5%;	
+	margin-left: 0%;	
 }
 #section-2 > article:first{
 	margin-top:10px;
@@ -448,16 +453,18 @@ footer{
 /*  Media                              */
 /***************************************/
 
-@media (min-width: 1280px){}
+@media (min-width: 1480px){
+	#section-1 > a > img {bottom: 0%;width: 60%; left: -55%;}
+	#h2-req {font-size: 4.5em!important;padding: 6%; margin-right: -46%;}
+	.morado {height: 175px;}
+}
 
 @media (min-width: 581px) and (max-width: 765px){
 	.container-fluid {height: auto;}
 	#section-1 {background-position: top;background-size: 100% 100%; padding-top: 30%;}
 	#section-1 h1 {font-size: 33px; width: 100%; margin-top: -20%;}
 	#section-1 > a > img {bottom: 60%;width: 60%; left: -35%;}
-	#section-2 {margin-top: -23%;}
 	#section-2 h1 {text-align: center;font-size: 18pt;line-height: 30px;width: 100%;}
-	#section-2 article {margin-left: 2%;}
 	#h2 {font-size: 28pt!important;}
 	.conte-serv-1 {border-radius: 0px 90px 90px 0px; width: 85%;padding: 25px;}
 	.conte-serv-1 p {font-size: 34pt;margin-left: 23%; width: 100%;}
@@ -492,9 +499,8 @@ footer{
 	#section-1 h1 {font-size: 28px; width: 100%; margin-top: -12%;}
 	#section-1 > a > img {bottom: 63%;width: 60%;left: -32%;}
 	.morado {height: 18%;}
-	#section-2 {margin-top: -27%;}
 	#section-2 h1 {text-align: center;font-size: 12pt;line-height: 20px;width: 100%;}
-	#section-2 article {margin-left: 2%;}
+
 	#h2 {font-size: 22pt!important;}
 	.conte-serv-1 {border-radius: 0px 90px 90px 0px; width: 85%;padding: 25px;}
 	.conte-serv-1 p {font-size: 30pt;margin-left: 10%; width: 100%;}
@@ -528,9 +534,7 @@ footer{
 	#section-1 h1 {font-size: 26px; width: 100%; margin-top: 0%;}
 	#section-1 > a > img {bottom: 62%;width: 60%; left: -35%;}
 	.morado {height: 18%;}
-	#section-2 {margin-top: -29%;}
 	#section-2 h1 {text-align: center;font-size: 12pt;line-height: 20px;width: 100%;}
-	#section-2 article {margin-left: 2%;}
 	#h2 {font-size: 20pt!important;}
 	.conte-serv-1 {border-radius: 0px 90px 90px 0px; width: 85%;padding: 25px;}
 	.conte-serv-1 p {font-size: 30pt;margin-left: 10%; width: 100%;}
@@ -542,13 +546,13 @@ footer{
 	#section-3 h2 {font-size: 25pt!important; color: #fff; margin-top: 5%;}
 	#section-3 { height: auto; padding-bottom: 20%; background-size: cover; background-image: url(../img/fondo-s3-responsive.png);}
 	.colores {left: 3%;}
-	.color1 {font-size: 17pt;padding: 25px; width: 70%!important; border-radius: 115px 115px 0px 0px; height: 130px!important;margin-left: 15%;}
+	.color1 {font-size: 17pt; padding: 11%; width: 70%!important; border-radius: 115px 115px 0px 0px; height: 130px!important;margin-left: 15%;}
 	.color2 {font-size: 17pt; width: 70%!important; height: 130px!important;margin-left: 15%;}
-	.color3 {font-size: 17pt; width: 70%!important; height: 142px!important;margin-left: 15%;}
-	.color4 {font-size: 17pt; width: 70%!important;border-radius: 0px 0px 115px 115px;height: 146px!important;margin-left: 15%;}
+	.color3 {font-size: 17pt; width: 70%!important; height: 142px!important;margin-left: 15%; padding: 9%;}
+	.color4 {font-size: 17pt; width: 70%!important;border-radius: 0px 0px 115px 115px;height: 146px!important;margin-left: 15%; padding: 7%;}
 	
 	#section-5 {height: auto;}
-	#h2-req {font-size: 20pt!important;margin-right: -20%;}
+	#h2-req {font-size: 20pt!important;margin-right: -10%;}
 	.img-requisitos {width: 110%;margin-left: 0%;}
 	.letra-req {color: #262424;margin-left: 0px;font-size: 22px;}
 
@@ -564,9 +568,7 @@ footer{
 	#section-1 h1 {font-size: 20px; width: 100%; margin-top: -22%;margin-left: 0%; line-height: 20px!important;}
 	#section-1 > a > img {bottom: 65%;width: 60%; left: -30%;}
 	.morado {height: 19%;}
-	#section-2 {margin-top: -34%;}
 	#section-2 h1 {text-align: center;font-size: 12pt;line-height: 20px;width: 100%;}
-	#section-2 article {margin-left: 2%;}
 	#h2 {font-size: 18pt!important;}
 	.conte-serv-1 {border-radius: 0px 90px 90px 0px; width: 90%; padding: 17px;}
 	.conte-serv-1 p {font-size: 22pt; margin-left: 15%; width: 100%; line-height: 100%;}
@@ -584,7 +586,7 @@ footer{
 	.color4 {font-size: 18pt; width: 80%!important;border-radius: 0px 0px 115px 115px;height: 146px!important; margin-left: 10%;padding: 6%;}
 	
 	#section-5 {height: auto;}
-	#h2-req {font-size: 20pt!important;margin-right: -20%;}
+	#h2-req {font-size: 20pt!important;margin-right: -10%;}
 	.img-requisitos {width: 130%;margin-left: -17%;}
 	.letra-req {color: #262424;margin-left: 0px;font-size: 17px;}
 
