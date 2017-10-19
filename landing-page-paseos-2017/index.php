@@ -76,10 +76,10 @@
                 var CampaignMonitor = '<div id="subForm">'+
                 '<input id="fieldEmail" name="mail" type="email" placeholder="Introduce tu correo aqu&iacute" required />'+
                 '<button onclick="register()" id="btn-envio"><i class="fa fa-arrow-right" aria-hidden="true"></i></button></div>'+
-                '<div id="msg" class="span-email-hide">Datos guardados</div>'+
+                '<div id="msg" class="span-email-hide">Registro Exitoso. Por favor revisa tu correo en la Bandeja de Entrada o en No Deseados</div>'+
                 '<div id="msg-vacio" class="span-email-hide">Debe completar los datos</div>'+
                 '<div id="msg-register" class="span-email-hide">El email no es valido</div>'+
-                '<div id="msg-error" class="span-email-hide">Email registrado </div>';
+                '<div id="msg-error" class="span-email-hide">Este correo ya estaba registrado. Por favor intentar con uno nuevo</div>';
                 
                 var dog = '<img height="70" align="bottom" src="https://www.kmimos.com.mx/wp-content/uploads/2017/07/propuestas-banner-09.png">' +
                     '<img height="20" align="bottom" src="https://www.kmimos.com.mx/wp-content/uploads/2017/07/propuestas-banner-10.png">';
@@ -87,8 +87,6 @@
                 var html='<div id="PageSubscribe"><i class="exit fa fa-times" aria-hidden="true" onclick="SubscribePopUp_Close(\'#message.Msubscribe\')"></i>' +
                     '<div class="section section1"><span>G&aacute;nate <strong>$50 pesos</strong> en tu primera reserva</span><br>&#8216;&#8216;Aplica para clientes nuevos&#8217;&#8217;<div class="images">'+dog+'</div></div>' +
                     '<div class="section section2"><span><strong>&#161;SUSCR&Iacute;BETE!</strong> y recibe el Newsletter con nuestras <strong>PROMOCIONES, TIPS DE CUIDADOS PARA MASCOTAS,</strong> etc.!</span>'+CampaignMonitor+
-                    '</div>' +
-                    '<div class="section section3">*Dentro de 48 hrs. Te enviaremos v&iacute;a email tu c&uacute;pon de descuento</div>' +
                     '</div>';
 
 
@@ -199,17 +197,21 @@
 		</section>
 	</div>
 	<!--seccion video-->
-	<div class="morado"><span style="display: none;">X</span></div>
-		<section class="container" id="section-2">
-			<h1>En kmimos, paseamos a tu perrihijo para mantenelo ejercitado y sano. <br>
-				Te garantizamos que regresar&aacute; a casa feliz.
-			</h1>
-			<div class="col-sm-8 col-sm-offset-2">
-				<article class="video video-container container-iframe">
-					<iframe src="https://www.youtube.com/embed/xjyAXaTzEhM?rel=0" frameborder="0" allowfullscreen></iframe>
-				</article>
-			</div>
-		</section>
+	<section id="section-2">
+		<div class="morado">
+		    <div class="blanco">
+				<h1>En kmimos, paseamos a tu perrihijo para mantenelo ejercitado y sano. <br>
+					Te garantizamos que regresará a casa feliz.
+					</h1>
+		    </div>
+		</div>
+		<div class="col-sm-8 col-sm-offset-2">
+			<article class="video video-container container-iframe">
+				<iframe src="https://www.youtube.com/embed/xjyAXaTzEhM?rel=0" frameborder="0" allowfullscreen></iframe>
+			</article>
+		</div>
+	</section>
+		
 	<!-- En que consta el servicio -->
 		<section id="section-4">
 			<article class="container">
