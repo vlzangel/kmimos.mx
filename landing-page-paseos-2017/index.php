@@ -232,7 +232,8 @@
 	        		<p>Estar&aacute; seguro con <br>cuidadores certificados.</p>  
 	    		</div>
 	    		<div class="conte-serv-3">
-	        		<p>Te enviar&aacute;n fotos <br>y videos  durante el d&iacute;a.</p>
+	        		<p class="hidden-xs">Te enviar&aacute;n fotos <br>y videos  durante el d&iacute;a.</p>
+	        		<p class="hidden-lg hidden-md hidden-sm">Te enviar&aacute;n fotos <br>y videos  durante <br>el d&iacute;a.</p>
 	    		</div>
 		  	</article>
 		  	<article class="col-sm-offset-6 col-sm-6  hidden-xs">
