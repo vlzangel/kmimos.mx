@@ -90,7 +90,7 @@
                     '</div>';
 
 
-                // SubscribePopUp_Create(html);
+                SubscribePopUp_Create(html);
             }
 
             function register(){     
