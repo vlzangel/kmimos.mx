@@ -902,6 +902,15 @@ footer aside{
   }
 }
 @media (max-width: 415px){
+	#top-volaris {
+	    padding-right: 8px;
+	    width: 75%;
+	}
+	#top-kmimos {
+	    padding-right: 11px;
+	    padding-top: 5px;
+	    width: 27%;
+	}
 	#tu-mascota p {
 	    font-size: 15px;
 	    width: 60%;
@@ -1003,9 +1012,9 @@ footer aside{
 		background: transparent;
 	    padding: 0%;
 	    position: relative;
-       	margin-top: 26%;
-		border-right: 444px solid #fff;
-		border-top: 56px solid transparent;
+	    margin-top: 24%;
+	    border-right: 435px solid #fff;
+	    border-top: 60px solid transparent;
 	    overflow: hidden;
 	}
 	#section-4-cuadro span{
