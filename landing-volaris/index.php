@@ -200,54 +200,34 @@
        	<div class="col-sm-12">       		
 
     	   	<div class="row">       		
-				<section id="section-4" class="col-xs-12 hidden-xs">
-					<div class="easyload background" data-original="img/fondo-sc4.jpg"></div>
-						<div class="container full-width" >
-							<article id="tu-mascota" class="col-xs-6 col-sm-6 col-md-4 col-lg-4 text-center pull-right hidden-xs">
-								<p>Tu mascota regresa feliz</p>
-							</article> 
-							
-							<article id="section-4-cuadro" class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-								<p>
-									Promoci&oacute;n por ser cliente <span style="color: #a1126d;">VOLARIS</span>, si te suscribes HOY:</p>
-								<h2 class="color-volaris">Obt&eacute;n</h2>
-								<h2 class="monto">$150</h2>
-								<!-- <h3 class="color-volaris">DE DESCUENTO</h3> -->
-								<!-- <span>En tu primera reserva</span> -->
-							</article>
-						</div>
-				</section>
-				<section id="section-4" class="col-xs-12 hidden-lg hidden-sm hidden-md">
-					<div class="easyload background" data-original="img/fondo-responsive.jpg"></div>
-						<div class="container full-width" >
-							<article id="tu-mascota" class="col-xs-6 col-sm-6 col-md-4 col-lg-4 text-center pull-right hidden-xs">
-								<p>Tu mascota regresa feliz</p>
-							</article> 
-							
-							<article id="section-4-cuadro" class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-								<p>
-									Promoci&oacute;n por ser cliente <span style="color: #a1126d;">VOLARIS</span>, si te suscribes HOY:</p>
-								<h2 class="color-volaris">Obt&eacute;n</h2>
-								<h2 class="monto">$150</h2>
-								<!-- <h3 class="color-volaris">DE DESCUENTO</h3> -->
-								<!-- <span>En tu primera reserva</span> -->
-							</article>
-						</div>
+				<section id="section-4" class="col-xs-12">
+				<div class="easyload background" data-original="img/fondo-sc4.jpg"></div>
+					<div class="container full-width" >
+						<article id="tu-mascota" class="col-xs-6 col-sm-6 col-md-4 col-lg-4 text-center pull-right">
+							<p>Tu mascota regresa feliz</p>
+						</article> 
+						
+						<article id="section-4-cuadro" class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+							<p>
+								Promoci&oacute;n por ser cliente <span style="color: #a1126d;">VOLARIS</span>, si te suscribes HOY:</p>
+							<h2 class="color-volaris">Obt&eacute;n</h2>
+							<h2 class="monto">$150</h2>
+							<!-- <h3 class="color-volaris">DE DESCUENTO</h3> -->
+							<!-- <span>En tu primera reserva</span> -->
+						</article>
+					</div>
 				</section>
 				<section id="section-5" class="col-sm-12 bg-volaris" style="padding-right: 0px;">
 					<div id="content-obten-cupon" class="bg-transparent container">
-						<article class="title col-xs-9 pull-right col-sm-9 col-md-8 col-lg-8 hidden-xs">
+						<article class="title col-xs-9 pull-right col-sm-9 col-md-8 col-lg-8">
 							Para obtener tu cup&oacute;n de descuento, debes hacer uno de estos sencillos pasos
-						</article>
-						<article class="title col-xs-12 hidden-lg hidden-sm hidden-md">
-							PARA OBTENER TU CUP&Oacute;N DE DESCUENTO, DEBES HACER UNO DE ESTOS SENCILLOS PASOS:
 						</article>
 					</div>
 					<div class="container">
 						<article class="col-xs-12 col-sm-11 col-md-5 col-md-5 col-lg-5 move">
-							<label class="col-xs-2 col-md-2 text-right">
+							<label class="col-xs-offset-2 col-xs-2 col-md-2 text-right">
 								1.</label>
-							<p class="col-xs-10 col-md-10">
+							<p class="col-xs-9 col-md-10">
 
 							¡SUSCR&Iacute;BETE
 							y recibe el Newsletter con nuestras <strong>Promociones</strong>, <strong>Tips de cuidado para mascotas</strong>, etc.!</p>
@@ -273,9 +253,9 @@
 							 ó 
 						</article>
 						<article class="col-xs-12 col-sm-11 col-md-6 col-md-5 col-lg-5 move">
-							<label class="col-xs-2 col-md-2 text-right">
+							<label class="col-xs-offset-2 col-xs-2 col-md-2 text-right">
 								2.</label>
-							<p class="col-xs-10 col-md-10">
+							<p class="col-xs-9 col-md-10">
 								Reg&iacute;strate en www.kmimos.com.mx y disruta de todos nuestros servicios.
 							</p>
 							<div id="section-5-link" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left pull-right">
