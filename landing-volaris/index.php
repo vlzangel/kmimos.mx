@@ -40,6 +40,8 @@
 
 	</script>
 
+	<!-- Facebook Pixel Code --> <script> !function(f,b,e,v,n,t,s) {if(f.fbq)return;n=f.fbq=function(){n.callMethod? n.callMethod.apply(n,arguments):n.queue.push(arguments)}; if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0'; n.queue=[];t=b.createElement(e);t.async=!0; t.src=v;s=b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s)}(window,document,'script', 'https://connect.facebook.net/en_US/fbevents.js');  fbq('init', '105485829783897');  fbq('track', 'PageView'); </script> <noscript>  <img height='1' width='1' src='https://www.facebook.com/tr?id=105485829783897&ev=PageView&noscript=1'/> </noscript> <!-- End Facebook Pixel Code -->
+
 	<style type="text/css">
 		#message{position: fixed; width: 100%; height: 100%; bottom: 0; padding: 20px; text-align: center; box-shadow: 0 0 3px #CCC; background: rgba(0, 0, 0, 0.8); z-index: 2;}
 		#message.Msubscribe .contain{position: relative; width: 95%; max-width: 100%; margin: 0 auto;}
@@ -84,7 +86,7 @@
 				'<div class="subscribe">'+
 				'<form onsubmit="form_subscribe(this); return false;">'+
 				'<input type="hidden" name="section" value="landing-volaris"/>'+
-				'<input type="mail" name="mail" value="" placeholder="Introduce tu correo aqu&iacute" required/>'+
+				'<input type="mail" id="mail_suscripcion" name="mail" value="" placeholder="Introduce tu correo aqu&iacute" required/>'+
 				'<button type="submit"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>'+
 				'</form>'+
 				'<div class="message"></div>'+
@@ -146,6 +148,22 @@
 							message_subscribe(message);
 						}, 5000);
 					}
+
+					if( textmessage == "Datos guardados" ){
+						jQuery.post( 
+							"suscribir.php", 
+							{
+								"email": jQuery("#mail_suscripcion").val()
+							}, 
+							function( data ) {
+							  	/*console.log("Suscripción enviadas");*/
+							}
+						);
+
+						fbq('track', 'Suscripcion', {
+	                        content_name: 'Suscripción landing Volaris'
+	                    });
+					}
 				});
 			}
 			return false;
@@ -165,6 +183,7 @@
 				});
 			}
 		}
+
 	</script>
 
     </head>
@@ -179,6 +198,7 @@
 	    	<div class="clearfix"></div>
     	</div>
        	<div class="col-sm-12">       		
+
     	   	<div class="row">       		
 				<section id="section-4" class="col-xs-12 hidden-xs">
 					<div class="easyload background" data-original="img/fondo-sc4.jpg"></div>
@@ -214,17 +234,15 @@
 							</article>
 						</div>
 				</section>
-				
 				<section id="section-5" class="col-sm-12 bg-volaris" style="padding-right: 0px;">
-					<div class="diagonal hidden-lg hidden-md hidden-sm"></div>
-					<dir id="content-obten-cupon" class="bg-transparent container">
-						<article class="title col-xs-7 col-sm-9 col-md-8 col-lg-8 hidden-xs">
+					<div id="content-obten-cupon" class="bg-transparent container">
+						<article class="title col-xs-9 pull-right col-sm-9 col-md-8 col-lg-8 hidden-xs">
 							Para obtener tu cup&oacute;n de descuento, debes hacer uno de estos sencillos pasos
 						</article>
 						<article class="title col-xs-12 hidden-lg hidden-sm hidden-md">
 							PARA OBTENER TU CUP&Oacute;N DE DESCUENTO, DEBES HACER UNO DE ESTOS SENCILLOS PASOS:
 						</article>
-					</dir>
+					</div>
 					<div class="container">
 						<article class="col-xs-12 col-sm-11 col-md-5 col-md-5 col-lg-5 move">
 							<label class="col-xs-2 col-md-2 text-right">
@@ -236,8 +254,7 @@
 
 							<div id="section-5-form" class="col-xs-11 col-sm-10 col-md-9 col-lg-9 col-md-offset-2 col-lg-offset-2 text-left pull-left">
 								<input type="text" value="" name="email" id="email" placeholder="Introduce tu correo aqu&iacute;">
-								<button id="newsletter" class="hidden-xs" style="border:0px; background: transparent; "><img src="img/flecha.png" width="52px"></button>
-								<button id="newsletter" class="hidden-lg hidden-sm hidden-md" style="border:0px; background: transparent; "><img src="img/flecha-morada.png" width="52px"></button>
+								<button id="newsletter" style="border:0px; background: transparent; "><img src="img/flecha.png" width="52px"></button>
 								<br>
 								<div id="msg-content" class="text-left" style="
 									padding: 10px;
@@ -252,7 +269,7 @@
 								</div>
 							</div>
 						</article>
-						<article class="col-xs-12 col-sm-offset-5 col-sm-2 col-md-offset-0 col-md-1 col-lg-2 text-center o" style="font-size: 50px;">
+						<article class="col-xs-12 col-sm-offset-5 col-sm-2 col-md-offset-0 col-md-1 col-lg-2 text-center" style="font-size: 50px;">
 							 ó 
 						</article>
 						<article class="col-xs-12 col-sm-11 col-md-6 col-md-5 col-lg-5 move">
@@ -262,7 +279,7 @@
 								Reg&iacute;strate en www.kmimos.com.mx y disruta de todos nuestros servicios.
 							</p>
 							<div id="section-5-link" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left pull-right">
-								<a href="https://www.kmimos.com.mx/?<?php echo $query; ?>">Disfruta registrandote aqu&iacute;</a>
+								<a href="https://www.kmimos.com.mx/?<?php echo $query; ?>">Click aqu&iacute;</a>
 							</div>
 						</article>
 
@@ -336,7 +353,7 @@
 					</section>
 					
 					<article id="proceso-reserva" class="bg-volaris col-xs-12 text-center">
-						<h1 style="font-family: 'PoetsenOne', sans-serif; font-size: 2.5em; ">¿Cómo es el proceso para reservar?</h1>
+						<h1>¿Cómo es el proceso para reservar?</h1>
 					</article>
 
 					<section class="col-sm-12" id="section-7">
@@ -415,8 +432,14 @@
 								<!-- <span> 01 8000 564667 (KMIMOS)</span> -->
 								<!-- <span>Whatsapp: (55) 6892 2182 </span>-->
 								<span>contactomex@kmimos.la</span>
-								<img src="img/logo.png" class="img-responsive logo-kmimos"  >
-								<img src="img/logo-volaris.png" class="img-responsive logo-volaris" >
+								<aside class="col-xs-12">
+									<div class="col-xs-12">
+										<img src="img/logo.png" class="logo-kmimos"  >
+									</div>
+									<div class="col-xs-12">
+										<img src="img/logo-volaris.png" class="logo-volaris" >
+									</div>
+								</aside>
 							</article>
 						</div>
 					</section>
