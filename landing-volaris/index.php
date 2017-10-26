@@ -255,7 +255,8 @@
 
 							<div id="section-5-form" class="col-xs-11 col-sm-10 col-md-9 col-lg-9 col-md-offset-2 col-lg-offset-2 text-left pull-left">
 								<input type="text" value="" name="email" id="email" placeholder="Introduce tu correo aqu&iacute;">
-								<button id="newsletter" style="border:0px; background: transparent; "><img src="img/flecha.png" width="52px"></button>
+								<button id="newsletter" class="hidden-xs" style="border:0px; background: transparent; "><img src="img/flecha.png" width="52px"></button>
+								<button id="newsletter" class="hidden-md hidden-sm hidden-lg" style="border:0px; background: transparent; "><img src="img/flecha-morada.png" width="52px"></button>
 								<br>
 								<div id="msg-content" class="text-left" style="
 									padding: 10px;
@@ -280,7 +281,7 @@
 								Reg&iacute;strate en www.kmimos.com.mx y disruta de todos nuestros servicios.
 							</p>
 							<div id="section-5-link" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left pull-right">
-								<a href="https://www.kmimos.com.mx/?<?php echo $query; ?>">Click aqu&iacute;</a>
+								<a href="https://www.kmimos.com.mx/?<?php echo $query; ?>">Disfruta registrandote aqu&iacute;</a>
 							</div>
 						</article>
 
