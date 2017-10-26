@@ -187,6 +187,7 @@ strong{
 	background: center / cover no-repeat; 
 	padding-top: 50%;
     margin-top: 5%;
+    padding-bottom: 11%;
 }
 
 #top-kmimos{	
@@ -799,7 +800,7 @@ footer aside{
 		margin-left: 2%;
 	}
 	#section-5 input{
-		padding: 16px!important;
+	    padding: 4px!important;
 		margin-right: 0px!important;
 	}
 	#section-5 img{
@@ -819,7 +820,7 @@ footer aside{
 	#section-5 p {
 	    font-size: 18px;
 	}
-	.move{margin-left: 8%;}
+	.move{margin-left: 0%;}
 	.move1{margin-left: 4%;}
 	.btn-kmimos-inverso{
 		font-size: 18px;
@@ -898,55 +899,162 @@ footer aside{
   	font-size: 49px;
     position: relative;
     margin-left: -10%;
-  }}
+  }
+}
 @media (max-width: 415px){
+	#top-volaris {
+	    padding-right: 8px;
+	    width: 75%;
+	}
+	#top-kmimos {
+	    padding-right: 11px;
+	    padding-top: 5px;
+	    width: 27%;
+	}
 	#tu-mascota p {
 	    font-size: 15px;
 	    width: 60%;
 	    margin-top: -30%;
 	    margin-left: 78px;
 	}
-	#section-4-cuadro {
-	    width: 30%;
-	    padding: 1%;
-	    margin-left: -6%;
-	    margin-top: -30%;
-	    border-radius: 15px;
+	.background {
+   		background-size: cover;
+    	padding-bottom: 55%;
 	}
+	#section-5 {
+    	position: unset;
+	}
+	#section-4-cuadro {
+	    padding: 1%;
+	    width: 30%;
+	    margin-left: -8%;
+		margin-top: -59%;
+		border-radius: 0px;
+	}
+	.bg-volaris {
+    	background: #ffffff!important;
+	}
+	.diagonal{
+		background: transparent;
+	    padding: 0%;
+	    position: relative;
+       	margin-top: 28%;
+		border-right: 444px solid #fff;
+		border-top: 56px solid transparent;
+	    overflow: hidden;
+	}
+	#section-5 input {
+	    width: 75%;
+	    background: #c62370;
+	    padding: 25px!important;
+	    margin-right: 0px!important;
+	    font-size: 12pt;
+	}
+	#section-5 .title {
+	    font-size: 15px;
+    	text-align: left;
+    	margin-left: 0%;
+	}
+	#email::placeholder{ color: #fff; font-family: 'PoetsenOne';}
+	#email::-ms-input-placeholder{ color: #fff; font-family: 'PoetsenOne';}
+	#email::-webkit-input-placeholder{ color: #fff;font-family: 'PoetsenOne'; }
+	#email::-moz-placeholder { color: #fff; font-family: 'PoetsenOne';}
+	#section-5 p{
+	    	font-size: 17px;
+		    padding-left: 0px;
+		    padding-right: 0px;
+		    color: #9f9494;
+		}
+	#section-5 label {
+			color: #696161;
+		    padding-left: 0px;
+		    padding-right: 0px;
+		}
+		#section-5-link a {
+		    padding: 15px 20%;
+		    font-size: 16px;
+		    background: #c62370;
+		    color: #fff;
+		    font-family: 'PoetsenOne';
+		}
 }  
 @media (max-width: 376px){
+	#top-volaris {
+		padding-right: 8px;
+		width: 99%;
+	}
+	#top-kmimos {
+	    padding-right: 11px;
+	    padding-top: 7px;
+	    width: 40%;
+	}
+	.background {
+	    background-size: cover;
+	    padding-bottom: 55%;
+	}
 	#tu-mascota p {
 		font-size: 15px;
 		width: 60%;
 		margin-top: -34%;
 		margin-left: 65px;
 	}
+	#section-5 {
+    position: unset;
+}
 	#section-4-cuadro {
+        padding: 1%;
 	    width: 30%;
-	    padding: 1%;
-	    margin-left: -6%;
-	    margin-top: -30%;
-	    border-radius: 15px;
+	    margin-left: -10%;
+	    margin-top: -59%;
+	    border-radius: 0px;
+	}
+	.diagonal{
+		background: transparent;
+	    padding: 0%;
+	    position: relative;
+	    margin-top: 24%;
+	    border-right: 435px solid #fff;
+	    border-top: 60px solid transparent;
+	    overflow: hidden;
 	}
 	#section-4-cuadro span{
 		font-size: 13px!important;
 	}
-	#section-5 .title {
-	    font-size: 17px;
-	}
-	#section-5 p {
-    	font-size: 17px;
-	}
 	#section-5 input {
-	    height: 45px;
-	    width: calc(100% - 105px);
+    	width: 75%;
+    	background: #c62370;
+    	padding: 10px!important;
+        font-size: 12pt;
 	}
-	#section-5 img {
-	    width: 40px!important;
+	#section-5 .title {
+	    font-size: 14px;
+    	text-align: left;
+    	margin-left: 0%;
 	}
-	#section-5-link a {
-	    padding: 15px 27%;
-	    font-size: 15px;
+	#email::placeholder{ color: #fff; font-family: 'PoetsenOne';}
+	#email::-ms-input-placeholder{ color: #fff; font-family: 'PoetsenOne';}
+	#email::-webkit-input-placeholder{ color: #fff;font-family: 'PoetsenOne'; }
+	#email::-moz-placeholder { color: #fff; font-family: 'PoetsenOne';}
+#section-5 p{
+    	font-size: 16px;
+	    padding-left: 0px;
+	    padding-right: 0px;
+	    color: #9f9494;
+	}
+#section-5 label {
+		color: #696161;
+	    padding-left: 0px;
+	    padding-right: 0px;
+	}
+#section-5-link a {
+		padding: 10px 15%;
+    	font-size: 16px;
+    	background: #c62370;
+    	color: #fff;
+    	font-family: 'PoetsenOne';
+	}
+	.bg-volaris {
+    	background: #ffffff!important;
 	}
 	#proceso-reserva {
 	    font-size: 15px;
@@ -984,8 +1092,25 @@ footer aside{
     	width: 41%;
     }
 	.background{
-		background-size: contain;
+		background-size: cover;
+		padding-bottom: 55%;
 	}
+	.diagonal{
+		background: transparent;
+	    padding: 0%;
+	    position: relative;
+	    margin-top: 22%;
+	    border-right: 444px solid #fff;
+	    border-top: 58px solid transparent;
+	    overflow: hidden;
+	}
+	.title{
+		width: 100%;
+	}
+	.bg-volaris {
+    	background: #ffffff!important;
+	}
+	.o{color: rgb(105, 97, 97);}
 	#section-1 h1 {
 	    margin-top: 0%;
 	    font-size: 21pt;
@@ -996,9 +1121,9 @@ footer aside{
 	#section-4-cuadro{
 		padding: 1%;
 	    width: 30%;
-	    margin-left: -7%;
-	    margin-top: -30%;
-	    border-radius: 10px;
+	    margin-left: -10%;
+    	margin-top: -59%;
+	    border-radius: 0px;
 	}
 	#tu-mascota p {
 	    font-size: 13px;
@@ -1031,24 +1156,38 @@ footer aside{
 	    font-size: 9pt;
 	}
 	#section-5 input {
-	    width: 69%;
+        width: 72%;
+	    background: #c62370;
+	    font-size: 10pt;
+	    padding: 5px!important;
 	}
+
+	#email::placeholder{ color: #fff; font-family: 'PoetsenOne';}
+	#email::-ms-input-placeholder{ color: #fff; font-family: 'PoetsenOne';}
+	#email::-webkit-input-placeholder{ color: #fff;font-family: 'PoetsenOne'; }
+	#email::-moz-placeholder { color: #fff; font-family: 'PoetsenOne';}
 	#top-image img {
     	margin-top: 40vh;
 	}
-
+	#section-5{position: unset;}
 	#section-5 p{
     	font-size: 16px;
 	    padding-left: 0px;
 	    padding-right: 0px;
+	    color: #9f9494;
 	}
 	#section-5 label {
+		color: #696161;
 	    padding-left: 0px;
 	    padding-right: 0px;
 	}
 
 	#section-5-link a {
-		padding: 15px 86px;
+		padding: 10px 15%;
+    	font-size: 13px;
+    	background: #c62370;
+    	color: #fff;
+    	font-family: 'PoetsenOne';
 	}
 	#contactos{
 		font-size: 16px; 
