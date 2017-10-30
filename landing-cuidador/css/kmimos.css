@@ -34,7 +34,40 @@ strong{font-weight: 900;}
 	padding-top: 50%;
     margin-top: 5%;
 }
-
+.bajar{
+	width: 3%!important;
+    margin-left: 50%!important;
+    margin-top: -2%;
+}
+.bajar-foto{
+	width: 2%!important;
+    margin-left: 50%!important;
+    position: absolute!important;
+    margin-top: 26%;
+}
+.bajar-convi{
+    width: 3%!important;
+    margin-top: -4%!important;
+    position: absolute!important;
+    padding: 0.5%;
+    margin-left: 50%;
+}
+.bajar-parte{
+    margin-top: 4%!important;
+    margin-left: 50%!important;
+    width: 2%!important;
+    position: absolute!important;
+}
+.bajar-como{
+    width: 2%!important;
+    margin-left: 50%!important;
+    margin-top: -2%;
+}
+.bajar-unete{
+    margin-left: 11%!important;
+    width: 2%!important;
+    margin-top: 2%!important;
+}
 /***************************************/
 /*  Section-1                          */
 /***************************************/
@@ -173,7 +206,7 @@ strong{font-weight: 900;}
     background-size: 100% 100%;
     color: #fff;
     padding-top: 20%;
-    padding-bottom: 20%;
+    padding-bottom: 30%;
     overflow: hidden;
 }
 
@@ -379,7 +412,7 @@ iframe {
 /***************************************/
 #section-unete{
 	background: #8c8c8c;
-	padding-bottom: 45%;
+	padding-bottom: 55%;
 }
 #section-unete h2{
     font-size: 30pt;
@@ -387,6 +420,7 @@ iframe {
     text-align: center;
     line-height: 105%;
     color: #fff;
+    margin-top: 5%;
 }
 #section-unete img{
 	position: absolute;
@@ -402,10 +436,11 @@ iframe {
 	width: 100%;
 }
 .img-unete {
+	position: absolute;
     width: 100%!important;
     max-width: 100%!important;
     left: 0%!important;
-    margin-top: 1%!important;
+    margin-top: 11%!important;
 }
 /***************************************/
 /*  section-7                          */
@@ -456,18 +491,18 @@ header{
 }
 @media (min-width: 581px) and (max-width: 765px){
 	.logo-negro {left: 30%;width: 40%;}
-	#section-1 {padding-top: 80%; background-size: 100% 110%;}
-	#section-1 p {font-size: 8pt;left: 20%;top: 52%;width: 70%;}
+	#section-1 {background-image: url(../img/fondo-sc4-responsive.png);background-size: cover;padding-bottom: 100%;}
+	#section-1 p {font-size: 8pt;left: 20%;top: 65%;width: 70%;}
 	#section-1 a img {width: 50%; max-width: 340px; left: 25%;}
 	#section-2 {padding-bottom: 5%; overflow: hidden;}
 	.mapa {width: 40%;}
-	.panel {margin-left: 7%;padding: 8%; background-color: #45c5ca; border-radius: 33px;width: 38%;}
+	.panel {width: 100%;max-width: 100%;}
 	.patita {width: 11%; margin-left: 50%;margin-top: -60%;}
 	#section-2 .p-patita {font-size: 6pt; width: 70%;line-height: 100%; margin-top: -35%; margin-left: 55%; font-weight: 100;}
 	#section-2 .mas {font-size: 10pt;}
 	#section-2 article {margin-top: 10%;}
-	#section-2 p {font-size: 6pt;    margin-top: 17%;    margin-left: 0%;}
-	.span {font-weight: 200!important;font-size: 4pt;left: 10%;color: #a49b9b;margin-top: 12%;}
+	#section-2 p {font-size: 6pt;margin-top: 1%;margin-left: -6%;width: 100%;}
+	.span {font-weight: 200!important;font-size: 4pt;left: 10%;color: #a49b9b;margin-top: 22%;}
 	#section-2 .publicidad {width: 40px;margin-top: 24px;max-width: 330%;}
 	#section-3 {padding-top: 25%; padding-bottom: 40%;}
 	.title {font-size: 8pt; margin-top: 23%!important; margin-left: 0%!important;}
@@ -481,12 +516,12 @@ header{
 	#section-5 p {font-size: 7pt;margin-right: -20%;margin-top: -2%;}
 	#section-5 img {width: 90%; margin-left: 100%; margin-top: -85%;}
 	#section-6 h3 {font-size: 10pt; left: 5%; color: #737a79;}
-	.rel1 {width: 10%;margin-right: 3%;}
+	.rel1 {width: 30%;margin-right: 3%;}
 	.left {margin-left: -4%;}
-	.rel2 {margin-left: -6%;margin-right: 4%;width: 10%;}
-	.rel3 {width: 10%;margin-left: -12%;margin-right: 4%;}
-	.rel3-1 {width: 10%;margin-left: 16%;margin-right: 3%;}
-	.rel4 {width: 13%;margin-left: 20%;margin-right: 5%;}
+	.rel2 {margin-left: -6%;margin-right: 4%;width: 30%;}
+	.rel3 {width: 30%;margin-left: -12%;margin-right: 4%;}
+	.rel3-1 {width: 40%;margin-left: 27%;margin-right: 3%;}
+	.rel4 {width: 30%;margin-left: 30%;margin-right: 5%;}
 	.paso4 {width: 20%;margin-top: 2%;}
 	#section-6 p {font-size: 7pt;}
 	#section-video article {margin-left: 1%;}
@@ -500,19 +535,25 @@ header{
 	.logo-footer {width: 25%;margin-top: -15%;padding-top: 20%;padding-bottom: 50%;height: auto;}
 }
 @media (min-width: 411px) and (max-width: 510px){
+	.bajar {width: 8%!important;}
+	.bajar-foto {width: 5%!important;margin-left: 45%!important;margin-top: 32%;}
+	.bajar-convi {width: 6%!important;margin-top: -7%!important;margin-left: 45%;}
+	.bajar-parte {margin-top: 5%!important;margin-left: 45%!important;width: 5%!important;}
+	.bajar-como {width: 5%!important;margin-left: 47%!important;margin-top: 2%;}
+	.bajar-unete {margin-left: 19%!important;width: 4%!important;}
 	.logo-negro {left: 30%;width: 40%;}
-	#section-1 {padding-top: 80%; background-size: 100% 110%;}
-	#section-1 p {font-size: 8pt;left: 20%;top: 52%;width: 70%;}
+	#section-1 {background-image: url(../img/fondo-sc4-responsive.png);background-size: cover;padding-bottom: 100%;}
+	#section-1 p {font-size: 11pt;left: 20%;top: 65%;width: 85%;}
 	#section-1 a img {width: 50%; max-width: 340px; left: 25%;}
 	#section-2 {padding-bottom: 5%; overflow: hidden;}
 	.mapa {width: 40%;}
-	.panel {margin-left: 7%;padding: 8%; background-color: #45c5ca; border-radius: 33px;width: 38%;}
+	.panel {width: 100%;max-width: 100%;}
 	.patita {width: 11%; margin-left: 50%;margin-top: -60%;}
 	#section-2 .p-patita {font-size: 6pt; width: 70%;line-height: 100%; margin-top: -35%; margin-left: 55%; font-weight: 100;}
 	#section-2 .mas {font-size: 10pt;}
 	#section-2 article {margin-top: 10%;}
-	#section-2 p {font-size: 6pt;    margin-top: 17%;    margin-left: 0%;}
-	.span {font-weight: 200!important;font-size: 4pt;left: 10%;color: #a49b9b;margin-top: 12%;}
+	#section-2 p {font-size: 6pt;margin-top: 1%;margin-left: -6%;width: 100%;}
+	.span {font-weight: 200!important;font-size: 4pt;left: 10%;color: #a49b9b;margin-top: 30%;}
 	#section-2 .publicidad {width: 40px;margin-top: 24px;max-width: 330%;}
 	#section-3 {padding-top: 25%; padding-bottom: 40%;}
 	.title {font-size: 8pt; margin-top: 23%!important; margin-left: 0%!important;}
@@ -526,12 +567,12 @@ header{
 	#section-5 p {font-size: 7pt;margin-right: -20%;margin-top: -2%;}
 	#section-5 img {width: 90%; margin-left: 100%; margin-top: -85%;}
 	#section-6 h3 {font-size: 10pt; left: 5%; color: #737a79;}
-	.rel1 {width: 10%;margin-right: 3%;}
+	.rel1 {width: 30%;margin-right: 3%;}
 	.left {margin-left: -4%;}
-	.rel2 {margin-left: -6%;margin-right: 4%;width: 10%;}
-	.rel3 {width: 10%;margin-left: -12%;margin-right: 4%;}
-	.rel3-1 {width: 10%;margin-left: 16%;margin-right: 3%;}
-	.rel4 {width: 13%;margin-left: 20%;margin-right: 5%;}
+	.rel2 {margin-left: -6%;margin-right: 4%;width: 30%;}
+	.rel3 {width: 30%;margin-left: -12%;margin-right: 4%;}
+	.rel3-1 {width: 40%;margin-left: 27%;margin-right: 3%;}
+	.rel4 {width: 30%;margin-left: 30%;margin-right: 5%;}
 	.paso4 {width: 20%;margin-top: 2%;}
 	#section-6 p {font-size: 7pt;}
 	#section-video article {margin-left: 1%;}
@@ -546,19 +587,25 @@ header{
 }
 
 @media (min-width: 381px) and (max-width: 410px){
+	.bajar {width: 8%!important;}
+	.bajar-foto {width: 5%!important;margin-left: 45%!important;margin-top: 32%;}
+	.bajar-convi {width: 6%!important;margin-top: -7%!important;margin-left: 45%;}
+	.bajar-parte {margin-top: 5%!important;margin-left: 45%!important;width: 5%!important;}
+	.bajar-como {width: 5%!important;margin-left: 47%!important;margin-top: 2%;}
+	.bajar-unete {margin-left: 19%!important;width: 4%!important;}
 	.logo-negro {left: 30%;width: 40%;}
-	#section-1 {padding-top: 80%; background-size: 100% 110%;}
-	#section-1 p {font-size: 8pt;left: 20%;top: 52%;width: 70%;}
+	#section-1 {background-image: url(../img/fondo-sc4-responsive.png);background-size: cover;padding-bottom: 100%;}
+	#section-1 p {font-size: 8pt;left: 20%;top: 65%;width: 70%;}
 	#section-1 a img {width: 50%; max-width: 340px; left: 25%;}
 	#section-2 {padding-bottom: 5%; overflow: hidden;}
 	.mapa {width: 40%;}
-	.panel {margin-left: 7%;padding: 8%; background-color: #45c5ca; border-radius: 33px;width: 38%;}
+	.panel {width: 100%;max-width: 100%;}
 	.patita {width: 11%; margin-left: 50%;margin-top: -60%;}
 	#section-2 .p-patita {font-size: 6pt; width: 70%;line-height: 100%; margin-top: -35%; margin-left: 55%; font-weight: 100;}
 	#section-2 .mas {font-size: 10pt;}
 	#section-2 article {margin-top: 10%;}
-	#section-2 p {font-size: 6pt;    margin-top: 17%;    margin-left: 0%;}
-	.span {font-weight: 200!important;font-size: 4pt;left: 10%;color: #a49b9b;margin-top: 12%;}
+	#section-2 p {font-size: 6pt;margin-top: 1%;margin-left: -6%;width: 100%;}
+	.span {font-weight: 200!important;font-size: 4pt;left: 10%;color: #a49b9b;margin-top: 33%;}
 	#section-2 .publicidad {width: 40px;margin-top: 24px;max-width: 330%;}
 	#section-3 {padding-top: 25%; padding-bottom: 40%;}
 	.title {font-size: 6pt; margin-top: 23%!important; margin-left: 0%!important;}
@@ -572,12 +619,12 @@ header{
 	#section-5 p {font-size: 7pt;margin-right: -20%;margin-top: -2%;}
 	#section-5 img {width: 90%; margin-left: 100%; margin-top: -85%;}
 	#section-6 h3 {font-size: 10pt; left: 5%; color: #737a79;}
-	.rel1 {width: 10%;margin-right: 3%;}
+	.rel1 {width: 30%;margin-right: 3%;}
 	.left {margin-left: -4%;}
-	.rel2 {margin-left: -6%;margin-right: 4%;width: 10%;}
-	.rel3 {width: 10%;margin-left: -12%;margin-right: 4%;}
-	.rel3-1 {width: 10%;margin-left: 16%;margin-right: 3%;}
-	.rel4 {width: 13%;margin-left: 20%;margin-right: 5%;}
+	.rel2 {margin-left: -6%;margin-right: 4%;width: 30%;}
+	.rel3 {width: 30%;margin-left: -12%;margin-right: 4%;}
+	.rel3-1 {width: 40%;margin-left: 27%;margin-right: 3%;}
+	.rel4 {width: 30%;margin-left: 30%;margin-right: 5%;}
 	.paso4 {width: 20%;margin-top: 2%;}
 	#section-6 p {font-size: 7pt;}
 	#section-video article {margin-left: 1%;}
@@ -591,19 +638,25 @@ header{
 	.logo-footer {width: 25%;margin-top: -15%;padding-top: 20%;padding-bottom: 40%;height: auto;}
 }
 @media (min-width: 280px) and (max-width: 380px){
+	.bajar {width: 8%!important;}
+	.bajar-foto {width: 5%!important;margin-left: 45%!important;margin-top: 32%;}
+	.bajar-convi {width: 6%!important;margin-top: -7%!important;margin-left: 45%;}
+	.bajar-parte {margin-top: 5%!important;margin-left: 45%!important;width: 5%!important;}
+	.bajar-como {width: 5%!important;margin-left: 47%!important;margin-top: 2%;}
+	.bajar-unete {margin-left: 19%!important;width: 4%!important;}
 	.logo-negro {left: 30%;width: 40%;}
-	#section-1 {padding-top: 80%; background-size: 100% 110%;}
-	#section-1 p {font-size: 8pt;left: 20%;top: 52%;width: 70%;}
+	#section-1 {background-image: url(../img/fondo-sc4-responsive.png);background-size: cover;padding-bottom: 100%;}
+	#section-1 p {font-size: 9pt;left: 20%;top: 65%;width: 80%;}
 	#section-1 a img {width: 50%; max-width: 340px; left: 25%;}
 	#section-2 {padding-bottom: 5%; overflow: hidden;}
 	.mapa {width: 40%;}
-	.panel {margin-left: 7%;padding: 8%; background-color: #45c5ca; border-radius: 33px;width: 38%;}
+	.panel {width: 100%;max-width: 100%;}
 	.patita {width: 11%; margin-left: 50%;margin-top: -60%;}
 	#section-2 .p-patita {font-size: 6pt; width: 70%;line-height: 100%; margin-top: -35%; margin-left: 55%; font-weight: 100;}
 	#section-2 .mas {font-size: 10pt;}
 	#section-2 article {margin-top: 10%;}
-	#section-2 p {font-size: 6pt;    margin-top: 17%;    margin-left: 0%;}
-	.span {font-weight: 200!important;font-size: 4pt;left: 10%;color: #a49b9b;margin-top: 12%;}
+	#section-2 p {font-size: 5pt;margin-top: 2%;margin-left: -6%;width: 100%;}
+	.span {font-weight: 200!important;font-size: 4pt;left: 10%;color: #a49b9b;margin-top: 33%;}
 	#section-2 .publicidad {width: 40px;margin-top: 24px;max-width: 330%;}
 	#section-3 {padding-top: 25%; padding-bottom: 40%;}
 	.title {font-size: 6pt; margin-top: 23%!important; margin-left: 0%!important;}
@@ -617,20 +670,20 @@ header{
 	#section-5 p {font-size: 7pt;margin-right: -20%;margin-top: -2%;}
 	#section-5 img {width: 90%; margin-left: 100%; margin-top: -85%;}
 	#section-6 h3 {font-size: 10pt; left: 6%; color: #737a79;}
-	.rel1 {width: 10%;margin-right: 3%;}
+	.rel1 {width: 30%;margin-right: 3%;}
 	.left {margin-left: -4%;}
-	.rel2 {margin-left: -6%;margin-right: 4%;width: 10%;}
-	.rel3 {width: 10%;margin-left: -12%;margin-right: 4%;}
-	.rel3-1 {width: 10%;margin-left: 16%;margin-right: 3%;}
-	.rel4 {width: 13%;margin-left: 20%;margin-right: 5%;}
+	.rel2 {margin-left: -6%;margin-right: 4%;width: 30%;}
+	.rel3 {width: 30%;margin-left: -12%;margin-right: 4%;}
+	.rel3-1 {width: 40%;margin-left: 27%;margin-right: 3%;}
+	.rel4 {width: 30%;margin-left: 30%;margin-right: 5%;}
 	.paso4 {width: 20%;margin-top: 2%;}
 	#section-6 p {font-size: 7pt;}
 	#section-video article {margin-left: 1%;}
 	.logo-video {width: 40%;position: relative;right: 0;top: 0;margin-left: 32%;margin-top: 4%;}
 	#section-unete h2 {font-size: 12pt;padding-top: 7%; line-height: 120%;}
 	#section-unete h2 span{font-size: 15pt;}
-	#section-unete img {width: 40%;left: 31%;margin-top: 5%;}
-	.img-unete{width: 100%!important;left: 0!important;margin-top: 13%!important;}
+	#section-unete img {width: 40%;left: 31%;margin-top: 8%;}
+	.img-unete{width: 100%!important;left: 0!important;margin-top: 23%!important;}
 	#section-7 {padding: 0px 0px 0px 0px;}
 	#section-7 h3 {font-size: 10pt;}
 	.logo-footer {width: 25%;margin-top: -15%;padding-top: 20%;padding-bottom: 5%;height: auto;}
