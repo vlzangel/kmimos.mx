@@ -55,7 +55,7 @@ $html .='
 	<tbody>
 	<tr>
 		<td height="50" bgcolor="#60d8bf">
-			<p class="preheader" style="font-family: "Comfortaa", sans-serif; text-align: center;font-size: 13px;color:white;"><a href="https://www.kmimos.com.mx/" target="_blank" style="color:#ffffff;">Descuento en tu próximo servicio</a> | <webversion>Ver versión Online</webversion></p>
+			<p class="preheader" style="font-family: "Comfortaa", sans-serif; text-align: center;font-size: 13px!important;color:white!important;"><a href="https://www.kmimos.com.mx/" target="_blank" style="color:#ffffff;">Descuento en tu próximo servicio</a> | <webversion>Ver versión Online</webversion></p>
 		</td>
 	</tr>
 	<tr>
@@ -65,7 +65,7 @@ $html .='
 				<tr>
 					<td bgcolor="#FFFFFF" style="padding:30px 0px;border-bottom: 1px solid #CCC;">
 					<a class="responsive right" href="https://www.kmimos.com.mx/"><img src="http://www.intaface.com/newsletter/kmimos/promo_1/logo.png" alt="Kmimos" class="logo"></a>
-					<p class="responsive left navbar" style="font-size:16px;color:#757575;"><a href="https://www.kmimos.com.mx/beneficios-para-tu-perro/" target="_blank" >Beneficios</a> | <a href="https://www.kmimos.com.mx/blog/" target="_blank">Blog</a> | <a href="https://www.kmimos.com.mx/contacta-con-nosotros/" target="_blank">Contacto</a></p>
+					<p class="responsive left navbar" style="font-size:16px;color:#757575!important;"><a href="https://www.kmimos.com.mx/beneficios-para-tu-perro/" target="_blank" >Beneficios</a> | <a href="https://www.kmimos.com.mx/blog/" target="_blank">Blog</a> | <a href="https://www.kmimos.com.mx/contacta-con-nosotros/" target="_blank">Contacto</a></p>
 				</td>
 
 				</tr>
