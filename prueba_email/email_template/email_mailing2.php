@@ -54,8 +54,9 @@ $html .='
 <table id="Table_01" width="100%" align="center" style="max-width:600px;" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
 	<tbody>
 	<tr>
-		<td height="50" bgcolor="#60d8bf">
-			<p class="preheader" style="font-family: "Comfortaa", sans-serif; text-align: center;font-size: 13px!important;color:white!important;"><a href="https://www.kmimos.com.mx/" target="_blank" style="color:#ffffff;">Descuento en tu próximo servicio</a> | <webversion>Ver versión Online</webversion></p>
+		<td height="100" bgcolor="#60d8bf">
+			<p class="preheader" style="font-family: \'Comfortaa\', sans-serif; text-align: center;font-size: 16px!important; color:#ffffff;><a href="https://www.kmimos.com.mx/" target="_blank">Descuento en tu próximo servicio</a> | <webversion>Ver versión Online</webversion>
+			</p>
 		</td>
 	</tr>
 	<tr>
