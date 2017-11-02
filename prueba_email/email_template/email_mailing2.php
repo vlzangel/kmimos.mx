@@ -161,7 +161,7 @@ $html .='
 										<a href="https://www.youtube.com/channel/UCIOJJlTD1184V_uk2nGUxZw" target="blank"><img width="40" src="http://www.intaface.com/newsletter/kmimos/promo_1/ico_yt.png" alt="Youtube"></a>
 										</p>
 										<p style="color: #757575; font-size: 14px; font-family:\'Comfortaa\', sans-serif; display: inline-block;">Sigue nuestras redes sociales</p>
-										<p style="font-size: 11px;font-weight: 300;color: #757575;">Lago Alberto 300, int 806, Col. Anahuac Secc 1, Miguel hidalgo. CDMX. CP:11320</p>
+										<p style="font-size: 11px;font-weight: 300;color: #757575;">Lago Alberto 300. int 806. Col. Anahuac Secc 1. Miguel hidalgo. CDMX. CP:11320</p>
 									</td>
 									<td class="responsive">
 										<a href="https://www.kmimos.com.mx/" target="_blank"></a><img src="http://www.intaface.com/newsletter/kmimos/promo_1/logo.png" width="100px" alt="Kmimos"></a>
