@@ -1,6 +1,6 @@
 <?php 
 $html .='
- <head>
+<head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Kmimos - Mail Suscripción a Newsletter</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -82,7 +82,7 @@ $html .='
 				<tr>
           <td class="responsive" style="padding: 30px 15px;">
             <center>
-              <p style="font-size: 13px; color: #878787; line-height: 180%;">Hola Kmiamigo! Te dejamos <span style="color: #66cc00">este cupón de descuento</span> <a href="https://www.kmimos.com.mx/" target="_blank" style="background: #66cc00; display: inline-block; padding: 0px 10px; border-radius: 30px;color:white; font-size: 9px; font-family: "Comfortaa", sans-serif;">DESC20</a> <b>para que puedas canjearlo por un 20% de descuento</b> en cualquiera de nuestros servicios. Solo debes ingresarlo al momento de hacer tu reserva y listo.</p>
+              <p style="font-size: 13px; color: #878787; line-height: 180%;">Hola Kmiamigo! Te dejamos <span style="color: #66cc00">este cupón de descuento</span> <a href="https://www.kmimos.com.mx/" target="_blank" style="background: #66cc00!important; display: inline-block!important; padding: 0px 10px; border-radius: 30px!important;color:white!important; font-size: 9px!important; font-family: "Comfortaa", sans-serif!important;">DESC20</a> <b>para que puedas canjearlo por un 20% de descuento</b> en cualquiera de nuestros servicios. Solo debes ingresarlo al momento de hacer tu reserva y listo.</p>
             </center>
           </td>
         </tr>
