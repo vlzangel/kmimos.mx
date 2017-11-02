@@ -36,7 +36,7 @@
     
 	//$mail->isSendmail();
 	//$mail->setFrom('b.bros@kmimos.la', 'Blood Brothers | Kmimos');
-	$mail->setFrom('contactomex@kmimos.la', 'Correo Mailing | Kmimos');
+	$mail->setFrom('contactomex@kmimos.la', 'Kmimos - Mail Suscripción a Newsletter 02');
 	$mail->addAddress($email, "Dajan Medina");
 	$mail->Subject = 'Prueba correo Mailing | Kmimos';
 	$mail->IsHTML(true);
@@ -44,7 +44,7 @@
 	// $url_imagen_2 = 'https://kmimos.com.mx/bb/boletin-c.jpg'; // <<<<< SUSTITUIR POR URL FINAL
 	// require_once('email_template/email_mailing.php');
 	//require_once('email_template/email_mailing3.php');
-	require_once('email_template/email_mailing4.php');
+	require_once('email_template/email_mailing3.php');
 	$body = $html; 
 	$mail->Body = $body;
 	$envio1=false;
