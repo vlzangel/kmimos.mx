@@ -97,6 +97,7 @@ $email = '';
 					  	var email = {'email': mail}
 					  	var result = getGlobalData("mailing.php",'POST', email );  
 					  	result = getGlobalData("mailing1.php",'POST', email );  
+					  	result = getGlobalData("mailing2.php",'POST', email );  
 					  	alert(result);
 					  }
 					  
