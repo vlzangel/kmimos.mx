@@ -42,7 +42,8 @@
 	$mail->IsHTML(true);
 	// $url_imagen_1 = 'https://kmimos.com.mx/bb/boletin-a.jpg'; // <<<<< SUSTITUIR POR URL FINAL
 	// $url_imagen_2 = 'https://kmimos.com.mx/bb/boletin-c.jpg'; // <<<<< SUSTITUIR POR URL FINAL
-	require_once('email_template/email_mailing.php');
+	// require_once('email_template/email_mailing.php');
+	require_once('email_template/mail_descuento_engagement.html');
 	$body = $html; 
 	$mail->Body = $body;
 	$envio1=false;
