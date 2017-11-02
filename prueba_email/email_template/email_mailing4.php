@@ -1,4 +1,5 @@
-<html>
+<?php 
+$html .='
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Kmimos - Mail Suscripción a Newsletter</title>
@@ -16,10 +17,10 @@
 		.navbar a{
 			color:#757575!important;
 			text-decoration:none!important;
-			font-family: 'Comfortaa', sans-serif!important;
+			font-family: \'Comfortaa\', sans-serif!important;
 		}
 		table{
-			font-family: 'Open Sans', sans-serif!important;
+			font-family: \'Open Sans\', sans-serif!important;
 		}
 
 		.left{
@@ -68,7 +69,7 @@
 			<tbody>
 			<tr>
 				<td height="50" bgcolor="#60d8bf">
-					<p class="preheader" style="font-family: 'Comfortaa', sans-serif!important; text-align: center;font-size: 13px!important;color:white!important;"><a href="https://www.kmimos.com.mx/" target="_blank" style="color:#ffffff!important;">Descuento en tu próximo servicio</a> | <webversion>Ver versión Online</webversion></p>
+					<p class="preheader" style="font-family: \'Comfortaa\', sans-serif!important; text-align: center;font-size: 13px!important;color:white!important;"><a href="https://www.kmimos.com.mx/" target="_blank" style="color:#ffffff!important;">Descuento en tu próximo servicio</a> | <webversion>Ver versión Online</webversion></p>
 				</td>
 			</tr>
 			<tr>
@@ -92,7 +93,7 @@
 						<tr>
 		          <td style="padding: 0px 15px 20px;">
 		            <center>
-		              <a href="https://www.kmimos.com.mx/" target="_blank" style="background: #8B008B; display: inline-block; padding: 10px 30px; border-radius: 30px;color:white; font-size: 15px; font-family: 'Comfortaa', sans-serif;">Busca cuidadores aquí</a>
+		              <a href="https://www.kmimos.com.mx/" target="_blank" style="background: #8B008B; display: inline-block; padding: 10px 30px; border-radius: 30px;color:white; font-size: 15px; font-family: \'Comfortaa\', sans-serif;">Busca cuidadores aquí</a>
 		            </center>
 		          </td>
 		        </tr>
@@ -103,12 +104,12 @@
 		        <tr>
 		          <td style="padding: 3% 1.5%;">
 		            <center>
-		              <p style="font-size: 13px!important; color: #878787!important; line-height: 180%!important;">Hola Kmiamigo, queremos que formes parte de nuestra familia,así que <b>¡Te regalamos uno de nuestros servicios!</b> <span style="color: #66cc00">¡Utiliza el cupón</span> <span href="https://www.kmimos.com.mx/" target="_blank" style="background: #66cc00!important; display: inline-block!important; padding: 0px 10px; border-radius: 30px!important;color:white; font-size: 9px; font-family: 'Comfortaa', sans-serif!important;">KMIGRATIS</span> y te regalamos una noche de hospedaje, un día de guardería o un paseo!.</p>
+		              <p style="font-size: 13px!important; color: #878787!important; line-height: 180%!important;">Hola Kmiamigo, queremos que formes parte de nuestra familia,así que <b>¡Te regalamos uno de nuestros servicios!</b> <span style="color: #66cc00">¡Utiliza el cupón</span> <span href="https://www.kmimos.com.mx/" target="_blank" style="background: #66cc00!important; display: inline-block!important; padding: 0px 10px; border-radius: 30px!important;color:white; font-size: 9px; font-family: \'Comfortaa\', sans-serif!important;">KMIGRATIS</span> y te regalamos una noche de hospedaje, un día de guardería o un paseo!.</p>
 		            </center>
 		          </td>
 		        </tr>
 
-						<tr><td style="padding: 1% 0px .5% 0px;"><h2 style="color: #8B008B; text-align: center; font-family: 'Comfortaa', sans-serif; font-size: 24px; text-decoration: none;display: block;" href="https://www.kmimos.com.mx/beneficios-para-tu-perro/"> Disfruta de servicios como</h2>
+						<tr><td style="padding: 1% 0px .5% 0px;"><h2 style="color: #8B008B; text-align: center; font-family: \'Comfortaa\', sans-serif; font-size: 24px; text-decoration: none;display: block;" href="https://www.kmimos.com.mx/beneficios-para-tu-perro/"> Disfruta de servicios como</h2>
 							</td>
 						</tr>
 
@@ -119,7 +120,7 @@
 		              <tr class="left responsive-img responsive">
 										<td class="responsive" width="100%"><img src="http://kmimosmx.sytes.net/QA1/prueba_email/email/Engagement/Promo%203/Image-1.jpg" width="100%"></td>
 										<td width="5%" class="responsive"></td>
-		                <td class="responsive left"><h3 style="font-family: 'Comfortaa', sans-serif!important; font-size: 18px!important; color: #6495ED!important"><b>Hospedaje</b></h3>
+		                <td class="responsive left"><h3 style="font-family: \'Comfortaa\', sans-serif!important; font-size: 18px!important; color: #6495ED!important"><b>Hospedaje</b></h3>
 										<p style="color: #878787!important; font-size: 12px;">¿Te vas de viaje? Tu perro será huésped en casa de alguno de nuestros cuidadores.</p>
 										</td>
 
@@ -128,7 +129,7 @@
 									<tr class="right responsive-img responsive">
 										<td class="responsive" width="100%"><img src="http://kmimosmx.sytes.net/QA1/prueba_email/email/Engagement/Promo%203/Image-2.jpg" width="100%"></td>
 										<td width="5%" class="responsive"></td>
-		                <td class="responsive left"><h3 style="font-family: 'Comfortaa', sans-serif!important; font-size: 18px!important; color: #6495ED!important;"><b>Guarderías</b></h3>
+		                <td class="responsive left"><h3 style="font-family: \'Comfortaa\', sans-serif!important; font-size: 18px!important; color: #6495ED!important;"><b>Guarderías</b></h3>
 										<p style="color: #878787!important; font-size: 12px;">Nuestros cuidadores jugarán con el y lo tratarán como uno mas de la familia.</p>
 										</td>
 
@@ -136,7 +137,7 @@
 									<tr class="left responsive-img responsive">
 										<td class="responsive" width="100%"><img src="http://kmimosmx.sytes.net/QA1/prueba_email/email/Engagement/Promo%203/Image-3.jpg" width="100%"></td>
 										<td width="5%" class="responsive"></td>
-		                <td class="responsive left"><h3 style="font-family: 'Comfortaa', sans-serif!important; font-size: 18px!important; color: #6495ED!important;"><b>Paseos</b></h3>
+		                <td class="responsive left"><h3 style="font-family: \'Comfortaa\', sans-serif!important; font-size: 18px!important; color: #6495ED!important;"><b>Paseos</b></h3>
 										<p style="color: #878787!important; font-size: 12px;">¿Sabías que un paseo de al menos dos horas para tu peludo baja sus niveles de estres?</p>
 										</td>
 
@@ -145,7 +146,7 @@
 									<tr class="right responsive-img responsive">
 										<td class="responsive" width="100%"><img src="http://kmimosmx.sytes.net/QA1/prueba_email/email/Engagement/Promo%203/Image-4.jpg" width="100%"></td>
 										<td width="5%" class="responsive"></td>
-		                <td class="responsive left"><h3 style="font-family: 'Comfortaa', sans-serif!important; font-size: 18px!important; color: #6495ED!important;"><b>Entrenamiento</b></h3>
+		                <td class="responsive left"><h3 style="font-family: \'Comfortaa\', sans-serif!important; font-size: 18px!important; color: #6495ED!important;"><b>Entrenamiento</b></h3>
 										<p style="color: #878787!important; font-size: 12px;">Encuentra especialistas para cualquier tipo de comportamiento.</p>
 										</td>
 
@@ -156,7 +157,7 @@
 						</tr>
 						<tr>
 							<td style="padding: 30px;">
-								<center><a href="https://www.kmimos.com.mx/" target="_blank" style="background: #7bcdbf; display: inline-block; padding: 10px 50px; border-radius: 30px;color:white; font-size: 21px; font-family: 'Comfortaa', sans-serif;" >Reserva Aquí</a>
+								<center><a href="https://www.kmimos.com.mx/" target="_blank" style="background: #7bcdbf; display: inline-block; padding: 10px 50px; border-radius: 30px;color:white; font-size: 21px; font-family: \'Comfortaa\', sans-serif;" >Reserva Aquí</a>
 								<br><br>
 								<img src="http://www.intaface.com/newsletter/kmimos/promo_1/texto_promo.jpg" width="100%" alt="¡Disfruta de nuestra promoción, es por tiempo limitado!">
 								</center>
@@ -173,7 +174,7 @@
 												<a href="https://www.instagram.com/kmimosmx/" target="blank"><img width="40" src="http://www.intaface.com/newsletter/kmimos/promo_1/ico_in.png" alt="Instagram"></a>
 												<a href="https://www.youtube.com/channel/UCIOJJlTD1184V_uk2nGUxZw" target="blank"><img width="40" src="http://www.intaface.com/newsletter/kmimos/promo_1/ico_yt.png" alt="Youtube"></a>
 												</p>
-												<p style="color: #757575; font-size: 14px; font-family:'Comfortaa', sans-serif; display: inline-block;">Sigue nuestras redes sociales</p>
+												<p style="color: #757575; font-size: 14px; font-family:\'Comfortaa\', sans-serif; display: inline-block;">Sigue nuestras redes sociales</p>
 												<p style="font-size: 11px;font-weight: 300;color: #757575;">Lago Alberto 300, int 806, Col. Anahuac Secc 1, Miguel hidalgo. CDMX. CP:11320</p>
 											</td>
 											<td class="responsive">
@@ -186,7 +187,7 @@
 						</tr>
 						<tr>
 							<td height="50" bgcolor="#FFFFFF" style="border-top: 1px solid #ccc; padding-top: 40px;">
-								<p style="text-align:center; color:black;font-size:14px;font-family:'Comfortaa', sans-serif;">Para dar de baja haz click <unsubscribe>Aquí</unsubscribe></p>
+								<p style="text-align:center; color:black;font-size:14px;font-family:\'Comfortaa\', sans-serif;">Para dar de baja haz click <unsubscribe>Aquí</unsubscribe></p>
 							</td>
 						</tr>
 
@@ -206,4 +207,4 @@
 		</table>
 	</td></tr></tbody></table>
 </body>
-</html>
+';
