@@ -8,7 +8,6 @@ $html .='
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,700,700i" rel="stylesheet">
 	<style type="text/css">
 		a{
-			color:#61a5ae;
 			text-decoration:none!important;
 		}
 		.preheader a{
@@ -20,7 +19,7 @@ $html .='
 			font-family: \'Comfortaa\', sans-serif!important;
 		}
 		table{
-			font-family: \'Comfortaa\', sans-serif!important;
+			font-family: \'Open Sans\', sans-serif!important;
 		}
 
 		.left{
@@ -55,7 +54,7 @@ $html .='
 	<tbody>
 	<tr>
 		<td height="50" bgcolor="#60d8bf">
-			<p class="preheader" style="font-family: \'Comfortaa\', sans-serif; text-align: center;font-size: 13px;color:white;"><a href="https://www.kmimos.com.mx/" target="_blank" style="color:#ffffff;">Descuento en tu próximo servicio</a> | <webversion>Ver versión Online</webversion></p>
+			<p class="preheader" style="font-family: \'Comfortaa\', sans-serif!important; text-align: center;font-size: 16px!important;color:white;"><a href="https://www.kmimos.com.mx/" target="_blank" style="color:#ffffff;">Descuento en tu próximo servicio</a> | <webversion>Ver versión Online</webversion></p>
 		</td>
 	</tr>
 	<tr>
@@ -66,7 +65,7 @@ $html .='
 					<td bgcolor="#FFFFFF" style="padding:30px 0px;border-bottom: 1px solid #CCC;">
 					<a class="responsive right" href="https://www.kmimos.com.mx/"><img src="http://www.intaface.com/newsletter/kmimos/promo_1/logo.png" alt="Kmimos" class="logo"></a>
 					<p class="responsive left navbar" style="font-size:16px;color:#757575!important;font-family:Open Sans!important;"><a href="https://www.kmimos.com.mx/beneficios-para-tu-perro/" target="_blank" >Beneficios</a> | <a href="https://www.kmimos.com.mx/blog/" target="_blank">Blog</a> | <a href="https://www.kmimos.com.mx/contacta-con-nosotros/" target="_blank">Contacto</a></p>
-				</td>
+					</td>
 
 				</tr>
 
@@ -142,10 +141,18 @@ $html .='
 				</td>
 				</tr>
 				<tr>
-					<td style="padding: 30px;">
-						<center><a href="https://www.kmimos.com.mx/" target="_blank" style="background: #7bcdbf; display: inline-block; padding: 10px 50px; border-radius: 30px;color:white; font-size: 21px; font-family: \'Comfortaa\', sans-serif;" >Reserva aquí</a>
-						<br><br>
-						<img src="http://www.intaface.com/newsletter/kmimos/promo_1/texto_promo.jpg" width="100%" alt="¡Disfruta de nuestra promoción, es por tiempo limitado!">
+					<td style="padding: 30px 0px 10px 0px;">
+						<img src="./TyC.jpg" width="100%" alt="Terminos y condiciones de Kmimos.">
+						</center>
+					</td>
+				</tr>
+				<tr>
+					<td style="padding: 10px 0px 0px 0px;">
+						<center>
+							<a href="https://www.kmimos.com.mx/" target="_blank" style="padding-right: 15%;"><img src="./ConoceMas.png" width="30%" alt="Conoce Mas"></a>
+							<a href="https://www.kmimos.com.mx/" target="_blank"><img src="./ReservaAqui.png" width="30%" alt="Reserva Aquí"></a>
+							<br><br>
+							<img src="http://www.intaface.com/newsletter/kmimos/promo_1/texto_promo.jpg" width="80%" alt="¡Disfruta de nuestra promoción, es por tiempo limitado!">
 						</center>
 					</td>
 				</tr>
@@ -161,7 +168,7 @@ $html .='
 										<a href="https://www.youtube.com/channel/UCIOJJlTD1184V_uk2nGUxZw" target="blank"><img width="40" src="http://www.intaface.com/newsletter/kmimos/promo_1/ico_yt.png" alt="Youtube"></a>
 										</p>
 										<p style="color: #757575; font-size: 14px; font-family:\'Comfortaa\', sans-serif; display: inline-block;">Sigue nuestras redes sociales</p>
-										<p style="font-size: 11px;font-weight: 300;color: #757575;">Lago Alberto 300. int 806. Col. Anahuac Secc 1. Miguel hidalgo. CDMX. CP:11320</p>
+										<a href="#" target="_blank" style="font-size: 11px!important;font-weight: 300;color: #757575!important;"><p>Lago Alberto 300, int 806, Col. Anahuac Secc 1, Miguel hidalgo. CDMX. CP:11320</p></a>
 									</td>
 									<td class="responsive">
 										<a href="https://www.kmimos.com.mx/" target="_blank"></a><img src="http://www.intaface.com/newsletter/kmimos/promo_1/logo.png" width="100px" alt="Kmimos"></a>
