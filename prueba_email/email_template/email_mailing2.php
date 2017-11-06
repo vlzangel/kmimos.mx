@@ -96,7 +96,7 @@ $html .='
 				<tr>
           <td class="responsive" style="padding: 3% 1.5%;">
             <center>
-              <p style="font-size: 13px!important; color: #878787!important; line-height: 180%!important; font-family: \'Open Sans\', sans-serif;">Hola Kmiamigo! Te dejamos <span style="color: #66cc00">este cupón de descuento</span> <span style="background: #66cc00!important; display: inline-block!important; padding: 0px 10px; border-radius: 30px!important;color:white!important; font-size: 13px; font-family: \'Open Sans\', sans-serif!important;">DESC20</span> <b>para que puedas canjearlo por un 20% de descuento</b> en cualquiera de nuestros servicios. Solo debes ingresarlo al momento de hacer tu reserva y listo.</p>
+              <p style="font-size: 14px!important; color: #878787!important; line-height: 180%!important; font-family: \'Open Sans\', sans-serif;">¡Hola Kmiamigo! Te dejamos <span style="color: #66cc00">este cupón de descuento</span> <span style="background: #66cc00!important; display: inline-block!important; padding: 0px 10px; border-radius: 30px!important;color:white!important; font-size: 15px; font-family: \'Open Sans\', sans-serif!important;">DESC20</span> <b>para que puedas canjearlo por un 20% de descuento</b> en cualquiera de nuestros servicios. Solo debes ingresarlo al momento de hacer tu reserva y listo.</p>
             </center>
           </td>
         </tr>
