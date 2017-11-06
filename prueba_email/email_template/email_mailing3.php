@@ -58,6 +58,9 @@ $html .='
 	      width: 75%!important;
 				padding: 20px 0px 20px 12.5%;
 	    }
+			.btn-responsive{
+				width: 35%!important;
+			}
 		}
 
 
@@ -90,13 +93,13 @@ $html .='
 					</td>
 				</tr>
 				<tr>
-					<td><img src="http://kmimosmx.sytes.net/QA1/prueba_email/email/Engagement/Promo%202/Header.jpg" width="100%" style="max-width:600px;"></td>
+					<td><a href="https://www.kmimos.com.mx/" target="_blank"><img src="http://kmimosmx.sytes.net/QA1/prueba_email/email/Engagement/Promo%202/Header.jpg" width="100%" style="max-width:600px;"></a></td>
 				</tr>
 
         <tr>
           <td style="padding: 3% 1.5%;">
             <center>
-              <p style="font-size: 15px!important; color: #878787!important; line-height: 180%!important;">Recuerda <span style="color: #66cc00">utilizar tu cupón</span> <span href="https://www.kmimos.com.mx/" target="_blank" style="background: #66cc00!important; display: inline-block!important; padding: 0px 10px; border-radius: 30px!important;color:white!important; font-size: 9px; font-family: \'Comfortaa\', sans-serif!important;">DESC20</span> para que tu perrito la pase genial con nuestros Cuidadores Certificados.</p>
+              <p style="font-size: 15px!important; color: #878787!important; line-height: 180%!important;font-family: \'Open Sans\', sans-serif!important;">Recuerda <span style="color: #66cc00">utilizar tu cupón</span> <span href="https://www.kmimos.com.mx/" target="_blank" style="background: #66cc00!important; display: inline-block!important; padding: 0px 10px; border-radius: 30px!important;color:white!important; font-size: 13px; font-family: \'Comfortaa\', sans-serif!important;">DESC20</span> para que tu perrito la pase genial con nuestros Cuidadores Certificados.</p>
             </center>
           </td>
         </tr>
@@ -109,7 +112,7 @@ $html .='
           </td>
         </tr>
 
-				<tr><td style="padding: 5% 0px .5% 0px;"><h2 style="color: #8B008B; text-align: center; font-family: \'Comfortaa\', sans-serif; font-size: 24px; text-decoration: none;display: block;" href="https://www.kmimos.com.mx/beneficios-para-tu-perro/"> Disfruta de servicios como</h2>
+				<tr><td style="padding: 5% 0px .5% 0px;"><a href="https://www.kmimos.com.mx/" target="_blank"><h2 style="color: #8B008B; text-align: center; font-family: \'Comfortaa\', sans-serif; font-size: 24px; text-decoration: none;display: block;" href="https://www.kmimos.com.mx/beneficios-para-tu-perro/"> Disfruta de servicios como</h2></a>
 					</td>
 				</tr>
 
@@ -118,35 +121,35 @@ $html .='
 					<table width="100%" border="0" cellpadding="0" cellspacing="0">
 						<tbody>
               <tr class="left responsive-img responsive">
-								<td class="responsive" width="100%"><img src="http://kmimosmx.sytes.net/QA1/prueba_email/email/Engagement/Promo%202/Image-1.jpg" width="100%"></td>
+								<td class="responsive" width="100%"><a href="https://www.kmimos.com.mx/" target="_blank"><img src="http://kmimosmx.sytes.net/QA1/prueba_email/email/Engagement/Promo%202/Image-1.jpg" width="100%"></a></td>
 								<td width="5%" class="responsive"></td>
-                <td class="responsive left"><h3 style="font-family: \'Comfortaa\', sans-serif!important; font-size: 18px!important;">Hospedaje</h3>
+                <td class="responsive left"><a href="https://www.kmimos.com.mx/" target="_blank"><h3 style="font-family: \'Comfortaa\', sans-serif!important; font-size: 18px!important;">Hospedaje</h3></a>
 								<p style="color: #878787!important; font-size: 12px;">¿Te vas de viaje? Tu perro será huésped en casa de alguno de nuestros cuidadores.</p>
 								</td>
 
 							</tr>
 
 							<tr class="right responsive-img responsive">
-								<td class="responsive" width="100%"><img src="http://kmimosmx.sytes.net/QA1/prueba_email/email/Engagement/Promo%202/Image-2.jpg" width="100%"></td>
+								<td class="responsive" width="100%"><a href="https://www.kmimos.com.mx/" target="_blank"><img src="http://kmimosmx.sytes.net/QA1/prueba_email/email/Engagement/Promo%202/Image-2.jpg" width="100%"></a></td>
 								<td width="5%" class="responsive"></td>
-                <td class="responsive left"><h3 style="font-family: \'Comfortaa\', sans-serif!important; font-size: 18px!important;">Guarderías</h3>
+                <td class="responsive left"><a href="https://www.kmimos.com.mx/" target="_blank"><h3 style="font-family: \'Comfortaa\', sans-serif!important; font-size: 18px!important;">Guarderías</h3></a>
 								<p style="color: #878787!important; font-size: 12px;">Nuestros cuidadores jugarán con el y lo tratarán como uno mas de la familia.</p>
 								</td>
 
 							</tr>
 							<tr class="left responsive-img responsive">
-								<td class="responsive" width="100%"><img src="http://kmimosmx.sytes.net/QA1/prueba_email/email/Engagement/Promo%202/Image-3.jpg" width="100%"></td>
+								<td class="responsive" width="100%"><a href="https://www.kmimos.com.mx/" target="_blank"><img src="http://kmimosmx.sytes.net/QA1/prueba_email/email/Engagement/Promo%202/Image-3.jpg" width="100%"></a></td>
 								<td width="5%" class="responsive"></td>
-                <td class="responsive left"><h3 style="font-family: \'Comfortaa\', sans-serif!important; font-size: 18px!important;">Paseos</h3>
+                <td class="responsive left"><a href="https://www.kmimos.com.mx/" target="_blank"><h3 style="font-family: \'Comfortaa\', sans-serif!important; font-size: 18px!important;">Paseos</h3></a>
 								<p style="color: #878787!important; font-size: 12px;">¿Sabías que un paseo de al menos dos horas para tu peludo baja sus niveles de estres?</p>
 								</td>
 
 							</tr>
 
 							<tr class="right responsive-img responsive">
-								<td class="responsive" width="100%"><img src="http://kmimosmx.sytes.net/QA1/prueba_email/email/Engagement/Promo%202/Image-4.jpg" width="100%"></td>
+								<td class="responsive" width="100%"><a href="https://www.kmimos.com.mx/" target="_blank"><img src="http://kmimosmx.sytes.net/QA1/prueba_email/email/Engagement/Promo%202/Image-4.jpg" width="100%"></a></td>
 								<td width="5%" class="responsive"></td>
-                <td class="responsive left"><h3 style="font-family: \'Comfortaa\', sans-serif!important; font-size: 18px!important;">Entrenamiento</h3>
+                <td class="responsive left"><a href="https://www.kmimos.com.mx/" target="_blank"><h3 style="font-family: \'Comfortaa\', sans-serif!important; font-size: 18px!important;">Entrenamiento</h3></a>
 								<p style="color: #878787!important; font-size: 12px;">Encuentra especialistas para cualquier tipo de comportamiento.</p>
 								</td>
 
@@ -160,7 +163,7 @@ $html .='
 						<ul class="listHeader" style="font-family: \'Comfortaa\', sans-serif!important; font-size: 12px!important;">
 							<li><b><span>Recuerda que:</span></b></li>
 						</ul>
-						<ul style="font-family: \'Comfortaa\', sans-serif!important; font-size: 12px!important; color: #878787!important; list-style-type: square;">
+						<ul style="font-family: \'Open Sans\', sans-serif!important; font-size: 12px!important; color: #878787!important; list-style-type: square;">
 							<li><span>La vigencia del cupón será hasta el 31 de Marzo de 2018.</span></li>
 							<li><span>El cupón es válido para una sola reserva.</span></li>
 							<li><span>Es válido de acuerdo al valor reflejado.</span></li>
@@ -194,7 +197,7 @@ $html .='
 										<a href="#" target="_blank" style="font-size: 11px!important;font-weight: 300;color: #757575!important;"><p>Lago Alberto 300, int 806, Col. Anahuac Secc 1, Miguel hidalgo. CDMX. CP:11320</p></a>
 									</td>
 									<td class="responsive">
-										<a href="https://www.kmimos.com.mx/" target="_blank"></a><img src="http://www.intaface.com/newsletter/kmimos/promo_1/logo.png" width="100px" alt="Kmimos"></a>
+										<a href="https://www.kmimos.com.mx/" target="_blank"><img src="http://www.intaface.com/newsletter/kmimos/promo_1/logo.png" width="100px" alt="Kmimos"></a>
 									</td>
 								</tr>
 							</tbody>

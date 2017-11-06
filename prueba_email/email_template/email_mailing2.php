@@ -56,6 +56,9 @@ $html .='
 				padding: 20px 0px 20px 12.5%!important;
 				border-top: none!important;
 			}
+			.btn-responsive{
+				width: 35%!important;
+			}
 		}
 	</style>
 
@@ -76,7 +79,7 @@ $html .='
 				<tr>
 					<td bgcolor="#FFFFFF" style="padding:30px 0px;border-bottom: 1px solid #CCC;">
 					<a class="responsive right" href="https://www.kmimos.com.mx/"><img src="http://www.intaface.com/newsletter/kmimos/promo_1/logo.png" alt="Kmimos" class="logo"></a>
-					<p class="responsive left navbar" style="font-size:16px;color:#757575!important;font-family:Open Sans!important;"><a href="https://www.kmimos.com.mx/beneficios-para-tu-perro/" target="_blank" >Beneficios</a> | <a href="https://www.kmimos.com.mx/blog/" target="_blank">Blog</a> | <a href="https://www.kmimos.com.mx/contacta-con-nosotros/" target="_blank">Contacto</a></p>
+					<p class="responsive left navbar" style="font-size:16px;color:#757575!important;font-family:Open Sans!important;"><a href="https://www.kmimos.com.mx/" target="_blank" >Beneficios</a> | <a href="https://www.kmimos.com.mx/blog/" target="_blank">Blog</a> | <a href="https://www.kmimos.com.mx/contacta-con-nosotros/" target="_blank">Contacto</a></p>
 					</td>
 
 				</tr>
@@ -93,12 +96,12 @@ $html .='
 				<tr>
           <td class="responsive" style="padding: 3% 1.5%;">
             <center>
-              <p style="font-size: 13px!important; color: #878787!important; line-height: 180%!important;">Hola Kmiamigo! Te dejamos <span style="color: #66cc00">este cupón de descuento</span> <span style="background: #66cc00!important; display: inline-block!important; padding: 0px 10px; border-radius: 30px!important;color:white!important; font-size: 9px; font-family: \'Comfortaa\', sans-serif!important;">DESC20</span> <b>para que puedas canjearlo por un 20% de descuento</b> en cualquiera de nuestros servicios. Solo debes ingresarlo al momento de hacer tu reserva y listo.</p>
+              <p style="font-size: 13px!important; color: #878787!important; line-height: 180%!important; font-family: \'Open Sans\', sans-serif;">Hola Kmiamigo! Te dejamos <span style="color: #66cc00">este cupón de descuento</span> <span style="background: #66cc00!important; display: inline-block!important; padding: 0px 10px; border-radius: 30px!important;color:white!important; font-size: 13px; font-family: \'Open Sans\', sans-serif!important;">DESC20</span> <b>para que puedas canjearlo por un 20% de descuento</b> en cualquiera de nuestros servicios. Solo debes ingresarlo al momento de hacer tu reserva y listo.</p>
             </center>
           </td>
         </tr>
 
-				<tr><td style="padding: 1% 0px .5% 0px;"><h2 style="color: #9b2fb6; text-align: center; font-family: \'Comfortaa\', sans-serif; font-size: 32px; text-decoration: none;display: block;" href="https://www.kmimos.com.mx/beneficios-para-tu-perro/"> Beneficios Kmimos</h2>
+				<tr><td style="padding: 1% 0px .5% 0px;"><a href="https://www.kmimos.com.mx/" target="_blank"><h2 style="color: #9b2fb6; text-align: center; font-family: \'Comfortaa\', sans-serif; font-size: 32px; text-decoration: none;display: block;" href="https://www.kmimos.com.mx/beneficios-para-tu-perro/"> Beneficios Kmimos</h2></a>
 					</td>
 				</tr>
 
@@ -107,44 +110,44 @@ $html .='
 					<table width="100%" border="0" cellpadding="0" cellspacing="0">
 						<tbody>
 							<tr class="responsive-img" style="display: block;">
-								<td class="responsive" width="30%"><img src="http://www.intaface.com/newsletter/kmimos/promo_1/img_3.jpg" width="100%"></td>
+								<td class="responsive" width="30%"><a href="https://www.kmimos.com.mx/" target="_blank"><img src="http://www.intaface.com/newsletter/kmimos/promo_1/img_3.jpg" width="100%"></a></td>
 								<td width="5%" class="responsive"></td>
-								<td class="responsive"><h3 style="color: #ba55d3;font-family: \'Comfortaa\', sans-serif!important; font-size: 18px;">Conoce dónde se quedará</h3>
-								<p style="color: #878787; font-size: 13px;font-family: \'Comfortaa\', sans-serif!important;">Tienes derecho de conocer la casa donde se quedará tu kmiamigo al igual que a la persona que lo cuidará. ¡Sin ningun costo!</p>
+								<td class="responsive"><a href="https://www.kmimos.com.mx/" target="_blank"><h3 style="color: #ba55d3;font-family: \'Comfortaa\', sans-serif!important; font-size: 18px;">Conoce dónde se quedará</h3></a>
+								<p style="color: #878787; font-size: 13px;font-family: \'Open Sans\', sans-serif!important;">Tienes derecho de conocer la casa donde se quedará tu kmiamigo al igual que a la persona que lo cuidará. ¡Sin ningun costo!</p>
 								</td>
 
 							</tr>
 
 							<tr class="responsive-img" style="display: block;">
-								<td class="responsive" width="30%"><img src="http://www.intaface.com/newsletter/kmimos/promo_1/img_1.jpg" width="100%"></td>
+								<td class="responsive" width="30%"><a href="https://www.kmimos.com.mx/" target="_blank"><img src="http://www.intaface.com/newsletter/kmimos/promo_1/img_1.jpg" width="100%"></a></td>
 								<td width="5%" class="responsive"></td>
-								<td class="responsive"><h3 style="color: #ba55d3;font-family: \'Comfortaa\', sans-serif!important; font-size: 18px;">Cuidadores Certificados</h3>
-								<p style="color: #878787; font-size: 13px;font-family: \'Comfortaa\', sans-serif!important;">Tu perro será huesped en la casa de alguno de nuestros cuidadores certificados.</p>
+								<td class="responsive"><a href="https://www.kmimos.com.mx/" target="_blank"><h3 style="color: #ba55d3;font-family: \'Comfortaa\', sans-serif!important; font-size: 18px;">Cuidadores Certificados</h3></a>
+								<p style="color: #878787; font-size: 13px;font-family: \'Open Sans\', sans-serif!important;">Tu perro será huesped en la casa de alguno de nuestros cuidadores certificados.</p>
 								</td>
 
 							</tr>
 							<tr class="responsive-img" style="display: block;">
-								<td class="responsive" width="30%"><img src="http://www.intaface.com/newsletter/kmimos/promo_1/img_2.jpg" width="100%"></td>
+								<td class="responsive" width="30%"><a href="https://www.kmimos.com.mx/" target="_blank"><img src="http://www.intaface.com/newsletter/kmimos/promo_1/img_2.jpg" width="100%"></a></td>
 								<td width="5%" class="responsive"></td>
-								<td class="responsive"><h3 style="color: #ba55d3;font-family: \'Comfortaa\', sans-serif!important; font-size: 18px;">Reseñas y calificaciones</h3>
-								<p style="color: #878787; font-size: 13px;font-family: \'Comfortaa\', sans-serif!important;"><b>Más de mil comentarios</b> de usuarios que te permitirán escoger al Cuidador Certificado que se adapte a tus necesidades.</p>
+								<td class="responsive"><a href="https://www.kmimos.com.mx/" target="_blank"><h3 style="color: #ba55d3;font-family: \'Comfortaa\', sans-serif!important; font-size: 18px;">Reseñas y calificaciones</h3></a>
+								<p style="color: #878787; font-size: 13px;font-family: \'Open Sans\', sans-serif!important;"><b>Más de mil comentarios</b> de usuarios que te permitirán escoger al Cuidador Certificado que se adapte a tus necesidades.</p>
 								</td>
 
 							</tr>
 
 							<tr class="responsive-img" style="display: block;">
-								<td class="responsive" width="30%"><img src="http://www.intaface.com/newsletter/kmimos/promo_1/img_4.jpg" width="100%"></td>
+								<td class="responsive" width="30%"><a href="https://www.kmimos.com.mx/" target="_blank"><img src="http://www.intaface.com/newsletter/kmimos/promo_1/img_4.jpg" width="100%"></a></td>
 								<td width="5%" class="responsive"></td>
-								<td class="responsive"><h3 style="color: #ba55d3;font-family: \'Comfortaa\', sans-serif!important; font-size: 18px;">Servicios Veterinarios</h3>
-								<p style="color: #878787; font-size: 13px;font-family: \'Comfortaa\', sans-serif!important;">Tu peludo estará cubierto por un seguro veterinario durante todo su hospedaje.</p>
+								<td class="responsive"><a href="https://www.kmimos.com.mx/" target="_blank"><h3 style="color: #ba55d3;font-family: \'Comfortaa\', sans-serif!important; font-size: 18px;">Servicios Veterinarios</h3></a>
+								<p style="color: #878787; font-size: 13px;font-family: \'Open Sans\', sans-serif!important;">Tu peludo estará cubierto por un seguro veterinario durante todo su hospedaje.</p>
 								</td>
 
 							</tr>
 							<tr class="responsive-img" style="display: block;">
-								<td class="responsive" width="30%"><img src="http://www.intaface.com/newsletter/kmimos/promo_1/img_5.jpg" width="100%"></td>
+								<td class="responsive" width="30%"><a href="https://www.kmimos.com.mx/" target="_blank"><img src="http://www.intaface.com/newsletter/kmimos/promo_1/img_5.jpg" width="100%"></a></td>
 								<td width="5%" class="responsive"></td>
-								<td class="responsive"><h3 style="color: #ba55d3;font-family: \'Comfortaa\', sans-serif!important; font-size: 18px;">Costo</h3>
-								<p style="color: #878787; font-size: 13px;font-family: \'Comfortaa\', sans-serif!important;">El tamaño de tu perro y el cuidador que elijas determinarán el costo del servicio. Por ejemplo, un perro pequeño ronda entre los $100 y $200 pesos la noche.</p>
+								<td class="responsive"><a href="https://www.kmimos.com.mx/" target="_blank"><h3 style="color: #ba55d3;font-family: \'Comfortaa\', sans-serif!important; font-size: 18px;">Costo</h3></a>
+								<p style="color: #878787; font-size: 13px;font-family: \'Open Sans\', sans-serif!important;">El tamaño de tu perro y el cuidador que elijas determinarán el costo del servicio. Por ejemplo, un perro pequeño ronda entre los $100 y $200 pesos la noche.</p>
 								</td>
 
 							</tr>
@@ -157,7 +160,7 @@ $html .='
 						<ul class="listHeader" style="font-family: \'Comfortaa\', sans-serif!important; font-size: 12px!important;">
 							<li><b><span>Recuerda que:</span></b></li>
 						</ul>
-						<ul style="font-family: \'Comfortaa\', sans-serif!important; font-size: 12px!important; color: #878787!important; list-style-type: square;">
+						<ul style="font-family: \'Open Sans\', sans-serif!important; font-size: 12px!important; color: #878787!important; list-style-type: square;">
 							<li><span>La vigencia del cupón será hasta el 31 de Marzo de 2018.</span></li>
 							<li><span>El cupón es válido para una sola reserva.</span></li>
 							<li><span>Es válido de acuerdo al valor reflejado.</span></li>
@@ -191,7 +194,7 @@ $html .='
 										<a href="#" target="_blank" style="font-size: 11px!important;font-weight: 300;color: #757575!important;"><p>Lago Alberto 300, int 806, Col. Anahuac Secc 1, Miguel hidalgo. CDMX. CP:11320</p></a>
 									</td>
 									<td class="responsive">
-										<a href="https://www.kmimos.com.mx/" target="_blank"></a><img src="http://www.intaface.com/newsletter/kmimos/promo_1/logo.png" width="100px" alt="Kmimos"></a>
+										<a href="https://www.kmimos.com.mx/" target="_blank"><img src="http://www.intaface.com/newsletter/kmimos/promo_1/logo.png" width="100px" alt="Kmimos"></a>
 									</td>
 								</tr>
 							</tbody>
