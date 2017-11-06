@@ -41,6 +41,18 @@ $html .='
 		.responsive-subheader{
 			font-size: 20px!important;
 		}
+		li{
+			color: #b300ff;
+		}
+		li span{
+			color: black!important;
+		}
+		.listHeader li{
+			color: #00cccc;
+		}
+		.listHeader li span{
+			color: black!important;
+		}
 		@media screen and (max-width: 480px) {
 			.responsive{
 				width: 100%!important;
@@ -157,15 +169,23 @@ $html .='
 						</tr>
 						<tr>
 							<td style="padding: 30px 0px 10px 0px;">
-								<img src="./TyC.jpg" width="100%" alt="Terminos y condiciones de Kmimos.">
-								</center>
+								<ul class="listHeader" style="font-family: \'Comfortaa\', sans-serif!important; font-size: 12px!important;">
+									<li><b><span>Recuerda que:</span></b></li>
+								</ul>
+								<ul style="font-family: \'Comfortaa\', sans-serif!important; font-size: 12px!important; color: #878787!important; list-style-type: square;">
+									<li><span>La vigencia del cupón será hasta el 31 de Marzo de 2018.</span></li>
+									<li><span>El cupón es válido para una sola reserva.</span></li>
+									<li><span>Es válido de acuerdo al valor reflejado.</span></li>
+									<li><span>No es acumulable, no puede utilizarse junto a otro cupón o promoción.</span></li>
+									<li><span>Para cualquier duda que tengas sobre nuestro servicio, o la forma de aplicar tu cupón, puedes contactarnos a nuestro centro de atención a clientes: 01800 056 4667 donde con gusto te atenderemos.</span></li>
+								</ul>
 							</td>
 						</tr>
 						<tr>
 							<td style="padding: 10px 0px 0px 0px;">
 								<center>
-									<a href="https://www.kmimos.com.mx/" target="_blank" style="padding-right: 15%;"><img src="https://www.kmimos.com.mx/landing/img/ConoceMas.png" width="30%" alt="Conoce Mas"></a>
-									<a href="https://www.kmimos.com.mx/" target="_blank"><img src="https://www.kmimos.com.mx/landing/img/ReservaAqui.png" width="30%" alt="Reserva Aquí"></a>
+									<a href="https://www.kmimos.com.mx/" target="_blank" style="padding-right: 15%;"><img src="./ConoceMas.png" width="30%" alt="Conoce Mas"></a>
+									<a href="https://www.kmimos.com.mx/" target="_blank"><img src="./ReservaAqui.png" width="30%" alt="Reserva Aquí"></a>
 									<br><br>
 									<img src="http://www.intaface.com/newsletter/kmimos/promo_1/texto_promo.jpg" width="80%" alt="¡Disfruta de nuestra promoción, es por tiempo limitado!">
 								</center>
