@@ -172,8 +172,8 @@ $html .='
 				<tr>
 					<td style="padding: 10px 0px 0px 0px;">
 						<center>
-							<a href="https://www.kmimos.com.mx/" target="_blank" style="padding-right: 15%;"><img src="./ConoceMas.png" width="30%" alt="Conoce Mas"></a>
-							<a href="https://www.kmimos.com.mx/" target="_blank"><img src="./ReservaAqui.png" width="30%" alt="Reserva Aquí"></a>
+							<a href="https://www.kmimos.com.mx/" target="_blank" style="padding-right: 15%;"><img src="https://www.kmimos.com.mx/landing/img/ConoceMas.png" width="30%" alt="Conoce Mas"></a>
+							<a href="https://www.kmimos.com.mx/" target="_blank"><img src="https://www.kmimos.com.mx/landing/img/ReservaAqui.png" width="30%" alt="Reserva Aquí"></a>
 							<br><br>
 							<img src="http://www.intaface.com/newsletter/kmimos/promo_1/texto_promo.jpg" width="80%" alt="¡Disfruta de nuestra promoción, es por tiempo limitado!">
 						</center>
