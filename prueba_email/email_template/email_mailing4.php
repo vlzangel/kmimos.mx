@@ -119,7 +119,7 @@ $html .='
 		        <tr>
 		          <td style="padding: 3% 1.5%;">
 		            <center>
-		              <p style="font-size: 13px!important; color: #878787!important; line-height: 180%!important; font-family: \'Open Sans\', sans-serif!important;">Hola Kmiamigo, queremos que formes parte de nuestra familia, así que <b>¡Te regalamos uno de nuestros servicios!</b> <span style="color: #66cc00">¡Utiliza el cupón</span> <span href="https://www.kmimos.com.mx/" target="_blank" style="background: #66cc00!important; display: inline-block!important; padding: 0px 10px; border-radius: 30px!important;color:white; font-size: 13px; font-family: \'Open Sans\', sans-serif!important;">KMIGRATIS</span> y te regalamos una noche de hospedaje, un día de guardería o un paseo!.</p>
+		              <p style="font-size: 14px!important; color: #878787!important; line-height: 180%!important; font-family: \'Open Sans\', sans-serif!important;">Hola Kmiamigo, queremos que formes parte de nuestra familia, así que <b>¡Te regalamos uno de nuestros servicios!</b> <span style="color: #66cc00">¡Utiliza el cupón</span> <span href="https://www.kmimos.com.mx/" target="_blank" style="background: #66cc00!important; display: inline-block!important; padding: 0px 10px; border-radius: 30px!important;color:white; font-size: 15px; font-family: \'Open Sans\', sans-serif!important;">KMIGRATIS</span> y te regalamos una noche de hospedaje, un día de guardería o un paseo!.</p>
 		            </center>
 		          </td>
 		        </tr>
