@@ -60,9 +60,6 @@ $html .='<head>
 			.btn-responsive{
 				width: 35%!important;
 			}
-      .volarisLogo{
-        margin-top: -20px!important;
-      }
       .header{
         height: 200px!important;
       }
@@ -91,7 +88,7 @@ $html .='<head>
 	</tr>
   <tr>
 		<td height="50">
-			<img src="http://kmimosmx.sytes.net/QA1/prueba_email/Volaris/img/VolarisLogo.png" width="100%" style="margin-top: -10px;" class="volarisLogo">
+			<img src="http://kmimosmx.sytes.net/QA1/prueba_email/Volaris/img/VolarisLogo.png" width="100%" style="margin-top: -4%!important;" class="volarisLogo">
 		</td>
 	</tr>
 	<tr>
