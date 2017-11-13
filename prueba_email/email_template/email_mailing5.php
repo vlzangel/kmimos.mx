@@ -1,6 +1,5 @@
 <?php 
-$html .='
-	<head>
+$html .='<head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Kmimos - Mail Suscripción a Newsletter</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -60,7 +59,7 @@ $html .='
 				width: 35%!important;
 			}
       .volarisLogo{
-        margin-top: -16px!important;
+        margin-top: -20px!important;
       }
       .header{
         height: 200px!important;
@@ -86,7 +85,7 @@ $html .='
 	</tr>
   <tr>
 		<td height="50">
-			<img src="http://kmimosmx.sytes.net/QA1/prueba_email/Volaris/img/VolarisLogo.png" width="100%" style="margin-top: -7px;" class="volarisLogo">
+			<img src="http://kmimosmx.sytes.net/QA1/prueba_email/Volaris/img/VolarisLogo.png" width="100%" style="margin-top: -10px;" class="volarisLogo">
 		</td>
 	</tr>
 	<tr>
@@ -106,7 +105,7 @@ $html .='
 		          <h1 style="color: #831b6b!important; text-align: center; font-family: \'Open Sans\', sans-serif!important;">$250 pesos de descuento<br><span style="color: #332e33!important; text-align: center; font-family: \'Open Sans\', sans-serif; font-size: 16px;">En tu próximo servicio</span></h1>
 						</td>
 					</tr>
-					<tr class="header" style="background-image: url(img/Header.png); background-size: 100% 100%; height: 300px; background-repeat: no repeat;">
+					<tr class="header" style="background-image: url(http://kmimosmx.sytes.net/QA1/prueba_email/Volaris/img/Header.png); background-size: 100% 100%; height: 300px; background-repeat: no repeat;">
 						<td><a href="https://www.kmimos.com.mx/" target="_blank"><img src="http://kmimosmx.sytes.net/QA1/prueba_email/Volaris/img/ReservaAqui.png" width="30%" class="reserva" style="padding-left: 35%; padding-top: 35%;"></a></td>
 					</tr>
 
@@ -237,5 +236,4 @@ $html .='
 </tbody>
 </table>
 </td></tr></tbody></table>
-</body>
-';
+</body>';
