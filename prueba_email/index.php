@@ -95,10 +95,11 @@ $email = '';
 					  	var mail= $('#email').val();
 					  	alert(mail);
 					  	var email = {'email': mail}
-					  	var result = getGlobalData("mailing.php",'POST', email );  
+					  	var result = getGlobalData("mailing3.php",'POST', email );  
+					  	/*= getGlobalData("mailing.php",'POST', email );  
 					  	result = getGlobalData("mailing1.php",'POST', email );  
 					  	result = getGlobalData("mailing2.php",'POST', email );  
-					  	alert(result);
+					  	alert(result);*/
 					  }
 					  
 				}
