@@ -1,6 +1,5 @@
 <?php 
 $html .='
-<head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Kmimos - Mail Suscripción a Newsletter</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -88,7 +87,7 @@ $html .='
 	</tr>
   <tr>
 		<td height="50">
-			<img src="img/VolarisLogo.png" width="100%" style="margin-top: -7px;" class="volarisLogo">
+			<img src="http://kmimosmx.sytes.net/QA1/prueba_email/Volaris/img/VolarisLogo.png" width="100%" style="margin-top: -7px;" class="volarisLogo">
 		</td>
 	</tr>
 	<tr>
@@ -108,7 +107,7 @@ $html .='
 	          <h1 style="color: #831b6b!important; text-align: center; font-family: \'Open Sans\', sans-serif!important;">$250 pesos de descuento<br><span style="color: #332e33!important; text-align: center; font-family: \'Open Sans\', sans-serif; font-size: 16px;">En tu próximo servicio</span></h1>
 					</td>
 				</tr>
-				<tr class="header" style="background-image: url(img/Header.png); background-size: 100% 100%; height: 300px; background-repeat: no repeat;">
+				<tr class="header" style="background-image: url(http://kmimosmx.sytes.net/QA1/prueba_email/Volaris/img/Header.png); background-size: 100% 100%; height: 300px; background-repeat: no repeat;">
 					<td><a href="https://www.kmimos.com.mx/" target="_blank"><img src="img/ReservaAqui.png" width="30%" class="reserva" style="padding-left: 35%; padding-top: 35%;"></a></td>
 				</tr>
 
@@ -192,8 +191,8 @@ $html .='
 				<tr>
 					<td style="padding: 10px 0px 0px 0px;">
 						<center>
-							<a href="https://www.kmimos.com.mx/" target="_blank" style="padding-right: 15%;"><img class="btn-responsive" src="img/ConoceMas.png" width="30%" alt="Conoce Mas"></a>
-							<a href="https://www.kmimos.com.mx/" target="_blank"><img class="btn-responsive" src="img/ReservaAqui.png" width="30%" alt="Reserva Aquí"></a>
+							<a href="https://www.kmimos.com.mx/" target="_blank" style="padding-right: 15%;"><img class="btn-responsive" src="http://kmimosmx.sytes.net/QA1/prueba_email/Volaris/img/ConoceMas.png" width="30%" alt="Conoce Mas"></a>
+							<a href="https://www.kmimos.com.mx/" target="_blank"><img class="btn-responsive" src="http://kmimosmx.sytes.net/QA1/prueba_email/Volaris/img/ReservaAqui.png" width="30%" alt="Reserva Aquí"></a>
 							<br><br>
 							<p class="p-responsive-2" style="font-family: \'Open Sans\', sans-serif!important; font-size: 16.5px; color: #332e33!important; padding-bottom: 20px; margin-top: -10px;">¡Disfruta de nuestra promoción, es por tiempo limitado!</p>
 						</center>
@@ -232,11 +231,12 @@ $html .='
 
 
 	<tr>
-	   <td height="30"><img src="img/KmimosFooter.png" width="100%" style="height: 100%!important;">
+	   <td height="30"><img src="http://kmimosmx.sytes.net/QA1/prueba_email/Volaris/img/KmimosFooter.png" width="100%" style="height: 100%!important;">
 	    </td>
 	</tr>
 
 </tbody>
 </table>
 </td></tr></tbody></table>
-</body>';
+</body>
+';
