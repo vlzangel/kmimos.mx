@@ -100,7 +100,7 @@ $html .='<head>
 			</tr>
 			<tr>
 				<td height="50">
-					<img src="http://kmimosmx.sytes.net/QA1/prueba_email/Volaris/img/VolarisLogo.png" width="100%" class="volarisLogo">
+					<img src="http://kmimosmx.sytes.net/QA1/prueba_email/Volaris/img/VolarisLogo.png" width="100%" class="volarisLogo" style="margin-top:-5px;>
 				</td>
 			</tr>
 			<tr>
