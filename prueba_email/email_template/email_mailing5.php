@@ -44,7 +44,7 @@ $html .='<head>
 			color: black!important;
 		}
 		.volarisLogo{
-			margin-top: -5%!important;
+			margin-top: -35px!important;
 		}
 		@media screen and (max-width: 480px) {
 			.responsive{
@@ -71,7 +71,7 @@ $html .='<head>
         font-size: 13px!important;
       }
 			.volarisLogo{
-				margin-top: -7%!important;
+				margin-top: -50px!important;
 			}
 		}
 	</style>
