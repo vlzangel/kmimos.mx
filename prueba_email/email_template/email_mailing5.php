@@ -61,15 +61,15 @@ $html .='<head>
 			.btn-responsive{
 				width: 35%!important;
 			}
-      .header{
-        height: 200px!important;
-      }
-      .p-responsive{
-        font-size: 10px!important;
-      }
-      .p-responsive-2{
-        font-size: 13px!important;
-      }
+      		.header{
+        		height: 200px!important;
+      		}
+	      	.p-responsive{
+	        	font-size: 10px!important;
+	      	}
+	      	.p-responsive-2{
+	        	font-size: 13px!important;
+	      	}
 			.volarisLogo{
 				margin-top: -50px!important;
 			}
