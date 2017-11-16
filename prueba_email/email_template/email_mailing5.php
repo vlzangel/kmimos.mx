@@ -71,7 +71,7 @@ $html .='<head>
         font-size: 13px!important;
       }
 			.responsive-td{
-				height: 35px!important;
+				height: 25px!important;
 			}
 		}
 	</style>
