@@ -99,7 +99,7 @@ $html .='<head>
 				</td>
 			</tr>
 			<tr>
-				<td height="50">
+				<td class="responsive-td">
 					<img src="http://kmimosmx.sytes.net/QA1/prueba_email/Volaris/img/VolarisLogo.png" width="100%" class="volarisLogo">
 				</td>
 			</tr>
