@@ -86,9 +86,9 @@ $html .='<head>
 			<p class="preheader" style="font-family: \'Comfortaa\', sans-serif!important; text-align: center;font-size: 16px!important;color:white;"><a href="https://www.kmimos.com.mx/" target="_blank" style="color:#ffffff;">Descuento en tu próximo servicio</a> | <webversion>Ver versión Online</webversion></p>
 		</td>
 	</tr>
-  	<tr>
+  <tr>
 		<td height="50">
-			<img src="http://kmimosmx.sytes.net/QA1/prueba_email/Volaris/img/VolarisLogo.png" width="100%" class="volarisLogo" style="margin-top:-5px;>
+			<img src="http://kmimosmx.sytes.net/QA1/prueba_email/Volaris/img/VolarisLogo.png" width="100%" class="volarisLogo">
 		</td>
 	</tr>
 	<tr>
