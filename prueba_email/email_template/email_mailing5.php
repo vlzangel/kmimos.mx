@@ -71,7 +71,7 @@ $html .='<head>
 	        	font-size: 13px!important;
 	      	}
 			.volarisLogo{
-				margin-top: -50px!important;
+				margin-top:-5px;
 			}
 		}
 	</style>
@@ -88,7 +88,7 @@ $html .='<head>
 	</tr>
   <tr>
 		<td height="50">
-			<img src="http://kmimosmx.sytes.net/QA1/prueba_email/Volaris/img/VolarisLogo.png" width="100%" class="volarisLogo" style="margin-top:-5px;>
+			<img src="http://kmimosmx.sytes.net/QA1/prueba_email/Volaris/img/VolarisLogo.png" width="100%" class="volarisLogo">
 		</td>
 	</tr>
 	<tr>
