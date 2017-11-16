@@ -43,8 +43,8 @@ $html .='<head>
 		.listHeader li span{
 			color: black!important;
 		}
-		.volarisLogo{
-			margin-top: -35px!important;
+		.responsive-td{
+			height: 45px!important;
 		}
 		@media screen and (max-width: 480px) {
 			.responsive{
@@ -61,17 +61,17 @@ $html .='<head>
 			.btn-responsive{
 				width: 35%!important;
 			}
-      		.header{
-        		height: 200px!important;
-      		}
-	      	.p-responsive{
-	        	font-size: 10px!important;
-	      	}
-	      	.p-responsive-2{
-	        	font-size: 13px!important;
-	      	}
-			.volarisLogo{
-				margin-top:-5px;
+      .header{
+        height: 200px!important;
+      }
+      .p-responsive{
+        font-size: 10px!important;
+      }
+      .p-responsive-2{
+        font-size: 13px!important;
+      }
+			.responsive-td{
+				height: 35px!important;
 			}
 		}
 	</style>
@@ -87,7 +87,7 @@ $html .='<head>
 		</td>
 	</tr>
   <tr>
-		<td height="45">
+		<td class="responsive-td">
 			<img src="http://kmimosmx.sytes.net/QA1/prueba_email/Volaris/img/VolarisLogo.png" width="100%" class="volarisLogo">
 		</td>
 	</tr>
