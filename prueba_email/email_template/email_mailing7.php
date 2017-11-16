@@ -28,12 +28,12 @@ $html .='<head>
 		.right{
 			float: right!important;
 		}
-	  	.responsive-img{
-		    padding: 20px 0px;
-		    display: block!important;
-		    width: 49%!important;
-		    text-align: center;
-	  	}
+	  .responsive-img{
+	    padding: 20px 0px;
+	    display: block!important;
+	    width: 49%!important;
+	    text-align: center;
+	  }
 		.responsive-header{
 			font-size: 35px!important;
 		}
@@ -52,8 +52,8 @@ $html .='<head>
 		.listHeader li span{
 			color: black!important;
 		}
-		.volarisLogo{
-			margin-top: -35px!important;
+		.responsive-td{
+			height: 45px!important;
 		}
 		@media screen and (max-width: 480px) {
 			.responsive{
@@ -62,10 +62,10 @@ $html .='<head>
 				float: none!important;
 				text-align:center;
 			}
-	    	.responsive-img{
-	      		width: 75%!important;
+	    .responsive-img{
+	      width: 75%!important;
 				padding: 20px 0px 20px 12.5%;
-	    	}
+	    }
 			.responsive-header{
 				font-size: 30px!important;
 			}
@@ -75,14 +75,14 @@ $html .='<head>
 			.btn-responsive{
 				width: 35%!important;
 			}
-      		.p-responsive{
-        		font-size: 10px!important;
-     		}
-      		.p-responsive-2{
-        		font-size: 13px!important;
-      		}
-			.volarisLogo{
-				margin-top: -50px!important;
+      .p-responsive{
+        font-size: 10px!important;
+      }
+      .p-responsive-2{
+        font-size: 13px!important;
+      }
+			.responsive-td{
+				height: 25px!important;
 			}
 		}
 
@@ -99,7 +99,7 @@ $html .='<head>
 				</td>
 			</tr>
 			<tr>
-				<td height="45">
+				<td height="50">
 					<img src="http://kmimosmx.sytes.net/QA1/prueba_email/Volaris/img/VolarisLogo.png" width="100%" class="volarisLogo">
 				</td>
 			</tr>
